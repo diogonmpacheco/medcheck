@@ -187,6 +187,45 @@ a{color:var(--accent)}
 .coll-body{display:none}
 .coll-body.open{display:block}
 
+/* PATHWAY DIVERSION */
+.pd-card{padding:12px;margin-bottom:10px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card2)}
+.pd-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pd-drug{font-weight:700;font-size:14px}
+.pd-sev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;text-transform:uppercase}
+.pd-sev.critical{background:var(--red);color:#fff}
+.pd-sev.high{background:var(--amber);color:#fff}
+.pd-sev.moderate{background:var(--blue);color:#fff}
+.pd-sev.low{background:var(--greenBg);color:var(--green)}
+.pd-arrow{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:13px}
+.pd-arrow .enzyme{font-size:11px;padding:1px 6px;border-radius:6px;background:#e0e7ff;color:#3730a3;font-weight:600}
+.pd-arrow .metab{font-weight:600}
+.pd-arrow .badge{font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700}
+.pd-primary{border-left:3px solid var(--green);padding-left:10px;margin:4px 0}
+.pd-diverted{border-left:3px solid var(--amber);padding-left:10px;margin:4px 0;opacity:0.9}
+.pd-impact{font-size:12px;margin-top:8px;padding:8px 10px;border-radius:8px;line-height:1.4;font-weight:500}
+
+/* COMBINATION PRODUCTS */
+.cp-card{padding:14px 16px;border-left:4px solid;margin-bottom:8px;border-radius:0 var(--radius) var(--radius) 0}
+.cp-card.critical{border-color:var(--red);background:var(--redBg)}
+.cp-card.high{border-color:var(--amber);background:var(--amberBg)}
+.cp-card.moderate{border-color:var(--blue);background:var(--blueBg)}
+.cp-type{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:6px}
+.cp-drugs{font-weight:700;font-size:14px;margin-bottom:4px}
+.cp-mech{font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:4px}
+.cp-result{font-size:12px;line-height:1.4}
+.cp-mgmt{font-size:12px;margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.6);border-radius:8px;font-style:italic}
+
+/* TRANSPORTER DDI */
+.tr-card{padding:12px 16px;border-left:4px solid var(--purple);margin-bottom:8px;border-radius:0 var(--radius) var(--radius) 0;background:var(--purpleBg)}
+.tr-card.critical{border-color:var(--red);background:var(--redBg)}
+.tr-card.high{border-color:var(--amber);background:var(--amberBg)}
+.tr-card.moderate{border-color:var(--blue);background:var(--blueBg)}
+.tr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tr-drugs{font-weight:700;font-size:14px}
+.tr-transporter{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;background:var(--purpleBg);color:var(--purple);border:1px solid var(--purple)}
+.tr-effect{font-size:13px;font-weight:600;margin:4px 0}
+.tr-mech{font-size:12px;color:var(--text2);line-height:1.4}
+
 /* RESPONSIVE */
 @media(max-width:500px){
   .fold-name,.timing-name{width:100px;font-size:12px}
@@ -268,6 +307,26 @@ a{color:var(--accent)}
     <div class="section-body coll-body open" id="interBody"></div>
   </div>
 
+  <!-- Combination Alerts -->
+  <div class="section" id="comboSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('combo')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <span>Combination Alerts</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="comboCount"></span>
+    </div>
+    <div class="section-body coll-body open" id="comboBody"></div>
+  </div>
+
+  <!-- Transporter Interactions -->
+  <div class="section" id="transporterSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('transporter')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      <span>Transporter Interactions</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="transporterCount"></span>
+    </div>
+    <div class="section-body coll-body open" id="transporterBody"></div>
+  </div>
+
   <!-- AUC Fold Changes -->
   <div class="section" id="foldSection" style="display:none">
     <div class="section-title collapsible" onclick="toggleSection('fold')">
@@ -303,6 +362,16 @@ a{color:var(--accent)}
       <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite cross-check included</span>
     </div>
     <div class="section-body coll-body" id="metabBody"></div>
+  </div>
+
+  <!-- Pathway Diversions -->
+  <div class="section" id="pdSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('pd')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
+      <span>Pathway Diversions</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How blocked enzymes reroute your meds</span>
+    </div>
+    <div class="section-body coll-body" id="pdBody"></div>
   </div>
 
   <!-- Alternatives -->
@@ -683,6 +752,187 @@ const PHENOTYPE_OPTIONS = [
   { id: "poor", label: "Poor Metabolizer", mult: 5.0, cssClass: "poor" },
   { id: "null", label: "No Function (Null)", mult: 20.0, cssClass: "null" },
 ];
+
+// ── PharmGKB / CPIC EVIDENCE GRADES (Phase 6) ──
+// Level A = required before prescribing, Level B = moderate evidence, Level C = some evidence
+// Source: PharmGKB clinical annotations + CPIC guidelines (2024)
+const PHARMGKB_EVIDENCE = {
+  "CYP2D6":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Codeine",level:"A",action:"Avoid in PM; use alternative analgesic"},
+      {drug:"Tramadol",level:"A",action:"Avoid in PM/UM; reduced efficacy or toxicity"},
+      {drug:"Oxycodone",level:"B",action:"Reduced efficacy in PM; consider alternative"},
+      {drug:"Hydrocodone",level:"B",action:"Reduced activation in PM"},
+      {drug:"Fluoxetine",level:"A",action:"PM: higher levels/ADR; UM: subtherapeutic"},
+      {drug:"Paroxetine",level:"A",action:"PM: higher levels/ADR; UM: reduced efficacy"},
+      {drug:"Sertraline",level:"B",action:"Consider dose adjustment in PM"},
+      {drug:"Venlafaxine",level:"B",action:"PM: ↑ parent, ↓ active metabolite"},
+      {drug:"Amitriptyline",level:"A",action:"PM: reduce dose 50%; UM: avoid or increase dose"},
+      {drug:"Nortriptyline",level:"A",action:"PM: reduce dose 50%; UM: increase dose or use alternative"},
+      {drug:"Imipramine",level:"A",action:"PM: reduce dose; UM: consider alternative"},
+      {drug:"Clomipramine",level:"A",action:"PM: reduce dose; UM: consider alternative"},
+      {drug:"Doxepin",level:"B",action:"PM: reduce dose; monitor levels"},
+      {drug:"Atomoxetine",level:"A",action:"PM: reduce dose to 0.5mg/kg/day"},
+      {drug:"Aripiprazole",level:"B",action:"PM: reduce dose to 67% of standard"},
+      {drug:"Risperidone",level:"B",action:"PM: reduce dose; active metabolite reduced"},
+      {drug:"Haloperidol",level:"B",action:"PM: reduce dose 50%"},
+      {drug:"Metoprolol",level:"B",action:"PM: ↑ AUC 5×; consider atenolol/bisoprolol"},
+      {drug:"Carvedilol",level:"B",action:"PM: ↑ levels; monitor for bradycardia"},
+      {drug:"Propranolol",level:"C",action:"PM: ↑ levels; clinical significance unclear"},
+      {drug:"Tamoxifen",level:"A",action:"PM: ineffective; use aromatase inhibitor"},
+      {drug:"Ondansetron",level:"B",action:"UM: reduced efficacy; consider alternative antiemetic"},
+      {drug:"Metoclopramide",level:"C",action:"PM: ↑ EPS risk"}
+    ]
+  },
+  "CYP2C19":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Clopidogrel",level:"A",action:"PM: ineffective; use prasugrel or ticagrelor"},
+      {drug:"Omeprazole",level:"A",action:"PM: ↑ efficacy; UM: reduced efficacy, ↑ dose"},
+      {drug:"Esomeprazole",level:"A",action:"PM: ↑ efficacy; UM: may need higher dose"},
+      {drug:"Lansoprazole",level:"A",action:"PM: ↑ levels; UM: reduced efficacy"},
+      {drug:"Pantoprazole",level:"B",action:"Less affected by genotype than omeprazole"},
+      {drug:"Voriconazole",level:"A",action:"PM: 4× higher levels, toxicity risk; UM: subtherapeutic"},
+      {drug:"Citalopram",level:"B",action:"PM: reduce dose; UM: may need higher dose"},
+      {drug:"Escitalopram",level:"B",action:"PM: reduce dose by 50%"},
+      {drug:"Sertraline",level:"B",action:"PM: consider dose reduction"},
+      {drug:"Amitriptyline",level:"A",action:"PM: reduce dose 50% (2C19 + 2D6 combined effect)"},
+      {drug:"Imipramine",level:"A",action:"PM: reduce dose; monitor levels"},
+      {drug:"Clomipramine",level:"A",action:"PM: reduce dose"},
+      {drug:"Phenytoin",level:"A",action:"PM: reduce dose by 25%; monitor levels"},
+      {drug:"Brivaracetam",level:"C",action:"Minor CYP2C19 contribution"},
+      {drug:"Diazepam",level:"B",action:"PM: ↑ t½; reduced clearance"}
+    ]
+  },
+  "CYP2C9":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Warfarin",level:"A",action:"PM (*2/*3): reduce dose 30-50%; use pharmacogenomic dosing"},
+      {drug:"Phenytoin",level:"A",action:"PM: reduce dose by 25-50%; monitor levels closely"},
+      {drug:"Celecoxib",level:"B",action:"PM: reduce dose 50%; increased GI/CV risk"},
+      {drug:"Ibuprofen",level:"B",action:"PM: ↑ AUC ~2×; consider dose reduction"},
+      {drug:"Fluvastatin",level:"C",action:"PM: ↑ levels; monitor for myopathy"},
+      {drug:"Losartan",level:"B",action:"PM: ↓ active metabolite → reduced efficacy"},
+      {drug:"Glipizide",level:"C",action:"PM: ↑ levels; hypoglycemia risk"},
+      {drug:"Glyburide",level:"C",action:"PM: ↑ levels; hypoglycemia risk"}
+    ]
+  },
+  "CYP3A4":{
+    grade:"B",
+    guideline:"CPIC/DPWG",
+    pairs:[
+      {drug:"Simvastatin",level:"B",action:"CYP3A4 inhibitors → 10-15× ↑ levels; rhabdomyolysis"},
+      {drug:"Atorvastatin",level:"B",action:"CYP3A4 inhibitors → 3-4× ↑ levels"},
+      {drug:"Tacrolimus",level:"A",action:"CYP3A5 expressors: need higher doses"},
+      {drug:"Cyclosporine",level:"B",action:"Monitor with CYP3A4 inhibitors/inducers"},
+      {drug:"Fentanyl",level:"B",action:"CYP3A4 inhibitors → respiratory depression risk"},
+      {drug:"Midazolam",level:"B",action:"CYP3A4 inhibitors → excessive sedation"},
+      {drug:"Triazolam",level:"B",action:"CYP3A4 inhibitors → excessive sedation"},
+      {drug:"Apixaban",level:"B",action:"CYP3A4 inhibitors → ↑ bleeding; inducers → ↓ efficacy"}
+    ]
+  },
+  "CYP2B6":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Efavirenz",level:"A",action:"PM: reduce dose to 400mg; UM: may need 800mg"},
+      {drug:"Bupropion",level:"B",action:"PM: ↑ levels of hydroxybupropion"},
+      {drug:"Methadone",level:"B",action:"PM: ↑ levels; UM: faster clearance"}
+    ]
+  },
+  "CYP1A2":{
+    grade:"B",
+    guideline:"DPWG",
+    pairs:[
+      {drug:"Theophylline",level:"B",action:"UM (smoker): need higher dose; PM: reduce dose"},
+      {drug:"Caffeine",level:"C",action:"PM: slow metabolism, anxiety/insomnia; UM: rapid clearance"},
+      {drug:"Clozapine",level:"B",action:"PM: ↑ levels, toxicity risk; UM: subtherapeutic"},
+      {drug:"Tizanidine",level:"B",action:"PM with CYP1A2 inhibitor: 33× ↑ AUC (contraindicated)"},
+      {drug:"Fluvoxamine",level:"B",action:"Strong CYP1A2 inhibitor — affects all 1A2 substrates"}
+    ]
+  },
+  "DPYD":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Fluorouracil",level:"A",action:"PM: AVOID — fatal toxicity risk; IM: reduce dose 50%"},
+      {drug:"Capecitabine",level:"A",action:"PM: AVOID; IM: reduce dose 50%"}
+    ]
+  },
+  "TPMT":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Azathioprine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"},
+      {drug:"Mercaptopurine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"}
+    ]
+  },
+  "UGT1A1":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Atazanavir",level:"A",action:"*28/*28: ↑ hyperbilirubinemia, but usually benign"},
+      {drug:"Irinotecan",level:"A",action:"*28/*28: reduce dose 30%; severe neutropenia risk"}
+    ]
+  },
+  "SLCO1B1":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Simvastatin",level:"A",action:"521TC/CC: avoid >20mg; myopathy risk 5-17×"},
+      {drug:"Atorvastatin",level:"B",action:"521CC: ↑ levels; consider dose reduction"},
+      {drug:"Rosuvastatin",level:"B",action:"521CC: ↑ levels 1.6×; use lower starting dose"},
+      {drug:"Pravastatin",level:"B",action:"521CC: ↑ levels; monitor"},
+      {drug:"Pitavastatin",level:"B",action:"521CC: ↑ levels; start low dose"}
+    ]
+  },
+  "NAT2":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Isoniazid",level:"A",action:"Slow acetylator: ↑ hepatotoxicity; reduce dose/monitor LFTs"},
+      {drug:"Sulfasalazine",level:"B",action:"Slow acetylator: ↑ ADR frequency"},
+      {drug:"Hydralazine",level:"C",action:"Slow acetylator: ↑ SLE-like syndrome risk"}
+    ]
+  },
+  "ABCB1":{
+    grade:"B",
+    guideline:"DPWG",
+    pairs:[
+      {drug:"Digoxin",level:"B",action:"3435TT: ↑ absorption; monitor levels"},
+      {drug:"Dabigatran",level:"B",action:"P-gp inhibitors → ↑ levels; bleeding risk"},
+      {drug:"Tacrolimus",level:"C",action:"3435TT: variable effects on levels"}
+    ]
+  },
+  "CYP4F2":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Warfarin",level:"B",action:"V433M (*3): ↑ dose requirement ~1mg/day"}
+    ]
+  },
+  "COMT":{
+    grade:"C",
+    guideline:"PharmGKB",
+    pairs:[
+      {drug:"Levodopa",level:"C",action:"Val/Val: faster dopamine degradation; Met/Met: slower"},
+      {drug:"MDMA (Ecstasy)",level:"C",action:"Met/Met: ↑ dopamine/noradrenaline neurotoxicity"}
+    ]
+  },
+  "MAO-A":{
+    grade:"C",
+    guideline:"PharmGKB",
+    pairs:[
+      {drug:"Moclobemide",level:"C",action:"Genotype affects serotonin metabolism capacity"},
+      {drug:"Sumatriptan",level:"C",action:"MAO-A metabolizes sumatriptan"}
+    ]
+  }
+};
+
 let userGenetics = {};
 
 function getPhenotypeMult(enzyme) {
@@ -1332,159 +1582,736 @@ const METAB = {
 "Nitrous Oxide":[
   {n:"N₂O (unchanged, exhaled)",e:"Lungs",a:"active",p:99,note:"Almost entirely exhaled unchanged"},
   {n:"Free radicals",e:"Reductive",a:"toxic",p:1,note:"Inactivates vitamin B12 → megaloblastic anemia with chronic use"}
+],
+// ── PHASE 2 EXPANSION: 130 additional drug metabolite cascades ──
+"Pravastatin":[
+  {n:"3α-Hydroxy-iso-pravastatin",e:"Sulfation",a:"inactive",p:45,t:2,note:"Non-CYP, renal/biliary excretion"},
+  {n:"SQ31906 (ring hydroxylation)",e:"CYP3A4",a:"weak",p:10,t:1.5,note:"Minor CYP contribution unlike other statins"},
+  {n:"Pravastatin lactone",e:"Spontaneous",a:"inactive",p:20,note:"Interconversion with active acid form"}
+],
+"Lovastatin":[
+  {n:"Lovastatin acid (β-hydroxyacid)",e:"Esterases",a:"active",p:30,t:3,note:"Active open-ring form, the actual HMG-CoA reductase inhibitor"},
+  {n:"6'-Hydroxy-lovastatin",e:"CYP3A4",a:"weak",p:40,t:2,note:"Primary oxidative metabolite"},
+  {n:"6'-Exomethylene-lovastatin",e:"CYP3A4",a:"inactive",p:15,t:1.5,note:"Dehydration product"}
+],
+"Fluvastatin":[
+  {n:"5-Hydroxy-fluvastatin",e:"CYP2C9",a:"weak",p:35,t:1,note:"Major metabolite, ~50% pharmacological activity"},
+  {n:"6-Hydroxy-fluvastatin",e:"CYP2C9",a:"weak",p:25,t:1,note:"Retains partial activity"},
+  {n:"N-Desisopropyl-fluvastatin",e:"CYP3A4",a:"inactive",p:10,t:0.8,note:"Minor pathway"}
+],
+"Pitavastatin":[
+  {n:"Pitavastatin lactone",e:"UGT1A3/2B7",a:"inactive",p:50,t:10,note:"Glucuronidated; major elimination pathway, NOT CYP"},
+  {n:"Cyclopentyl-epimer",e:"Spontaneous",a:"inactive",p:5,note:"Minor non-enzymatic conversion"}
+],
+"Milnacipran":[
+  {n:"Milnacipran glucuronide",e:"UGT2B7",a:"inactive",p:55,t:8,note:"Major route; largely renally cleared unchanged (50%)"},
+  {n:"Desethyl-milnacipran",e:"CYP3A4",a:"weak",p:5,t:6,note:"Very minor pathway"}
+],
+"Vilazodone":[
+  {n:"Desmethyl-vilazodone",e:"CYP3A4",a:"weak",p:15,t:20,note:"Retains 5-HT1A partial agonist activity"},
+  {n:"4-Hydroxy-vilazodone glucuronide",e:"CYP3A4/UGT",a:"inactive",p:40,note:"Primary elimination route"},
+  {n:"Vilazodone carboxylic acid",e:"CYP3A4",a:"inactive",p:25,note:"Oxidative metabolite"}
+],
+"Vortioxetine":[
+  {n:"Vortioxetine carboxylic acid",e:"CYP2D6",a:"inactive",p:30,t:10,note:"Major inactive metabolite, renally cleared"},
+  {n:"Hydroxy-vortioxetine glucuronide",e:"CYP2D6/UGT",a:"inactive",p:25,note:"Phase II conjugate"},
+  {n:"Desmethyl-vortioxetine",e:"CYP2D6/3A4",a:"weak",p:10,t:50,note:"Weak 5-HT transporter binding"}
+],
+"Bisoprolol":[
+  {n:"Bisoprolol glucuronide",e:"UGT",a:"inactive",p:30,t:11,note:"50% excreted renally unchanged"},
+  {n:"O-dealkylated metabolite",e:"CYP3A4",a:"inactive",p:15,note:"Minor oxidative pathway"},
+  {n:"Oxidized bisoprolol",e:"CYP2D6",a:"inactive",p:10,note:"Minor contribution"}
+],
+"Atenolol":[
+  {n:"Atenolol (unchanged, renal)",e:"None",a:"active",p:85,t:7,note:"Not metabolized; ~90% renal excretion unchanged"},
+  {n:"Hydroxymethyl-atenolol",e:"Gut flora",a:"inactive",p:5,note:"Minor fecal metabolite"}
+],
+"Labetalol":[
+  {n:"Labetalol glucuronide",e:"UGT2B7",a:"inactive",p:60,t:6,note:"Extensive first-pass glucuronidation"},
+  {n:"Labetalol sulfate",e:"SULT",a:"inactive",p:15,note:"Secondary conjugation pathway"},
+  {n:"3-amino-1-phenylbutane",e:"CYP2D6",a:"inactive",p:5,note:"Minor reductive metabolite"}
+],
+"Lisinopril":[
+  {n:"Lisinopril (unchanged, renal)",e:"None",a:"active",p:100,t:12,note:"Not metabolized at all; 100% renal excretion unchanged"}
+],
+"Enalapril":[
+  {n:"Enalaprilat",e:"Esterases",a:"active",p:60,t:11,note:"Active diacid; the actual ACE inhibitor (prodrug activation)"},
+  {n:"Enalapril diketopiperazine",e:"Spontaneous",a:"inactive",p:10,note:"Cyclization product"}
+],
+"Ramipril":[
+  {n:"Ramiprilat",e:"Esterases",a:"active",p:45,t:14,note:"Active metabolite; 6× more potent ACE inhibitor than parent"},
+  {n:"Ramiprilat diketopiperazine",e:"Spontaneous",a:"inactive",p:15,note:"Ring closure product"},
+  {n:"Ramiprilat glucuronide",e:"UGT",a:"inactive",p:20,note:"Renal clearance form"}
+],
+"Captopril":[
+  {n:"Captopril disulfide",e:"Oxidation",a:"inactive",p:40,t:2,note:"Thiol oxidation produces dimer"},
+  {n:"Captopril-cysteine disulfide",e:"Thiol exchange",a:"inactive",p:25,note:"Protein-bound form"},
+  {n:"Captopril (unchanged, renal)",e:"None",a:"active",p:35,t:2,note:"Short-acting; requires TID dosing"}
+],
+"Benazepril":[
+  {n:"Benazeprilat",e:"Esterases",a:"active",p:55,t:10,note:"Active diacid metabolite; actual ACE inhibitor"},
+  {n:"Benazeprilat glucuronide",e:"UGT",a:"inactive",p:25,note:"Biliary/renal elimination"},
+  {n:"Benazepril acyl-glucuronide",e:"UGT",a:"inactive",p:15,note:"Direct conjugation of parent"}
+],
+"Valsartan":[
+  {n:"4-Hydroxy-valsartan",e:"CYP2C9",a:"inactive",p:9,t:6,note:"Only ~20% hepatic metabolism; mostly excreted unchanged in feces"},
+  {n:"Valsartan (unchanged, fecal)",e:"None",a:"active",p:83,t:6,note:"~83% eliminated unchanged via biliary excretion"}
+],
+"Irbesartan":[
+  {n:"Irbesartan glucuronide",e:"UGT",a:"inactive",p:20,t:12,note:"Direct conjugation"},
+  {n:"Hydroxy-irbesartan",e:"CYP2C9",a:"weak",p:15,note:"Oxidation metabolite with some AT1 binding"},
+  {n:"Irbesartan (unchanged)",e:"None",a:"active",p:60,t:12,note:"~20% eliminated unchanged renally"}
+],
+"Candesartan":[
+  {n:"Candesartan (from cilexetil prodrug)",e:"Esterases",a:"active",p:85,t:9,note:"Administered as candesartan cilexetil prodrug"},
+  {n:"O-deethyl-candesartan",e:"CYP2C9",a:"inactive",p:10,note:"Minor inactive metabolite"}
+],
+"Olmesartan":[
+  {n:"Olmesartan (unchanged, fecal/renal)",e:"None",a:"active",p:100,t:13,note:"No significant metabolism; eliminated unchanged (60% fecal, 40% renal)"}
+],
+"Telmisartan":[
+  {n:"Telmisartan glucuronide",e:"UGT1A3",a:"inactive",p:15,t:24,note:"Only metabolic pathway; >97% fecal elimination"},
+  {n:"Telmisartan (unchanged, fecal)",e:"None",a:"active",p:85,t:24,note:"Minimal metabolism; longest-acting ARB"}
+],
+"Nifedipine":[
+  {n:"Oxidized nifedipine (pyridine metabolite)",e:"CYP3A4",a:"inactive",p:70,t:2,note:"Primary aromatization to inactive pyridine analog"},
+  {n:"Hydroxy-nifedipine",e:"CYP3A4",a:"weak",p:15,note:"Retains ~5% activity"},
+  {n:"Nifedipine acid",e:"CYP3A4/Esterases",a:"inactive",p:10,note:"Ester hydrolysis product"}
+],
+"Felodipine":[
+  {n:"Dehydro-felodipine",e:"CYP3A4",a:"inactive",p:50,t:15,note:"Pyridine analog, no vasodilatory activity"},
+  {n:"Hydroxy-felodipine",e:"CYP3A4",a:"inactive",p:30,note:"Ring hydroxylation product"},
+  {n:"Felodipine dicarboxylic acid",e:"CYP3A4/Esterases",a:"inactive",p:15,note:"Hydrolysis of both esters"}
+],
+"Lansoprazole":[
+  {n:"5-Hydroxy-lansoprazole",e:"CYP2C19",a:"inactive",p:35,t:1.5,note:"Primary metabolite"},
+  {n:"Lansoprazole sulfone",e:"CYP3A4",a:"inactive",p:30,note:"Sulfoxidation product"},
+  {n:"5-Hydroxy-lansoprazole sulfone",e:"CYP2C19/3A4",a:"inactive",p:15,note:"Sequential oxidation"}
+],
+"Pantoprazole":[
+  {n:"Desmethyl-pantoprazole sulfate",e:"CYP2C19",a:"inactive",p:50,t:1,note:"Demethylation then sulfate conjugation"},
+  {n:"Pantoprazole sulfone",e:"CYP3A4",a:"inactive",p:30,note:"Less dependent on 2C19 than omeprazole"},
+  {n:"Pantoprazole thioether",e:"Reduction",a:"inactive",p:10,note:"Reduction product"}
+],
+"Rabeprazole":[
+  {n:"Rabeprazole thioether",e:"Non-enzymatic",a:"inactive",p:60,t:1,note:"Primary route — non-enzymatic reduction, NOT CYP-dependent"},
+  {n:"Desmethyl-rabeprazole",e:"CYP2C19",a:"weak",p:15,note:"Minor CYP contribution — least affected by CYP2C19 polymorphisms"},
+  {n:"Rabeprazole sulfone",e:"CYP3A4",a:"inactive",p:10,note:"Minor oxidation product"}
+],
+"Famotidine":[
+  {n:"Famotidine S-oxide",e:"FMO",a:"inactive",p:10,t:3,note:"Minor sulfoxidation"},
+  {n:"Famotidine (unchanged, renal)",e:"None",a:"active",p:75,t:3,note:"Primarily renally eliminated unchanged (65-80%)"}
+],
+"Apixaban":[
+  {n:"O-Desmethyl-apixaban sulfate",e:"CYP3A4/SULT",a:"inactive",p:25,t:12,note:"Major metabolite in plasma; no anticoagulant activity"},
+  {n:"3-Hydroxy-apixaban",e:"CYP3A4",a:"inactive",p:15,note:"Hydroxylation product"},
+  {n:"Apixaban (unchanged, fecal)",e:"None",a:"active",p:50,t:12,note:"~27% renal + 50% biliary as unchanged drug"}
+],
+"Rivaroxaban":[
+  {n:"Morpholinone ring-opened metabolites",e:"CYP3A4/2J2",a:"inactive",p:35,t:7,note:"Oxidative cleavage of morpholinone ring"},
+  {n:"Hydroxy-rivaroxaban",e:"CYP3A4",a:"inactive",p:15,note:"Hydroxylation"},
+  {n:"Rivaroxaban (unchanged, renal)",e:"None",a:"active",p:36,t:7,note:"1/3 excreted unchanged renally"}
+],
+"Dabigatran":[
+  {n:"Dabigatran (from etexilate prodrug)",e:"Esterases",a:"active",p:80,t:13,note:"Prodrug activation by carboxylesterases in gut/liver"},
+  {n:"Dabigatran acyl-glucuronide",e:"UGT2B15",a:"active",p:15,t:13,note:"Pharmacologically active conjugate (~same potency)"},
+  {n:"Dabigatran (unchanged, renal)",e:"None",a:"active",p:80,t:13,note:"80% renal clearance; contraindicated CrCl<30"}
+],
+"Edoxaban":[
+  {n:"M-4 (hydroxy-edoxaban)",e:"CES1",a:"active",p:10,t:10,note:"Active metabolite formed by carboxylesterase"},
+  {n:"M-6 (N-oxide)",e:"CYP3A4",a:"weak",p:5,note:"Minor contribution of CYP3A4"},
+  {n:"Edoxaban (unchanged, renal/fecal)",e:"None",a:"active",p:70,t:10,note:"Minimal metabolism; 50% renal + biliary/intestinal"}
+],
+"Aspirin":[
+  {n:"Salicylic acid (salicylate)",e:"Esterases",a:"active",p:90,t:4,note:"Rapid deacetylation; retains anti-inflammatory activity"},
+  {n:"Salicyluric acid",e:"Glycine conjugation",a:"inactive",p:50,t:3,note:"Primary elimination metabolite (~75% of dose)"},
+  {n:"Gentisic acid",e:"CYP/Oxidation",a:"inactive",p:5,note:"Ring hydroxylation of salicylate"},
+  {n:"Salicyl-phenolic glucuronide",e:"UGT",a:"inactive",p:15,note:"Glucuronide conjugation"}
+],
+"Aspirin (Low-Dose)":[
+  {n:"Salicylic acid",e:"Esterases",a:"active",p:90,t:4,note:"Same metabolism as full-dose aspirin"},
+  {n:"Salicyluric acid",e:"Glycine conjugation",a:"inactive",p:50,t:3,note:"Primary elimination route"},
+  {n:"Acetyl group → COX-1 (irreversible)",e:"Direct",a:"active",p:0,note:"Permanent platelet inhibition — lasts platelet lifetime (7-10 days)"}
+],
+"Azithromycin":[
+  {n:"Desosaminyl-azithromycin",e:"CYP3A4",a:"inactive",p:5,t:68,note:"Very minor metabolism; mostly excreted unchanged in bile"},
+  {n:"Azithromycin (unchanged, biliary)",e:"None",a:"active",p:90,t:68,note:"Extremely long tissue half-life; minimal hepatic metabolism"}
+],
+"Ciprofloxacin":[
+  {n:"Desethylene-ciprofloxacin",e:"CYP1A2",a:"weak",p:10,t:4,note:"Retains ~50% antibacterial activity"},
+  {n:"Sulfo-ciprofloxacin",e:"Phase II",a:"inactive",p:5,note:"Minor conjugation product"},
+  {n:"Oxo-ciprofloxacin",e:"CYP1A2",a:"weak",p:5,note:"Retains partial activity"},
+  {n:"Ciprofloxacin (unchanged, renal)",e:"None",a:"active",p:65,t:4,note:"~50% renal excretion unchanged"}
+],
+"Levofloxacin":[
+  {n:"Desmethyl-levofloxacin",e:"CYP",a:"inactive",p:5,t:7,note:"Minor metabolite (<5%)"},
+  {n:"Levofloxacin N-oxide",e:"CYP",a:"inactive",p:2,note:"Trace amounts"},
+  {n:"Levofloxacin (unchanged, renal)",e:"None",a:"active",p:87,t:7,note:"~87% excreted unchanged in urine"}
+],
+"Moxifloxacin":[
+  {n:"Moxifloxacin sulfate (M1)",e:"SULT",a:"inactive",p:35,t:12,note:"Major metabolite; sulfate conjugation (NOT CYP)"},
+  {n:"Moxifloxacin glucuronide (M2)",e:"UGT",a:"inactive",p:15,note:"Phase II conjugation"},
+  {n:"Moxifloxacin (unchanged, fecal/renal)",e:"None",a:"active",p:45,t:12,note:"~45% unchanged in feces/urine"}
+],
+"Metronidazole":[
+  {n:"Hydroxy-metronidazole",e:"CYP2A6/3A4",a:"active",p:35,t:8,note:"30-65% antimicrobial activity of parent"},
+  {n:"Metronidazole acetic acid",e:"Oxidation",a:"inactive",p:15,note:"Side-chain oxidation"},
+  {n:"Metronidazole (unchanged, renal)",e:"None",a:"active",p:20,t:8,note:"~20% excreted unchanged"}
+],
+"Doxycycline":[
+  {n:"Doxycycline (unchanged, fecal)",e:"None",a:"active",p:40,t:18,note:"Chelates Ca²⁺/Fe²⁺ in gut; no significant hepatic metabolism"},
+  {n:"Doxycycline (unchanged, renal)",e:"None",a:"active",p:40,t:18,note:"~40% renal excretion"},
+  {n:"Epimer/degradation products",e:"Spontaneous",a:"inactive",p:10,note:"pH-dependent degradation; avoid expired tetracyclines (nephrotoxic)"}
+],
+"Amoxicillin":[
+  {n:"Amoxicilloic acid (penicilloic)",e:"β-lactam hydrolysis",a:"inactive",p:30,t:1.2,note:"Ring-opened; major allergenic determinant"},
+  {n:"Amoxicillin (unchanged, renal)",e:"None",a:"active",p:60,t:1.2,note:"60% excreted unchanged in urine"},
+  {n:"Diketopiperazine",e:"Spontaneous",a:"inactive",p:5,note:"Intramolecular cyclization"}
+],
+"Trimethoprim-SMX":[
+  {n:"TMP oxide metabolites",e:"CYP2C9/3A4",a:"inactive",p:20,t:10,note:"Trimethoprim: 80% renal unchanged"},
+  {n:"N4-acetyl-sulfamethoxazole",e:"NAT2",a:"inactive",p:40,t:10,note:"Major SMX metabolite; NAT2 acetylation (slow acetylators: toxicity↑)"},
+  {n:"SMX hydroxylamine",e:"CYP2C9",a:"toxic",p:5,note:"Reactive metabolite → hypersensitivity reactions; detoxified by glutathione"}
+],
+"Rifampin":[
+  {n:"25-Desacetyl-rifampin",e:"Esterases",a:"active",p:30,t:3,note:"Retains antimicrobial activity"},
+  {n:"3-Formyl-rifampin",e:"Oxidation",a:"inactive",p:10,note:"Autoinduction accelerates own metabolism"},
+  {n:"Rifampin (biliary excretion)",e:"P-gp",a:"active",p:50,t:3,note:"Potent CYP3A4/2C9/2C19/1A2 inducer → ↓ nearly all co-medications"}
+],
+"Nitrofurantoin":[
+  {n:"Aminofurantoin",e:"Nitroreductases",a:"active",p:40,t:0.5,note:"Reduced form → damages bacterial DNA; active inside bacteria"},
+  {n:"Nitrofurantoin (unchanged, renal)",e:"None",a:"active",p:40,t:0.5,note:"Concentrated in urine; only effective for UTI, not systemic infections"}
+],
+"Clindamycin":[
+  {n:"Clindamycin sulfoxide",e:"CYP3A4",a:"weak",p:20,t:3,note:"Retains partial antibacterial activity"},
+  {n:"N-desmethyl-clindamycin",e:"CYP3A4",a:"weak",p:10,note:"Partial activity"},
+  {n:"Clindamycin (biliary excretion)",e:"None",a:"active",p:30,t:3,note:"Significant biliary excretion → C. difficile risk"}
+],
+"Voriconazole":[
+  {n:"Voriconazole N-oxide",e:"CYP2C19",a:"inactive",p:50,t:6,note:"Major metabolite; CYP2C19 PMs get 4× higher levels"},
+  {n:"Hydroxy-voriconazole",e:"CYP3A4",a:"inactive",p:15,note:"Secondary oxidation"},
+  {n:"Dihydroxy-voriconazole",e:"CYP2C19/3A4",a:"inactive",p:10,note:"Further oxidation; all metabolites inactive against fungi"}
+],
+"Posaconazole":[
+  {n:"Posaconazole glucuronide",e:"UGT1A4",a:"inactive",p:15,t:25,note:"Phase II conjugation; major route"},
+  {n:"Posaconazole (unchanged, fecal)",e:"None",a:"active",p:66,t:25,note:"~66% excreted unchanged in feces; minimal CYP metabolism"}
+],
+"Lorazepam":[
+  {n:"Lorazepam glucuronide",e:"UGT2B15",a:"inactive",p:85,t:12,note:"Direct glucuronidation — NO CYP metabolism (safe in liver disease)"},
+  {n:"Lorazepam (unchanged, renal)",e:"None",a:"active",p:10,t:12,note:"~10% unchanged in urine"}
+],
+"Triazolam":[
+  {n:"α-Hydroxytriazolam",e:"CYP3A4",a:"active",p:55,t:3,note:"Primary active metabolite; 50% potency of parent"},
+  {n:"4-Hydroxytriazolam",e:"CYP3A4",a:"inactive",p:25,note:"Secondary hydroxylation"},
+  {n:"α-Hydroxytriazolam glucuronide",e:"UGT",a:"inactive",p:15,note:"Phase II conjugation for elimination"}
+],
+"Naproxen":[
+  {n:"6-O-desmethyl-naproxen",e:"CYP2C9",a:"inactive",p:60,t:14,note:"Major metabolite; no anti-inflammatory activity"},
+  {n:"Naproxen acyl-glucuronide",e:"UGT2B7",a:"inactive",p:25,note:"Reactive intermediate → GI toxicity mechanism"},
+  {n:"Naproxen sulfate",e:"SULT",a:"inactive",p:5,note:"Minor conjugation"}
+],
+"Meloxicam":[
+  {n:"5'-Carboxy-meloxicam",e:"CYP2C9",a:"inactive",p:55,t:20,note:"Major metabolite via alcohol then carboxylic acid"},
+  {n:"5'-Hydroxymethyl-meloxicam",e:"CYP2C9/3A4",a:"inactive",p:25,note:"Intermediate; further oxidized to carboxy"},
+  {n:"Meloxicam (unchanged, fecal)",e:"None",a:"active",p:10,t:20,note:"Long half-life allows once-daily dosing"}
+],
+"Diclofenac":[
+  {n:"4'-Hydroxy-diclofenac",e:"CYP2C9",a:"inactive",p:45,t:2,note:"Major metabolite; reactive quinone-imine intermediate → hepatotoxicity"},
+  {n:"5-Hydroxy-diclofenac",e:"CYP3A4",a:"inactive",p:20,note:"Minor hydroxylation route"},
+  {n:"Diclofenac acyl-glucuronide",e:"UGT2B7",a:"inactive",p:20,note:"Reactive; protein adducts → immune-mediated liver injury"}
+],
+"Indomethacin":[
+  {n:"O-Desmethyl-indomethacin",e:"CYP2C9",a:"inactive",p:30,t:5,note:"Demethylation product"},
+  {n:"O-Deschlorobenzoyl-indomethacin",e:"CYP2C19",a:"inactive",p:15,note:"Deacylation"},
+  {n:"Indomethacin acyl-glucuronide",e:"UGT",a:"inactive",p:15,note:"Undergoes enterohepatic recycling → prolonged GI exposure"}
+],
+"Lamotrigine":[
+  {n:"Lamotrigine-2N-glucuronide",e:"UGT1A4",a:"inactive",p:75,t:25,note:"Primary elimination; affected by valproate (inhibitor) and OCs (inducers)"},
+  {n:"Lamotrigine-5N-glucuronide",e:"UGT1A4",a:"inactive",p:10,note:"Minor glucuronidation site"},
+  {n:"2-N-methyl-lamotrigine",e:"Methylation",a:"inactive",p:5,note:"Minor pathway"}
+],
+"Levetiracetam":[
+  {n:"L057 (carboxylic acid metabolite)",e:"Blood esterases",a:"inactive",p:24,t:7,note:"Enzymatic hydrolysis of acetamide group; NOT CYP dependent"},
+  {n:"Levetiracetam (unchanged, renal)",e:"None",a:"active",p:66,t:7,note:"66% excreted unchanged in urine"}
+],
+"Topiramate":[
+  {n:"Topiramate (unchanged, renal)",e:"None",a:"active",p:70,t:21,note:"~70% excreted unchanged when used alone"},
+  {n:"Hydroxy-topiramate metabolites",e:"CYP3A4",a:"inactive",p:15,note:"Formation increases with CYP3A4 inducers (phenytoin, carbamazepine)"},
+  {n:"Topiramate glucuronide",e:"UGT",a:"inactive",p:5,note:"Minor conjugation"}
+],
+"Gabapentin":[
+  {n:"Gabapentin (unchanged, renal)",e:"None",a:"active",p:100,t:6,note:"Zero metabolism; 100% excreted unchanged renally. Dose adjust for CrCl"}
+],
+"Pregabalin":[
+  {n:"N-methyl-pregabalin",e:"Methylation",a:"inactive",p:1,t:6,note:"Negligible (<1%)"},
+  {n:"Pregabalin (unchanged, renal)",e:"None",a:"active",p:98,t:6,note:"98% excreted unchanged; dose adjust for renal impairment"}
+],
+"Oxcarbazepine":[
+  {n:"10-Monohydroxy derivative (MHD/licarbazepine)",e:"Cytosolic reductases",a:"active",p:80,t:9,note:"THE active metabolite responsible for anticonvulsant effect"},
+  {n:"MHD glucuronide",e:"UGT",a:"inactive",p:40,note:"Primary elimination of MHD"},
+  {n:"10,11-Dihydroxy metabolite (DHD)",e:"UGT",a:"inactive",p:5,note:"Minor oxidation of MHD"}
+],
+"Lithium":[
+  {n:"Lithium ion (unchanged, renal)",e:"None",a:"active",p:100,t:20,note:"Zero metabolism; handled like sodium by kidney. NSAIDs/ACEi/dehydration → toxicity"}
+],
+"Ziprasidone":[
+  {n:"Ziprasidone sulfoxide",e:"Aldehyde oxidase",a:"inactive",p:35,t:7,note:"Major route — aldehyde oxidase, NOT CYP (unusual)"},
+  {n:"S-methyl-dihydro-ziprasidone",e:"Thiol methylation",a:"inactive",p:30,note:"Reductive metabolism"},
+  {n:"6,7-Dihydro-ziprasidone",e:"Aldehyde oxidase",a:"inactive",p:15,note:"Reduction product"}
+],
+"Lurasidone":[
+  {n:"ID-14283 (norbornane hydroxylation)",e:"CYP3A4",a:"active",p:25,t:18,note:"Active metabolite — similar D2/5-HT2A binding"},
+  {n:"ID-14326",e:"CYP3A4",a:"active",p:5,note:"Minor active metabolite"},
+  {n:"ID-20219 (N-dealkylated)",e:"CYP3A4",a:"inactive",p:15,note:"Inactive metabolite"}
+],
+"Paliperidone":[
+  {n:"Paliperidone (unchanged, renal)",e:"None",a:"active",p:60,t:23,note:"~60% excreted unchanged renally; minimal CYP involvement"},
+  {n:"Dealkylated metabolite",e:"CYP3A4",a:"inactive",p:10,note:"Minor"},
+  {n:"Paliperidone glucuronide",e:"UGT",a:"inactive",p:15,note:"Minor conjugation"}
+],
+"Brexpiprazole":[
+  {n:"DM-3411",e:"CYP3A4",a:"weak",p:25,t:86,note:"Major metabolite; minimal pharmacological activity at D2/5-HT1A"},
+  {n:"Hydroxy-brexpiprazole",e:"CYP2D6",a:"inactive",p:15,note:"Ring hydroxylation"},
+  {n:"Brexpiprazole sulfoxide",e:"FMO3",a:"inactive",p:10,note:"Flavin monooxygenase pathway"}
+],
+"Cariprazine":[
+  {n:"Desmethyl-cariprazine (DDCAR)",e:"CYP3A4",a:"active",p:30,t:48,note:"Pharmacologically active; accumulates due to long t½"},
+  {n:"Didesmethyl-cariprazine (DCAR)",e:"CYP3A4/2D6",a:"active",p:25,t:336,note:"Active metabolite with 2-3 WEEK half-life — effects persist weeks after discontinuation"},
+  {n:"Hydroxy-cariprazine",e:"CYP3A4",a:"inactive",p:10,note:"Inactive oxidation product"}
+],
+"Metformin":[
+  {n:"Metformin (unchanged, renal)",e:"None",a:"active",p:100,t:5,note:"Zero metabolism; 100% renal excretion unchanged via OCT2/MATE transporters"}
+],
+"Glipizide":[
+  {n:"Hydroxy-cyclohexyl-glipizide",e:"CYP2C9",a:"inactive",p:40,t:4,note:"Primary metabolite; no hypoglycemic activity"},
+  {n:"Aryl-amino-glipizide",e:"CYP2C9",a:"inactive",p:20,note:"Deamination product"},
+  {n:"Glipizide (unchanged, renal)",e:"None",a:"active",p:10,t:4,note:"~10% unchanged in urine"}
+],
+"Glyburide":[
+  {n:"4-trans-Hydroxy-glyburide",e:"CYP2C9",a:"active",p:35,t:10,note:"Active metabolite — retains 50% hypoglycemic potency → prolonged hypoglycemia risk"},
+  {n:"3-cis-Hydroxy-glyburide",e:"CYP3A4",a:"weak",p:20,note:"Less active metabolite"},
+  {n:"4-trans-Hydroxy-glyburide glucuronide",e:"UGT",a:"inactive",p:15,note:"Clearance form"}
+],
+"Pioglitazone":[
+  {n:"M-IV (hydroxy-pioglitazone)",e:"CYP2C8",a:"active",p:25,t:5,note:"Active metabolite; PPARγ agonist activity"},
+  {n:"M-III (keto-pioglitazone)",e:"CYP2C8/3A4",a:"active",p:20,t:27,note:"Active; long half-life contributes to sustained effect"},
+  {n:"M-II",e:"CYP3A4",a:"weak",p:15,note:"Minor active metabolite"}
+],
+"Sitagliptin":[
+  {n:"Sitagliptin (unchanged, renal)",e:"None",a:"active",p:79,t:12,note:"79% excreted unchanged in urine; minimal metabolism"},
+  {n:"Hydroxy-sitagliptin (CYP3A4/2C8)",e:"CYP3A4",a:"inactive",p:16,note:"Six trace metabolites, none clinically significant"}
+],
+"Empagliflozin":[
+  {n:"Empagliflozin glucuronides",e:"UGT2B7/1A3/1A8/1A9",a:"inactive",p:50,t:13,note:"Glucuronidation is primary elimination; NO CYP metabolism"},
+  {n:"Empagliflozin (unchanged, fecal/renal)",e:"None",a:"active",p:40,t:13,note:"~27% renal unchanged + fecal elimination"}
+],
+"Dapagliflozin":[
+  {n:"Dapagliflozin 3-O-glucuronide",e:"UGT1A9",a:"inactive",p:60,t:13,note:"Major metabolite; no SGLT2 inhibition"},
+  {n:"Dapagliflozin (unchanged, renal)",e:"None",a:"active",p:5,t:13,note:"Only ~2% unchanged in urine (works in tubular lumen)"}
+],
+"Canagliflozin":[
+  {n:"Canagliflozin O-glucuronide (M7)",e:"UGT1A9/2B4",a:"inactive",p:45,t:11,note:"Major metabolite"},
+  {n:"Canagliflozin O-glucuronide (M5)",e:"UGT1A9/2B4",a:"inactive",p:15,note:"Minor glucuronide"},
+  {n:"Hydroxy-canagliflozin",e:"CYP3A4",a:"inactive",p:7,note:"Minor oxidative pathway"}
+],
+"Semaglutide":[
+  {n:"Semaglutide (proteolytic degradation)",e:"Endopeptidases",a:"inactive",p:100,t:168,note:"GLP-1 analog; degraded by non-specific proteases. t½ ~1 week (albumin binding)"},
+  {n:"Semaglutide fragments",e:"Proteases",a:"inactive",p:0,note:"No single defined metabolite; cleaved into amino acids"}
+],
+"Liraglutide":[
+  {n:"Liraglutide fragments",e:"Endopeptidases",a:"inactive",p:100,t:13,note:"Degraded by DPP-4 and endopeptidases into amino acids; no active metabolites"},
+  {n:"Liraglutide (intact, urine)",e:"None",a:"active",p:6,note:"Only 6% excreted as intact peptide in urine/feces"}
+],
+"Levothyroxine":[
+  {n:"Triiodothyronine (T3)",e:"Deiodinase D1/D2",a:"active",p:35,t:24,note:"Active form; 80% of circulating T3 comes from T4 deiodination"},
+  {n:"Reverse T3 (rT3)",e:"Deiodinase D3",a:"inactive",p:40,note:"Inactive; ↑ in illness/fasting ('sick euthyroid')"},
+  {n:"T3/T4 glucuronides",e:"UGT1A1",a:"inactive",p:20,note:"Hepatic conjugation → biliary excretion → enterohepatic recycling"}
+],
+"Liothyronine":[
+  {n:"3,5-Diiodo-L-thyronine (T2)",e:"Deiodinase",a:"weak",p:40,t:1,note:"Further deiodination; T2 may have mitochondrial metabolic effects"},
+  {n:"T3 glucuronide/sulfate",e:"UGT/SULT",a:"inactive",p:30,note:"Conjugation for biliary elimination"},
+  {n:"Triiodothyroacetic acid (Triac)",e:"Oxidative deamination",a:"active",p:5,note:"Minor metabolite with thyroid hormone activity"}
+],
+"Methimazole":[
+  {n:"Methimazole (thyroid accumulation)",e:"TPO interaction",a:"active",p:0,t:6,note:"Inhibits TPO directly; no metabolites needed for action"},
+  {n:"3-Methyl-2-thiohydantoin",e:"Ring modification",a:"inactive",p:30,note:"Major urinary metabolite"},
+  {n:"Methimazole sulfate/glucuronide",e:"Phase II",a:"inactive",p:20,note:"Conjugation products"}
+],
+"Prednisone":[
+  {n:"Prednisolone",e:"11β-HSD1 (liver)",a:"active",p:80,t:3,note:"PRODRUG → active form; conversion impaired in liver disease"},
+  {n:"6β-Hydroxy-prednisolone",e:"CYP3A4",a:"inactive",p:10,note:"Hydroxylation (increased by CYP3A4 inducers)"},
+  {n:"20-Reduced metabolites",e:"Reductases",a:"inactive",p:5,note:"Ketone reduction products"}
+],
+"Prednisolone":[
+  {n:"Prednisone (reversible interconversion)",e:"11β-HSD2",a:"active",p:10,t:3,note:"Reversible oxidation by 11β-HSD2"},
+  {n:"6β-Hydroxy-prednisolone",e:"CYP3A4",a:"inactive",p:25,note:"Major elimination pathway; induced by rifampin/phenytoin"},
+  {n:"20β-Hydroxy-prednisolone",e:"20-ketoreductase",a:"inactive",p:20,note:"Reduction product"}
+],
+"Dexamethasone":[
+  {n:"6β-Hydroxy-dexamethasone",e:"CYP3A4",a:"inactive",p:60,t:36,note:"Primary metabolite; long half-life due to fluorination"},
+  {n:"11-Dehydro-dexamethasone",e:"11β-HSD2",a:"inactive",p:10,note:"Oxidation at C11"}
+],
+"Methylprednisolone":[
+  {n:"6β-Hydroxy-methylprednisolone",e:"CYP3A4",a:"inactive",p:50,t:3,note:"Primary metabolite"},
+  {n:"20β-Reduced metabolite",e:"Reductases",a:"inactive",p:20,note:"Ketone reduction"},
+  {n:"Methylprednisolone (unchanged, renal)",e:"None",a:"active",p:5,t:3,note:"<5% unchanged in urine"}
+],
+"Hydrocortisone":[
+  {n:"Cortisone",e:"11β-HSD2",a:"weak",p:20,t:1.5,note:"Inactive 11-keto form; reversible interconversion"},
+  {n:"Tetrahydrocortisol",e:"5α/5β-reductase",a:"inactive",p:40,note:"Major urinary metabolite"},
+  {n:"6β-Hydroxycortisol",e:"CYP3A4",a:"inactive",p:10,note:"Urinary marker of CYP3A4 activity"}
+],
+"Budesonide":[
+  {n:"6β-Hydroxy-budesonide",e:"CYP3A4",a:"inactive",p:60,t:3,note:"Major metabolite; <1% activity of parent"},
+  {n:"16α-Hydroxy-prednisolone",e:"CYP3A4",a:"inactive",p:20,note:"Less than 1% glucocorticoid activity"},
+  {n:"Budesonide (systemic, after first pass)",e:"CYP3A4",a:"active",p:10,note:"~90% first-pass metabolism → low systemic bioavailability"}
+],
+"Mycophenolate":[
+  {n:"Mycophenolic acid (MPA)",e:"Esterases",a:"active",p:95,t:17,note:"Active metabolite from mycophenolate mofetil (prodrug)"},
+  {n:"MPA glucuronide (MPAG)",e:"UGT1A9",a:"inactive",p:85,note:"Major elimination; undergoes enterohepatic recycling"},
+  {n:"Acyl-MPAG",e:"UGT2B7",a:"toxic",p:10,note:"Reactive acyl glucuronide → GI toxicity, possible leukopenia"}
+],
+"Sirolimus":[
+  {n:"Hydroxy-sirolimus",e:"CYP3A4",a:"weak",p:30,t:62,note:"7 major metabolites identified; all weak immunosuppressive activity"},
+  {n:"Demethyl-sirolimus",e:"CYP3A4",a:"weak",p:15,note:"O-demethylation product"},
+  {n:"Sirolimus (unchanged)",e:"None",a:"active",p:40,t:62,note:"Concentrates in red blood cells; very long half-life"}
+],
+"Azathioprine":[
+  {n:"6-Mercaptopurine (6-MP)",e:"Non-enzymatic/GST",a:"active",p:88,t:1,note:"PRODRUG activation; same active moiety as standalone 6-MP"},
+  {n:"6-Thioguanine nucleotides (6-TGN)",e:"HPRT→kinases",a:"active",p:0,note:"THE cytotoxic metabolites; ↑ in TPMT PMs → severe myelosuppression"},
+  {n:"6-Methylmercaptopurine (6-MMP)",e:"TPMT",a:"toxic",p:30,note:"Hepatotoxic at high levels (>5700 pmol); TPMT shunting"},
+  {n:"Thiouric acid",e:"Xanthine oxidase",a:"inactive",p:30,note:"Inactivation pathway; blocked by allopurinol → 6-MP toxicity"}
+],
+"Vardenafil":[
+  {n:"M1 (N-desethyl-vardenafil)",e:"CYP3A4",a:"active",p:25,t:4,note:"Active metabolite with ~28% potency at PDE5"},
+  {n:"Piperazine ring-opened metabolites",e:"CYP3A4",a:"inactive",p:20,note:"Further degradation"},
+  {n:"Vardenafil glucuronide",e:"UGT",a:"inactive",p:10,note:"Phase II conjugation"}
+],
+"Tamsulosin":[
+  {n:"Hydroxy-tamsulosin metabolites",e:"CYP3A4/2D6",a:"inactive",p:50,t:13,note:"Multiple hydroxylation products; all inactive at α1A-adrenoceptor"},
+  {n:"Tamsulosin glucuronides",e:"UGT",a:"inactive",p:20,note:"Phase II conjugation"},
+  {n:"Tamsulosin sulfate",e:"SULT",a:"inactive",p:10,note:"Minor pathway"}
+],
+"Finasteride":[
+  {n:"ω-Hydroxy-finasteride",e:"CYP3A4",a:"inactive",p:35,t:6,note:"Terminal hydroxylation"},
+  {n:"Finasteride dicarboxylic acid",e:"CYP3A4",a:"inactive",p:30,note:"Side-chain oxidation to acid"},
+  {n:"Finasteride (unchanged, fecal)",e:"None",a:"active",p:30,t:6,note:"~40% fecal excretion"}
+],
+"Montelukast":[
+  {n:"M5a (acyl-glucuronide)",e:"CYP2C8",a:"inactive",p:30,t:5,note:"CYP2C8 is the principal enzyme"},
+  {n:"M6 (sulfoxide)",e:"CYP3A4/2C9",a:"inactive",p:20,note:"Major oxidative pathway"},
+  {n:"Montelukast (biliary, unchanged)",e:"None",a:"active",p:40,t:5,note:"86% excreted in feces via bile"}
+],
+"Cetirizine":[
+  {n:"Cetirizine (unchanged, renal)",e:"None",a:"active",p:70,t:8,note:"Minimal metabolism; ~70% excreted unchanged in urine"},
+  {n:"Oxidative/dealkylated metabolites",e:"CYP3A4",a:"inactive",p:10,note:"Minor; cetirizine is already the active metabolite of hydroxyzine"}
+],
+"Loratadine":[
+  {n:"Desloratadine (DCL)",e:"CYP3A4/2D6",a:"active",p:70,t:27,note:"Active metabolite; 4× more potent H1 antagonist than parent"},
+  {n:"3-Hydroxy-desloratadine glucuronide",e:"CYP2C8/UGT",a:"inactive",p:50,note:"Major elimination form of desloratadine"},
+  {n:"Loratadine (unchanged)",e:"None",a:"active",p:3,t:8,note:"Extensive first-pass → very low parent drug in plasma"}
+],
+"Fexofenadine":[
+  {n:"Fexofenadine (unchanged, fecal)",e:"None",a:"active",p:80,t:14,note:"~80% fecal, 12% renal unchanged; virtually no metabolism"},
+  {n:"Methyl-ester metabolite",e:"Esterases",a:"inactive",p:5,note:"Minor (<5%)"}
+],
+"Ondansetron":[
+  {n:"7-Hydroxy-ondansetron",e:"CYP3A4",a:"inactive",p:30,t:4,note:"Hydroxylation and subsequent glucuronidation"},
+  {n:"8-Hydroxy-ondansetron",e:"CYP1A2",a:"inactive",p:20,note:"CYP1A2 route; induced by smoking"},
+  {n:"Ondansetron glucuronide",e:"UGT",a:"inactive",p:20,note:"Direct glucuronidation"}
+],
+"Metoclopramide":[
+  {n:"Metoclopramide sulfate",e:"SULT",a:"inactive",p:20,t:5,note:"Sulfation conjugate"},
+  {n:"Metoclopramide glucuronide",e:"UGT",a:"inactive",p:15,note:"Glucuronidation"},
+  {n:"N-deethyl-metoclopramide",e:"CYP2D6",a:"weak",p:10,note:"CYP2D6 PMs → higher parent levels → ↑ EPS risk"},
+  {n:"Metoclopramide (unchanged, renal)",e:"None",a:"active",p:25,t:5,note:"~25% unchanged in urine"}
+],
+"Domperidone":[
+  {n:"Hydroxy-domperidone",e:"CYP3A4",a:"inactive",p:40,t:7,note:"Ring hydroxylation"},
+  {n:"N-dealkyl-domperidone",e:"CYP3A4/1A2",a:"inactive",p:25,note:"Major oxidative metabolite"},
+  {n:"Domperidone (fecal unchanged)",e:"None",a:"active",p:30,t:7,note:"~30% fecal excretion"}
+],
+"Sumatriptan":[
+  {n:"Indole acetic acid (IAA) analog",e:"MAO-A",a:"inactive",p:70,t:2,note:"Primary metabolite via MAO-A; explains interaction with MAOIs"},
+  {n:"Sumatriptan glucuronide",e:"UGT",a:"inactive",p:10,note:"Minor direct conjugation"},
+  {n:"Sumatriptan (unchanged, renal)",e:"None",a:"active",p:20,t:2,note:"Short-acting; multiple doses often needed"}
+],
+"Allopurinol":[
+  {n:"Oxypurinol (alloxanthine)",e:"Xanthine oxidase",a:"active",p:70,t:23,note:"Active metabolite; same enzyme inhibition as parent but much longer acting"},
+  {n:"Allopurinol riboside",e:"HPRT",a:"inactive",p:5,note:"Nucleoside analog"}
+],
+"Cyclobenzaprine":[
+  {n:"Norcyclobenzaprine",e:"CYP3A4/1A2",a:"weak",p:35,t:32,note:"N-demethylation; long t½ contributes to prolonged sedation"},
+  {n:"Cyclobenzaprine glucuronide",e:"UGT",a:"inactive",p:30,note:"Direct glucuronidation"},
+  {n:"Trans-dihydrodiol",e:"CYP",a:"inactive",p:10,note:"Ring oxidation"}
+],
+"Tizanidine":[
+  {n:"Tizanidine sulfate",e:"SULT",a:"inactive",p:30,t:2.5,note:"Major pathway; CYP1A2 dependent for first oxidation step"},
+  {n:"5-Chloro-4-(2-imidazolin-2-ylamino)-2-one",e:"CYP1A2",a:"inactive",p:20,note:"Oxidative metabolite — CYP1A2 inhibitors (fluvoxamine, ciprofloxacin) cause 33× ↑ in AUC"},
+  {n:"Tizanidine glucuronide",e:"UGT",a:"inactive",p:15,note:"Minor conjugation"}
+],
+"Hydroxychloroquine":[
+  {n:"Desethyl-hydroxychloroquine (DHCQ)",e:"CYP2C8/3A4",a:"active",p:25,t:40,note:"Active metabolite; accumulates in tissues"},
+  {n:"Desethyl-chloroquine (DCQ)",e:"CYP2D6",a:"active",p:10,note:"Further dealkylation; retains activity"},
+  {n:"Bisdesethyl-chloroquine",e:"CYP3A4",a:"weak",p:5,t:40,note:"Terminal metabolite"},
+  {n:"HCQ (unchanged, renal)",e:"None",a:"active",p:25,t:40,note:"Very long t½ (40 days); takes months to reach steady state"}
+],
+"Methotrexate":[
+  {n:"7-Hydroxy-methotrexate",e:"Aldehyde oxidase",a:"weak",p:30,t:8,note:"Hepatic; less folate antagonism but nephrotoxic at high doses"},
+  {n:"MTX polyglutamates (intracellular)",e:"FPGS",a:"active",p:0,note:"Retained intracellularly; responsible for sustained immunosuppression"},
+  {n:"DAMPA (4-amino-4-deoxy-N10-methylpteroic acid)",e:"Gut flora",a:"inactive",p:5,note:"Bacterial cleavage product"},
+  {n:"Methotrexate (unchanged, renal)",e:"None",a:"active",p:60,t:8,note:"80-90% renal excretion unchanged — requires adequate GFR"}
+],
+"Digoxin":[
+  {n:"Digoxin (unchanged, renal)",e:"None",a:"active",p:70,t:36,note:"Primarily renal excretion unchanged via P-gp; narrow therapeutic index"},
+  {n:"Dihydrodigoxin",e:"Gut flora (Eggerthella lenta)",a:"inactive",p:10,note:"Gut bacterial reduction; varies 10-40% between patients"},
+  {n:"Digoxigenin bisdigitoxoside",e:"Acid hydrolysis",a:"weak",p:5,note:"Sugar cleavage product"}
+],
+"Furosemide":[
+  {n:"Furosemide glucuronide",e:"UGT1A1/1A6",a:"inactive",p:20,t:1.5,note:"Hepatic conjugation (~50% of dose in renal impairment)"},
+  {n:"Furosemide (unchanged, renal)",e:"None",a:"active",p:65,t:1.5,note:"Active secretion into tubular lumen via OAT; must reach loop of Henle"},
+  {n:"4-Chloro-5-sulfamoyl-anthranilic acid (CSA)",e:"Spontaneous",a:"inactive",p:5,note:"Degradation product"}
+],
+"Hydrochlorothiazide":[
+  {n:"HCTZ (unchanged, renal)",e:"None",a:"active",p:95,t:10,note:"Not metabolized; >95% excreted unchanged in urine"}
+],
+"Ranitidine":[
+  {n:"Ranitidine N-oxide",e:"FMO",a:"inactive",p:6,t:3,note:"Flavin monooxygenase oxidation"},
+  {n:"Ranitidine S-oxide",e:"FMO",a:"inactive",p:4,note:"Minor sulfoxide"},
+  {n:"Ranitidine (unchanged, renal)",e:"None",a:"active",p:70,t:3,note:"~70% renal unchanged; NDMA concerns led to market withdrawal"}
+],
+"Moclobemide":[
+  {n:"Moclobemide Ro 12-8095 (ring hydroxylation)",e:"CYP2C19",a:"inactive",p:40,t:2,note:"Primary metabolite; CYP2C19 PMs have 3× higher parent levels"},
+  {n:"Moclobemide N-oxide",e:"FMO",a:"inactive",p:20,note:"Flavin monooxygenase pathway"},
+  {n:"Morpholine ring-opened metabolite",e:"CYP2D6",a:"inactive",p:15,note:"Minor route"}
+],
+"Loperamide":[
+  {n:"N-desmethyl-loperamide",e:"CYP3A4/2C8",a:"weak",p:45,t:11,note:"Primary metabolite via N-demethylation"},
+  {n:"Loperamide (fecal, unchanged)",e:"None",a:"active",p:30,t:11,note:"Acts locally in gut; P-gp keeps it OUT of CNS (at normal doses)"},
+  {n:"Hydroxy-loperamide",e:"CYP2D6",a:"inactive",p:10,note:"Minor oxidation"}
+],
+"Pseudoephedrine":[
+  {n:"Norpseudoephedrine (cathine)",e:"CYP2D6",a:"active",p:5,t:6,note:"N-demethylation; minor route"},
+  {n:"Pseudoephedrine (unchanged, renal)",e:"None",a:"active",p:70,t:6,note:"~70-90% excreted unchanged; pH-dependent renal clearance"}
+],
+"Guaifenesin":[
+  {n:"β-(2-methoxyphenoxy)-lactic acid",e:"Oxidation",a:"inactive",p:60,t:1,note:"Major urinary metabolite via side-chain oxidation"},
+  {n:"Guaifenesin (unchanged, renal)",e:"None",a:"active",p:5,t:1,note:"Very short half-life; requires frequent dosing"}
+],
+"Valerian":[
+  {n:"Valerenic acid metabolites",e:"CYP3A4/UGT",a:"weak",p:50,t:2,note:"GABA-A receptor modulation; metabolized like other terpenoids"},
+  {n:"Isovaleric acid",e:"Oxidation",a:"inactive",p:20,note:"Short-chain fatty acid; contributes to characteristic odor"}
+],
+"Vitamin K":[
+  {n:"Vitamin K epoxide",e:"VKORC1",a:"inactive",p:0,note:"Formed during γ-carboxylation of clotting factors; recycled by VKORC1 (warfarin target)"},
+  {n:"Vitamin K hydroquinone (KH₂)",e:"VKORC1 (reduction)",a:"active",p:0,note:"Active reduced form; cofactor for clotting factors II, VII, IX, X"},
+  {n:"ω-Hydroxylated phylloquinone",e:"CYP4F2",a:"inactive",p:30,note:"CYP4F2 V433M variant → reduced catabolism → warfarin sensitivity"}
+],
+"Zinc":[
+  {n:"Zinc (protein-bound, albumin/α2M)",e:"None",a:"active",p:100,note:"Not metabolized; distributed to 300+ enzymes. Competes with copper (Cu) absorption"},
+  {n:"Zinc (fecal, unabsorbed)",e:"None",a:"active",p:70,note:"Only 20-40% absorbed; absorption ↓ by phytates, fiber, iron"}
+],
+"Echinacea":[
+  {n:"Caffeic acid metabolites",e:"Esterases/COMT",a:"weak",p:40,t:2,note:"Phenylpropanoid hydrolysis products"},
+  {n:"Alkylamide metabolites",e:"CYP1A2/2C9",a:"weak",p:30,note:"Immunomodulatory alkamides; weak CYP3A4 inhibition/induction"}
+],
+"Milk Thistle (Silymarin)":[
+  {n:"Silybin glucuronide",e:"UGT1A1",a:"weak",p:50,t:6,note:"Major conjugate; silybin is most active component"},
+  {n:"Silybin sulfate",e:"SULT2A1",a:"inactive",p:20,note:"Sulfation conjugate"},
+  {n:"Desmethyl-silybin",e:"CYP2C8",a:"weak",p:10,note:"O-demethylation; very low oral bioavailability (<1-5%)"}
+],
+"Saw Palmetto":[
+  {n:"Fatty acid metabolites (β-oxidation)",e:"Mitochondrial β-ox",a:"weak",p:60,note:"Lauric/myristic/oleic acids undergo normal fatty acid catabolism"},
+  {n:"β-Sitosterol metabolites",e:"CYP27A1",a:"inactive",p:15,note:"Phytosterol metabolism; poorly absorbed"}
+],
+"Cranberry":[
+  {n:"Hippuric acid",e:"Glycine conjugation",a:"inactive",p:40,note:"Major urinary metabolite of PACs; marker of cranberry intake"},
+  {n:"Phenylacetic acid derivatives",e:"Gut flora",a:"weak",p:30,note:"Microbial degradation of proanthocyanidins"},
+  {n:"A-type PAC metabolites",e:"Gut flora",a:"weak",p:20,note:"Anti-adhesion activity against E. coli (UTI mechanism)"}
+],
+"Probiotics":[
+  {n:"Short-chain fatty acids (SCFA)",e:"Bacterial fermentation",a:"active",p:0,note:"Butyrate, propionate, acetate — produced by gut bacteria, not host enzymes"},
+  {n:"Bacterial metabolites (various)",e:"Microbial enzymes",a:"active",p:0,note:"No host metabolism of probiotics; organisms colonize/transit through GI tract"}
+],
+"Biotin":[
+  {n:"Bisnorbiotin",e:"β-oxidation",a:"inactive",p:30,t:2,note:"Side-chain shortening via β-oxidation"},
+  {n:"Biotin sulfoxide",e:"Oxidation",a:"inactive",p:15,note:"Sulfur oxidation product"},
+  {n:"Biotin (unchanged, renal)",e:"None",a:"active",p:50,t:2,note:"~50% excreted unchanged; excess readily cleared"}
+],
+"B-Complex":[
+  {n:"4-Pyridoxic acid (from B6)",e:"Aldehyde oxidase",a:"inactive",p:30,note:"Major urinary B6 metabolite"},
+  {n:"Methylnicotinamide (from B3)",e:"NNMT",a:"inactive",p:25,note:"Niacin methylation product"},
+  {n:"N-methylnicotinamide → 2-Py/4-Py",e:"Aldehyde oxidase",a:"inactive",p:20,note:"Further oxidation products of niacin metabolism"},
+  {n:"B12 → methylcobalamin/adenosylcobalamin",e:"MMACHC",a:"active",p:0,note:"Active coenzyme forms; NO urinary excretion unless massive excess"}
+],
+"Grapefruit Juice":[
+  {n:"Furanocoumarins (bergamottin, DHB)",e:"Irreversible CYP3A4 binding",a:"active",p:0,note:"Mechanism-based inactivation ('suicide inhibition') of intestinal CYP3A4"},
+  {n:"Naringin → Naringenin",e:"Gut flora",a:"weak",p:50,note:"Flavanone with weak CYP3A4 inhibition; also inhibits OATP1A2 uptake"}
+],
+"Turmeric/Curcumin":[
+  {n:"Curcumin glucuronide",e:"UGT1A1/1A8",a:"weak",p:40,note:"Major Phase II metabolite; very low oral bioavailability (<1%)"},
+  {n:"Curcumin sulfate",e:"SULT1A1",a:"weak",p:25,note:"Sulfation conjugate"},
+  {n:"Tetrahydrocurcumin",e:"Gut reductases",a:"active",p:20,note:"Reduced form with antioxidant activity; may inhibit CYP2C9"}
+],
+"Curcumin (Turmeric)":[
+  {n:"Curcumin glucuronide",e:"UGT1A1/1A8",a:"weak",p:40,note:"Major conjugate; explains poor bioavailability"},
+  {n:"Curcumin sulfate",e:"SULT1A1",a:"weak",p:25,note:"Sulfation"},
+  {n:"Tetrahydrocurcumin",e:"Gut reductases",a:"active",p:20,note:"Reduced metabolite with antioxidant properties"}
+],
+"Green Tea Extract":[
+  {n:"EGCG glucuronide",e:"UGT1A1/1A8",a:"weak",p:30,note:"Major catechin conjugate"},
+  {n:"EGCG sulfate",e:"SULT1A1/1A3",a:"inactive",p:20,note:"Sulfation reduces activity"},
+  {n:"4'-O-methyl-EGCG",e:"COMT",a:"inactive",p:15,note:"Methylation; COMT inhibition by catechins affects other catecholamine substrates"},
+  {n:"Ring-fission metabolites",e:"Gut flora",a:"weak",p:25,note:"5-(3',4'-dihydroxyphenyl)-γ-valerolactone etc."}
+],
+"Ginkgo Biloba":[
+  {n:"Ginkgolide metabolites",e:"CYP1A2/2C9",a:"weak",p:30,note:"Terpenoid lactone oxidation products"},
+  {n:"Bilobalide metabolites",e:"CYP3A4",a:"inactive",p:20,note:"Sesquiterpene degradation"},
+  {n:"Flavonoid glucuronides (quercetin/kaempferol)",e:"UGT",a:"weak",p:30,note:"Phase II conjugation of ginkgo flavonoids; weak antiplatelet activity"}
+],
+"Vitamin D":[
+  {n:"25-Hydroxyvitamin D (calcidiol)",e:"CYP2R1 (liver)",a:"active",p:85,t:360,note:"Main circulating form; what blood tests measure. t½ ~15 days"},
+  {n:"1,25-Dihydroxyvitamin D (calcitriol)",e:"CYP27B1 (kidney)",a:"active",p:5,t:5,note:"THE active hormone; tightly regulated by PTH and calcium"},
+  {n:"24,25-Dihydroxyvitamin D",e:"CYP24A1",a:"inactive",p:10,note:"Inactivation pathway; genetic variants → hypercalcemia risk"}
+],
+"Magnesium":[
+  {n:"Mg²⁺ (intracellular, enzyme cofactor)",e:"None",a:"active",p:100,note:"Not metabolized; cofactor for 600+ enzymes. ~30-50% oral absorption"},
+  {n:"Magnesium (renal excretion)",e:"None",a:"active",p:50,note:"Kidney is primary regulator; ~95% reabsorbed in Henle/DCT"}
+],
+"Fish Oil (Omega-3)":[
+  {n:"EPA/DHA (incorporated into membranes)",e:"Phospholipases",a:"active",p:60,note:"Incorporated into cell membranes; displaces arachidonic acid"},
+  {n:"Resolvins/Protectins/Maresins",e:"LOX/COX",a:"active",p:5,note:"Anti-inflammatory specialized pro-resolving mediators"},
+  {n:"β-Oxidation products",e:"Mitochondrial β-ox",a:"inactive",p:30,note:"Normal fatty acid catabolism for energy"}
+],
+"CoQ10":[
+  {n:"Ubiquinol (reduced CoQ10)",e:"NQO1/Complex I",a:"active",p:90,note:"Active antioxidant form; mitochondrial electron carrier"},
+  {n:"CoQ10 short-chain metabolites",e:"β-oxidation",a:"inactive",p:10,note:"Side-chain shortening → urinary excretion"}
+],
+"Calcium":[
+  {n:"Ca²⁺ (bone deposition/resorption)",e:"None",a:"active",p:99,note:"Not metabolized; 99% stored in bone. Absorption requires vitamin D"},
+  {n:"Calcium (renal/fecal excretion)",e:"None",a:"active",p:50,note:"Unabsorbed fraction + renal filtered; competes with iron, zinc, T4 for absorption"}
+],
+"Iron":[
+  {n:"Fe²⁺ → Ferritin (storage)",e:"None",a:"active",p:0,note:"No excretion pathway; regulated entirely by absorption (1-2mg/day)"},
+  {n:"Fe²⁺ → Transferrin (transport)",e:"Ceruloplasmin",a:"active",p:0,note:"Oxidized to Fe³⁺ for transferrin binding; delivered to marrow for hemoglobin"},
+  {n:"Hemosiderin (excess storage)",e:"None",a:"toxic",p:0,note:"Iron overload marker; deposits in liver, heart, pancreas → organ damage"}
 ]
 };
 
-// ═══════════════════════════════════════════════════════════════════
-// METABOLITE CROSS-REFERENCING ENGINE
-// ═══════════════════════════════════════════════════════════════════
 
-function renderMetabolites() {
-  const el = document.getElementById("metabBody");
-  if (!activeStack.length) { el.innerHTML = ""; return; }
+// ── SIDER-INFORMED PHARMACODYNAMIC FLAGS (Phase 5) ──
+// Augments DB entries with additional PD risk flags sourced from SIDER, DrugBank, FDA labels
+// Each drug listed ONCE with ALL flags merged to avoid JS object key-shadowing
+const SIDER_PD = {
+  "Acetaminophen":{hepato:2},
+  "Alcohol (Ethanol)":{hepato:2},
+  "Allopurinol":{nephro:1},
+  "Amiodarone":{hepato:1,photoSens:2},
+  "Amphetamine":{seizure:1},
+  "Apixaban":{bleed:2},
+  "Atorvastatin":{hepato:1,musculo:1},
+  "Azathioprine":{hepato:1,myelo:2},
+  "Bisoprolol":{hypoT:1},
+  "Brexpiprazole":{sed:1},
+  "Cannabis (THC)":{sed:1},
+  "Carbamazepine":{hepato:1,hypoNa:2,myelo:1},
+  "Ciprofloxacin":{seizure:1,nephro:1,photoSens:1,musculo:1},
+  "Citalopram":{hypoNa:1},
+  "Clarithromycin":{qtc:2},
+  "Clozapine":{hypoT:1,seizure:1,myelo:2},
+  "Cocaine":{seizure:1,qtc:2,hepato:1},
+  "Colchicine":{musculo:1,myelo:1},
+  "Cyclobenzaprine":{sed:1,seizure:1,ach:2},
+  "Cyclosporine":{nephro:2,hyperK:1,hepato:1,musculo:1},
+  "Dabigatran":{bleed:2},
+  "Dexamethasone":{bleed:1,musculo:1},
+  "Diclofenac":{hepato:1},
+  "Diphenhydramine":{sed:1,ach:1},
+  "Domperidone":{qtc:2},
+  "Doxycycline":{photoSens:2},
+  "Duloxetine":{hepato:1,hypoNa:1},
+  "Edoxaban":{bleed:2},
+  "Erythromycin":{qtc:2},
+  "Escitalopram":{hypoNa:1},
+  "Felodipine":{hypoT:1},
+  "Fish Oil (Omega-3)":{bleed:1},
+  "Fluconazole":{qtc:2,hepato:1},
+  "Fluoxetine":{hypoNa:1},
+  "Fluvoxamine":{hepato:1},
+  "Furosemide":{hypoNa:1,photoSens:1},
+  "Gabapentin":{sed:1},
+  "Ginkgo Biloba":{bleed:1},
+  "Green Tea Extract":{hepato:1},
+  "Haloperidol":{qtc:3,hypoT:1,hypoNa:1},
+  "Hydrochlorothiazide":{hypoNa:1,photoSens:1},
+  "Hydroxychloroquine":{myelo:1},
+  "Ketoconazole":{hepato:2},
+  "Kratom (Mitragynine)":{sed:1},
+  "Labetalol":{hypoT:1},
+  "Levofloxacin":{seizure:1,photoSens:1,musculo:1},
+  "Lithium":{seizure:1,nephro:1,qtc:1},
+  "Loperamide":{qtc:1,ach:1},
+  "Lorazepam":{sed:1},
+  "Lovastatin":{musculo:1},
+  "Lurasidone":{sed:1},
+  "MDMA (Ecstasy)":{seizure:1,hepato:1,hypoNa:2},
+  "Methadone":{qtc:3},
+  "Methamphetamine":{seizure:1},
+  "Methotrexate":{nephro:1,hepato:2,photoSens:1,myelo:2},
+  "Metoclopramide":{qtc:1},
+  "Metronidazole":{seizure:1},
+  "Methylprednisolone":{musculo:1},
+  "Moxifloxacin":{seizure:1,photoSens:1,musculo:1},
+  "Mycophenolate":{hepato:1,myelo:1},
+  "Naproxen":{photoSens:1},
+  "Nifedipine":{hypoT:1},
+  "Nitrofurantoin":{hepato:1},
+  "Ondansetron":{qtc:1},
+  "Oxcarbazepine":{hypoNa:2},
+  "Paliperidone":{sed:1},
+  "Paroxetine":{hypoNa:1},
+  "Phenytoin":{hepato:1},
+  "Pioglitazone":{hepato:1},
+  "Prednisolone":{bleed:1,musculo:1},
+  "Prednisone":{bleed:1,musculo:1},
+  "Pregabalin":{sed:1},
+  "Quetiapine":{hypoT:1},
+  "Rifampin":{hepato:1},
+  "Risperidone":{hypoT:1},
+  "Rivaroxaban":{bleed:2},
+  "Rosuvastatin":{musculo:1},
+  "Sertraline":{hypoNa:1},
+  "Sildenafil":{hypoT:1},
+  "Simvastatin":{hepato:1,musculo:1},
+  "Sirolimus":{nephro:1},
+  "Spironolactone":{hyperK:2},
+  "St. John's Wort":{photoSens:1},
+  "Tacrolimus":{nephro:2,hyperK:1,hepato:1},
+  "Tadalafil":{hypoT:1},
+  "Tamsulosin":{hypoT:1},
+  "Theophylline":{seizure:1},
+  "Tizanidine":{sed:1,ach:1},
+  "Tramadol":{seizure:1},
+  "Trazodone":{hypoT:1},
+  "Triazolam":{sed:1},
+  "Trimethoprim-SMX":{hyperK:1,photoSens:1,myelo:1},
+  "Valerian":{sed:1},
+  "Valproic Acid":{hepato:2,hypoNa:1,myelo:1},
+  "Vardenafil":{hypoT:1},
+  "Venlafaxine":{hypoNa:1},
+  "Voriconazole":{qtc:1,hepato:1,photoSens:2,myelo:1}
+};
 
-  // Collect all metabolite names in stack for cross-referencing
-  const allMetabs = {};  // metaboliteName → [parentDrug, ...]
-  const allDrugNames = new Set(activeStack);
-  activeStack.forEach(drugName => {
-    const mets = METAB[drugName];
-    if (!mets) return;
-    mets.forEach(m => {
-      if (!allMetabs[m.n]) allMetabs[m.n] = [];
-      allMetabs[m.n].push(drugName);
-    });
-  });
-
-  // Check: does any metabolite match a drug in the DB?
-  const metabDrugMatches = {};  // parentDrug → [{metabolite, matchedDrug}]
-  activeStack.forEach(drugName => {
-    const mets = METAB[drugName];
-    if (!mets) return;
-    mets.forEach(m => {
-      // Check if metabolite name matches any DB drug
-      DB.forEach(d => {
-        const mn = m.n.toLowerCase();
-        const dn = d.name.toLowerCase();
-        if (mn.includes(dn) || dn.includes(mn.split(" ")[0])) {
-          if (d.name !== drugName) { // Don't self-match
-            if (!metabDrugMatches[drugName]) metabDrugMatches[drugName] = [];
-            metabDrugMatches[drugName].push({ metabolite: m, matchedDrug: d.name });
-          }
-        }
-      });
-    });
-  });
-
-  // Check: do any metabolites from DIFFERENT drugs share enzyme pathways?
-  const enzymeConflicts = [];
-  const stackMets = [];
-  activeStack.forEach(drugName => {
-    const mets = METAB[drugName];
-    if (!mets) return;
-    mets.forEach(m => {
-      if (m.inh) {
-        m.inh.forEach(inh => {
-          // Check if this metabolite's inhibition affects another drug's metabolite formation
-          activeStack.forEach(otherDrug => {
-            if (otherDrug === drugName) return;
-            const otherMets = METAB[otherDrug];
-            if (!otherMets) return;
-            otherMets.forEach(om => {
-              if (om.e === inh.e && om.a !== "inactive") {
-                enzymeConflicts.push({
-                  inhibitor: drugName, metabolite: m.n, enzyme: inh.e, strength: inh.s,
-                  victim: otherDrug, affectedMetabolite: om.n, activity: om.a
-                });
-              }
-            });
-          });
-        });
-      }
-    });
-  });
-
-  // Check: do two drugs produce the SAME toxic metabolite or share toxic pathway?
-  const toxicOverlap = [];
-  const toxicMets = {};
-  activeStack.forEach(drugName => {
-    const mets = METAB[drugName];
-    if (!mets) return;
-    mets.forEach(m => {
-      if (m.a === "toxic") {
-        const key = m.e + ":" + m.a;
-        if (!toxicMets[key]) toxicMets[key] = [];
-        toxicMets[key].push({ drug: drugName, metabolite: m.n, note: m.note });
-      }
-    });
-  });
-
-  let html = "";
-  const isConsumer = mode === "consumer";
-
-  activeStack.forEach(drugName => {
-    const drug = getDrug(drugName);
-    const mets = METAB[drugName];
-    const fold = calcFold(drugName);
-
-    html += `<div class="metab-drug">`;
-    html += `<div class="metab-drug-header"><span>${drugName}</span><span class="drug-cls">${drug ? drug.cls : ""} ${fold.fold !== 1 ? `· ${fold.fold.toFixed(1)}× AUC` : ""}</span></div>`;
-
-    if (!mets || !mets.length) {
-      html += `<div class="metab-list"><div class="metab-item"><span class="metab-note">Metabolite data not yet catalogued for this substance</span></div></div>`;
-    } else {
-      html += `<div class="metab-list">`;
-      mets.forEach(m => {
-        const badgeClass = m.a === "toxic" ? "toxic" : m.a === "prodrug" ? "prodrug" : m.a === "active" ? "active" : "inactive";
-        const badgeLabel = m.a === "toxic" ? "TOXIC" : m.a === "prodrug" ? "ACTIVE FORM" : m.a === "active" ? "ACTIVE" : "INACTIVE";
-        html += `<div class="metab-item">
-          <span class="metab-arrow">→</span>
-          <span class="metab-name">${m.n}</span>
-          ${m.p ? `<span class="metab-pct">${m.p}%</span>` : ""}
-          <span class="metab-enzyme">${m.e}</span>
-          <span class="metab-badge ${badgeClass}">${badgeLabel}</span>
-          ${m.t ? `<span class="metab-enzyme">t½ ${m.t}h</span>` : ""}
-        </div>`;
-        if (m.note) html += `<div style="padding:0 0 4px 30px;"><span class="metab-note">${m.note}</span></div>`;
-        if (m.inh && m.inh.length) {
-          html += `<div style="padding:0 0 4px 30px;font-size:11px;color:var(--amber);">⚡ Inhibits: ${m.inh.map(i=>`${i.e} (${i.s})`).join(", ")}</div>`;
-        }
-      });
-      html += `</div>`;
+// Apply SIDER_PD augmentation to DB at load time
+(function augmentPD() {
+  for (const [drugName, flags] of Object.entries(SIDER_PD)) {
+    const drug = DB.find(d => d.name === drugName);
+    if (!drug) continue;
+    for (const [flag, val] of Object.entries(flags)) {
+      if (!drug[flag] || drug[flag] < val) drug[flag] = val;
     }
-
-    // Cross-ref alerts for this drug
-    const matches = metabDrugMatches[drugName];
-    if (matches && matches.length) {
-      html += `<div class="metab-xref-hit"><div class="metab-xref-title">⚠ Metabolite ↔ Drug Match</div>`;
-      matches.forEach(mx => {
-        const inStack = activeStack.includes(mx.matchedDrug);
-        html += `<div class="metab-xref-item">→ <strong>${mx.metabolite.n}</strong> is/contains <strong>${mx.matchedDrug}</strong>${inStack ? " (IN YOUR STACK)" : " (in database)"}</div>`;
-      });
-      html += `</div>`;
-    }
-
-    html += `</div>`;
-  });
-
-  // Global cross-reference alerts
-  if (enzymeConflicts.length) {
-    html += `<div class="metab-xref" style="margin-top:12px;"><div class="metab-xref-title">🔬 Metabolite-Level Enzyme Conflicts</div>`;
-    const seen = new Set();
-    enzymeConflicts.forEach(c => {
-      const key = `${c.inhibitor}-${c.victim}-${c.enzyme}`;
-      if (seen.has(key)) return;
-      seen.add(key);
-      html += `<div class="metab-xref-item">
-        <strong>${c.inhibitor}</strong>'s metabolite <em>${c.metabolite}</em> ${c.strength}ly inhibits ${c.enzyme}
-        → affects <strong>${c.victim}</strong>'s metabolite <em>${c.affectedMetabolite}</em> (${c.activity})
-      </div>`;
-    });
-    html += `</div>`;
   }
-
-  el.innerHTML = html;
-}
-
+})();
 
 const INH_MULT = { strong: 5.0, moderate: 2.0, weak: 1.25 };
 const IND_MULT = { strong: 0.15, moderate: 0.4, weak: 0.7 };
@@ -1560,6 +2387,83 @@ const CLINICAL_FOLD = {
   // Midazolam: strong CYP3A4 inhibitor ketoconazole → ~15× AUC (FDA label)
   // No genetic PM for CYP3A4 in practice, but DDI data available
 };
+
+// ═══════════════════════════════════════════════════════════════════
+// PATHWAY DIVERSION — what metabolites form when primary enzyme blocked
+// ═══════════════════════════════════════════════════════════════════
+const PATHWAY_DIVERSION = {
+"Codeine":{primary:{enzyme:"CYP2D6",metabolite:"Morphine",activity:"active",pct:10},diverted:[{enzyme:"CYP3A4",metabolite:"Norcodeine",activity:"inactive",pct:80,note:"Major when 2D6 blocked; no analgesic effect"},{enzyme:"UGT2B7",metabolite:"Codeine-6-glucuronide",activity:"weak",pct:10}],clinicalImpact:"Complete loss of analgesia in CYP2D6 PM",severity:"critical",pmEffect:"no_effect",umEffect:"toxicity"},
+"Tramadol":{primary:{enzyme:"CYP2D6",metabolite:"O-desmethyltramadol (M1)",activity:"active",pct:30},diverted:[{enzyme:"CYP3A4",metabolite:"N-desmethyltramadol (M2)",activity:"inactive",pct:60},{enzyme:"CYP2B6",metabolite:"N,O-didesmethyltramadol",activity:"inactive",pct:10}],clinicalImpact:"Reduced analgesia — M1 has 200x higher mu-opioid affinity than parent",severity:"high",pmEffect:"reduced_effect",umEffect:"toxicity"},
+"Oxycodone":{primary:{enzyme:"CYP3A4",metabolite:"Noroxycodone",activity:"weak",pct:45},diverted:[{enzyme:"CYP2D6",metabolite:"Oxymorphone",activity:"active_potent",pct:11,note:"14x more potent; increased when CYP3A4 blocked"}],clinicalImpact:"CYP3A4 inhibitors shunt toward oxymorphone, paradoxically increasing potency",severity:"high",pmEffect:"altered_profile"},
+"Hydrocodone":{primary:{enzyme:"CYP2D6",metabolite:"Hydromorphone",activity:"active_potent",pct:5},diverted:[{enzyme:"CYP3A4",metabolite:"Norhydrocodone",activity:"weak",pct:60}],clinicalImpact:"CYP2D6 PM: slightly reduced analgesia (parent still active)",severity:"moderate",pmEffect:"slightly_reduced"},
+"Fluoxetine":{primary:{enzyme:"CYP2D6",metabolite:"Norfluoxetine",activity:"active",pct:50},diverted:[{enzyme:"CYP2C9",metabolite:"p-Trifluoromethylphenol",activity:"inactive",pct:20},{enzyme:"CYP2C19",metabolite:"Norfluoxetine (minor route)",activity:"active",pct:15}],clinicalImpact:"CYP2D6 PM: parent ↑ but norfluoxetine also active — effect maintained, DDI risk ↑",severity:"moderate",pmEffect:"increased_exposure_same_effect"},
+"Venlafaxine":{primary:{enzyme:"CYP2D6",metabolite:"O-desmethylvenlafaxine (desvenlafaxine)",activity:"active_equipotent",pct:56},diverted:[{enzyme:"CYP3A4",metabolite:"N-desmethylvenlafaxine",activity:"weak",pct:30},{enzyme:"CYP2C19",metabolite:"N,O-didesmethylvenlafaxine",activity:"inactive",pct:5}],clinicalImpact:"CYP2D6 PM: parent ↑ 4-5x, more noradrenergic profile shift",severity:"moderate",pmEffect:"altered_profile"},
+"Mirtazapine":{primary:{enzyme:"CYP2D6",metabolite:"8-Hydroxymirtazapine",activity:"weak",pct:20},diverted:[{enzyme:"CYP3A4",metabolite:"N-desmethylmirtazapine",activity:"weak",pct:40},{enzyme:"CYP1A2",metabolite:"N-oxide-mirtazapine",activity:"inactive",pct:10}],clinicalImpact:"CYP2D6 PM: AUC ↑ ~50%. Increased sedation and weight gain",severity:"moderate",pmEffect:"increased_exposure"},
+"Bupropion":{primary:{enzyme:"CYP2B6",metabolite:"Hydroxybupropion",activity:"active",pct:80},diverted:[{enzyme:"CYP2C19",metabolite:"Threo-hydrobupropion",activity:"weak",pct:10},{enzyme:"AKR",metabolite:"Erythro-hydrobupropion",activity:"weak",pct:10}],clinicalImpact:"CYP2B6 PM: parent ↑ 5.5x. Increased seizure risk",severity:"high",pmEffect:"increased_toxicity"},
+"Atomoxetine":{primary:{enzyme:"CYP2D6",metabolite:"4-Hydroxyatomoxetine",activity:"active_equipotent",pct:60},diverted:[{enzyme:"CYP2C19",metabolite:"N-desmethylatomoxetine",activity:"weak",pct:10},{enzyme:"FMO3",metabolite:"Atomoxetine N-oxide",activity:"inactive",pct:5}],clinicalImpact:"CYP2D6 PM: AUC ↑ 10x, t1/2 5h→22h. CV side effects ↑↑",severity:"critical",pmEffect:"severe_toxicity"},
+"Aripiprazole":{primary:{enzyme:"CYP2D6",metabolite:"Dehydro-aripiprazole",activity:"active",pct:40},diverted:[{enzyme:"CYP3A4",metabolite:"Dehydro-aripiprazole (minor)",activity:"active",pct:30}],clinicalImpact:"CYP2D6 PM: AUC ↑ 80%. FDA recommends 50% dose reduction",severity:"high",pmEffect:"increased_exposure"},
+"Risperidone":{primary:{enzyme:"CYP2D6",metabolite:"9-Hydroxyrisperidone (paliperidone)",activity:"active_equipotent",pct:70},diverted:[{enzyme:"CYP3A4",metabolite:"N-dealkylation products",activity:"inactive",pct:10}],clinicalImpact:"CYP2D6 PM: altered ratio may affect EPS risk but active moiety similar",severity:"moderate",pmEffect:"altered_ratio"},
+"Haloperidol":{primary:{enzyme:"CYP2D6",metabolite:"Reduced haloperidol",activity:"active",pct:23},diverted:[{enzyme:"CYP3A4",metabolite:"Pyridinium metabolite (HPP+)",activity:"neurotoxic",pct:15,note:"CRITICAL: neurotoxic, similar to MPTP"}],clinicalImpact:"CYP2D6 PM: increased neurotoxic HPP+ formation → tardive dyskinesia risk",severity:"critical",pmEffect:"neurotoxic_shift"},
+"Clopidogrel":{primary:{enzyme:"CYP2C19",metabolite:"Active thiol metabolite",activity:"active",pct:15},diverted:[{enzyme:"Esterases",metabolite:"SR26334 (inactive acid)",activity:"inactive",pct:85}],clinicalImpact:"CYP2C19 PM: active metabolite ↓ 70%. FDA black box warning",severity:"critical",pmEffect:"no_effect"},
+"Warfarin":{primary:{enzyme:"CYP2C9",metabolite:"7-Hydroxywarfarin (S-warfarin clearance)",activity:"inactive",pct:85},diverted:[{enzyme:"CYP3A4",metabolite:"10-Hydroxywarfarin (R-warfarin)",activity:"inactive",pct:10},{enzyme:"CYP1A2",metabolite:"6-Hydroxywarfarin",activity:"inactive",pct:5}],clinicalImpact:"CYP2C9 PM: S-warfarin clearance ↓ 50-90%. Requires 30-50% dose reduction",severity:"critical",pmEffect:"severe_toxicity"},
+"Metoprolol":{primary:{enzyme:"CYP2D6",metabolite:"O-desmethylmetoprolol",activity:"inactive",pct:65},diverted:[{enzyme:"CYP2D6",metabolite:"alpha-Hydroxymetoprolol",activity:"inactive",pct:10}],clinicalImpact:"CYP2D6 PM: AUC ↑ 5x. Severe bradycardia/hypotension",severity:"critical",pmEffect:"severe_toxicity"},
+"Nebivolol":{primary:{enzyme:"CYP2D6",metabolite:"4-Hydroxynebivolol",activity:"weak",pct:38},diverted:[{enzyme:"UGT",metabolite:"Glucuronide conjugates",activity:"inactive",pct:30}],clinicalImpact:"CYP2D6 PM: AUC ↑ 10x. Severe bradycardia",severity:"critical",pmEffect:"severe_toxicity"},
+"Omeprazole":{primary:{enzyme:"CYP2C19",metabolite:"5-Hydroxyomeprazole",activity:"inactive",pct:80},diverted:[{enzyme:"CYP3A4",metabolite:"Omeprazole sulfone",activity:"inactive",pct:20}],clinicalImpact:"CYP2C19 PM: AUC ↑ 5-10x. Enhanced acid suppression — beneficial but infection risk ↑",severity:"low",pmEffect:"enhanced_effect"},
+"Tamoxifen":{primary:{enzyme:"CYP2D6",metabolite:"Endoxifen",activity:"active_100x",pct:5},diverted:[{enzyme:"CYP3A4",metabolite:"N-desmethyltamoxifen",activity:"weak",pct:90}],clinicalImpact:"CYP2D6 PM: endoxifen ↓ 75%. Breast cancer recurrence risk increases",severity:"critical",pmEffect:"treatment_failure"},
+"DXM (Dextromethorphan)":{primary:{enzyme:"CYP2D6",metabolite:"Dextrorphan",activity:"active_different",pct:90},diverted:[{enzyme:"CYP3A4",metabolite:"3-Methoxymorphinan",activity:"weak",pct:10}],clinicalImpact:"CYP2D6 PM: DXM accumulates as NMDA antagonist/dissociative. Serotonin syndrome risk ↑↑",severity:"high",pmEffect:"qualitative_shift"}
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// COMBINATION PRODUCTS — new substances/effects from drug combos
+// ═══════════════════════════════════════════════════════════════════
+const COMBINATION_PRODUCTS = [
+{type:"toxic_overlap",drugs:["Acetaminophen","Isoniazid"],metabolite:"NAPQI",mechanism:"Isoniazid induces CYP2E1, increasing NAPQI from acetaminophen 3-5x. NAPQI depletes glutathione → hepatocellular necrosis",risk:"Severe hepatotoxicity at therapeutic doses",severity:"critical",management:"Limit acetaminophen <2g/day; monitor LFTs"},
+{type:"toxic_overlap",drugs:["Acetaminophen","Alcohol (Ethanol)"],metabolite:"NAPQI",mechanism:"Chronic alcohol induces CYP2E1 + depletes glutathione. NAPQI pathway share 5%→20%+",risk:"Hepatotoxicity at normal doses in chronic drinkers",severity:"high",management:"Avoid in heavy drinkers; max 2g/day"},
+{type:"toxic_overlap",drugs:["Valproic Acid","Carbamazepine"],metabolite:"4-ene-Valproic acid",mechanism:"CBZ induces CYP2C9/CYP2A6, shifting VPA toward hepatotoxic 4-ene-VPA. CBZ 10,11-epoxide competes for epoxide hydrolase",risk:"Hepatotoxicity, hyperammonemia",severity:"high",management:"Monitor ammonia and LFTs closely"},
+{type:"toxic_overlap",drugs:["Simvastatin","Clarithromycin"],metabolite:"Simvastatin acid (muscle accumulation)",mechanism:"Clarithromycin (strong CYP3A4+P-gp inhibitor) blocks simvastatin first-pass. AUC ↑ 10-12x",risk:"Rhabdomyolysis → myoglobin → acute kidney injury",severity:"critical",management:"CONTRAINDICATED. Hold statin or use azithromycin"},
+{type:"toxic_overlap",drugs:["Metformin","Contrast Dye"],metabolite:"Metformin accumulation (renal failure)",mechanism:"Contrast dye can cause AKI. Metformin (100% renal clearance) accumulates → inhibits mitochondrial complex I → lactate overwhelms hepatic clearance",risk:"Metformin-associated lactic acidosis (MALA) — 50% mortality",severity:"critical",management:"Hold metformin 48h before contrast; restart after creatinine stable"},
+{type:"toxic_overlap",drugs:["Methotrexate","Ibuprofen"],metabolite:"7-Hydroxymethotrexate (renal precipitation)",mechanism:"NSAIDs compete for OAT1/OAT3 transporters, reducing MTX renal clearance 30-50%",risk:"AKI, pancytopenia, mucositis",severity:"critical",management:"Avoid NSAIDs with high-dose MTX; space >48h"},
+{type:"pathway_competition",drugs:["Fluoxetine","Codeine"],mechanism:"Fluoxetine (strong CYP2D6 inhibitor) blocks Codeine→Morphine entirely → all to Norcodeine (inactive)",result:{increased:"Norcodeine (inactive)",decreased:"Morphine (active)"},effect:"Complete loss of codeine analgesia",severity:"critical",alternative:"Use morphine directly or non-opioid"},
+{type:"pathway_competition",drugs:["Paroxetine","Tamoxifen"],mechanism:"Paroxetine (strong CYP2D6 inhibitor) blocks Tamoxifen→Endoxifen (100x more potent). Endoxifen ↓ 67%",result:{increased:"N-desmethyltamoxifen (weak)",decreased:"Endoxifen (potent)"},effect:"Breast cancer recurrence risk increases significantly",severity:"critical",alternative:"Use citalopram, escitalopram, or venlafaxine"},
+{type:"pathway_competition",drugs:["Fluoxetine","Metoprolol"],mechanism:"Fluoxetine inhibits CYP2D6, blocking metoprolol clearance. AUC ↑ 4-7x = pharmacological PM phenotype",result:{increased:"Unchanged metoprolol",decreased:"O-desmethylmetoprolol"},effect:"Severe bradycardia, hypotension, heart block risk",severity:"high",alternative:"Switch to bisoprolol (renal) or atenolol"},
+{type:"pathway_competition",drugs:["Bupropion","DXM (Dextromethorphan)"],mechanism:"Hydroxybupropion (strong CYP2D6 inhibitor) blocks DXM→dextrorphan. DXM accumulates as NMDA antagonist",result:{increased:"DXM (NMDA antagonist)",decreased:"Dextrorphan (antitussive)"},effect:"FDA-approved as Nuedexta when intentional; serotonin risk if unintentional",severity:"moderate"},
+{type:"pathway_competition",drugs:["Omeprazole","Clopidogrel"],mechanism:"Omeprazole inhibits CYP2C19, blocking clopidogrel 2-step bioactivation. Active metabolite ↓ 45%",result:{increased:"SR26334 (inactive acid)",decreased:"Active thiol metabolite"},effect:"Increased stent thrombosis and MI risk. FDA warning",severity:"critical",alternative:"Use pantoprazole or famotidine"},
+{type:"reactive_intermediate",drugs:["Carbamazepine","Lamotrigine"],mechanism:"CBZ induces UGT1A4 (lamotrigine clearance ↓ 50%). Lamotrigine inhibits epoxide hydrolase → CBZ-epoxide accumulates",result:{increased:"CBZ-10,11-epoxide (toxic)",decreased:"Lamotrigine levels"},effect:"Lamotrigine subtherapeutic + CBZ epoxide toxicity",severity:"high",management:"Double lamotrigine dose; monitor CBZ epoxide"},
+{type:"reactive_intermediate",drugs:["Valproic Acid","Lamotrigine"],mechanism:"VPA inhibits UGT1A4 → lamotrigine AUC ↑ 2-3x → increased reactive arene oxide intermediate → immune hypersensitivity",result:{increased:"Lamotrigine arene oxide (reactive)",decreased:"Lamotrigine-N2-glucuronide (safe)"},effect:"Stevens-Johnson syndrome/TEN risk ↑ 5-10x",severity:"critical",management:"MUST halve lamotrigine dose; titrate 25mg q2wk"},
+{type:"dual_saturation",drugs:["Phenytoin","Valproic Acid"],mechanism:"VPA displaces phenytoin from albumin (free fraction 10%→15-20%) + inhibits CYP2C9. PHT induces CYP/UGT lowering VPA",result:{increased:"Free phenytoin (unbound, active)",decreased:"Total phenytoin (misleading)"},effect:"PHT toxicity despite 'normal' total levels. Must measure FREE phenytoin",severity:"high",management:"Monitor free phenytoin, not total"},
+{type:"additive_channel_block",drugs:["Citalopram","Ondansetron"],mechanism:"Both block hERG K+ channels. Metabolite didesmethylcitalopram also has hERG activity",result:{increased:"Combined hERG blockade",decreased:"Cardiac repolarization reserve"},effect:"Additive QTc prolongation → Torsades de Pointes. Amplified if CYP2C19 PM",severity:"high",management:"Avoid combination; baseline ECG + QTc monitoring"},
+{type:"additive_bleeding",drugs:["Warfarin","Aspirin (Low-Dose)"],mechanism:"Warfarin inhibits clotting factors II/VII/IX/X. Aspirin blocks COX-1→TXA2→platelet aggregation. Different mechanisms, additive bleed",result:{increased:"Prostacyclin predominance",decreased:"Thromboxane A2 + clotting factors"},effect:"GI bleeding risk ↑ 2-5x. ICH risk ↑",severity:"high",management:"If both needed: lowest aspirin dose (81mg) + PPI"},
+{type:"nephrotoxic_synergy",drugs:["Lisinopril","Ibuprofen"],mechanism:"ACEi dilates efferent arteriole. NSAIDs constrict afferent arteriole. Combined: glomerular perfusion collapse",result:{increased:"Blocked renal prostaglandin PGE2",decreased:"Glomerular filtration pressure"},effect:"AKI + hyperkalemia. Triple whammy with diuretic",severity:"high",management:"Avoid chronic NSAIDs with ACEi; short courses <5 days"},
+{type:"hyperkalemia_cascade",drugs:["Spironolactone","Lisinopril"],mechanism:"Spironolactone blocks aldosterone directly. ACEi ↓ aldosterone via ↓ angiotensin II. Dual blockade of K+ excretion",result:{increased:"Serum potassium",decreased:"Aldosterone-mediated K+ excretion"},effect:"Hyperkalemia → cardiac arrhythmia. K+ >6.0 can be fatal",severity:"high",management:"Check K+ within 1 week; avoid K+ supplements"},
+{type:"novel_metabolite",drugs:["Cocaine","Alcohol (Ethanol)"],metabolite:"Cocaethylene",mechanism:"Hepatic transesterification: cocaine + ethanol → cocaethylene via carboxylesterase-1. Unique metabolite that ONLY forms when both are present",result:{increased:"Cocaethylene (t½ 5h vs cocaine 1h)",decreased:"Benzoylecgonine clearance"},effect:"Cocaethylene has 3x longer half-life, equivalent cardiotoxicity. 18-25x increase in sudden death risk",severity:"critical",management:"No safe combination. Cocaethylene prolongs the 'high' but dramatically increases cardiac arrest risk"},
+{type:"novel_metabolite",drugs:["MDMA (Ecstasy)","Alcohol (Ethanol)"],metabolite:"Ethyl-MDA",mechanism:"CYP2D6-mediated N-demethylation increased by alcohol co-administration; alcohol impairs thermoregulation and worsens dehydration",result:{increased:"MDA (neurotoxic metabolite) + core temperature",decreased:"MDMA clearance + fluid regulation"},effect:"Synergistic hyperthermia, severe dehydration, hyponatremia. Hepatotoxicity risk ↑ 3-5x",severity:"critical",management:"Extremely dangerous. Both impair thermoregulation; combined hepatotoxicity"},
+{type:"novel_metabolite",drugs:["MDMA (Ecstasy)","Cannabis (THC)"],metabolite:"Enhanced serotonin surge",mechanism:"THC modulates 5-HT release via CB1 receptors. MDMA causes massive serotonin release. Combined: unpredictable serotonin potentiation",result:{increased:"Serotonin + dopamine release",decreased:"Serotonin reuptake"},effect:"Increased serotonin syndrome risk, cardiovascular strain, hyperthermia",severity:"high",management:"Unpredictable potentiation; tachycardia and panic attacks common"},
+{type:"novel_metabolite",drugs:["Cocaine","Cannabis (THC)"],metabolite:"Enhanced cardiovascular stress",mechanism:"Cocaine blocks norepinephrine reuptake (sympathomimetic). THC causes tachycardia via CB1. Combined: additive heart rate ↑ + coronary vasospasm",result:{increased:"Heart rate (25-50% above either alone)",decreased:"Coronary perfusion"},effect:"16x increase in MI risk in first hour vs cocaine alone. Aortic dissection risk",severity:"critical",management:"No safe combination. Coronary vasospasm + tachycardia + increased oxygen demand"},
+{type:"novel_metabolite",drugs:["Heroin (Diacetylmorphine)","Cocaine"],metabolite:"Speedball interaction",mechanism:"Heroin (→morphine) causes CNS/respiratory depression + vasodilation. Cocaine causes CNS stimulation + vasoconstriction. Opposing effects mask overdose signals",result:{increased:"False sense of safety — stimulation masks sedation",decreased:"Respiratory drive awareness"},effect:"Respiratory failure when cocaine wears off (shorter t½) but opioid persists. Leading cause of poly-drug death",severity:"critical",management:"EXTREMELY DANGEROUS. Cocaine wears off in 30min, heroin persists 4-6h → delayed respiratory arrest"},
+{type:"novel_metabolite",drugs:["GHB","Alcohol (Ethanol)"],metabolite:"Synergistic GABA-A/B agonism",mechanism:"Both act on GABA receptors: alcohol on GABA-A, GHB on GABA-B and GHB receptor. Combined: profound CNS depression with steep dose-response curve",result:{increased:"GABA-ergic inhibition (supra-additive)",decreased:"Respiratory drive + gag reflex"},effect:"Respiratory arrest at doses that would be tolerable individually. Death from aspiration or respiratory failure",severity:"critical",management:"CONTRAINDICATED. Supra-additive CNS depression — no safe dose combination"},
+{type:"novel_metabolite",drugs:["Ketamine","Alcohol (Ethanol)"],metabolite:"Synergistic dissociation",mechanism:"Ketamine blocks NMDA glutamate receptors; alcohol potentiates GABA-A. Combined: profound dissociation + loss of protective reflexes",result:{increased:"Sedation depth + vomiting risk",decreased:"Protective airway reflexes"},effect:"Aspiration pneumonia risk. Unpredictable loss of consciousness. Liver damage from norketamine + acetaldehyde",severity:"high",management:"High aspiration risk — both cause nausea/vomiting but ketamine suppresses gag reflex"},
+{type:"pathway_competition",drugs:["Cocaine","Fluoxetine"],mechanism:"Both are strong serotonin reuptake inhibitors. Cocaine also blocks dopamine and norepinephrine reuptake. Fluoxetine inhibits CYP3A4 (weak) reducing cocaine→norcocaine clearance",result:{increased:"Synaptic serotonin + cocaine exposure",decreased:"Cocaine hepatic clearance"},effect:"Serotonin syndrome risk + prolonged cocaine cardiotoxicity + seizure risk",severity:"critical",management:"Severe interaction. Cocaine + any SSRI raises serotonin syndrome and cardiac risk"},
+{type:"pathway_competition",drugs:["MDMA (Ecstasy)","Fluoxetine"],mechanism:"Fluoxetine blocks SERT, preventing MDMA from entering neurons to release serotonin. MDMA effects greatly reduced but residual NE/DA effects cause unpredictable cardiovascular response",result:{increased:"Norepinephrine + residual effects",decreased:"MDMA serotonin release (blocked 80%+)"},effect:"MDMA effects mostly blocked but cardiovascular risk remains. Users may re-dose dangerously",severity:"moderate",management:"SSRI blocks MDMA's primary mechanism; re-dosing is dangerous"},
+{type:"pathway_competition",drugs:["MDMA (Ecstasy)","Paroxetine"],mechanism:"Paroxetine (strong CYP2D6 inhibitor) blocks MDMA→MDA conversion AND blocks SERT. MDMA parent compound accumulates — increased neurotoxicity from direct MDMA action on neurons",result:{increased:"MDMA parent compound (neurotoxic at high levels)",decreased:"MDA formation + serotonin release"},effect:"Paradoxical: less 'high' but more neurotoxicity from MDMA accumulation",severity:"high",management:"Strong CYP2D6 inhibitor + SERT block = unpredictable, dangerous"},
+{type:"toxic_overlap",drugs:["Acetaminophen","Cocaine"],metabolite:"NAPQI + norcocaine nitrosonium",mechanism:"Cocaine induces CYP3A4 and causes hepatic ischemia via vasoconstriction. This shifts acetaminophen toward CYP-mediated NAPQI pathway while reducing hepatic blood flow for clearance",risk:"Synergistic hepatotoxicity — cocaine ischemia + NAPQI toxicity",severity:"high",management:"Avoid acetaminophen during/after cocaine use; hepatic blood flow already compromised"}
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// TRANSPORTER DDI — P-gp, OATP, OCT, OAT mediated interactions
+// ═══════════════════════════════════════════════════════════════════
+const TRANSPORTER_DDI = [
+{substrate:"Digoxin",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Digoxin AUC ↑ 70%",severity:"high",mechanism:"P-gp inhibition at gut + renal tubule"},
+{substrate:"Digoxin",inhibitor:"Clarithromycin",transporter:"P-gp",effect:"Digoxin AUC ↑ 70-100%",severity:"critical",mechanism:"Strong P-gp inhibition + kills digoxin-inactivating gut flora"},
+{substrate:"Digoxin",inhibitor:"Cyclosporine",transporter:"P-gp",effect:"Digoxin AUC ↑ 50%",severity:"high",mechanism:"P-gp inhibition at renal tubule"},
+{substrate:"Dabigatran",inhibitor:"Ketoconazole",transporter:"P-gp",effect:"Dabigatran AUC ↑ 150%",severity:"critical",mechanism:"Prodrug is P-gp substrate; major bleeding risk"},
+{substrate:"Dabigatran",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Dabigatran AUC ↑ 60%",severity:"high",mechanism:"P-gp inhibition; FDA dose reduction"},
+{substrate:"Loperamide",inhibitor:"Quinidine",transporter:"P-gp (BBB)",effect:"Loperamide crosses BBB → CNS opioid effects",severity:"critical",mechanism:"P-gp at BBB normally excludes loperamide; inhibition → respiratory depression"},
+{substrate:"Atorvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Atorvastatin AUC ↑ 8x",severity:"critical",mechanism:"Blocks hepatic uptake → systemic statin exposure ↑ → myopathy"},
+{substrate:"Rosuvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Rosuvastatin AUC ↑ 7x",severity:"critical",mechanism:"CYP-independent statins still vulnerable via transporters"},
+{substrate:"Methotrexate",inhibitor:"NSAIDs",transporter:"OAT1/OAT3",effect:"MTX clearance ↓ 30-50%",severity:"critical",mechanism:"Competition for renal OAT transporters"},
+{substrate:"Metformin",inhibitor:"Cimetidine",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ 50%",severity:"moderate",mechanism:"Inhibits renal uptake + secretion of metformin"},
+{substrate:"Metformin",inhibitor:"Dolutegravir",transporter:"OCT2",effect:"Metformin AUC ↑ 79%",severity:"moderate",mechanism:"OCT2+MATE1 inhibition; dose adjustment needed"}
+];
 
 
 function getDrug(name) { return DB.find(d => d.name === name); }
@@ -2112,6 +3016,132 @@ function findInteractions() {
     });
   }
 
+
+  // HEPATOTOXICITY ADDITIVITY
+  const hepatoDrugs = drugs.filter(d => d.hepato >= 1);
+  if (hepatoDrugs.length >= 2) {
+    const highHepato = hepatoDrugs.filter(d => d.hepato >= 2);
+    const key = "hepato-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: hepatoDrugs[0].name, drug2: hepatoDrugs[1].name, enzyme: "Liver",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "\u2191 Hepatotoxicity risk (additive liver injury)",
+        severity: highHepato.length >= 2 ? "severe" : "moderate",
+        mechanism: `Multiple hepatotoxic agents: ${hepatoDrugs.map(d=>d.name).join(", ")}`
+      });
+    }
+  }
+
+  // HYPONATREMIA (SIADH)
+  const hypoNaDrugs = drugs.filter(d => d.hypoNa >= 1);
+  if (hypoNaDrugs.length >= 2) {
+    const key = "hypoNa-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: hypoNaDrugs[0].name, drug2: hypoNaDrugs[1].name, enzyme: "Na+",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "\u2191 Hyponatremia risk (SIADH/dilutional)",
+        severity: hypoNaDrugs.some(d => d.hypoNa >= 2) ? "severe" : "moderate",
+        mechanism: `Multiple hyponatremia-inducing agents: ${hypoNaDrugs.map(d=>d.name).join(", ")}`
+      });
+    }
+  }
+
+  // MYOPATHY/RHABDOMYOLYSIS (statins + interacting drugs)
+  const musculoDrugs = drugs.filter(d => d.musculo >= 1);
+  if (musculoDrugs.length >= 2) {
+    const hasStatin = musculoDrugs.some(d => d.cls === "Statin");
+    const key = "musculo-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: musculoDrugs[0].name, drug2: musculoDrugs[1].name, enzyme: "Muscle",
+        type: "pharmacodynamic", strength: "additive",
+        effect: hasStatin ? "\u2191 Rhabdomyolysis risk (statin + myotoxic agent)" : "\u2191 Myopathy/tendinopathy risk",
+        severity: hasStatin ? "severe" : "moderate",
+        mechanism: `Multiple myotoxic agents: ${musculoDrugs.map(d=>d.name).join(", ")}${hasStatin ? " — monitor CK levels" : ""}`
+      });
+    }
+  }
+
+  // MYELOSUPPRESSION
+  const myeloDrugs = drugs.filter(d => d.myelo >= 1);
+  if (myeloDrugs.length >= 2) {
+    const key = "myelo-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: myeloDrugs[0].name, drug2: myeloDrugs[1].name, enzyme: "Bone Marrow",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "\u2191 Myelosuppression risk (pancytopenia, neutropenia)",
+        severity: myeloDrugs.filter(d => d.myelo >= 2).length >= 2 ? "severe" : "moderate",
+        mechanism: `Multiple myelosuppressive agents: ${myeloDrugs.map(d=>d.name).join(", ")} — monitor CBC`
+      });
+    }
+  }
+
+  // PHOTOSENSITIVITY
+  const photoDrugs = drugs.filter(d => d.photoSens >= 1);
+  if (photoDrugs.length >= 2) {
+    const key = "photo-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: photoDrugs[0].name, drug2: photoDrugs[1].name, enzyme: "Skin/UV",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "\u2191 Photosensitivity risk — increased sun burn/phototoxicity",
+        severity: "mild",
+        mechanism: `Multiple photosensitizing agents: ${photoDrugs.map(d=>d.name).join(", ")} — use SPF 50+ sunscreen`
+      });
+    }
+  }
+
+    // 4. COMBINATION PRODUCT INTERACTIONS
+  COMBINATION_PRODUCTS.forEach(cp => {
+    const allPresent = cp.drugs.every(d => activeStack.includes(d));
+    if (!allPresent) return;
+    const key = cp.drugs.sort().join("|") + "|combo|" + cp.type;
+    if (seen.has(key)) return;
+    seen.add(key);
+    const sevMap = { critical: "severe", high: "severe", moderate: "moderate", low: "mild" };
+    const sev = sevMap[cp.severity] || "moderate";
+    interactions.push({
+      drug1: cp.drugs[0], drug2: cp.drugs[1], enzyme: cp.type.replace(/_/g, " "),
+      type: "combination", strength: cp.severity,
+      effect: cp.effect || cp.risk || `${cp.type.replace(/_/g, " ")} risk`,
+      severity: sev,
+      mechanism: cp.mechanism,
+      source: "combination"
+    });
+  });
+
+  // 5. TRANSPORTER-MEDIATED DDI
+  TRANSPORTER_DDI.forEach(t => {
+    const subPresent = activeStack.includes(t.substrate);
+    const inhPresent = activeStack.includes(t.inhibitor) ||
+      (t.inhibitor === "NSAIDs" && activeStack.some(n => { const d = getDrug(n); return d && d.cls === "NSAID"; }));
+    if (!subPresent || !inhPresent) return;
+    const actualInh = t.inhibitor === "NSAIDs"
+      ? activeStack.find(n => { const d = getDrug(n); return d && d.cls === "NSAID"; })
+      : t.inhibitor;
+    const key = [t.substrate, actualInh, t.transporter, "transporter"].sort().join("|");
+    if (seen.has(key)) return;
+    seen.add(key);
+    const sevMap = { critical: "severe", high: "severe", moderate: "moderate", low: "mild" };
+    const sev = sevMap[t.severity] || "moderate";
+    interactions.push({
+      drug1: actualInh, drug2: t.substrate, enzyme: t.transporter,
+      type: "transporter", strength: t.severity,
+      effect: t.effect,
+      severity: sev,
+      mechanism: t.mechanism,
+      source: "transporter"
+    });
+  });
+
   // Sort by severity
   interactions.sort((a,b) => {
     const sev = { severe: 3, moderate: 2, mild: 1 };
@@ -2169,6 +3199,27 @@ function calcRisk() {
   if (drugs.filter(d=>d.seizure).length >= 2) { score += 10; factors.push({ label: "Seizure threshold lowered", color: "amber" }); }
   if (drugs.filter(d=>d.sed).length >= 3) factors.push({ label: "Heavy CNS depression", color: "red" });
   if (activeStack.length >= 8) factors.push({ label: `${activeStack.length} medications (polypharmacy)`, color: "amber" });
+
+  // Combination product risk
+  const comboInteractions = interactions.filter(i => i.source === "combination");
+  const criticalCombos = comboInteractions.filter(i => i.strength === "critical");
+  if (criticalCombos.length) { score += 25; factors.push({ label: `${criticalCombos.length} critical combination alert${criticalCombos.length>1?"s":""}`, color: "red" }); }
+  else if (comboInteractions.length) factors.push({ label: `${comboInteractions.length} combination alert${comboInteractions.length>1?"s":""}`, color: "amber" });
+
+  // Transporter DDI risk
+  const transporterInteractions = interactions.filter(i => i.source === "transporter");
+  const criticalTransporters = transporterInteractions.filter(i => i.strength === "critical");
+  if (criticalTransporters.length) { score += 20; factors.push({ label: `${criticalTransporters.length} critical transporter interaction${criticalTransporters.length>1?"s":""}`, color: "red" }); }
+  else if (transporterInteractions.length) factors.push({ label: `${transporterInteractions.length} transporter interaction${transporterInteractions.length>1?"s":""}`, color: "amber" });
+
+  // Pathway diversion risk (genetics-triggered)
+  const pdActive = activeStack.filter(name => {
+    const pd = PATHWAY_DIVERSION[name];
+    if (!pd) return false;
+    const enzyme = pd.primary.enzyme;
+    return userGenetics[enzyme] === "poor" || userGenetics[enzyme] === "null";
+  });
+  if (pdActive.length) { score += 15 * pdActive.length; factors.push({ label: `${pdActive.length} pathway diversion${pdActive.length>1?"s":""} active (genetics)`, color: "red" }); }
 
   if (severe) factors.unshift({ label: `${severe} severe interaction${severe>1?"s":""}`, color: "red" });
   if (moderate) factors.push({ label: `${moderate} moderate`, color: "amber" });
@@ -2409,27 +3460,36 @@ function renderAll() {
     renderFoldBars();
     renderTiming();
     renderMetabolites();
+    renderPathwayDiversions();
     document.getElementById("foldSection").style.display = "";
     document.getElementById("timingSection").style.display = "";
     document.getElementById("metabSection").style.display = "";
+    document.getElementById("pdSection").style.display = "";
   } else {
     document.getElementById("foldSection").style.display = "none";
     document.getElementById("timingSection").style.display = "none";
     document.getElementById("metabSection").style.display = "none";
+    document.getElementById("pdSection").style.display = "none";
   }
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     renderRiskGauge(risk);
     renderInteractions(risk.interactions);
+    renderCombinationProducts();
+    renderTransporterDDI();
     renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
     document.getElementById("interSection").style.display = "";
+    document.getElementById("comboSection").style.display = "";
+    document.getElementById("transporterSection").style.display = "";
     document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
     document.getElementById("riskSection").style.display = "none";
     document.getElementById("interSection").style.display = "none";
+    document.getElementById("comboSection").style.display = "none";
+    document.getElementById("transporterSection").style.display = "none";
     document.getElementById("matrixSection").style.display = "none";
     document.getElementById("altSection").style.display = "none";
   }
@@ -2492,6 +3552,8 @@ function simplifyMechanism(i) {
   if (i.type === "inhibition") return `${i.drug1} slows the breakdown of ${i.drug2} by blocking ${i.enzyme}`;
   if (i.type === "induction") return `${i.drug1} speeds up the breakdown of ${i.drug2} by activating ${i.enzyme}`;
   if (i.type === "pharmacodynamic") return `Both medications have similar effects that add up`;
+  if (i.type === "combination") return `Drug combination creates new substance or amplified effect`;
+  if (i.type === "transporter") return `${i.drug1} blocks ${i.enzyme} transporter, increasing ${i.drug2} levels`;
   return "";
 }
 
@@ -2620,7 +3682,11 @@ function renderGenetics() {
   const activeGenes = Object.keys(userGenetics);
 
   const available = GENE_ENZYMES.filter(e => !userGenetics.hasOwnProperty(e));
-  addSel.innerHTML = available.map(e => `<option value="${e}">${e}</option>`).join("");
+  addSel.innerHTML = available.map(e => {
+    const ev = PHARMGKB_EVIDENCE[e];
+    const tag = ev ? ` [CPIC ${ev.grade}]` : "";
+    return `<option value="${e}">${e}${tag}</option>`;
+  }).join("");
 
   if (!activeGenes.length) {
     body.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No genetic variants set yet. Add an enzyme above if you know your metabolizer status.</div>';
@@ -2628,6 +3694,7 @@ function renderGenetics() {
   }
 
   const badgeText = { ultrarapid:"UM", rapid:"RM", normal:"NM", intermediate:"IM", poor:"PM", null:"NULL" };
+  const lvlColor = { A:"#c0392b", B:"#e67e22", C:"#7f8c8d" };
 
   body.innerHTML = activeGenes.map(enzyme => {
     const pheno = userGenetics[enzyme];
@@ -2635,17 +3702,236 @@ function renderGenetics() {
     const cssClass = opt ? opt.cssClass : "normal";
     const affected = DB.filter(d => d.routes.some(r => r.e === enzyme)).map(d => d.name);
     const inStack = affected.filter(n => activeStack.includes(n));
+
+    // PharmGKB evidence for drugs in stack
+    const ev = PHARMGKB_EVIDENCE[enzyme];
+    let evidenceHtml = "";
+    if (ev && inStack.length && pheno !== "normal") {
+      const relevantPairs = ev.pairs.filter(p => inStack.includes(p.drug));
+      if (relevantPairs.length) {
+        evidenceHtml = relevantPairs.map(p => {
+          const col = lvlColor[p.level] || lvlColor.C;
+          return `<div style="font-size:11px;padding:3px 6px 3px 98px;display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:${col};color:#fff">CPIC ${p.level}</span>
+            <span style="color:var(--text1)"><b>${p.drug}</b>: ${p.action}</span>
+          </div>`;
+        }).join("");
+      }
+    }
+
     const impactText = inStack.length ? `Affects: ${inStack.join(", ")}` : "";
+    const gradeTag = ev ? `<span style="font-size:9px;padding:1px 5px;border-radius:3px;background:${lvlColor[ev.grade]};color:#fff;margin-left:4px">${ev.guideline} ${ev.grade}</span>` : "";
 
     return `<div class="gene-row">
-      <div class="gene-name">${enzyme}</div>
+      <div class="gene-name">${enzyme}${gradeTag}</div>
       <select class="gene-select" onchange="setGenetics('${enzyme}', this.value)">
         ${PHENOTYPE_OPTIONS.map(o => `<option value="${o.id}" ${o.id===pheno?"selected":""}>${o.label}</option>`).join("")}
       </select>
       <span class="gene-badge ${cssClass}">${badgeText[pheno] || "?"}</span>
       <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
     </div>
-    ${impactText ? `<div style="font-size:11px;color:var(--text2);padding:0 4px 6px 98px">${impactText}</div>` : ""}`;
+    ${impactText ? `<div style="font-size:11px;color:var(--text2);padding:0 4px 3px 98px">${impactText}</div>` : ""}${evidenceHtml}`;
+  }).join("");
+}
+
+/* ================================================================
+   PATHWAY DIVERSION RENDERING
+   Shows how blocked enzymes reroute drugs to alternative metabolites
+   ================================================================ */
+
+function renderPathwayDiversions() {
+  const el = document.getElementById("pdBody");
+  if (!activeStack.length) { el.innerHTML = ""; return; }
+
+  // Find drugs with pathway diversion data
+  const relevant = activeStack.filter(name => PATHWAY_DIVERSION[name]);
+  if (!relevant.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--text2);padding:12px;font-size:13px">No pathway diversion data for your current medications</div>';
+    return;
+  }
+
+  let html = "";
+  relevant.forEach(drugName => {
+    const pd = PATHWAY_DIVERSION[drugName];
+    const drug = getDrug(drugName);
+
+    // Check if this drug's primary enzyme is affected (PM genetics or DDI)
+    const primaryEnzyme = pd.primary.enzyme;
+    const isPM = userGenetics[primaryEnzyme] === "poor" || userGenetics[primaryEnzyme] === "null";
+    const isInhibited = activeStack.some(other => {
+      if (other === drugName) return false;
+      const otherDrug = getDrug(other);
+      if (!otherDrug) return false;
+      const allInh = getAllInhibitions(otherDrug);
+      return allInh.some(i => i.e === primaryEnzyme && (i.s === "strong" || i.s === "moderate"));
+    });
+    const isActive = isPM || isInhibited;
+
+    const sevColors = {
+      critical: "background:var(--redBg);border-color:var(--red)",
+      high: "background:var(--amberBg);border-color:var(--amber)",
+      moderate: "background:var(--blueBg);border-color:var(--blue)",
+      low: "background:var(--greenBg);border-color:var(--green)"
+    };
+
+    html += `<div class="pd-card" ${isActive ? `style="border:2px solid var(--red);box-shadow:0 0 8px rgba(220,38,38,0.15)"` : ""}>`;
+    html += `<div class="pd-head">
+      <span class="pd-drug">${drugName} <span style="font-size:12px;color:var(--text2);font-weight:400">${drug ? drug.cls : ""}</span></span>
+      <span class="pd-sev ${pd.severity}">${pd.severity}</span>
+    </div>`;
+
+    if (isActive) {
+      html += `<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:8px;padding:4px 8px;background:var(--redBg);border-radius:6px">
+        ⚠ ACTIVE: ${isPM ? `You are ${primaryEnzyme} PM — this pathway IS diverted` : `${primaryEnzyme} is inhibited by another medication`}
+      </div>`;
+    }
+
+    // Primary pathway
+    html += `<div class="pd-primary">
+      <div class="pd-arrow">
+        <span style="color:var(--green);font-weight:700">●</span>
+        <span class="enzyme">${pd.primary.enzyme}</span>
+        <span>→</span>
+        <span class="metab">${pd.primary.metabolite}</span>
+        <span class="badge" style="background:var(--greenBg);color:var(--green)">${pd.primary.activity.toUpperCase()}</span>
+        ${pd.primary.pct ? `<span style="font-size:11px;color:var(--text2)">${pd.primary.pct}%</span>` : ""}
+      </div>
+    </div>`;
+
+    // Diverted pathways
+    pd.diverted.forEach(d => {
+      html += `<div class="pd-diverted">
+        <div class="pd-arrow">
+          <span style="color:var(--amber);font-weight:700">◐</span>
+          <span class="enzyme">${d.enzyme}</span>
+          <span>→</span>
+          <span class="metab">${d.metabolite}</span>
+          <span class="badge" style="${d.activity === 'inactive' ? 'background:#f1f5f9;color:#64748b' : d.activity.includes('potent') ? 'background:var(--redBg);color:var(--red)' : d.activity.includes('toxic') || d.activity === 'neurotoxic' ? 'background:var(--redBg);color:var(--red)' : 'background:var(--amberBg);color:var(--amber)'}">${d.activity.toUpperCase()}</span>
+          ${d.pct ? `<span style="font-size:11px;color:var(--text2)">${d.pct}%</span>` : ""}
+        </div>
+        ${d.note ? `<div style="font-size:11px;color:var(--text2);padding-left:18px">${d.note}</div>` : ""}
+      </div>`;
+    });
+
+    // Clinical impact
+    html += `<div class="pd-impact" style="${sevColors[pd.severity] || ''}">
+      <strong>Clinical impact:</strong> ${pd.clinicalImpact}
+      ${pd.pmEffect ? `<br><span style="font-size:11px">PM effect: ${pd.pmEffect.replace(/_/g, " ")}</span>` : ""}
+      ${pd.umEffect ? ` · <span style="font-size:11px">UM effect: ${pd.umEffect.replace(/_/g, " ")}</span>` : ""}
+    </div>`;
+
+    html += `</div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+/* ================================================================
+   COMBINATION PRODUCTS RENDERING
+   Shows new substances/effects from drug combos
+   ================================================================ */
+
+function findActiveCombinations() {
+  const results = [];
+  COMBINATION_PRODUCTS.forEach(cp => {
+    const allPresent = cp.drugs.every(d => activeStack.includes(d));
+    if (allPresent) results.push(cp);
+  });
+  return results;
+}
+
+function renderCombinationProducts() {
+  const el = document.getElementById("comboBody");
+  const countEl = document.getElementById("comboCount");
+  const combos = findActiveCombinations();
+
+  if (!combos.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--green);padding:12px;font-weight:600">No combination substance alerts for your medications</div>';
+    countEl.textContent = "";
+    return;
+  }
+
+  countEl.textContent = `${combos.length} alert${combos.length > 1 ? "s" : ""}`;
+  const typeLabels = {
+    toxic_overlap: "Toxic Overlap", pathway_competition: "Pathway Competition",
+    reactive_intermediate: "Reactive Intermediate", dual_saturation: "Dual Saturation",
+    additive_channel_block: "Channel Blockade", additive_bleeding: "Additive Bleeding",
+    nephrotoxic_synergy: "Nephrotoxic Synergy", hyperkalemia_cascade: "Hyperkalemia Cascade"
+  };
+  const typeColors = {
+    toxic_overlap: "background:var(--red);color:#fff", pathway_competition: "background:var(--purple);color:#fff",
+    reactive_intermediate: "background:#dc2626;color:#fff", dual_saturation: "background:var(--amber);color:#fff",
+    additive_channel_block: "background:#7c3aed;color:#fff", additive_bleeding: "background:#dc2626;color:#fff",
+    nephrotoxic_synergy: "background:#b91c1c;color:#fff", hyperkalemia_cascade: "background:#ea580c;color:#fff"
+  };
+
+  el.innerHTML = combos.map(cp => {
+    const sevClass = cp.severity === "critical" ? "critical" : cp.severity === "high" ? "high" : "moderate";
+    return `<div class="cp-card ${sevClass}">
+      <span class="cp-type" style="${typeColors[cp.type] || 'background:var(--amber);color:#fff'}">${typeLabels[cp.type] || cp.type}</span>
+      <div class="cp-drugs">${cp.drugs.join(" + ")}</div>
+      ${cp.metabolite ? `<div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:4px">→ ${cp.metabolite}</div>` : ""}
+      <div class="cp-mech">${cp.mechanism}</div>
+      ${cp.result ? `<div class="cp-result">
+        ${cp.result.increased ? `<span style="color:var(--red);font-weight:600">↑ ${cp.result.increased}</span>` : ""}
+        ${cp.result.decreased ? ` · <span style="color:var(--blue);font-weight:600">↓ ${cp.result.decreased}</span>` : ""}
+      </div>` : ""}
+      ${cp.effect ? `<div style="font-size:13px;font-weight:600;margin-top:4px">${cp.effect}</div>` : ""}
+      ${cp.risk ? `<div style="font-size:13px;font-weight:600;margin-top:4px;color:var(--red)">${cp.risk}</div>` : ""}
+      ${cp.management ? `<div class="cp-mgmt">Management: ${cp.management}</div>` : ""}
+      ${cp.alternative ? `<div style="font-size:12px;margin-top:4px;color:var(--green);font-weight:600">Alternative: ${cp.alternative}</div>` : ""}
+    </div>`;
+  }).join("");
+}
+
+/* ================================================================
+   TRANSPORTER DDI RENDERING
+   Shows P-gp, OATP, OCT, OAT interactions
+   ================================================================ */
+
+function findActiveTransporterDDI() {
+  const results = [];
+  TRANSPORTER_DDI.forEach(t => {
+    const subPresent = activeStack.includes(t.substrate);
+    const inhPresent = activeStack.includes(t.inhibitor) ||
+      (t.inhibitor === "NSAIDs" && activeStack.some(n => {
+        const d = getDrug(n);
+        return d && d.cls === "NSAID";
+      }));
+    if (subPresent && inhPresent) {
+      results.push({
+        ...t,
+        actualInhibitor: t.inhibitor === "NSAIDs"
+          ? activeStack.find(n => { const d = getDrug(n); return d && d.cls === "NSAID"; })
+          : t.inhibitor
+      });
+    }
+  });
+  return results;
+}
+
+function renderTransporterDDI() {
+  const el = document.getElementById("transporterBody");
+  const countEl = document.getElementById("transporterCount");
+  const tddi = findActiveTransporterDDI();
+
+  if (!tddi.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--green);padding:12px;font-weight:600">No transporter-mediated interactions detected</div>';
+    countEl.textContent = "";
+    return;
+  }
+
+  countEl.textContent = `${tddi.length} found`;
+  el.innerHTML = tddi.map(t => {
+    const sevClass = t.severity === "critical" ? "critical" : t.severity === "high" ? "high" : "moderate";
+    return `<div class="tr-card ${sevClass}">
+      <div class="tr-head">
+        <span class="tr-drugs">${t.actualInhibitor || t.inhibitor} → ${t.substrate}</span>
+        <span class="tr-transporter">${t.transporter}</span>
+      </div>
+      <div class="tr-effect">${t.effect}</div>
+      <div class="tr-mech">${t.mechanism}</div>
+    </div>`;
   }).join("");
 }
 
@@ -2692,6 +3978,30 @@ function renderMetabolites() {
         if (m.inh && m.inh.length) {
           html += `<div style="padding:0 0 2px 22px;font-size:11px;color:var(--amber);font-weight:600">⚡ Inhibits: ${m.inh.map(i=>`${i.e} (${i.s})`).join(", ")}</div>`;
         }
+      });
+    }
+
+    // COMBINATION METABOLITES — substances created when this drug combines with another in the stack
+    const comboMets = COMBINATION_PRODUCTS.filter(cp =>
+      cp.drugs.includes(drugName) && cp.drugs.every(d => activeStack.includes(d)) && cp.metabolite
+    );
+    if (comboMets.length) {
+      comboMets.forEach(cp => {
+        const otherDrug = cp.drugs.find(d => d !== drugName);
+        const sevColors = { critical: "border-color:var(--red);background:var(--redBg)", high: "border-color:var(--amber);background:var(--amberBg)", moderate: "border-color:var(--blue);background:var(--blueBg)" };
+        const sevStyle = sevColors[cp.severity] || sevColors.high;
+        html += `<div style="margin-top:8px;padding:10px 12px;border-left:4px solid;border-radius:0 8px 8px 0;${sevStyle}">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="font-size:14px">⚗</span>
+            <span style="font-size:13px;font-weight:700;color:var(--red)">${cp.metabolite}</span>
+            <span style="font-size:10px;padding:1px 8px;border-radius:8px;font-weight:700;background:var(--red);color:#fff">COMBINATION</span>
+            <span style="font-size:11px;color:var(--text2)">with ${otherDrug}</span>
+          </div>
+          <div style="font-size:12px;margin-top:4px;line-height:1.4;color:var(--text)">${cp.mechanism}</div>
+          ${cp.effect ? `<div style="font-size:12px;margin-top:4px;font-weight:600;color:var(--red)">${cp.effect}</div>` : ""}
+          ${cp.risk ? `<div style="font-size:12px;margin-top:2px;font-weight:600;color:var(--red)">${cp.risk}</div>` : ""}
+          ${cp.management ? `<div style="font-size:11px;margin-top:4px;font-style:italic;color:var(--text2)">Management: ${cp.management}</div>` : ""}
+        </div>`;
       });
     }
 
