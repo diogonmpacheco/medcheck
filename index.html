@@ -2932,21 +2932,24 @@ const DRUG_DB = [
 // MEDCHECK VERSION & METADATA
 // ═══════════════════════════════════════════════════════════════════
 const MEDCHECK_VERSION = {
-  engine: "2.1.0",
+  engine: "3.0.0",
   drugDb: "1.0.0",
   engineRewrite: true,
-  schema: "normalized-v1",
+  schema: "graph-v1",
   released: "2026-05-22",
-  features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity", "confidence-weighted-risk"],
+  features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity",
+    "confidence-weighted-risk", "interaction-graph", "metabolite-actors", "chain-traversal",
+    "dynamic-route-fractions", "transporter-parity", "structured-evidence"],
   drugCount: DRUG_DB.length,
+  graphStats: function() { var g = getInteractionGraph(); return { actors: Object.keys(g.actors).length, edges: g.edges.length }; },
   changes: [
-    "Normalized drug schema with explicit entity model",
-    "Separated substrate/inhibitor/inducer roles",
-    "Added evidence provenance stubs",
-    "Added confidence scoring model",
-    "Added versioning system",
-    "Added nonlinear PK, auto-inhibition, MBI flags",
-    "Integrated brand names into drug objects"
+    "Phase 1-2: Normalized drug schema, nonlinear PK, auto-inhibition, MBI",
+    "Phase 3: Graph normalization — 976 actors (drugs, metabolites, enzymes, transporters, food, endogenous), 1941 edges",
+    "Phase 3: Metabolites as first-class nodes, chain traversal engine",
+    "Phase 4: Structured evidence on all edges (confidence, sources, PMIDs, foldChange)",
+    "Phase 4: Transporter parity — substrates, inhibitors, inducers, genetic variants per transporter",
+    "Phase 4: Dynamic route fractions — capacity-based redistribution under enzyme inhibition",
+    "Phase 4: Prodrug clinNullMult fix — negative clinical fold values no longer cap DDI"
   ]
 };
 
@@ -4736,18 +4739,772 @@ const COMBINATION_PRODUCTS = [
 // TRANSPORTER DDI — P-gp, OATP, OCT, OAT mediated interactions
 // ═══════════════════════════════════════════════════════════════════
 const TRANSPORTER_DDI = [
-{substrate:"Digoxin",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Digoxin AUC ↑ 70%",severity:"high",mechanism:"P-gp inhibition at gut + renal tubule"},
-{substrate:"Digoxin",inhibitor:"Clarithromycin",transporter:"P-gp",effect:"Digoxin AUC ↑ 70-100%",severity:"critical",mechanism:"Strong P-gp inhibition + kills digoxin-inactivating gut flora"},
-{substrate:"Digoxin",inhibitor:"Cyclosporine",transporter:"P-gp",effect:"Digoxin AUC ↑ 50%",severity:"high",mechanism:"P-gp inhibition at renal tubule"},
-{substrate:"Dabigatran",inhibitor:"Ketoconazole",transporter:"P-gp",effect:"Dabigatran AUC ↑ 150%",severity:"critical",mechanism:"Prodrug is P-gp substrate; major bleeding risk"},
-{substrate:"Dabigatran",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Dabigatran AUC ↑ 60%",severity:"high",mechanism:"P-gp inhibition; FDA dose reduction"},
-{substrate:"Loperamide",inhibitor:"Quinidine",transporter:"P-gp (BBB)",effect:"Loperamide crosses BBB → CNS opioid effects",severity:"critical",mechanism:"P-gp at BBB normally excludes loperamide; inhibition → respiratory depression"},
-{substrate:"Atorvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Atorvastatin AUC ↑ 8x",severity:"critical",mechanism:"Blocks hepatic uptake → systemic statin exposure ↑ → myopathy"},
-{substrate:"Rosuvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Rosuvastatin AUC ↑ 7x",severity:"critical",mechanism:"CYP-independent statins still vulnerable via transporters"},
-{substrate:"Methotrexate",inhibitor:"NSAIDs",transporter:"OAT1/OAT3",effect:"MTX clearance ↓ 30-50%",severity:"critical",mechanism:"Competition for renal OAT transporters"},
-{substrate:"Metformin",inhibitor:"Cimetidine",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ 50%",severity:"moderate",mechanism:"Inhibits renal uptake + secretion of metformin"},
-{substrate:"Metformin",inhibitor:"Dolutegravir",transporter:"OCT2",effect:"Metformin AUC ↑ 79%",severity:"moderate",mechanism:"OCT2+MATE1 inhibition; dose adjustment needed"}
+{substrate:"Digoxin",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Digoxin AUC ↑ 70%",severity:"high",mechanism:"P-gp inhibition at gut + renal tubule",
+  evidence:{confidence:"high",sources:["FDA label"],pmid:["11588492"],foldChange:1.7,studyType:"clinical"}},
+{substrate:"Digoxin",inhibitor:"Clarithromycin",transporter:"P-gp",effect:"Digoxin AUC ↑ 70-100%",severity:"critical",mechanism:"Strong P-gp inhibition + kills digoxin-inactivating gut flora",
+  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["12811365"],foldChange:2.0,studyType:"clinical"}},
+{substrate:"Digoxin",inhibitor:"Cyclosporine",transporter:"P-gp",effect:"Digoxin AUC ↑ 50%",severity:"high",mechanism:"P-gp inhibition at renal tubule",
+  evidence:{confidence:"high",sources:["FDA label"],pmid:["2868837"],foldChange:1.5,studyType:"clinical"}},
+{substrate:"Dabigatran",inhibitor:"Ketoconazole",transporter:"P-gp",effect:"Dabigatran AUC ↑ 150%",severity:"critical",mechanism:"Prodrug is P-gp substrate; major bleeding risk",
+  evidence:{confidence:"high",sources:["FDA label"],pmid:["19943701"],foldChange:2.5,studyType:"clinical"}},
+{substrate:"Dabigatran",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Dabigatran AUC ↑ 60%",severity:"high",mechanism:"P-gp inhibition; FDA dose reduction",
+  evidence:{confidence:"high",sources:["FDA label"],foldChange:1.6,studyType:"clinical"}},
+{substrate:"Loperamide",inhibitor:"Quinidine",transporter:"P-gp (BBB)",effect:"Loperamide crosses BBB → CNS opioid effects",severity:"critical",mechanism:"P-gp at BBB normally excludes loperamide; inhibition → respiratory depression",
+  evidence:{confidence:"high",sources:["literature"],pmid:["12235448"],studyType:"clinical"}},
+{substrate:"Atorvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Atorvastatin AUC ↑ 8x",severity:"critical",mechanism:"Blocks hepatic uptake → systemic statin exposure ↑ → myopathy",
+  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["15328325"],foldChange:8.0,studyType:"clinical"}},
+{substrate:"Rosuvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Rosuvastatin AUC ↑ 7x",severity:"critical",mechanism:"CYP-independent statins still vulnerable via transporters",
+  evidence:{confidence:"high",sources:["FDA label"],pmid:["15548098"],foldChange:7.0,studyType:"clinical"}},
+{substrate:"Methotrexate",inhibitor:"NSAIDs",transporter:"OAT1/OAT3",effect:"MTX clearance ↓ 30-50%",severity:"critical",mechanism:"Competition for renal OAT transporters",
+  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["12042305"],foldChange:1.5,studyType:"clinical"}},
+{substrate:"Metformin",inhibitor:"Cimetidine",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ 50%",severity:"moderate",mechanism:"Inhibits renal uptake + secretion of metformin",
+  evidence:{confidence:"high",sources:["FDA label"],pmid:["7584966"],foldChange:1.5,studyType:"clinical"}},
+{substrate:"Metformin",inhibitor:"Dolutegravir",transporter:"OCT2",effect:"Metformin AUC ↑ 79%",severity:"moderate",mechanism:"OCT2+MATE1 inhibition; dose adjustment needed",
+  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["24218476"],foldChange:1.79,studyType:"clinical"}}
 ];
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  GRAPH ARCHITECTURE — Actor/Edge type system (Phase 3)
+//  Converts the drug-centric data model into a generalized biochemical
+//  interaction graph where metabolites, enzymes, transporters, food
+//  compounds, and endogenous substrates are all first-class actors.
+// ═══════════════════════════════════════════════════════════════════
+
+// ── Actor Types ──
+const ACTOR_TYPE = Object.freeze({
+  DRUG:       'drug',
+  METABOLITE: 'metabolite',
+  ENZYME:     'enzyme',
+  TRANSPORTER:'transporter',
+  FOOD:       'food_compound',
+  ENDOGENOUS: 'endogenous',
+});
+
+// ── Edge Types ──
+const EDGE_TYPE = Object.freeze({
+  SUBSTRATE_OF:    'substrate_of',     // actor is metabolized by enzyme
+  INHIBITS:        'inhibits',         // actor inhibits enzyme/transporter
+  INDUCES:         'induces',          // actor induces enzyme/transporter
+  METABOLIZED_TO:  'metabolized_to',   // parent → child metabolite
+  TRANSPORTED_BY:  'transported_by',   // actor transported by transporter
+  COMPETES_WITH:   'competes_with',    // two actors compete for same target
+  ACTIVATES:       'activates',        // prodrug → active form
+  ACCUMULATES_IN:  'accumulates_in',   // actor accumulates in tissue/compartment
+});
+
+// ── Metabolite Actors ──
+// Key metabolites promoted to first-class entities with their own
+// inhibitory properties, half-lives, and pharmacological activity.
+// These are the metabolites that ACTIVELY participate in DDIs.
+const METABOLITE_ACTORS = {
+  "hydroxybupropion": {
+    id:"hydroxybupropion", type:ACTOR_TYPE.METABOLITE,
+    name:"Hydroxybupropion", parentDrug:"Bupropion", formingEnzyme:"CYP2B6",
+    active:true, halfLife:20, potencyRatio:0.5,
+    routes:[{enzyme:"CYP2D6",fraction:0.3}],
+    inh:[{target:"CYP2D6",strength:"strong"},{target:"CYP2B6",strength:"moderate"},{target:"CYP2C19",strength:"weak"}],
+    note:"t½ LONGER than parent (20h vs 12h); primary driver of bupropion CYP2D6 DDIs"
+  },
+  "norfluoxetine": {
+    id:"norfluoxetine", type:ACTOR_TYPE.METABOLITE,
+    name:"Norfluoxetine", parentDrug:"Fluoxetine", formingEnzyme:"CYP2D6",
+    active:true, halfLife:168, potencyRatio:0.8,
+    routes:[{enzyme:"CYP2D6",fraction:0.5}],
+    inh:[{target:"CYP2D6",strength:"strong"},{target:"CYP3A4",strength:"moderate"},{target:"CYP2C19",strength:"moderate"}],
+    note:"t½ 4-16 DAYS; CYP2D6 inhibition persists WEEKS after fluoxetine discontinuation"
+  },
+  "desipramine": {
+    id:"desipramine", type:ACTOR_TYPE.METABOLITE,
+    name:"Desipramine", parentDrug:"Imipramine", formingEnzyme:"CYP1A2",
+    active:true, halfLife:21, potencyRatio:1.0,
+    routes:[{enzyme:"CYP2D6",fraction:0.7}],
+    inh:[{target:"CYP2D6",strength:"moderate"}],
+    note:"Active metabolite; itself a prescribed drug; NRI activity"
+  },
+  "morphine": {
+    id:"morphine", type:ACTOR_TYPE.METABOLITE,
+    name:"Morphine", parentDrug:"Codeine", formingEnzyme:"CYP2D6",
+    active:true, halfLife:3, potencyRatio:10.0,
+    routes:[{enzyme:"UGT2B7",fraction:0.6},{enzyme:"CYP3A4",fraction:0.1}],
+    inh:[],
+    note:"200× more potent than codeine at mu-opioid receptor; CYP2D6 PM → no morphine → no analgesia"
+  },
+  "o-desmethyltramadol": {
+    id:"o-desmethyltramadol", type:ACTOR_TYPE.METABOLITE,
+    name:"O-desmethyltramadol (M1)", parentDrug:"Tramadol", formingEnzyme:"CYP2D6",
+    active:true, halfLife:9, potencyRatio:6.0,
+    routes:[{enzyme:"CYP2D6",fraction:0.3},{enzyme:"UGT",fraction:0.5}],
+    inh:[],
+    note:"200× higher mu-opioid affinity than tramadol; CYP2D6 PM → ↓↓ analgesia"
+  },
+  "endoxifen": {
+    id:"endoxifen", type:ACTOR_TYPE.METABOLITE,
+    name:"Endoxifen", parentDrug:"Tamoxifen", formingEnzyme:"CYP2D6",
+    active:true, halfLife:70, potencyRatio:100.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.3},{enzyme:"UGT",fraction:0.5},{enzyme:"SULT",fraction:0.2}],
+    inh:[],
+    note:"100× more potent than tamoxifen; CYP2D6 PM → endoxifen ↓75% → breast cancer recurrence ↑"
+  },
+  "hydromorphone": {
+    id:"hydromorphone", type:ACTOR_TYPE.METABOLITE,
+    name:"Hydromorphone", parentDrug:"Hydrocodone", formingEnzyme:"CYP2D6",
+    active:true, halfLife:2.5, potencyRatio:5.0,
+    routes:[{enzyme:"UGT2B7",fraction:0.6}],
+    inh:[],
+    note:"5× more potent than hydrocodone; CYP2D6 PM → reduced hydromorphone"
+  },
+  "oxymorphone": {
+    id:"oxymorphone", type:ACTOR_TYPE.METABOLITE,
+    name:"Oxymorphone", parentDrug:"Oxycodone", formingEnzyme:"CYP2D6",
+    active:true, halfLife:7, potencyRatio:14.0,
+    routes:[{enzyme:"UGT2B7",fraction:0.5}],
+    inh:[],
+    note:"14× more potent; CYP3A4 inhibitors shunt toward oxymorphone → paradoxical potency increase"
+  },
+  "4-hydroxyatomoxetine": {
+    id:"4-hydroxyatomoxetine", type:ACTOR_TYPE.METABOLITE,
+    name:"4-Hydroxyatomoxetine", parentDrug:"Atomoxetine", formingEnzyme:"CYP2D6",
+    active:true, halfLife:6, potencyRatio:1.0,
+    routes:[{enzyme:"UGT",fraction:0.7}],
+    inh:[],
+    note:"Equipotent NRI; CYP2D6 PM → AUC ↑10×, t½ 5h→22h"
+  },
+  "dehydro-aripiprazole": {
+    id:"dehydro-aripiprazole", type:ACTOR_TYPE.METABOLITE,
+    name:"Dehydro-aripiprazole", parentDrug:"Aripiprazole", formingEnzyme:"CYP2D6",
+    active:true, halfLife:94, potencyRatio:0.5,
+    routes:[{enzyme:"CYP3A4",fraction:0.4}],
+    inh:[],
+    note:"40% of parent activity; contributes to active moiety"
+  },
+  "paliperidone": {
+    id:"paliperidone", type:ACTOR_TYPE.METABOLITE,
+    name:"9-Hydroxyrisperidone (Paliperidone)", parentDrug:"Risperidone", formingEnzyme:"CYP2D6",
+    active:true, halfLife:21, potencyRatio:1.0,
+    routes:[{enzyme:"UGT",fraction:0.5},{enzyme:"CYP3A4",fraction:0.1}],
+    inh:[],
+    note:"Equipotent; itself an approved drug; active moiety = parent + metabolite"
+  },
+  "paraxanthine": {
+    id:"paraxanthine", type:ACTOR_TYPE.METABOLITE,
+    name:"Paraxanthine", parentDrug:"Caffeine", formingEnzyme:"CYP1A2",
+    active:true, halfLife:4, potencyRatio:0.8,
+    routes:[{enzyme:"CYP1A2",fraction:0.5},{enzyme:"XO",fraction:0.2}],
+    inh:[],
+    note:"Primary caffeine metabolite (80%); CNS stimulant + lipolysis"
+  },
+  "active-thiol-clopidogrel": {
+    id:"active-thiol-clopidogrel", type:ACTOR_TYPE.METABOLITE,
+    name:"Active thiol metabolite", parentDrug:"Clopidogrel", formingEnzyme:"CYP2C19",
+    active:true, halfLife:0.5, potencyRatio:100.0,
+    routes:[],
+    inh:[],
+    note:"Only 15% of clopidogrel reaches active form; CYP2C19 PM → 70% ↓ → stent thrombosis"
+  },
+  "mcpp": {
+    id:"mcpp", type:ACTOR_TYPE.METABOLITE,
+    name:"m-Chlorophenylpiperazine (mCPP)", parentDrug:"Trazodone", formingEnzyme:"CYP3A4",
+    active:true, halfLife:6, potencyRatio:0.3,
+    routes:[{enzyme:"CYP2D6",fraction:0.5}],
+    inh:[],
+    note:"5-HT2C agonist — causes anxiety/panic in some patients; accumulates in CYP2D6 PM"
+  },
+  "hpp-plus": {
+    id:"hpp-plus", type:ACTOR_TYPE.METABOLITE,
+    name:"Pyridinium metabolite (HPP+)", parentDrug:"Haloperidol", formingEnzyme:"CYP3A4",
+    active:false, halfLife:72, potencyRatio:0,
+    routes:[],
+    inh:[],
+    toxicity:{target:"dopaminergic_neurons", mechanism:"MPP+-like mitochondrial complex I inhibitor"},
+    note:"NEUROTOXIC; similar to MPTP → tardive dyskinesia risk; ↑ in CYP2D6 PM"
+  },
+  "napqi": {
+    id:"napqi", type:ACTOR_TYPE.METABOLITE,
+    name:"NAPQI", parentDrug:"Acetaminophen", formingEnzyme:"CYP2E1",
+    active:false, halfLife:0.01, potencyRatio:0,
+    routes:[{enzyme:"GST",fraction:0.95}],
+    inh:[],
+    toxicity:{target:"hepatocytes", mechanism:"Glutathione depletion → covalent protein binding → necrosis"},
+    note:"Normally detoxified by glutathione; CYP2E1 inducers (alcohol, isoniazid) ↑ NAPQI production 3-5×"
+  },
+};
+
+// ── Food/Xenobiotic Actors ──
+// Non-drug compounds that interact with the metabolic graph
+const FOOD_ACTORS = {
+  "solanidine": {
+    id:"solanidine", type:ACTOR_TYPE.FOOD,
+    name:"Solanidine (α-solanine aglycone)",
+    sources:["potato","tomato","eggplant"],
+    routes:[{enzyme:"CYP2D6",fraction:0.4,evidence:{confidence:"low",sources:["literature"],pmid:["11678145"]}},{enzyme:"CYP3A4",fraction:0.3,evidence:{confidence:"low",sources:["literature"]}}],
+    inh:[{target:"BChE",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["7544290"]}},{target:"AChE",strength:"weak",evidence:{confidence:"moderate",sources:["literature"]}}],
+    persistence:{adiposeAccumulation:true, halfLife:48, note:"Lipophilic; accumulates with chronic exposure"},
+    note:"Glycoalkaloid aglycone; CYP2D6 substrate with long t½ → chronic exposure burden in PM/null"
+  },
+  "bergamottin": {
+    id:"bergamottin", type:ACTOR_TYPE.FOOD,
+    name:"Bergamottin (6,7-dihydroxybergamottin)",
+    sources:["grapefruit","seville_orange","pomelo"],
+    routes:[],
+    inh:[{target:"CYP3A4",strength:"strong",mechanism:"mechanism_based",evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["12811365"]}},{target:"P-gp",strength:"moderate",evidence:{confidence:"high",sources:["literature"],pmid:["11687634"]}}],
+    persistence:{gutWall:true, halfLife:24, note:"Destroys intestinal CYP3A4; recovery requires enzyme resynthesis (24-72h)"},
+    note:"MBI of intestinal CYP3A4; single glass → 2-3 day inhibition; affects first-pass metabolism"
+  },
+  "indole-3-carbinol": {
+    id:"indole-3-carbinol", type:ACTOR_TYPE.FOOD,
+    name:"Indole-3-carbinol / DIM",
+    sources:["broccoli","cabbage","brussels_sprouts","kale"],
+    routes:[{enzyme:"CYP1A1",fraction:0.5}],
+    inh:[],
+    ind:[{target:"CYP1A2",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["11010930"]}},{target:"CYP1A1",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}],
+    persistence:{halfLife:4},
+    note:"AhR agonist → induces CYP1A2; chronic high cruciferous intake ↓ CYP1A2 substrate exposure"
+  },
+  "allicin": {
+    id:"allicin", type:ACTOR_TYPE.FOOD,
+    name:"Allicin / Diallyl sulfide",
+    sources:["garlic","onion"],
+    routes:[{enzyme:"CYP2E1",fraction:0.6}],
+    inh:[{target:"CYP2E1",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["12424753"]}}],
+    persistence:{halfLife:6},
+    note:"CYP2E1 inhibitor → may reduce NAPQI formation from acetaminophen; protective effect"
+  },
+  "curcumin": {
+    id:"curcumin", type:ACTOR_TYPE.FOOD,
+    name:"Curcumin",
+    sources:["turmeric"],
+    routes:[{enzyme:"UGT",fraction:0.5},{enzyme:"SULT",fraction:0.3}],
+    inh:[{target:"CYP2C9",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["17692679"]}},{target:"CYP3A4",strength:"weak",evidence:{confidence:"low",sources:["literature"]}},{target:"UGT",strength:"weak",evidence:{confidence:"low",sources:["literature"]}}],
+    persistence:{halfLife:2, note:"Very low oral bioavailability; gut effects predominate"},
+    note:"Clinically relevant at supplement doses; ↑ warfarin/NSAID exposure via CYP2C9"
+  },
+  "piperine": {
+    id:"piperine", type:ACTOR_TYPE.FOOD,
+    name:"Piperine",
+    sources:["black_pepper"],
+    routes:[{enzyme:"CYP3A4",fraction:0.4},{enzyme:"CYP2D6",fraction:0.2}],
+    inh:[{target:"CYP3A4",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["9869591"]}},{target:"P-gp",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["14757178"]}},{target:"UGT",strength:"weak",evidence:{confidence:"low",sources:["literature"]}}],
+    persistence:{halfLife:6},
+    note:"Often combined with curcumin to increase bioavailability; inhibits first-pass metabolism"
+  },
+};
+
+// ── Endogenous Substrate Actors ──
+// Endogenous compounds that compete for the same enzymes as drugs
+const ENDOGENOUS_ACTORS = {
+  "endogenous-morphine": {
+    id:"endogenous-morphine", type:ACTOR_TYPE.ENDOGENOUS,
+    name:"Endogenous morphine",
+    routes:[{enzyme:"CYP2D6",fraction:0.6}],
+    function:"Endogenous pain modulation via mu-opioid receptor",
+    note:"Brain CYP2D6 converts codeine analogs; PM have altered endogenous opioid tone"
+  },
+  "tyramine": {
+    id:"tyramine", type:ACTOR_TYPE.ENDOGENOUS,
+    name:"Tyramine",
+    sources:["aged_cheese","fermented_foods","wine"],
+    routes:[{enzyme:"MAO-A",fraction:0.7},{enzyme:"MAO-B",fraction:0.2}],
+    function:"Sympathomimetic amine; normally degraded by gut MAO",
+    note:"MAO inhibitor + tyramine-rich food → hypertensive crisis"
+  },
+  "serotonin": {
+    id:"serotonin", type:ACTOR_TYPE.ENDOGENOUS,
+    name:"Serotonin (5-HT)",
+    routes:[{enzyme:"MAO-A",fraction:0.8}],
+    function:"Neurotransmitter; mood, sleep, GI motility",
+    note:"SSRI + MAOi → serotonin accumulation → serotonin syndrome"
+  },
+  "dopamine": {
+    id:"dopamine", type:ACTOR_TYPE.ENDOGENOUS,
+    name:"Dopamine",
+    routes:[{enzyme:"MAO-B",fraction:0.5},{enzyme:"COMT",fraction:0.4}],
+    function:"Neurotransmitter; reward, motivation, motor control",
+    note:"CYP2D6 involved in brain dopamine metabolism; PM may have altered dopaminergic tone"
+  },
+};
+
+// ── Enzyme Actors ──
+// Enzymes as first-class actors in the graph with capacity and expression data
+const ENZYME_ACTORS = {
+  "CYP2D6":  {id:"CYP2D6",  type:ACTOR_TYPE.ENZYME, name:"CYP2D6",  family:"CYP450", tissue:["liver","brain","gut"], polymorphic:true, substrateCount:0},
+  "CYP3A4":  {id:"CYP3A4",  type:ACTOR_TYPE.ENZYME, name:"CYP3A4",  family:"CYP450", tissue:["liver","gut"],         polymorphic:false,substrateCount:0},
+  "CYP2C19": {id:"CYP2C19", type:ACTOR_TYPE.ENZYME, name:"CYP2C19", family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP2C9":  {id:"CYP2C9",  type:ACTOR_TYPE.ENZYME, name:"CYP2C9",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP1A2":  {id:"CYP1A2",  type:ACTOR_TYPE.ENZYME, name:"CYP1A2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["smoking","cruciferous","charbroiled"]},
+  "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
+  "UGT2B7":  {id:"UGT2B7",  type:ACTOR_TYPE.ENZYME, name:"UGT2B7",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
+  "MAO-A":   {id:"MAO-A",   type:ACTOR_TYPE.ENZYME, name:"MAO-A",   family:"MAO",    tissue:["gut","liver","brain"],  polymorphic:false,substrateCount:0},
+  "MAO-B":   {id:"MAO-B",   type:ACTOR_TYPE.ENZYME, name:"MAO-B",   family:"MAO",    tissue:["brain","platelets"],    polymorphic:false,substrateCount:0},
+};
+
+// ── Transporter Actors ──
+const TRANSPORTER_ACTORS = {
+  "P-gp": {
+    id:"P-gp", type:ACTOR_TYPE.TRANSPORTER, name:"P-glycoprotein (MDR1/ABCB1)",
+    gene:"ABCB1", tissue:["gut","BBB","kidney","liver","placenta"], direction:"efflux",
+    substrates:["Digoxin","Dabigatran","Loperamide","Colchicine","Cyclosporine","Tacrolimus","Fexofenadine","Rivaroxaban","Apixaban"],
+    inhibitors:[
+      {name:"Amiodarone",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Clarithromycin",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Cyclosporine",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Ketoconazole",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Quinidine",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Verapamil",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Dronedarone",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}}
+    ],
+    inducers:[
+      {name:"Rifampin",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"St. John's Wort",strength:"strong",evidence:{confidence:"high",sources:["literature"]}},
+      {name:"Carbamazepine",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}
+    ],
+    genetics:{
+      gene:"ABCB1",
+      variants:[
+        {rsid:"rs1045642",name:"C3435T",effect:"Reduced P-gp expression in TT genotype",clinicalImpact:"↑ digoxin levels, ↑ CNS drug penetration",
+          evidence:{confidence:"moderate",sources:["PharmGKB"],pmid:["11668218"]}},
+        {rsid:"rs1128503",name:"C1236T",effect:"Altered P-gp function in haplotype",clinicalImpact:"Part of common haplotype with rs1045642",
+          evidence:{confidence:"moderate",sources:["literature"],pmid:["12815591"]}},
+        {rsid:"rs2032582",name:"G2677T/A",effect:"Reduced P-gp activity",clinicalImpact:"Affects tacrolimus, cyclosporine dosing",
+          evidence:{confidence:"moderate",sources:["literature"],pmid:["14504218"]}}
+      ]
+    },
+    clinicalSignificance:"Major determinant of oral bioavailability and CNS penetration. Rate-limiting for digoxin, dabigatran, and CNS drugs."
+  },
+  "OATP1B1": {
+    id:"OATP1B1", type:ACTOR_TYPE.TRANSPORTER, name:"OATP1B1 (SLCO1B1)",
+    gene:"SLCO1B1", tissue:["liver"], direction:"uptake",
+    substrates:["Atorvastatin","Rosuvastatin","Simvastatin acid","Pravastatin","Pitavastatin","Repaglinide","Methotrexate","Valsartan"],
+    inhibitors:[
+      {name:"Cyclosporine",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Gemfibrozil",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Rifampin (single dose)",strength:"strong",evidence:{confidence:"high",sources:["literature"]}},
+      {name:"Eltrombopag",strength:"moderate",evidence:{confidence:"moderate",sources:["FDA label"]}}
+    ],
+    inducers:[],
+    genetics:{
+      gene:"SLCO1B1",
+      variants:[
+        {rsid:"rs4149056",name:"*5 (Val174Ala)",effect:"Reduced OATP1B1 transport activity",clinicalImpact:"↑ statin levels → ↑ myopathy risk; CPIC guideline for simvastatin",
+          evidence:{confidence:"high",sources:["CPIC","PharmGKB"],pmid:["18650507","22617227"]}},
+        {rsid:"rs2306283",name:"*1b (Asn130Asp)",effect:"Increased transport activity",clinicalImpact:"↓ statin levels; may be protective",
+          evidence:{confidence:"moderate",sources:["literature"],pmid:["16614727"]}}
+      ]
+    },
+    clinicalSignificance:"Primary hepatic uptake transporter for statins. SLCO1B1*5 is CPIC actionable for simvastatin myopathy risk."
+  },
+  "OCT2": {
+    id:"OCT2", type:ACTOR_TYPE.TRANSPORTER, name:"OCT2 (SLC22A2)",
+    gene:"SLC22A2", tissue:["kidney"], direction:"uptake",
+    substrates:["Metformin","Cisplatin","Oxaliplatin","Lamivudine","Amantadine"],
+    inhibitors:[
+      {name:"Cimetidine",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Dolutegravir",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Vandetanib",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}
+    ],
+    inducers:[],
+    genetics:{
+      gene:"SLC22A2",
+      variants:[
+        {rsid:"rs316019",name:"808G>T (Ala270Ser)",effect:"Reduced OCT2 transport",clinicalImpact:"↓ metformin renal clearance; ↓ cisplatin nephrotoxicity",
+          evidence:{confidence:"moderate",sources:["literature"],pmid:["19436079","20010524"]}}
+      ]
+    },
+    clinicalSignificance:"Renal uptake transporter. Determines metformin renal clearance and cisplatin nephrotoxicity risk."
+  },
+  "BCRP": {
+    id:"BCRP", type:ACTOR_TYPE.TRANSPORTER, name:"BCRP (ABCG2)",
+    gene:"ABCG2", tissue:["gut","liver","BBB","placenta","mammary"], direction:"efflux",
+    substrates:["Rosuvastatin","Sulfasalazine","Topotecan","Methotrexate","Nitrofurantoin"],
+    inhibitors:[
+      {name:"Eltrombopag",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Curcumin",strength:"moderate",evidence:{confidence:"low",sources:["literature"]}},
+      {name:"Lapatinib",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}
+    ],
+    inducers:[],
+    genetics:{
+      gene:"ABCG2",
+      variants:[
+        {rsid:"rs2231142",name:"Q141K (421C>A)",effect:"Reduced BCRP expression and activity",clinicalImpact:"↑ rosuvastatin levels ~2×; ↑ sulfasalazine AUC; gout risk via ↓ urate secretion",
+          evidence:{confidence:"high",sources:["CPIC","PharmGKB"],pmid:["19384066","19474428"]}}
+      ]
+    },
+    clinicalSignificance:"Major efflux transporter at gut/liver. Q141K variant affects rosuvastatin levels and urate excretion."
+  },
+  "OAT1": {
+    id:"OAT1", type:ACTOR_TYPE.TRANSPORTER, name:"OAT1 (SLC22A6)",
+    gene:"SLC22A6", tissue:["kidney"], direction:"uptake",
+    substrates:["Methotrexate","Adefovir","Cidofovir","Tenofovir","Furosemide","Penicillins"],
+    inhibitors:[
+      {name:"Probenecid",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"NSAIDs",strength:"moderate",evidence:{confidence:"high",sources:["literature"]}}
+    ],
+    inducers:[],
+    genetics:{gene:"SLC22A6",variants:[]},
+    clinicalSignificance:"Renal basolateral uptake of organic anions. Key for renal clearance of antivirals, MTX, and uricosuric agents."
+  },
+  "OAT3": {
+    id:"OAT3", type:ACTOR_TYPE.TRANSPORTER, name:"OAT3 (SLC22A8)",
+    gene:"SLC22A8", tissue:["kidney","choroid_plexus"], direction:"uptake",
+    substrates:["Methotrexate","Furosemide","Pravastatin","Cimetidine","Rosuvastatin"],
+    inhibitors:[
+      {name:"Probenecid",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"NSAIDs",strength:"moderate",evidence:{confidence:"high",sources:["literature"]}},
+      {name:"Teriflunomide",strength:"moderate",evidence:{confidence:"moderate",sources:["FDA label"]}}
+    ],
+    inducers:[],
+    genetics:{gene:"SLC22A8",variants:[]},
+    clinicalSignificance:"Renal and choroid plexus uptake transporter. Handles many anionic drugs. Major MTX elimination pathway."
+  },
+  "MATE1": {
+    id:"MATE1", type:ACTOR_TYPE.TRANSPORTER, name:"MATE1 (SLC47A1)",
+    gene:"SLC47A1", tissue:["kidney","liver"], direction:"efflux",
+    substrates:["Metformin","Cimetidine","Oxaliplatin","Topotecan"],
+    inhibitors:[
+      {name:"Cimetidine",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},
+      {name:"Pyrimethamine",strength:"strong",evidence:{confidence:"moderate",sources:["literature"]}},
+      {name:"Trimethoprim",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}
+    ],
+    inducers:[],
+    genetics:{
+      gene:"SLC47A1",
+      variants:[
+        {rsid:"rs2289669",name:"g.-66T>C (promoter)",effect:"Reduced MATE1 expression",clinicalImpact:"↑ metformin response (↑ intracellular accumulation in hepatocytes)",
+          evidence:{confidence:"moderate",sources:["literature"],pmid:["19134193"]}}
+      ]
+    },
+    clinicalSignificance:"Luminal efflux transporter in kidney/liver. Works with OCT2 for metformin renal elimination. Inhibition → metformin accumulation."
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════
+//  INTERACTION GRAPH — Builder + Traversal Engine
+// ═══════════════════════════════════════════════════════════════════
+
+// Utility: normalize name to graph id
+function toGraphId(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
+// Build the unified interaction graph from all data sources
+let _interactionGraph = null;
+function getInteractionGraph() {
+  if (_interactionGraph) return _interactionGraph;
+  _interactionGraph = buildInteractionGraph();
+  return _interactionGraph;
+}
+
+function invalidateGraph() { _interactionGraph = null; }
+
+function buildInteractionGraph() {
+  const actors = {};  // id → actor node
+  const edges = [];   // {from, to, type, properties}
+
+  // ── 1. Drugs ──
+  for (const drug of DRUG_DB) {
+    const did = drug.id || toGraphId(drug.name);
+    actors[did] = { id:did, type:ACTOR_TYPE.DRUG, name:drug.name, data:drug };
+
+    for (const route of (drug.routes || [])) {
+      edges.push({ from:did, to:route.enzyme, type:EDGE_TYPE.SUBSTRATE_OF,
+        props:{fraction:route.fraction, saturable:route.saturable, nonLinear:route.nonLinear, evidence:route.evidence} });
+    }
+    for (const inh of (drug.inh || [])) {
+      edges.push({ from:did, to:inh.target, type:EDGE_TYPE.INHIBITS,
+        props:{strength:inh.strength, mechanism:inh.mechanism, doseDependent:inh.doseDependent,
+               timeDependent:inh.timeDependent, autoInhibition:inh.autoInhibition, evidence:inh.evidence} });
+    }
+    for (const ind of (drug.ind || [])) {
+      edges.push({ from:did, to:ind.target, type:EDGE_TYPE.INDUCES,
+        props:{strength:ind.strength, evidence:ind.evidence} });
+    }
+  }
+
+  // ── 2. Metabolites from METAB ──
+  for (const [drugName, metList] of Object.entries(METAB)) {
+    const parentId = toGraphId(drugName);
+    for (const met of metList) {
+      const metId = toGraphId(met.n);
+      // Check if we have a detailed actor entry
+      const detailed = METABOLITE_ACTORS[metId];
+      actors[metId] = detailed || {
+        id:metId, type:ACTOR_TYPE.METABOLITE, name:met.n, parentDrug:drugName,
+        formingEnzyme:met.e, active:(met.a==='active'||met.a==='active_equipotent'||met.a==='active_potent'||met.a==='prodrug'),
+        halfLife:met.t || null, potencyRatio:null, data:met
+      };
+
+      // Parent → metabolite edge
+      edges.push({ from:parentId, to:metId, type:EDGE_TYPE.METABOLIZED_TO,
+        props:{enzyme:met.e, fraction:met.p/100, note:met.note} });
+
+      // Metabolite → forming enzyme (substrate_of)
+      edges.push({ from:metId, to:met.e, type:EDGE_TYPE.SUBSTRATE_OF,
+        props:{fraction:met.p/100} });
+
+      // Metabolite inhibitions (from METAB inh field)
+      if (met.inh) {
+        for (const inh of met.inh) {
+          edges.push({ from:metId, to:inh.e, type:EDGE_TYPE.INHIBITS,
+            props:{strength:inh.s} });
+        }
+      }
+      // Metabolite inhibitions (from METABOLITE_ACTORS)
+      if (detailed && detailed.inh) {
+        for (const inh of detailed.inh) {
+          // Avoid duplicate edges if already added from met.inh
+          if (!met.inh || !met.inh.some(i => i.e === inh.target)) {
+            edges.push({ from:metId, to:inh.target, type:EDGE_TYPE.INHIBITS,
+              props:{strength:inh.strength} });
+          }
+        }
+      }
+    }
+  }
+
+  // ── 3. Food/Xenobiotic Actors ──
+  for (const [fid, food] of Object.entries(FOOD_ACTORS)) {
+    actors[fid] = food;
+    for (const route of (food.routes || [])) {
+      edges.push({ from:fid, to:route.enzyme, type:EDGE_TYPE.SUBSTRATE_OF,
+        props:{fraction:route.fraction} });
+    }
+    for (const inh of (food.inh || [])) {
+      edges.push({ from:fid, to:inh.target, type:EDGE_TYPE.INHIBITS,
+        props:{strength:inh.strength, mechanism:inh.mechanism} });
+    }
+    for (const ind of (food.ind || [])) {
+      edges.push({ from:fid, to:ind.target, type:EDGE_TYPE.INDUCES,
+        props:{strength:ind.strength} });
+    }
+  }
+
+  // ── 4. Endogenous Actors ──
+  for (const [eid, endo] of Object.entries(ENDOGENOUS_ACTORS)) {
+    actors[eid] = endo;
+    for (const route of (endo.routes || [])) {
+      edges.push({ from:eid, to:route.enzyme, type:EDGE_TYPE.SUBSTRATE_OF,
+        props:{fraction:route.fraction} });
+    }
+  }
+
+  // ── 5. Enzyme Actors ──
+  for (const [eid, enz] of Object.entries(ENZYME_ACTORS)) {
+    actors[eid] = enz;
+  }
+
+  // ── 6. Transporter Actors (with CYP-parity enrichment) ──
+  const transporterEdgeSeen = new Set();  // dedup key: "from|to|type"
+  for (const [tid, trn] of Object.entries(TRANSPORTER_ACTORS)) {
+    actors[tid] = trn;
+
+    // 6a. Substrate edges from TRANSPORTER_ACTORS.substrates[]
+    for (const subName of (trn.substrates || [])) {
+      const subId = toGraphId(subName);
+      const key = `${subId}|${tid}|${EDGE_TYPE.TRANSPORTED_BY}`;
+      if (!transporterEdgeSeen.has(key)) {
+        transporterEdgeSeen.add(key);
+        edges.push({ from:subId, to:tid, type:EDGE_TYPE.TRANSPORTED_BY,
+          props:{role:'substrate', direction:trn.direction, tissue:trn.tissue} });
+      }
+    }
+
+    // 6b. Inhibitor edges from TRANSPORTER_ACTORS.inhibitors[]
+    for (const inh of (trn.inhibitors || [])) {
+      const inhId = toGraphId(inh.name);
+      const key = `${inhId}|${tid}|${EDGE_TYPE.INHIBITS}`;
+      if (!transporterEdgeSeen.has(key)) {
+        transporterEdgeSeen.add(key);
+        edges.push({ from:inhId, to:tid, type:EDGE_TYPE.INHIBITS,
+          props:{strength:inh.strength, evidence:inh.evidence, isTransporter:true} });
+      }
+    }
+
+    // 6c. Inducer edges from TRANSPORTER_ACTORS.inducers[]
+    for (const ind of (trn.inducers || [])) {
+      const indId = toGraphId(ind.name);
+      const key = `${indId}|${tid}|${EDGE_TYPE.INDUCES}`;
+      if (!transporterEdgeSeen.has(key)) {
+        transporterEdgeSeen.add(key);
+        edges.push({ from:indId, to:tid, type:EDGE_TYPE.INDUCES,
+          props:{strength:ind.strength, evidence:ind.evidence, isTransporter:true} });
+      }
+    }
+
+    // 6d. DDI edges from TRANSPORTER_DDI (with evidence propagation)
+    for (const tddi of TRANSPORTER_DDI) {
+      if (tddi.transporter === tid || tddi.transporter.startsWith(tid)) {
+        const subId = toGraphId(tddi.substrate);
+        const inhId = toGraphId(tddi.inhibitor);
+        const subKey = `${subId}|${tid}|${EDGE_TYPE.TRANSPORTED_BY}`;
+        if (!transporterEdgeSeen.has(subKey) && (actors[subId] || DRUG_DB.find(d => toGraphId(d.name) === subId))) {
+          transporterEdgeSeen.add(subKey);
+          edges.push({ from:subId, to:tid, type:EDGE_TYPE.TRANSPORTED_BY,
+            props:{role:'substrate', evidence:tddi.evidence, foldChange:tddi.evidence?.foldChange} });
+        }
+        const inhKey = `${inhId}|${tid}|${EDGE_TYPE.INHIBITS}`;
+        if (!transporterEdgeSeen.has(inhKey) && (actors[inhId] || DRUG_DB.find(d => toGraphId(d.name) === inhId))) {
+          transporterEdgeSeen.add(inhKey);
+          edges.push({ from:inhId, to:tid, type:EDGE_TYPE.INHIBITS,
+            props:{strength:tddi.severity === 'critical' ? 'strong' : 'moderate',
+                   effect:tddi.effect, mechanism:tddi.mechanism, evidence:tddi.evidence, isTransporter:true} });
+        }
+      }
+    }
+  }
+
+  // ── 7. Pathway Diversion edges ──
+  for (const [drugName, pd] of Object.entries(PATHWAY_DIVERSION)) {
+    const parentId = toGraphId(drugName);
+    const primaryMetId = toGraphId(pd.primary.metabolite);
+    if (!actors[primaryMetId]) {
+      actors[primaryMetId] = { id:primaryMetId, type:ACTOR_TYPE.METABOLITE, name:pd.primary.metabolite,
+        parentDrug:drugName, active:pd.primary.activity !== 'inactive', data:pd.primary };
+    }
+    edges.push({ from:parentId, to:primaryMetId, type: pd.primary.activity === 'active' ? EDGE_TYPE.ACTIVATES : EDGE_TYPE.METABOLIZED_TO,
+      props:{enzyme:pd.primary.enzyme, fraction:pd.primary.pct/100, isPrimary:true} });
+    for (const div of (pd.diverted || [])) {
+      const divMetId = toGraphId(div.metabolite);
+      if (!actors[divMetId]) {
+        actors[divMetId] = { id:divMetId, type:ACTOR_TYPE.METABOLITE, name:div.metabolite,
+          parentDrug:drugName, active:div.activity !== 'inactive', data:div };
+      }
+      edges.push({ from:parentId, to:divMetId, type:EDGE_TYPE.METABOLIZED_TO,
+        props:{enzyme:div.enzyme, fraction:div.pct/100, isDiversion:true, note:div.note} });
+    }
+  }
+
+  // Count substrates per enzyme AND transporter
+  for (const e of edges) {
+    if (e.type === EDGE_TYPE.SUBSTRATE_OF && actors[e.to] && actors[e.to].type === ACTOR_TYPE.ENZYME) {
+      actors[e.to].substrateCount = (actors[e.to].substrateCount || 0) + 1;
+    }
+    if (e.type === EDGE_TYPE.TRANSPORTED_BY && actors[e.to] && actors[e.to].type === ACTOR_TYPE.TRANSPORTER) {
+      actors[e.to].substrateCount = (actors[e.to].substrateCount || 0) + 1;
+    }
+  }
+
+  return { actors, edges, built: Date.now() };
+}
+
+// ── Graph Query Functions ──
+
+// Get all edges from/to an actor of a given type
+function getEdges(graph, actorId, edgeType, direction) {
+  if (direction === 'out') return graph.edges.filter(e => e.from === actorId && (!edgeType || e.type === edgeType));
+  if (direction === 'in')  return graph.edges.filter(e => e.to === actorId && (!edgeType || e.type === edgeType));
+  return graph.edges.filter(e => (e.from === actorId || e.to === actorId) && (!edgeType || e.type === edgeType));
+}
+
+// Get all actors of a given type
+function getActorsByType(graph, type) {
+  return Object.values(graph.actors).filter(a => a.type === type);
+}
+
+// Get actor by name (fuzzy match)
+function getActor(graph, nameOrId) {
+  // Try raw key first (handles mixed-case IDs like "P-gp", "CYP2D6")
+  if (graph.actors[nameOrId]) return graph.actors[nameOrId];
+  const id = toGraphId(nameOrId);
+  return graph.actors[id] || Object.values(graph.actors).find(a => toGraphId(a.name) === id);
+}
+
+// ── Chain Traversal ──
+// Finds multi-hop interaction chains: drug → metabolite → enzyme → affected drug
+// This is the core graph traversal that replaces drug-centric heuristics.
+
+function findInteractionChains(graph, actorIds, maxDepth) {
+  maxDepth = maxDepth || 4;
+  const chains = [];
+  const visited = new Set();
+
+  function traverse(actorId, path, depth) {
+    if (depth > maxDepth) return;
+    const key = actorId + ':' + depth;
+    if (visited.has(key)) return;
+    visited.add(key);
+
+    const outEdges = getEdges(graph, actorId, null, 'out');
+    for (const edge of outEdges) {
+      const target = edge.to;
+      const targetActor = graph.actors[target];
+
+      if (edge.type === EDGE_TYPE.METABOLIZED_TO || edge.type === EDGE_TYPE.ACTIVATES) {
+        // Follow the metabolite chain — metabolite may have its own effects
+        const newPath = [...path, {actor:actorId, edge, target}];
+        // Check if metabolite has outgoing inhibition/induction edges
+        const metEffects = getEdges(graph, target, null, 'out');
+        for (const metEdge of metEffects) {
+          if (metEdge.type === EDGE_TYPE.INHIBITS || metEdge.type === EDGE_TYPE.INDUCES) {
+            // This metabolite affects an enzyme — find all victims
+            const enzymeId = metEdge.to;
+            const victims = getEdges(graph, enzymeId, EDGE_TYPE.SUBSTRATE_OF, 'in')
+              .filter(e => e.from !== actorId && e.from !== target);  // exclude self
+            for (const victimEdge of victims) {
+              // Only report if the victim's parent drug is in the active set
+              const victimActor = graph.actors[victimEdge.from];
+              const victimDrug = victimActor ? (victimActor.parentDrug || victimActor.name) : victimEdge.from;
+              if (actorIds.some(aid => toGraphId(aid) === toGraphId(victimDrug) || toGraphId(aid) === victimEdge.from)) {
+                chains.push({
+                  source: path[0] ? path[0].actor : actorId,
+                  chain: [...newPath, {actor:target, edge:metEdge, target:enzymeId}, {actor:enzymeId, edge:victimEdge, target:victimEdge.from}],
+                  type: metEdge.type === EDGE_TYPE.INHIBITS ? 'metabolite_inhibition_chain' : 'metabolite_induction_chain',
+                  perpetratorMetabolite: graph.actors[target],
+                  enzyme: enzymeId,
+                  victim: victimEdge.from,
+                  strength: metEdge.props.strength,
+                });
+              }
+            }
+          }
+        }
+        // Continue traversal through metabolite
+        traverse(target, [...path, {actor:actorId, edge, target}], depth + 1);
+      }
+
+      if (edge.type === EDGE_TYPE.INHIBITS || edge.type === EDGE_TYPE.INDUCES) {
+        // Direct inhibition/induction — find victims
+        const victims = getEdges(graph, target, EDGE_TYPE.SUBSTRATE_OF, 'in')
+          .filter(e => actorIds.some(aid => toGraphId(aid) === e.from) && e.from !== actorId);
+        for (const victimEdge of victims) {
+          chains.push({
+            source: path[0] ? path[0].actor : actorId,
+            chain: [...path, {actor:actorId, edge, target}, {actor:target, edge:victimEdge, target:victimEdge.from}],
+            type: edge.type === EDGE_TYPE.INHIBITS ? 'direct_inhibition' : 'direct_induction',
+            enzyme: target,
+            victim: victimEdge.from,
+            strength: edge.props.strength,
+          });
+        }
+      }
+    }
+    visited.delete(key);
+  }
+
+  // Traverse from each active actor
+  for (const aid of actorIds) {
+    const id = toGraphId(aid);
+    if (graph.actors[id]) {
+      traverse(id, [], 0);
+    }
+  }
+
+  return chains;
+}
+
+// ── Graph Statistics ──
+function getGraphStats() {
+  const g = getInteractionGraph();
+  const byType = {};
+  for (const a of Object.values(g.actors)) {
+    byType[a.type] = (byType[a.type] || 0) + 1;
+  }
+  const edgesByType = {};
+  for (const e of g.edges) {
+    edgesByType[e.type] = (edgesByType[e.type] || 0) + 1;
+  }
+  return { totalActors:Object.keys(g.actors).length, totalEdges:g.edges.length, actorsByType:byType, edgesByType };
+}
 
 
 function getDrug(name) {
@@ -4987,8 +5744,7 @@ function calcFold(drugName) {
   if (!drug || drug.routes.length === 0) return { fold: 1, details: [], prodrug: drug ? drug.prodrug : 0, nonlinear: false, autoInhibited: false };
 
   let details = [];
-  let totalFold = 0;
-  let totalFrac = 0;
+  let routeResults = [];
   let isNonlinear = false;
   let isAutoInhibited = false;
 
@@ -5181,8 +5937,9 @@ function calcFold(drugName) {
               const selfDM = selfInh.doseDependent ? getDoseModifier(drugName) : 1.0;
               combinedMult *= (INH_MULT[selfInh.strength] || 1) * selfDM * 0.5; // reduced weight when stacking
             }
-            // Cap by clinical null fold
-            if (clinNullMult && combinedMult > clinNullMult) {
+            // Cap by clinical null fold (skip if negative — prodrug clinical folds
+            // represent active metabolite efficacy, not parent drug AUC)
+            if (clinNullMult && clinNullMult > 0 && combinedMult > clinNullMult) {
               combinedMult = clinNullMult;
             }
           }
@@ -5237,20 +5994,68 @@ function calcFold(drugName) {
     // For auto-inhibiting drugs using the clinical model, dose scaling can legitimately
     // push fold above the genetic null fold (nonlinear PK at high doses).
     // Only apply ceiling for non-auto-inhibitor pathways (DDI/genetics only).
-    if (clinNullMult && enzymeMult > clinNullMult && !(selfInh && clinNullFold)) {
+    if (clinNullMult && clinNullMult > 0 && enzymeMult > clinNullMult && !(selfInh && clinNullFold)) {
       enzymeMult = clinNullMult;
     }
 
-    const adjustedFrac = route.fraction * enzymeMult;
-    totalFold += adjustedFrac;
-    totalFrac += route.fraction;
-    if (routeDetails.length) details.push(...routeDetails);
+    routeResults.push({ enzyme: route.enzyme, fraction: route.fraction, enzymeMult, details: routeDetails });
   }
 
-  const remainFrac = 1 - totalFrac;
-  let fold = totalFold + remainFrac;
+  // ═══ DYNAMIC ROUTE FRACTIONS ═══
+  // When an enzyme is inhibited, its metabolic capacity drops and other routes
+  // compensate by absorbing proportionally more of the drug load.
+  // This recalculates effective fractions based on remaining enzyme activity.
+  //
+  // Model: effective_fraction_i = nominal_fraction_i × capacity_i / Σ(nominal_fraction_j × capacity_j)
+  // where capacity = 1/enzymeMult (higher mult = more inhibition = less capacity)
+  // Then fold = Σ(effective_fraction_i × enzymeMult_i) + remaining_fraction
 
-  fold = Math.round(fold * 100) / 100;
+  const hasInhibition = routeResults.some(r => r.enzymeMult > 1.3);
+  const hasInduction = routeResults.some(r => r.enzymeMult < 0.8);
+
+  let fold;
+  if ((hasInhibition || hasInduction) && routeResults.length >= 2) {
+    // Dynamic fractions: redistribute load based on remaining capacity
+    // Capacity of each route is inversely proportional to its enzymeMult
+    // (inhibited enzyme → less capacity → drug reroutes to other pathways)
+    const capacities = routeResults.map(r => ({
+      enzyme: r.enzyme,
+      nomFrac: r.fraction,
+      capacity: Math.max(0.01, 1 / r.enzymeMult), // inverse of inhibition fold
+      enzymeMult: r.enzymeMult,
+      details: r.details
+    }));
+    const totalWeightedCap = capacities.reduce((s, c) => s + c.nomFrac * c.capacity, 0);
+    const remainFrac = 1 - routeResults.reduce((s, r) => s + r.fraction, 0);
+
+    let totalFold = 0;
+    for (const c of capacities) {
+      // Effective fraction after redistribution
+      const effFrac = totalWeightedCap > 0
+        ? (c.nomFrac * c.capacity / totalWeightedCap) * (1 - remainFrac)
+        : c.nomFrac;
+      totalFold += effFrac * c.enzymeMult;
+    }
+    totalFold += remainFrac;
+    fold = Math.round(totalFold * 100) / 100;
+
+    // Collect details from all routes
+    for (const r of routeResults) {
+      if (r.details.length) details.push(...r.details);
+    }
+  } else {
+    // Simple linear model — no redistribution needed
+    let totalFold_simple = 0;
+    let totalFrac_simple = 0;
+    for (const r of routeResults) {
+      totalFold_simple += r.fraction * r.enzymeMult;
+      totalFrac_simple += r.fraction;
+      if (r.details.length) details.push(...r.details);
+    }
+    const remainFrac = 1 - totalFrac_simple;
+    fold = Math.round((totalFold_simple + remainFrac) * 100) / 100;
+  }
+
   return { fold, details, prodrug: drug.prodrug || 0, nonlinear: isNonlinear, autoInhibited: isAutoInhibited };
 }
 
@@ -5661,6 +6466,87 @@ function findInteractions() {
       source: "transporter"
     });
   });
+
+  // 6. GRAPH-BASED METABOLITE CHAIN INTERACTIONS
+  // Uses the interaction graph to detect multi-hop chains that pairwise enzyme matching misses.
+  // Examples: Drug A → metabolite → inhibits enzyme → blocks Drug B metabolite → affects Drug C
+  try {
+    const graph = getInteractionGraph();
+    const chains = findInteractionChains(graph, activeStack, 4);
+
+    for (const chain of chains) {
+      // Build a dedup key from the chain components
+      const sourceActor = graph.actors[chain.source];
+      const victimActor = graph.actors[chain.victim];
+      const sourceName = sourceActor ? (sourceActor.data ? sourceActor.data.name || sourceActor.name : sourceActor.name) : chain.source;
+      const victimName = victimActor ? (victimActor.data ? victimActor.data.name || victimActor.name : victimActor.name) : chain.victim;
+
+      // Skip if source or victim is not a drug in the active stack
+      const sourceInStack = activeStack.find(n => toGraphId(n) === chain.source);
+      const victimInStack = activeStack.find(n => toGraphId(n) === chain.victim);
+      if (!sourceInStack || !victimInStack) continue;
+      if (sourceInStack === victimInStack) continue; // skip self-interactions
+
+      const chainKey = [sourceInStack, victimInStack, chain.enzyme, chain.type].sort().join("|");
+      // Check if the pairwise approach already found this interaction
+      const pairwiseKey = [sourceInStack, victimInStack, chain.enzyme, "inh"].sort().join("|");
+      const pairwiseKey2 = [sourceInStack, victimInStack, chain.enzyme, "ind"].sort().join("|");
+      const knownKey = [sourceInStack, victimInStack, "known"].sort().join("|");
+
+      if (seen.has(chainKey) || seen.has(pairwiseKey) || seen.has(pairwiseKey2) || seen.has(knownKey)) continue;
+      seen.add(chainKey);
+
+      // Build human-readable chain description
+      let chainDesc = '';
+      const metabName = chain.perpetratorMetabolite
+        ? (chain.perpetratorMetabolite.name || chain.perpetratorMetabolite.id)
+        : null;
+
+      if (chain.type === 'metabolite_inhibition_chain' && metabName) {
+        chainDesc = `${sourceInStack} → ${metabName} (active metabolite) → inhibits ${chain.enzyme} → ↑ ${victimInStack} levels`;
+      } else if (chain.type === 'metabolite_induction_chain' && metabName) {
+        chainDesc = `${sourceInStack} → ${metabName} → induces ${chain.enzyme} → ↓ ${victimInStack} levels`;
+      } else if (chain.type === 'direct_inhibition') {
+        continue; // already caught by pairwise — skip to avoid duplicates
+      } else if (chain.type === 'direct_induction') {
+        continue; // already caught by pairwise
+      } else {
+        chainDesc = `${chain.type}: ${sourceInStack} → ${chain.enzyme} → ${victimInStack}`;
+      }
+
+      // Determine severity from chain strength
+      const sevMap = { strong: "severe", moderate: "moderate", weak: "mild" };
+      const sev = sevMap[chain.strength] || "moderate";
+
+      // Get the victim drug's route fraction for this enzyme
+      const victimDrug = getDrug(victimInStack);
+      const victimRoute = victimDrug ? (victimDrug.routes || []).find(r => r.enzyme === chain.enzyme) : null;
+      const victimIsProdrug = victimDrug && victimDrug.prodrug;
+      const fraction = victimRoute ? victimRoute.fraction : 0;
+
+      // Only report if meaningful impact (metabolite on a minor pathway is not clinically significant)
+      if (fraction < 0.1 && !victimIsProdrug) continue;
+
+      interactions.push({
+        drug1: sourceInStack, drug2: victimInStack, enzyme: chain.enzyme,
+        type: chain.type === 'metabolite_inhibition_chain'
+          ? (victimIsProdrug ? "prodrug-inhibition" : "metabolite-chain")
+          : "metabolite-chain",
+        strength: chain.strength,
+        effect: victimIsProdrug
+          ? `↓ ${victimInStack} efficacy (activation blocked via metabolite chain)`
+          : `↑ ${victimInStack} levels (metabolite-mediated ${chain.enzyme} inhibition)`,
+        severity: sev,
+        mechanism: chainDesc,
+        source: "graph",
+        confidence: "moderate",
+        graphChain: chain
+      });
+    }
+  } catch (e) {
+    // Graph engine error should never break the core interaction finder
+    console.error('Graph chain traversal error:', e);
+  }
 
   // Sort by severity
   interactions.sort((a,b) => {
@@ -6136,6 +7022,7 @@ function simplifyMechanism(i) {
   if (i.type === "pharmacodynamic") return `Both medications have similar effects that add up`;
   if (i.type === "combination") return `Drug combination creates new substance or amplified effect`;
   if (i.type === "transporter") return `${i.drug1} blocks ${i.enzyme} transporter, increasing ${i.drug2} levels`;
+  if (i.type === "metabolite-chain") return `${i.drug1}'s metabolite inhibits ${i.enzyme}, affecting ${i.drug2} metabolism`;
   return "";
 }
 
