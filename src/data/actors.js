@@ -8,6 +8,7 @@ const FOOD_ACTORS = {
     sources:["potato","tomato","eggplant"],
     routes:[{enzyme:"CYP2D6",fraction:0.4,evidence:{confidence:"low",sources:["literature"],pmid:["11678145"]}},{enzyme:"CYP3A4",fraction:0.3,evidence:{confidence:"low",sources:["literature"]}}],
     inh:[{target:"BChE",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["7544290"]}},{target:"AChE",strength:"weak",evidence:{confidence:"moderate",sources:["literature"]}}],
+    evidenceRefs:["ev_solanidine_cyp2d6_mock2001","ev_solanidine_cyp2d6_hellden2024"],
     persistence:{adiposeAccumulation:true, halfLife:48, note:"Lipophilic; accumulates with chronic exposure"},
     note:"Glycoalkaloid aglycone; CYP2D6 substrate with long t½ → chronic exposure burden in PM/null"
   },

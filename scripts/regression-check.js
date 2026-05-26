@@ -152,6 +152,7 @@ assert(
 );
 
 loadCase(window, ['Potatoes (Solanine/Solanidine)']);
+window.setGenotype('CYP2D6', 'poor_metabolizer');
 const potatoGraph = window.eval(`(() => {
   const graph = getInteractionGraph();
   const from = getDrugGraphId('Potatoes (Solanine/Solanidine)');
@@ -173,10 +174,23 @@ assert(
   'Potatoes genotype evidence should include solanidine evidence'
 );
 assert(
+  potatoGenotypeText.includes('18.9x') || potatoGenotypeText.includes('+1887%'),
+  'Potatoes CYP2D6 PM context should show solanidine ~18.9x/+1887% exposure, not a generic 1.8x parent multiplier'
+);
+assert(
   !potatoGenotypeText.includes('Paxil') &&
   !potatoGenotypeText.includes('Prozac') &&
   !potatoGenotypeText.includes('Wellbutrin'),
   'Potatoes genotype evidence should not show unrelated CYP2D6 drug studies'
+);
+
+loadCase(window, ['Bupropion']);
+window.setGenotype('CYP2D6', 'poor_metabolizer');
+const bupropionGenotypeText = window.document.getElementById('genotypeBody').textContent;
+assert(
+  bupropionGenotypeText.includes('Hydroxybupropion') &&
+  bupropionGenotypeText.includes('higher hydroxybupropion level/dose ratio'),
+  'Bupropion CYP2D6 PM context should surface hydroxybupropion metabolite exposure, not only parent bupropion'
 );
 
 loadCase(window, ['Warfarin', 'Ibuprofen']);
@@ -214,6 +228,37 @@ const interactionSchemaAudit = window.eval(`(() => {
 assert(interactionSchemaAudit.missingFields.length === 0, `Interactions missing normalized schema fields: ${interactionSchemaAudit.missingFields.join(', ')}`);
 assert(interactionSchemaAudit.unknownEvidenceRefs.length === 0, `Unknown interaction evidence refs: ${JSON.stringify(interactionSchemaAudit.unknownEvidenceRefs)}`);
 assert(Number.isInteger(interactionSchemaAudit.severeWithoutEvidenceRefCount), 'Interaction evidence audit should expose severeWithoutEvidenceRefCount');
+
+const cyp2d6MetaboliteEvidenceAudit = window.eval(`(() => {
+  const missingEvidenceRefs = [];
+  const unknownEvidenceRefs = new Set();
+  for (const [parent, metabolites] of Object.entries(METAB)) {
+    for (const metabolite of metabolites) {
+      if (metabolite.e !== 'CYP2D6') continue;
+      const refs = metabolite.evidenceRefs || [];
+      if (refs.length === 0) {
+        missingEvidenceRefs.push(parent + ' -> ' + metabolite.n);
+      }
+      for (const ref of refs) {
+        if (!STUDY_DB[ref]) unknownEvidenceRefs.add(ref);
+      }
+    }
+  }
+  return {
+    cyp2d6MetaboliteEdgeCount: Object.values(METAB).flat().filter((m) => m.e === 'CYP2D6').length,
+    missingEvidenceRefs,
+    unknownEvidenceRefs: [...unknownEvidenceRefs]
+  };
+})()`);
+assert(cyp2d6MetaboliteEvidenceAudit.cyp2d6MetaboliteEdgeCount >= 50, 'CYP2D6 metabolite audit should cover the curated edge set');
+assert(
+  cyp2d6MetaboliteEvidenceAudit.missingEvidenceRefs.length === 0,
+  `CYP2D6 metabolite edges missing evidence refs: ${cyp2d6MetaboliteEvidenceAudit.missingEvidenceRefs.join(', ')}`
+);
+assert(
+  cyp2d6MetaboliteEvidenceAudit.unknownEvidenceRefs.length === 0,
+  `CYP2D6 metabolite edges have unknown evidence refs: ${JSON.stringify(cyp2d6MetaboliteEvidenceAudit.unknownEvidenceRefs)}`
+);
 
 
 loadCase(window, ['Grapefruit Juice', 'Simvastatin']);

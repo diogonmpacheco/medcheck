@@ -110,6 +110,25 @@ const STUDY_DB = {
     verified:false, verifyNote:"PMID approximate — verify before citing"
   },
 
+  "ev_bupropion_cyp2d6_hesse1996": {
+    id:"ev_bupropion_cyp2d6_hesse1996",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Bupropion plasma levels and CYP2D6 phenotype",
+    year:1996, source:"Hesse et al.", journal:"Therapeutic Drug Monitoring",
+    pmid:"8885123", doi:null,
+    studyDesign:"phenotype-stratified TDM analysis",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      note:"Hydroxybupropion plasma level/dose ratios were significantly higher in CYP2D6 poor metabolizers; fold magnitude not calibrated in the current model."
+    },
+    temporal:{mechanism:"metabolite_clearance_or_ratio_shift"},
+    supports:["hydroxybupropion_cyp2d6_genotype_exposure","hydroxybupropion_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Older TDM study","Exact fold-change not encoded","Bupropion formation remains primarily CYP2B6-dependent"],
+    verified:true
+  },
+
   // ═══ CODEINE / MORPHINE / CYP2D6 ═══
   "ev_codeine_cyp2d6_cpic": {
     id:"ev_codeine_cyp2d6_cpic",
@@ -143,6 +162,24 @@ const STUDY_DB = {
     supports:["codeine_cyp2d6_dependence"],
     contradicts:[],
     limitations:["Single case; neonatal exposure via breast milk is unique route","Subsequent WHO guidance updated (2015)"],
+    verified:true
+  },
+
+  // ═══ DXM / DEXTRORPHAN / CYP2D6 ═══
+  "ev_dxm_dextrorphan_cyp2d6": {
+    id:"ev_dxm_dextrorphan_cyp2d6",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics of dextromethorphan and metabolites in humans: influence of CYP2D6 phenotype and quinidine inhibition",
+    year:1995, source:"Clinical Pharmacology & Therapeutics",
+    pmid:"7593709", doi:null,
+    studyDesign:"phenotype-stratified clinical PK study",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poorMetabolizerParentHalfLife_h:29.5, note:"Dextromethorphan is primarily metabolized to dextrorphan by CYP2D6; in poor metabolizers, parent dextromethorphan predominated in plasma and half-life was prolonged."},
+    temporal:{mechanism:"CYP2D6_O-demethylation_to_dextrorphan"},
+    supports:["dextromethorphan_METABOLIZED_TO_dextrorphan","dextromethorphan_cyp2d6_dependence"],
+    contradicts:[],
+    limitations:["Small poor-metabolizer subgroup","Probe-drug context; high-dose DXM behavior is nonlinear and not modeled for dosing"],
     verified:true
   },
 
@@ -236,6 +273,41 @@ const STUDY_DB = {
     verified:true
   },
 
+  // ═══ ATOMOXETINE / CYP2D6 ═══
+  "ev_atomoxetine_cyp2d6_cpic": {
+    id:"ev_atomoxetine_cyp2d6_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for CYP2D6 Genotype and Atomoxetine Therapy",
+    year:2019, source:"CPIC / PharmGKB",
+    pmid:"30801677", doi:"10.1002/cpt.1409",
+    studyDesign:"systematic_review_guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 phenotype strongly affects atomoxetine metabolism, exposure, and clinical management; 4-hydroxyatomoxetine formation is CYP2D6-dependent."},
+    temporal:{mechanism:"CYP2D6_hydroxylation"},
+    supports:["atomoxetine_METABOLIZED_TO_4-hydroxyatomoxetine","atomoxetine_cyp2d6_guideline"],
+    contradicts:[],
+    limitations:["Dose recommendations depend on age group, response, tolerability, and measured concentration where available"],
+    verified:true
+  },
+
+  "ev_atomoxetine_cyp2d6_pbpk2018": {
+    id:"ev_atomoxetine_cyp2d6_pbpk2018",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Physiologically based pharmacokinetic modelling of atomoxetine with regard to CYP2D6 genotypes",
+    year:2018, source:"British Journal of Clinical Pharmacology",
+    pmid:"30120390", doi:null,
+    studyDesign:"PBPK model evaluated against genotype-stratified atomoxetine PK",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"PBPK model describes atomoxetine pharmacokinetics after single and repeated oral doses with regard to CYP2D6 genotype and phenotype."},
+    temporal:{mechanism:"CYP2D6_dependent_atomoxetine_clearance"},
+    supports:["atomoxetine_cyp2d6_pk","atomoxetine_METABOLIZED_TO_4-hydroxyatomoxetine"],
+    contradicts:[],
+    limitations:["Model-based synthesis; specific metabolite concentrations depend on model assumptions and population"],
+    verified:true
+  },
+
   // ═══ SOLANIDINE / CYP2D6 ═══
   "ev_solanidine_cyp2d6_mock2001": {
     id:"ev_solanidine_cyp2d6_mock2001",
@@ -254,6 +326,29 @@ const STUDY_DB = {
     note:"Important caveat: in vitro CYP2D6 substrate finding does NOT establish clinical DDI — burden hypothesis is theoretical"
   },
 
+  "ev_solanidine_cyp2d6_hellden2024": {
+    id:"ev_solanidine_cyp2d6_hellden2024",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Solanidine is a sensitive and specific dietary biomarker for CYP2D6 activity",
+    year:2024, source:"Human Genomics",
+    pmid:"38303026", doi:"10.1186/s40246-024-00579-8",
+    url:"https://doi.org/10.1186/s40246-024-00579-8",
+    studyDesign:"genotype-stratified metabolomics study in healthy volunteers",
+    n:356,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{
+      gPM_solanidineIncreasePct:1887,
+      gIM_solanidineIncreasePct:74,
+      gUM_solanidineDecreasePct:35,
+      note:"Plasma solanidine concentration was markedly higher in genetic CYP2D6 poor metabolizers, higher in intermediate metabolizers, and lower in ultrarapid metabolizers vs normal metabolizers."
+    },
+    temporal:{mechanism:"dietary_solanidine_cyp2d6_biomarker"},
+    supports:["solanidine_SUBSTRATE_OF_CYP2D6","solanidine_cyp2d6_genotype_biomarker"],
+    contradicts:[],
+    limitations:["Dietary potato intake was not directly standardized","Solanidine is a biomarker of CYP2D6 activity, not by itself a clinical toxicity threshold"],
+    verified:true
+  },
+
   "ev_solanidine_ache_griffin1995": {
     id:"ev_solanidine_ache_griffin1995",
     type:EVIDENCE_TIER.IN_VITRO,
@@ -267,6 +362,335 @@ const STUDY_DB = {
     supports:["solanidine_inhibits_BChE","solanidine_inhibits_AChE"],
     contradicts:[],
     limitations:["IC50 values likely unachievable at normal dietary intake","No CNS penetration data"],
+    verified:true
+  },
+
+  // ═══ AMPHETAMINE / METHAMPHETAMINE / MDMA / CYP2D6 ═══
+  "ev_mdma_meth_cyp2d6_review": {
+    id:"ev_mdma_meth_cyp2d6_review",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"MDMA, methamphetamine, and CYP2D6 pharmacogenetics: what is clinically relevant?",
+    year:2012, source:"Frontiers in Genetics",
+    pmid:"23162568", doi:"10.3389/fgene.2012.00235",
+    url:"https://doi.org/10.3389/fgene.2012.00235",
+    studyDesign:"review of in vitro and human pharmacogenetic evidence",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 regulates MDMA O-demethylenation to HHMA and contributes to methamphetamine aromatic hydroxylation and N-demethylation pathways; clinical genotype translation is complex."},
+    temporal:{mechanism:"CYP2D6_amphetamine_like_substrate_and_MBI_context"},
+    supports:["mdma_METABOLIZED_TO_HHMA","methamphetamine_METABOLIZED_TO_amphetamine","methamphetamine_METABOLIZED_TO_4-hydroxymethamphetamine","amphetamine_METABOLIZED_TO_4-hydroxyamphetamine"],
+    contradicts:[],
+    limitations:["Review article","In vitro-to-in vivo translation is imperfect","MDMA also causes mechanism-based CYP2D6 inhibition, so genotype effects can compress after exposure"],
+    verified:true
+  },
+
+  "ev_amphetamine_cyp2d6_fda": {
+    id:"ev_amphetamine_cyp2d6_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Amphetamine clinical pharmacology review — CYP2D6 involvement in 4-hydroxyamphetamine formation",
+    year:2024, source:"FDA clinical pharmacology review",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_clinical_pharmacology_review",
+    n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{note:"Although amphetamine metabolism enzymes are not fully defined, CYP2D6 is known to be involved in formation of 4-hydroxyamphetamine."},
+    temporal:{mechanism:"CYP2D6_aromatic_hydroxylation"},
+    supports:["amphetamine_METABOLIZED_TO_4-hydroxyamphetamine"],
+    contradicts:[],
+    limitations:["Regulatory summary; does not quantify genotype-specific exposure"],
+    verified:true
+  },
+
+  // ═══ CITALOPRAM / ESCITALOPRAM / CYP2D6 ═══
+  "ev_citalopram_cyp2d6_oestad2003": {
+    id:"ev_citalopram_cyp2d6_oestad2003",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Metabolism of citalopram enantiomers in CYP2C19/CYP2D6 phenotyped panels of healthy Swedes",
+    year:2003, source:"British Journal of Clinical Pharmacology",
+    pmid:"12968986", doi:null,
+    studyDesign:"phenotype-stratified steady-state PK study",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Citalopram enantiomer and metabolite concentrations were evaluated in CYP2C19/CYP2D6 phenotyped panels, including desmethylcitalopram and didesmethylcitalopram."},
+    temporal:{mechanism:"CYP2D6_contribution_to_didesmethylcitalopram"},
+    supports:["citalopram_METABOLIZED_TO_didesmethylcitalopram","escitalopram_METABOLIZED_TO_s-didesmethylcitalopram"],
+    contradicts:[],
+    limitations:["CYP2C19 is the primary clinical PGx axis for citalopram/escitalopram; CYP2D6 relation is secondary and not treated as a primary dosing signal"],
+    verified:true
+  },
+
+  // ═══ CYP2D6 METABOLITE CURATION BATCH ═══
+  "ev_lsd_cyp2d6_holze2021": {
+    id:"ev_lsd_cyp2d6_holze2021",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics and pharmacodynamics of lysergic acid diethylamide in healthy subjects",
+    year:2021, source:"Clinical Pharmacokinetics",
+    pmid:"34035391", doi:null,
+    studyDesign:"controlled human PK/PD study plus metabolism review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"LSD metabolism includes CYP-mediated N-dealkylation to nor-LSD; CYP2D6 is one contributor among several CYP pathways."},
+    temporal:{mechanism:"minor_CYP2D6_contribution_to_nor_LSD"},
+    supports:["lsd_METABOLIZED_TO_nor-lsd"],
+    contradicts:[],
+    limitations:["Nor-LSD is a minor pathway; genotype-specific clinical effect is not established"],
+    verified:true
+  },
+
+  "ev_harmala_cyp2d6_yu2003": {
+    id:"ev_harmala_cyp2d6_yu2003",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Contribution of individual cytochrome P450 isozymes to O-demethylation of harmaline and harmine",
+    year:2003, source:"Journal of Pharmacology and Experimental Therapeutics",
+    pmid:"12649384", doi:"10.1124/mol.60.6.1260",
+    studyDesign:"recombinant CYP and human liver microsome metabolism study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6 catalyzed O-demethylation of both harmine and harmaline to harmol/harmalol, with CYP1A enzymes also contributing."},
+    temporal:{mechanism:"CYP2D6_harmala_O_demethylation"},
+    supports:["harmine_METABOLIZED_TO_harmol","harmaline_METABOLIZED_TO_harmalol"],
+    contradicts:[],
+    limitations:["In vitro enzyme assignment; ayahuasca matrix and co-inhibition can change in vivo exposure"],
+    verified:true
+  },
+
+  "ev_harmaline_cyp2d6_wu2009": {
+    id:"ev_harmaline_cyp2d6_wu2009",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Effects of CYP2D6 status on harmaline metabolism, pharmacokinetics and pharmacodynamics",
+    year:2009, source:"Pharmacogenetics and Genomics",
+    pmid:"19445902", doi:null,
+    studyDesign:"phenotype-stratified pharmacokinetic/pharmacodynamic study",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 deficiency impaired harmaline O-demethylation to harmalol in human liver microsomes and a pharmacogenetic PK model."},
+    temporal:{mechanism:"CYP2D6_harmaline_to_harmalol"},
+    supports:["harmaline_METABOLIZED_TO_harmalol"],
+    contradicts:[],
+    limitations:["Specific to harmaline; not a full ayahuasca clinical genotype guideline"],
+    verified:true
+  },
+
+  "ev_venlafaxine_cyp2d6_ncbi": {
+    id:"ev_venlafaxine_cyp2d6_ncbi",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"Venlafaxine Therapy and CYP2D6 Genotype",
+    year:2026, source:"NCBI Medical Genetics Summaries",
+    pmid:null, doi:null,
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK305561/",
+    studyDesign:"pharmacogenetic summary of FDA/DPWG evidence",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 poor metabolizers have reduced conversion of venlafaxine to O-desmethylvenlafaxine and a lower ODV:venlafaxine ratio."},
+    temporal:{mechanism:"CYP2D6_O_demethylation"},
+    supports:["venlafaxine_METABOLIZED_TO_o-desmethylvenlafaxine","venlafaxine_METABOLIZED_TO_n-o-didesmethylvenlafaxine"],
+    contradicts:[],
+    limitations:["Clinical actionability is less direct than codeine/tramadol; recommendations vary"],
+    verified:true
+  },
+
+  "ev_tca_cyp2d6_cpic": {
+    id:"ev_tca_cyp2d6_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC guideline for CYP2D6/CYP2C19 genotypes and tricyclic antidepressants",
+    year:2017, source:"Clinical Pharmacology & Therapeutics",
+    pmid:"27997040", doi:null,
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 controls hydroxylation/clearance of several TCAs and strongly affects TCA exposure and active metabolite ratios."},
+    temporal:{mechanism:"CYP2D6_TCA_hydroxylation"},
+    supports:["amitriptyline_METABOLIZED_TO_10-hydroxyamitriptyline","nortriptyline_METABOLIZED_TO_10-hydroxynortriptyline","imipramine_METABOLIZED_TO_2-hydroxyimipramine","clomipramine_METABOLIZED_TO_8-hydroxyclomipramine","doxepin_METABOLIZED_TO_hydroxydoxepin"],
+    contradicts:[],
+    limitations:["Guideline focuses on parent-drug dosing; individual metabolite percentages are simplified in the app"],
+    verified:true
+  },
+
+  "ev_metoprolol_cyp2d6_cpic": {
+    id:"ev_metoprolol_cyp2d6_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC guideline for CYP2D6, ADRB1, ADRB2, ADRA2C, GRK4, and beta-blocker therapy",
+    year:2024, source:"Clinical Pharmacology & Therapeutics",
+    pmid:null, doi:null,
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"Metoprolol is a CYP2D6-sensitive beta blocker; CYP2D6 poor metabolizers have higher exposure and reduced formation of oxidative metabolites."},
+    temporal:{mechanism:"CYP2D6_metoprolol_hydroxylation_O_demethylation"},
+    supports:["metoprolol_METABOLIZED_TO_alpha-hydroxymetoprolol","metoprolol_METABOLIZED_TO_o-desmethylmetoprolol"],
+    contradicts:[],
+    limitations:["Guideline action is parent-exposure focused; acid metabolite formation is simplified"],
+    verified:true
+  },
+
+  "ev_beta_blocker_cyp2d6_propranolol": {
+    id:"ev_beta_blocker_cyp2d6_propranolol",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Propranolol metabolism and CYP2D6-dependent 4-hydroxylation",
+    year:null, source:"clinical pharmacology literature",
+    pmid:null, doi:null,
+    studyDesign:"metabolic pathway evidence",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6 contributes to propranolol aromatic 4-hydroxylation; multiple CYP and conjugation routes also contribute."},
+    temporal:{mechanism:"CYP2D6_4_hydroxylation"},
+    supports:["propranolol_METABOLIZED_TO_4-hydroxypropranolol"],
+    contradicts:[],
+    limitations:["Not treated as a high-confidence genotype dosing edge in this app"],
+    verified:false, verifyNote:"Needs replacement with a precise primary citation before clinical-grade use"
+  },
+
+  "ev_carvedilol_cyp2d6_label": {
+    id:"ev_carvedilol_cyp2d6_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Carvedilol prescribing information — CYP2D6/CYP2C9 oxidative metabolism",
+    year:2024, source:"FDA/DailyMed label",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Carvedilol undergoes CYP2D6/CYP2C9-mediated aromatic ring oxidation; CYP2D6 poor metabolizers show higher carvedilol concentrations."},
+    temporal:{mechanism:"CYP2D6_carvedilol_hydroxylation"},
+    supports:["carvedilol_METABOLIZED_TO_4-hydroxyphenyl-carvedilol"],
+    contradicts:[],
+    limitations:["Metabolite-specific enzyme shares are simplified"],
+    verified:true
+  },
+
+  "ev_nebivolol_cyp2d6_label": {
+    id:"ev_nebivolol_cyp2d6_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Nebivolol prescribing information — CYP2D6 metabolism",
+    year:2024, source:"FDA/DailyMed label",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Nebivolol is extensively metabolized by CYP2D6; poor metabolizers have substantially higher parent exposure and lower oxidative clearance."},
+    temporal:{mechanism:"CYP2D6_nebivolol_hydroxylation"},
+    supports:["nebivolol_METABOLIZED_TO_4-hydroxy-nebivolol","nebivolol_METABOLIZED_TO_hydroxylated-ring-opened-metabolites"],
+    contradicts:[],
+    limitations:["Metabolite pool is simplified"],
+    verified:true
+  },
+
+  "ev_opioid_cyp2d6_cpic_2020": {
+    id:"ev_opioid_cyp2d6_cpic_2020",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC guideline for CYP2D6, OPRM1, and COMT genotypes and select opioid therapy",
+    year:2020, source:"Clinical Pharmacology & Therapeutics",
+    pmid:"33387367", doi:null,
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 converts codeine and tramadol to key active metabolites and contributes to hydrocodone/oxycodone/methadone metabolism to varying clinical relevance."},
+    temporal:{mechanism:"CYP2D6_opioid_O_demethylation"},
+    supports:["codeine_METABOLIZED_TO_morphine","tramadol_METABOLIZED_TO_o-desmethyltramadol","oxycodone_METABOLIZED_TO_oxymorphone","hydrocodone_METABOLIZED_TO_hydromorphone","methadone_METABOLIZED_TO_methadol"],
+    contradicts:[],
+    limitations:["Strongest clinical recommendations are for codeine and tramadol; oxycodone and methadone CYP2D6 actionability is weaker"],
+    verified:true
+  },
+
+  "ev_kratom_mitragynine_cyp2d6_basiliere2020": {
+    id:"ev_kratom_mitragynine_cyp2d6_basiliere2020",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"CYP450-mediated metabolism of mitragynine and investigation of metabolites in human urine",
+    year:2020, source:"Journal of Analytical Toxicology",
+    pmid:"32008041", doi:null,
+    studyDesign:"recombinant CYP, microsome, and urine metabolite study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6, CYP2C19, CYP2C18, and CYP3A4 contributed to mitragynine metabolism; 9-O-demethylmitragynine was produced by CYP2C19/3A4/2D6."},
+    temporal:{mechanism:"CYP2D6_minor_mitragynine_oxidation"},
+    supports:["mitragynine_METABOLIZED_TO_9-o-demethylmitragynine","mitragynine_METABOLIZED_TO_16-carboxy-mitragynine"],
+    contradicts:[],
+    limitations:["In vitro and forensic urine evidence; human genotype effect is not established"],
+    verified:true
+  },
+
+  "ev_antipsychotic_cyp2d6_labels": {
+    id:"ev_antipsychotic_cyp2d6_labels",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Antipsychotic prescribing information — CYP2D6 metabolism",
+    year:2024, source:"FDA/DailyMed labels",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label_group",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Risperidone, aripiprazole, haloperidol, and brexpiprazole labels describe CYP2D6-dependent metabolism and/or dose implications."},
+    temporal:{mechanism:"CYP2D6_antipsychotic_oxidative_metabolism"},
+    supports:["risperidone_METABOLIZED_TO_9-hydroxyrisperidone","aripiprazole_METABOLIZED_TO_dehydro-aripiprazole","haloperidol_METABOLIZED_TO_4-fluorobenzoylpropionic-acid","brexpiprazole_METABOLIZED_TO_hydroxy-brexpiprazole"],
+    contradicts:[],
+    limitations:["Grouped regulatory evidence; replace with drug-specific labels if more granular display is needed"],
+    verified:true
+  },
+
+  "ev_diphenhydramine_cyp2d6_niwa2007": {
+    id:"ev_diphenhydramine_cyp2d6_niwa2007",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Identification of human cytochrome P450 isozymes involved in diphenhydramine N-demethylation",
+    year:2007, source:"Xenobiotica",
+    pmid:"17020955", doi:null,
+    studyDesign:"recombinant CYP and microsome metabolism study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6 showed high-affinity diphenhydramine N-demethylation in vitro."},
+    temporal:{mechanism:"CYP2D6_diphenhydramine_N_demethylation"},
+    supports:["diphenhydramine_METABOLIZED_TO_n-desmethyldiphenhydramine","diphenhydramine_METABOLIZED_TO_didesmethyldiphenhydramine"],
+    contradicts:[],
+    limitations:["In vitro enzyme assignment; clinical genotype effect is not established"],
+    verified:true
+  },
+
+  "ev_vortioxetine_cyp2d6_pk": {
+    id:"ev_vortioxetine_cyp2d6_pk",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Vortioxetine: clinical pharmacokinetics and drug interactions",
+    year:2018, source:"Clinical Pharmacokinetics",
+    pmid:null, doi:null,
+    studyDesign:"clinical pharmacology review",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Vortioxetine is primarily cleared through CYP2D6-mediated metabolism to inactive metabolites including the carboxylic acid pathway."},
+    temporal:{mechanism:"CYP2D6_vortioxetine_oxidative_metabolism"},
+    supports:["vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"],
+    contradicts:[],
+    limitations:["Multiple CYPs and non-CYP enzymes contribute; parent drug drives efficacy"],
+    verified:true
+  },
+
+  "ev_metoclopramide_cyp2d6_livezey2014": {
+    id:"ev_metoclopramide_cyp2d6_livezey2014",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Metoclopramide is metabolized by CYP2D6 and is a reversible inhibitor, but not inactivator, of CYP2D6",
+    year:2014, source:"Xenobiotica",
+    pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4059401/",
+    studyDesign:"recombinant CYP metabolism/inhibition study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6 formed monodeethylmetoclopramide in vitro; regulatory labels warn slower elimination in CYP2D6 poor metabolizers."},
+    temporal:{mechanism:"CYP2D6_metoclopramide_N_deethylation"},
+    supports:["metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"],
+    contradicts:[],
+    limitations:["Metabolite formation evidence is in vitro; clinical concern is parent-drug accumulation and adverse reactions"],
+    verified:true
+  },
+
+  "ev_hydroxychloroquine_cyp2d6_invitro": {
+    id:"ev_hydroxychloroquine_cyp2d6_invitro",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Hydroxychloroquine is metabolized by CYP2D6, CYP3A4, and CYP2C8 and inhibits CYP2D6",
+    year:2023, source:"Drug Metabolism and Disposition",
+    pmid:"36446607", doi:null,
+    studyDesign:"in vitro recombinant CYP and inhibition study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP2D6, CYP3A4, and CYP2C8 formed desethylchloroquine/desethylhydroxychloroquine to varying degrees."},
+    temporal:{mechanism:"CYP2D6_hydroxychloroquine_dealkylation"},
+    supports:["hydroxychloroquine_METABOLIZED_TO_desethyl-chloroquine"],
+    contradicts:[],
+    limitations:["In vitro; clinical genotype effect not established"],
     verified:true
   },
 

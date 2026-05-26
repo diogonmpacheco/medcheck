@@ -27,36 +27,36 @@ const METAB = {
   {n:"Hydroxynorcocaine",e:"CYP3A4",a:"toxic",p:2,note:"Further hepatotoxic metabolite"}
 ],
 "Atomoxetine":[
-  {n:"4-Hydroxyatomoxetine",e:"CYP2D6",a:"active",p:60,t:6,note:"Primary active metabolite; equipotent NET inhibitor. Formation severely impaired in CYP2D6 PM"},
+  {n:"4-Hydroxyatomoxetine",e:"CYP2D6",a:"active",p:60,t:6,note:"Primary active metabolite; equipotent NET inhibitor. Formation severely impaired in CYP2D6 PM",evidenceRefs:["ev_atomoxetine_cyp2d6_cpic","ev_atomoxetine_cyp2d6_pbpk2018"]},
   {n:"4-Hydroxyatomoxetine glucuronide",e:"UGT1A2",a:"inactive",p:25,note:"Major excretory metabolite"},
   {n:"N-Desmethylatomoxetine",e:"CYP2C19",a:"weak",p:10,t:8,note:"Minor pathway; modest NET activity"},
   {n:"Atomoxetine (unchanged)",e:"Renal",a:"active",p:5,note:"<3% unchanged in urine"}
 ],
 "Amphetamine":[
-  {n:"4-Hydroxyamphetamine",e:"CYP2D6",a:"active",p:30,t:8,note:"Active metabolite"},
+  {n:"4-Hydroxyamphetamine",e:"CYP2D6",a:"active",p:30,t:8,note:"Active metabolite",evidenceRefs:["ev_amphetamine_cyp2d6_fda","ev_mdma_meth_cyp2d6_review"]},
   {n:"Norephedrine (phenylpropanolamine)",e:"DBH",a:"active",p:5,t:4,note:"Weak sympathomimetic"},
   {n:"Benzoic acid",e:"MAO",a:"inactive",p:30},
   {n:"Hippuric acid",e:"Conjugation",a:"inactive",p:15},
   {n:"Amphetamine (unchanged)",e:"Renal",a:"active",p:20,note:"30-40% excreted unchanged (pH dependent)"}
 ],
 "Methamphetamine":[
-  {n:"Amphetamine",e:"CYP2D6",a:"active",p:15,t:10,note:"Active metabolite — IS a scheduled drug itself"},
-  {n:"4-Hydroxymethamphetamine",e:"CYP2D6",a:"active",p:20,t:6},
-  {n:"Norephedrine",e:"CYP2D6",a:"active",p:5,t:4},
+  {n:"Amphetamine",e:"CYP2D6",a:"active",p:15,t:10,note:"Active metabolite — IS a scheduled drug itself",evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
+  {n:"4-Hydroxymethamphetamine",e:"CYP2D6",a:"active",p:20,t:6,evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
+  {n:"Norephedrine",e:"Beta-hydroxylation",a:"active",p:5,t:4,note:"Active sympathomimetic; not treated as a CYP2D6-specific relation in the current graph"},
   {n:"Methamphetamine (unchanged)",e:"Renal",a:"active",p:40,note:"Heavily pH-dependent renal clearance"}
 ],
 
 // ── EMPATHOGENS ──
 "MDMA (Ecstasy)":[
-  {n:"MDA (tenamfetamine)",e:"CYP2D6",a:"active",p:10,t:12,note:"Active empathogen, neurotoxic",inh:[{e:"CYP2D6",s:"moderate"}]},
-  {n:"HHMA (3,4-dihydroxymethamphetamine)",e:"CYP2D6",a:"active",p:30,t:3,note:"Catechol metabolite → oxidative stress",inh:[{e:"CYP2D6",s:"strong"}]},
+  {n:"MDA (tenamfetamine)",e:"CYP3A4",a:"active",p:10,t:12,note:"Minor N-demethylation product; active empathogen and neurotoxic",inh:[{e:"CYP2D6",s:"moderate"}],evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
+  {n:"HHMA (3,4-dihydroxymethamphetamine)",e:"CYP2D6",a:"active",p:30,t:3,note:"Catechol metabolite → oxidative stress; CYP2D6-mediated O-demethylenation",inh:[{e:"CYP2D6",s:"strong"}],evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
   {n:"HMMA (4-hydroxy-3-methoxymethamphetamine)",e:"COMT",a:"inactive",p:25},
-  {n:"HHA (3,4-dihydroxyamphetamine)",e:"CYP2D6",a:"toxic",p:10,t:4,note:"Neurotoxic quinone precursor"},
+  {n:"HHA (3,4-dihydroxyamphetamine)",e:"CYP2D6",a:"toxic",p:10,t:4,note:"Neurotoxic quinone precursor",evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
   {n:"HMA (4-hydroxy-3-methoxyamphetamine)",e:"COMT",a:"inactive",p:15},
   {n:"MDMA-thioether conjugates",e:"GST",a:"toxic",p:5,note:"Nephrotoxic in rats"}
 ],
 "MDA":[
-  {n:"HHA (3,4-dihydroxyamphetamine)",e:"CYP2D6",a:"toxic",p:30,t:4,note:"Neurotoxic"},
+  {n:"HHA (3,4-dihydroxyamphetamine)",e:"CYP2D6",a:"toxic",p:30,t:4,note:"Neurotoxic catechol/quinone precursor",evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
   {n:"HMA",e:"COMT",a:"inactive",p:40},
   {n:"MDA (unchanged)",e:"Renal",a:"active",p:20}
 ],
@@ -64,7 +64,7 @@ const METAB = {
 // ── PSYCHEDELICS ──
 "LSD":[
   {n:"2-Oxo-3-hydroxy-LSD (O-H-LSD)",e:"CYP3A4",a:"inactive",p:40,t:12,note:"Primary urinary metabolite, detection marker"},
-  {n:"Nor-LSD",e:"CYP2D6",a:"active",p:20,t:6,note:"Weak 5-HT2A agonist"},
+  {n:"Nor-LSD",e:"CYP2D6",a:"active",p:20,t:6,note:"Weak 5-HT2A agonist; minor CYP2D6-contributing pathway",evidenceRefs:["ev_lsd_cyp2d6_holze2021"]},
   {n:"13-Hydroxy-LSD",e:"CYP1A2",a:"inactive",p:15},
   {n:"Lysergic acid ethylamide (LAE)",e:"CYP3A4",a:"inactive",p:10},
   {n:"LSD glucuronide",e:"UGT",a:"inactive",p:10}
@@ -77,12 +77,12 @@ const METAB = {
 "2C-B":[
   {n:"4-Bromo-2,5-dimethoxyphenethylamine (deaminated)",e:"MAO-A",a:"inactive",p:40},
   {n:"2-(4-Bromo-2,5-dimethoxyphenyl)ethanol",e:"ADH",a:"inactive",p:25},
-  {n:"Demethylated 2C-B",e:"CYP2D6",a:"active",p:20,t:3},
+  {n:"Demethylated 2C-B",e:"O-demethylation",a:"active",p:20,t:3,note:"Enzyme assignment not treated as a CYP2D6 genotype edge until primary evidence is added"},
   {n:"2C-B (unchanged)",e:"Renal",a:"active",p:15}
 ],
 "2C-I":[
   {n:"Deaminated 2C-I",e:"MAO-A",a:"inactive",p:40},
-  {n:"Demethylated 2C-I",e:"CYP2D6",a:"active",p:25},
+  {n:"Demethylated 2C-I",e:"O-demethylation",a:"active",p:25,note:"Enzyme assignment not treated as a CYP2D6 genotype edge until primary evidence is added"},
   {n:"2C-I (unchanged)",e:"Renal",a:"active",p:15}
 ],
 "DMT":[
@@ -92,8 +92,8 @@ const METAB = {
 ],
 "Ayahuasca (DMT+MAOI)":[
   {n:"DMT (protected from MAO)",e:"Oral",a:"active",p:40,t:1,note:"Harmine/harmaline block MAO-A, allowing oral DMT activity"},
-  {n:"Harmine → Harmol",e:"CYP2D6",a:"inactive",p:20},
-  {n:"Harmaline → Harmalol",e:"CYP2D6",a:"inactive",p:15},
+  {n:"Harmine → Harmol",e:"CYP2D6",a:"inactive",p:20,note:"O-demethylation; CYP1A enzymes also contribute",evidenceRefs:["ev_harmala_cyp2d6_yu2003"]},
+  {n:"Harmaline → Harmalol",e:"CYP2D6",a:"inactive",p:15,note:"O-demethylation; CYP1A enzymes also contribute",evidenceRefs:["ev_harmala_cyp2d6_yu2003","ev_harmaline_cyp2d6_wu2009"]},
   {n:"THH (tetrahydroharmine)",e:"MAO-A",a:"active",p:15,note:"Weak SSRI + MAO-A inhibitor"}
 ],
 "Mescaline":[
@@ -113,10 +113,10 @@ const METAB = {
   {n:"PCP (unchanged, enterohepatic)",e:"Renal",a:"active",p:10,note:"Ion trapping in acidic urine"}
 ],
 "DXM (Dextromethorphan)":[
-  {n:"Dextrorphan (DXO)",e:"CYP2D6",a:"active_form",role:"active_form",p:70,t:3,note:"Primary active metabolite — NMDA antagonist + σ1 agonist"},
+  {n:"Dextrorphan (DXO)",e:"CYP2D6",a:"active_form",role:"active_form",p:70,t:3,note:"Primary active metabolite — NMDA antagonist + σ1 agonist",evidenceRefs:["ev_dxm_dextrorphan_cyp2d6"]},
   {n:"3-Methoxymorphinan (3-MM)",e:"CYP3A4",a:"inactive",p:15},
-  {n:"3-Hydroxymorphinan (3-HM)",e:"CYP2D6",a:"inactive",p:10},
-  {n:"DXM (unchanged in PM)",e:"Renal",a:"active",p:5,note:"CYP2D6 PMs accumulate parent DXM — dissociative effects"}
+  {n:"3-Hydroxymorphinan (3-HM)",e:"CYP2D6",a:"inactive",p:10,evidenceRefs:["ev_dxm_dextrorphan_cyp2d6"]},
+  {n:"DXM (unchanged in PM)",e:"Renal",a:"active",p:5,note:"CYP2D6 PMs accumulate parent DXM — dissociative effects",evidenceRefs:["ev_dxm_dextrorphan_cyp2d6"]}
 ],
 "GHB":[
   {n:"Succinic semialdehyde (SSA)",e:"GHB-DH",a:"inactive",p:95,t:0.3},
@@ -138,7 +138,7 @@ const METAB = {
   {n:"4'-Hydroxy-CBD",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Potatoes (Solanine/Solanidine)":[
-  {n:"Solanidine (α-solanine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate. Clinical DDI burden remains theoretical.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001"]},
+  {n:"Solanidine (α-solanine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate and diet-derived CYP2D6 activity biomarker. Clinical DDI burden remains theoretical.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001","ev_solanidine_cyp2d6_hellden2024"]},
   {n:"α-Solanine / α-Chaconine",e:"Dietary glycoalkaloids",a:"active",p:40,note:"Potato glycoalkaloids; cholinesterase inhibition shown in vitro.",evidenceRefs:["ev_solanidine_ache_griffin1995"]}
 ],
 
@@ -155,11 +155,11 @@ const METAB = {
 "Fluoxetine":[
   {n:"Norfluoxetine",e:"CYP2D6",a:"active",p:80,t:240,note:"POTENT CYP2D6 inhibitor, t½ 4-16 DAYS",evidenceRefs:["ev_fluoxetine_cyp2d6_fda"],inh:[{e:"CYP2D6",s:"strong"},{e:"CYP2C19",s:"moderate"}]},
   {n:"Fluoxetine glucuronide",e:"UGT",a:"inactive",p:10},
-  {n:"p-Trifluoromethylphenol",e:"CYP2D6",a:"inactive",p:10}
+  {n:"p-Trifluoromethylphenol",e:"CYP2D6",a:"inactive",p:10,evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_ssri_cyp2d6_review"]}
 ],
 "Paroxetine":[
-  {n:"M1 catechol metabolite",e:"CYP2D6",a:"inactive",p:60,inh:[{e:"CYP2D6",s:"strong"}],note:"Mechanism-based CYP2D6 inhibitor (irreversible)"},
-  {n:"M2 methylenedioxy ring-opened",e:"CYP2D6",a:"inactive",p:20},
+  {n:"M1 catechol metabolite",e:"CYP2D6",a:"inactive",p:60,inh:[{e:"CYP2D6",s:"strong"}],note:"Mechanism-based CYP2D6 inhibitor (irreversible)",evidenceRefs:["ev_paroxetine_cyp2d6_fda","ev_paroxetine_cyp2d6_invitro"]},
+  {n:"M2 methylenedioxy ring-opened",e:"CYP2D6",a:"inactive",p:20,evidenceRefs:["ev_paroxetine_cyp2d6_fda","ev_paroxetine_cyp2d6_invitro"]},
   {n:"Paroxetine glucuronide",e:"UGT",a:"inactive",p:15},
   {n:"Paroxetine sulfate",e:"SULT",a:"inactive",p:5}
 ],
@@ -170,29 +170,29 @@ const METAB = {
 ],
 "Citalopram":[
   {n:"N-Desmethylcitalopram (DCIT)",e:"CYP2C19",a:"active",p:50,t:50,note:"~50% SERT potency"},
-  {n:"Didesmethylcitalopram (DDCIT)",e:"CYP2D6",a:"active",p:20,t:100,note:"Weak activity, very long t½"},
+  {n:"Didesmethylcitalopram (DDCIT)",e:"CYP2D6",a:"active",p:20,t:100,note:"Weak activity, very long t½",evidenceRefs:["ev_citalopram_cyp2d6_oestad2003"]},
   {n:"Citalopram N-oxide",e:"CYP3A4",a:"inactive",p:15},
   {n:"Propionic acid derivative",e:"MAO",a:"inactive",p:10}
 ],
 "Escitalopram":[
   {n:"S-Desmethylcitalopram (S-DCIT)",e:"CYP2C19",a:"active",p:50,t:50},
-  {n:"S-Didesmethylcitalopram (S-DDCIT)",e:"CYP2D6",a:"active",p:20,t:100},
+  {n:"S-Didesmethylcitalopram (S-DDCIT)",e:"CYP2D6",a:"active",p:20,t:100,evidenceRefs:["ev_citalopram_cyp2d6_oestad2003"]},
   {n:"Escitalopram N-oxide",e:"CYP3A4",a:"inactive",p:15}
 ],
 "Fluvoxamine":[
-  {n:"Fluvoxamine acid",e:"CYP2D6",a:"inactive",p:60,note:"Oxidative deamination product"},
+  {n:"Fluvoxamine acid",e:"CYP2D6",a:"inactive",p:60,note:"Oxidative deamination product; CYP2D6 is a secondary contributor",evidenceRefs:["ev_ssri_cyp2d6_review"]},
   {n:"Fluvoxamine N-oxide",e:"FMO",a:"inactive",p:20},
   {n:"Fluvoxamine glucuronide",e:"UGT",a:"inactive",p:15}
 ],
 
 // ── SNRIs ──
 "Venlafaxine":[
-  {n:"O-Desmethylvenlafaxine (desvenlafaxine)",e:"CYP2D6",a:"active",p:56,t:11,note:"EQUIPOTENT — sold separately as Pristiq"},
+  {n:"O-Desmethylvenlafaxine (desvenlafaxine)",e:"CYP2D6",a:"active",p:56,t:11,note:"EQUIPOTENT — sold separately as Pristiq",evidenceRefs:["ev_venlafaxine_cyp2d6_ncbi"]},
   {n:"N-Desmethylvenlafaxine",e:"CYP3A4",a:"active",p:16,t:10},
-  {n:"N,O-Didesmethylvenlafaxine",e:"CYP2D6",a:"active",p:5,t:13}
+  {n:"N,O-Didesmethylvenlafaxine",e:"CYP2D6",a:"active",p:5,t:13,evidenceRefs:["ev_venlafaxine_cyp2d6_ncbi"]}
 ],
 "Duloxetine":[
-  {n:"4-Hydroxyduloxetine glucuronide",e:"CYP2D6",a:"inactive",p:40},
+  {n:"4-Hydroxyduloxetine glucuronide",e:"CYP2D6",a:"inactive",p:40,evidenceRefs:["ev_ssri_cyp2d6_review"]},
   {n:"5-Hydroxy-6-methoxy duloxetine glucuronide",e:"CYP1A2",a:"inactive",p:30},
   {n:"Duloxetine sulfate",e:"SULT",a:"inactive",p:20}
 ],
@@ -204,30 +204,30 @@ const METAB = {
 // ── TCAs ──
 "Amitriptyline":[
   {n:"Nortriptyline",e:"CYP2C19",a:"active",p:50,t:30,note:"Active metabolite — itself a marketed antidepressant"},
-  {n:"10-Hydroxyamitriptyline",e:"CYP2D6",a:"active",p:15},
-  {n:"10-Hydroxynortriptyline",e:"CYP2D6",a:"active",p:10},
+  {n:"10-Hydroxyamitriptyline",e:"CYP2D6",a:"active",p:15,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
+  {n:"10-Hydroxynortriptyline",e:"CYP2D6",a:"active",p:10,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"Amitriptyline N-oxide",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Nortriptyline":[
-  {n:"10-Hydroxynortriptyline",e:"CYP2D6",a:"active",p:60,t:20,note:"Active, CYP2D6-dependent"},
-  {n:"Desmethylnortriptyline",e:"CYP2D6",a:"inactive",p:20},
+  {n:"10-Hydroxynortriptyline",e:"CYP2D6",a:"active",p:60,t:20,note:"Active, CYP2D6-dependent",evidenceRefs:["ev_tca_cyp2d6_cpic"]},
+  {n:"Desmethylnortriptyline",e:"CYP2D6",a:"inactive",p:20,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"Nortriptyline glucuronide",e:"UGT",a:"inactive",p:15}
 ],
 "Imipramine":[
   {n:"Desipramine",e:"CYP2C19",a:"active",p:50,t:20,note:"Active — itself a marketed TCA (potent NRI)"},
-  {n:"2-Hydroxyimipramine",e:"CYP2D6",a:"active",p:15},
-  {n:"2-Hydroxydesipramine",e:"CYP2D6",a:"active",p:10},
+  {n:"2-Hydroxyimipramine",e:"CYP2D6",a:"active",p:15,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
+  {n:"2-Hydroxydesipramine",e:"CYP2D6",a:"active",p:10,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"Iminodibenzyl",e:"CYP1A2",a:"inactive",p:10}
 ],
 "Clomipramine":[
   {n:"N-Desmethylclomipramine",e:"CYP2C19",a:"active",p:50,t:36,note:"Active — more NRI than parent"},
-  {n:"8-Hydroxyclomipramine",e:"CYP2D6",a:"active",p:15},
+  {n:"8-Hydroxyclomipramine",e:"CYP2D6",a:"active",p:15,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"Clomipramine N-oxide",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Doxepin":[
   {n:"N-Desmethyldoxepin (nordoxepin)",e:"CYP2C19",a:"active",p:50,t:30,note:"Active NRI"},
   {n:"Doxepin glucuronide",e:"UGT",a:"inactive",p:20},
-  {n:"Hydroxydoxepin",e:"CYP2D6",a:"inactive",p:15}
+  {n:"Hydroxydoxepin",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_tca_cyp2d6_cpic"]}
 ],
 
 // ── OTHER ANTIDEPRESSANTS ──
@@ -239,7 +239,7 @@ const METAB = {
 ],
 "Mirtazapine":[
   {n:"N-Desmethylmirtazapine",e:"CYP3A4",a:"active",p:50,t:20,note:"~25% potency of parent"},
-  {n:"8-Hydroxymirtazapine",e:"CYP2D6",a:"inactive",p:20},
+  {n:"8-Hydroxymirtazapine",e:"CYP2D6",a:"inactive",p:20,evidenceRefs:["ev_ssri_cyp2d6_review"]},
   {n:"Mirtazapine N-oxide",e:"CYP3A4",a:"inactive",p:15},
   {n:"Mirtazapine glucuronide",e:"UGT",a:"inactive",p:10}
 ],
@@ -251,25 +251,25 @@ const METAB = {
 
 // ── BETA-BLOCKERS ──
 "Metoprolol":[
-  {n:"α-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:65,t:3,note:"~10% β-blocking potency"},
-  {n:"O-Desmethylmetoprolol",e:"CYP2D6",a:"inactive",p:15},
-  {n:"Metoprolol acid (deaminated)",e:"CYP2D6",a:"inactive",p:10}
+  {n:"α-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:65,t:3,note:"~10% β-blocking potency",evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
+  {n:"O-Desmethylmetoprolol",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
+  {n:"Metoprolol acid (deaminated)",e:"CYP2D6",a:"inactive",p:10,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]}
 ],
 "Propranolol":[
-  {n:"4-Hydroxypropranolol",e:"CYP2D6",a:"active",p:40,t:1,note:"Equipotent β-blocker, very short t½"},
+  {n:"4-Hydroxypropranolol",e:"CYP2D6",a:"active",p:40,t:1,note:"Equipotent β-blocker, very short t½",evidenceRefs:["ev_beta_blocker_cyp2d6_propranolol"]},
   {n:"Naphthoxylactic acid",e:"CYP1A2",a:"inactive",p:30},
   {n:"Propranolol glucuronide",e:"UGT",a:"inactive",p:15}
 ],
 "Carvedilol":[
-  {n:"4'-Hydroxyphenyl carvedilol",e:"CYP2D6",a:"active",p:30,t:5,note:"Active β-blocker + vasodilator"},
+  {n:"4'-Hydroxyphenyl carvedilol",e:"CYP2D6",a:"active",p:30,t:5,note:"Active β-blocker + vasodilator",evidenceRefs:["ev_carvedilol_cyp2d6_label"]},
   {n:"1'-Hydroxyphenyl carvedilol",e:"CYP2C9",a:"active",p:20},
-  {n:"Desmethyl carvedilol",e:"CYP2D6",a:"active",p:15},
+  {n:"Desmethyl carvedilol",e:"CYP2C9/3A4",a:"active",p:15,note:"Not treated as a CYP2D6-specific relation in the current graph"},
   {n:"Carvedilol glucuronide",e:"UGT",a:"inactive",p:20}
 ],
 "Nebivolol":[
-  {n:"4-Hydroxy-nebivolol",e:"CYP2D6",a:"active",p:40,t:10,note:"Active β1-selective metabolite"},
+  {n:"4-Hydroxy-nebivolol",e:"CYP2D6",a:"active",p:40,t:10,note:"Active β1-selective metabolite",evidenceRefs:["ev_nebivolol_cyp2d6_label"]},
   {n:"Nebivolol glucuronide",e:"UGT2B7",a:"inactive",p:30},
-  {n:"Hydroxylated ring-opened metabolites",e:"CYP2D6",a:"inactive",p:20}
+  {n:"Hydroxylated ring-opened metabolites",e:"CYP2D6",a:"inactive",p:20,evidenceRefs:["ev_nebivolol_cyp2d6_label"]}
 ],
 
 // ── STATINS ──
@@ -299,19 +299,19 @@ const METAB = {
   {n:"Morphine-3-glucuronide",e:"UGT2B7",a:"inactive",p:5,note:"Neuroexcitatory"}
 ],
 "Tramadol":[
-  {n:"O-Desmethyltramadol (M1)",e:"CYP2D6",a:"active_form",role:"active_form",p:30,t:9,note:"200× greater μ-opioid affinity than parent",evidenceRefs:["ev_cyp2d6_codeine_genotype"]},
+  {n:"O-Desmethyltramadol (M1)",e:"CYP2D6",a:"active_form",role:"active_form",p:30,t:9,note:"200× greater μ-opioid affinity than parent",evidenceRefs:["ev_cyp2d6_codeine_genotype","ev_opioid_cyp2d6_cpic_2020"]},
   {n:"N-Desmethyltramadol (M2)",e:"CYP3A4",a:"inactive",p:25},
-  {n:"N,O-Didesmethyltramadol (M5)",e:"CYP2D6",a:"active",p:10},
+  {n:"N,O-Didesmethyltramadol (M5)",e:"CYP2D6",a:"active",p:10,evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
   {n:"Tramadol glucuronide",e:"UGT",a:"inactive",p:20}
 ],
 "Oxycodone":[
   {n:"Noroxycodone",e:"CYP3A4",a:"active",p:45,t:5,note:"Primary metabolite, weak activity"},
-  {n:"Oxymorphone",e:"CYP2D6",a:"active",p:10,t:8,note:"14× more potent than oxycodone at μ-receptor"},
-  {n:"Noroxymorphone",e:"CYP2D6",a:"active",p:5},
+  {n:"Oxymorphone",e:"CYP2D6",a:"active",p:10,t:8,note:"14× more potent than oxycodone at μ-receptor; CYP2D6 clinical actionability is weaker than codeine/tramadol",evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
+  {n:"Noroxymorphone",e:"CYP2D6",a:"active",p:5,evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
   {n:"Oxycodone glucuronide",e:"UGT",a:"inactive",p:20}
 ],
 "Hydrocodone":[
-  {n:"Hydromorphone",e:"CYP2D6",a:"active",p:5,t:3,note:"5× more potent — CYP2D6 UMs at higher risk"},
+  {n:"Hydromorphone",e:"CYP2D6",a:"active",p:5,t:3,note:"5× more potent; CYP2D6 contribution is recognized but less actionable than codeine/tramadol",evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
   {n:"Norhydrocodone",e:"CYP3A4",a:"active",p:40,t:8,note:"Primary metabolite"},
   {n:"Dihydrocodeine",e:"Reduction",a:"active",p:10},
   {n:"Hydrocodone glucuronide",e:"UGT",a:"inactive",p:20}
@@ -330,7 +330,7 @@ const METAB = {
 "Methadone":[
   {n:"EDDP (2-ethylidene-1,5-dimethyl-3,3-diphenylpyrrolidine)",e:"CYP3A4",a:"inactive",p:50,t:40,note:"Primary metabolite, detection marker"},
   {n:"EMDP",e:"CYP2B6",a:"inactive",p:20},
-  {n:"Methadol",e:"CYP2D6",a:"active",p:5,note:"Weak opioid activity"},
+  {n:"Methadol",e:"CYP2D6",a:"active",p:5,note:"Weak opioid activity; minor CYP2D6-contributing route, not a primary methadone genotype signal",evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
   {n:"Methadone (unchanged)",e:"Renal",a:"active",p:20,note:"pH-dependent excretion"}
 ],
 "Buprenorphine":[
@@ -346,8 +346,8 @@ const METAB = {
 ],
 "Kratom (Mitragynine)":[
   {n:"7-Hydroxymitragynine (7-OH-M)",e:"CYP3A4",a:"active",p:5,t:4,note:"13× more potent μ-opioid agonist than parent",inh:[{e:"CYP2D6",s:"moderate"}]},
-  {n:"16-Carboxy-mitragynine",e:"CYP2D6",a:"inactive",p:30},
-  {n:"9-O-Demethylmitragynine",e:"CYP2D6",a:"active",p:15},
+  {n:"16-Carboxy-mitragynine",e:"CYP2D6",a:"inactive",p:30,note:"Multiple CYPs contribute; CYP2D6 is a minor in vitro contributor",evidenceRefs:["ev_kratom_mitragynine_cyp2d6_basiliere2020"]},
+  {n:"9-O-Demethylmitragynine",e:"CYP2D6",a:"active",p:15,note:"Produced by CYP2C19, CYP3A4 and CYP2D6 in vitro",evidenceRefs:["ev_kratom_mitragynine_cyp2d6_basiliere2020"]},
   {n:"Mitragynine glucuronide",e:"UGT",a:"inactive",p:25}
 ],
 
@@ -446,7 +446,7 @@ const METAB = {
 // ── ANTIVIRALS ──
 "Ritonavir":[
   {n:"M-2 (oxidation)",e:"CYP3A4",a:"active",p:30,note:"Active metabolite, also CYP3A4 inhibitor",inh:[{e:"CYP3A4",s:"strong"}]},
-  {n:"M-1 (isopropylthiazole oxidation)",e:"CYP2D6",a:"inactive",p:20},
+  {n:"M-1 (isopropylthiazole oxidation)",e:"CYP3A4",a:"inactive",p:20,note:"Not treated as a CYP2D6-specific relation in the current graph"},
   {n:"Ritonavir (unchanged)",e:"Biliary",a:"active",p:30}
 ],
 
@@ -479,21 +479,21 @@ const METAB = {
 "Olanzapine":[
   {n:"10-N-Glucuronide",e:"UGT1A4",a:"inactive",p:30},
   {n:"4'-N-Desmethylolanzapine",e:"CYP1A2",a:"active",p:25,note:"~30% potency"},
-  {n:"2-Hydroxymethylolanzapine",e:"CYP2D6",a:"inactive",p:15},
+  {n:"2-Hydroxymethylolanzapine",e:"CYP2D6",a:"inactive",p:15,note:"Minor CYP2D6 pathway; smoking/CYP1A2 remains the primary olanzapine axis",evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
   {n:"Olanzapine N-oxide",e:"FMO3",a:"inactive",p:10}
 ],
 "Risperidone":[
-  {n:"9-Hydroxyrisperidone (paliperidone)",e:"CYP2D6",a:"active",p:50,t:23,note:"EQUIPOTENT — sold separately as Invega. CYP2D6 PMs have altered ratio"},
+  {n:"9-Hydroxyrisperidone (paliperidone)",e:"CYP2D6",a:"active",p:50,t:23,note:"EQUIPOTENT — sold separately as Invega. CYP2D6 PMs have altered ratio",evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
   {n:"Risperidone N-oxide",e:"FMO",a:"inactive",p:10}
 ],
 "Aripiprazole":[
-  {n:"Dehydro-aripiprazole (OPC-14857)",e:"CYP2D6",a:"active",p:40,t:94,note:"~40% potency, VERY long t½ accumulates"},
+  {n:"Dehydro-aripiprazole (OPC-14857)",e:"CYP2D6",a:"active",p:40,t:94,note:"~40% potency, VERY long t½ accumulates",evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
   {n:"Aripiprazole glucuronide",e:"UGT",a:"inactive",p:15}
 ],
 "Haloperidol":[
   {n:"Reduced haloperidol",e:"Carbonyl-R",a:"active",p:25,t:18,note:"Back-converted to haloperidol — creates metabolic cycling"},
   {n:"Haloperidol glucuronide",e:"UGT",a:"inactive",p:30},
-  {n:"4-Fluorobenzoylpropionic acid",e:"CYP2D6",a:"inactive",p:15},
+  {n:"4-Fluorobenzoylpropionic acid",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
   {n:"Pyridinium metabolite (HPP+)",e:"CYP3A4",a:"toxic",p:5,note:"Neurotoxic, similar to MPP+"}
 ],
 "Clozapine":[
@@ -549,7 +549,7 @@ const METAB = {
 ],
 "Tamoxifen":[
   {n:"N-Desmethyltamoxifen",e:"CYP3A4",a:"active",p:40,t:336,note:"Primary metabolite, weak SERM"},
-  {n:"4-Hydroxytamoxifen (4-OHT)",e:"CYP2D6",a:"active",p:5,t:6,note:"100× more potent ER antagonist — minor pathway"},
+  {n:"4-Hydroxytamoxifen (4-OHT)",e:"CYP2D6",a:"active",p:5,t:6,note:"100× more potent ER antagonist — minor pathway",evidenceRefs:["ev_tamoxifen_cyp2d6_cpic"]},
   {n:"Endoxifen (4-OH-N-desmethyltamoxifen)",e:"CYP2D6",a:"active_form",role:"active_form",p:10,t:50,note:"THE key active metabolite. CYP2D6 PMs have 75% lower endoxifen — reduced efficacy",evidenceRefs:["ev_tamoxifen_cyp2d6_cpic","ev_tamoxifen_cyp2d6_controversy","ev_paroxetine_cyp2d6_japanese"]},
   {n:"Tamoxifen N-oxide",e:"FMO",a:"inactive",p:10}
 ],
@@ -576,10 +576,10 @@ const METAB = {
   {n:"Methylcatechol glucuronide",e:"UGT",a:"inactive",p:20}
 ],
 "Diphenhydramine":[
-  {n:"N-Desmethyldiphenhydramine",e:"CYP2D6",a:"active",p:40,t:6},
-  {n:"Didesmethyldiphenhydramine",e:"CYP2D6",a:"inactive",p:20},
+  {n:"N-Desmethyldiphenhydramine",e:"CYP2D6",a:"active",p:40,t:6,evidenceRefs:["ev_diphenhydramine_cyp2d6_niwa2007"]},
+  {n:"Didesmethyldiphenhydramine",e:"CYP2D6",a:"inactive",p:20,evidenceRefs:["ev_diphenhydramine_cyp2d6_niwa2007"]},
   {n:"Diphenhydramine N-oxide",e:"FMO",a:"inactive",p:15},
-  {n:"Diphenylmethoxyacetic acid",e:"CYP2D6",a:"inactive",p:15}
+  {n:"Diphenylmethoxyacetic acid",e:"Oxidation",a:"inactive",p:15,note:"Downstream acid metabolite; not represented as a CYP2D6-specific genotype edge"}
 ],
 "Melatonin":[
   {n:"6-Hydroxymelatonin",e:"CYP1A2",a:"inactive",p:70},
@@ -654,14 +654,14 @@ const METAB = {
   {n:"Vilazodone carboxylic acid",e:"CYP3A4",a:"inactive",p:25,note:"Oxidative metabolite"}
 ],
 "Vortioxetine":[
-  {n:"Vortioxetine carboxylic acid",e:"CYP2D6",a:"inactive",p:30,t:10,note:"Major inactive metabolite, renally cleared"},
+  {n:"Vortioxetine carboxylic acid",e:"CYP2D6",a:"inactive",p:30,t:10,note:"Major inactive metabolite, renally cleared",evidenceRefs:["ev_vortioxetine_cyp2d6_pk"]},
   {n:"Hydroxy-vortioxetine glucuronide",e:"CYP2D6/UGT",a:"inactive",p:25,note:"Phase II conjugate"},
   {n:"Desmethyl-vortioxetine",e:"CYP2D6/3A4",a:"weak",p:10,t:50,note:"Weak 5-HT transporter binding"}
 ],
 "Bisoprolol":[
   {n:"Bisoprolol glucuronide",e:"UGT",a:"inactive",p:30,t:11,note:"50% excreted renally unchanged"},
   {n:"O-dealkylated metabolite",e:"CYP3A4",a:"inactive",p:15,note:"Minor oxidative pathway"},
-  {n:"Oxidized bisoprolol",e:"CYP2D6",a:"inactive",p:10,note:"Minor contribution"}
+  {n:"Oxidized bisoprolol",e:"CYP3A4",a:"inactive",p:10,note:"Minor oxidative pathway; not treated as a CYP2D6-specific relation in the current graph"}
 ],
 "Atenolol":[
   {n:"Atenolol (unchanged, renal)",e:"None",a:"active",p:85,t:7,note:"Not metabolized; ~90% renal excretion unchanged"},
@@ -670,7 +670,7 @@ const METAB = {
 "Labetalol":[
   {n:"Labetalol glucuronide",e:"UGT2B7",a:"inactive",p:60,t:6,note:"Extensive first-pass glucuronidation"},
   {n:"Labetalol sulfate",e:"SULT",a:"inactive",p:15,note:"Secondary conjugation pathway"},
-  {n:"3-amino-1-phenylbutane",e:"CYP2D6",a:"inactive",p:5,note:"Minor reductive metabolite"}
+  {n:"3-amino-1-phenylbutane",e:"Reduction",a:"inactive",p:5,note:"Minor reductive metabolite; not treated as a CYP2D6-specific relation in the current graph"}
 ],
 "Lisinopril":[
   {n:"Lisinopril (unchanged, renal)",e:"None",a:"active",p:100,t:12,note:"Not metabolized at all; 100% renal excretion unchanged"}
@@ -912,7 +912,7 @@ const METAB = {
 ],
 "Brexpiprazole":[
   {n:"DM-3411",e:"CYP3A4",a:"weak",p:25,t:86,note:"Major metabolite; minimal pharmacological activity at D2/5-HT1A"},
-  {n:"Hydroxy-brexpiprazole",e:"CYP2D6",a:"inactive",p:15,note:"Ring hydroxylation"},
+  {n:"Hydroxy-brexpiprazole",e:"CYP2D6",a:"inactive",p:15,note:"Ring hydroxylation",evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
   {n:"Brexpiprazole sulfoxide",e:"FMO3",a:"inactive",p:10,note:"Flavin monooxygenase pathway"}
 ],
 "Cariprazine":[
@@ -1064,7 +1064,7 @@ const METAB = {
 "Metoclopramide":[
   {n:"Metoclopramide sulfate",e:"SULT",a:"inactive",p:20,t:5,note:"Sulfation conjugate"},
   {n:"Metoclopramide glucuronide",e:"UGT",a:"inactive",p:15,note:"Glucuronidation"},
-  {n:"N-deethyl-metoclopramide",e:"CYP2D6",a:"weak",p:10,note:"CYP2D6 PMs → higher parent levels → ↑ EPS risk"},
+  {n:"N-deethyl-metoclopramide",e:"CYP2D6",a:"weak",p:10,note:"CYP2D6 PMs → higher parent levels → ↑ EPS risk",evidenceRefs:["ev_metoclopramide_cyp2d6_livezey2014"]},
   {n:"Metoclopramide (unchanged, renal)",e:"None",a:"active",p:25,t:5,note:"~25% unchanged in urine"}
 ],
 "Domperidone":[
@@ -1093,7 +1093,7 @@ const METAB = {
 ],
 "Hydroxychloroquine":[
   {n:"Desethyl-hydroxychloroquine (DHCQ)",e:"CYP2C8/3A4",a:"active",p:25,t:40,note:"Active metabolite; accumulates in tissues"},
-  {n:"Desethyl-chloroquine (DCQ)",e:"CYP2D6",a:"active",p:10,note:"Further dealkylation; retains activity"},
+  {n:"Desethyl-chloroquine (DCQ)",e:"CYP2D6",a:"active",p:10,note:"Further dealkylation; retains activity",evidenceRefs:["ev_hydroxychloroquine_cyp2d6_invitro"]},
   {n:"Bisdesethyl-chloroquine",e:"CYP3A4",a:"weak",p:5,t:40,note:"Terminal metabolite"},
   {n:"HCQ (unchanged, renal)",e:"None",a:"active",p:25,t:40,note:"Very long t½ (40 days); takes months to reach steady state"}
 ],
@@ -1124,15 +1124,15 @@ const METAB = {
 "Moclobemide":[
   {n:"Moclobemide Ro 12-8095 (ring hydroxylation)",e:"CYP2C19",a:"inactive",p:40,t:2,note:"Primary metabolite; CYP2C19 PMs have 3× higher parent levels"},
   {n:"Moclobemide N-oxide",e:"FMO",a:"inactive",p:20,note:"Flavin monooxygenase pathway"},
-  {n:"Morpholine ring-opened metabolite",e:"CYP2D6",a:"inactive",p:15,note:"Minor route"}
+  {n:"Morpholine ring-opened metabolite",e:"Oxidation",a:"inactive",p:15,note:"Minor route; not treated as a CYP2D6-specific relation in the current graph"}
 ],
 "Loperamide":[
   {n:"N-desmethyl-loperamide",e:"CYP3A4/2C8",a:"weak",p:45,t:11,note:"Primary metabolite via N-demethylation"},
   {n:"Loperamide (fecal, unchanged)",e:"None",a:"active",p:30,t:11,note:"Acts locally in gut; P-gp keeps it OUT of CNS (at normal doses)"},
-  {n:"Hydroxy-loperamide",e:"CYP2D6",a:"inactive",p:10,note:"Minor oxidation"}
+  {n:"Hydroxy-loperamide",e:"CYP3A4/2C8",a:"inactive",p:10,note:"Minor oxidation; not treated as a CYP2D6-specific relation in the current graph"}
 ],
 "Pseudoephedrine":[
-  {n:"Norpseudoephedrine (cathine)",e:"CYP2D6",a:"active",p:5,t:6,note:"N-demethylation; minor route"},
+  {n:"Norpseudoephedrine (cathine)",e:"N-demethylation",a:"active",p:5,t:6,note:"Minor route; pseudoephedrine is mostly excreted unchanged and not treated as a CYP2D6 genotype edge"},
   {n:"Pseudoephedrine (unchanged, renal)",e:"None",a:"active",p:70,t:6,note:"~70-90% excreted unchanged; pH-dependent renal clearance"}
 ],
 "Guaifenesin":[
