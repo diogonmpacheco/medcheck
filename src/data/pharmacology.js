@@ -60,10 +60,8 @@ function getTemporalWarnings() {
 // F=bioavailability, ka=absorption_rate/h, t½=elimination_halflife_h, Vd=L/kg
 const PK_PARAMS = {
   'paroxetine':     { F:0.50, ka:0.40, halfLife:21,   Vd:8.7,  dose_mg:20,
-    note:"CYP2D6 substrate. NONLINEAR PK: auto-inhibits own CYP2D6 clearance → disproportionate AUC increase at doses >30mg. Sex effect: females ~2× higher serum levels than males at same dose (Huang 2025). Therapeutic ranges: M 15–125 ng/mL, F 30–210 ng/mL. Asian patients: CYP2D6*10 prevalence means most East Asians are functional IMs (Ueda 2006).",
-    sexSpecificRange:{ M:[15,125], F:[30,210] },
+    note:"CYP2D6 substrate. NONLINEAR PK: auto-inhibits own CYP2D6 clearance → disproportionate AUC increase at doses >30mg. Genotype and dose history can materially change exposure.",
     nonlinear:true,
-    asianNote:"CYP2D6*10 at 41.8% allele freq in Japanese → treat most East Asian patients as IM for dosing",
     taperNote:"High-dose (≥40mg/day): taper 5mg/2-4 weeks. Standard 10mg/week guideline is too fast — ADDS risk (Huang 2025)" },
   'fluoxetine':     { F:0.72, ka:0.30, halfLife:53,   Vd:12.0, dose_mg:20,  note:"Active metabolite norfluoxetine t½=168h; very long washout" },
   'sertraline':     { F:0.44, ka:0.60, halfLife:26,   Vd:20.0, dose_mg:50,  note:"Modest CYP2D6 inhibitor" },
@@ -159,7 +157,7 @@ const PHENOTYPE_SCORES = {
 // computePhenotypeAccumulation(drugList) — sums all risk scores
 const WASHOUT_DAYS = {
   'norfluoxetine':  { days: 35, mechanism:'MBI_irreversible', note:"Fluoxetine/norfluoxetine CYP2D6: ~5 weeks for enzyme resynthesis" },
-  'paroxetine':     { days: 18, mechanism:'MBI_irreversible', note:"Paroxetine CYP2D6: ~2-3 weeks for full CYP2D6 recovery. HIGH-DOSE WARNING (≥40mg/day): nonlinear auto-inhibition kinetics mean washout is prolonged and discontinuation syndrome risk is high — taper at 5mg/2-4 weeks (not standard 10mg/week). Females will have ~2× higher starting concentrations (Huang 2025)." },
+  'paroxetine':     { days: 18, mechanism:'MBI_irreversible', note:"Paroxetine CYP2D6: ~2-3 weeks for full CYP2D6 recovery. HIGH-DOSE WARNING (≥40mg/day): nonlinear auto-inhibition kinetics mean washout is prolonged and discontinuation syndrome risk is high — taper at 5mg/2-4 weeks (not standard 10mg/week)." },
   'hydroxybupropion':{ days:5,  mechanism:'competitive',      note:"Bupropion CYP2D6: ~5 days competitive inhibition clearance" },
   'amiodarone':     { days: 90, mechanism:'MBI+accumulation', note:"Amiodarone: 40-day t½ + tissue redistribution; months for full washout" },
   'bergamottin':    { days: 3,  mechanism:'MBI_intestinal',   note:"Grapefruit CYP3A4: gut enzyme resynthesis 24-72h" },

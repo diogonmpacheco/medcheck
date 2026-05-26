@@ -17,6 +17,7 @@ function renderEvidenceExplorer() {
   const drugNames = activeStack.map(n => n.toLowerCase());
 
   for (const [sid, study] of Object.entries(STUDY_DB)) {
+    if (study.public === false) continue;
     const title = (study.title || '').toLowerCase();
     const source = (study.source || '').toLowerCase();
     const supports = (study.supports || []).join(' ').toLowerCase();

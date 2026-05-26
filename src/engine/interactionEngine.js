@@ -1,6 +1,69 @@
 // MedCheck — Core interaction finder, risk calculator, metabolite analysis
 // Phase A: modular source — concatenated by build.js
 
+function normalizeInteractionRisk(interaction) {
+  const evidenceRefs = [...new Set(interaction.evidenceRefs || [])];
+  const confidence = interaction.confidence ||
+    interaction.evidence?.confidence ||
+    (evidenceRefs.length ? "high" : "moderate");
+  const sourceEngine = interaction.sourceEngine ||
+    interaction.source ||
+    (interaction.type === "known-ddi" ? "curated" :
+      interaction.type === "transporter" ? "transporter" :
+      interaction.type === "combination" ? "combination" :
+      interaction.type === "pharmacodynamic" ? "phenotype" :
+      interaction.type && interaction.type.includes("metabolite") ? "graph" :
+      "enzyme");
+  const evidenceStatus = evidenceRefs.length
+    ? "explicit"
+    : (interaction.severity === "severe" ? "needs_review" : "rule_based");
+  return Object.assign({
+    id: [
+      interaction.drug1 || "unknown",
+      interaction.drug2 || "unknown",
+      interaction.type || "interaction",
+      interaction.enzyme || "pathway"
+    ].join("|").replace(/\s+/g, "_").toLowerCase(),
+    sourceEngine,
+    affectedPathway: interaction.enzyme || interaction.category || "unknown",
+    contributingDrugs: [interaction.drug1, interaction.drug2].filter(Boolean),
+    evidenceRefs,
+    evidenceStatus,
+    confidence,
+    clinicalAction: interaction.clinicalAction || interaction.management || null,
+  }, interaction, {
+    sourceEngine,
+    affectedPathway: interaction.enzyme || interaction.category || "unknown",
+    contributingDrugs: [interaction.drug1, interaction.drug2].filter(Boolean),
+    evidenceRefs,
+    evidenceStatus,
+    confidence,
+  });
+}
+
+function auditInteractionEvidence(interactions) {
+  const unknownEvidenceRefs = [];
+  const severeWithoutEvidenceRefs = [];
+  for (const ix of interactions) {
+    for (const ref of (ix.evidenceRefs || [])) {
+      if (!STUDY_DB[ref]) unknownEvidenceRefs.push({ interactionId: ix.id, ref });
+    }
+    if (ix.severity === "severe" && ix.evidenceStatus !== "explicit") {
+      severeWithoutEvidenceRefs.push({
+        interactionId: ix.id,
+        drugs: ix.contributingDrugs,
+        sourceEngine: ix.sourceEngine,
+        affectedPathway: ix.affectedPathway,
+      });
+    }
+  }
+  return {
+    unknownEvidenceRefs,
+    severeWithoutEvidenceRefs,
+    severeWithoutEvidenceRefCount: severeWithoutEvidenceRefs.length,
+  };
+}
+
 function findInteractions() {
   const interactions = [];
   const seen = new Set();
@@ -26,6 +89,7 @@ function findInteractions() {
           type: "known-ddi", strength: ddi.severity, effect: ddi.effect,
           severity: ddi.severity, mechanism: ddi.mechanism, source: "known",
           evidence: ddi.evidence,
+          evidenceRefs: ddi.evidenceRefs || [],
           enzymeCapacity: enzymeCapacityMap[ddi.category] || null,
         });
       }
@@ -508,7 +572,7 @@ function findInteractions() {
     return (sev[b.severity]||0) - (sev[a.severity]||0);
   });
 
-  return interactions;
+  return interactions.map(normalizeInteractionRisk);
 }
 
 function calcRisk() {
@@ -724,4 +788,3 @@ function analyzeMetabolites() {
 /* ================================================================
    UI FUNCTIONS
    ================================================================ */
-

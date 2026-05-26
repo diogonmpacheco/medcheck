@@ -95,14 +95,13 @@ const GENOTYPE_PHENOTYPE = Object.freeze({
 // Source: CPIC guidelines, FDA labels, clinical PK studies
 const GENOTYPE_EFFECTS = {
   CYP2D6: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:4.5, freq_pct:7,  note:"Enzyme absent. Codeine → no morphine (analgesia failure). Tamoxifen → reduced endoxifen (<30% of NM). TCAs accumulate dangerously. Caucasian frequency ~7%; near-zero in East Asians (CYP2D6*3/*4 alleles rare in Japanese/Chinese)." },
-    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:11, note:"Reduced activity (~2× AUC vs NM). CRITICAL: CYP2D6*10 allele at 41.8% frequency in Japanese and ~25-43% in Chinese makes functional IM the dominant phenotype in East Asian populations — not the rare exception. Ueda 2006: at 30mg paroxetine, IM patients had 2× higher levels than NM (150.9 vs 76.7 ng/mL·mg⁻¹·kg⁻¹)." },
-    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:75, note:"Normal metabolism (reference). Caucasian-centric frequency. In East Asians, true two-functional-allele NM status is less common due to CYP2D6*10 prevalence." },
-    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.3, freq_pct:7,  note:"Ultra-rapid metabolism. Reduced AUC. Codeine → excess morphine → respiratory depression. High ethnicity variation (African>European). Rare in East Asians." },
-    _asianNote:"CYP2D6*10 (C188T mutation → unstable enzyme) is the dominant reduced-function allele in East Asian populations. Japanese allele frequency: 41.8% (Ueda 2006). This means most Japanese patients are functional IMs even without a PM genotype. Standard Caucasian PM/EM binary misclassifies most East Asian patients.",
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:4.5, freq_pct:7,  note:"Enzyme absent. Codeine → no morphine (analgesia failure). Tamoxifen → reduced endoxifen (<30% of NM). TCAs may accumulate dangerously." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:11, note:"Reduced activity (~2× AUC vs NM). Allele frequencies vary substantially by ancestry; population-specific interpretation should use genotype report context." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:75, note:"Normal metabolism (reference)." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.3, freq_pct:7,  note:"Ultra-rapid metabolism. Reduced AUC. Codeine → excess morphine → respiratory depression. Frequency varies substantially by ancestry." },
   },
   CYP2C19: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.0, freq_pct:3, note:"Clopidogrel prodrug not activated → stent thrombosis risk. PPIs highly elevated. Ethnicity: 15-20% East Asian, 2-5% Caucasian." },
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.0, freq_pct:3, note:"Clopidogrel prodrug not activated → stent thrombosis risk. PPIs highly elevated. Frequency varies substantially by ancestry." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.6, freq_pct:26,note:"Partial clopidogrel activation; intermediate platelet inhibition." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:65,note:"Normal activation of prodrugs (clopidogrel, voriconazole)." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:6, note:"Ultra-rapid; reduced PPI efficacy; possible increased clopidogrel bleeding risk." },

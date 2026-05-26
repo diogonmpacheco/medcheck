@@ -110,10 +110,31 @@ const metaboliteProvenance = window.eval(`(() => {
 assert(metaboliteProvenance.missing.length === 0, `High-impact metabolite provenance gaps: ${metaboliteProvenance.missing.join('; ')}`);
 assert(metaboliteProvenance.unknownRefs.length === 0, `Unknown metabolite evidence refs: ${metaboliteProvenance.unknownRefs.join(', ')}`);
 
+const knownDdiEvidenceAudit = window.eval(`(() => {
+  const unknownRefs = [];
+  const missingRefs = [];
+  for (const ddi of KNOWN_DDI) {
+    if (!ddi.evidenceRefs || ddi.evidenceRefs.length === 0) {
+      missingRefs.push(ddi.drug1 + '+' + ddi.drug2);
+      continue;
+    }
+    for (const ref of ddi.evidenceRefs) {
+      if (!STUDY_DB[ref]) unknownRefs.push(ref);
+    }
+  }
+  return { missingRefs, unknownRefs:[...new Set(unknownRefs)] };
+})()`);
+assert(knownDdiEvidenceAudit.unknownRefs.length === 0, `Unknown KNOWN_DDI evidence refs: ${knownDdiEvidenceAudit.unknownRefs.join(', ')}`);
+
 loadCase(window, ['Paroxetine', 'Codeine']);
+const genotypeText = window.document.getElementById('genotypeBody').textContent;
 assert(
-  window.document.getElementById('genotypeBody').textContent.includes('East Asian CYP2D6 Note'),
-  'CYP2D6 population note should appear when CYP2D6 is relevant'
+  genotypeText.includes('CYP2D6'),
+  'CYP2D6 genotype selector should appear when CYP2D6 is relevant'
+);
+assert(
+  !genotypeText.includes('East Asian CYP2D6 Note') && !genotypeText.includes('CYP2D6*10 awareness'),
+  'CYP2D6 population note should remain hidden pending systematic population model'
 );
 assert(hasInteraction(window, {
   drug1: 'Paroxetine',
@@ -130,6 +151,34 @@ assert(
   'CYP2D6 population note should not appear for CYP2D6-unrelated stacks'
 );
 
+loadCase(window, ['Potatoes (Solanine/Solanidine)']);
+const potatoGraph = window.eval(`(() => {
+  const graph = getInteractionGraph();
+  const from = getDrugGraphId('Potatoes (Solanine/Solanidine)');
+  return {
+    from,
+    hasDrug: !!graph.actors[from],
+    hasSolanidineEdge: graph.edges.some(e => e.from === from && e.to === 'solanidine')
+  };
+})()`);
+assert(potatoGraph.hasDrug, 'Potatoes should exist as a graph actor');
+assert(potatoGraph.hasSolanidineEdge, 'Potatoes should map to solanidine in graph');
+assert(
+  window.document.getElementById('genotypeBody').textContent.includes('CYP2D6'),
+  'Potatoes should make CYP2D6 genotype context relevant'
+);
+const potatoGenotypeText = window.document.getElementById('genotypeBody').textContent;
+assert(
+  potatoGenotypeText.includes('solanidine'),
+  'Potatoes genotype evidence should include solanidine evidence'
+);
+assert(
+  !potatoGenotypeText.includes('Paxil') &&
+  !potatoGenotypeText.includes('Prozac') &&
+  !potatoGenotypeText.includes('Wellbutrin'),
+  'Potatoes genotype evidence should not show unrelated CYP2D6 drug studies'
+);
+
 loadCase(window, ['Warfarin', 'Ibuprofen']);
 assert(hasInteraction(window, {
   drug1: 'Warfarin',
@@ -137,6 +186,35 @@ assert(hasInteraction(window, {
   severity: 'severe',
   text: 'bleeding',
 }), 'Warfarin + Ibuprofen should flag severe bleeding risk');
+const warfarinIbuprofenIx = interactions(window).find((i) =>
+  (i.drug1 === 'Warfarin' && i.drug2 === 'Ibuprofen') ||
+  (i.drug1 === 'Ibuprofen' && i.drug2 === 'Warfarin')
+);
+assert(warfarinIbuprofenIx.evidenceRefs.includes('ev_warfarin_nsaid_bleed'), 'Warfarin + Ibuprofen should retain explicit evidenceRefs');
+assert(warfarinIbuprofenIx.evidenceStatus === 'explicit', 'Warfarin + Ibuprofen should be marked explicit evidence');
+
+const interactionSchemaAudit = window.eval(`(() => {
+  const interactions = findInteractions();
+  const missingFields = interactions.filter(i =>
+    !i.id ||
+    !i.sourceEngine ||
+    !i.affectedPathway ||
+    !Array.isArray(i.contributingDrugs) ||
+    !Array.isArray(i.evidenceRefs) ||
+    !i.evidenceStatus ||
+    !i.confidence
+  ).map(i => i.drug1 + '+' + i.drug2 + ':' + i.type);
+  const audit = auditInteractionEvidence(interactions);
+  return {
+    missingFields,
+    unknownEvidenceRefs: audit.unknownEvidenceRefs,
+    severeWithoutEvidenceRefCount: audit.severeWithoutEvidenceRefCount
+  };
+})()`);
+assert(interactionSchemaAudit.missingFields.length === 0, `Interactions missing normalized schema fields: ${interactionSchemaAudit.missingFields.join(', ')}`);
+assert(interactionSchemaAudit.unknownEvidenceRefs.length === 0, `Unknown interaction evidence refs: ${JSON.stringify(interactionSchemaAudit.unknownEvidenceRefs)}`);
+assert(Number.isInteger(interactionSchemaAudit.severeWithoutEvidenceRefCount), 'Interaction evidence audit should expose severeWithoutEvidenceRefCount');
+
 
 loadCase(window, ['Grapefruit Juice', 'Simvastatin']);
 assert(hasInteraction(window, {

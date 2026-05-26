@@ -51,15 +51,6 @@ function renderGenotypePanel() {
   }
   html += '</div>';
 
-  // Asian CYP2D6*10 population note — show if CYP2D6 is relevant
-  if (showEnzymes.includes('CYP2D6')) {
-    const asianNote = GENOTYPE_EFFECTS.CYP2D6._asianNote;
-    html += `<div style="padding:8px 10px;border-radius:6px;background:var(--amberBg);border:1px solid var(--amber);font-size:11px;margin-bottom:10px">
-      <strong>🌏 East Asian CYP2D6 Note:</strong> ${asianNote}
-      <span style="display:block;margin-top:4px;color:var(--text2)">Source: Ueda et al. 2006 (n=55 Japanese patients) · <a href="https://doi.org/10.1016/j.pnpbp.2005.11.007" target="_blank" style="color:var(--accent)">doi:10.1016/j.pnpbp.2005.11.007</a></span>
-    </div>`;
-  }
-
   // Effect cards for current stack
   for (const drugName of activeStack) {
     const drug = DRUG_DB.find(d => d.name === drugName);
@@ -82,10 +73,8 @@ function renderGenotypePanel() {
       </div>`;
     }
   }
-  // CPIC evidence for current genotype
-  const genoStudies = Object.values(STUDY_DB).filter(s =>
-    (s.phenotypes||[]).some(p => Object.values(activeGenotype).includes(p))
-  );
+  // CPIC evidence for current genotype, restricted to the active stack.
+  const genoStudies = getStackRelevantGenotypeStudies();
   if (genoStudies.length) {
     html += `<div style="font-size:11px;font-weight:700;color:var(--text2);margin:10px 0 5px;text-transform:uppercase;letter-spacing:0.5px">Relevant Studies for Selected Genotypes</div>`;
     for (const s of genoStudies.slice(0,5)) {
@@ -97,6 +86,82 @@ function renderGenotypePanel() {
     }
   }
   el.innerHTML = html;
+}
+
+function normalizeEvidenceToken(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function addEvidenceTokens(tokens, value) {
+  const normalized = normalizeEvidenceToken(value);
+  if (!normalized) return;
+  tokens.add(normalized);
+  for (const part of normalized.split(/\s+/)) {
+    if (part.length >= 4 && !part.startsWith('cyp')) tokens.add(part);
+  }
+}
+
+function getStackEvidenceContext() {
+  const tokens = new Set();
+  const evidenceRefs = new Set();
+  const graph = getInteractionGraph();
+
+  for (const drugName of activeStack) {
+    const drug = getDrug(drugName);
+    const parentId = getDrugGraphId(drugName);
+    addEvidenceTokens(tokens, drugName);
+    addEvidenceTokens(tokens, parentId);
+    for (const brand of (drug?.brandNames || [])) addEvidenceTokens(tokens, brand);
+    for (const ref of (drug?.evidenceRefs || [])) evidenceRefs.add(ref);
+
+    for (const met of (METAB[drugName] || [])) {
+      const metId = getMetaboliteGraphId(met.n);
+      addEvidenceTokens(tokens, met.n);
+      addEvidenceTokens(tokens, metId);
+      for (const ref of (met.evidenceRefs || [])) evidenceRefs.add(ref);
+    }
+
+    for (const edge of graph.edges.filter(e => e.from === parentId)) {
+      const target = graph.actors[edge.to];
+      if (target?.type === ACTOR_TYPE.METABOLITE) {
+        addEvidenceTokens(tokens, target.id);
+        addEvidenceTokens(tokens, target.name);
+        for (const ref of (target.evidenceRefs || [])) evidenceRefs.add(ref);
+        for (const ref of (edge.props?.evidenceRefs || [])) evidenceRefs.add(ref);
+      }
+    }
+  }
+
+  return { tokens:[...tokens], evidenceRefs };
+}
+
+function studyMatchesStackContext(study, context) {
+  if (context.evidenceRefs.has(study.id)) return true;
+  const searchText = normalizeEvidenceToken([
+    study.id,
+    study.title,
+    study.source,
+    study.journal,
+    study.studyDesign,
+    (study.supports || []).join(' '),
+    (study.quantifiedEffects && JSON.stringify(study.quantifiedEffects)) || ''
+  ].join(' '));
+  return context.tokens.some(token => searchText.includes(token));
+}
+
+function getStackRelevantGenotypeStudies() {
+  const selectedPhenotypes = Object.values(activeGenotype);
+  const context = getStackEvidenceContext();
+  return Object.values(STUDY_DB)
+    .filter(s =>
+      s.public !== false &&
+      (s.phenotypes || []).some(p => selectedPhenotypes.includes(p)) &&
+      studyMatchesStackContext(s, context)
+    )
+    .sort((a,b) => (EVIDENCE_WEIGHT[b.type]||0) - (EVIDENCE_WEIGHT[a.type]||0));
 }
 
 function setGenotype(enzyme, phenotype) {

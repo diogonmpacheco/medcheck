@@ -545,6 +545,7 @@ const STUDY_DB = {
   // This makes paroxetine at higher doses substantially more unpredictable in Asian patients.
   "ev_paroxetine_cyp2d6_japanese": {
     id:"ev_paroxetine_cyp2d6_japanese",
+    public:false,
     type:EVIDENCE_TIER.OBSERVATIONAL,
     title:"The impact of CYP2D6 genotypes on the plasma concentration of paroxetine in Japanese psychiatric patients",
     year:2006, source:"Progress in Neuro-Psychopharmacology and Biological Psychiatry",
@@ -589,6 +590,7 @@ const STUDY_DB = {
   // 4. High-dose tapering (60mg/day) must be more gradual than standard guidelines suggest
   "ev_paroxetine_ppk_sex_chinese": {
     id:"ev_paroxetine_ppk_sex_chinese",
+    public:false,
     type:EVIDENCE_TIER.CLINICAL_PK,
     title:"Defining the therapeutic reference range and optimizing a high-dose discontinuation strategy for Paroxetine based on TDM and population pharmacokinetics",
     year:2025, source:"Journal of Pharmaceutical Sciences",

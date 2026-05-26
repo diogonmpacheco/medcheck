@@ -137,6 +137,10 @@ const METAB = {
   {n:"CBD-glucuronide",e:"UGT",a:"inactive",p:15},
   {n:"4'-Hydroxy-CBD",e:"CYP3A4",a:"inactive",p:10}
 ],
+"Potatoes (Solanine/Solanidine)":[
+  {n:"Solanidine (α-solanine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate. Clinical DDI burden remains theoretical.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001"]},
+  {n:"α-Solanine / α-Chaconine",e:"Dietary glycoalkaloids",a:"active",p:40,note:"Potato glycoalkaloids; cholinesterase inhibition shown in vitro.",evidenceRefs:["ev_solanidine_ache_griffin1995"]}
+],
 
 // ── DEPRESSANTS ──
 "Alcohol (Ethanol)":[
@@ -1362,6 +1366,8 @@ function isMetaboliteActive(metabolite) {
 }
 
 const METABOLITE_ACTOR_ALIASES = {
+  "solanidine-a-solanine-aglycone": "solanidine",
+  "solanidine-solanine-aglycone": "solanidine",
   "hydroxybupropion-r-r-oh-bupropion": "hydroxybupropion",
   "o-desmethyltramadol-m1": "o-desmethyltramadol",
   "endoxifen-4-oh-n-desmethyltamoxifen": "endoxifen",
@@ -1437,8 +1443,8 @@ const METABOLITE_ACTORS = {
     inh:[],
     evidenceRefs:["ev_tamoxifen_cyp2d6_cpic","ev_tamoxifen_cyp2d6_controversy","ev_paroxetine_cyp2d6_japanese"],
     contradictoryEvidence:true,
-    contradictoryNote:"CPIC guideline supports CYP2D6 genotype-guided tamoxifen dosing; Province 2014 meta-analysis did not find statistically significant clinical outcome difference. Scientific debate ongoing. ADDITIONAL NOTE (Ueda 2006): In East Asian patients on tamoxifen, CYP2D6*10 prevalence (41.8% allele freq in Japanese) means most are functional IMs — endoxifen production is partially impaired even in non-PM patients. Standard Caucasian genotype thresholds will miss this.",
-    note:"100× more potent than tamoxifen; CYP2D6 PM → endoxifen ↓75% → breast cancer recurrence ↑. In East Asian patients, CYP2D6*10 (IM-level function) reduces endoxifen formation even in patients not classified as PM by Caucasian criteria."
+    contradictoryNote:"CPIC guideline supports CYP2D6 genotype-guided tamoxifen dosing; Province 2014 meta-analysis did not find statistically significant clinical outcome difference. Scientific debate ongoing. Reduced-function CYP2D6 alleles can partially impair endoxifen production even outside classic PM status.",
+    note:"100× more potent than tamoxifen; CYP2D6 PM → endoxifen ↓75% → breast cancer recurrence ↑. Reduced-function CYP2D6 alleles can lower endoxifen formation."
   },
   "hydromorphone": {
     id:"hydromorphone", type:ACTOR_TYPE.METABOLITE,

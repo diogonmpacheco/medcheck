@@ -168,11 +168,6 @@ function renderPKSimulation() {
       ${svg}
       ${metricsHtml}
       <div class="pk-note">${params.note.substring(0,140)}${params.note.length>140?'…':''}</div>
-      ${params.sexSpecificRange ? `<div class="pk-sex-range">
-        <strong>Reference ranges (Huang 2025):</strong>
-        <span class="pk-male">♂ ${params.sexSpecificRange.M[0]}–${params.sexSpecificRange.M[1]} ng/mL</span> ·
-        <span class="pk-female">♀ ${params.sexSpecificRange.F[0]}–${params.sexSpecificRange.F[1]} ng/mL</span>
-      </div>` : ''}
       ${params.nonlinear ? `<div class="pk-warning">⚠ Nonlinear auto-inhibition kinetics — AUC increases disproportionately above 30mg/day. Steady-state model underestimates at higher doses.</div>` : ''}
       ${params.taperNote ? `<div class="pk-taper">🔻 ${params.taperNote}</div>` : ''}
     </div>`;

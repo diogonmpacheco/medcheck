@@ -46,13 +46,12 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ### Genotype-Stratified Evidence
 - **PM / IM / NM / UM selectors** per enzyme (CYP2D6, CYP2C19, CYP2C9)
 - AUC fold-change multipliers and population frequencies from CPIC guidelines
-- **East Asian CYP2D6\*10 awareness** — CYP2D6\*10 is at 41.8% allele frequency in Japanese patients (Ueda 2006), making most East Asian patients functional intermediate metabolizers even without a PM genotype; a persistent warning surfaces whenever CYP2D6 is in the active stack
+- Population-specific interpretation is deferred until ancestry examples are modeled consistently across multiple drugs and enzymes
 - Genotype-adjusted concentration curves in the PK Simulation panel
 
 ### PK Simulation
 - One-compartment oral absorption model for 15 drugs (paroxetine, fluoxetine, warfarin, clopidogrel, digoxin, amiodarone, methadone, and more)
 - SVG concentration-time curves with Cmax markers and genotype-adjusted AUC scaling
-- **Sex-specific reference ranges for paroxetine** — males 15–125 ng/mL, females 30–210 ng/mL (Huang et al. 2025, n=360 Chinese patients, PPK model)
 - Nonlinear kinetics warning and high-dose tapering recommendation for paroxetine (5mg/2-4 weeks vs standard 10mg/week)
 
 ### Receptor Occupancy & Syndrome Detection (Phase C)
