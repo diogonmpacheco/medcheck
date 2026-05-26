@@ -1,5 +1,215 @@
 # MedCheck Changelog
 
+## v3.4.0 — 2026-05-26
+
+### Phase F: Weighted Propagating Confidence & Convergence Detection
+
+**New engine additions in `src/engine/pathwayEngine.js`:**
+
+**`EDGE_TYPE_BASE_WEIGHT`** — structural reliability weight per edge type, independent of evidence tier. Captures mechanistic certainty: `SUBSTRATE_OF=0.92` (biochemical fact), `INHIBITS=0.85`, `METABOLIZED_TO=0.88`, `PRODUCES=0.68` (probabilistic phenotype inference). This is a second layer on top of `computeEdgeConfidence()` which handles study-tier weighting.
+
+**`PHENOTYPE_SEVERITY_WEIGHT`** — clinical urgency multiplier per phenotype node. Applied during impact scoring to prioritize life-threatening outcomes: `serotonin-syndrome-risk=1.6`, `qt-prolongation-risk=1.5`, `respiratory-depression-risk=1.5`, `seizure-risk=1.4`, `bleeding-risk=1.3`. Efficacy loss (`analgesia_phenotype=0.85`) ranks below harm pathways at equal confidence.
+
+**`computeHopConfidences(eff, graph)`** — re-traces a traversal path and returns per-hop confidence objects: `{edgeConf, cumConf, fromName, toName, edgeType}` for each step. Used by the cascade renderer to display decay at every hop, not just the final terminal confidence.
+
+**`rankPathsByImpact(effects)`** — scores each path as:
+```
+impactScore = confidence × severityWeight × geometricMean(edgeBaseWeights)
+```
+Geometric mean rewards short reliable paths over long uncertain ones. Validated:
+- 80% conf → serotonin-syndrome-risk (severity 1.6) → impact 97
+- 80% conf → analgesia_phenotype (severity 0.85) → impact 63
+
+**`traverseWithConvergence(maxDepth)`** — runs `traverseEffects()` from all active source nodes (drugs + immediate metabolites), groups results by terminal node, and identifies **convergence points**: ≥2 independent drug sources reaching the same phenotype. Combined probability uses: `P = 1 − Π(1 − P_i)` (independent path OR formula). Returns `{bySource, convergencePoints, allEffects}`.
+
+**`buildClinicalSummary()`** — single entry point for the cascade render layer. Integrates Phase B enzyme capacities, convergence detection, per-drug impact-ranked paths, and high-risk path extraction (confidence > 40% + severity ≥ 1.3). Returns `{drugSummaries, convergencePoints, allEffects, highRiskPaths, enzymeCapacities}`.
+
+**Render update (`src/ui/renderCascade.js`):**
+- **Section 1 — Convergence Alerts**: prominently shows multi-drug convergence to same phenotype with combined confidence, contributing drug list, and impact score
+- **Section 2 — Per-drug paths**: grouped by drug, ranked by impact score, showing per-hop confidence badges (green ≥80%, amber 60–79%, red <60%)
+- **Impact score badge** on each path card
+- **Direction badge**: ↑ elevated / ↓ reduced concentration
+- New CSS: `cs-convergence-card`, `cs-conv-*`, `cs-hop-conf`, `cs-impact-score`, `cs-dir-badge`, `cs-drug-group`, `cs-section-header`
+- Graph stats footer now shows convergence point count
+
+---
+
+## v3.3.0 — 2026-05-26
+
+### Phase E: Repeated-Dosing & Steady-State PK Simulator
+
+**New engine functions in `src/engine/pkEngine.js`:**
+
+**`PK_DOSE_INTERVALS`** — clinical dosing interval lookup table (hours) for all 15 PK_PARAMS drugs.
+
+**`pkGetTau(drugName)`** — resolves dosing interval for a drug by name.
+
+**`pkSteadyStateCurve(params, tau, nPoints)`** — exact Css(t) within one dosing interval using the superposition formula:
+```
+Css(t) = A·(ka/(ka−ke)) · [exp(−ke·t)/(1−exp(−ke·τ)) − exp(−ka·t)/(1−exp(−ka·τ))]
+```
+Degenerate case (ka ≈ ke) handled separately.
+
+**`pkRepeatedDoseCurve(params, tau, nDoses, nPoints)`** — superposition of N single doses. Each point at global time T is the sum of all prior single-dose contributions: `C(T) = Σ C_single(T − n·τ)`.
+
+**`pkSteadyStateMetrics(params, tau)`** — returns `{ cmax_ss, ctrough_ss, accum, tmax_ss, t_to_ss_h, t_to_ss_days }` where:
+- `accum = R = 1/(1 − e^(−ke·τ))` — accumulation factor
+- `ctrough_ss` — trough concentration at end of interval (just before next dose)
+- `t_to_ss_days` — ~5 half-lives, the time to reach 97% of true steady state
+
+Validation results:
+```
+Paroxetine:   R=2.07×, SS in 4.4 days  (t½=21h, τ=20h)
+Fluoxetine:   R=3.7×,  SS in 11 days   (t½=53h, τ=24h)
+Amiodarone:   R=58×,   SS in 200 days  (t½=960h, τ=24h — notorious tissue accumulator)
+```
+
+**`pkInteractionAdjustedParams(params, fold)`** — returns modified params with `halfLife × fold`. Returns `null` if fold ≤ 1.1 (no meaningful adjustment). Half-life extends proportionally to AUC increase (same Vd, reduced clearance model).
+
+**`pkGetInteractionFold(drugName)`** — looks up `calcFold()` for the drug's primary CYP enzyme given the active stack. Returns fold for use in adjusted-curve display.
+
+**Render update (`src/ui/renderPK.js`):**
+- Displays **5-dose repeated-dosing buildup curve** instead of single-dose curve
+- **Dashed Cmax_ss and Ctrough reference lines** overlaid on the SVG
+- **Interaction-adjusted curve** shown in amber when a CYP inhibitor is active (with fold badge)
+- **Metrics row**: accumulation factor R, SS Cmax, SS Ctrough, time to steady state
+- Updated CSS: `pk-metrics`, `pk-int-badge`, `pk-int-metric`, `pk-note`, `pk-warning`, `pk-taper`, `pk-sex-range`, `pk-disclaimer`
+
+**Build bugfix in `build.js`:** Switched template injection from `template.replace(placeholder, string)` to `template.replace(placeholder, () => string)`. The string form interprets `$&` in the replacement as "insert matched text", which corrupted `highlight()`'s `"\\$&"` regex call.
+
+---
+
+## v3.2.0 — 2026-05-26
+
+### Phase B: Deterministic Enzyme Capacity Model
+
+**New engine: `computeEnzymeCapacity(enzyme, stack)`**
+
+Replaces the previous per-substrate fold-lookup with a full global enzyme state model. Returns a structured capacity object for every enzyme in the active stack.
+
+Formula: `capacity_pct = 100 × genotypeFactor × Π(1/INH_MULT[inhibitor]) × Π(1/IND_MULT[inducer]) × (1 − substrateBurden)`
+
+Fields returned: `enzyme`, `capacity_pct`, `genotype_factor`, `genotype_phenotype`, `inhibitors[]` (per-drug, per-mechanism breakdown), `inducers[]`, `substrate_burden`, `affected_substrates[]`, `limiting_factor` (plain-English), `clinical_note`, `confidence`.
+
+Example outputs:
+- CYP2D6 PM + Paroxetine + Fluoxetine → **1% capacity** (near-zero; all substrates at extreme risk)
+- Rifampin → CYP3A4 **667% capacity** (strong induction; substrates under-dosed)
+- Digoxin alone → CYP2D6 **100%** (P-gp substrate only; correct no CYP effect)
+
+**New engine: `computeAllEnzymeCapacities(stack)`**
+
+Aggregates all enzymes touched by the active stack, sorted by severity (most impaired first). Feeds into the Enzyme Burden UI section.
+
+**`findInteractions()` updated**
+
+Every interaction object now carries `enzymeCapacity: EnzymeCapacity | null` — the full capacity state for its affected enzyme. UI can show "CYP2D6 at 1% capacity (PM + Paroxetine MBI + Fluoxetine)" alongside the fold number.
+
+**Verified by 9-test suite** (TC1–TC6: Paroxetine NM, PM+double-inhibitor, Rifampin induction, Digoxin CYP isolation, multi-enzyme stack sort, interaction annotation)
+
+---
+
+### Phase C: Receptor Occupancy Aggregation
+
+**New data: `RECEPTOR_SCORES`** — per-drug receptor affinity scores (0–3 scale) for 11 receptors across ~55 drugs:
+- SERT, NET, DAT (monoamine transporters)
+- H1, M1, alpha1, D2 (receptor targets)
+- hERG (cardiac K+ channel)
+- GABA, muOp, MAO (synaptic/oxidase)
+
+Sources: receptor binding Ki/IC50 data, clinical toxidrome criteria, FDA labels, PharmGKB profiles.
+
+**New data: `SYNDROME_RULES`** — 8 clinical syndrome definitions with mathematical thresholds:
+1. Serotonin Syndrome (SERT ≥3 + any MAO, or SERT ≥4)
+2. NE Toxicity / Hypertensive Crisis (NET ≥4 or NET+MAO ≥2)
+3. QTc Prolongation / TdP (hERG ≥3)
+4. Anticholinergic Syndrome / Delirium (M1 ≥4)
+5. CNS / Respiratory Depression (GABA + muOp ≥4)
+6. Orthostatic Hypotension / Falls (alpha1 ≥4)
+7. Excessive Sedation (H1 + GABA ≥5)
+8. Dopaminergic Excess / Agitation (DAT ≥3 + MAO ≥1)
+
+**New engine: `computeReceptorOccupancy(drugNames)`**
+
+Returns cumulative burden across all receptors, per-drug breakdown, active syndromes with driving drugs named, receptor leaders (which drugs dominate each receptor), and plain-English summary with clinical action notes (Hunter Criteria for serotonin syndrome, Beers for anticholinergic, naloxone recommendation for opioid+benzo).
+
+---
+
+### Phase D: Evidence Normalization — Full Provenance Model
+
+Severity may no longer be displayed without evidence provenance. All three new functions enforce this contract.
+
+**New function: `normalizeEvidence(interaction, studies)`**
+
+Produces a full `EvidenceProvenance` object from any interaction + its STUDY_DB entries:
+- `sourceType` — best available study type
+- `studyCount` — total supporting studies
+- `confidence` — calibrated 0–1 weight (EVIDENCE_WEIGHT-based, with corroboration bonus)
+- `reproducibility` — `'established'|'replicated'|'single'|'conflicting'`
+- `humanData` — true if any clinical study supports it
+- `genotypeSpecific` — true if evidence stratified by genotype
+- `lastReviewed` — most recent supporting study year
+- `contradictions` — directly contradicting study IDs
+- `provenance_note` — human-readable summary string
+
+**New function: `getEvidenceSummary(drug1, drug2, enzyme)`**
+
+Returns a display-ready provenance string, e.g.:
+`"3 studies (RCT, CLINICAL PK, IN VITRO) · AUC ×4.8 · Confidence 85% · Genotype-stratified · PMID:14730412"`
+
+**New function: `assertEvidencedSeverity(severity, drug1, drug2, enzyme)`**
+
+Safety guard: automatically downgrades `'severe'` → `'moderate'` if confidence < 30% and emits a console warning with full provenance. Prevents false-confidence severity inflation.
+
+---
+
+## v3.1.0 — 2026-05-26
+
+### Phase A: Modularization & Build Infrastructure
+
+The 10,299-line monolith has been split into a structured source tree with a reproducible build pipeline. The runtime distributable (`dist/index.html`) remains a single self-contained HTML file with no server dependency.
+
+**Build toolchain**
+- Installed esbuild 0.28.0 as dev dependency; added `npm run build` / `npm run build:min` scripts
+- `build.js` — Node.js build script that concatenates 27 source modules in dependency order and injects the bundle into `src/index.template.html`, producing `dist/index.html`
+- All 133 top-level identifiers verified present; syntax checked clean via `node --check`
+
+**Source structure (`src/`)**
+
+*Data layer (no cross-module deps within layer):*
+- `data/constants.js` — ACTOR_TYPE, EDGE_TYPE, TISSUE_COMPARTMENT, EVIDENCE_TIER, EVIDENCE_WEIGHT, GENOTYPE_PHENOTYPE, INH_MULT, IND_MULT
+- `data/drugs.js` — DRUG_DB (247 drugs), MEDCHECK_VERSION, BRAND_NAMES, DOSE_TIERS, getDrug
+- `data/enzymes.js` — GENE_ENZYMES, PHARMGKB_EVIDENCE, ENZYME_ACTORS, CV_ESTIMATES, legacy genetics functions
+- `data/metabolites.js` — METAB, SIDER_PD, METABOLITE_ACTORS (first-class graph entities)
+- `data/transporters.js` — TRANSPORTER_DDI, TRANSPORTER_ACTORS
+- `data/actors.js` — FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS
+- `data/pharmacology.js` — TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
+- `data/evidence.js` — STUDY_DB (40+ entries), INGESTION_QUEUE, evidence ingestion pipeline
+- `data/interactions.js` — PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI (188 pairs)
+
+*Engine layer:*
+- `engine/evidenceEngine.js` — evidenceConfidence, computeEdgeConfidence, resolveInteractionEvidence, studyCardHTML
+- `engine/pathwayEngine.js` — buildInteractionGraph, traverseEffects, findInteractionChains, temporal profile accessors
+- `engine/enzymeEngine.js` — getAllInhibitions, calcFold, computeGutExtraction, foldChangeBands
+- `engine/pkEngine.js` — pkConcentration, pkCurve, genotypeAdjustedPK
+- `engine/phenotypeEngine.js` — computePhenotypeAccumulation, phenotypeRiskLevel, computeWashoutCalendar
+- `engine/scoringEngine.js` — computeAdverseBurden (ACB + Beers + fall risk)
+- `engine/interactionEngine.js` — findInteractions, calcRisk, analyzeMetabolites
+
+*UI layer:*
+- `ui/renderCore.js` — addDrug/removeDrug, renderAll, renderMedList, search/browse
+- `ui/renderInteractions.js` — interaction cards, fold bars, matrix, timing
+- `ui/renderEvidence.js` — Evidence Explorer panel
+- `ui/renderCascade.js` — Effect Cascade visualization
+- `ui/renderAlternatives.js` — alternatives, genetics, combinations, transporters, metabolites
+- `ui/renderGenotype.js` — Genotype panel (PM/IM/NM/UM selectors)
+- `ui/renderPhenotype.js` — Phenotype Risk Accumulation panel
+- `ui/renderPK.js` — PK Simulation panel
+- `ui/renderGraph.js` — D3.js Interaction Network Graph
+- `ui/renderBurden.js` — Washout Calendar + Adverse Burden panels
+- `main.js` — bootstrap (event listeners, renderGenetics, renderAll, version display)
+
+---
+
 ## v3.0.0 — 2026-05-23
 
 ### Phase 5: Engine Improvements — 10 new analytical systems

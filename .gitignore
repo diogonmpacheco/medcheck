@@ -1,0 +1,11 @@
+node_modules/
+node_modules
+dist/
+.tmp/
+.DS_Store
+*.log
+npm-debug.log*
+
+# Scratch files
+diogo.html
+diogo_new_base.html

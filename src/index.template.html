@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>MedCheck — Drug Interaction Checker</title>
+<meta name="description" content="Free, private drug interaction checker. Check how your medications, supplements, and herbs interact. No data collected — runs entirely in your browser.">
+<meta name="theme-color" content="#e85d26">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MedCheck">
+<!-- Open Graph (WhatsApp, iMessage, social previews) -->
+<meta property="og:title" content="MedCheck — Drug Interaction Checker">
+<meta property="og:description" content="Check how your medications interact. Free, private, no data collected. Works with Rx, OTC, supplements, and herbs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diogonmpacheco.github.io/medcheck/">
+<meta property="og:image" content="https://diogonmpacheco.github.io/medcheck/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MedCheck — Drug Interaction Checker">
+<meta name="twitter:description" content="Check how your medications interact. Free, private, no data collected.">
+<meta name="twitter:image" content="https://diogonmpacheco.github.io/medcheck/og-image.png">
+<!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json">
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fef7f0;--card:#fff;--card2:#fefcf9;--text:#3d2c1e;--text2:#8b7355;
+  --border:#f0e4d4;--accent:#e85d26;--accent2:#f97316;--accentBg:#fff7ed;
+  --red:#dc2626;--redBg:#fef2f2;--amber:#d97706;--amberBg:#fffbeb;
+  --green:#16a34a;--greenBg:#f0fdf4;--blue:#0284c7;--blueBg:#f0f9ff;
+  --purple:#9333ea;--purpleBg:#faf5ff;
+  --shadow:0 1px 3px rgba(0,0,0,0.08);--shadow2:0 4px 12px rgba(0,0,0,0.12);
+  --radius:14px;--font:'Segoe UI',system-ui,-apple-system,sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--accent)}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#e85d26,#f97316);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(232,93,38,0.3);display:flex;align-items:center;justify-content:center;gap:12px}
+.header h1{font-size:20px;font-weight:700;letter-spacing:-0.5px}
+.header p{font-size:12px;opacity:0.85}
+
+/* SEARCH */
+.search-wrap{max-width:700px;margin:12px auto 0;padding:0 16px;position:relative;z-index:90}
+.search-box{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow2);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.search-box svg{color:var(--text2);flex-shrink:0}
+.search-box input{flex:1;border:none;outline:none;font-size:16px;background:transparent;color:var(--text);font-family:var(--font)}
+.search-box input::placeholder{color:var(--text2)}
+.search-results{position:absolute;top:100%;left:16px;right:16px;background:var(--card);border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow2);max-height:360px;overflow-y:auto;display:none;z-index:200}
+.search-results.show{display:block}
+.sr-item{padding:12px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);transition:background 0.15s}
+.sr-item:hover{background:var(--accentBg)}
+.sr-item:last-child{border-bottom:none}
+.sr-name{font-weight:600;font-size:15px}
+.sr-class{font-size:12px;color:var(--text2);background:var(--card2);padding:2px 8px;border-radius:10px}
+.sr-added{color:var(--green);font-size:12px;font-weight:600}
+.sr-cat{font-size:11px;font-weight:700;color:var(--accent);padding:8px 20px;background:var(--accentBg);text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:1}
+
+/* MODE TOGGLE */
+.mode-toggle{display:flex;gap:8px;max-width:700px;margin:16px auto 0;padding:0 16px}
+.mode-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
+.mode-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
+.mode-btn:hover{border-color:var(--accent2)}
+
+/* BROWSE GRID */
+.browse-wrap{max-width:700px;margin:12px auto 0;padding:0 16px;display:none}
+.browse-wrap.show{display:block}
+.browse-cat{margin-bottom:12px}
+.browse-cat-title{font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;padding:8px 12px;background:var(--card);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
+.browse-cat-title:hover{background:var(--accentBg)}
+.browse-cat-title .arrow{transition:transform 0.2s}
+.browse-cat-title.open .arrow{transform:rotate(90deg)}
+.browse-items{display:none;padding:6px 0}
+.browse-items.show{display:flex;flex-wrap:wrap;gap:6px;padding:8px 4px}
+.browse-chip{padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;border:1.5px solid var(--border);background:var(--card);transition:all 0.15s;white-space:nowrap}
+.browse-chip:hover{border-color:var(--accent);background:var(--accentBg)}
+.browse-chip.added{border-color:var(--green);background:var(--greenBg);color:var(--green)}
+
+/* MED LIST */
+.main{max-width:700px;margin:20px auto;padding:0 16px}
+.section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.section-title{font-size:15px;font-weight:700;padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.section-title svg{color:var(--accent)}
+.section-body{padding:12px 16px}
+
+.med-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;margin:4px;border-radius:20px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
+.med-chip .x{cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s}
+.med-chip .x:hover{background:var(--accent);color:#fff}
+.med-chip .dose-select{background:var(--accent);color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;padding:3px 6px;font-size:12px;font-weight:600;cursor:pointer;outline:none;min-width:70px;text-align:center}
+.med-chip .dose-select:hover{border-color:#fff;background:color-mix(in srgb, var(--accent) 85%, #000)}
+.med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
+.empty-state{text-align:center;padding:30px 20px;color:var(--text2);font-size:14px}
+.empty-state .icon{font-size:40px;margin-bottom:8px}
+
+/* RISK GAUGE */
+.gauge-wrap{text-align:center;padding:20px}
+.gauge-bar{height:16px;border-radius:8px;background:#e5e7eb;overflow:hidden;margin:12px 0 8px}
+.gauge-fill{height:100%;border-radius:8px;transition:width 0.5s,background 0.3s}
+.gauge-label{font-size:22px;font-weight:800}
+.gauge-score{font-size:13px;color:var(--text2)}
+.risk-factors{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px 0}
+.risk-tag{font-size:12px;padding:4px 10px;border-radius:12px;font-weight:600}
+.risk-tag.red{background:var(--redBg);color:var(--red)}
+.risk-tag.amber{background:var(--amberBg);color:var(--amber)}
+.risk-tag.green{background:var(--greenBg);color:var(--green)}
+
+/* INTERACTIONS */
+.inter-card{padding:14px 16px;border-left:4px solid;margin-bottom:8px;border-radius:0 var(--radius) var(--radius) 0;background:var(--card2)}
+.inter-card.severe{border-color:var(--red);background:var(--redBg)}
+.inter-card.moderate{border-color:var(--amber);background:var(--amberBg)}
+.inter-card.mild{border-color:var(--blue);background:var(--blueBg)}
+.inter-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.inter-drugs{font-weight:700;font-size:14px}
+.inter-sev{font-size:11px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:8px}
+.inter-sev.severe{background:var(--red);color:#fff}
+.inter-sev.moderate{background:var(--amber);color:#fff}
+.inter-sev.mild{background:var(--blue);color:#fff}
+.inter-effect{font-size:13px;font-weight:600;margin:4px 0}
+.inter-mech{font-size:12px;color:var(--text2);line-height:1.4}
+
+/* FOLD BARS */
+.fold-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+.fold-row:last-child{border-bottom:none}
+.fold-name{width:140px;font-size:13px;font-weight:600;flex-shrink:0}
+.fold-bar-wrap{flex:1;height:22px;background:#f1f5f9;border-radius:6px;position:relative;overflow:hidden}
+.fold-bar{height:100%;border-radius:6px;transition:width 0.5s;display:flex;align-items:center;justify-content:flex-end;padding:0 6px;font-size:11px;font-weight:700;color:#fff;min-width:30px}
+.fold-val{width:55px;text-align:right;font-weight:700;font-size:14px;flex-shrink:0}
+.fold-tag{font-size:10px;padding:1px 5px;border-radius:6px;margin-left:4px}
+
+/* GENETICS */
+.gene-row{display:flex;align-items:center;gap:8px;padding:8px 4px;border-bottom:1px solid var(--border)}
+.gene-row:last-child{border-bottom:none}
+.gene-name{font-weight:700;font-size:13px;width:90px;flex-shrink:0}
+.gene-select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;background:var(--card);cursor:pointer}
+.gene-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;min-width:32px;text-align:center}
+.gene-badge.normal{background:#e2e8f0;color:#64748b}
+.gene-badge.poor{background:var(--redBg);color:var(--red)}
+.gene-badge.null{background:#450a0a;color:#fca5a5}
+.gene-badge.intermediate{background:var(--amberBg);color:var(--amber)}
+.gene-badge.ultrarapid{background:var(--purpleBg);color:var(--purple)}
+.gene-badge.rapid{background:var(--blueBg);color:var(--blue)}
+.gene-remove{background:none;border:none;cursor:pointer;font-size:16px;color:var(--text2);padding:4px}
+.gene-add{display:flex;gap:8px;padding:8px 4px}
+.gene-add select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px}
+.gene-add button{padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:12px}
+
+/* TIMING */
+.timing-row{display:flex;align-items:center;gap:12px;padding:8px 4px;border-bottom:1px solid var(--border)}
+.timing-row:last-child{border-bottom:none}
+.timing-name{width:140px;font-weight:600;font-size:13px;flex-shrink:0}
+.timing-badge{padding:4px 12px;border-radius:8px;font-size:12px;font-weight:600}
+.timing-badge.AM{background:#dbeafe;color:#1d4ed8}
+.timing-badge.PM{background:#ede9fe;color:#6d28d9}
+.timing-badge.BID{background:#fef3c7;color:#92400e}
+.timing-badge.ANY{background:#e2e8f0;color:#64748b}
+.timing-hl{font-size:11px;color:var(--text2)}
+
+/* ALTERNATIVES */
+.alt-card{padding:10px 14px;margin-bottom:6px;background:var(--greenBg);border-radius:var(--radius);border:1px solid #bbf7d0}
+.alt-for{font-size:12px;color:var(--text2);margin-bottom:2px}
+.alt-name{font-weight:700;font-size:14px;color:var(--green)}
+.alt-reason{font-size:12px;color:var(--text2)}
+.alt-swap{background:var(--green);color:#fff;border:none;border-radius:8px;padding:4px 12px;font-size:11px;font-weight:600;cursor:pointer;float:right;margin-top:-20px}
+
+/* MATRIX */
+.matrix-wrap{overflow-x:auto;padding:8px 0}
+.matrix{border-collapse:collapse;font-size:11px;width:100%}
+.matrix th,.matrix td{padding:6px 8px;text-align:center;border:1px solid var(--border)}
+.matrix th{background:var(--card2);font-weight:600;position:sticky}
+.matrix .m-sev{border-radius:4px;padding:2px 4px;font-weight:700;font-size:10px}
+.matrix .m-sev.severe{background:var(--red);color:#fff}
+.matrix .m-sev.moderate{background:var(--amber);color:#fff}
+.matrix .m-sev.mild{background:var(--blue);color:#fff}
+.matrix .m-self{background:#f8fafc;color:#cbd5e1}
+
+/* DISCLAIMER */
+.disclaimer{max-width:700px;margin:0 auto 30px;padding:0 16px}
+.disclaimer-box{background:var(--amberBg);border:1.5px solid var(--amber);border-radius:var(--radius);padding:14px 18px;font-size:12px;color:#92400e;line-height:1.5}
+.disclaimer-box strong{display:block;margin-bottom:4px;font-size:13px}
+
+/* COLLAPSIBLE */
+.collapsible{cursor:pointer;user-select:none}
+.coll-body{display:none}
+.coll-body.open{display:block}
+
+/* PATHWAY DIVERSION */
+.pd-card{padding:12px;margin-bottom:10px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card2)}
+.pd-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pd-drug{font-weight:700;font-size:14px}
+.pd-sev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;text-transform:uppercase}
+.pd-sev.critical{background:var(--red);color:#fff}
+.pd-sev.high{background:var(--amber);color:#fff}
+.pd-sev.moderate{background:var(--blue);color:#fff}
+.pd-sev.low{background:var(--greenBg);color:var(--green)}
+.pd-arrow{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:13px}
+.pd-arrow .enzyme{font-size:11px;padding:1px 6px;border-radius:6px;background:#e0e7ff;color:#3730a3;font-weight:600}
+.pd-arrow .metab{font-weight:600}
+.pd-arrow .badge{font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700}
+.pd-primary{border-left:3px solid var(--green);padding-left:10px;margin:4px 0}
+.pd-diverted{border-left:3px solid var(--amber);padding-left:10px;margin:4px 0;opacity:0.9}
+.pd-impact{font-size:12px;margin-top:8px;padding:8px 10px;border-radius:8px;line-height:1.4;font-weight:500}
+
+/* COMBINATION PRODUCTS */
+.cp-card{padding:14px 16px;border-left:4px solid;margin-bottom:8px;border-radius:0 var(--radius) var(--radius) 0}
+.cp-card.critical{border-color:var(--red);background:var(--redBg)}
+.cp-card.high{border-color:var(--amber);background:var(--amberBg)}
+.cp-card.moderate{border-color:var(--blue);background:var(--blueBg)}
+.cp-type{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:6px}
+.cp-drugs{font-weight:700;font-size:14px;margin-bottom:4px}
+.cp-mech{font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:4px}
+.cp-result{font-size:12px;line-height:1.4}
+.cp-mgmt{font-size:12px;margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.6);border-radius:8px;font-style:italic}
+
+/* TRANSPORTER DDI */
+.tr-card{padding:12px 16px;border-left:4px solid var(--purple);margin-bottom:8px;border-radius:0 var(--radius) var(--radius) 0;background:var(--purpleBg)}
+.tr-card.critical{border-color:var(--red);background:var(--redBg)}
+.tr-card.high{border-color:var(--amber);background:var(--amberBg)}
+.tr-card.moderate{border-color:var(--blue);background:var(--blueBg)}
+.tr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tr-drugs{font-weight:700;font-size:14px}
+.tr-transporter{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;background:var(--purpleBg);color:var(--purple);border:1px solid var(--purple)}
+.tr-effect{font-size:13px;font-weight:600;margin:4px 0}
+.tr-mech{font-size:12px;color:var(--text2);line-height:1.4}
+
+/* EVIDENCE SYSTEM */
+.ev-panel{margin-top:8px;border-top:1px solid rgba(0,0,0,0.07);padding-top:8px;display:none}
+.ev-panel.open{display:block}
+.ev-toggle{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:4px;user-select:none}
+.ev-toggle:hover{color:var(--accent)}
+.ev-toggle .chevron{transition:transform 0.2s;font-size:10px}
+.ev-toggle.open .chevron{transform:rotate(180deg)}
+.ev-card{padding:10px 12px;margin-bottom:6px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border)}
+.ev-card-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:5px}
+.ev-n{font-size:10px;color:var(--text2);font-weight:600}
+.ev-year{font-size:10px;color:var(--text2);font-weight:600}
+.ev-links{font-size:11px}
+.ev-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;line-height:1.35}
+.ev-source{font-size:11px;color:var(--text2);margin-bottom:4px}
+.ev-effects{font-size:11px;font-weight:600;color:var(--blue);margin-bottom:3px}
+.ev-temporal{font-size:10px;color:var(--text2)}
+.ev-contradictory{border-left:3px solid var(--amber);background:var(--amberBg);padding:8px 10px;border-radius:0 var(--radius) var(--radius) 0;font-size:11px;color:var(--text2);margin-top:6px}
+.ev-contradictory strong{color:var(--amber);font-size:12px;display:block;margin-bottom:2px}
+.ev-study-count{font-size:11px;font-weight:700;color:var(--blue)}
+.ev-summary-line{font-size:11px;color:var(--text2);margin-top:4px}
+
+/* EVIDENCE EXPLORER SECTION */
+.ev-explorer-filter{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--border)}
+.ev-filter-btn{padding:4px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;background:var(--card);color:var(--text2);transition:all 0.15s}
+.ev-filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
+.ev-explorer-empty{text-align:center;padding:24px;color:var(--text2);font-size:13px}
+
+/* CASCADE / EXPLAINABLE GRAPH OUTPUT */
+.cascade-section{}
+.cascade-chain{padding:12px 14px;margin-bottom:8px;border-radius:var(--radius);background:var(--card2);border:1px solid var(--border)}
+.cascade-chain.phenotype-critical{border-left:4px solid var(--red);background:var(--redBg)}
+.cascade-chain.phenotype-warn{border-left:4px solid var(--amber);background:var(--amberBg)}
+.cascade-chain.phenotype-monitor{border-left:4px solid var(--blue);background:var(--blueBg)}
+.cascade-chain.phenotype-info{border-left:4px solid var(--green);background:var(--greenBg)}
+.cascade-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cascade-source{font-size:12px;font-weight:700;color:var(--text2)}
+.cascade-conf{font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px;background:#e2e8f0;color:#475569}
+.cascade-steps{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12px;line-height:1.5}
+.cs-node{font-weight:600;padding:2px 7px;border-radius:6px;background:var(--accentBg);color:var(--accent);white-space:nowrap}
+.cs-node.type-enzyme{background:#dbeafe;color:#1d4ed8}
+.cs-node.type-metabolite{background:#ede9fe;color:#6d28d9}
+.cs-node.type-receptor{background:#fef3c7;color:#92400e}
+.cs-node.type-phenotype-critical{background:var(--redBg);color:var(--red);font-weight:700}
+.cs-node.type-phenotype-warn{background:var(--amberBg);color:var(--amber);font-weight:700}
+.cs-node.type-phenotype-info{background:var(--greenBg);color:var(--green);font-weight:700}
+.cs-node.type-food{background:#ecfdf5;color:#059669}
+.cs-edge{color:var(--text2);font-size:11px;font-weight:600;padding:0 2px;flex-shrink:0}
+.cascade-temporal{font-size:10px;color:var(--text2);margin-top:4px;font-style:italic}
+.cascade-empty{text-align:center;padding:20px;color:var(--text2);font-size:13px}
+/* Phase F cascade additions */
+.cs-hop-wrap{display:inline-flex;align-items:center;gap:2px}
+.cs-hop-conf{font-size:9px;padding:0 3px;border-radius:3px;margin-left:1px;line-height:1.4;flex-shrink:0}
+.cs-hop-conf.high{background:rgba(34,197,94,0.12);color:var(--green)}
+.cs-hop-conf.mid{background:rgba(234,179,8,0.12);color:#b45309}
+.cs-hop-conf.low{background:rgba(239,68,68,0.12);color:var(--red)}
+.cascade-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:6px;gap:4px}
+.cs-impact-score{font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(99,102,241,0.12);color:#6366f1;font-weight:700}
+.cs-dir-badge{font-size:9px;padding:1px 5px;border-radius:4px;font-weight:700}
+.cs-dir-badge.cs-dir-increase{background:rgba(239,68,68,0.1);color:var(--red)}
+.cs-dir-badge.cs-dir-decrease{background:rgba(59,130,246,0.1);color:#1d4ed8}
+.cs-section-header{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;padding:6px 0 4px;margin-top:8px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:8px}
+.cs-section-desc{font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text2);opacity:0.8}
+.cs-convergence-header{color:var(--red)}
+.cs-convergence-card{padding:10px 12px;margin-bottom:8px;border-radius:var(--radius);border:2px solid var(--red);background:var(--redBg)}
+.cs-convergence-card .cascade-chain{border:none;background:rgba(255,255,255,0.4);margin-bottom:4px;padding:6px 8px}
+.cs-conv-header{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:4px}
+.cs-conv-terminal{font-size:13px;font-weight:700;color:var(--red)}
+.cs-conv-sources{font-size:11px;font-weight:600;color:var(--text1);padding:2px 7px;border-radius:6px;background:rgba(255,255,255,0.5)}
+.cs-conv-conf{font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px;background:#fee2e2;color:var(--red)}
+.cs-conv-impact{font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(99,102,241,0.12);color:#6366f1;font-weight:700}
+.cs-conv-detail{font-size:10px;color:var(--text2);margin-bottom:6px}
+.cs-conv-paths{display:flex;flex-direction:column;gap:4px}
+.cs-drug-group{margin-bottom:12px}
+.cs-drug-label{font-size:11px;font-weight:700;color:var(--accent);margin:6px 0 4px;padding-left:2px}
+/* GRAPH STATS */
+.graph-stats{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}
+.gs-pill{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--card2);border:1px solid var(--border);color:var(--text2)}
+.cs-pill-warn{background:rgba(239,68,68,0.1);border-color:var(--red);color:var(--red)}
+
+/* PHENOTYPE ACCUMULATION */
+.pheno-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.pheno-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.pheno-card.risk-none{opacity:0.5}
+.pheno-card.risk-low{border-color:var(--green);background:var(--greenBg)}
+.pheno-card.risk-moderate{border-color:var(--amber);background:var(--amberBg)}
+.pheno-card.risk-high{border-color:var(--red);background:var(--redBg)}
+.pheno-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:4px}
+.pheno-score{font-size:26px;font-weight:800;line-height:1}
+.pheno-drugs{font-size:11px;color:var(--text2);margin-top:4px}
+/* PK CURVES — Phase E */
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.pk-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.pk-title{font-size:12px;font-weight:700;margin-bottom:2px;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.pk-params{font-size:10px;color:var(--text2);margin-bottom:6px}
+.pk-svg{width:100%;height:100px}
+.pk-geno-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;background:var(--amberBg);color:var(--amber)}
+.pk-int-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;background:rgba(239,68,68,0.12);color:var(--red)}
+.pk-metrics{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px;padding:5px 7px;border-radius:5px;background:var(--card2);font-size:9.5px;color:var(--text2)}
+.pk-metrics span{white-space:nowrap}
+.pk-int-metric{color:var(--amber);font-weight:700}
+.pk-note{font-size:9px;color:var(--text2);margin-top:3px;font-style:italic}
+.pk-warning{font-size:9px;margin-top:3px;color:var(--amber)}
+.pk-taper{font-size:9px;margin-top:3px;color:var(--red)}
+.pk-sex-range{font-size:9px;margin-top:4px;padding:3px 5px;border-radius:4px;background:var(--card2)}
+.pk-male{color:#3b82f6}
+.pk-female{color:#ec4899}
+.pk-disclaimer{font-size:10px;color:var(--text2);margin-top:6px;padding:5px 0;border-top:1px solid var(--border)}
+/* GENOTYPE PANEL */
+.geno-selector{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.geno-enz-label{font-size:11px;font-weight:700;color:var(--text2);min-width:60px}
+.geno-btn{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:var(--card2);font-size:11px;cursor:pointer;transition:background 0.1s}
+.geno-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.geno-effect-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card);margin-bottom:8px}
+.geno-effect-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.geno-effect-note{font-size:11px;color:var(--text2);line-height:1.4}
+.geno-fold{font-size:18px;font-weight:800;color:var(--accent)}
+/* D3 GRAPH */
+#d3-graph-container{width:100%;height:420px;border-radius:8px;border:1px solid var(--border);background:var(--card2);overflow:hidden;position:relative}
+.d3-legend{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0}
+.d3-legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)}
+.d3-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* WASHOUT CALENDAR */
+.washout-table{width:100%;border-collapse:collapse;font-size:12px}
+.washout-table th{text-align:left;padding:6px 8px;background:var(--card2);font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px}
+.washout-table td{padding:7px 8px;border-top:1px solid var(--border)}
+.washout-bar-wrap{display:flex;align-items:center;gap:6px}
+.washout-bar{height:8px;border-radius:4px;background:var(--accent);opacity:0.6;min-width:4px}
+.washout-safe{font-weight:700;color:var(--green)}
+/* ADVERSE BURDEN */
+.burden-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-bottom:12px}
+.burden-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.burden-header{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
+.burden-score{font-size:24px;font-weight:800;color:var(--accent)}
+.burden-sub{font-size:11px;color:var(--text2);margin-top:3px}
+.beers-flag{display:flex;gap:6px;align-items:flex-start;padding:6px 8px;border-radius:6px;background:var(--redBg);border:1px solid rgba(220,38,38,0.2);margin-bottom:5px;font-size:11px}
+.beers-drug{font-weight:700;color:var(--red)}
+.version-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
+.version-strip span{display:inline-flex;gap:4px;align-items:center}
+.version-strip strong{color:var(--text);font-weight:700}
+/* RESPONSIVE */
+@media(max-width:500px){
+  .fold-name,.timing-name{width:100px;font-size:12px}
+  .search-box{padding:12px 16px}
+  .section-body{padding:10px 12px}
+  .header h1{font-size:22px}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+<div class="header">
+  <h1>MedCheck</h1>
+  <p>Check how your medications interact — free, private, no data collected</p>
+  <div class="version-strip" aria-label="MedCheck version">
+    <span>Engine <strong id="ver-engine">...</strong></span>
+    <span>Drug DB <strong id="ver-db">...</strong></span>
+    <span>Drugs <strong id="ver-count">...</strong></span>
+    <span>Schema <strong id="ver-schema">...</strong></span>
+    <span>Reviewed <strong id="ver-date">...</strong></span>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="searchInput" placeholder="Type a medication name..." oninput="onSearch(this.value)" onfocus="onSearch(this.value)" autocomplete="off">
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<div class="mode-toggle">
+  <div class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')">Search</div>
+  <div class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')">Browse by Category</div>
+</div>
+
+<div class="browse-wrap" id="browseWrap"></div>
+
+<div class="main">
+  <!-- My Medications -->
+  <div class="section">
+    <div class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+      <span id="listTitle">My Medications</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="medCount"></span>
+    </div>
+    <div class="section-body" id="medList">
+      <div class="empty-state">
+        <div class="icon">💊</div>
+        Add your medications above to see how they interact
+      </div>
+    </div>
+  </div>
+
+  <!-- Genetics (Optional) -->
+  <div class="section" id="geneticsSection">
+    <div class="section-title collapsible" onclick="toggleSection('genetics')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+      <span>My Genetics <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional — makes results more accurate)</span></span>
+    </div>
+    <div class="section-body coll-body" id="geneticsBody">
+      <p style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">If you know your enzyme metabolizer status from pharmacogenomic testing, set it here. This adjusts drug level predictions based on how fast your body processes each medication.</p>
+      <div class="gene-add">
+        <select id="geneAddSelect"></select>
+        <button onclick="addGeneFromSelect()">+ Add Enzyme</button>
+      </div>
+      <div id="geneList"></div>
+    </div>
+  </div>
+
+  <!-- Risk Gauge -->
+  <div class="section" id="riskSection" style="display:none">
+    <div class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      How Safe Is This Combo?
+    </div>
+    <div class="section-body" id="riskBody"></div>
+  </div>
+
+  <!-- Interactions -->
+  <div class="section" id="interSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('inter')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <span>How Your Meds Affect Each Other</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
+    </div>
+    <div class="section-body coll-body open" id="interBody"></div>
+  </div>
+
+  <!-- Combination Alerts -->
+  <div class="section" id="comboSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('combo')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <span>Combination Alerts</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="comboCount"></span>
+    </div>
+    <div class="section-body coll-body open" id="comboBody"></div>
+  </div>
+
+  <!-- Transporter Interactions -->
+  <div class="section" id="transporterSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('transporter')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      <span>Transporter Interactions</span>
+      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="transporterCount"></span>
+    </div>
+    <div class="section-body coll-body open" id="transporterBody"></div>
+  </div>
+
+  <!-- AUC Fold Changes -->
+  <div class="section" id="foldSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('fold')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <span>How Each Med's Level Changes</span>
+    </div>
+    <div class="section-body coll-body open" id="foldBody"></div>
+  </div>
+
+  <!-- Interaction Matrix -->
+  <div class="section" id="matrixSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('matrix')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Interaction Grid
+    </div>
+    <div class="section-body coll-body" id="matrixBody"></div>
+  </div>
+
+  <!-- Timing -->
+  <div class="section" id="timingSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('timing')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Best Times to Take Each Med
+    </div>
+    <div class="section-body coll-body" id="timingBody"></div>
+  </div>
+
+  <!-- Metabolite Cascades -->
+  <div class="section" id="metabSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('metab')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v11m0 0a5 5 0 0 0 10 0V2"/><path d="M4 15a8 8 0 0 0 16 0"/></svg>
+      <span>What Your Body Makes From Each Med</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite cross-check included</span>
+    </div>
+    <div class="section-body coll-body" id="metabBody"></div>
+  </div>
+
+  <!-- Pathway Diversions -->
+  <div class="section" id="pdSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('pd')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
+      <span>Pathway Diversions</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How blocked enzymes reroute your meds</span>
+    </div>
+    <div class="section-body coll-body" id="pdBody"></div>
+  </div>
+
+  <!-- Evidence Explorer -->
+  <div class="section" id="evidenceSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('evidence')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+      <span>Evidence Explorer</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
+    </div>
+    <div class="section-body coll-body" id="evidenceBody"></div>
+  </div>
+
+  <!-- Explainable Graph Output — Cascade Traversal -->
+  <div class="section" id="cascadeSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('cascade')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+        <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
+      </svg>
+      <span>Effect Cascade</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Graph traversal — not just pairwise</span>
+    </div>
+    <div class="section-body coll-body" id="cascadeBody"></div>
+  </div>
+
+  <!-- Phenotype Accumulation (#6) -->
+  <div class="section" id="phenoAccumSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('phenoAccum')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+      <span>Phenotype Risk Accumulation</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Serotonin load · QTc · Anticholinergic · Sedation</span>
+    </div>
+    <div class="section-body coll-body open" id="phenoAccumBody"></div>
+  </div>
+
+  <!-- PK Simulation (#1) -->
+  <div class="section" id="pkSimSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('pkSim')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="3 17 9 11 13 15 21 7"/>
+        <polyline points="14 7 21 7 21 14"/>
+      </svg>
+      <span>PK Simulation</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
+    </div>
+    <div class="section-body coll-body open" id="pkSimBody"></div>
+  </div>
+
+  <!-- Genotype-Stratified Evidence (#2) -->
+  <div class="section" id="genotypeSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('genotype')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+        <path d="M8 10h8M8 14h8"/>
+      </svg>
+      <span>Genotype-Stratified Evidence</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
+    </div>
+    <div class="section-body coll-body open" id="genotypeBody"></div>
+  </div>
+
+  <!-- D3 Graph (#4) -->
+  <div class="section" id="graphSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('graph')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/>
+        <line x1="8" y1="12" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="17"/>
+      </svg>
+      <span>Interaction Network Graph</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Force-directed D3 visualization</span>
+    </div>
+    <div class="section-body coll-body open" id="graphBody"></div>
+  </div>
+
+  <!-- Washout Calendar (#9) -->
+  <div class="section" id="washoutSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('washout')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span>Washout Calendar</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Safe-to-switch dates from enzyme recovery</span>
+    </div>
+    <div class="section-body coll-body open" id="washoutBody"></div>
+  </div>
+
+  <!-- Adverse Burden (#10) -->
+  <div class="section" id="burdenSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('burden')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <span>Adverse Effect Burden</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">ACB · Beers Criteria · Fall Risk · Sedation</span>
+    </div>
+    <div class="section-body coll-body open" id="burdenBody"></div>
+  </div>
+
+  <!-- Alternatives -->
+  <div class="section" id="altSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('alt')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      Alternatives Worth Discussing
+    </div>
+    <div class="section-body coll-body" id="altBody"></div>
+  </div>
+
+</div>
+
+<div class="disclaimer">
+  <div class="disclaimer-box">
+    <strong>Important Disclaimer</strong>
+    This tool is for educational purposes only. It does not replace professional medical advice. Always consult your doctor or pharmacist before making any changes to your medications. No personal data is collected or stored — everything runs locally in your browser.
+  </div>
+</div>
+
+<script>/* MEDCHECK_BUNDLE */</script>
+</body>
+</html>
