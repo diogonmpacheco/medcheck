@@ -98,14 +98,39 @@ function renderFoldBars() {
       ? result.details.map(d => `${d.perpetrator}: ${d.enzyme} ${d.type} (${d.strength})`).join(", ")
       : "No interactions affecting levels";
 
+    const metaboliteRows = (typeof getGenotypeMetaboliteEffectCards === 'function'
+      ? getGenotypeMetaboliteEffectCards(name)
+      : []
+    ).map(card => renderFoldMetaboliteRow(card)).join("");
+
     return `<div class="fold-row">
       <div class="fold-name">${name}</div>
       <div class="fold-bar-wrap">
         <div class="fold-bar" style="width:${barPct}%;background:${color}">${fold.toFixed(1)}×</div>
       </div>
       <div class="fold-val" style="color:${color}">${fold.toFixed(1)}×<span class="fold-tag" style="${tagColor}">${tagText}</span></div>
-    </div>`;
+    </div>${metaboliteRows}`;
   }).join("");
+}
+
+function renderFoldMetaboliteRow(card) {
+  const { effect, phenotypeEffect } = card;
+  const fold = phenotypeEffect.fold || null;
+  const isIncrease = phenotypeEffect.direction === "increase";
+  const isDecrease = phenotypeEffect.direction === "decrease";
+  const color = isIncrease && fold && fold >= 10 ? "var(--red)" :
+    isIncrease ? "var(--amber)" :
+    isDecrease ? "var(--green)" :
+    "var(--text2)";
+  const summary = fold && fold !== 1
+    ? `${fold.toFixed(fold >= 10 ? 1 : 2)}x / ${phenotypeEffect.label}`
+    : phenotypeEffect.label;
+
+  return `<div class="fold-row fold-metabolite-row">
+    <div class="fold-name fold-metabolite-name">${effect.metaboliteName} <span>from ${effect.parent}</span></div>
+    <div class="fold-metabolite-note" style="color:${color}">${summary}</div>
+    <div class="fold-val fold-metabolite-val"></div>
+  </div>`;
 }
 
 function renderMatrix(interactions) {
