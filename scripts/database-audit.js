@@ -172,6 +172,12 @@ const renderedMetaboliteGaps = vm.runInContext(`(() => {
         gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' did not render');
       } else if (!card.phenotypeEffect?.fold) {
         gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' rendered without fold');
+      } else {
+        renderFoldBars();
+        const html = document.getElementById('foldBody')?.innerHTML || '';
+        if (!html.includes('fold-metabolite-row') || !html.includes('fold-metabolite-bar')) {
+          gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' rendered without a metabolite fold bar');
+        }
       }
     }
   }

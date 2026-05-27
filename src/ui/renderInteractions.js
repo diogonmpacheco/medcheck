@@ -134,9 +134,11 @@ function renderFoldExposureContextRows(name) {
     return renderFoldSubRow({
       title:`${name} parent`,
       subtitle:"self-inhibition context",
-      tagText:`PARENT ${exposureFold && exposureFold < 1 ? "↓" : "↑"} ${exposureFold ? foldText : ""}`.trim(),
+      tagText:`PARENT ${exposureFold && exposureFold < 1 ? "↓" : "↑"}`.trim(),
       color:"var(--amber)",
       summary:label,
+      valueText:exposureFold ? foldText : "",
+      fold:exposureFold,
     });
   }).join("");
 }
@@ -170,10 +172,10 @@ function renderFoldMetaboliteRow(card) {
   const fold = phenotypeEffect.fold || null;
   const isIncrease = phenotypeEffect.direction === "increase";
   const isDecrease = phenotypeEffect.direction === "decrease";
-  const foldStr = fold && fold !== 1
-    ? `${phenotypeEffect.estimated ? "~" : ""}${fold.toFixed(fold >= 10 ? 1 : 2)}x`
+  const foldStr = fold
+    ? `${phenotypeEffect.estimated ? "~" : ""}${fold.toFixed(fold === 1 ? 1 : fold >= 10 ? 1 : 2)}x`
     : "";
-  const tagText = isIncrease ? `INCREASE ${foldStr}`.trim() : isDecrease ? `DECREASE ${foldStr}`.trim() :
+  const tagText = isIncrease ? "INCREASE" : isDecrease ? "DECREASE" :
     phenotypeEffect.direction === "baseline" ? "BASELINE" : "CONTEXT";
   const color = isIncrease && fold && fold >= 10 ? "var(--red)" :
     isIncrease ? "var(--amber)" :
@@ -192,10 +194,25 @@ function renderFoldMetaboliteRow(card) {
     color,
     summary,
     valueText:foldStr,
+    fold,
   });
 }
 
-function renderFoldSubRow({ title, subtitle, tagText, color, summary, valueText = "" }) {
+function renderFoldSubRow({ title, subtitle, tagText, color, summary, valueText = "", fold = null }) {
+  const hasFoldBar = Number.isFinite(fold) && fold > 0;
+  if (hasFoldBar) {
+    const barPct = Math.min(100, Math.max(5, (fold / 5) * 100));
+    return `<div class="fold-row fold-metabolite-row fold-quantified-row">
+      <div class="fold-name fold-metabolite-name">${title} <span>${subtitle}</span></div>
+      <div class="fold-subbar-cell">
+        <div class="fold-bar-wrap fold-metabolite-bar-wrap">
+          <div class="fold-bar fold-metabolite-bar" style="width:${barPct}%;background:${color}">${valueText}</div>
+        </div>
+        <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${tagText}</span> ${summary}</div>
+      </div>
+      <div class="fold-val fold-metabolite-val" style="color:${color}">${valueText}</div>
+    </div>`;
+  }
   return `<div class="fold-row fold-metabolite-row">
     <div class="fold-name fold-metabolite-name">${title} <span>${subtitle}</span></div>
     <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${tagText}</span> ${summary}</div>

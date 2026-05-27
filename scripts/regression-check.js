@@ -212,6 +212,10 @@ assert(
   !bupropionFoldText.includes('Hydroxybupropionfrom BupropionBASELINE'),
   'Hydroxybupropion should not remain baseline when CYP2D6 null is selected'
 );
+assert(
+  window.document.querySelectorAll('#foldBody .fold-metabolite-row .fold-bar').length >= 1,
+  'Quantified metabolite rows should render a fold bar, not only text'
+);
 
 loadCase(window, ['Clopidogrel']);
 window.setGenotype('CYP2C19', 'ultrarapid_metabolizer');
