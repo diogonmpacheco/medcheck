@@ -14,7 +14,14 @@ function assert(condition, message) {
 }
 
 function loadCase(win, drugs) {
-  win.eval('activeStack = []; drugDoses && Object.keys(drugDoses).forEach(k => delete drugDoses[k]);');
+  win.eval(`activeStack = [];
+    drugDoses && Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+    };`);
   for (const drug of drugs) win.addDrug(drug);
 }
 
@@ -191,6 +198,28 @@ assert(
   bupropionGenotypeText.includes('Hydroxybupropion') &&
   bupropionGenotypeText.includes('higher hydroxybupropion level/dose ratio'),
   'Bupropion CYP2D6 PM context should surface hydroxybupropion metabolite exposure, not only parent bupropion'
+);
+window.setGenetics('CYP2D6', 'null');
+const bupropionFoldText = window.document.getElementById('foldBody').textContent;
+assert(
+  bupropionFoldText.includes('Bupropion') &&
+  bupropionFoldText.includes('1.0×') &&
+  bupropionFoldText.includes('Hydroxybupropion') &&
+  bupropionFoldText.includes('~6.70x'),
+  'Bupropion fold bars should show separate parent 1.0× and Hydroxybupropion ~6.70x metabolite rows under CYP2D6 null'
+);
+assert(
+  !bupropionFoldText.includes('Hydroxybupropionfrom BupropionBASELINE'),
+  'Hydroxybupropion should not remain baseline when CYP2D6 null is selected'
+);
+
+loadCase(window, ['Clopidogrel']);
+window.setGenotype('CYP2C19', 'ultrarapid_metabolizer');
+const clopidogrelFoldText = window.document.getElementById('foldBody').textContent;
+assert(
+  clopidogrelFoldText.includes('Active thiol metabolite') &&
+  clopidogrelFoldText.includes('~2.00x'),
+  'CYP2C19 UM should quantify the separate active clopidogrel metabolite formation row'
 );
 
 loadCase(window, ['Warfarin', 'Ibuprofen']);

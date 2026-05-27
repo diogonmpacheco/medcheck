@@ -74,6 +74,27 @@ const STUDY_DB = {
     verified:false, verifyNote:"PMID should be confirmed"
   },
 
+  "ev_fluoxetine_cyp2d6_sunkara2010": {
+    id:"ev_fluoxetine_cyp2d6_sunkara2010",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Stereoselective pharmacokinetics of fluoxetine and norfluoxetine in CYP2D6 poor and extensive metabolizers",
+    year:2010, source:"Sunkara et al.", journal:"J Clin Pharmacol",
+    pmid:"20184222", doi:"10.1002/jcph.39",
+    studyDesign:"phenotype-stratified clinical PK study",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      parentAucFold_PM:2.3,
+      norfluoxetineReductionPct_PM:50,
+      note:"CYP2D6 PMs had higher fluoxetine exposure and lower norfluoxetine exposure; single-dose S-fluoxetine differences can be larger than steady-state expectations."
+    },
+    temporal:{mechanism:"CYP2D6_N_demethylation_to_norfluoxetine"},
+    supports:["fluoxetine_METABOLIZED_TO_norfluoxetine","fluoxetine_cyp2d6_genotype_exposure"],
+    contradicts:[],
+    limitations:["Single-dose data","Small phenotype-stratified cohort","Steady-state autoinhibition may compress genotype differences"],
+    verified:true
+  },
+
   // ═══ BUPROPION / HYDROXYBUPROPION / CYP2D6 ═══
   "ev_bupropion_cyp2d6_fda": {
     id:"ev_bupropion_cyp2d6_fda",
@@ -203,6 +224,29 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_tamoxifen_endoxifen_borges2006": {
+    id:"ev_tamoxifen_endoxifen_borges2006",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Quantitative effect of CYP2D6 genotype and inhibitors on tamoxifen metabolism",
+    year:2006, source:"Borges et al.", journal:"Clin Pharmacol Ther",
+    pmid:"16815318", doi:"10.1016/j.clpt.2006.03.013",
+    studyDesign:"genotype-stratified clinical PK study",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      endoxifenRatio_PM:0.04,
+      endoxifenRatio_NM:0.15,
+      endoxifenReductionPct_PM:73,
+      inhibitorEndoxifenReductionPct:72,
+      note:"Endoxifen/N-desmethyltamoxifen ratio was markedly lower in CYP2D6 PMs; potent CYP2D6 inhibitors phenoconverted normal metabolizers toward PM-like endoxifen exposure."
+    },
+    temporal:{mechanism:"CYP2D6_endoxifen_formation"},
+    supports:["tamoxifen_METABOLIZED_TO_endoxifen","CYP2D6_inhibition_tamoxifen_failure"],
+    contradicts:[],
+    limitations:["Metabolite ratio proxy rather than full endoxifen AUC","Clinical outcome linkage remains debated"],
+    verified:true
+  },
+
   "ev_tamoxifen_cyp2d6_controversy": {
     id:"ev_tamoxifen_cyp2d6_controversy",
     type:EVIDENCE_TIER.META_ANALYSIS,
@@ -270,6 +314,75 @@ const STUDY_DB = {
     supports:["clopidogrel_CYP2C19_prodrug","omeprazole_clopidogrel_interaction"],
     contradicts:[],
     limitations:["Evidence strongest for PCI/stenting populations; less clear for other indications"],
+    verified:true
+  },
+
+  "ev_clopidogrel_active_thiol_kim2014": {
+    id:"ev_clopidogrel_active_thiol_kim2014",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"CYP2C19 phenotype effect on clopidogrel active thiol metabolite exposure and platelet inhibition",
+    year:2014, source:"Kim et al.",
+    pmid:"25196410", doi:null,
+    studyDesign:"genotype-stratified clinical PK/PD study",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      activeMetaboliteAucFold_PM_day1:0.37,
+      activeMetaboliteAucFold_PM_day7:0.34,
+      activeMetaboliteCmaxFold_PM_day1:0.42,
+      activeMetaboliteCmaxFold_PM_day7:0.39,
+      note:"CYP2C19 PMs had substantially lower active thiol metabolite exposure and delayed/reduced inhibition of platelet aggregation."
+    },
+    temporal:{mechanism:"CYP2C19_clopidogrel_activation"},
+    supports:["clopidogrel_CYP2C19_prodrug","clopidogrel_active_thiol_reduced_in_PM"],
+    contradicts:[],
+    limitations:["Genotype-stratified PK/PD endpoints; clinical outcome risk depends on indication and thrombotic risk"],
+    verified:true
+  },
+
+  "ev_clopidogrel_cyp2c19_mega2009": {
+    id:"ev_clopidogrel_cyp2c19_mega2009",
+    type:EVIDENCE_TIER.RCT,
+    title:"Cytochrome P-450 polymorphisms and response to clopidogrel",
+    year:2009, source:"Mega et al.", journal:"N Engl J Med",
+    pmid:"19106084", doi:"10.1056/NEJMoa0809171",
+    studyDesign:"TRITON-TIMI 38 pharmacogenetic substudy",
+    n:1477,
+    phenotypes:["intermediate_metabolizer","poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      cvCompositeHazardRatio:1.53,
+      stentThrombosisHazardRatio:3.09,
+      note:"Reduced-function CYP2C19 carriers on clopidogrel had higher cardiovascular event and stent thrombosis risk in ACS/PCI."
+    },
+    temporal:{},
+    supports:["clopidogrel_CYP2C19_prodrug","clopidogrel_LOF_outcome_risk"],
+    contradicts:[],
+    limitations:["Post-hoc pharmacogenetic substudy","Most applicable to ACS/PCI, not all clopidogrel indications"],
+    verified:true
+  },
+
+  // ═══ ALPRAZOLAM / CYP3A5 ═══
+  "ev_alprazolam_cyp3a5_park2006": {
+    id:"ev_alprazolam_cyp3a5_park2006",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Effect of CYP3A5*3 genotype on the pharmacokinetics and pharmacodynamics of alprazolam in healthy subjects",
+    year:2006, source:"Park et al.", journal:"Clin Pharmacol Ther",
+    pmid:"16765147", doi:"10.1016/j.clpt.2006.02.008",
+    studyDesign:"genotype-stratified clinical PK/PD study",
+    n:19,
+    phenotypes:["normal_metabolizer","intermediate_metabolizer","poor_metabolizer"],
+    quantifiedEffects:{
+      auc_CYP3A5_1_1:599.9,
+      auc_CYP3A5_3_3:830.5,
+      aucFold_CYP3A5_3_3_vs_1_1:1.38,
+      clearance_CYP3A5_1_1_L_h:3.5,
+      clearance_CYP3A5_3_3_L_h:2.5,
+      note:"CYP3A5*3/*3 non-expressors had significantly higher alprazolam AUC and lower oral clearance than CYP3A5*1/*1 expressors."
+    },
+    temporal:{mechanism:"CYP3A4_CYP3A5_hydroxylation"},
+    supports:["alprazolam_METABOLIZED_BY_CYP3A5","alprazolam_cyp3a5_genotype_exposure"],
+    contradicts:[],
+    limitations:["Small healthy male volunteer study","Single 1 mg dose","Pharmacodynamic score trend did not reach statistical significance"],
     verified:true
   },
 

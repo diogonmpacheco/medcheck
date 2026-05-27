@@ -172,12 +172,136 @@ function getGenotypeMetaboliteEffectCards(drugName) {
   return GENOTYPE_METABOLITE_EFFECTS
     .filter(effect => effect.parent === drugName && showGenotypeMetaboliteEffect(effect))
     .map(effect => {
-      const geno = activeGenotype[effect.enzyme] || GENOTYPE_PHENOTYPE.NM;
-      const phenotypeEffect = effect.effects?.[geno];
+      const geno = getSelectedGenotypePhenotype(effect.enzyme);
+      let phenotypeEffect = effect.effects?.[geno];
+      const inhibitorContext = getActiveEnzymeInhibitionContext(effect.enzyme, drugName);
+      if ((!phenotypeEffect || phenotypeEffect.direction === "baseline") && inhibitorContext.length) {
+        phenotypeEffect = getInhibitionMetaboliteEffect(effect, inhibitorContext);
+      }
+      if (phenotypeEffect && phenotypeEffect.direction !== "baseline" && !phenotypeEffect.fold) {
+        const estimatedFold = estimateMetaboliteEffectFold(effect, phenotypeEffect, inhibitorContext, geno);
+        if (estimatedFold) phenotypeEffect = { ...phenotypeEffect, fold:estimatedFold, estimated:true };
+      }
       if (!phenotypeEffect) return null;
       return { effect, geno, phenotypeEffect };
     })
     .filter(Boolean);
+}
+
+function getSelectedGenotypePhenotype(enzyme) {
+  const legacy = typeof userGenetics !== 'undefined' ? userGenetics[enzyme] : null;
+  if (legacy) {
+    const legacyMap = {
+      ultrarapid: GENOTYPE_PHENOTYPE.UM,
+      rapid: GENOTYPE_PHENOTYPE.UM,
+      normal: GENOTYPE_PHENOTYPE.NM,
+      intermediate: GENOTYPE_PHENOTYPE.IM,
+      poor: GENOTYPE_PHENOTYPE.PM,
+      null: GENOTYPE_PHENOTYPE.PM,
+    };
+    return legacyMap[legacy] || GENOTYPE_PHENOTYPE.NM;
+  }
+  return activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM;
+}
+
+function getSelectedEnzymeExposureMult(enzyme, geno, inhibitorContext = []) {
+  const genotypeMult = getSelectedGenotypeExposureMult(enzyme, geno);
+  const inhibitorMult = getSelectedInhibitorExposureMult(inhibitorContext);
+  return Math.max(genotypeMult, inhibitorMult);
+}
+
+function getSelectedGenotypeExposureMult(enzyme, geno) {
+  const legacy = typeof userGenetics !== 'undefined' ? userGenetics[enzyme] : null;
+  const legacyOpt = legacy ? PHENOTYPE_OPTIONS.find(o => o.id === legacy) : null;
+  return legacyOpt ? legacyOpt.mult : (GENOTYPE_EFFECTS[enzyme]?.[geno]?.auc_fold || 1);
+}
+
+function getSelectedInhibitorExposureMult(inhibitorContext = []) {
+  return inhibitorContext.reduce((max, inh) => {
+    let mult = (INH_MULT[inh.strength] || 1) * (inh.doseMod || 1);
+    if (inh.mechanism === "mechanism_based" || inh.mechanism === "time-dependent") mult *= 1.3;
+    return Math.max(max, mult);
+  }, 1);
+}
+
+function estimateFormationFold(enzyme, geno, inhibitorContext = []) {
+  const genotypeMult = getSelectedGenotypeExposureMult(enzyme, geno);
+  const inhibitorMult = getSelectedInhibitorExposureMult(inhibitorContext);
+  const genotypeFormationFold = genotypeMult ? 1 / genotypeMult : 1;
+  if (inhibitorMult > 1) return Math.min(genotypeFormationFold, 1 / inhibitorMult);
+  return genotypeFormationFold;
+}
+
+function estimateMetaboliteEffectFold(effect, phenotypeEffect, inhibitorContext, geno) {
+  const actor = typeof METABOLITE_ACTORS !== 'undefined' ? METABOLITE_ACTORS[effect.metaboliteId] : null;
+  const formedByTarget = actor?.formingEnzyme === effect.enzyme;
+  const route = actor?.routes?.find(r => r.enzyme === effect.enzyme);
+  const enzymeMult = getSelectedEnzymeExposureMult(effect.enzyme, geno, inhibitorContext);
+
+  if (phenotypeEffect.direction === "decrease") {
+    if (formedByTarget) {
+      const formationFold = estimateFormationFold(effect.enzyme, geno, inhibitorContext);
+      if (!formationFold || formationFold === 1) return null;
+      return Math.round(Math.max(0.05, formationFold) * 100) / 100;
+    }
+    if (!enzymeMult || enzymeMult === 1) return null;
+    return Math.round(Math.max(0.05, 1 / enzymeMult) * 100) / 100;
+  }
+
+  if (phenotypeEffect.direction !== "increase") return null;
+  if (formedByTarget) {
+    const formationFold = estimateFormationFold(effect.enzyme, geno, inhibitorContext);
+    if (!formationFold || formationFold === 1) return null;
+    return Math.round(Math.max(0.05, formationFold) * 100) / 100;
+  }
+  if (!enzymeMult || enzymeMult === 1 || !route) return null;
+  const remaining = Math.max(0, 1 - route.fraction);
+  const fold = remaining + route.fraction * enzymeMult;
+  return Math.round(fold * 100) / 100;
+}
+
+function getActiveEnzymeInhibitionContext(enzyme, subjectDrugName) {
+  if (!enzyme || typeof activeStack === 'undefined') return [];
+  const inhibitors = [];
+  for (const name of activeStack) {
+    const drug = getDrug(name);
+    if (!drug) continue;
+    const allInh = typeof getAllInhibitions === 'function'
+      ? getAllInhibitions(drug)
+      : (drug.inh || []);
+    for (const inh of allInh) {
+      if (inh.target !== enzyme) continue;
+      const doseMod = inh.doseDependent ? getDoseModifier(name) : 1.0;
+      inhibitors.push({
+        name,
+        isSelf: name === subjectDrugName,
+        strength: inh.strength || "inhibitor",
+        mechanism: inh.mechanism || (inh.timeDependent ? "time-dependent" : ""),
+        doseDependent: !!inh.doseDependent,
+        doseMod,
+      });
+      break;
+    }
+  }
+  return inhibitors;
+}
+
+function getInhibitionMetaboliteEffect(effect, inhibitorContext) {
+  const hasSelfOnly = inhibitorContext.every(i => i.isSelf);
+  const names = inhibitorContext.map(i => i.isSelf ? `${i.name} itself` : i.name).join(", ");
+  const hasStrong = inhibitorContext.some(i => i.strength === "strong");
+  const direction = effect.inhibitionDirection || (effect.effects?.[GENOTYPE_PHENOTYPE.PM]?.direction);
+  if (!direction || direction === "baseline") return null;
+  const label = effect.inhibitionLabel ||
+    (direction === "increase"
+      ? `${hasSelfOnly ? "self-inhibition" : `${names} inhibition`} context: higher metabolite exposure expected; fold not calibrated`
+      : `${hasSelfOnly ? "self-inhibition" : `${names} inhibition`} context: lower active metabolite formation expected; fold not calibrated`);
+  return {
+    direction,
+    label,
+    inhibitorContext:names,
+    strength:hasStrong ? "strong" : inhibitorContext[0]?.strength,
+  };
 }
 
 function showGenotypeMetaboliteEffect(effect) {

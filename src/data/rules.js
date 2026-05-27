@@ -106,9 +106,99 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     enzyme:"CYP2D6",
     note:"Hydroxybupropion is the main CYP2D6-inhibiting actor. CYP2D6 PM status has been associated with higher hydroxybupropion level/dose ratios, so DDIs should be traced through the metabolite rather than parent bupropion alone.",
     evidenceRefs:["ev_bupropion_cyp2d6_hesse1996","ev_bupropion_cyp2d6_fda"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher level/dose ratio reported; fold not calibrated",
     effects:{
-      [GENOTYPE_PHENOTYPE.PM]: { direction:"increase", label:"higher hydroxybupropion level/dose ratio reported" },
+      [GENOTYPE_PHENOTYPE.PM]: { direction:"increase", label:"higher level/dose ratio reported" },
       [GENOTYPE_PHENOTYPE.IM]: { direction:"uncertain", label:"possible intermediate shift; not fold-calibrated" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Fluoxetine",
+    metaboliteId:"norfluoxetine",
+    metaboliteName:"Norfluoxetine",
+    enzyme:"CYP2D6",
+    note:"Norfluoxetine is active and has a long half-life. CYP2D6 PM status raises parent fluoxetine exposure while lowering norfluoxetine formation, so parent and metabolite context should be read together.",
+    evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_cyp2d6_sunkara2010"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: norfluoxetine formation may fall while parent fluoxetine rises",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { fold:0.5, direction:"decrease", label:"~50% lower norfluoxetine AUC; parent fluoxetine higher" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Tamoxifen",
+    metaboliteId:"endoxifen",
+    metaboliteName:"Endoxifen",
+    enzyme:"CYP2D6",
+    note:"Endoxifen is the key active tamoxifen metabolite. Reduced CYP2D6 function lowers endoxifen formation; clinical outcome interpretation remains debated and contradictory evidence is retained.",
+    evidenceRefs:["ev_tamoxifen_cyp2d6_cpic","ev_tamoxifen_endoxifen_borges2006","ev_tamoxifen_cyp2d6_controversy"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower endoxifen formation expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { fold:0.27, direction:"decrease", label:"~73-75% lower endoxifen vs EM/NM" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Clopidogrel",
+    metaboliteId:"active-thiol-clopidogrel",
+    metaboliteName:"Active thiol metabolite",
+    enzyme:"CYP2C19",
+    note:"Clopidogrel is a prodrug. CYP2C19 loss-of-function sharply lowers active thiol metabolite exposure and platelet inhibition; the strongest evidence applies to ACS/PCI settings.",
+    evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_clopidogrel_active_thiol_kim2014","ev_clopidogrel_cyp2c19_mega2009"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2C19 inhibition/phenoconversion context: lower active thiol formation expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { fold:0.35, direction:"decrease", label:"active thiol AUC ~0.34-0.37x of EM" },
+      [GENOTYPE_PHENOTYPE.IM]: { direction:"decrease", label:"reduced active metabolite; CPIC recommends avoiding in ACS/PCI" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { direction:"increase", label:"modestly higher active metabolite/platelet inhibition; no CPIC dose change" },
+    }
+  },
+  {
+    parent:"Codeine",
+    metaboliteId:"morphine",
+    metaboliteName:"Morphine",
+    enzyme:"CYP2D6",
+    note:"Codeine depends on CYP2D6 activation to morphine for analgesia. PM status can mean analgesic failure; UM status can increase morphine exposure and opioid toxicity risk.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_codeine_cyp2d6_cpic","ev_codeine_ultrarapid_deaths"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower morphine formation expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"near-zero morphine formation; analgesia failure risk" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { fold:1.45, direction:"increase", label:"~45% higher median morphine AUC vs NM" },
+    }
+  },
+  {
+    parent:"Tramadol",
+    metaboliteId:"o-desmethyltramadol",
+    metaboliteName:"O-desmethyltramadol (M1)",
+    enzyme:"CYP2D6",
+    note:"O-desmethyltramadol (M1) is the opioid-active metabolite. CYP2D6 PM status reduces M1 formation while parent tramadol serotonergic/noradrenergic effects remain.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_cyp2d6_codeine_genotype"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower M1 formation expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"M1 formation substantially reduced; analgesia failure risk" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { direction:"increase", label:"higher M1 formation; opioid toxicity risk" },
+    }
+  },
+  {
+    parent:"DXM (Dextromethorphan)",
+    metaboliteId:"dextrorphan-dxo",
+    metaboliteName:"Dextrorphan",
+    enzyme:"CYP2D6",
+    note:"CYP2D6 normally converts dextromethorphan to dextrorphan. PM status shifts exposure toward parent DXM, so metabolite and parent effects diverge.",
+    evidenceRefs:["ev_dxm_dextrorphan_cyp2d6"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower dextrorphan formation; parent DXM predominates",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"dextrorphan formation reduced; parent DXM predominates" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
     }
   },

@@ -102,6 +102,7 @@ function renderFoldBars() {
       ? getGenotypeMetaboliteEffectCards(name)
       : []
     ).map(card => renderFoldMetaboliteRow(card)).join("");
+    const contextRows = renderFoldExposureContextRows(name);
 
     return `<div class="fold-row">
       <div class="fold-name">${name}</div>
@@ -109,8 +110,59 @@ function renderFoldBars() {
         <div class="fold-bar" style="width:${barPct}%;background:${color}">${fold.toFixed(1)}×</div>
       </div>
       <div class="fold-val" style="color:${color}">${fold.toFixed(1)}×<span class="fold-tag" style="${tagColor}">${tagText}</span></div>
-    </div>${metaboliteRows}`;
+    </div>${contextRows}${metaboliteRows}`;
   }).join("");
+}
+
+function renderFoldExposureContextRows(name) {
+  const drug = getDrug(name);
+  if (!drug) return "";
+  const selfInh = (drug.inh || []).filter(inh =>
+    inh.autoInhibition && drug.routes.some(route => route.enzyme === inh.target)
+  );
+  if (!selfInh.length) return "";
+  const doseInfo = DOSE_TIERS[name];
+  const tier = getDoseTier(name);
+  const doseLabel = doseInfo?.tiers?.[tier]?.label || "selected dose";
+  return selfInh.map(inh => {
+    const exposureFold = estimateSelfInhibitionDoseFold(name, inh);
+    const foldText = exposureFold ? `${exposureFold.toFixed(1)}x` : "dose-linked";
+    const dosePhrase = inh.doseDependent
+      ? `${doseLabel}: ~${foldText} parent exposure vs standard-dose NM baseline`
+      : `nonlinear ${inh.target} self-inhibition`;
+    const label = `${dosePhrase}; nonlinear ${inh.target} self-inhibition`;
+    return renderFoldSubRow({
+      title:`${name} parent`,
+      subtitle:"self-inhibition context",
+      tagText:`PARENT ${exposureFold && exposureFold < 1 ? "↓" : "↑"} ${exposureFold ? foldText : ""}`.trim(),
+      color:"var(--amber)",
+      summary:label,
+    });
+  }).join("");
+}
+
+function estimateSelfInhibitionDoseFold(name, inh) {
+  const drug = getDrug(name);
+  if (!drug || !inh) return null;
+  const route = drug.routes.find(r => r.enzyme === inh.target);
+  if (!route) return null;
+  const genePheno = typeof userGenetics !== 'undefined' ? userGenetics[route.enzyme] : null;
+  const clinEnz = CLINICAL_FOLD[name]?.[route.enzyme];
+  const clinFold = clinEnz && (genePheno === "poor" || genePheno === "null")
+    ? clinEnz[genePheno]
+    : null;
+  const clinBaseMult = clinFold && route.fraction > 0
+    ? Math.max(0.01, (clinFold - (1 - route.fraction)) / route.fraction)
+    : 1.0;
+  const doseMod = inh.doseDependent ? getDoseModifier(name) : 1.0;
+  const baseGamma = route.saturable || route.nonLinear ? 2.5 : 1.8;
+  const gamma = genePheno === "null" ? 1.0 :
+    genePheno === "poor" ? baseGamma * 0.6 :
+    baseGamma;
+  const enzymeMult = clinBaseMult * Math.pow(doseMod || 1, gamma);
+  const remaining = Math.max(0, 1 - route.fraction);
+  const fold = route.fraction * enzymeMult + remaining;
+  return Math.round(fold * 100) / 100;
 }
 
 function renderFoldMetaboliteRow(card) {
@@ -118,18 +170,36 @@ function renderFoldMetaboliteRow(card) {
   const fold = phenotypeEffect.fold || null;
   const isIncrease = phenotypeEffect.direction === "increase";
   const isDecrease = phenotypeEffect.direction === "decrease";
+  const foldStr = fold && fold !== 1
+    ? `${phenotypeEffect.estimated ? "~" : ""}${fold.toFixed(fold >= 10 ? 1 : 2)}x`
+    : "";
+  const tagText = isIncrease ? `INCREASE ${foldStr}`.trim() : isDecrease ? `DECREASE ${foldStr}`.trim() :
+    phenotypeEffect.direction === "baseline" ? "BASELINE" : "CONTEXT";
   const color = isIncrease && fold && fold >= 10 ? "var(--red)" :
     isIncrease ? "var(--amber)" :
     isDecrease ? "var(--green)" :
     "var(--text2)";
-  const summary = fold && fold !== 1
-    ? `${fold.toFixed(fold >= 10 ? 1 : 2)}x / ${phenotypeEffect.label}`
+  const summary = phenotypeEffect.direction === "baseline"
+    ? "reference level (NM)"
+    : fold && fold !== 1
+    ? `${foldStr} / ${phenotypeEffect.label}${phenotypeEffect.estimated ? " (model estimate)" : ""}`
     : phenotypeEffect.label;
 
+  return renderFoldSubRow({
+    title:effect.metaboliteName,
+    subtitle:`from ${effect.parent}`,
+    tagText,
+    color,
+    summary,
+    valueText:foldStr,
+  });
+}
+
+function renderFoldSubRow({ title, subtitle, tagText, color, summary, valueText = "" }) {
   return `<div class="fold-row fold-metabolite-row">
-    <div class="fold-name fold-metabolite-name">${effect.metaboliteName} <span>from ${effect.parent}</span></div>
-    <div class="fold-metabolite-note" style="color:${color}">${summary}</div>
-    <div class="fold-val fold-metabolite-val"></div>
+    <div class="fold-name fold-metabolite-name">${title} <span>${subtitle}</span></div>
+    <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${tagText}</span> ${summary}</div>
+    <div class="fold-val fold-metabolite-val" style="color:${color}">${valueText}</div>
   </div>`;
 }
 

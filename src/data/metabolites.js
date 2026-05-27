@@ -353,8 +353,8 @@ const METAB = {
 
 // ── BENZODIAZEPINES ──
 "Alprazolam":[
-  {n:"α-Hydroxyalprazolam",e:"CYP3A4",a:"active",p:70,t:10,note:"~50% potency"},
-  {n:"4-Hydroxyalprazolam",e:"CYP3A4",a:"inactive",p:15},
+  {n:"α-Hydroxyalprazolam",e:"CYP3A4/CYP3A5",a:"active",p:70,t:10,note:"~50% potency; CYP3A5 non-expressors have higher parent alprazolam exposure",evidenceRefs:["ev_alprazolam_cyp3a5_park2006"]},
+  {n:"4-Hydroxyalprazolam",e:"CYP3A4/CYP3A5",a:"inactive",p:15,evidenceRefs:["ev_alprazolam_cyp3a5_park2006"]},
   {n:"Alprazolam glucuronide",e:"UGT",a:"inactive",p:10}
 ],
 "Diazepam":[

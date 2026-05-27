@@ -97,6 +97,14 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Apixaban",level:"B",action:"CYP3A4 inhibitors → ↑ bleeding; inducers → ↓ efficacy"}
     ]
   },
+  "CYP3A5":{
+    grade:"B",
+    guideline:"PharmGKB",
+    pairs:[
+      {drug:"Tacrolimus",level:"A",action:"CYP3A5 expressors often require higher doses; non-expressors have higher concentration/dose"},
+      {drug:"Alprazolam",level:"B",action:"CYP3A5*3/*3 non-expressors: higher alprazolam AUC vs expressors"}
+    ]
+  },
   "CYP2B6":{
     grade:"B",
     guideline:"CPIC",
@@ -229,11 +237,19 @@ function addGeneFromSelect() {
 const ENZYME_ACTORS = {
   "CYP2D6":  {id:"CYP2D6",  type:ACTOR_TYPE.ENZYME, name:"CYP2D6",  family:"CYP450", tissue:["liver","brain","gut"], polymorphic:true, substrateCount:0},
   "CYP3A4":  {id:"CYP3A4",  type:ACTOR_TYPE.ENZYME, name:"CYP3A4",  family:"CYP450", tissue:["liver","gut"],         polymorphic:false,substrateCount:0},
+  "CYP3A5":  {id:"CYP3A5",  type:ACTOR_TYPE.ENZYME, name:"CYP3A5",  family:"CYP450", tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
   "CYP2C19": {id:"CYP2C19", type:ACTOR_TYPE.ENZYME, name:"CYP2C19", family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2C9":  {id:"CYP2C9",  type:ACTOR_TYPE.ENZYME, name:"CYP2C9",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP2C8":  {id:"CYP2C8",  type:ACTOR_TYPE.ENZYME, name:"CYP2C8",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP1A2":  {id:"CYP1A2",  type:ACTOR_TYPE.ENZYME, name:"CYP1A2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["smoking","cruciferous","charbroiled"]},
+  "CYP2A6":  {id:"CYP2A6",  type:ACTOR_TYPE.ENZYME, name:"CYP2A6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
+  "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP27A1": {id:"CYP27A1", type:ACTOR_TYPE.ENZYME, name:"CYP27A1", family:"CYP450", tissue:["liver","macrophage"], polymorphic:false,substrateCount:0},
+  "CYP2R1":  {id:"CYP2R1",  type:ACTOR_TYPE.ENZYME, name:"CYP2R1",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP27B1": {id:"CYP27B1", type:ACTOR_TYPE.ENZYME, name:"CYP27B1", family:"CYP450", tissue:["kidney"],             polymorphic:true, substrateCount:0},
+  "CYP24A1": {id:"CYP24A1", type:ACTOR_TYPE.ENZYME, name:"CYP24A1", family:"CYP450", tissue:["kidney","liver"],     polymorphic:false,substrateCount:0},
   "UGT2B7":  {id:"UGT2B7",  type:ACTOR_TYPE.ENZYME, name:"UGT2B7",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
   "MAO-A":   {id:"MAO-A",   type:ACTOR_TYPE.ENZYME, name:"MAO-A",   family:"MAO",    tissue:["gut","liver","brain"],  polymorphic:false,substrateCount:0},
   "MAO-B":   {id:"MAO-B",   type:ACTOR_TYPE.ENZYME, name:"MAO-B",   family:"MAO",    tissue:["brain","platelets"],    polymorphic:false,substrateCount:0},
