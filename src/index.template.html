@@ -30,6 +30,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+img,svg{max-width:100%}
 :root{
   --bg:#fef7f0;--card:#fff;--card2:#fefcf9;--text:#3d2c1e;--text2:#8b7355;
   --border:#f0e4d4;--accent:#e85d26;--accent2:#f97316;--accentBg:#fff7ed;
@@ -88,7 +89,7 @@ a{color:var(--accent)}
 .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
 .section-title{font-size:15px;font-weight:700;padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .section-title svg{color:var(--accent)}
-.section-body{padding:12px 16px}
+.section-body{padding:12px 16px;overflow-x:auto}
 
 .med-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;margin:4px;border-radius:20px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
 .med-chip .x{cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s}
@@ -393,16 +394,73 @@ a{color:var(--accent)}
 .version-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
 .version-strip span{display:inline-flex;gap:4px;align-items:center}
 .version-strip strong{color:var(--text);font-weight:700}
+/* SUMMARY BAR */
+.summary-bar{
+  margin:16px 0 0;padding:14px 16px;background:var(--card);border-radius:var(--radius);
+  box-shadow:var(--shadow2);position:sticky;top:8px;z-index:30;border:1px solid var(--border);
+}
+.summary-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.summary-score{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-width:64px;padding:8px 12px;border-radius:12px;color:#fff;font-weight:800;
+}
+.summary-score .num{font-size:22px;line-height:1}
+.summary-score .lbl{font-size:9px;font-weight:700;letter-spacing:.04em;opacity:.95;margin-top:2px}
+.summary-headline{flex:1;min-width:160px;font-size:13px;color:var(--text);line-height:1.4}
+.summary-syndromes{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.syndrome-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:16px;
+  font-size:12px;font-weight:600;border:1.5px solid;
+}
+.syndrome-chip.critical,.syndrome-chip.severe{background:var(--redBg);border-color:var(--red);color:var(--red)}
+.syndrome-chip.moderate{background:var(--amberBg);border-color:var(--amber);color:var(--amber)}
+.summary-jump{font-size:12px;color:var(--accent);cursor:pointer;font-weight:600;text-decoration:underline}
+
+/* TABS */
+.tab-bar{
+  margin:12px 0 0;padding:6px;display:flex;gap:4px;background:var(--card);
+  border-radius:var(--radius);box-shadow:var(--shadow);position:sticky;top:96px;z-index:20;
+}
+.tab-btn{
+  flex:1;padding:10px 8px;border:none;border-radius:10px;background:transparent;
+  cursor:pointer;font-size:13px;font-weight:700;color:var(--text2);
+  font-family:var(--font);transition:all .15s;white-space:nowrap;
+}
+.tab-btn:hover{color:var(--accent)}
+.tab-btn.active{background:var(--accentBg);color:var(--accent)}
+.tab-btn .tab-badge{
+  display:inline-block;min-width:16px;padding:0 5px;margin-left:5px;
+  border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:800;line-height:16px;
+}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.tab-empty{text-align:center;color:var(--text2);font-size:13px;padding:32px 16px}
+
 /* RESPONSIVE */
-@media(max-width:500px){
+@media(max-width:700px){
+  .main,.search-wrap,.mode-toggle,.browse-wrap,.disclaimer{max-width:none}
+  .header{padding:10px 16px}
+}
+@media(max-width:480px){
   .fold-name,.timing-name{width:100px;font-size:12px}
-  .fold-metabolite-row{gap:8px;padding-left:12px}
-  .fold-metabolite-name{font-size:11px}
+  .fold-metabolite-row{flex-wrap:wrap;gap:6px;padding-left:12px}
+  .fold-metabolite-name{width:100%;font-size:12px}
   .fold-metabolite-val{width:54px;font-size:11px}
-  .fold-metabolite-note{font-size:11px}
+  .fold-metabolite-note{width:100%;font-size:11px;color:var(--text2);padding-left:0}
   .search-box{padding:12px 16px}
   .section-body{padding:10px 12px}
   .header h1{font-size:22px}
+  .header{position:static;flex-wrap:wrap;gap:4px}
+  .header p{width:100%;font-size:11px}
+  .inter-head,.pd-head,.tr-head{flex-wrap:wrap;gap:4px}
+  .inter-sev,.pd-sev{font-size:11px}
+  #matrixBody table{font-size:11px}
+  #matrixBody td,#matrixBody th{padding:4px 6px;min-width:44px}
+  .summary-bar{position:static}
+  .tab-bar{position:sticky;top:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab-btn{flex:0 0 auto;font-size:12px;padding:9px 12px}
+  .summary-score{min-width:54px;padding:6px 10px}
+  .summary-score .num{font-size:18px}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -429,257 +487,254 @@ a{color:var(--accent)}
 <div class="browse-wrap" id="browseWrap"></div>
 
 <div class="main">
-  <!-- My Medications -->
   <div class="section">
-    <div class="section-title">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-      <span id="listTitle">My Medications</span>
-      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="medCount"></span>
-    </div>
-    <div class="section-body" id="medList">
-      <div class="empty-state">
-        <div class="icon">💊</div>
-        Add your medications above to see how they interact
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        <span id="listTitle">My Medications</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="medCount"></span>
+      </div>
+      <div class="section-body" id="medList">
+        <div class="empty-state">
+          <div class="icon">💊</div>
+          Add your medications above to see how they interact
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Genetics (Optional) -->
   <div class="section" id="geneticsSection">
-    <div class="section-title collapsible" onclick="toggleSection('genetics')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-      <span>My Genetics <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional — makes results more accurate)</span></span>
-    </div>
-    <div class="section-body coll-body" id="geneticsBody">
-      <p style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">If you know your enzyme metabolizer status from pharmacogenomic testing, set it here. This adjusts drug level predictions based on how fast your body processes each medication.</p>
-      <div class="gene-add">
-        <select id="geneAddSelect"></select>
-        <button onclick="addGeneFromSelect()">+ Add Enzyme</button>
+      <div class="section-title collapsible" onclick="toggleSection('genetics')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+        <span>My Genetics <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional — makes results more accurate)</span></span>
       </div>
-      <div id="geneList"></div>
+      <div class="section-body coll-body" id="geneticsBody">
+        <p style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">If you know your enzyme metabolizer status from pharmacogenomic testing, set it here. This adjusts drug level predictions based on how fast your body processes each medication.</p>
+        <div class="gene-add">
+          <select id="geneAddSelect"></select>
+          <button onclick="addGeneFromSelect()">+ Add Enzyme</button>
+        </div>
+        <div id="geneList"></div>
+      </div>
     </div>
+
+  <!-- Summary bar (populated by renderSummaryBar; hidden until a stack exists) -->
+  <div class="summary-bar" id="summaryBar" style="display:none"></div>
+
+  <!-- Tab navigation (hidden until a stack exists) -->
+  <div class="tab-bar" id="tabBar" style="display:none">
+    <button class="tab-btn active" id="tabbtn-safety" onclick="setTab('safety')">Safety</button>
+    <button class="tab-btn" id="tabbtn-pgx" onclick="setTab('pgx')">PGx</button>
+    <button class="tab-btn" id="tabbtn-pk" onclick="setTab('pk')">PK</button>
+    <button class="tab-btn" id="tabbtn-evidence" onclick="setTab('evidence')">Evidence</button>
   </div>
 
-  <!-- Risk Gauge -->
+  <div class="tab-panel active" id="tab-safety">
   <div class="section" id="riskSection" style="display:none">
-    <div class="section-title">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      How Safe Is This Combo?
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        How Safe Is This Combo?
+      </div>
+      <div class="section-body" id="riskBody"></div>
     </div>
-    <div class="section-body" id="riskBody"></div>
-  </div>
 
-  <!-- Interactions -->
   <div class="section" id="interSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('inter')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      <span>How Your Meds Affect Each Other</span>
-      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
+      <div class="section-title collapsible" onclick="toggleSection('inter')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>How Your Meds Affect Each Other</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="interBody"></div>
     </div>
-    <div class="section-body coll-body open" id="interBody"></div>
-  </div>
 
-  <!-- Combination Alerts -->
   <div class="section" id="comboSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('combo')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      <span>Combination Alerts</span>
-      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="comboCount"></span>
+      <div class="section-title collapsible" onclick="toggleSection('combo')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span>Combination Alerts</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="comboCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="comboBody"></div>
     </div>
-    <div class="section-body coll-body open" id="comboBody"></div>
-  </div>
 
-  <!-- Transporter Interactions -->
   <div class="section" id="transporterSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('transporter')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      <span>Transporter Interactions</span>
-      <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="transporterCount"></span>
+      <div class="section-title collapsible" onclick="toggleSection('transporter')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        <span>Transporter Interactions</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="transporterCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="transporterBody"></div>
     </div>
-    <div class="section-body coll-body open" id="transporterBody"></div>
-  </div>
 
-  <!-- AUC Fold Changes -->
-  <div class="section" id="foldSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('fold')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      <span>How Each Med's Level Changes</span>
-    </div>
-    <div class="section-body coll-body open" id="foldBody"></div>
-  </div>
-
-  <!-- Interaction Matrix -->
   <div class="section" id="matrixSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('matrix')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Interaction Grid
+      <div class="section-title collapsible" onclick="toggleSection('matrix')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Interaction Grid
+      </div>
+      <div class="section-body coll-body" id="matrixBody"></div>
     </div>
-    <div class="section-body coll-body" id="matrixBody"></div>
-  </div>
 
-  <!-- Timing -->
-  <div class="section" id="timingSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('timing')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Best Times to Take Each Med
-    </div>
-    <div class="section-body coll-body" id="timingBody"></div>
-  </div>
-
-  <!-- Metabolite Cascades -->
-  <div class="section" id="metabSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('metab')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v11m0 0a5 5 0 0 0 10 0V2"/><path d="M4 15a8 8 0 0 0 16 0"/></svg>
-      <span>What Your Body Makes From Each Med</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite cross-check included</span>
-    </div>
-    <div class="section-body coll-body" id="metabBody"></div>
-  </div>
-
-  <!-- Pathway Diversions -->
   <div class="section" id="pdSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('pd')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
-      <span>Pathway Diversions</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How blocked enzymes reroute your meds</span>
+      <div class="section-title collapsible" onclick="toggleSection('pd')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
+        <span>Pathway Diversions</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How blocked enzymes reroute your meds</span>
+      </div>
+      <div class="section-body coll-body" id="pdBody"></div>
     </div>
-    <div class="section-body coll-body" id="pdBody"></div>
-  </div>
 
-  <!-- Evidence Explorer -->
-  <div class="section" id="evidenceSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('evidence')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-      <span>Evidence Explorer</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
-    </div>
-    <div class="section-body coll-body" id="evidenceBody"></div>
-  </div>
-
-  <!-- Database Quality -->
-  <div class="section" id="qualitySection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('quality')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-5"/>
-      </svg>
-      <span>Database Quality</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="qualityCount"></span>
-    </div>
-    <div class="section-body coll-body" id="qualityBody"></div>
-  </div>
-
-  <!-- Explainable Graph Output — Cascade Traversal -->
-  <div class="section" id="cascadeSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('cascade')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
-        <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
-      </svg>
-      <span>Effect Cascade</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Graph traversal — not just pairwise</span>
-    </div>
-    <div class="section-body coll-body" id="cascadeBody"></div>
-  </div>
-
-  <!-- Phenotype Accumulation (#6) -->
-  <div class="section" id="phenoAccumSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('phenoAccum')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-      </svg>
-      <span>Phenotype Risk Accumulation</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Serotonin load · QTc · Anticholinergic · Sedation</span>
-    </div>
-    <div class="section-body coll-body open" id="phenoAccumBody"></div>
-  </div>
-
-  <!-- PK Simulation (#1) -->
-  <div class="section" id="pkSimSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('pkSim')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="3 17 9 11 13 15 21 7"/>
-        <polyline points="14 7 21 7 21 14"/>
-      </svg>
-      <span>PK Simulation</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
-    </div>
-    <div class="section-body coll-body open" id="pkSimBody"></div>
-  </div>
-
-  <!-- Scenario Comparison -->
-  <div class="section" id="scenarioSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('scenario')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-7"/>
-      </svg>
-      <span>Dose + Genotype Scenarios</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Compare current vs nearby assumptions</span>
-    </div>
-    <div class="section-body coll-body open" id="scenarioBody"></div>
-  </div>
-
-  <!-- Genotype-Stratified Evidence (#2) -->
-  <div class="section" id="genotypeSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('genotype')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
-        <path d="M8 10h8M8 14h8"/>
-      </svg>
-      <span>Genotype-Stratified Evidence</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
-    </div>
-    <div class="section-body coll-body open" id="genotypeBody"></div>
-  </div>
-
-  <!-- D3 Graph (#4) -->
-  <div class="section" id="graphSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('graph')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/>
-        <line x1="8" y1="12" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="17"/>
-      </svg>
-      <span>Interaction Network Graph</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Force-directed D3 visualization</span>
-    </div>
-    <div class="section-body coll-body open" id="graphBody"></div>
-  </div>
-
-  <!-- Washout Calendar (#9) -->
-  <div class="section" id="washoutSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('washout')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      <span>Washout Calendar</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Safe-to-switch dates from enzyme recovery</span>
-    </div>
-    <div class="section-body coll-body open" id="washoutBody"></div>
-  </div>
-
-  <!-- Adverse Burden (#10) -->
-  <div class="section" id="burdenSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('burden')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-      </svg>
-      <span>Adverse Effect Burden</span>
-      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">ACB · Beers Criteria · Fall Risk · Sedation</span>
-    </div>
-    <div class="section-body coll-body open" id="burdenBody"></div>
-  </div>
-
-  <!-- Alternatives -->
   <div class="section" id="altSection" style="display:none">
-    <div class="section-title collapsible" onclick="toggleSection('alt')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-      Alternatives Worth Discussing
+      <div class="section-title collapsible" onclick="toggleSection('alt')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Alternatives Worth Discussing
+      </div>
+      <div class="section-body coll-body" id="altBody"></div>
     </div>
-    <div class="section-body coll-body" id="altBody"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-pgx">
+  <div class="section" id="foldSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('fold')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>How Each Med's Level Changes</span>
+      </div>
+      <div class="section-body coll-body open" id="foldBody"></div>
+    </div>
+
+  <div class="section" id="genotypeSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('genotype')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+          <path d="M8 10h8M8 14h8"/>
+        </svg>
+        <span>Genotype-Stratified Evidence</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
+      </div>
+      <div class="section-body coll-body open" id="genotypeBody"></div>
+    </div>
+
+  <div class="section" id="metabSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('metab')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v11m0 0a5 5 0 0 0 10 0V2"/><path d="M4 15a8 8 0 0 0 16 0"/></svg>
+        <span>What Your Body Makes From Each Med</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite cross-check included</span>
+      </div>
+      <div class="section-body coll-body" id="metabBody"></div>
+    </div>
+
+  <div class="section" id="cascadeSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('cascade')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+          <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
+        </svg>
+        <span>Effect Cascade</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Graph traversal — not just pairwise</span>
+      </div>
+      <div class="section-body coll-body" id="cascadeBody"></div>
+    </div>
+
+  <div class="section" id="phenoAccumSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('phenoAccum')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        <span>Phenotype Risk Accumulation</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Serotonin load · QTc · Anticholinergic · Sedation</span>
+      </div>
+      <div class="section-body coll-body open" id="phenoAccumBody"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk">
+  <div class="section" id="pkSimSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('pkSim')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 17 9 11 13 15 21 7"/>
+          <polyline points="14 7 21 7 21 14"/>
+        </svg>
+        <span>PK Simulation</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
+      </div>
+      <div class="section-body coll-body open" id="pkSimBody"></div>
+    </div>
+
+  <div class="section" id="scenarioSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('scenario')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-7"/>
+        </svg>
+        <span>Dose + Genotype Scenarios</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Compare current vs nearby assumptions</span>
+      </div>
+      <div class="section-body coll-body open" id="scenarioBody"></div>
+    </div>
+
+  <div class="section" id="timingSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('timing')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Best Times to Take Each Med
+      </div>
+      <div class="section-body coll-body" id="timingBody"></div>
+    </div>
+
+  <div class="section" id="washoutSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('washout')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Washout Calendar</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Safe-to-switch dates from enzyme recovery</span>
+      </div>
+      <div class="section-body coll-body open" id="washoutBody"></div>
+    </div>
+
+  <div class="section" id="burdenSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('burden')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>Adverse Effect Burden</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">ACB · Beers Criteria · Fall Risk · Sedation</span>
+      </div>
+      <div class="section-body coll-body open" id="burdenBody"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-evidence">
+  <div class="section" id="evidenceSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('evidence')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <span>Evidence Explorer</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
+      </div>
+      <div class="section-body coll-body" id="evidenceBody"></div>
+    </div>
+
+  <div class="section" id="qualitySection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('quality')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-5"/>
+        </svg>
+        <span>Database Quality</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="qualityCount"></span>
+      </div>
+      <div class="section-body coll-body" id="qualityBody"></div>
+    </div>
+
+  <div class="section" id="graphSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('graph')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/>
+          <line x1="8" y1="12" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="17"/>
+        </svg>
+        <span>Interaction Network Graph</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Force-directed D3 visualization</span>
+      </div>
+      <div class="section-body coll-body open" id="graphBody"></div>
+    </div>
   </div>
 
 </div>

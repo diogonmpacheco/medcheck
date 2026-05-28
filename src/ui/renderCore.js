@@ -24,12 +24,109 @@ function swapDrug(oldName, newName) {
 }
 
 let viewMode = "search";
+let activeTab = "safety";
 function setViewMode(m) {
   viewMode = m;
   document.getElementById("searchModeBtn").className = "mode-btn" + (m==="search"?" active":"");
   document.getElementById("browseModeBtn").className = "mode-btn" + (m==="browse"?" active":"");
   document.getElementById("browseWrap").className = "browse-wrap" + (m==="browse"?" show":"");
   if (m==="browse") renderBrowse();
+}
+
+function setTab(name) {
+  activeTab = name;
+  ["safety","pgx","pk","evidence"].forEach(t => {
+    const panel = document.getElementById("tab-" + t);
+    const btn = document.getElementById("tabbtn-" + t);
+    if (panel) panel.classList.toggle("active", t === name);
+    if (btn) btn.classList.toggle("active", t === name);
+  });
+}
+
+function renderSummaryBar() {
+  const bar = document.getElementById("summaryBar");
+  const tabBar = document.getElementById("tabBar");
+  if (!bar || !tabBar) return;
+
+  const safetyBtn = document.getElementById("tabbtn-safety");
+  const tabPanels = ["safety","pgx","pk","evidence"]
+    .map(t => document.getElementById("tab-" + t))
+    .filter(Boolean);
+  if (activeStack.length < 1) {
+    bar.style.display = "none";
+    tabBar.style.display = "none";
+    tabPanels.forEach(panel => { panel.style.display = "none"; });
+    if (safetyBtn) safetyBtn.innerHTML = "Safety";
+    return;
+  }
+
+  bar.style.display = "";
+  tabBar.style.display = "";
+  tabPanels.forEach(panel => { panel.style.display = ""; });
+  setTab(activeTab);
+
+  let scoreHtml = "";
+  let headline = "";
+  let severeCount = 0;
+  if (activeStack.length >= 2) {
+    const risk = calcRisk();
+    const severeInteractions = risk.interactions.filter(i => i.severity === "severe" || i.severity === "critical");
+    severeCount = severeInteractions.length;
+    scoreHtml = `<div class="summary-score" style="background:${risk.color}">
+        <span class="num">${risk.score}</span><span class="lbl">${risk.level.split(" ")[0]}</span>
+      </div>`;
+    const topSevere = severeInteractions.slice(0, 2)
+      .map(i => `${i.drug1} ↔ ${i.drug2}`).join(", ");
+    headline = severeCount > 0
+      ? `<strong>${severeCount} severe interaction${severeCount>1?"s":""}</strong>${topSevere ? ": " + topSevere : ""}. <span class="summary-jump" onclick="setTab('safety')">View safety →</span>`
+      : `No severe interactions detected across ${activeStack.length} medications. <span class="summary-jump" onclick="setTab('safety')">View details →</span>`;
+  } else {
+    scoreHtml = `<div class="summary-score" style="background:var(--text2)">
+        <span class="num">—</span><span class="lbl">ADD 2+</span></div>`;
+    headline = "Add a second medication to check for interactions. Pharmacogenomic and PK analysis for this drug is available in the tabs below.";
+  }
+
+  let syndromeHtml = "";
+  try {
+    const occ = computeReceptorOccupancy(activeStack);
+    if (occ && occ.active_syndromes && occ.active_syndromes.length) {
+      const chips = occ.active_syndromes.map(s => {
+        const note = (s.clinical_note || "").replace(/"/g, "&quot;");
+        return `<span class="syndrome-chip ${s.severity}" title="${note}">${s.name}</span>`;
+      }).join("");
+      syndromeHtml = `<div class="summary-syndromes">${chips}</div>`;
+    }
+  } catch (e) {
+    // Summary should never block the rest of the UI.
+  }
+
+  bar.innerHTML = `<div class="summary-row">${scoreHtml}<div class="summary-headline">${headline}</div></div>${syndromeHtml}`;
+  const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
+  if (safetyBtn) safetyBtn.innerHTML = "Safety" + badge;
+}
+
+function updateEmptyTabs() {
+  ["safety","pgx","pk","evidence"].forEach(t => {
+    const panel = document.getElementById("tab-" + t);
+    if (!panel || typeof panel.querySelectorAll !== "function") return;
+    const sections = Array.from(panel.querySelectorAll(".section"));
+    const anyVisible = sections
+      .some(section => section.style.display !== "none");
+    let note = panel.querySelector(".tab-empty");
+    if (!anyVisible) {
+      if (!note) {
+        note = document.createElement("div");
+        note.className = "tab-empty";
+        panel.appendChild(note);
+      }
+      note.textContent = activeStack.length < 2
+        ? "Add a second medication to populate this view."
+        : "No data available for this medication set.";
+      note.style.display = "";
+    } else if (note) {
+      note.style.display = "none";
+    }
+  });
 }
 
 function onSearch(q) {
@@ -201,6 +298,8 @@ function renderAll() {
     document.getElementById("matrixSection").style.display = "none";
     document.getElementById("altSection").style.display = "none";
   }
+  renderSummaryBar();
+  updateEmptyTabs();
   if (viewMode === "browse") renderBrowse();
 }
 
