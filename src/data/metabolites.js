@@ -39,6 +39,11 @@ const METAB = {
   {n:"Hippuric acid",e:"Conjugation",a:"inactive",p:15},
   {n:"Amphetamine (unchanged)",e:"Renal",a:"active",p:20,note:"30-40% excreted unchanged (pH dependent)"}
 ],
+"Lisdexamfetamine":[
+  {n:"d-Amphetamine (dextroamphetamine)",e:"RBC peptidases",a:"active_form",role:"active_form",p:100,t:10,note:"Active stimulant released by red blood cell hydrolysis; prodrug activation is CYP-independent",evidenceRefs:["ev_lisdexamfetamine_rbc_activation","ev_lisdexamfetamine_cyp2d6_fda"]},
+  {n:"L-lysine",e:"Hydrolysis",a:"inactive",p:100,note:"Benign amino acid coproduct of lisdexamfetamine activation"},
+  {n:"d-Amphetamine (unchanged renal)",e:"Renal",a:"active",p:30,note:"Renal clearance is strongly urinary-pH dependent"}
+],
 "Methamphetamine":[
   {n:"Amphetamine",e:"CYP2D6",a:"active",p:15,t:10,note:"Active metabolite — IS a scheduled drug itself",evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
   {n:"4-Hydroxymethamphetamine",e:"CYP2D6",a:"active",p:20,t:6,evidenceRefs:["ev_mdma_meth_cyp2d6_review"]},
@@ -153,7 +158,7 @@ const METAB = {
 
 // ── SSRIs ──
 "Fluoxetine":[
-  {n:"Norfluoxetine",e:"CYP2D6",a:"active",p:80,t:240,note:"POTENT CYP2D6 inhibitor, t½ 4-16 DAYS",evidenceRefs:["ev_fluoxetine_cyp2d6_fda"],inh:[{e:"CYP2D6",s:"strong"},{e:"CYP2C19",s:"moderate"}]},
+  {n:"Norfluoxetine",e:"CYP2D6/CYP2C9",a:"active",p:80,t:240,note:"POTENT CYP2D6 inhibitor, t½ 4-16 DAYS; CYP2D6 primary with CYP2C9/CYP2C19/CYP3A4 secondary contributors",evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_cyp2d6_sunkara2010"],inh:[{e:"CYP2D6",s:"strong"},{e:"CYP2C19",s:"moderate"}]},
   {n:"Fluoxetine glucuronide",e:"UGT",a:"inactive",p:10},
   {n:"p-Trifluoromethylphenol",e:"CYP2D6",a:"inactive",p:10,evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_ssri_cyp2d6_review"]}
 ],
@@ -251,9 +256,9 @@ const METAB = {
 
 // ── BETA-BLOCKERS ──
 "Metoprolol":[
-  {n:"α-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:65,t:3,note:"~10% β-blocking potency",evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
-  {n:"O-Desmethylmetoprolol",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
-  {n:"Metoprolol acid (deaminated)",e:"CYP2D6",a:"inactive",p:10,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]}
+  {n:"α-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:10,t:3,note:"~10% β-blocking potency; minor CYP2D6 oxidative pathway",evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
+  {n:"O-Desmethylmetoprolol",e:"CYP2D6",a:"inactive",p:65,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
+  {n:"Metoprolol acid (deaminated)",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]}
 ],
 "Propranolol":[
   {n:"4-Hydroxypropranolol",e:"CYP2D6",a:"active",p:40,t:1,note:"Equipotent β-blocker, very short t½",evidenceRefs:["ev_beta_blocker_cyp2d6_propranolol"]},
@@ -328,8 +333,8 @@ const METAB = {
   {n:"Despropionylfentanyl",e:"Esterase",a:"inactive",p:5}
 ],
 "Methadone":[
-  {n:"EDDP (2-ethylidene-1,5-dimethyl-3,3-diphenylpyrrolidine)",e:"CYP3A4",a:"inactive",p:50,t:40,note:"Primary metabolite, detection marker"},
-  {n:"EMDP",e:"CYP2B6",a:"inactive",p:20},
+  {n:"EDDP (2-ethylidene-1,5-dimethyl-3,3-diphenylpyrrolidine)",e:"CYP2B6/CYP3A4",a:"inactive",p:50,t:40,note:"Primary metabolite, detection marker; CYP2B6 is primary with CYP3A4 as secondary contributor"},
+  {n:"EMDP",e:"CYP2B6/CYP3A4",a:"inactive",p:20,note:"Further downstream oxidation of EDDP"},
   {n:"Methadol",e:"CYP2D6",a:"active",p:5,note:"Weak opioid activity; minor CYP2D6-contributing route, not a primary methadone genotype signal",evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},
   {n:"Methadone (unchanged)",e:"Renal",a:"active",p:20,note:"pH-dependent excretion"}
 ],

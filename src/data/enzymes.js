@@ -37,14 +37,14 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Clomipramine",level:"A",action:"PM: reduce dose; UM: consider alternative"},
       {drug:"Doxepin",level:"B",action:"PM: reduce dose; monitor levels"},
       {drug:"Atomoxetine",level:"A",action:"PM: reduce dose to 0.5mg/kg/day"},
-      {drug:"Aripiprazole",level:"B",action:"PM: reduce dose to 67% of standard"},
+      {drug:"Aripiprazole",level:"B",action:"PM: reduce dose to 50% of standard (FDA label); use extra caution with CYP3A4 inhibitors"},
       {drug:"Risperidone",level:"B",action:"PM: reduce dose; active metabolite reduced"},
       {drug:"Haloperidol",level:"B",action:"PM: reduce dose 50%"},
       {drug:"Metoprolol",level:"B",action:"PM: ↑ AUC 5×; consider atenolol/bisoprolol"},
       {drug:"Carvedilol",level:"B",action:"PM: ↑ levels; monitor for bradycardia"},
       {drug:"Propranolol",level:"C",action:"PM: ↑ levels; clinical significance unclear"},
       {drug:"Tamoxifen",level:"A",action:"PM: ineffective; use aromatase inhibitor"},
-      {drug:"Ondansetron",level:"B",action:"UM: reduced efficacy; consider alternative antiemetic"},
+      {drug:"Ondansetron",level:"B",action:"PM: elevated levels may increase QTc risk; UM effect is usually minor/no dose change"},
       {drug:"Metoclopramide",level:"C",action:"PM: ↑ EPS risk"}
     ]
   },
@@ -110,7 +110,7 @@ const PHARMGKB_EVIDENCE = {
     guideline:"CPIC",
     pairs:[
       {drug:"Efavirenz",level:"A",action:"PM: reduce dose to 400mg; UM: may need 800mg"},
-      {drug:"Bupropion",level:"B",action:"PM: ↑ levels of hydroxybupropion"},
+      {drug:"Bupropion",level:"B",action:"PM: ↓ hydroxybupropion AUC ~23%; parent bupropion modestly elevated"},
       {drug:"Methadone",level:"B",action:"PM: ↑ levels; UM: faster clearance"}
     ]
   },

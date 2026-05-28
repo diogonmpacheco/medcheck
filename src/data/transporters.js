@@ -12,18 +12,32 @@ const TRANSPORTER_DDI = [
   evidence:{confidence:"high",sources:["FDA label"],pmid:["19943701"],foldChange:2.5,studyType:"clinical"}},
 {substrate:"Dabigatran",inhibitor:"Amiodarone",transporter:"P-gp",effect:"Dabigatran AUC ↑ 60%",severity:"high",mechanism:"P-gp inhibition; FDA dose reduction",
   evidence:{confidence:"high",sources:["FDA label"],foldChange:1.6,studyType:"clinical"}},
+{substrate:"Dabigatran",inhibitor:"Rifampin",transporter:"P-gp",effect:"Dabigatran AUC ↓ 67%",severity:"critical",mechanism:"P-gp induction reduces prodrug absorption; anticoagulation failure risk",
+  evidence:{confidence:"high",sources:["FDA label"],foldChange:0.33,studyType:"clinical"}},
+{substrate:"Digoxin",inhibitor:"Rifampin",transporter:"P-gp",effect:"Digoxin AUC ↓ ~30%",severity:"moderate",mechanism:"P-gp induction reduces digoxin exposure",
+  evidence:{confidence:"high",sources:["FDA label","literature"],foldChange:0.7,studyType:"clinical"}},
+{substrate:"Digoxin",inhibitor:"St. John's Wort",transporter:"P-gp",effect:"Digoxin AUC ↓ 25-40%",severity:"high",mechanism:"Hyperforin-driven PXR/P-gp induction reduces digoxin exposure",
+  evidence:{confidence:"high",sources:["literature"],pmid:["10604132"],foldChange:0.65,studyType:"clinical"}},
 {substrate:"Loperamide",inhibitor:"Quinidine",transporter:"P-gp (BBB)",effect:"Loperamide crosses BBB → CNS opioid effects",severity:"critical",mechanism:"P-gp at BBB normally excludes loperamide; inhibition → respiratory depression",
   evidence:{confidence:"high",sources:["literature"],pmid:["12235448"],studyType:"clinical"}},
 {substrate:"Atorvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Atorvastatin AUC ↑ 8x",severity:"critical",mechanism:"Blocks hepatic uptake → systemic statin exposure ↑ → myopathy",
   evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["15328325"],foldChange:8.0,studyType:"clinical"}},
 {substrate:"Rosuvastatin",inhibitor:"Cyclosporine",transporter:"OATP1B1",effect:"Rosuvastatin AUC ↑ 7x",severity:"critical",mechanism:"CYP-independent statins still vulnerable via transporters",
   evidence:{confidence:"high",sources:["FDA label"],pmid:["15548098"],foldChange:7.0,studyType:"clinical"}},
+{substrate:"Rosuvastatin",inhibitor:"Gemfibrozil",transporter:"OATP1B1",effect:"Rosuvastatin AUC ↑ ~2x",severity:"high",mechanism:"Gemfibrozil inhibits hepatic OATP1B1 uptake",
+  evidence:{confidence:"high",sources:["FDA label"],foldChange:2.0,studyType:"clinical"}},
+{substrate:"Rosuvastatin",inhibitor:"Eltrombopag",transporter:"OATP1B1/BCRP",effect:"Rosuvastatin AUC ↑ ~3.6x",severity:"high",mechanism:"Eltrombopag inhibits OATP1B1 and BCRP",
+  evidence:{confidence:"high",sources:["FDA label"],foldChange:3.6,studyType:"clinical"}},
 {substrate:"Methotrexate",inhibitor:"NSAIDs",transporter:"OAT1/OAT3",effect:"MTX clearance ↓ 30-50%",severity:"critical",mechanism:"Competition for renal OAT transporters",
   evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["12042305"],foldChange:1.5,studyType:"clinical"}},
+{substrate:"Methotrexate",inhibitor:"Probenecid",transporter:"OAT1/OAT3",effect:"MTX clearance ↓",severity:"critical",mechanism:"Probenecid blocks renal OAT secretion of methotrexate",
+  evidence:{confidence:"high",sources:["FDA label","literature"],foldChange:1.5,studyType:"clinical"}},
 {substrate:"Metformin",inhibitor:"Cimetidine",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ 50%",severity:"moderate",mechanism:"Inhibits renal uptake + secretion of metformin",
   evidence:{confidence:"high",sources:["FDA label"],pmid:["7584966"],foldChange:1.5,studyType:"clinical"}},
 {substrate:"Metformin",inhibitor:"Dolutegravir",transporter:"OCT2",effect:"Metformin AUC ↑ 79%",severity:"moderate",mechanism:"OCT2+MATE1 inhibition; dose adjustment needed",
-  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["24218476"],foldChange:1.79,studyType:"clinical"}}
+  evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["24218476"],foldChange:1.79,studyType:"clinical"}},
+{substrate:"Metformin",inhibitor:"Trimethoprim-SMX",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ ~40%",severity:"moderate",mechanism:"Trimethoprim inhibits renal OCT2 and MATE1 secretion",
+  evidence:{confidence:"high",sources:["clinical PK studies"],pmid:["26953265"],foldChange:1.4,studyType:"clinical"}}
 ];
 
 

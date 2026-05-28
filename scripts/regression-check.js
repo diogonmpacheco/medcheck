@@ -133,6 +133,28 @@ const knownDdiEvidenceAudit = window.eval(`(() => {
 })()`);
 assert(knownDdiEvidenceAudit.unknownRefs.length === 0, `Unknown KNOWN_DDI evidence refs: ${knownDdiEvidenceAudit.unknownRefs.join(', ')}`);
 
+const batchAuditFixes = window.eval(`(() => {
+  const drug = name => DRUG_DB.find(d => d.name === name);
+  const hasPair = (a,b) => KNOWN_DDI.some(i =>
+    (i.drug1 === a && i.drug2 === b) || (i.drug1 === b && i.drug2 === a)
+  );
+  return {
+    amphetamineBrands: drug('Amphetamine')?.brandNames || [],
+    lisdexamfetamine: drug('Lisdexamfetamine'),
+    simvastatinProdrug: !!drug('Simvastatin')?.prodrug,
+    dabigatranProdrug: !!drug('Dabigatran')?.prodrug,
+    hasGemfibrozilStatin: hasPair('Simvastatin','Gemfibrozil') && hasPair('Rosuvastatin','Gemfibrozil'),
+    hasRifampinDoacs: hasPair('Dabigatran','Rifampin') && hasPair('Apixaban','Rifampin') && hasPair('Rivaroxaban','Rifampin'),
+    hasTransporterPairs: hasPair('Digoxin', "St. John's Wort") && hasPair('Metformin','Trimethoprim-SMX') && hasPair('Methotrexate','Probenecid'),
+  };
+})()`);
+assert(!batchAuditFixes.amphetamineBrands.includes('Vyvanse') && !batchAuditFixes.amphetamineBrands.includes('Elvanse'), 'Vyvanse/Elvanse should not be Amphetamine brands');
+assert(batchAuditFixes.lisdexamfetamine?.prodrug, 'Lisdexamfetamine should be modeled as a separate prodrug');
+assert(batchAuditFixes.simvastatinProdrug && batchAuditFixes.dabigatranProdrug, 'Batch prodrug flags should be present');
+assert(batchAuditFixes.hasGemfibrozilStatin, 'Gemfibrozil statin DDIs should be present');
+assert(batchAuditFixes.hasRifampinDoacs, 'Rifampin DOAC DDIs should be present');
+assert(batchAuditFixes.hasTransporterPairs, 'Batch transporter DDI pairs should be present');
+
 loadCase(window, ['Paroxetine', 'Codeine']);
 const genotypeText = window.document.getElementById('genotypeBody').textContent;
 assert(

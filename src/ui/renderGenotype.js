@@ -299,6 +299,7 @@ function getInhibitionMetaboliteEffect(effect, inhibitorContext) {
   return {
     direction,
     label,
+    fold:effect.inhibitionFold,
     inhibitorContext:names,
     strength:hasStrong ? "strong" : inhibitorContext[0]?.strength,
   };

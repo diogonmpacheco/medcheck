@@ -252,7 +252,7 @@ const STUDY_DB = {
     type:EVIDENCE_TIER.META_ANALYSIS,
     title:"Association between CYP2D6 phenotype and tamoxifen efficacy: meta-analysis of clinical outcome studies",
     year:2014, source:"Province et al.", journal:"Clin Pharmacol Ther",
-    pmid:"24598971", doi:"10.1038/clpt.2014.9",
+    pmid:"24060820", doi:"10.1038/clpt.2013.186",
     studyDesign:"meta_analysis", n:null,
     phenotypes:["poor_metabolizer","normal_metabolizer"],
     quantifiedEffects:{note:"Did not find statistically significant difference in recurrence by CYP2D6 genotype across all studies"},
@@ -301,9 +301,9 @@ const STUDY_DB = {
   "ev_clopidogrel_cyp2c19_cpic": {
     id:"ev_clopidogrel_cyp2c19_cpic",
     type:EVIDENCE_TIER.GUIDELINE,
-    title:"CPIC Guideline for Clopidogrel and CYP2C19",
-    year:2022, source:"CPIC / PharmGKB",
-    pmid:"32189324", doi:"10.1002/cpt.1750",
+    title:"Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update",
+    year:2022, source:"Lee et al. / CPIC",
+    pmid:"35034351", doi:"10.1002/cpt.2526",
     studyDesign:"systematic_review_guideline", n:null,
     phenotypes:["poor_metabolizer","intermediate_metabolizer"],
     quantifiedEffects:{
@@ -581,6 +581,40 @@ const STUDY_DB = {
     supports:["harmaline_METABOLIZED_TO_harmalol"],
     contradicts:[],
     limitations:["Specific to harmaline; not a full ayahuasca clinical genotype guideline"],
+    verified:true
+  },
+
+  "ev_lisdexamfetamine_rbc_activation": {
+    id:"ev_lisdexamfetamine_rbc_activation",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Human pharmacokinetics and pharmacodynamics of lisdexamfetamine dimesylate",
+    year:2008, source:"clinical pharmacology literature",
+    pmid:"18385524", doi:null,
+    studyDesign:"human pharmacokinetic study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Lisdexamfetamine is an inactive L-lysine-d-amphetamine prodrug hydrolyzed primarily in red blood cells to d-amphetamine; activation is not CYP-mediated."},
+    temporal:{mechanism:"RBC_peptidase_hydrolysis_to_d_amphetamine"},
+    supports:["lisdexamfetamine_METABOLIZED_TO_d-amphetamine-dextroamphetamine"],
+    contradicts:[],
+    limitations:["Does not quantify CYP2D6 clearance effects after d-amphetamine release"],
+    verified:true
+  },
+
+  "ev_lisdexamfetamine_cyp2d6_fda": {
+    id:"ev_lisdexamfetamine_cyp2d6_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Lisdexamfetamine prescribing information — d-amphetamine CYP2D6 and urinary pH context",
+    year:2024, source:"FDA/DailyMed label",
+    pmid:"23578650", doi:null,
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{aucFold:1.25, urinaryAlkalinizationFold:2.0, note:"CYP2D6 affects d-amphetamine clearance after prodrug conversion modestly (~20-30% exposure change); urinary alkalinization can produce larger increases."},
+    temporal:{mechanism:"d_amphetamine_clearance_after_LDX_activation"},
+    supports:["lisdexamfetamine_METABOLIZED_TO_d-amphetamine-dextroamphetamine","d-amphetamine_CYP2D6_clearance"],
+    contradicts:[],
+    limitations:["CYP2D6 does not activate lisdexamfetamine; effect applies only after d-amphetamine release"],
     verified:true
   },
 

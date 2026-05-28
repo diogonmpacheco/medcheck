@@ -73,6 +73,7 @@ const HIGH_IMPACT_METABOLITE_RELATIONS = [
   { parent:"Potatoes (Solanine/Solanidine)", metaboliteId:"solanidine", requiredEvidenceRefs:["ev_solanidine_cyp2d6_hellden2024"] },
   { parent:"DXM (Dextromethorphan)", metaboliteId:"dextrorphan-dxo", requiredEvidenceRefs:["ev_dxm_dextrorphan_cyp2d6"] },
   { parent:"Atomoxetine", metaboliteId:"4-hydroxyatomoxetine", requiredEvidenceRefs:["ev_atomoxetine_cyp2d6_cpic"] },
+  { parent:"Lisdexamfetamine", metaboliteId:"d-amphetamine-dextroamphetamine", requiredEvidenceRefs:["ev_lisdexamfetamine_rbc_activation"] },
   { parent:"Amphetamine", metaboliteId:"4-hydroxyamphetamine", requiredEvidenceRefs:["ev_amphetamine_cyp2d6_fda"] },
   { parent:"Methamphetamine", metaboliteId:"amphetamine", requiredEvidenceRefs:["ev_mdma_meth_cyp2d6_review"] },
   { parent:"Methamphetamine", metaboliteId:"4-hydroxymethamphetamine", requiredEvidenceRefs:["ev_mdma_meth_cyp2d6_review"] },
@@ -199,6 +200,21 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower dextrorphan formation; parent DXM predominates",
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"dextrorphan formation reduced; parent DXM predominates" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Lisdexamfetamine",
+    metaboliteId:"d-amphetamine-dextroamphetamine",
+    metaboliteName:"d-Amphetamine",
+    enzyme:"CYP2D6",
+    note:"Lisdexamfetamine activation is CYP-independent RBC hydrolysis. CYP2D6 affects clearance of the released d-amphetamine only modestly; urinary pH can be a larger driver.",
+    evidenceRefs:["ev_lisdexamfetamine_rbc_activation","ev_lisdexamfetamine_cyp2d6_fda"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition after prodrug conversion: modestly higher d-amphetamine exposure",
+    inhibitionFold:1.25,
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { fold:1.25, direction:"increase", label:"~20-30% higher d-amphetamine exposure after conversion" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
     }
   },

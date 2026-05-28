@@ -63,6 +63,7 @@ const {
 } = context.__AUDIT__;
 
 const drugNames = new Set(DRUG_DB.map(d => d.name));
+const drugByName = new Map(DRUG_DB.map(d => [d.name, d]));
 const enzymeNames = new Set(Object.keys(ENZYME_ACTORS));
 const transporterNames = new Set(Object.keys(TRANSPORTER_ACTORS || {}));
 const studyIds = new Set(Object.keys(STUDY_DB));
@@ -205,6 +206,45 @@ for (const t of TRANSPORTER_DDI || []) {
   for (const name of [t.substrate, t.inhibitor]) {
     if (name && name !== 'NSAIDs' && !drugNames.has(name)) add('warnings', 'transporter_drug_missing', `${name} in TRANSPORTER_DDI is not in DRUG_DB`, `${t.substrate}/${t.inhibitor}`);
   }
+}
+
+function requireDrug(name, type) {
+  const drug = drugByName.get(name);
+  if (!drug) add('errors', type, `${name} missing from DRUG_DB`, name);
+  return drug;
+}
+
+const amphetamine = requireDrug('Amphetamine', 'batch_audit_missing_drug');
+if (amphetamine?.brandNames?.some(b => b === 'Vyvanse' || b === 'Elvanse')) {
+  add('errors', 'batch_audit_brand_misclassification', 'Vyvanse/Elvanse must not be brandNames for Amphetamine', 'Amphetamine');
+}
+const lisdexamfetamine = requireDrug('Lisdexamfetamine', 'batch_audit_missing_drug');
+if (lisdexamfetamine && (!lisdexamfetamine.prodrug || !(lisdexamfetamine.brandNames || []).includes('Vyvanse'))) {
+  add('errors', 'batch_audit_lisdexamfetamine_model', 'Lisdexamfetamine must be a separate prodrug with Vyvanse/Elvanse brands', 'Lisdexamfetamine');
+}
+
+for (const name of ['Simvastatin','Lovastatin','Prednisone','Enalapril','Ramipril','Benazepril','Candesartan','Dabigatran','Mycophenolate']) {
+  const drug = requireDrug(name, 'batch_audit_missing_drug');
+  if (drug && !drug.prodrug) add('errors', 'batch_audit_missing_prodrug_flag', `${name} should have prodrug:true`, name);
+}
+
+const requiredDdiPairs = [
+  ['Simvastatin','Gemfibrozil'],
+  ['Rosuvastatin','Gemfibrozil'],
+  ['Dabigatran','Rifampin'],
+  ['Apixaban','Rifampin'],
+  ['Rivaroxaban','Rifampin'],
+  ['Digoxin',"St. John's Wort"],
+  ['Digoxin','Rifampin'],
+  ['Metformin','Trimethoprim-SMX'],
+  ['Methotrexate','Probenecid'],
+  ['Rosuvastatin','Eltrombopag'],
+];
+for (const [a,b] of requiredDdiPairs) {
+  const found = (KNOWN_DDI || []).some(ddi =>
+    (ddi.drug1 === a && ddi.drug2 === b) || (ddi.drug1 === b && ddi.drug2 === a)
+  );
+  if (!found) add('errors', 'batch_audit_missing_ddi_pair', `${a} + ${b} missing from KNOWN_DDI`, `${a}/${b}`);
 }
 
 console.log(JSON.stringify(report, null, 2));
