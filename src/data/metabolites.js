@@ -256,7 +256,7 @@ const METAB = {
 
 // ── BETA-BLOCKERS ──
 "Metoprolol":[
-  {n:"α-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:10,t:3,note:"~10% β-blocking potency; minor CYP2D6 oxidative pathway",evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
+  {n:"alpha-Hydroxymetoprolol",e:"CYP2D6",a:"active",p:10,t:3,note:"~10% beta-blocking potency; minor CYP2D6 oxidative pathway",evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
   {n:"O-Desmethylmetoprolol",e:"CYP2D6",a:"inactive",p:65,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]},
   {n:"Metoprolol acid (deaminated)",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_metoprolol_cyp2d6_cpic"]}
 ],
@@ -379,7 +379,7 @@ const METAB = {
   {n:"1'-Hydroxymidazolam glucuronide",e:"UGT",a:"inactive",p:30,note:"Accumulates in renal failure → prolonged sedation"}
 ],
 "Clobazam":[
-  {n:"N-Desmethylclobazam (norclobazam)",e:"CYP2C19",a:"active",p:80,t:71,note:"EQUI- to MORE potent than parent. CYP2C19 PMs accumulate 5×+"},
+  {n:"N-Desmethylclobazam (norclobazam)",e:"CYP3A4",a:"active",p:80,t:71,note:"Active metabolite formed mainly by CYP3A4 and cleared mainly by CYP2C19. CYP2C19 PMs accumulate norclobazam 5x+",evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi"]},
   {n:"4'-Hydroxyclobazam",e:"CYP2C19",a:"inactive",p:10},
   {n:"Clobazam glucuronide",e:"UGT",a:"inactive",p:5}
 ],
@@ -412,7 +412,7 @@ const METAB = {
 
 // ── PPIs ──
 "Omeprazole":[
-  {n:"5-Hydroxyomeprazole",e:"CYP2C19",a:"inactive",p:50},
+  {n:"5-Hydroxyomeprazole",e:"CYP2C19",a:"inactive",p:50,evidenceRefs:["ev_omeprazole_cyp2c19_lima2021"]},
   {n:"Omeprazole sulfone",e:"CYP3A4",a:"inactive",p:30,inh:[{e:"CYP2C19",s:"moderate"}],note:"Inhibits CYP2C19"},
   {n:"5-O-Desmethylomeprazole",e:"CYP2C19",a:"inactive",p:10}
 ],
@@ -834,7 +834,7 @@ const METAB = {
   {n:"Clindamycin (biliary excretion)",e:"None",a:"active",p:30,t:3,note:"Significant biliary excretion → C. difficile risk"}
 ],
 "Voriconazole":[
-  {n:"Voriconazole N-oxide",e:"CYP2C19",a:"inactive",p:50,t:6,note:"Major metabolite; CYP2C19 PMs get 4× higher levels"},
+  {n:"Voriconazole N-oxide",e:"CYP2C19",a:"inactive",p:50,t:6,note:"Inactive major metabolite; CYP2C19 PMs form less N-oxide while parent voriconazole accumulates",evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008"]},
   {n:"Hydroxy-voriconazole",e:"CYP3A4",a:"inactive",p:15,note:"Secondary oxidation"},
   {n:"Dihydroxy-voriconazole",e:"CYP2C19/3A4",a:"inactive",p:10,note:"Further oxidation; all metabolites inactive against fungi"}
 ],
@@ -1024,9 +1024,28 @@ const METAB = {
 ],
 "Azathioprine":[
   {n:"6-Mercaptopurine (6-MP)",e:"Non-enzymatic/GST",a:"active",p:88,t:1,note:"PRODRUG activation; same active moiety as standalone 6-MP"},
-  {n:"6-Thioguanine nucleotides (6-TGN)",e:"HPRT→kinases",a:"active",p:0,note:"THE cytotoxic metabolites; ↑ in TPMT PMs → severe myelosuppression"},
+  {n:"6-Thioguanine nucleotides (6-TGN)",e:"HPRT/FPGS",a:"active",p:0,note:"THE cytotoxic metabolites; increased in TPMT PMs due to shunting away from methylation",evidenceRefs:["ev_azathioprine_tpmt_cpic2019"]},
   {n:"6-Methylmercaptopurine (6-MMP)",e:"TPMT",a:"toxic",p:30,note:"Hepatotoxic at high levels (>5700 pmol); TPMT shunting"},
   {n:"Thiouric acid",e:"Xanthine oxidase",a:"inactive",p:30,note:"Inactivation pathway; blocked by allopurinol → 6-MP toxicity"}
+],
+// ── ANTIRETROVIRALS ──
+"Efavirenz":[
+  {n:"8-Hydroxyefavirenz",e:"CYP2B6",a:"inactive",p:40,t:24,note:"Primary inactive CYP2B6 metabolite. CYP2B6 PM: 8-OH formation impaired while parent efavirenz accumulates.",evidenceRefs:["ev_efavirenz_cyp2b6_desta2019"]},
+  {n:"7-Hydroxyefavirenz",e:"CYP2A6",a:"inactive",p:15},
+  {n:"8,14-Dihydroxyefavirenz",e:"CYP3A4",a:"inactive",p:15}
+],
+// ── CHEMOTHERAPY ──
+"Irinotecan":[
+  {n:"SN-38 (7-ethyl-10-hydroxycamptothecin)",e:"CES1/CES2",a:"active_form",role:"active_form",p:5,t:12,note:"Active cytotoxic metabolite. Detoxified by UGT1A1 to inactive SN-38G; UGT1A1 PMs accumulate SN-38.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"]},
+  {n:"SN-38G (SN-38 glucuronide)",e:"UGT1A1",a:"inactive",p:60,t:24,note:"Inactive glucuronide elimination pathway.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"]},
+  {n:"APC (7-ethyl-10-[4-N-(5-aminopentanoic acid)-1-piperidino]carbonyloxycamptothecin)",e:"CYP3A4",a:"inactive",p:25,note:"Inactive oxidative metabolite. CYP3A4 inducers can increase APC and reduce SN-38."}
+],
+"Fluorouracil":[
+  {n:"Dihydrofluorouracil (DHFU)",e:"DPYD",a:"inactive",p:80,t:24,note:"Inactive catabolite. DPYD PM: DHFU formation impaired while parent 5-FU accumulates.",evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018"]},
+  {n:"FBAL (alpha-fluoro-beta-alanine)",e:"DPYD",a:"inactive",p:60,note:"Final urinary catabolite."}
+],
+"Capecitabine":[
+  {n:"5-Fluorouracil",e:"CES/TP",a:"active_form",role:"active_form",p:100,t:0.25,note:"Active fluoropyrimidine formed from capecitabine. DPYD loss-of-function impairs 5-FU catabolism and raises severe toxicity risk.",evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018"]}
 ],
 "Vardenafil":[
   {n:"M1 (N-desethyl-vardenafil)",e:"CYP3A4",a:"active",p:25,t:4,note:"Active metabolite with ~28% potency at PDE5"},
@@ -1473,7 +1492,107 @@ const METABOLITE_ACTORS = {
     active:true, halfLife:6, potencyRatio:1.0,
     routes:[{enzyme:"UGT",fraction:0.7}],
     inh:[],
-    note:"Equipotent NRI; CYP2D6 PM → AUC ↑10×, t½ 5h→22h"
+    evidenceRefs:["ev_atomoxetine_cyp2d6_cpic"],
+    note:"Equipotent to parent at NET. CYP2D6 PM: 4-OH formation reduced while parent atomoxetine accumulates; active moiety is maintained at lower doses."
+  },
+  "alpha-hydroxymetoprolol": {
+    id:"alpha-hydroxymetoprolol", type:ACTOR_TYPE.METABOLITE,
+    name:"alpha-Hydroxymetoprolol", parentDrug:"Metoprolol", formingEnzyme:"CYP2D6",
+    active:true, halfLife:3, potencyRatio:0.1,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_metoprolol_cyp2d6_cpic"],
+    note:"Weak beta-blocking metabolite with about 10% parent potency. CYP2D6 PM reduces formation while parent metoprolol accumulates."
+  },
+  "4-hydroxy-nebivolol": {
+    id:"4-hydroxy-nebivolol", type:ACTOR_TYPE.METABOLITE,
+    name:"4-Hydroxy-nebivolol", parentDrug:"Nebivolol", formingEnzyme:"CYP2D6",
+    active:true, halfLife:10, potencyRatio:0.3,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_nebivolol_cyp2d6_label"],
+    note:"Beta1-selective active metabolite. CYP2D6 PM reduces formation while parent nebivolol accumulates substantially."
+  },
+  "n-desmethylclobazam-norclobazam": {
+    id:"n-desmethylclobazam-norclobazam", type:ACTOR_TYPE.METABOLITE,
+    name:"N-Desmethylclobazam (Norclobazam)", parentDrug:"Clobazam", formingEnzyme:"CYP3A4",
+    active:true, halfLife:71, potencyRatio:1.0,
+    routes:[{enzyme:"CYP2C19",fraction:0.7,evidence:{confidence:"high",sources:["FDA label"]}}],
+    inh:[],
+    evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi"],
+    note:"Active metabolite cleared mainly by CYP2C19. CYP2C19 PM impairs clearance and increases sedation/respiratory-depression risk."
+  },
+  "exp-3174-e-3174": {
+    id:"exp-3174-e-3174", type:ACTOR_TYPE.METABOLITE,
+    name:"EXP3174 (E-3174)", parentDrug:"Losartan", formingEnzyme:"CYP2C9",
+    active:true, halfLife:6, potencyRatio:40.0,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_losartan_cyp2c9_sica2002"],
+    note:"Primary active losartan metabolite and much more potent AT1 antagonist than parent. CYP2C9 PM reduces EXP3174 formation."
+  },
+  "6-thioguanine-nucleotides-6-tgn": {
+    id:"6-thioguanine-nucleotides-6-tgn", type:ACTOR_TYPE.METABOLITE,
+    name:"6-Thioguanine nucleotides (6-TGN)", parentDrug:"Azathioprine", formingEnzyme:"HPRT/FPGS",
+    active:true, halfLife:null, potencyRatio:null,
+    routes:[],
+    inh:[{target:"DNA_replication", strength:"strong", evidence:{confidence:"high",sources:["CPIC guideline","FDA label"]}}],
+    evidenceRefs:["ev_azathioprine_tpmt_cpic2019"],
+    note:"Active cytotoxic thiopurine nucleotides. TPMT loss-of-function shunts more 6-MP toward 6-TGN and can cause severe myelosuppression."
+  },
+  "5-hydroxyomeprazole": {
+    id:"5-hydroxyomeprazole", type:ACTOR_TYPE.METABOLITE,
+    name:"5-Hydroxyomeprazole", parentDrug:"Omeprazole", formingEnzyme:"CYP2C19",
+    active:false, halfLife:null, potencyRatio:0.0,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_omeprazole_cyp2c19_lima2021"],
+    note:"Inactive CYP2C19 metabolite. CYP2C19 PM reduces formation while parent omeprazole accumulates."
+  },
+  "voriconazole-n-oxide": {
+    id:"voriconazole-n-oxide", type:ACTOR_TYPE.METABOLITE,
+    name:"Voriconazole N-oxide", parentDrug:"Voriconazole", formingEnzyme:"CYP2C19",
+    active:false, halfLife:null, potencyRatio:0.0,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008"],
+    note:"Inactive primary voriconazole metabolite. CYP2C19 PM reduces N-oxide formation while parent voriconazole accumulates; TDM supersedes genotype-only prediction."
+  },
+  "8-hydroxyefavirenz": {
+    id:"8-hydroxyefavirenz", type:ACTOR_TYPE.METABOLITE,
+    name:"8-Hydroxyefavirenz", parentDrug:"Efavirenz", formingEnzyme:"CYP2B6",
+    active:false, halfLife:24, potencyRatio:0.0,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_efavirenz_cyp2b6_desta2019"],
+    note:"Inactive primary efavirenz metabolite. CYP2B6 PM reduces 8-OH formation while parent efavirenz accumulates."
+  },
+  "dihydrofluorouracil-dhfu": {
+    id:"dihydrofluorouracil-dhfu", type:ACTOR_TYPE.METABOLITE,
+    name:"Dihydrofluorouracil (DHFU)", parentDrug:"Fluorouracil", formingEnzyme:"DPYD",
+    active:false, halfLife:24, potencyRatio:0.0,
+    routes:[],
+    inh:[],
+    evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018"],
+    note:"Inactive primary 5-FU catabolite. DPYD PM reduces DHFU formation while parent 5-FU accumulates to cytotoxic levels."
+  },
+  "5-fluorouracil": {
+    id:"5-fluorouracil", type:ACTOR_TYPE.METABOLITE,
+    name:"5-Fluorouracil", parentDrug:"Capecitabine", formingEnzyme:"CES/TP",
+    active:true, halfLife:0.25, potencyRatio:1.0,
+    routes:[{enzyme:"DPYD",fraction:0.8,evidence:{confidence:"high",sources:["CPIC guideline","FDA label"]}}],
+    inh:[],
+    evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018"],
+    note:"Active fluoropyrimidine formed from capecitabine. DPYD loss-of-function impairs 5-FU catabolism and raises severe toxicity risk."
+  },
+  "sn-38-7-ethyl-10-hydroxycamptothecin": {
+    id:"sn-38-7-ethyl-10-hydroxycamptothecin", type:ACTOR_TYPE.METABOLITE,
+    name:"SN-38 (7-ethyl-10-hydroxycamptothecin)", parentDrug:"Irinotecan", formingEnzyme:"CES1/CES2",
+    active:true, halfLife:12, potencyRatio:1000.0,
+    routes:[{enzyme:"UGT1A1",fraction:0.9,evidence:{confidence:"high",sources:["FDA label","CPIC guideline"]}}],
+    inh:[],
+    evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"],
+    note:"Active cytotoxic topoisomerase I inhibitor. UGT1A1 poor function impairs glucuronidation to SN-38G and increases neutropenia risk."
   },
   "dehydro-aripiprazole": {
     id:"dehydro-aripiprazole", type:ACTOR_TYPE.METABOLITE,

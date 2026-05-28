@@ -135,7 +135,7 @@ for (const effect of GENOTYPE_METABOLITE_EFFECTS || []) {
   const actor = METABOLITE_ACTORS?.[effect.metaboliteId];
   for (const [phenotype, phenotypeEffect] of Object.entries(effect.effects || {})) {
     if (!phenotypeEffect || phenotypeEffect.direction === 'baseline' || phenotypeEffect.direction === 'uncertain') continue;
-    if (phenotypeEffect.fold) continue;
+    if (phenotypeEffect.fold || phenotypeEffect.qualitative) continue;
     const canEstimate = phenotypeEffect.direction === 'decrease' ||
       actor?.routes?.some(r => r.enzyme === effect.enzyme) ||
       actor?.formingEnzyme === effect.enzyme;
@@ -171,12 +171,13 @@ const renderedMetaboliteGaps = vm.runInContext(`(() => {
         .find(c => c.effect.metaboliteId === effect.metaboliteId && c.geno === phenotype);
       if (!card) {
         gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' did not render');
-      } else if (!card.phenotypeEffect?.fold) {
+      } else if (!card.phenotypeEffect?.fold && !card.phenotypeEffect?.qualitative) {
         gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' rendered without fold');
       } else {
         renderFoldBars();
         const html = document.getElementById('foldBody')?.innerHTML || '';
-        if (!html.includes('fold-metabolite-row') || !html.includes('fold-metabolite-bar')) {
+        const needsBar = !!card.phenotypeEffect?.fold;
+        if (!html.includes('fold-metabolite-row') || (needsBar && !html.includes('fold-metabolite-bar'))) {
           gaps.push(effect.parent + ' -> ' + effect.metaboliteName + ' ' + phenotype + ' rendered without a metabolite fold bar');
         }
       }

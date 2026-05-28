@@ -178,7 +178,7 @@ function getGenotypeMetaboliteEffectCards(drugName) {
       if ((!phenotypeEffect || phenotypeEffect.direction === "baseline") && inhibitorContext.length) {
         phenotypeEffect = getInhibitionMetaboliteEffect(effect, inhibitorContext);
       }
-      if (phenotypeEffect && phenotypeEffect.direction !== "baseline" && !phenotypeEffect.fold) {
+      if (phenotypeEffect && phenotypeEffect.direction !== "baseline" && !phenotypeEffect.fold && !phenotypeEffect.qualitative) {
         const estimatedFold = estimateMetaboliteEffectFold(effect, phenotypeEffect, inhibitorContext, geno);
         if (estimatedFold) phenotypeEffect = { ...phenotypeEffect, fold:estimatedFold, estimated:true };
       }

@@ -618,6 +618,143 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_clobazam_cyp2c19_fda_onfi": {
+    id:"ev_clobazam_cyp2c19_fda_onfi",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Onfi (clobazam) FDA Prescribing Information - clinical pharmacology and CYP2C19 poor metabolizers",
+    year:2023, source:"FDA/Lundbeck",
+    pmid:null, doi:null,
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/202067s019lbl.pdf",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{auc_fold:5.0, metabolite:"N-desmethylclobazam (norclobazam)", note:"Norclobazam exposure is about 5-fold higher in CYP2C19 poor metabolizers; label recommends dose reduction."}},
+    temporal:{mechanism:"CYP2C19_norclobazam_clearance_impaired"},
+    supports:["clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"],
+    contradicts:[],
+    limitations:["Regulatory-label summary; pediatric Lennox-Gastaut patients may differ from healthy-volunteer PK."],
+    verified:true
+  },
+
+  "ev_losartan_cyp2c9_sica2002": {
+    id:"ev_losartan_cyp2c9_sica2002",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"CYP2C9 genotype and losartan pharmacokinetics and pharmacodynamics",
+    year:2002, source:"Sica et al., J Hypertens",
+    pmid:"12172215", doi:"10.1097/00004872-200209000-00016",
+    studyDesign:"genotype/phenotype-stratified clinical pharmacokinetic study",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{auc_fold:0.5, metabolite:"EXP3174", note:"Active metabolite EXP3174 exposure is reduced while parent losartan exposure is higher."}},
+    temporal:{mechanism:"CYP2C9_losartan_bioactivation_to_EXP3174"},
+    supports:["losartan_METABOLIZED_TO_exp-3174-e-3174"],
+    contradicts:[],
+    limitations:["Effect size varies by allele/phenotype definition; blood pressure outcome evidence is less direct than PK."],
+    verified:true
+  },
+
+  "ev_azathioprine_tpmt_cpic2019": {
+    id:"ev_azathioprine_tpmt_cpic2019",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Thiopurines Based on TPMT and NUDT15 Genotype",
+    year:2019, source:"Relling et al., Clin Pharmacol Ther",
+    pmid:"30447069", doi:"10.1002/cpt.1304",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{note:"TPMT poor metabolizers have greatly increased risk of life-threatening myelosuppression from standard thiopurine doses; CPIC recommends avoiding or using drastically reduced dosing."}},
+    temporal:{mechanism:"TPMT_6MP_methylation_reduced_shunts_to_6TGN"},
+    supports:["azathioprine_METABOLIZED_TO_6-thioguanine-nucleotides-6-tgn"],
+    contradicts:[],
+    limitations:["NUDT15 must also be considered, especially in Asian and Hispanic populations; dosing depends on disease indication and therapeutic drug monitoring."],
+    verified:true
+  },
+
+  "ev_omeprazole_cyp2c19_lima2021": {
+    id:"ev_omeprazole_cyp2c19_lima2021",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for CYP2C19 and Proton Pump Inhibitor Dosing",
+    year:2021, source:"Lima et al., Clin Pharmacol Ther",
+    pmid:"32770672", doi:"10.1002/cpt.1168",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{auc_fold:5.0, note:"Parent omeprazole exposure is higher in CYP2C19 poor metabolizers; clinical effect is stronger acid suppression."}},
+    temporal:{mechanism:"CYP2C19_omeprazole_5_hydroxylation"},
+    supports:["omeprazole_METABOLIZED_TO_5-hydroxyomeprazole"],
+    contradicts:[],
+    limitations:["Fold varies by PPI, dose, and study; metabolite-specific 5-hydroxyomeprazole fold is not treated as calibrated here."],
+    verified:true
+  },
+
+  "ev_voriconazole_cyp2c19_hyland2008": {
+    id:"ev_voriconazole_cyp2c19_hyland2008",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Identification of the cytochrome P450 enzymes involved in the N-oxidation of voriconazole",
+    year:2008, source:"Hyland et al., Drug Metab Dispos",
+    pmid:"18192898", doi:"10.1124/dmd.107.017392",
+    studyDesign:"clinical/in vitro metabolism evidence",
+    n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"CYP2C19 is a key pathway for voriconazole N-oxide formation; genotype strongly affects parent voriconazole exposure and therapeutic drug monitoring is required."},
+    temporal:{mechanism:"CYP2C19_voriconazole_N_oxidation"},
+    supports:["voriconazole_METABOLIZED_TO_voriconazole-n-oxide"],
+    contradicts:[],
+    limitations:["Voriconazole has nonlinear PK and requires TDM; this entry does not provide a calibrated N-oxide metabolite fold."],
+    verified:true
+  },
+
+  "ev_efavirenz_cyp2b6_desta2019": {
+    id:"ev_efavirenz_cyp2b6_desta2019",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for CYP2B6 and Efavirenz-Containing Antiretroviral Therapy",
+    year:2019, source:"Desta et al., Clin Pharmacol Ther",
+    pmid:"31006110", doi:"10.1002/cpt.1477",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{auc_fold:3.5, note:"CYP2B6 poor metabolizers have substantially higher parent efavirenz exposure and increased CNS adverse-effect risk; CPIC recommends lower dosing."}},
+    temporal:{mechanism:"CYP2B6_efavirenz_8_hydroxylation"},
+    supports:["efavirenz_METABOLIZED_TO_8-hydroxyefavirenz"],
+    contradicts:[],
+    limitations:["Many CYP2B6 alleles contribute; population frequencies vary substantially."],
+    verified:true
+  },
+
+  "ev_fluorouracil_dpyd_amstutz2018": {
+    id:"ev_fluorouracil_dpyd_amstutz2018",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Fluoropyrimidines and DPYD Genotype",
+    year:2018, source:"Amstutz et al., Clin Pharmacol Ther",
+    pmid:"29152729", doi:"10.1002/cpt.911",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{note:"DPYD poor function can cause life-threatening fluoropyrimidine toxicity; intermediate function generally requires large starting-dose reduction."}},
+    temporal:{mechanism:"DPYD_5FU_dihydropyrimidine_catabolism"},
+    supports:["fluorouracil_METABOLIZED_TO_dihydrofluorouracil-dhfu","capecitabine_METABOLIZED_TO_5-fluorouracil"],
+    contradicts:[],
+    limitations:["Variant panels do not capture all DPYD risk; dosing should follow specialist oncology protocols and clinical monitoring."],
+    verified:true
+  },
+
+  "ev_irinotecan_ugt1a1_ramsey2014": {
+    id:"ev_irinotecan_ugt1a1_ramsey2014",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Irinotecan Therapy Based on UGT1A1 Genotype",
+    year:2014, source:"Ramsey et al., Clin Pharmacol Ther",
+    pmid:"24786769", doi:"10.1038/clpt.2014.21",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{poor_metabolizer:{note:"UGT1A1 poor metabolizers have higher SN-38 exposure and higher severe neutropenia risk; reduce starting dose and titrate by tolerance."}},
+    temporal:{mechanism:"UGT1A1_SN38_glucuronidation_to_SN38G"},
+    supports:["irinotecan_METABOLIZED_TO_sn-38-7-ethyl-10-hydroxycamptothecin"],
+    contradicts:[],
+    limitations:["Dose-reduction recommendations depend on irinotecan regimen/dose and population; SN-38 fold varies across studies."],
+    verified:true
+  },
+
   "ev_venlafaxine_cyp2d6_ncbi": {
     id:"ev_venlafaxine_cyp2d6_ncbi",
     type:EVIDENCE_TIER.GUIDELINE,

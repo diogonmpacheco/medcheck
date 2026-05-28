@@ -112,6 +112,28 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:82,note:"Standard warfarin dosing." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:4, note:"Rare. Standard or slightly increased dose." },
   },
+  CYP2B6: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.5, freq_pct:null, note:"Reduced CYP2B6 activity; efavirenz parent exposure rises and inactive 8-hydroxyefavirenz formation falls." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"Intermediate CYP2B6 activity." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2B6 activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"Higher CYP2B6 activity; lower parent exposure for sensitive substrates." },
+  },
+  DPYD: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"Very low/absent DPYD activity; fluoropyrimidine toxicity risk can be life-threatening." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced DPYD activity; fluoropyrimidine starting dose usually requires major reduction." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal DPYD activity." },
+  },
+  TPMT: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"Very low/absent TPMT activity; thiopurine myelosuppression risk at standard doses." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced TPMT activity; thiopurine dose reduction needed." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal TPMT activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"Higher methylation tendency; lower 6-TGN and possible 6-MMP shunting." },
+  },
+  UGT1A1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.7, freq_pct:null, note:"Reduced UGT1A1 glucuronidation; SN-38 or bilirubin exposure can rise depending on substrate." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate UGT1A1 activity." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal UGT1A1 activity." },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)

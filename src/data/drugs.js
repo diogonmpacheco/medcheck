@@ -1429,6 +1429,17 @@ const DRUG_DB = [
  routes:[{enzyme:"UGT1A1",fraction:0.7,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP3A4",fraction:0.2,evidence:{confidence:"moderate",sources:["FDA label"]}}],
  inh:[{target:"OCT2",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},{target:"MATE1",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}}],
  ind:[],
+ alts:[]},{id:"efavirenz",
+ name:"Efavirenz",
+ cls:"Antiretroviral",
+ brandNames:["Sustiva", "Stocrin", "Atripla"],
+ hl:52,
+ timing:"PM",
+ props:{qtcRisk:1},
+ routes:[{enzyme:"CYP2B6",fraction:0.6,evidence:{confidence:"high",sources:["FDA label","CPIC guideline"]}},{enzyme:"CYP3A4",fraction:0.3,evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[{target:"CYP3A4",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C19",strength:"weak",evidence:{confidence:"moderate",sources:["FDA label"]}}],
+ ind:[{target:"CYP3A4",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}}],
+ note:"CPIC Level A: CYP2B6 poor metabolizers have substantially higher efavirenz exposure and CNS adverse-effect risk; CPIC recommends dose reduction in poor metabolizers.",
  alts:[]},{id:"isoniazid",
  name:"Isoniazid",
  cls:"Antitubercular",
@@ -1681,6 +1692,42 @@ const DRUG_DB = [
  inh:[],
  ind:[],
  alts:[]},
+// ──────────── Chemotherapy / Antimetabolites ────────────
+{id:"irinotecan",
+ name:"Irinotecan",
+ cls:"Chemotherapy",
+ brandNames:["Camptosar"],
+ hl:12,
+ timing:"IV",
+ props:{hepatotoxicityRisk:1,myelo:2},
+ routes:[{enzyme:"CES",fraction:0.3,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"CYP3A4",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[],
+ ind:[],
+ note:"CPIC Level A: UGT1A1*28/*28 poor metabolizers have higher SN-38 exposure and severe neutropenia risk; reduce starting dose and monitor CBC.",
+ alts:[]},{id:"fluorouracil",
+ name:"Fluorouracil",
+ cls:"Chemotherapy",
+ brandNames:["Adrucil", "5-FU"],
+ hl:0.25,
+ timing:"IV",
+ props:{hepatotoxicityRisk:1,myelo:2},
+ routes:[{enzyme:"DPYD",fraction:0.8,evidence:{confidence:"high",sources:["FDA label","CPIC guideline"]}}],
+ inh:[],
+ ind:[],
+ note:"CPIC Level A: DPYD poor/intermediate function can cause life-threatening fluoropyrimidine toxicity; genotype before treatment.",
+ alts:[{name:"Raltitrexed",reason:"Non-fluoropyrimidine alternative for DPYD poor metabolizers"}]},{id:"capecitabine",
+ name:"Capecitabine",
+ cls:"Chemotherapy",
+ brandNames:["Xeloda"],
+ hl:0.75,
+ timing:"AM-PM",
+ props:{hepatotoxicityRisk:1,myelo:2},
+ routes:[{enzyme:"CES",fraction:0.6,evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[],
+ ind:[],
+ prodrug:true,
+ note:"Oral prodrug converted to 5-FU. DPYD poor/intermediate function carries the same severe fluoropyrimidine toxicity risk as IV fluorouracil.",
+ alts:[{name:"Raltitrexed",reason:"Non-fluoropyrimidine alternative for DPYD poor metabolizers"}]},
 // ──────────── mTOR Inhibitor ────────────
 {id:"sirolimus",
  name:"Sirolimus",
@@ -2789,8 +2836,8 @@ const CLINICAL_FOLD = {
   "Omeprazole":      { "CYP2C19": { poor:5.0, null: 8.0 } },
   // Esomeprazole: PM AUC ~3× (CYP2C19 PM; FDA label)
   "Esomeprazole":    { "CYP2C19": { poor:3.0, null: 5.0 } },
-  // Clobazam: PM AUC of norclobazam 5×+ (CYP2C19 PM; FDA label)
-  "Clobazam":        { "CYP2C19": { poor:5.0, null: 8.0 } },
+  // Efavirenz: CYP2B6 PM parent exposure rises substantially (CPIC 2019)
+  "Efavirenz":       { "CYP2B6": { poor:3.5, null: 4.0 } },
   // Diazepam: PM AUC ~3× (CYP2C19 PM for nordiazepam formation)
   "Diazepam":        { "CYP2C19": { poor:3.0, null: 5.0 } },
   // Phenytoin: PM AUC ~3-4× (CYP2C9 PM; saturable kinetics amplify)
@@ -2799,8 +2846,9 @@ const CLINICAL_FOLD = {
   "Warfarin":        { "CYP2C9": { poor:2.0, null: 3.5 } },
   // Celecoxib: PM AUC ~2-3× (CYP2C9 PM; FDA label)
   "Celecoxib":       { "CYP2C9": { poor:2.5, null: 4.0 } },
-  // Losartan: PM REDUCED activation (prodrug→EXP3174; CYP2C9)
-  "Losartan":        { "CYP2C9": { poor:0.5, null: 0.3 } },
+  // Losartan: parent exposure rises when CYP2C9 activation to EXP3174 is impaired;
+  // active metabolite loss is modeled separately in GENOTYPE_METABOLITE_EFFECTS.
+  "Losartan":        { "CYP2C9": { poor:1.65, null: 2.0 } },
   // Midazolam: strong CYP3A4 inhibitor ketoconazole → ~15× AUC (FDA label)
   // No genetic PM for CYP3A4 in practice, but DDI data available
 };
