@@ -27,3 +27,9 @@ This note records the source audit before the provenance/reverse-traversal relea
 ## Release Decision
 
 This work is treated as MedCheck `3.5.0`: a trust/provenance and genotype-traversal release. The previous stable state is saved locally as branch `backup/pre-provenance-release-2026-05-29` and tag `v3.4.0-stable`.
+
+## Validation Status
+
+- `scripts/validate-db.js` treats missing or broken local evidence as warnings/errors.
+- The optional external PharmGKB/CPIC comparison snapshot is informational when absent; this keeps routine validation clean without pretending an external snapshot has been downloaded.
+- To enable genotype-reference diffing, add a real `scripts/reference-snapshots/pharmgx-reference.json` file with curated `GENOTYPE_EFFECTS` anchors and source metadata.

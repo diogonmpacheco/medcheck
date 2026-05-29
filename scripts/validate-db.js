@@ -88,6 +88,7 @@ const report = {
   },
   errors: [],
   warnings: [],
+  info: [],
 };
 
 function add(kind, type, message, ref) {
@@ -150,7 +151,7 @@ const reference = (() => {
 })();
 
 if (!reference) {
-  add('warnings', 'pharmgx_reference_missing', 'No local PharmGKB/CPIC reference snapshot found; genotype diff skipped', 'scripts/reference-snapshots/pharmgx-reference.json');
+  add('info', 'pharmgx_reference_missing', 'No local PharmGKB/CPIC reference snapshot found; genotype diff skipped', 'scripts/reference-snapshots/pharmgx-reference.json');
 } else {
   for (const [enzyme, phenos] of Object.entries(reference.GENOTYPE_EFFECTS || {})) {
     if (!data.GENOTYPE_EFFECTS[enzyme]) {

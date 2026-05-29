@@ -32,13 +32,13 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 75 curated evidence entries with real PMIDs, DOIs, quantified PK effects (AUC fold, clearance reduction %), phenotype stratification, temporal onset/washout data, and explicit contradicts[] links
+- **STUDY_DB** — 88 curated evidence entries with real PMIDs, DOIs, quantified PK effects (AUC fold, clearance reduction %), phenotype stratification, temporal onset/washout data, and explicit contradicts[] links
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
 - **Evidence Explorer** — browsable panel showing all STUDY_DB entries relevant to the current drug stack with tier filtering
 - **Ingestion pipeline** — `createStudyDraft()` / `reviewStudyDraft()` with `INGESTION_QUEUE`; AI-extracted evidence cannot be auto-published without human pharmacist/physician review
-- **Validation harness** — `npm run validate` compares the current bundle to local provenance ledgers and reports missing references, weak severe-claim provenance, and genotype-reference gaps
+- **Validation harness** — `npm run validate` compares the current bundle to local provenance ledgers and reports missing references, weak severe-claim provenance, and genotype-reference gaps; optional external reference snapshots are reported as `info` until a real PharmGKB/CPIC snapshot is present
 
 ### Evidence Provenance (Phase D)
 - **`normalizeEvidence()`** — builds a full `EvidenceProvenance` struct for every interaction: `sourceType`, `studyCount`, `confidence`, `reproducibility`, `humanData`, `genotypeSpecific`, `lastReviewed`, `contradictions[]`, `pmids[]`
