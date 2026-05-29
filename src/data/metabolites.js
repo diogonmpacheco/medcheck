@@ -1431,23 +1431,26 @@ const METABOLITE_ACTORS = {
     id:"norfluoxetine", type:ACTOR_TYPE.METABOLITE,
     name:"Norfluoxetine", parentDrug:"Fluoxetine", formingEnzyme:"CYP2D6",
     active:true, halfLife:168, potencyRatio:0.8,
-    routes:[{enzyme:"CYP2D6",fraction:0.5}],
+    routes:[{enzyme:"CYP2D6",fraction:0.5,evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_cyp2d6_sunkara2010"]}],
     inh:[
       {target:"CYP2D6", strength:"strong",
        temporal:{onset:'1-2_weeks', duration:'2-5_weeks_post_discontinuation', reversible:false,
                  note:'MBI — requires enzyme resynthesis; washout period 5 weeks minimum'},
-       evidence:{confidence:"high",sources:["FDA label","Preskorn 1999"]}},
-      {target:"CYP3A4",  strength:"moderate", temporal:{onset:'1-2_weeks'}, evidence:{confidence:"moderate",sources:["literature"]}},
-      {target:"CYP2C19", strength:"moderate", temporal:{onset:'1-2_weeks'}, evidence:{confidence:"moderate",sources:["literature"]}},
+       evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_desipramine_preskorn1994"],
+       evidence:{confidence:"high",sources:["FDA label","Preskorn 1994"],refs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_desipramine_preskorn1994"]}},
+      {target:"CYP3A4",  strength:"moderate", temporal:{onset:'1-2_weeks'}, evidenceRefs:["ev_fluoxetine_cyp2d6_fda"], evidence:{confidence:"moderate",sources:["FDA label"],refs:["ev_fluoxetine_cyp2d6_fda"]}},
+      {target:"CYP2C19", strength:"moderate", temporal:{onset:'1-2_weeks'}, evidenceRefs:["ev_fluoxetine_cyp2d6_fda"], evidence:{confidence:"moderate",sources:["FDA label"],refs:["ev_fluoxetine_cyp2d6_fda"]}},
     ],
+    evidenceRefs:["ev_fluoxetine_cyp2d6_fda","ev_fluoxetine_cyp2d6_sunkara2010","ev_fluoxetine_desipramine_preskorn1994"],
     note:"t½ 4-16 DAYS; CYP2D6 inhibition persists WEEKS after fluoxetine discontinuation"
   },
   "desipramine": {
     id:"desipramine", type:ACTOR_TYPE.METABOLITE,
     name:"Desipramine", parentDrug:"Imipramine", formingEnzyme:"CYP1A2",
     active:true, halfLife:21, potencyRatio:1.0,
-    routes:[{enzyme:"CYP2D6",fraction:0.7}],
+    routes:[{enzyme:"CYP2D6",fraction:0.7,evidenceRefs:["ev_tca_cyp2d6_cpic"]}],
     inh:[{target:"CYP2D6",strength:"moderate"}],
+    evidenceRefs:["ev_tca_cyp2d6_cpic"],
     note:"Active metabolite; itself a prescribed drug; NRI activity"
   },
   "morphine": {
@@ -1462,8 +1465,9 @@ const METABOLITE_ACTORS = {
     id:"o-desmethyltramadol", type:ACTOR_TYPE.METABOLITE,
     name:"O-desmethyltramadol (M1)", parentDrug:"Tramadol", formingEnzyme:"CYP2D6",
     active:true, halfLife:9, potencyRatio:6.0,
-    routes:[{enzyme:"CYP2D6",fraction:0.3},{enzyme:"UGT",fraction:0.5}],
+    routes:[{enzyme:"CYP2D6",fraction:0.3,evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"]},{enzyme:"UGT",fraction:0.5}],
     inh:[],
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"],
     note:"200× higher mu-opioid affinity than tramadol; CYP2D6 PM → ↓↓ analgesia"
   },
   "endoxifen": {
