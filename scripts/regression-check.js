@@ -69,7 +69,7 @@ const dom = new JSDOM(html, {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 
-assert(window.eval('MEDCHECK_VERSION.engine') === '3.4.0', 'Regression build loaded wrong engine version');
+assert(window.eval('MEDCHECK_VERSION.engine') === '3.5.0', 'Regression build loaded wrong engine version');
 assert(window.eval('PK_DOSE_INTERVALS.codeine') === 6, 'PK dose interval rules did not load');
 assert(window.eval('PHENOTYPE_RISK_RULES.qtc.thresholds[1]') === 5, 'Phenotype risk rules did not load');
 assert(window.eval('EDGE_TYPE_BASE_WEIGHT[EDGE_TYPE.SUBSTRATE_OF]') === 0.92, 'Edge base weight rules did not load');
@@ -116,6 +116,53 @@ const metaboliteProvenance = window.eval(`(() => {
 })()`);
 assert(metaboliteProvenance.missing.length === 0, `High-impact metabolite provenance gaps: ${metaboliteProvenance.missing.join('; ')}`);
 assert(metaboliteProvenance.unknownRefs.length === 0, `Unknown metabolite evidence refs: ${metaboliteProvenance.unknownRefs.join(', ')}`);
+
+const hydroxybupropionRouteAudit = window.eval(`(() => {
+  const graph = getInteractionGraph();
+  const route = graph.edges.find(e =>
+    e.from === 'hydroxybupropion' &&
+    e.to === 'CYP2D6' &&
+    e.type === EDGE_TYPE.SUBSTRATE_OF &&
+    e.props?.role === 'clearance_context'
+  );
+  const inhibition = graph.edges.find(e =>
+    e.from === 'hydroxybupropion' &&
+    e.to === 'CYP2D6' &&
+    e.type === EDGE_TYPE.INHIBITS
+  );
+  return {
+    hasRoute: !!route,
+    routeRefs: route?.props?.evidenceRefs || [],
+    routeConfidence: route ? computeEdgeConfidence(route) : null,
+    routeEvidenceConfidence: route?.props?.evidence?.confidence || null,
+    inhibitionRefs: inhibition?.props?.evidenceRefs || [],
+    inhibitionConfidence: inhibition ? computeEdgeConfidence(inhibition) : null,
+  };
+})()`);
+assert(hydroxybupropionRouteAudit.hasRoute, 'Hydroxybupropion should expose a CYP2D6 clearance-context edge');
+assert(hydroxybupropionRouteAudit.routeRefs.includes('ev_bupropion_cyp2d6_hesse1996'), 'Hydroxybupropion CYP2D6 route should carry Hesse evidence ref');
+assert(hydroxybupropionRouteAudit.routeEvidenceConfidence === 'low', 'Hydroxybupropion CYP2D6 route should remain explicitly low-confidence');
+assert(hydroxybupropionRouteAudit.routeConfidence < hydroxybupropionRouteAudit.inhibitionConfidence, 'Low-confidence clearance route should not outrank high-confidence CYP2D6 inhibition');
+assert(hydroxybupropionRouteAudit.inhibitionRefs.includes('ev_bupropion_cyp2d6_fda'), 'Hydroxybupropion CYP2D6 inhibition should retain FDA evidence');
+
+const genotypeTraversalAudit = window.eval(`(() => {
+  const rows = traverseFromGenotype('CYP2D6', 'poor');
+  const hydroxy = rows.find(r => r.actorId === 'hydroxybupropion');
+  return {
+    count: rows.length,
+    hasHydroxy: !!hydroxy,
+    hydroxyDirection: hydroxy?.direction,
+    hydroxyConfidence: hydroxy?.confidence,
+    hydroxyFold: hydroxy?.fold || null,
+    hydroxyChain: hydroxy?.chain || ''
+  };
+})()`);
+assert(genotypeTraversalAudit.count > 10, 'CYP2D6 genotype traversal should return a broad affected-actor set');
+assert(genotypeTraversalAudit.hasHydroxy, 'CYP2D6 PM traversal should include hydroxybupropion via metabolite-level edge');
+assert(genotypeTraversalAudit.hydroxyDirection === 'increase', 'Hydroxybupropion CYP2D6 PM traversal should be directional increase');
+assert(genotypeTraversalAudit.hydroxyConfidence === 'low', 'Hydroxybupropion CYP2D6 clearance traversal should remain low confidence');
+assert(genotypeTraversalAudit.hydroxyFold === null, 'Low-confidence hydroxybupropion traversal should not invent a precise fold');
+assert(genotypeTraversalAudit.hydroxyChain.includes('CYP2D6'), 'Genotype traversal should include an explanatory chain');
 
 const knownDdiEvidenceAudit = window.eval(`(() => {
   const unknownRefs = [];

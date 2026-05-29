@@ -70,13 +70,26 @@ function buildInteractionGraph() {
 
       // Metabolite → forming enzyme (substrate_of)
       edges.push({ from:metId, to:met.e, type:EDGE_TYPE.SUBSTRATE_OF,
-        props:{fraction:met.p/100} });
+        props:{fraction:met.p/100, role:'formation_context', evidenceRefs:met.evidenceRefs || []} });
+
+      // Detailed metabolite clearance routes. These are distinct from the
+      // parent→metabolite formation route and may carry lower-confidence
+      // provenance (for example hydroxybupropion/CYP2D6).
+      if (detailed && detailed.routes) {
+        for (const route of detailed.routes) {
+          edges.push({ from:metId, to:route.enzyme, type:EDGE_TYPE.SUBSTRATE_OF,
+            props:{fraction:route.fraction, role:route.role || 'clearance',
+              evidence:route.evidence, evidenceRefs:route.evidenceRefs || route.evidence?.refs || []} });
+        }
+      }
 
       // Metabolite inhibitions (from METAB inh field)
       if (met.inh) {
         for (const inh of met.inh) {
+          const detailedInh = detailed?.inh?.find(i => i.target === inh.e);
           edges.push({ from:metId, to:inh.e, type:EDGE_TYPE.INHIBITS,
-            props:{strength:inh.s} });
+            props:{strength:inh.s, mechanism:detailedInh?.mechanism, temporal:detailedInh?.temporal,
+              evidence:detailedInh?.evidence, evidenceRefs:detailedInh?.evidenceRefs || detailedInh?.evidence?.refs || []} });
         }
       }
       // Metabolite inhibitions (from METABOLITE_ACTORS)
@@ -85,7 +98,8 @@ function buildInteractionGraph() {
           // Avoid duplicate edges if already added from met.inh
           if (!met.inh || !met.inh.some(i => i.e === inh.target)) {
             edges.push({ from:metId, to:inh.target, type:EDGE_TYPE.INHIBITS,
-              props:{strength:inh.strength} });
+              props:{strength:inh.strength, mechanism:inh.mechanism, temporal:inh.temporal,
+                evidence:inh.evidence, evidenceRefs:inh.evidenceRefs || inh.evidence?.refs || []} });
           }
         }
       }

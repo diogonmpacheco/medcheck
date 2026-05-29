@@ -662,6 +662,179 @@ function computeAllEnzymeCapacities(stack) {
   return results;
 }
 
+function legacyPhenotypeToGenotype(phenotype) {
+  if (!phenotype || phenotype === "normal") return GENOTYPE_PHENOTYPE.NM;
+  if (phenotype === "null" || phenotype === "poor") return GENOTYPE_PHENOTYPE.PM;
+  if (phenotype === "intermediate") return GENOTYPE_PHENOTYPE.IM;
+  if (phenotype === "ultrarapid" || phenotype === "rapid") return GENOTYPE_PHENOTYPE.UM;
+  return phenotype;
+}
+
+function selectedPhenotypeForEnzyme(enzyme) {
+  const legacy = userGenetics && userGenetics[enzyme];
+  if (legacy && legacy !== "normal") return legacyPhenotypeToGenotype(legacy);
+  return activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM;
+}
+
+function phenotypeExposureFold(enzyme, phenotype) {
+  const normalized = legacyPhenotypeToGenotype(phenotype);
+  return GENOTYPE_EFFECTS?.[enzyme]?.[normalized]?.auc_fold || 1.0;
+}
+
+function metaboliteActorForParent(parentName) {
+  const graph = getInteractionGraph();
+  const parentId = getDrugGraphId(parentName);
+  return (graph.edges || [])
+    .filter(e => e.from === parentId && e.type === EDGE_TYPE.METABOLIZED_TO)
+    .map(e => graph.actors[e.to])
+    .filter(actor => actor && actor.type === ACTOR_TYPE.METABOLITE && actor.active);
+}
+
+function computeActorExposureDeltas(stack) {
+  const drugList = stack || activeStack;
+  const rows = [];
+  const seen = new Set();
+
+  for (const name of drugList) {
+    const parentFold = calcFold(name);
+    rows.push({
+      id:getDrugGraphId(name), parent:name, name, type:"parent",
+      fold:parentFold.fold, direction:parentFold.fold > 1.15 ? "increase" : parentFold.fold < 0.85 ? "decrease" : "baseline",
+      confidence:"modeled", driver:parentFold.details[0] ? `${parentFold.details[0].enzyme} ${parentFold.details[0].strength}` : "current stack",
+    });
+
+    for (const actor of metaboliteActorForParent(name)) {
+      if (seen.has(actor.id)) continue;
+      seen.add(actor.id);
+
+      let best = null;
+      for (const effect of GENOTYPE_METABOLITE_EFFECTS || []) {
+        if (effect.parent !== name || effect.metaboliteId !== actor.id) continue;
+        const pheno = selectedPhenotypeForEnzyme(effect.enzyme);
+        const pe = effect.effects?.[pheno];
+        if (!pe || pe.direction === "baseline" || pe.direction === "uncertain") continue;
+        best = {
+          id:actor.id, parent:name, name:actor.name, type:"metabolite",
+          fold:pe.fold || null, direction:pe.direction,
+          qualitative:pe.qualitative || !pe.fold,
+          confidence:pe.estimated ? "estimated" : "evidence",
+          driver:`${effect.enzyme} ${pheno.replace(/_metabolizer/g,"").replace(/_/g," ")}`,
+          note:pe.label,
+        };
+      }
+
+      if (!best) {
+        const clearanceRoute = (actor.routes || []).find(r => {
+          const fold = phenotypeExposureFold(r.enzyme, selectedPhenotypeForEnzyme(r.enzyme));
+          return fold !== 1;
+        });
+        if (clearanceRoute) {
+          const pheno = selectedPhenotypeForEnzyme(clearanceRoute.enzyme);
+          const fold = phenotypeExposureFold(clearanceRoute.enzyme, pheno);
+          const low = clearanceRoute.evidence?.confidence === "low";
+          best = {
+            id:actor.id, parent:name, name:actor.name, type:"metabolite",
+            fold:low ? null : fold, direction:fold > 1 ? "increase" : "decrease",
+            qualitative:low, confidence:low ? "low" : "modeled",
+            driver:`${clearanceRoute.enzyme} ${pheno.replace(/_metabolizer/g,"").replace(/_/g," ")}`,
+            note:low ? "directional low-confidence clearance context" : "clearance route",
+          };
+        }
+      }
+
+      if (!best && actor.formingEnzyme) {
+        const pheno = selectedPhenotypeForEnzyme(actor.formingEnzyme);
+        const formationFold = phenotypeExposureFold(actor.formingEnzyme, pheno);
+        if (formationFold !== 1) {
+          best = {
+            id:actor.id, parent:name, name:actor.name, type:"metabolite",
+            fold:1 / formationFold, direction:formationFold > 1 ? "decrease" : "increase",
+            confidence:"modeled",
+            driver:`${actor.formingEnzyme} formation`,
+            note:"formation changes opposite to parent exposure",
+          };
+        }
+      }
+
+      if (best) rows.push(best);
+    }
+  }
+
+  return rows.sort((a, b) => {
+    const mag = row => row.fold ? Math.abs(Math.log(row.fold)) : (row.direction === "baseline" ? 0 : 0.2);
+    return mag(b) - mag(a);
+  });
+}
+
+function traverseFromGenotype(enzyme, phenotype, opts) {
+  const graph = getInteractionGraph();
+  const pheno = legacyPhenotypeToGenotype(phenotype || selectedPhenotypeForEnzyme(enzyme));
+  const aucFold = phenotypeExposureFold(enzyme, pheno);
+  const maxDepth = opts?.maxDepth || 3;
+  const rows = [];
+  const seen = new Set();
+
+  const candidateEdges = (graph.edges || []).filter(e =>
+    e.to === enzyme &&
+    (e.type === EDGE_TYPE.SUBSTRATE_OF || e.type === EDGE_TYPE.METABOLIZED_TO)
+  );
+
+  for (const edge of candidateEdges) {
+    const actor = graph.actors[edge.from];
+    if (!actor || ![ACTOR_TYPE.DRUG, ACTOR_TYPE.METABOLITE, ACTOR_TYPE.FOOD].includes(actor.type)) continue;
+    const role = edge.props?.role || "clearance";
+    const isFormationContext = role === "formation_context";
+    const low = edge.props?.evidence?.confidence === "low";
+    const fold = isFormationContext ? (aucFold ? 1 / aucFold : 1) : aucFold;
+    const direction = fold > 1.05 ? "increase" : fold < 0.95 ? "decrease" : "baseline";
+    const key = `${actor.id}|${role}|${direction}`;
+    if (seen.has(key) || direction === "baseline") continue;
+    seen.add(key);
+
+    rows.push({
+      actorId:actor.id,
+      name:actor.name,
+      parentDrug:actor.parentDrug || null,
+      type:actor.type,
+      enzyme,
+      phenotype:pheno,
+      direction,
+      fold:low ? null : Math.round(fold * 100) / 100,
+      confidence:low ? "low" : (edge.props?.evidence?.confidence || "modeled"),
+      evidenceRefs:edge.props?.evidenceRefs || [],
+      chain:`${enzyme} ${pheno.replace(/_metabolizer/g,"").replace(/_/g," ")} → ${role.replace(/_/g," ")} → ${actor.name}`,
+    });
+
+    if (actor.type === ACTOR_TYPE.DRUG && maxDepth > 1) {
+      const metaboliteEdges = (graph.edges || []).filter(e =>
+        e.from === actor.id && e.type === EDGE_TYPE.METABOLIZED_TO
+      );
+      for (const me of metaboliteEdges) {
+        const met = graph.actors[me.to];
+        if (!met || !met.active) continue;
+        rows.push({
+          actorId:met.id,
+          name:met.name,
+          parentDrug:actor.name,
+          type:met.type,
+          enzyme,
+          phenotype:pheno,
+          direction:isFormationContext ? direction : "context",
+          fold:null,
+          confidence:"chain",
+          evidenceRefs:me.props?.evidenceRefs || met.evidenceRefs || [],
+          chain:`${enzyme} ${pheno.replace(/_metabolizer/g,"").replace(/_/g," ")} → ${actor.name} → ${met.name}`,
+        });
+      }
+    }
+  }
+
+  return rows.sort((a, b) => {
+    const score = r => (r.fold ? Math.abs(Math.log(r.fold)) : 0.25) * (r.confidence === "low" ? 0.5 : 1);
+    return score(b) - score(a);
+  });
+}
+
 // ═══════════════════════════════════════════════════════════════════
 // EVIDENCE UTILITY FUNCTIONS
 // ═══════════════════════════════════════════════════════════════════

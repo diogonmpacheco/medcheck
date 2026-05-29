@@ -1,0 +1,178 @@
+#!/usr/bin/env node
+// MedCheck validation harness
+// Non-mutating: reports provenance/reference gaps without editing source data.
+
+import { readFileSync } from 'fs';
+import vm from 'vm';
+
+const strict = process.argv.includes('--strict');
+
+function loadBundleContext() {
+  const html = readFileSync('index.html', 'utf8');
+  const match = html.match(/<script>([\s\S]*)<\/script>\s*<\/body>/);
+  if (!match) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
+
+  const elements = {};
+  const context = {
+    console,
+    document: {
+      getElementById(id) {
+        return elements[id] || (elements[id] = {
+          innerHTML: '', textContent: '', style: {},
+          classList: { add(){}, remove(){}, toggle(){} },
+          nextElementSibling: { classList: { toggle(){} } },
+        });
+      },
+      addEventListener(){},
+      querySelector(){ return null; },
+      querySelectorAll(){ return []; },
+      createElement(){ return { className:'', textContent:'', style:{} }; },
+    },
+    window: { addEventListener(){}, location: { search: '' }, history: { replaceState(){} } },
+    localStorage: { getItem(){ return null; }, setItem(){} },
+    navigator: { userAgent: '' },
+    d3: undefined,
+    setTimeout(){},
+    clearTimeout(){},
+  };
+  vm.createContext(context);
+  vm.runInContext(`${match[1]}
+globalThis.__VALIDATE__ = {
+  DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
+  GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
+  ENZYME_ACTORS, TRANSPORTER_ACTORS, EVIDENCE_TIER,
+};`, context);
+  return context.__VALIDATE__;
+}
+
+function collectPmids(value, out = new Set()) {
+  if (!value) return out;
+  if (Array.isArray(value)) {
+    value.forEach(v => collectPmids(v, out));
+    return out;
+  }
+  if (typeof value !== 'object') return out;
+  for (const [key, child] of Object.entries(value)) {
+    if (key.toLowerCase() === 'pmid' || key.toLowerCase() === 'pmids') {
+      (Array.isArray(child) ? child : [child]).filter(Boolean).forEach(p => out.add(String(p)));
+    } else {
+      collectPmids(child, out);
+    }
+  }
+  return out;
+}
+
+function evidenceRefsExist(refs, studyIds) {
+  return (refs || []).filter(ref => !studyIds.has(ref));
+}
+
+const data = loadBundleContext();
+const ledger = JSON.parse(readFileSync('scripts/reference-snapshots/evidence-ledger.json', 'utf8'));
+const ledgerPmids = new Set((ledger.pmids || []).map(String));
+const studyIds = new Set(Object.keys(data.STUDY_DB || {}));
+const allPmids = collectPmids({
+  STUDY_DB: data.STUDY_DB,
+  KNOWN_DDI: data.KNOWN_DDI,
+  METAB: data.METAB,
+  METABOLITE_ACTORS: data.METABOLITE_ACTORS,
+  DRUG_DB: data.DRUG_DB,
+});
+
+const report = {
+  mode: strict ? 'strict' : 'report',
+  counts: {
+    drugs: data.DRUG_DB.length,
+    studies: studyIds.size,
+    pmidsInCode: allPmids.size,
+    pmidsInLedger: ledgerPmids.size,
+  },
+  errors: [],
+  warnings: [],
+};
+
+function add(kind, type, message, ref) {
+  report[kind].push({ type, message, ref });
+}
+
+for (const pmid of allPmids) {
+  if (!ledgerPmids.has(pmid)) {
+    add('warnings', 'pmid_not_in_retrieval_ledger', `PMID ${pmid} appears in code but not in the local retrieval ledger`, pmid);
+  }
+}
+
+for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
+  if (!study.verified) add('warnings', 'study_not_marked_verified', `${id} is not marked verified`, id);
+  if (!study.pmid && !study.doi && !study.url) {
+    add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
+  }
+}
+
+for (const ddi of data.KNOWN_DDI || []) {
+  const missingRefs = evidenceRefsExist(ddi.evidenceRefs || [], studyIds);
+  for (const ref of missingRefs) add('errors', 'missing_ddi_evidence_ref', `${ddi.drug1}+${ddi.drug2} references missing study ${ref}`, `${ddi.drug1}/${ddi.drug2}`);
+  if (ddi.severity === 'severe' && !(ddi.evidenceRefs || []).length && ddi.evidence?.confidence !== 'high') {
+    add('warnings', 'severe_ddi_weak_provenance', `${ddi.drug1}+${ddi.drug2} is severe without linked evidence refs`, `${ddi.drug1}/${ddi.drug2}`);
+  }
+}
+
+for (const [metId, actor] of Object.entries(data.METABOLITE_ACTORS || {})) {
+  if (!actor.active) continue;
+  const actorRefs = actor.evidenceRefs || [];
+  for (const route of actor.routes || []) {
+    const refs = route.evidenceRefs || route.evidence?.refs || actorRefs;
+    if (!refs || !refs.length) {
+      add('warnings', 'active_metabolite_route_without_refs', `${actor.name || metId} ${route.enzyme} route lacks evidenceRefs`, metId);
+    }
+    for (const ref of evidenceRefsExist(refs || [], studyIds)) {
+      add('errors', 'missing_metabolite_route_ref', `${actor.name || metId} route references missing study ${ref}`, metId);
+    }
+    if (route.evidence?.confidence === 'low' && route.severity === 'severe') {
+      add('errors', 'low_confidence_route_marked_severe', `${actor.name || metId} ${route.enzyme} route is low confidence but severe`, metId);
+    }
+  }
+  for (const inh of actor.inh || []) {
+    const refs = inh.evidenceRefs || inh.evidence?.refs || actorRefs;
+    if (!refs || !refs.length) {
+      add('warnings', 'active_metabolite_inhibition_without_refs', `${actor.name || metId} inhibition of ${inh.target} lacks evidenceRefs`, metId);
+    }
+    for (const ref of evidenceRefsExist(refs || [], studyIds)) {
+      add('errors', 'missing_metabolite_inhibition_ref', `${actor.name || metId} inhibition references missing study ${ref}`, metId);
+    }
+  }
+}
+
+const reference = (() => {
+  try {
+    return JSON.parse(readFileSync('scripts/reference-snapshots/pharmgx-reference.json', 'utf8'));
+  } catch {
+    return null;
+  }
+})();
+
+if (!reference) {
+  add('warnings', 'pharmgx_reference_missing', 'No local PharmGKB/CPIC reference snapshot found; genotype diff skipped', 'scripts/reference-snapshots/pharmgx-reference.json');
+} else {
+  for (const [enzyme, phenos] of Object.entries(reference.GENOTYPE_EFFECTS || {})) {
+    if (!data.GENOTYPE_EFFECTS[enzyme]) {
+      add('warnings', 'reference_enzyme_missing_in_medcheck', `${enzyme} exists in reference but not MedCheck`, enzyme);
+      continue;
+    }
+    for (const [phenotype, refEffect] of Object.entries(phenos || {})) {
+      const local = data.GENOTYPE_EFFECTS[enzyme][phenotype];
+      if (!local) {
+        add('warnings', 'reference_phenotype_missing_in_medcheck', `${enzyme}/${phenotype} exists in reference but not MedCheck`, `${enzyme}/${phenotype}`);
+        continue;
+      }
+      const tolerance = refEffect.tolerance || 0.25;
+      if (typeof refEffect.auc_fold === 'number' && Math.abs((local.auc_fold || 0) - refEffect.auc_fold) > tolerance) {
+        add('warnings', 'genotype_auc_fold_delta', `${enzyme}/${phenotype} local ${local.auc_fold} vs reference ${refEffect.auc_fold}`, `${enzyme}/${phenotype}`);
+      }
+    }
+  }
+}
+
+console.log(JSON.stringify(report, null, 2));
+
+if (report.errors.length || (strict && report.warnings.length)) {
+  process.exit(1);
+}

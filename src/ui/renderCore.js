@@ -324,7 +324,29 @@ function renderMedList() {
       doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
     }
     return `<span class="med-chip">${name}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
-  }).join("");
+  }).join("") + renderActorExposureSummary();
+}
+
+function renderActorExposureSummary() {
+  if (!activeStack.length || typeof computeActorExposureDeltas !== "function") return "";
+  const rows = computeActorExposureDeltas(activeStack)
+    .filter(row => row.direction !== "baseline")
+    .slice(0, 8);
+  if (!rows.length) return "";
+  return `<div class="exposure-summary">${rows.map(row => {
+    const up = row.direction === "increase";
+    const low = row.confidence === "low" || row.qualitative || !row.fold;
+    const chipClass = low ? "low" : (up ? "up" : "down");
+    const arrow = up ? "↑" : row.direction === "decrease" ? "↓" : "↔";
+    const value = row.fold ? `${arrow} ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×` : `${arrow} direction only`;
+    const parent = row.type === "metabolite" ? ` from ${row.parent}` : "";
+    return `<div class="exposure-line">
+      <span class="exposure-name">${row.name}</span>
+      <span class="exposure-type">${row.type}</span>
+      <span class="exposure-chip ${chipClass}">${value}</span>
+      <span>${row.driver || "current stack"}${parent}${row.note ? ` · ${row.note}` : ""}</span>
+    </div>`;
+  }).join("")}</div>`;
 }
 
 function renderRiskGauge(risk) {

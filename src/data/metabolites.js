@@ -1409,14 +1409,21 @@ const METABOLITE_ACTORS = {
     id:"hydroxybupropion", type:ACTOR_TYPE.METABOLITE,
     name:"Hydroxybupropion", parentDrug:"Bupropion", formingEnzyme:"CYP2B6",
     active:true, halfLife:20, potencyRatio:0.5,
-    routes:[{enzyme:"CYP2D6",fraction:0.3}],
+    evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_bupropion_cyp2d6_kotlyar2005","ev_bupropion_cyp2d6_hesse1996"],
+    routes:[{
+      enzyme:"CYP2D6", fraction:0.3, role:"clearance_context",
+      evidenceRefs:["ev_bupropion_cyp2d6_hesse1996"],
+      evidence:{confidence:"low",sources:["phenotype-stratified TDM"],refs:["ev_bupropion_cyp2d6_hesse1996"],
+        note:"CYP2D6 PM status is associated with higher hydroxybupropion level/dose ratio, but CYP2D6 clearance fraction is not firmly established."}
+    }],
     inh:[
       {target:"CYP2D6",  strength:"strong",
        temporal:{onset:'days', duration:'2-3_days_post_dose', reversible:true,
                  note:'Competitive inhibition; clears with drug washout (~5 half-lives = 100h)'},
-       evidence:{confidence:"high",sources:["FDA label","Kotlyar 2005"]}},
-      {target:"CYP2B6",  strength:"moderate", temporal:{onset:'days'}, evidence:{confidence:"moderate",sources:["FDA label"]}},
-      {target:"CYP2C19", strength:"weak",     temporal:{onset:'days'}, evidence:{confidence:"moderate",sources:["FDA label"]}},
+       evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_bupropion_cyp2d6_kotlyar2005"],
+       evidence:{confidence:"high",sources:["FDA label","Kotlyar 2005"],refs:["ev_bupropion_cyp2d6_fda","ev_bupropion_cyp2d6_kotlyar2005"]}},
+      {target:"CYP2B6",  strength:"moderate", temporal:{onset:'days'}, evidenceRefs:["ev_bupropion_cyp2d6_fda"], evidence:{confidence:"moderate",sources:["FDA label"],refs:["ev_bupropion_cyp2d6_fda"]}},
+      {target:"CYP2C19", strength:"weak",     temporal:{onset:'days'}, evidenceRefs:["ev_bupropion_cyp2d6_fda"], evidence:{confidence:"moderate",sources:["FDA label"],refs:["ev_bupropion_cyp2d6_fda"]}},
     ],
     note:"t½ LONGER than parent (20h vs 12h); primary driver of bupropion CYP2D6 DDIs"
   },

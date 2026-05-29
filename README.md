@@ -10,7 +10,7 @@ Free, private drug interaction checker. Enter your medications and see how they 
 
 MedCheck started as a drug interaction calculator. It's now a systems pharmacology graph engine — a single HTML file containing a directed biochemical interaction graph with drugs, metabolites, enzymes, transporters, food compounds, receptors, and clinical phenotypes as equal actors. All reasoning is done client-side, with no server calls, no accounts, and no data collection.
 
-The codebase is structured as 28 source modules in `src/` and assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, and `npm run regression` checks core pharmacology scenarios.
+The codebase is structured as 28 source modules in `src/` and assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, `npm run regression` checks core pharmacology scenarios, and `npm run validate` reports provenance gaps without mutating the database.
 
 ---
 
@@ -19,12 +19,13 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ### Drug Database
 - **247 drugs** — prescription, OTC, supplements, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
-- **Drug DB v1.1.0** — last reviewed 2026-05-28
+- **Drug DB v1.2.0** — last reviewed 2026-05-29
 
 ### Biochemical Graph Engine
 - **Unified actor model** — 9 node types: DRUG, METABOLITE, ENZYME, TRANSPORTER, FOOD, ENVIRONMENTAL, ENDOGENOUS, RECEPTOR, PHENOTYPE
 - **11 edge types** — SUBSTRATE_OF, INHIBITS, INDUCES, METABOLIZED_TO, TRANSPORTED_BY, COMPETES_WITH, ACTIVATES, BLOCKS, ACCUMULATES_IN, PRODUCES, SUPPRESSES
 - **Multi-hop traversal** — `traverseEffects()` performs depth-limited DFS across the graph with cycle protection, confidence decay per edge, and temporal modifier accumulation
+- **Genotype reverse traversal** — `traverseFromGenotype()` starts from an enzyme phenotype and lists affected parent/metabolite actors, including low-confidence metabolite-only signals
 - **Metabolites as first-class entities** — each metabolite has its own halfLife, potencyRatio, enzyme interactions, and evidenceRefs independent of its parent drug
 - **Transporter modeling** — P-gp, OATP1B1, OCT2, BCRP, OAT1, OAT3, MATE1 at parity with CYP enzymes
 - **Nonlinear PK** — auto-inhibition kinetics for paroxetine, fluoxetine, and other saturable substrates
@@ -37,16 +38,20 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
 - **Evidence Explorer** — browsable panel showing all STUDY_DB entries relevant to the current drug stack with tier filtering
 - **Ingestion pipeline** — `createStudyDraft()` / `reviewStudyDraft()` with `INGESTION_QUEUE`; AI-extracted evidence cannot be auto-published without human pharmacist/physician review
+- **Validation harness** — `npm run validate` compares the current bundle to local provenance ledgers and reports missing references, weak severe-claim provenance, and genotype-reference gaps
 
 ### Evidence Provenance (Phase D)
 - **`normalizeEvidence()`** — builds a full `EvidenceProvenance` struct for every interaction: `sourceType`, `studyCount`, `confidence`, `reproducibility`, `humanData`, `genotypeSpecific`, `lastReviewed`, `contradictions[]`, `pmids[]`
 - **`getEvidenceSummary()`** — returns a human-readable one-line summary, e.g.: `"3 studies (RCT, CLINICAL PK) · AUC ×4.8 · Confidence 85% · PMID:14730412"`
 - **`assertEvidencedSeverity()`** — runtime safety guard: downgrades `'severe'` → `'moderate'` if computed evidence confidence falls below 30%, emitting a console warning; severity is never claimed without provenance
+- **Retrieval ledger** — current curated PMIDs are bootstrapped in `scripts/reference-snapshots/evidence-ledger.json`; future evidence additions should come from deterministic retrieval logs
 - **Safety contract**: no interaction is surfaced as "dangerous" without explicit specification of which pathway, which enzyme, which metabolite, which receptor, which evidence, and what confidence level
 
 ### Genotype-Stratified Evidence
 - **PM / IM / NM / UM selectors** per enzyme (CYP2D6, CYP2C19, CYP2C9, CYP2B6, DPYD, TPMT, UGT1A1)
 - AUC fold-change multipliers and population frequencies from CPIC guidelines
+- Genetics-only preview lists affected actors even before a medication stack is added
+- My Medications now shows compact parent/metabolite exposure chips when levels diverge
 - Population-specific interpretation is deferred until ancestry examples are modeled consistently across multiple drugs and enzymes
 - Genotype-adjusted concentration curves in the PK Simulation panel
 
@@ -89,7 +94,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 ## Architecture
 
-MedCheck distributes as a single self-contained HTML file (~591 KB). All computation runs in the browser with no dependencies except D3.js (loaded from CDN for graph visualization). There is no backend, no API, and no persistent storage.
+MedCheck distributes as a single self-contained HTML file (~758 KB development build). All computation runs in the browser with no dependencies except D3.js (loaded from CDN for graph visualization). There is no backend, no API, and no persistent storage.
 
 The source is structured as **28 modules** in `src/`, assembled in dependency order by `build.js`:
 
@@ -129,7 +134,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 40+ primary evidence entities with full provenance |
+| `STUDY_DB` | 75 primary evidence entities with full provenance |
 | `GENOTYPE_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
@@ -155,7 +160,8 @@ npm run build        # → index.html (~612 KB, development)
 npm run build:min    # → index.html (minified)
 npm run smoke        # builds and verifies core UI/engine behavior
 npm run regression   # checks core pharmacology scenarios
-npm run test         # smoke + regression checks
+npm run validate     # non-mutating provenance/reference triage
+npm run test         # smoke + regression + validation checks
 ```
 
 The build concatenates all `src/` modules in dependency order and injects the bundle into `src/index.template.html`. Output is always `index.html` at the repo root (GitHub Pages compatible).

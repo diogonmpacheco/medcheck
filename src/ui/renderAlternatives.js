@@ -89,7 +89,28 @@ function renderGenetics() {
       <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
     </div>
     ${impactText ? `<div style="font-size:11px;color:var(--text2);padding:0 4px 3px 98px">${impactText}</div>` : ""}${evidenceHtml}`;
-  }).join("");
+  }).join("") + renderGenotypeImpactPreview(activeGenes);
+}
+
+function renderGenotypeImpactPreview(activeGenes) {
+  if (activeStack.length || typeof traverseFromGenotype !== "function") return "";
+  const rows = [];
+  for (const enzyme of activeGenes) {
+    const pheno = userGenetics[enzyme];
+    if (!pheno || pheno === "normal") continue;
+    rows.push(...traverseFromGenotype(enzyme, pheno, { maxDepth:2 }).slice(0, 5));
+  }
+  if (!rows.length) return "";
+  return `<div class="genotype-preview">
+    <div class="genotype-preview-title">Predicted affected actors from genetics alone</div>
+    ${rows.slice(0, 10).map(row => {
+      const arrow = row.direction === "increase" ? "↑" : row.direction === "decrease" ? "↓" : "↔";
+      const fold = row.fold ? ` ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×` : "";
+      const conf = row.confidence === "low" ? " · low confidence" : "";
+      const parent = row.parentDrug ? ` from ${row.parentDrug}` : "";
+      return `<div class="genotype-preview-row"><strong>${arrow}${fold} ${row.name}</strong>${parent} · ${row.chain}${conf}</div>`;
+    }).join("")}
+  </div>`;
 }
 
 /* ================================================================

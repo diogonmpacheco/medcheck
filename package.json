@@ -1,6 +1,6 @@
 {
   "name": "medcheck",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "description": "Systems pharmacology graph engine — drug interactions, PK simulation, genotype-stratified evidence. Single HTML file, no server, no tracking.",
   "type": "module",
   "scripts": {
@@ -9,7 +9,9 @@
     "build:dev": "node build.js --out /tmp/medcheck_dev.html",
     "smoke": "node scripts/smoke-check.js",
     "regression": "node scripts/regression-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js"
+    "validate": "node scripts/validate-db.js",
+    "validate:strict": "node scripts/validate-db.js --strict",
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

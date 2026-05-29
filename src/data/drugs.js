@@ -2690,22 +2690,24 @@ const DRUG_DB = [
 // MEDCHECK VERSION & METADATA
 // ═══════════════════════════════════════════════════════════════════
 const MEDCHECK_VERSION = {
-  engine: "3.4.0",
-  drugDb: "1.1.0",
+  engine: "3.5.0",
+  drugDb: "1.2.0",
   engineRewrite: true,
   schema: "graph-v1",
-  released: "2026-05-28",
+  released: "2026-05-29",
   features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity",
     "confidence-weighted-risk", "interaction-graph", "metabolite-actors", "chain-traversal",
     "dynamic-route-fractions", "transporter-parity", "structured-evidence",
     "enzyme-capacity", "receptor-occupancy", "evidence-provenance",
-    "steady-state-pk", "convergence-detection"],
+    "steady-state-pk", "convergence-detection", "genotype-reverse-traversal",
+    "actor-exposure-deltas", "validation-harness"],
   drugCount: DRUG_DB.length,
   graphStats: function() { var g = getInteractionGraph(); return { actors: Object.keys(g.actors).length, edges: g.edges.length }; },
   changes: [
     "v3.2: Deterministic enzyme capacity model and receptor occupancy aggregation",
     "v3.3: Repeated-dosing and steady-state PK simulator",
     "v3.4: Weighted propagating confidence and convergence detection",
+    "v3.5: Genotype reverse traversal, actor-level exposure deltas, and validation harness",
     "Evidence provenance guard: severity claims require supporting evidence context"
   ]
 };
