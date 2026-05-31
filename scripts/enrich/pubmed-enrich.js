@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// PubMed-only enrichment draft generator.
+// Multi-index enrichment draft generator.
 // Stores citations + paraphrased extracted findings only; never article text.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
@@ -15,12 +15,18 @@ const REPORT_PATH = resolve(OUT_DIR, 'review-report.md');
 
 const ALLOWED_FETCH_HOSTS = new Set([
   'eutils.ncbi.nlm.nih.gov',
+  'www.ebi.ac.uk',
+  'api.openalex.org',
+  'api.semanticscholar.org',
 ]);
 const ALLOWED_OUTPUT_HOSTS = new Set([
   'pubmed.ncbi.nlm.nih.gov',
   'doi.org',
   'pmc.ncbi.nlm.nih.gov',
   'www.ncbi.nlm.nih.gov',
+  'europepmc.org',
+  'openalex.org',
+  'www.semanticscholar.org',
 ]);
 
 const TYPE = {
@@ -40,12 +46,16 @@ function usage() {
   node scripts/enrich/pubmed-enrich.js --query "fluoxetine desipramine pharmacokinetics" --relation fluoxetine:CYP2D6 --supports fluoxetine_inhibits_CYP2D6 [--limit 10]
 
 Options:
-  --query       PubMed query string. Required unless --self-test.
+  --query       Literature search query string. Required unless --self-test.
   --relation    Human label for grouping report output.
   --supports    Comma-separated mechanism keys to put in draft.supports.
+  --providers   Comma-separated providers: pubmed,europepmc,openalex,semanticscholar. Default: pubmed.
+  --expand-citations  Expand Semantic Scholar citations/references one hop for Semantic Scholar seed hits.
   --limit       Max PubMed IDs to fetch. Default: 10.
   --email       Optional NCBI tool email.
+  --mailto      Optional polite-pool email for OpenAlex.
   --api-key     Optional NCBI API key.
+  --semantic-scholar-key Optional Semantic Scholar API key.
   --self-test   Run offline guardrail tests; no network.
 `;
 }
@@ -89,6 +99,23 @@ async function fetchJson(url) {
   const path = cachePath(url);
   if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
   const res = await fetch(url, { headers: { 'user-agent': 'MedCheck enrichment tool; citation metadata only' } });
+  if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
+  const text = await res.text();
+  writeFileSync(path, text, 'utf8');
+  return JSON.parse(text);
+}
+
+async function fetchProviderJson(url, headers = {}) {
+  ensureAllowedFetch(url);
+  mkdirSync(CACHE_DIR, { recursive: true });
+  const path = cachePath(url);
+  if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
+  const res = await fetch(url, {
+    headers: {
+      'user-agent': 'MedCheck enrichment tool; citation metadata only',
+      ...headers,
+    },
+  });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
   const text = await res.text();
   writeFileSync(path, text, 'utf8');
@@ -209,7 +236,164 @@ function parseArticle(xml) {
     pubTypes,
     abstract,
     url: ensureAllowedOutputUrl(`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`),
+    provenance: 'search:pubmed',
   };
+}
+
+function providersFromArgs(args) {
+  return (args.providers || 'pubmed')
+    .split(',')
+    .map(p => p.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function providerHeaders(provider, args) {
+  if (provider === 'semanticscholar' && args['semantic-scholar-key']) {
+    return { 'x-api-key': args['semantic-scholar-key'] };
+  }
+  return {};
+}
+
+function reconstructOpenAlexAbstract(index) {
+  if (!index || typeof index !== 'object') return '';
+  const words = [];
+  for (const [word, positions] of Object.entries(index)) {
+    for (const pos of positions || []) words[pos] = word;
+  }
+  return words.filter(Boolean).join(' ');
+}
+
+function firstAuthorName(authors) {
+  if (!authors || !authors.length) return 'unknown';
+  const first = authors[0];
+  if (typeof first === 'string') return first.split(/\s+/).slice(-1)[0] || 'unknown';
+  return first.name || first.display_name || first.author?.display_name || 'unknown';
+}
+
+function normalizeArticle(article) {
+  const doi = article.doi ? String(article.doi).replace(/^https?:\/\/doi\.org\//i, '') : null;
+  const pmid = article.pmid ? String(article.pmid).replace(/^https?:\/\/pubmed\.ncbi\.nlm\.nih\.gov\//i, '').replace(/\/$/, '') : null;
+  const url = article.url || (doi ? `https://doi.org/${doi}` : pmid ? `https://pubmed.ncbi.nlm.nih.gov/${pmid}/` : null);
+  return {
+    pmid,
+    doi,
+    title: article.title || '',
+    year: article.year || null,
+    source: article.source || article.journal || '',
+    journal: article.journal || article.source || '',
+    firstAuthor: article.firstAuthor || firstAuthorName(article.authors),
+    pubTypes: article.pubTypes || [],
+    abstract: article.abstract || '',
+    url: ensureAllowedOutputUrl(url),
+    provenance: article.provenance,
+    providerId: article.providerId || null,
+  };
+}
+
+async function searchEuropePmc(query, args) {
+  const params = new URLSearchParams({
+    query,
+    format: 'json',
+    pageSize: String(Number(args.limit || 10)),
+  });
+  const data = await fetchProviderJson(`https://www.ebi.ac.uk/europepmc/webservices/rest/search?${params}`);
+  return (data.resultList?.result || []).map(row => normalizeArticle({
+    pmid: row.pmid || null,
+    doi: row.doi || null,
+    title: row.title,
+    year: row.pubYear ? Number(row.pubYear) : null,
+    source: row.journalTitle,
+    journal: row.journalTitle,
+    firstAuthor: (row.authorString || '').split(',')[0] || 'unknown',
+    pubTypes: row.pubTypeList?.pubType || [],
+    abstract: row.abstractText || '',
+    url: row.doi ? `https://doi.org/${row.doi}` : row.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${row.pmid}/` : `https://europepmc.org/article/${row.source || 'MED'}/${row.id}`,
+    provenance: 'search:europepmc',
+    providerId: row.id,
+  }));
+}
+
+async function searchOpenAlex(query, args) {
+  const params = new URLSearchParams({
+    search: query,
+    'per-page': String(Number(args.limit || 10)),
+  });
+  if (args.mailto || args.email) params.set('mailto', args.mailto || args.email);
+  const data = await fetchProviderJson(`https://api.openalex.org/works?${params}`);
+  return (data.results || []).map(row => normalizeArticle({
+    pmid: row.ids?.pmid || null,
+    doi: row.doi || null,
+    title: row.title || row.display_name,
+    year: row.publication_year || null,
+    source: row.primary_location?.source?.display_name || row.host_venue?.display_name || '',
+    journal: row.primary_location?.source?.display_name || row.host_venue?.display_name || '',
+    authors: row.authorships?.map(a => a.author?.display_name).filter(Boolean) || [],
+    pubTypes: [row.type, row.type_crossref].filter(Boolean),
+    abstract: reconstructOpenAlexAbstract(row.abstract_inverted_index),
+    url: row.doi || row.id,
+    provenance: 'search:openalex',
+    providerId: row.id,
+  }));
+}
+
+async function searchSemanticScholar(query, args) {
+  const params = new URLSearchParams({
+    query,
+    limit: String(Number(args.limit || 10)),
+    fields: 'paperId,title,year,venue,authors,abstract,externalIds,publicationTypes,citationCount',
+  });
+  const headers = providerHeaders('semanticscholar', args);
+  const data = await fetchProviderJson(`https://api.semanticscholar.org/graph/v1/paper/search?${params}`, headers);
+  const seeds = (data.data || []).map(row => semanticScholarArticle(row, 'search:semanticscholar'));
+  if (!args['expand-citations']) return seeds;
+  const expanded = [];
+  for (const seed of seeds.filter(s => s.providerId).slice(0, Math.min(3, seeds.length))) {
+    expanded.push(...await fetchSemanticScholarEdges(seed.providerId, 'citations', headers));
+    expanded.push(...await fetchSemanticScholarEdges(seed.providerId, 'references', headers));
+  }
+  return [...seeds, ...expanded];
+}
+
+function semanticScholarArticle(row, provenance) {
+  const external = row.externalIds || {};
+  return normalizeArticle({
+    pmid: external.PubMed || null,
+    doi: external.DOI || null,
+    title: row.title,
+    year: row.year || null,
+    source: row.venue || '',
+    journal: row.venue || '',
+    authors: row.authors || [],
+    pubTypes: row.publicationTypes || [],
+    abstract: row.abstract || '',
+    url: row.url || (external.DOI ? `https://doi.org/${external.DOI}` : `https://www.semanticscholar.org/paper/${row.paperId}`),
+    provenance,
+    providerId: row.paperId,
+  });
+}
+
+async function fetchSemanticScholarEdges(paperId, edgeType, headers) {
+  const fields = edgeType === 'citations'
+    ? 'citingPaper.paperId,citingPaper.title,citingPaper.year,citingPaper.venue,citingPaper.authors,citingPaper.abstract,citingPaper.externalIds,citingPaper.publicationTypes'
+    : 'citedPaper.paperId,citedPaper.title,citedPaper.year,citedPaper.venue,citedPaper.authors,citedPaper.abstract,citedPaper.externalIds,citedPaper.publicationTypes';
+  const params = new URLSearchParams({ limit: '20', fields });
+  const data = await fetchProviderJson(`https://api.semanticscholar.org/graph/v1/paper/${paperId}/${edgeType}?${params}`, headers);
+  const key = edgeType === 'citations' ? 'citingPaper' : 'citedPaper';
+  return (data.data || [])
+    .map(edge => edge[key])
+    .filter(Boolean)
+    .map(row => semanticScholarArticle(row, `citation-graph:semanticscholar:${edgeType}`));
+}
+
+async function searchProvider(provider, query, args) {
+  if (provider === 'pubmed') {
+    const ids = await searchPubMed(query, args);
+    return fetchPubMedArticles(ids, args);
+  }
+  if (provider === 'europepmc') return searchEuropePmc(query, args);
+  if (provider === 'openalex') return searchOpenAlex(query, args);
+  if (provider === 'semanticscholar') return searchSemanticScholar(query, args);
+  throw new Error(`Unknown provider: ${provider}`);
 }
 
 function tierFromArticle(article) {
@@ -286,7 +470,7 @@ function makeDraft(article, args) {
     limitations: extraction.hasNumber ? ['Abstract-level extraction only; requires human review before promotion'] : ['No abstract-extractable quantitative value'],
     confidence: extraction.hasNumber ? 'moderate' : 'low',
     needsFullText: !extraction.hasNumber,
-    provenance: 'search:pubmed',
+    provenance: article.provenance || 'search:unknown',
     verified: false,
     verifyNote: 'Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion',
     _createdAt: new Date().toISOString(),
@@ -326,12 +510,12 @@ function writeReport({ relation, query, added, skipped }) {
     `Added drafts: ${added.length}`,
     `Skipped duplicates: ${skipped.length}`,
     '',
-    '| Draft | Tier | PMID/DOI | Finding | Confidence | Needs full text |',
-    '|---|---|---|---|---|---|',
+    '| Draft | Tier | PMID/DOI | Provenance | Finding | Confidence | Needs full text |',
+    '|---|---|---|---|---|---|---|',
   ];
   for (const draft of added) {
     const id = draft.pmid ? `PMID:${draft.pmid}` : draft.doi ? `DOI:${draft.doi}` : 'identifier missing';
-    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
+    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
   }
   if (skipped.length) {
     lines.push('', 'Skipped:', ...skipped.map(s => `- ${s.reason}: ${s.title}`));
@@ -347,10 +531,17 @@ function selfTest() {
     refused = true;
   }
   if (!refused) throw new Error('Allowlist self-test failed');
+  for (const allowed of [
+    'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=test',
+    'https://api.openalex.org/works?search=test',
+    'https://api.semanticscholar.org/graph/v1/paper/search?query=test',
+  ]) ensureAllowedFetch(allowed);
   const extraction = extractQuantifiedEffects('Drug exposure AUC increased 2.4-fold and clearance decreased 40% in 12 subjects.', 'test');
   if (extraction.effects.aucFold !== 2.4 || extraction.effects.clearanceReductionPct !== 40 || extraction.n !== 12) {
     throw new Error('Extraction self-test failed');
   }
+  const oaAbstract = reconstructOpenAlexAbstract({ Drug: [0], exposure: [1], increased: [2] });
+  if (oaAbstract !== 'Drug exposure increased') throw new Error('OpenAlex abstract reconstruction self-test failed');
   console.log('Enrichment self-test passed.');
 }
 
@@ -368,13 +559,17 @@ async function main() {
   const relation = args.relation || query;
   const liveData = loadLiveData();
   const existingDrafts = loadExistingDrafts();
-  const ids = await searchPubMed(query, args);
-  const articles = await fetchPubMedArticles(ids, args);
+  const providers = providersFromArgs(args);
+  const articles = [];
+  for (const provider of providers) {
+    const found = await searchProvider(provider, query, args);
+    articles.push(...found);
+  }
   const candidates = articles.map(article => makeDraft(article, { ...args, relation }));
   const { kept, skipped } = dedupeDrafts(candidates, liveData, existingDrafts);
   saveDrafts([...existingDrafts, ...kept]);
   writeReport({ relation, query, added: kept, skipped });
-  console.log(`PubMed enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s).`);
+  console.log(`Enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s), providers: ${providers.join(',')}.`);
   console.log(`Drafts: ${DRAFTS_PATH}`);
   console.log(`Report: ${REPORT_PATH}`);
 }
