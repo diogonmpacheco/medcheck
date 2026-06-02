@@ -1,8 +1,14 @@
 # MedCheck — Drug Interaction Checker
 
-Free, private drug interaction checker. Enter your medications and see how they interact — no accounts, no data collection, everything runs in your browser.
+Free, private drug interaction checker and pharmacogenomics tool for medication safety, CYP enzymes, metabolites, supplements, herbs, and clinical pharmacology. Enter your medications and see how they interact — no accounts, no data collection, everything runs in your browser.
 
 **Live:** [diogonmpacheco.github.io/medcheck](https://diogonmpacheco.github.io/medcheck/)
+
+[![CI](https://github.com/diogonmpacheco/medcheck/actions/workflows/ci.yml/badge.svg)](https://github.com/diogonmpacheco/medcheck/actions/workflows/ci.yml)
+[![Node.js 20](https://img.shields.io/badge/Node.js-20-339933?logo=nodedotjs&logoColor=white)](package.json)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/medcheck)](https://github.com/diogonmpacheco/medcheck/issues)
+[![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/medcheck/)
 
 ---
 
@@ -22,7 +28,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **217 curated DDI pairs** (134 severe, 79 moderate, 4 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1024 KB** generated bundle (21716 lines)
+- **1025 KB** generated bundle (21721 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -186,6 +192,18 @@ The build concatenates all `src/` modules in dependency order and injects the bu
 3. Run `npm run release:check`.
 4. Commit source changes plus rebuilt `index.html`.
 5. Push `main` to GitHub Pages.
+
+---
+
+## License
+
+MedCheck is open source under the [MIT License](LICENSE).
+
+You can use, modify, and build on it freely. If you use MedCheck in another project, please share where it is being used and include a link back to the project when practical:
+
+`https://github.com/diogonmpacheco/medcheck`
+
+This attribution request is appreciated, but the license remains permissive.
 
 ---
 

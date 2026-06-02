@@ -2,6 +2,7 @@
   "name": "medcheck",
   "version": "3.5.5",
   "description": "Systems pharmacology graph engine — drug interactions, PK simulation, genotype-stratified evidence. Single HTML file, no server, no tracking.",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "stats": "node scripts/gen-stats.js",
