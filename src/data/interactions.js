@@ -264,5 +264,248 @@ const KNOWN_DDI = [
   // ── CBD interactions ──
   {drug1:"Cannabis (CBD)",drug2:"Clobazam",severity:"severe",category:"pk",mechanism:"CBD strongly inhibits CYP2C19, raising active metabolite N-desmethylclobazam 5×+. FDA-documented interaction",effect:"↑↑ Clobazam sedation — dose reduction required",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Cannabis (CBD)",drug2:"Warfarin",severity:"moderate",category:"pk",mechanism:"CBD inhibits CYP2C9+CYP3A4, raising warfarin levels. INR increases documented",effect:"↑ Warfarin levels — INR monitoring essential",evidence:{confidence:"high",sources:["clinical PK studies"]}},
+// ──────────── Enrichment Batch 1 ────────────
+{
+  drug1:"Allopurinol",
+  drug2:"Mercaptopurine",
+  severity:"severe",
+  category:"metabolic",
+  mechanism:"Allopurinol inhibits xanthine oxidase, blocking 6-MP inactivation and shifting metabolism toward cytotoxic 6-TGN",
+  effect:"↑↑↑ Mercaptopurine toxicity — reduce 6-MP dose ~75% and monitor CBC",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA label"
+    ]
+  },
+  evidenceRefs:[
+    "ev_allopurinol_azathioprine_xo_label",
+    "ev_thiopurine_tpmt_nudt15_cpic2025"
+  ]
+},{
+  drug1:"Febuxostat",
+  drug2:"Mercaptopurine",
+  severity:"severe",
+  category:"metabolic",
+  mechanism:"Febuxostat is a potent XO inhibitor; blocks 6-MP inactivation with no labeled dose-reduction protocol",
+  effect:"↑↑↑ Mercaptopurine toxicity — combination contraindicated (avoid, do not co-dose)",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA label"
+    ]
+  },
+  evidenceRefs:[
+    "ev_thiopurine_tpmt_nudt15_cpic2025"
+  ]
+},{
+  drug1:"Febuxostat",
+  drug2:"Azathioprine",
+  severity:"severe",
+  category:"metabolic",
+  mechanism:"Febuxostat inhibits XO, blocking azathioprine/6-MP inactivation",
+  effect:"↑↑↑ Azathioprine toxicity — contraindicated (avoid co-use)",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA label"
+    ]
+  },
+  evidenceRefs:[
+    "ev_allopurinol_azathioprine_xo_label"
+  ]
+},{
+  drug1:"Sulfasalazine",
+  drug2:"Azathioprine",
+  severity:"moderate",
+  category:"metabolic",
+  mechanism:"Sulfasalazine inhibits TPMT, shifting thiopurine metabolism toward cytotoxic 6-TGN",
+  effect:"↑ Azathioprine/6-TGN exposure — monitor CBC, esp. in TPMT/NUDT15 IM",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "literature"
+    ]
+  },
+  evidenceRefs:[
+    "ev_sulfasalazine_tpmt_inhibition"
+  ]
+},{
+  drug1:"Sulfasalazine",
+  drug2:"Mercaptopurine",
+  severity:"moderate",
+  category:"metabolic",
+  mechanism:"Sulfasalazine inhibits TPMT, increasing active thiopurine nucleotides",
+  effect:"↑ Mercaptopurine toxicity — monitor CBC",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "literature"
+    ]
+  },
+  evidenceRefs:[
+    "ev_sulfasalazine_tpmt_inhibition"
+  ]
+},{
+  drug1:"Sulfasalazine",
+  drug2:"Methotrexate",
+  severity:"moderate",
+  category:"hematologic",
+  mechanism:"Additive antifolate effect and competition for folate handling; both myelosuppressive",
+  effect:"↑ Myelosuppression / mucositis risk — monitor CBC and folate status",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "clinical guidelines"
+    ]
+  }
+},{
+  drug1:"Sulfasalazine",
+  drug2:"Digoxin",
+  severity:"moderate",
+  category:"pk",
+  mechanism:"Sulfasalazine reduces digoxin GI absorption",
+  effect:"↓ Digoxin levels — separate dosing and monitor concentrations",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "FDA label"
+    ]
+  }
+},{
+  drug1:"Dapsone",
+  drug2:"Trimethoprim-SMX",
+  severity:"moderate",
+  category:"toxicity",
+  mechanism:"Trimethoprim raises dapsone levels (competition for clearance) and both are oxidant — additive methemoglobinemia/hemolysis",
+  effect:"↑ Methemoglobinemia/hemolysis risk — monitor metHb and CBC, esp. in G6PD deficiency",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA label",
+      "literature"
+    ]
+  },
+  evidenceRefs:[
+    "ev_dapsone_ddsnhoh_metabolite"
+  ]
+},{
+  drug1:"Dapsone",
+  drug2:"Rifampin",
+  severity:"moderate",
+  category:"induction",
+  mechanism:"Rifampin induces dapsone metabolism, lowering parent levels but increasing hydroxylamine metabolite formation",
+  effect:"↓ Dapsone efficacy + possible ↑ oxidative-metabolite burden — monitor response and metHb",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "literature"
+    ]
+  },
+  evidenceRefs:[
+    "ev_dapsone_ddsnhoh_metabolite"
+  ]
+},{
+  drug1:"Methylene Blue",
+  drug2:"Sertraline",
+  severity:"severe",
+  category:"serotonergic",
+  mechanism:"Methylene blue is a potent MAO-A inhibitor; combined with an SSRI → serotonin accumulation",
+  effect:"↑↑ Serotonin syndrome risk — FDA advises withholding serotonergic agent before elective methylene blue",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA Drug Safety Communication"
+    ]
+  },
+  evidenceRefs:[
+    "ev_methylene_blue_maoi_fda"
+  ]
+},{
+  drug1:"Methylene Blue",
+  drug2:"Venlafaxine",
+  severity:"severe",
+  category:"serotonergic",
+  mechanism:"MAO-A inhibition by methylene blue plus SNRI serotonin reuptake inhibition",
+  effect:"↑↑ Serotonin syndrome risk — avoid/withhold; emergency use requires monitoring",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA Drug Safety Communication"
+    ]
+  },
+  evidenceRefs:[
+    "ev_methylene_blue_maoi_fda"
+  ]
+},{
+  drug1:"Methylene Blue",
+  drug2:"Duloxetine",
+  severity:"severe",
+  category:"serotonergic",
+  mechanism:"MAO-A inhibition by methylene blue plus SNRI serotonin reuptake inhibition",
+  effect:"↑↑ Serotonin syndrome risk — avoid/withhold",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "FDA Drug Safety Communication"
+    ]
+  },
+  evidenceRefs:[
+    "ev_methylene_blue_maoi_fda"
+  ]
+},{
+  drug1:"Chloroquine",
+  drug2:"Amiodarone",
+  severity:"severe",
+  category:"qt",
+  mechanism:"Additive QT prolongation (both block IKr); amiodarone also has very long t½",
+  effect:"↑↑ QT prolongation / torsades risk — avoid combination",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "clinical guidelines"
+    ]
+  }
+},{
+  drug1:"Chloroquine",
+  drug2:"Ondansetron",
+  severity:"moderate",
+  category:"qt",
+  mechanism:"Additive QT prolongation",
+  effect:"↑ QT prolongation — use granisetron alternative and monitor ECG/electrolytes",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "clinical guidelines"
+    ]
+  }
+},{
+  drug1:"Quinine",
+  drug2:"Digoxin",
+  severity:"severe",
+  category:"pk",
+  mechanism:"Quinine inhibits P-glycoprotein, reducing digoxin clearance",
+  effect:"↑↑ Digoxin levels — toxicity risk; reduce digoxin dose and monitor levels",
+  evidence:{
+    confidence:"high",
+    sources:[
+      "clinical PK studies"
+    ]
+  }
+},{
+  drug1:"Quinine",
+  drug2:"Warfarin",
+  severity:"moderate",
+  category:"anticoagulant",
+  mechanism:"Quinine potentiates warfarin anticoagulant effect (hypoprothrombinemic effect / displacement)",
+  effect:"↑ INR / bleeding risk — monitor INR closely",
+  evidence:{
+    confidence:"moderate",
+    sources:[
+      "FDA label",
+      "case reports"
+    ]
+  }
+},
 ];
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

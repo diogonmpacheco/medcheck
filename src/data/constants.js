@@ -255,6 +255,13 @@ const GENOTYPE_RISK_EFFECTS = {
         clinicalAction:"abacavir contraindicated; use alternative antiretroviral",
         evidenceRefs:["ev_abacavir_hlab5701_cpic2012"],
       },
+      {
+        parent:"Flucloxacillin",
+        phenotype:"flucloxacillin-induced cholestatic liver injury",
+        note:"HLA-B*57:01 is associated with flucloxacillin-induced drug-induced liver injury (delayed cholestatic hepatitis), a different organ outcome from abacavir hypersensitivity but the same risk allele. Absolute risk is low (idiosyncratic) but the relative association is strong.",
+        clinicalAction:"no routine pre-test recommended; if allele known-positive, prefer alternative anti-staphylococcal agent and monitor LFTs; investigate cholestatic LFTs promptly",
+        evidenceRefs:["ev_flucloxacillin_hlab5701_daly2009"],
+      },
     ],
     effects:{
       [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected; abacavir hypersensitivity risk is substantially reduced but not impossible." },
@@ -311,6 +318,48 @@ const GENOTYPE_RISK_EFFECTS = {
         note:"Nitrofurantoin is an oxidative-stress drug that can precipitate hemolysis in G6PD-deficient patients.",
         clinicalAction:"avoid in known G6PD deficiency when alternatives exist",
         evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+      },
+      {
+        parent:"Tafenoquine",
+        phenotype:"acute hemolytic anemia / methemoglobinemia",
+        note:"8-aminoquinoline imposing oxidative stress; in G6PD deficiency causes severe acute hemolytic anemia. Its ~14-day half-life means hemolysis cannot be halted by stopping the drug, so the FDA requires documented adequate G6PD activity before dosing.",
+        clinicalAction:"contraindicated without documented adequate G6PD activity; FDA requires G6PD testing before use",
+        evidenceRefs:["ev_tafenoquine_g6pd_fda"],
+      },
+      {
+        parent:"Chloroquine",
+        phenotype:"acute hemolytic anemia",
+        note:"4-aminoquinoline; can precipitate oxidative hemolysis in G6PD deficiency, though risk is generally lower than with 8-aminoquinolines at antimalarial doses.",
+        clinicalAction:"use with caution and hematologic monitoring in known deficiency; consider alternatives where feasible",
+        evidenceRefs:["ev_g6pd_oxidative_antimalarials"],
+      },
+      {
+        parent:"Quinine",
+        phenotype:"acute hemolytic anemia",
+        note:"Antimalarial alkaloid; oxidative-stress hemolysis reported in G6PD deficiency. Also causes immune thrombocytopenia and cinchonism independent of G6PD.",
+        clinicalAction:"avoid in known deficiency when alternatives exist; monitor if unavoidable",
+        evidenceRefs:["ev_g6pd_oxidative_antimalarials"],
+      },
+      {
+        parent:"Methylene Blue",
+        phenotype:"hemolysis; paradoxical worsening of methemoglobinemia",
+        note:"Methylene blue reduces methemoglobin via an NADPH-dependent pathway that REQUIRES G6PD. In G6PD deficiency it is both ineffective for methemoglobinemia and itself an oxidant that can precipitate hemolysis — contraindicated.",
+        clinicalAction:"contraindicated in G6PD deficiency; use ascorbic acid / exchange transfusion for methemoglobinemia instead",
+        evidenceRefs:["ev_methylene_blue_maoi_fda"],
+      },
+      {
+        parent:"Sulfasalazine",
+        phenotype:"oxidative hemolysis",
+        note:"The sulfapyridine moiety is an oxidant sulfonamide that can trigger hemolysis in G6PD deficiency, especially at higher doses. NAT2 slow acetylators accumulate sulfapyridine and have more dose-related adverse effects generally.",
+        clinicalAction:"use cautiously with CBC monitoring in known deficiency; consider mesalamine (5-ASA) alternative",
+        evidenceRefs:["ev_sulfasalazine_tpmt_inhibition"],
+      },
+      {
+        parent:"Pegloticase",
+        phenotype:"acute hemolytic anemia / methemoglobinemia",
+        note:"Pegloticase (PEGylated uricase) generates hydrogen peroxide while converting urate to allantoin; in G6PD deficiency this oxidant causes life-threatening hemolysis and methemoglobinemia — contraindicated.",
+        clinicalAction:"contraindicated; FDA requires G6PD screening before use, especially in African, Mediterranean/Southern-European, Middle-Eastern, and South-Asian ancestry",
+        evidenceRefs:["ev_pegloticase_g6pd_fda"],
       },
     ],
     effects:{
@@ -396,6 +445,61 @@ const GENOTYPE_RISK_EFFECTS = {
       [GENOTYPE_RISK_STATUS.PRESENT]: { label:"MH-susceptible", severity:"high", note:"Malignant-hyperthermia-associated variant present. Potent volatile anesthetics and succinylcholine can trigger a life-threatening crisis." },
     },
   },
+  "HLA-B*13:01": {
+    gene:"HLA-B",
+    variant:"*13:01",
+    label:"HLA-B*13:01",
+    drugEffects:[
+      {
+        parent:"Dapsone",
+        phenotype:"dapsone hypersensitivity syndrome (DHS / DRESS)",
+        note:"HLA-B*13:01 is strongly associated with dapsone hypersensitivity syndrome — a delayed (typically 4-6 week) DRESS-type reaction with fever, rash, hepatitis and eosinophilia; reported mortality ~10%. Immune-mediated and INDEPENDENT of the dose-dependent hemolysis/methemoglobinemia hazard, which tracks G6PD (see G6PD card).",
+        clinicalAction:"avoid dapsone in allele-positive patients when alternatives exist; if used, counsel on DHS and monitor closely through weeks 1-8",
+        evidenceRefs:[
+          "ev_dapsone_hlab1301_zhang2013",
+          "ev_dapsone_hlab1301_krismawati2020"
+        ],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]:{
+        label:"not detected",
+        severity:"baseline",
+        note:"Risk allele not detected; DHS risk substantially reduced but ordinary dapsone hypersensitivity/hemolysis precautions still apply."
+      },
+      [GENOTYPE_RISK_STATUS.PRESENT]:{
+        label:"detected",
+        severity:"high",
+        note:"Risk allele detected. Dapsone hypersensitivity syndrome risk markedly elevated (GWAS OR ~20). Largely absent in European/African ancestry; common in East/Southeast Asian and Indian populations."
+      },
+    },
+  },
+  "HLA-A*32:01": {
+    gene:"HLA-A",
+    variant:"*32:01",
+    label:"HLA-A*32:01",
+    drugEffects:[
+      {
+        parent:"Vancomycin",
+        phenotype:"vancomycin-induced DRESS / liver injury",
+        note:"HLA-A*32:01 is strongly associated with vancomycin-induced DRESS (drug reaction with eosinophilia and systemic symptoms), frequently with hepatocellular liver injury. In one cohort ~83% of vancomycin-DRESS cases carried the allele vs 0% of tolerant controls; ~19% of allele-positive patients developed DRESS within 4 weeks of prolonged IV exposure.",
+        clinicalAction:"consider HLA-A*32:01 testing before planned prolonged IV vancomycin; if positive, weigh alternative antibiotic and monitor eosinophils/LFTs/rash weeks 1-4",
+        evidenceRefs:["ev_vancomycin_hla_a3201_konvinse2019"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]:{
+        label:"not detected",
+        severity:"baseline",
+        note:"Risk allele not detected; DRESS risk reduced but not zero — clinical vigilance during prolonged therapy still applies."
+      },
+      [GENOTYPE_RISK_STATUS.PRESENT]:{
+        label:"detected",
+        severity:"high",
+        note:"Risk allele detected. Vancomycin-induced DRESS risk elevated, particularly with IV therapy beyond ~1-2 weeks."
+      },
+    },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
@@ -424,6 +528,8 @@ let activeGenotype = {
   "G6PD deficiency": GENOTYPE_RISK_STATUS.ABSENT,
   "MT-RNR1 m.1555A>G": GENOTYPE_RISK_STATUS.ABSENT,
   "RYR1/CACNA1S MH variant": GENOTYPE_RISK_STATUS.ABSENT,
+  "HLA-B*13:01": GENOTYPE_RISK_STATUS.ABSENT,
+  "HLA-A*32:01": GENOTYPE_RISK_STATUS.ABSENT,
 };
 
 // ── STUDY_DB ──

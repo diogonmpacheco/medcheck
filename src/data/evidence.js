@@ -4509,6 +4509,394 @@ const STUDY_DB = {
     verified:true
   },
 
+  // ═══ ENRICHMENT BATCH 1 ═══
+  "ev_dapsone_hlab1301_zhang2013":{
+    id:"ev_dapsone_hlab1301_zhang2013",
+    public:true,
+    type:"observational",
+    title:"HLA-B*13:01 and the Dapsone Hypersensitivity Syndrome",
+    year:2013,
+    source:"Zhang et al.",
+    journal:"New England Journal of Medicine",
+    pmid:"24152261",
+    doi:"10.1056/NEJMoa1213096",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24152261/",
+    studyDesign:"genome_wide_association_case_control",
+    n:872,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"OR 20.53 for DHS; sensitivity 85.5%, specificity 85.7%; allele absence reduced risk ~7-fold (1.4%→0.2%). Common in East/Southeast Asian and Indian populations, largely absent in Europeans/Africans."
+    },
+    temporal:{
+      onset:"4-6_weeks",
+      mechanism:"HLA-mediated delayed immune hypersensitivity (DRESS)"
+    },
+    supports:[
+      "dapsone_HLA-B*13:01_hypersensitivity"
+    ],
+    contradicts:[],
+    limitations:[
+      "Discovery cohort in leprosy patients",
+      "Applicability varies sharply by ancestry"
+    ],
+    verified:true
+  },
+
+  "ev_dapsone_hlab1301_krismawati2020":{
+    id:"ev_dapsone_hlab1301_krismawati2020",
+    public:true,
+    type:"observational",
+    title:"Validation of HLA-B*13:01 as a biomarker of dapsone hypersensitivity syndrome in leprosy patients in Indonesia",
+    year:2020,
+    source:"Krismawati et al.",
+    journal:"PLoS Neglected Tropical Diseases",
+    pmid:null,
+    doi:"10.1371/journal.pntd.0008746",
+    url:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7592909/",
+    studyDesign:"case_control_validation",
+    n:86,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"Independent Papua/Indonesia validation: HLA-B*13:01 most significant DHS-associated allele (OR 233.64); sensitivity 91.2%, specificity 96.2%, AUC 0.95."
+    },
+    temporal:{
+      mechanism:"HLA-mediated delayed immune hypersensitivity"
+    },
+    supports:[
+      "dapsone_HLA-B*13:01_hypersensitivity"
+    ],
+    contradicts:[],
+    limitations:[
+      "Single-region cohort",
+      "Wide CI on OR (small n)"
+    ],
+    verified:true
+  },
+
+  "ev_thiopurine_tpmt_nudt15_cpic2025":{
+    id:"ev_thiopurine_tpmt_nudt15_cpic2025",
+    public:true,
+    type:"guideline",
+    title:"CPIC Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update",
+    year:2025,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"41618934",
+    doi:null,
+    url:"https://cpicpgx.org/guidelines/guideline-for-thiopurines-and-tpmt/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:[
+      "poor_metabolizer",
+      "intermediate_metabolizer",
+      "normal_metabolizer"
+    ],
+    quantifiedEffects:{
+      note:"Mercaptopurine/azathioprine/thioguanine starting-dose reductions by TPMT and NUDT15 phenotype; PM warrants drastic reduction; compound TPMT-IM/NUDT15-IM → 20-50% of standard dose."
+    },
+    temporal:{
+      mechanism:"impaired thiopurine catabolism / accumulation of cytotoxic 6-TGN"
+    },
+    supports:[
+      "mercaptopurine_TPMT_NUDT15_myelosuppression",
+      "thioguanine_TPMT_NUDT15_myelosuppression",
+      "azathioprine_TPMT_NUDT15_myelosuppression"
+    ],
+    contradicts:[],
+    limitations:[
+      "NUDT15 loss-of-function concentrated in East Asian/Amerindian ancestry",
+      "Genotype guides starting dose; ongoing CBC monitoring still required"
+    ],
+    verified:true
+  },
+
+  "ev_tafenoquine_g6pd_fda":{
+    id:"ev_tafenoquine_g6pd_fda",
+    public:true,
+    type:"fda_label",
+    title:"ARAKODA / KRINTAFEL (tafenoquine) Prescribing Information — G6PD testing requirement & hemolytic anemia",
+    year:2018,
+    source:"FDA",
+    pmid:null,
+    doi:null,
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/210607lbl.pdf",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"G6PD testing required before tafenoquine; contraindicated in G6PD-deficient/unknown status. Hemolysis may be delayed; long t½ (~14d) prevents rapid reversal. Methemoglobinemia monitoring advised."
+    },
+    temporal:{
+      onset:"hours_to_days",
+      offset:"prolonged_t½_~14d",
+      mechanism:"oxidative_hemolysis"
+    },
+    supports:[
+      "tafenoquine_G6PD_deficiency_contraindication",
+      "g6pd_oxidative_drug_hemolysis"
+    ],
+    contradicts:[],
+    limitations:[
+      "Quantitative G6PD activity threshold matters (studies safe >70%)",
+      "Point-of-care qualitative tests may misclassify intermediate-activity females"
+    ],
+    verified:true
+  },
+
+  "ev_vancomycin_hla_a3201_konvinse2019":{
+    id:"ev_vancomycin_hla_a3201_konvinse2019",
+    public:true,
+    type:"observational",
+    title:"HLA-A*32:01 is strongly associated with vancomycin-induced DRESS",
+    year:2019,
+    source:"Konvinse et al.",
+    journal:"Journal of Allergy and Clinical Immunology",
+    pmid:"30776417",
+    doi:"10.1016/j.jaci.2019.01.045",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30776417/",
+    studyDesign:"case_control_with_time_to_event",
+    n:23,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"19/23 (82.6%) vancomycin-DRESS cases carried HLA-A*32:01 vs 0/46 tolerant controls; 19.2% of allele-positive developed DRESS within 4 weeks. Predominantly European-ancestry population."
+    },
+    temporal:{
+      onset:"days_to_weeks",
+      mechanism:"HLA-mediated DRESS"
+    },
+    supports:[
+      "vancomycin_HLA-A*32:01_dress"
+    ],
+    contradicts:[],
+    limitations:[
+      "Small case n",
+      "Subsequent DILIN series confirmed association at lower absolute incidence"
+    ],
+    verified:true
+  },
+
+  "ev_flucloxacillin_hlab5701_daly2009":{
+    id:"ev_flucloxacillin_hlab5701_daly2009",
+    public:true,
+    type:"observational",
+    title:"HLA-B*5701 genotype is a major determinant of drug-induced liver injury due to flucloxacillin",
+    year:2009,
+    source:"Daly et al.",
+    journal:"Nature Genetics",
+    pmid:"19483685",
+    doi:"10.1038/ng.379",
+    url:"https://pubmed.ncbi.nlm.nih.gov/19483685/",
+    studyDesign:"genome_wide_association_case_control",
+    n:null,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"Strong association of HLA-B*57:01 with flucloxacillin-induced cholestatic DILI (reported OR ~80); absolute risk remains low (idiosyncratic)."
+    },
+    temporal:{
+      onset:"1-45_days_or_post-course",
+      mechanism:"HLA-mediated idiosyncratic hepatotoxicity"
+    },
+    supports:[
+      "flucloxacillin_HLA-B*57:01_dili"
+    ],
+    contradicts:[],
+    limitations:[
+      "PMID/OR not re-verified this pass — CONFIRM before verified:true",
+      "Low positive predictive value → not a routine pre-test"
+    ],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+  },
+
+  "ev_pegloticase_g6pd_fda":{
+    id:"ev_pegloticase_g6pd_fda",
+    public:true,
+    type:"fda_label",
+    title:"KRYSTEXXA (pegloticase) Prescribing Information — G6PD deficiency contraindication",
+    year:2020,
+    source:"FDA",
+    pmid:null,
+    doi:null,
+    url:"https://www.accessdata.fda.gov/scripts/cder/daf/",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"Contraindicated in G6PD deficiency (hemolysis + methemoglobinemia from H2O2 byproduct of urate oxidation). Screen at-risk ancestries (African, Mediterranean/Southern-European, Middle-Eastern, South-Asian) before use."
+    },
+    temporal:{
+      onset:"hours_to_days",
+      mechanism:"oxidative_hemolysis"
+    },
+    supports:[
+      "pegloticase_G6PD_deficiency_contraindication",
+      "g6pd_oxidative_drug_hemolysis"
+    ],
+    contradicts:[],
+    limitations:[
+      "Label-level; exact activity threshold not specified"
+    ],
+    verified:true
+  },
+
+  "ev_methylene_blue_maoi_fda":{
+    id:"ev_methylene_blue_maoi_fda",
+    public:true,
+    type:"fda_label",
+    title:"FDA Drug Safety Communication — serious CNS reactions (serotonin syndrome) with methylene blue + serotonergic drugs; methylene blue G6PD contraindication",
+    year:2011,
+    source:"FDA",
+    pmid:null,
+    doi:null,
+    url:"https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-serious-cns-reactions-possible-when-methylene-blue-given-patients",
+    studyDesign:"regulatory_safety_communication",
+    n:null,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"Methylene blue is a potent MAO-A inhibitor → serotonin syndrome with serotonergic drugs; FDA advises withholding. Separately, contraindicated in G6PD deficiency (NADPH-dependent reductive action fails; becomes an oxidant)."
+    },
+    temporal:{
+      mechanism:"MAO-A inhibition (serotonergic) + oxidative stress (G6PD)"
+    },
+    supports:[
+      "methylene_blue_serotonin_syndrome",
+      "methylene_blue_G6PD_contraindication"
+    ],
+    contradicts:[],
+    limitations:[
+      "Risk highest with IV doses >1 mg/kg; lower-dose/topical surgical use less characterized"
+    ],
+    verified:true
+  },
+
+  "ev_g6pd_oxidative_antimalarials":{
+    id:"ev_g6pd_oxidative_antimalarials",
+    public:true,
+    type:"observational",
+      title:"Chloroquine Therapy and G6PD Genotype",
+      year:2023,
+      source:"Medical Genetics Summaries",
+      journal:"NCBI Bookshelf",
+      pmid:"37196138",
+      doi:null,
+      url:"https://www.ncbi.nlm.nih.gov/books/NBK591833/",
+    studyDesign:"narrative_review",
+    n:null,
+    phenotypes:[
+      "risk_allele_absent",
+      "risk_allele_present"
+    ],
+    quantifiedEffects:{
+      note:"Chloroquine/quinine can precipitate oxidative hemolysis in G6PD deficiency; risk generally lower than 8-aminoquinolines (primaquine/tafenoquine) at standard antimalarial doses."
+    },
+    temporal:{
+      mechanism:"oxidative_hemolysis"
+    },
+    supports:[
+      "chloroquine_G6PD_hemolysis",
+      "quinine_G6PD_hemolysis"
+    ],
+    contradicts:[],
+    limitations:[
+      "Risk grade is dose/variant-dependent — CONFIRM magnitude before UI severity escalation"
+    ],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+  },
+
+  "ev_dapsone_ddsnhoh_metabolite":{
+    id:"ev_dapsone_ddsnhoh_metabolite",
+    public:true,
+    type:"clinical_pk",
+      title:"N-Hydroxylation of dapsone by multiple enzymes of cytochrome P450: implications for inhibition of haemotoxicity",
+      year:1995,
+      source:"Tingle et al.",
+      journal:"British Journal of Clinical Pharmacology",
+      pmid:"8703658",
+      doi:null,
+      url:"https://pubmed.ncbi.nlm.nih.gov/8703658/",
+    studyDesign:"mechanistic_pk_review",
+    n:null,
+    phenotypes:[
+      "normal_metabolizer"
+    ],
+    quantifiedEffects:{
+      note:"CYP2C9/CYP3A4-formed dapsone hydroxylamine causes dose-dependent methemoglobinemia and oxidative hemolysis; risk amplified by G6PD deficiency and co-administered oxidants (trimethoprim)."
+    },
+    temporal:{
+      mechanism:"oxidative metabolite (hydroxylamine) hemotoxicity"
+    },
+    supports:[
+      "dapsone_DDS-NHOH_hemotoxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "Exact CYP fraction split (2C9 vs 3A4) varies by source — CONFIRM"
+    ],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+  },
+
+  "ev_sulfasalazine_tpmt_inhibition":{
+    id:"ev_sulfasalazine_tpmt_inhibition",
+    public:true,
+    type:"observational",
+      title:"Sulphasalazine inhibition of thiopurine methyltransferase: possible mechanism for interaction with 6-mercaptopurine and azathioprine",
+      year:1995,
+      source:"Lowry et al.",
+      journal:"British Journal of Clinical Pharmacology",
+      pmid:"7640156",
+      doi:null,
+      url:"https://pubmed.ncbi.nlm.nih.gov/7640156/",
+    studyDesign:"pharmacology_review",
+    n:null,
+    phenotypes:[
+      "intermediate_metabolizer",
+      "normal_metabolizer"
+    ],
+    quantifiedEffects:{
+      note:"Sulfasalazine and metabolites inhibit TPMT in vitro/in vivo → higher thiopurine 6-TGN; sulfapyridine (NAT2 substrate) drives dose-related toxicity and oxidative hemolysis in G6PD deficiency."
+    },
+    temporal:{
+      mechanism:"TPMT inhibition + oxidant sulfonamide"
+    },
+    supports:[
+      "sulfasalazine_TPMT_inhibition",
+      "sulfasalazine_G6PD_hemolysis"
+    ],
+    contradicts:[],
+    limitations:[
+      "Magnitude of TPMT inhibition variable — CONFIRM before severity escalation"
+    ],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+  },
+
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

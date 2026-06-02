@@ -3487,5 +3487,374 @@
       "hasStrongInline": true,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Allopurinol",
+    "drug2": "Mercaptopurine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_allopurinol_azathioprine_xo_label",
+        "ev_thiopurine_tpmt_nudt15_cpic2025"
+      ],
+      "studies": [
+        {
+          "id": "ev_allopurinol_azathioprine_xo_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_thiopurine_tpmt_nudt15_cpic2025",
+          "type": "guideline",
+          "pmid": "41618934",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Febuxostat",
+    "drug2": "Mercaptopurine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_thiopurine_tpmt_nudt15_cpic2025"
+      ],
+      "studies": [
+        {
+          "id": "ev_thiopurine_tpmt_nudt15_cpic2025",
+          "type": "guideline",
+          "pmid": "41618934",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Febuxostat",
+    "drug2": "Azathioprine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_allopurinol_azathioprine_xo_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_allopurinol_azathioprine_xo_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sulfasalazine",
+    "drug2": "Azathioprine",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sulfasalazine_tpmt_inhibition"
+      ],
+      "studies": [
+        {
+          "id": "ev_sulfasalazine_tpmt_inhibition",
+          "type": "observational",
+          "pmid": "7640156",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sulfasalazine",
+    "drug2": "Mercaptopurine",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sulfasalazine_tpmt_inhibition"
+      ],
+      "studies": [
+        {
+          "id": "ev_sulfasalazine_tpmt_inhibition",
+          "type": "observational",
+          "pmid": "7640156",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sulfasalazine",
+    "drug2": "Methotrexate",
+    "category": "hematologic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sulfasalazine",
+    "drug2": "Digoxin",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dapsone",
+    "drug2": "Trimethoprim-SMX",
+    "category": "toxicity",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dapsone_ddsnhoh_metabolite"
+      ],
+      "studies": [
+        {
+          "id": "ev_dapsone_ddsnhoh_metabolite",
+          "type": "clinical_pk",
+          "pmid": "8703658",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dapsone",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dapsone_ddsnhoh_metabolite"
+      ],
+      "studies": [
+        {
+          "id": "ev_dapsone_ddsnhoh_metabolite",
+          "type": "clinical_pk",
+          "pmid": "8703658",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methylene Blue",
+    "drug2": "Sertraline",
+    "category": "serotonergic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_methylene_blue_maoi_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_methylene_blue_maoi_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methylene Blue",
+    "drug2": "Venlafaxine",
+    "category": "serotonergic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_methylene_blue_maoi_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_methylene_blue_maoi_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methylene Blue",
+    "drug2": "Duloxetine",
+    "category": "serotonergic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_methylene_blue_maoi_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_methylene_blue_maoi_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Chloroquine",
+    "drug2": "Amiodarone",
+    "category": "qt",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Chloroquine",
+    "drug2": "Ondansetron",
+    "category": "qt",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Quinine",
+    "drug2": "Digoxin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Quinine",
+    "drug2": "Warfarin",
+    "category": "anticoagulant",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]

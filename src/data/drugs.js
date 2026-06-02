@@ -2890,6 +2890,482 @@ const DRUG_DB = [
  inh:[],
  ind:[],
  alts:[]},
+// ──────────── Enrichment Batch 1 ────────────
+{
+  id:"mercaptopurine",
+  name:"Mercaptopurine",
+  cls:"Antimetabolite / Immunosuppressant",
+  brandNames:[
+    "Purinethol",
+    "Purixan"
+  ],
+  hl:1.5,
+  timing:"AM",
+  props:{
+    myelo:2,
+    hepatotoxicityRisk:1
+  },
+  routes:[
+    {
+      enzyme:"TPMT",
+      fraction:0.4,
+      role:"inactivation_context",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "CPIC guideline",
+          "FDA label"
+        ],
+        pmid:[
+          "41618934"
+        ]
+      }
+    },
+    {
+      enzyme:"NUDT15",
+      fraction:0.2,
+      role:"detox_context",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "CPIC guideline"
+        ],
+        pmid:[
+          "41618934"
+        ]
+      }
+    },
+    {
+      enzyme:"Xanthine oxidase",
+      fraction:0.4,
+      role:"inactivation_context",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  inh:[],
+  ind:[],
+  note:"CPIC Level A: TPMT and/or NUDT15 poor/intermediate metabolizers risk severe, life-threatening myelosuppression at standard doses — reduce starting dose by phenotype (compound TPMT-IM/NUDT15-IM needs the largest reduction). 6-MP is the active moiety of azathioprine and shares the identical 6-TGN/6-MMP pathway. XO inhibitors (allopurinol/febuxostat) sharply ↑ toxicity. NOTE: routes are catabolic pathway WEIGHTS, not CYP clearance fractions.",
+  alts:[]
+},{
+  id:"thioguanine",
+  name:"Thioguanine",
+  cls:"Antimetabolite / Immunosuppressant",
+  brandNames:[
+    "Tabloid",
+    "Lanvis"
+  ],
+  hl:7,
+  timing:"AM",
+  props:{
+    myelo:2,
+    hepatotoxicityRisk:2
+  },
+  routes:[
+    {
+      enzyme:"TPMT",
+      fraction:0.5,
+      role:"inactivation_context",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "CPIC guideline"
+        ],
+        pmid:[
+          "41618934"
+        ]
+      }
+    },
+    {
+      enzyme:"NUDT15",
+      fraction:0.3,
+      role:"detox_context",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "CPIC guideline"
+        ],
+        pmid:[
+          "41618934"
+        ]
+      }
+    }
+  ],
+  inh:[],
+  ind:[],
+  note:"CPIC Level A (TPMT/NUDT15). Converts directly to 6-TGN — does NOT depend on xanthine oxidase, so (unlike azathioprine/6-MP) it has NO clinically significant allopurinol/febuxostat interaction. Higher hepatic SOS/VOD signal at high doses.",
+  alts:[]
+},{
+  id:"tafenoquine",
+  name:"Tafenoquine",
+  cls:"8-Aminoquinoline antimalarial",
+  brandNames:[
+    "Krintafel",
+    "Arakoda"
+  ],
+  hl:336,
+  timing:"AM",
+  props:{},
+  routes:[
+    {
+      enzyme:"CYP2D6",
+      fraction:0.2,
+      role:"partial_metabolism",
+      evidence:{
+        confidence:"low",
+        sources:[
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  inh:[],
+  ind:[],
+  note:"FDA mandates G6PD testing BEFORE use — causes acute hemolytic anemia in G6PD deficiency. ~14-day half-life means hemolysis cannot be reversed by stopping the drug (contrast primaquine). Methemoglobinemia and (Arakoda) neuropsychiatric warnings. CYP2D6 dependence for efficacy is less established than for primaquine.",
+  alts:[
+    {
+      name:"Primaquine",
+      reason:"Alternative 8-aminoquinoline radical cure — still G6PD-dependent and CYP2D6-activated; shorter t½ allows faster cessation if hemolysis occurs"
+    }
+  ]
+},{
+  id:"vancomycin",
+  name:"Vancomycin",
+  cls:"Glycopeptide antibiotic",
+  brandNames:[
+    "Vancocin"
+  ],
+  hl:6,
+  timing:"IV",
+  props:{
+    nephrotoxicityRisk:2
+  },
+  routes:[],
+  inh:[],
+  ind:[],
+  note:"Renally cleared (no significant CYP). PGx signal is HLA-A*32:01 → DRESS/liver injury with prolonged IV therapy (see risk card). Also dose/level-dependent nephrotoxicity (esp. with piperacillin-tazobactam or aminoglycosides) and infusion-related reaction ('red man'). Therapeutic monitoring (AUC/trough) standard.",
+  alts:[
+    {
+      name:"Daptomycin",
+      reason:"Alternative for MRSA when vancomycin not tolerated (not for pneumonia)"
+    },
+    {
+      name:"Linezolid",
+      reason:"Alternative MRSA agent; own toxicity profile (MAOI, marrow)"
+    }
+  ]
+},{
+  id:"flucloxacillin",
+  name:"Flucloxacillin",
+  cls:"Antistaphylococcal penicillin",
+  brandNames:[
+    "Floxapen"
+  ],
+  hl:1,
+  timing:"AM-PM",
+  props:{
+    hepatotoxicityRisk:1
+  },
+  routes:[],
+  inh:[],
+  ind:[],
+  note:"Anti-staphylococcal penicillin (not marketed in the US; common in EU/UK/AU). PGx signal: HLA-B*57:01 → idiosyncratic cholestatic drug-induced liver injury (same allele as abacavir, different outcome/organ). Idiosyncratic, delayed (can appear after course completion).",
+  alts:[
+    {
+      name:"Cefazolin",
+      reason:"Alternative MSSA agent"
+    },
+    {
+      name:"Dicloxacillin",
+      reason:"Alternative isoxazolyl penicillin"
+    }
+  ]
+},{
+  id:"sulfasalazine",
+  name:"Sulfasalazine",
+  cls:"DMARD / Aminosalicylate",
+  brandNames:[
+    "Azulfidine",
+    "Salazopyrin"
+  ],
+  hl:8,
+  timing:"AM-PM",
+  props:{
+    myelo:1
+  },
+  routes:[
+    {
+      enzyme:"NAT2",
+      fraction:0.5,
+      role:"sulfapyridine_acetylation",
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature",
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  inh:[
+    {
+      target:"TPMT",
+      strength:"moderate",
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    }
+  ],
+  ind:[],
+  note:"Cleaved by colonic azoreductase to sulfapyridine (NAT2 substrate — slow acetylators accumulate it → more dose-related toxicity) + 5-ASA (active anti-inflammatory). Oxidant sulfonamide → hemolysis risk in G6PD deficiency. Inhibits TPMT → ↑ thiopurine toxicity. Reduces folate and digoxin absorption.",
+  alts:[
+    {
+      name:"Mesalamine",
+      reason:"5-ASA without the sulfapyridine moiety (fewer sulfonamide/hemolysis effects)"
+    }
+  ]
+},{
+  id:"methylene_blue",
+  name:"Methylene Blue",
+  cls:"Antidote / Dye (methemoglobinemia)",
+  brandNames:[
+    "Provayblue",
+    "ProvayBlue"
+  ],
+  hl:5.5,
+  timing:"IV",
+  props:{},
+  routes:[],
+  inh:[
+    {
+      target:"MAO-A",
+      strength:"strong",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "FDA Drug Safety Communication"
+        ]
+      }
+    },
+    {
+      target:"CYP2D6",
+      strength:"weak",
+      evidence:{
+        confidence:"low",
+        sources:[
+          "in_vitro"
+        ]
+      }
+    }
+  ],
+  ind:[],
+  note:"Potent reversible MAO-A inhibitor — serotonin syndrome risk when combined with serotonergic agents (SSRIs/SNRIs/TCAs/MAOIs); FDA advises avoiding/withholding serotonergics. Standard treatment for acquired methemoglobinemia, BUT contraindicated in G6PD deficiency (NADPH-dependent action fails and it becomes an oxidant → hemolysis). Used surgically as a tissue/parathyroid dye — same MAOI hazard applies.",
+  alts:[
+    {
+      name:"Ascorbic acid",
+      reason:"Alternative for methemoglobinemia in G6PD deficiency"
+    }
+  ]
+},{
+  id:"chloroquine",
+  name:"Chloroquine",
+  cls:"4-Aminoquinoline antimalarial",
+  brandNames:[
+    "Aralen"
+  ],
+  hl:240,
+  timing:"AM",
+  props:{},
+  routes:[
+    {
+      enzyme:"CYP2C8",
+      fraction:0.3,
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    },
+    {
+      enzyme:"CYP3A4",
+      fraction:0.3,
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    },
+    {
+      enzyme:"CYP2D6",
+      fraction:0.2,
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    }
+  ],
+  inh:[
+    {
+      target:"CYP2D6",
+      strength:"weak",
+      evidence:{
+        confidence:"low",
+        sources:[
+          "in_vitro"
+        ]
+      }
+    }
+  ],
+  ind:[],
+  note:"Very long terminal half-life (tissue accumulation, weeks). QT prolongation — additive with other QT drugs. Oxidative hemolysis risk in G6PD deficiency (lower than 8-aminoquinolines at antimalarial doses). Retinopathy with chronic use. Sibling drug to hydroxychloroquine (already in DB).",
+  alts:[
+    {
+      name:"Hydroxychloroquine",
+      reason:"Lower ocular toxicity for chronic autoimmune use"
+    }
+  ]
+},{
+  id:"quinine",
+  name:"Quinine",
+  cls:"Antimalarial alkaloid",
+  brandNames:[
+    "Qualaquin"
+  ],
+  hl:11,
+  timing:"AM-PM",
+  props:{},
+  routes:[
+    {
+      enzyme:"CYP3A4",
+      fraction:0.6,
+      evidence:{
+        confidence:"high",
+        sources:[
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  inh:[
+    {
+      target:"CYP2D6",
+      strength:"moderate",
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    },
+    {
+      target:"P-gp",
+      strength:"moderate",
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "literature"
+        ]
+      }
+    }
+  ],
+  ind:[],
+  note:"CYP3A4 substrate; inhibits CYP2D6 and P-gp (↑ digoxin). QT prolongation and cinchonism (tinnitus, vertigo) at high levels. Immune thrombocytopenia ('cocktail purpura'). Oxidative hemolysis in G6PD deficiency. Raises INR with warfarin.",
+  alts:[
+    {
+      name:"Artemether-lumefantrine",
+      reason:"Preferred for uncomplicated falciparum malaria where available"
+    }
+  ]
+},{
+  id:"pegloticase",
+  name:"Pegloticase",
+  cls:"Recombinant uricase (urate-lowering)",
+  brandNames:[
+    "Krystexxa"
+  ],
+  hl:336,
+  timing:"IV",
+  props:{},
+  routes:[],
+  inh:[],
+  ind:[],
+  note:"PEGylated recombinant uricase for refractory gout; converts urate to allantoin generating hydrogen peroxide. CONTRAINDICATED in G6PD deficiency (oxidant → life-threatening hemolysis + methemoglobinemia) — FDA requires G6PD screening first. Co-administered immunomodulation (e.g. methotrexate) reduces anti-drug antibodies/infusion reactions.",
+  alts:[
+    {
+      name:"Allopurinol",
+      reason:"First-line urate-lowering (XO inhibitor) where adequate"
+    },
+    {
+      name:"Febuxostat",
+      reason:"Alternative XO inhibitor"
+    }
+  ]
+},{
+  id:"febuxostat",
+  name:"Febuxostat",
+  cls:"XO Inhibitor (urate-lowering)",
+  brandNames:[
+    "Uloric",
+    "Adenuric"
+  ],
+  hl:7,
+  timing:"AM",
+  props:{},
+  routes:[
+    {
+      enzyme:"UGT",
+      fraction:0.5,
+      evidence:{
+        confidence:"high",
+        sources:[
+          "FDA label"
+        ]
+      }
+    },
+    {
+      enzyme:"CYP",
+      fraction:0.3,
+      role:"oxidation_context",
+      evidence:{
+        confidence:"moderate",
+        sources:[
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  inh:[
+    {
+      target:"Xanthine oxidase",
+      strength:"strong",
+      evidence:{
+        confidence:"high",
+        sources:[
+          "FDA label"
+        ]
+      }
+    }
+  ],
+  ind:[],
+  note:"Potent XO inhibitor. CONTRAINDICATED with azathioprine/mercaptopurine (blocks 6-MP inactivation → fatal myelosuppression) — same mechanism as allopurinol but no labeled dose-reduction protocol, so co-use is avoided rather than dose-adjusted. Cardiovascular-death signal vs allopurinol (CARES) carries a boxed warning. Much lower SCAR risk than allopurinol (less HLA-B*58:01 dependence).",
+  alts:[
+    {
+      name:"Allopurinol",
+      reason:"First-line XO inhibitor; can be dose-reduced with thiopurines unlike febuxostat"
+    }
+  ]
+},
 ];
 
 // ═══════════════════════════════════════════════════════════════════

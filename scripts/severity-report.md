@@ -1,10 +1,10 @@
 # MedCheck Severity Report
 
-Generated: 2026-06-02T14:01:13.523Z
+Generated: 2026-06-02T14:41:32.965Z
 
-Known DDI pairs: 162
-Original severe: 104
-Recommended severe: 104
+Known DDI pairs: 178
+Original severe: 112
+Recommended severe: 112
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -171,3 +171,19 @@ Recommended downgrades: 0
 | Alcohol (Ethanol) + Acetaminophen | metabolite | severe | severe | High-confidence inline regulatory/guideline source | Severe support threshold met. |
 | Cannabis (CBD) + Clobazam | pk | severe | severe | High-confidence inline regulatory/guideline source | Severe support threshold met. |
 | Cannabis (CBD) + Warfarin | pk | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Allopurinol + Mercaptopurine | metabolic | severe | severe | ev_allopurinol_azathioprine_xo_label (fda_label)<br>ev_thiopurine_tpmt_nudt15_cpic2025 (guideline PMID:41618934) | Severe support threshold met. |
+| Febuxostat + Mercaptopurine | metabolic | severe | severe | ev_thiopurine_tpmt_nudt15_cpic2025 (guideline PMID:41618934) | Severe support threshold met. |
+| Febuxostat + Azathioprine | metabolic | severe | severe | ev_allopurinol_azathioprine_xo_label (fda_label) | Severe support threshold met. |
+| Sulfasalazine + Azathioprine | metabolic | moderate | moderate | ev_sulfasalazine_tpmt_inhibition (observational PMID:7640156) | Kept original severity. |
+| Sulfasalazine + Mercaptopurine | metabolic | moderate | moderate | ev_sulfasalazine_tpmt_inhibition (observational PMID:7640156) | Kept original severity. |
+| Sulfasalazine + Methotrexate | hematologic | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Sulfasalazine + Digoxin | pk | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Dapsone + Trimethoprim-SMX | toxicity | moderate | moderate | ev_dapsone_ddsnhoh_metabolite (clinical_pk PMID:8703658) | Kept original severity. |
+| Dapsone + Rifampin | induction | moderate | moderate | ev_dapsone_ddsnhoh_metabolite (clinical_pk PMID:8703658) | Kept original severity. |
+| Methylene Blue + Sertraline | serotonergic | severe | severe | ev_methylene_blue_maoi_fda (fda_label) | Severe support threshold met. |
+| Methylene Blue + Venlafaxine | serotonergic | severe | severe | ev_methylene_blue_maoi_fda (fda_label) | Severe support threshold met. |
+| Methylene Blue + Duloxetine | serotonergic | severe | severe | ev_methylene_blue_maoi_fda (fda_label) | Severe support threshold met. |
+| Chloroquine + Amiodarone | qt | severe | severe | High-confidence inline regulatory/guideline source | Severe support threshold met. |
+| Chloroquine + Ondansetron | qt | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Quinine + Digoxin | pk | severe | severe | High-confidence inline regulatory/guideline source | Severe support threshold met. |
+| Quinine + Warfarin | anticoagulant | moderate | moderate | No linked high-tier source | Kept original severity. |
