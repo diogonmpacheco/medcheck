@@ -5541,6 +5541,217 @@ const STUDY_DB = {
     confidence: "moderate"
   },
 
+  // ── Curated Gemini salvage batch 2 evidence stubs: pending human review ──
+  "ev_loperamide_pgp_inhibitor_cns": {
+    id:"ev_loperamide_pgp_inhibitor_cns", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"P-glycoprotein inhibition permits central loperamide opioid effects",
+    year:1999, source:"Clinical pharmacology literature / FDA labeling", journal:"Clinical Pharmacology & Therapeutics",
+    pmid:null, doi:null, url:"https://pubmed.ncbi.nlm.nih.gov/?term=loperamide+quinidine+P-glycoprotein",
+    studyDesign:"controlled_pk_pd_interaction", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Strong P-gp inhibition can allow loperamide to penetrate the CNS and produce opioid toxicity signals."},
+    temporal:{mechanism:"P-gp inhibition at blood-brain barrier plus CYP3A4/P-gp inhibition for macrolides"},
+    supports:["loperamide_pgp_inhibitor_cns_toxicity"], contradicts:[],
+    limitations:["Imported from Gemini salvage batch; confirm exact dose and exposure context before marking verified."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_rifaximin_cyclosporine_transporter": {
+    id:"ev_rifaximin_cyclosporine_transporter", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Xifaxan (rifaximin) prescribing information — cyclosporine transporter interaction",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=rifaximin",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Cyclosporine can increase systemic rifaximin exposure despite rifaximin's normally low bioavailability."},
+    temporal:{mechanism:"P-gp/OATP transporter inhibition"}, supports:["rifaximin_cyclosporine_exposure"], contradicts:[],
+    limitations:["Label-level citation; exact fold-change should be rechecked in label before verification."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_cimetidine_theophylline_clearance": {
+    id:"ev_cimetidine_theophylline_clearance", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Cimetidine inhibition of theophylline clearance",
+    year:1980, source:"Clinical pharmacokinetic literature", journal:"Clinical Pharmacology", pmid:null, doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=cimetidine+theophylline+clearance",
+    studyDesign:"clinical_pk_interaction", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Cimetidine reduces theophylline clearance and can raise concentrations into the toxic range."},
+    temporal:{mechanism:"CYP1A2 and hepatic oxidative clearance inhibition"}, supports:["cimetidine_theophylline_toxicity"], contradicts:[],
+    limitations:["Citation metadata requires human retrieval/verification."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_mycophenolate_ppi_solubility": {
+    id:"ev_mycophenolate_ppi_solubility", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Proton pump inhibitors and mycophenolate mofetil exposure",
+    year:2010, source:"Transplant pharmacokinetic literature", journal:"Clinical Transplant Pharmacology", pmid:null, doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=mycophenolate+omeprazole+pharmacokinetics",
+    studyDesign:"clinical_pk_interaction", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Acid suppression may reduce mycophenolate mofetil dissolution and lower mycophenolic acid exposure in some settings."},
+    temporal:{mechanism:"pH-dependent dissolution/absorption"}, supports:["ppi_mycophenolate_exposure_reduction"], contradicts:[],
+    limitations:["Effect varies by formulation and clinical context; verify before severity escalation."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_tofacitinib_cyp3a4_label": {
+    id:"ev_tofacitinib_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Xeljanz (tofacitinib) prescribing information — CYP3A4/CYP2C19 interactions",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=tofacitinib",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Strong CYP3A4 inhibitors and combined CYP3A4/CYP2C19 inhibitors increase tofacitinib exposure; rifampin reduces exposure."},
+    temporal:{mechanism:"CYP3A4 inhibition or induction"}, supports:["tofacitinib_cyp3a4_interactions"], contradicts:[],
+    limitations:["Dose adjustment details require direct label confirmation."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_upadacitinib_cyp3a4_label": {
+    id:"ev_upadacitinib_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Rinvoq (upadacitinib) prescribing information — CYP3A4 inducer interaction",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=upadacitinib",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Strong CYP3A inducers reduce upadacitinib exposure and may reduce efficacy."},
+    temporal:{mechanism:"CYP3A4 induction"}, supports:["upadacitinib_rifampin_loss_of_exposure"], contradicts:[],
+    limitations:["Imported summary; confirm exact fold-change before verification."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_zileuton_theophylline_label": {
+    id:"ev_zileuton_theophylline_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Zyflo (zileuton) prescribing information — theophylline and warfarin interactions",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=zileuton",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Zileuton increases theophylline exposure and can alter warfarin anticoagulant response."},
+    temporal:{mechanism:"CYP1A2 inhibition and anticoagulant response modulation"}, supports:["zileuton_theophylline_toxicity","zileuton_warfarin_inr"], contradicts:[],
+    limitations:["Label-level; exact monitoring language requires direct review."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_zafirlukast_warfarin_label": {
+    id:"ev_zafirlukast_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Accolate (zafirlukast) prescribing information — warfarin interaction",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=zafirlukast",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Zafirlukast can increase prothrombin time/INR in patients receiving warfarin."},
+    temporal:{mechanism:"CYP2C9 inhibition"}, supports:["zafirlukast_warfarin_inr"], contradicts:[],
+    limitations:["Imported summary; verify label wording and dose context."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_roflumilast_cyp_label": {
+    id:"ev_roflumilast_cyp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Daliresp (roflumilast) prescribing information — CYP inducer interactions",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=roflumilast",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Strong CYP inducers reduce roflumilast and active metabolite exposure."},
+    temporal:{mechanism:"CYP3A4/CYP1A2 induction"}, supports:["roflumilast_rifampin_exposure_loss"], contradicts:[],
+    limitations:["Confirm fold-change and contraindication/avoidance wording before verification."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_rifampin_hormonal_contraception": {
+    id:"ev_rifampin_hormonal_contraception", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Rifampin and hormonal contraceptive efficacy guidance",
+    year:2024, source:"Clinical guidance / FDA labeling", journal:"Guideline", pmid:null, doi:null,
+    url:"https://www.cdc.gov/contraception/",
+    studyDesign:"clinical_guidance", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Rifampin-class induction can lower hormonal contraceptive exposure and efficacy."},
+    temporal:{mechanism:"CYP3A4 and UGT induction"}, supports:["rifampin_hormonal_contraception_failure"], contradicts:[],
+    limitations:["Use direct product label/CDC MEC review before marking verified."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_estradiol_lamotrigine_ugt1a4": {
+    id:"ev_estradiol_lamotrigine_ugt1a4", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Ethinyl estradiol-containing contraceptives induce lamotrigine glucuronidation",
+    year:2005, source:"Clinical pharmacokinetic literature", journal:"Epilepsy / Clinical Pharmacology", pmid:null, doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=ethinyl+estradiol+lamotrigine+glucuronidation",
+    studyDesign:"clinical_pk_interaction", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Estrogen-containing contraceptives lower lamotrigine exposure; concentrations can rebound during hormone-free intervals."},
+    temporal:{mechanism:"UGT1A4 induction"}, supports:["ethinyl_estradiol_lamotrigine_clearance"], contradicts:[],
+    limitations:["Exact magnitude and formulation-specific details require retrieval."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_efavirenz_levonorgestrel_contraception": {
+    id:"ev_efavirenz_levonorgestrel_contraception", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Efavirenz interaction with levonorgestrel-containing contraception",
+    year:2015, source:"HIV pharmacology literature", journal:"Clinical Pharmacology", pmid:null, doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=efavirenz+levonorgestrel+contraception",
+    studyDesign:"clinical_pk_interaction", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Efavirenz induction can reduce exposure to hormonal contraceptive components including levonorgestrel."},
+    temporal:{mechanism:"CYP3A4 induction"}, supports:["efavirenz_levonorgestrel_exposure_loss"], contradicts:[],
+    limitations:["Formulation-specific clinical failure risk requires direct review."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_cinacalcet_cyp2d6_label": {
+    id:"ev_cinacalcet_cyp2d6_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Sensipar (cinacalcet) prescribing information — CYP2D6 interactions",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=cinacalcet",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Cinacalcet is affected by CYP2D6 inhibitors and itself inhibits CYP2D6 substrates."},
+    temporal:{mechanism:"CYP2D6 inhibition"}, supports:["cinacalcet_cyp2d6_interactions"], contradicts:[],
+    limitations:["Exact dose adjustment language requires label review."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_alendronate_cation_absorption": {
+    id:"ev_alendronate_cation_absorption", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Fosamax (alendronate) prescribing information — food and cation absorption interaction",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=alendronate",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Calcium, antacids, and other oral medications can interfere with alendronate absorption."},
+    temporal:{mechanism:"GI binding/chelation"}, supports:["alendronate_calcium_absorption_loss"], contradicts:[],
+    limitations:["Label-level; timing interval should be confirmed directly."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_mifepristone_cyp3a4_label": {
+    id:"ev_mifepristone_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Korlym/Mifeprex prescribing information — CYP3A4 inhibition interactions",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=mifepristone",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Mifepristone can increase exposure of CYP3A substrates, including sensitive statins."},
+    temporal:{mechanism:"CYP3A4 inhibition"}, supports:["mifepristone_cyp3a4_substrate_toxicity"], contradicts:[],
+    limitations:["Risk differs by dose/indication; verify against product label."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_dantrolene_calcium_channel_warning": {
+    id:"ev_dantrolene_calcium_channel_warning", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Dantrolene labeling — calcium channel blocker warning in malignant hyperthermia",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=dantrolene",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Dantrolene with calcium channel blockers has warning language for cardiovascular collapse/hyperkalemia risk."},
+    temporal:{mechanism:"calcium handling/cardiovascular instability"}, supports:["dantrolene_verapamil_warning"], contradicts:[],
+    limitations:["Primarily acute malignant hyperthermia treatment context; verify details."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_sugammadex_rocuronium_reversal": {
+    id:"ev_sugammadex_rocuronium_reversal", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Bridion (sugammadex) prescribing information — rocuronium reversal",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=sugammadex",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Sugammadex reverses rocuronium neuromuscular blockade by encapsulation."},
+    temporal:{mechanism:"cyclodextrin binding"}, supports:["sugammadex_rocuronium_reversal"], contradicts:[],
+    limitations:["Purposeful therapeutic reversal rather than harmful DDI."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_sugammadex_contraception_label": {
+    id:"ev_sugammadex_contraception_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Bridion (sugammadex) prescribing information — hormonal contraceptive warning",
+    year:2024, source:"FDA / DailyMed", journal:"Regulatory Label", pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=sugammadex",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Sugammadex labeling advises backup contraception after exposure because it can reduce hormonal contraceptive efficacy."},
+    temporal:{mechanism:"steroid binding"}, supports:["sugammadex_hormonal_contraception_warning"], contradicts:[],
+    limitations:["Imported label summary; confirm exact backup interval directly."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
+  "ev_propofol_midazolam_sedation": {
+    id:"ev_propofol_midazolam_sedation", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Procedural sedation guidance — additive respiratory depression with IV sedatives",
+    year:2024, source:"Clinical anesthesia/sedation standards", journal:"Guideline", pmid:null, doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=propofol+midazolam+respiratory+depression",
+    studyDesign:"clinical_guidance", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Propofol and benzodiazepines have additive sedative and respiratory depressant effects requiring airway monitoring."},
+    temporal:{mechanism:"pharmacodynamic CNS/respiratory depression"}, supports:["propofol_midazolam_sedation_risk"], contradicts:[],
+    limitations:["General clinical standard; not a single quantified PK study."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

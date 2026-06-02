@@ -23,12 +23,12 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 ## Live Source Stats
 
 <!-- MEDCHECK_STATS_START -->
-- **293 drugs** in DRUG_DB
-- **205 evidence entries** in STUDY_DB (169 with PMIDs)
-- **217 curated DDI pairs** (134 severe, 79 moderate, 4 mild)
+- **316 drugs** in DRUG_DB
+- **224 evidence entries** in STUDY_DB (169 with PMIDs)
+- **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1025 KB** generated bundle (21721 lines)
+- **1060 KB** generated bundle (21975 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
