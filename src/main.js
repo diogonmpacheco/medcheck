@@ -35,7 +35,7 @@ const DEMO_CASES = {
 function loadUrlDemoState() {
   const params = getUrlStateParams();
   const demo = DEMO_CASES[params.demo || ''];
-  const drugParam = params.drugs;
+  const drugParam = params.substances || params.drugs || params.medications;
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
   if (drugNames.length) {
     activeStack = drugNames
@@ -59,6 +59,7 @@ function loadUrlDemoState() {
 
   const tab = params.tab || demo?.tab;
   if (['safety', 'pgx', 'pk', 'evidence'].includes(tab)) activeTab = tab;
+  if (demo && params.demo && !params.substances) replaceDemoUrlWithSubstances(demo);
 }
 
 function getUrlStateParams() {
@@ -103,6 +104,28 @@ function resolveUrlDrugName(value) {
     (BRAND_NAMES[d.name] || []).some(brand => brand.toLowerCase() === raw.toLowerCase() || toGraphId(brand) === slug)
   );
   return match ? match.name : null;
+}
+
+function replaceDemoUrlWithSubstances(demo) {
+  if (!window.history || typeof window.history.replaceState !== 'function') return;
+  const query = [
+    ['substances', demo.drugs.map(slugForUrlDrugName).join(',')],
+    ...Object.entries(demo.genotype || {}).map(([gene, phenotype]) => ['genotype', `${gene}:${phenotype}`]),
+    ['tab', demo.tab || 'safety'],
+  ].map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValue(value)}`).join('&');
+  const path = (window.location.pathname || '').endsWith('/')
+    ? `${window.location.pathname}index.html`
+    : (window.location.pathname || 'index.html');
+  window.history.replaceState(null, '', `${path}?${query}`);
+}
+
+function slugForUrlDrugName(name) {
+  const drug = getDrug(name);
+  return drug?.id || toGraphId(name);
+}
+
+function encodeUrlStateValue(value) {
+  return encodeURIComponent(value).replace(/%2C/g, ',').replace(/%3A/g, ':');
 }
 
 // Initialize

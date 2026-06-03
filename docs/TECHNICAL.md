@@ -111,25 +111,26 @@ The relative fallback normalizes curves against a no-interaction, normal-metabol
 The live app supports preloaded examples:
 
 ```text
-?demo=ssri-switch
-?demo=clopidogrel-cyp2c19
-?demo=codeine-cyp2d6
-?demo=statin-inhibitor
-?demo=older-adult-burden
+?substances=paroxetine,fluoxetine&tab=safety
+?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx
+?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
+?substances=simvastatin,clarithromycin&tab=pk
+?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety
 ```
 
-Hash links are also supported for static-hosting compatibility:
+Legacy named demos and hash links are also supported for static-hosting compatibility:
 
 ```text
+?demo=ssri-switch
 #demo=ssri-switch
 #clopidogrel-cyp2c19
 ```
 
-Custom links can use:
+Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases.
 
 ```text
-?drugs=Warfarin,Ibuprofen&tab=safety
-?drugs=Codeine,Fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
+?substances=warfarin,ibuprofen&tab=safety
+?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
 ```
 
 Supported tabs are `safety`, `pgx`, `pk`, and `evidence`.
