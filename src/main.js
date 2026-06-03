@@ -7,7 +7,76 @@ document.addEventListener("click", function(e) {
   }
 });
 
+const DEMO_CASES = {
+  'ssri-switch': {
+    drugs: ['Paroxetine', 'Fluoxetine'],
+    tab: 'safety',
+  },
+  'clopidogrel-cyp2c19': {
+    drugs: ['Clopidogrel', 'Omeprazole'],
+    genotype: { CYP2C19: GENOTYPE_PHENOTYPE.PM },
+    tab: 'pgx',
+  },
+  'codeine-cyp2d6': {
+    drugs: ['Codeine', 'Fluoxetine'],
+    genotype: { CYP2D6: GENOTYPE_PHENOTYPE.PM },
+    tab: 'pgx',
+  },
+  'statin-inhibitor': {
+    drugs: ['Simvastatin', 'Clarithromycin'],
+    tab: 'pk',
+  },
+  'older-adult-burden': {
+    drugs: ['Amitriptyline', 'Diazepam', 'Diphenhydramine', 'Oxycodone'],
+    tab: 'safety',
+  },
+};
+
+function loadUrlDemoState() {
+  const params = parseQueryParams(window.location.search || '');
+  const demo = DEMO_CASES[params.demo || ''];
+  const drugParam = params.drugs;
+  const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
+  if (drugNames.length) {
+    activeStack = drugNames
+      .map(name => getDrug(name)?.name)
+      .filter((name, idx, arr) => name && arr.indexOf(name) === idx);
+  }
+
+  const genotypeSpec = { ...(demo?.genotype || {}) };
+  const genotypeParam = params.genotype;
+  if (genotypeParam) {
+    genotypeParam.split(/[;,]/).forEach(pair => {
+      const [gene, phenotype] = pair.split(':').map(v => v && v.trim());
+      if (gene && phenotype && GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) {
+        genotypeSpec[gene] = phenotype;
+      }
+    });
+  }
+  for (const [gene, phenotype] of Object.entries(genotypeSpec)) {
+    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) activeGenotype[gene] = phenotype;
+  }
+
+  const tab = params.tab || demo?.tab;
+  if (['safety', 'pgx', 'pk', 'evidence'].includes(tab)) activeTab = tab;
+}
+
+function parseQueryParams(search) {
+  const out = {};
+  String(search || '').replace(/^\?/, '').split('&').forEach(part => {
+    if (!part) return;
+    const eq = part.indexOf('=');
+    const rawKey = eq >= 0 ? part.slice(0, eq) : part;
+    const rawVal = eq >= 0 ? part.slice(eq + 1) : '';
+    const key = decodeURIComponent(rawKey.replace(/\+/g, ' '));
+    const val = decodeURIComponent(rawVal.replace(/\+/g, ' '));
+    if (key) out[key] = val;
+  });
+  return out;
+}
+
 // Initialize
+loadUrlDemoState();
 renderGenetics();
 renderAll();
 
