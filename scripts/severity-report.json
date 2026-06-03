@@ -577,9 +577,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_lithium_thiazide_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_lithium_thiazide_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -611,26 +620,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Methotrexate",
-    "drug2": "Probenecid",
-    "category": "transporter",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_mtx_interactions_bannwarth1996"
+      ],
+      "studies": [
+        {
+          "id": "ev_mtx_interactions_bannwarth1996",
+          "type": "clinical_pk",
+          "pmid": "8882301",
+          "doi": "10.2165/00003088-199630030-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -645,9 +646,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_mtx_interactions_bannwarth1996"
+      ],
+      "studies": [
+        {
+          "id": "ev_mtx_interactions_bannwarth1996",
+          "type": "clinical_pk",
+          "pmid": "8882301",
+          "doi": "10.2165/00003088-199630030-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -662,9 +672,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_mtx_interactions_bannwarth1996"
+      ],
+      "studies": [
+        {
+          "id": "ev_mtx_interactions_bannwarth1996",
+          "type": "clinical_pk",
+          "pmid": "8882301",
+          "doi": "10.2165/00003088-199630030-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -722,10 +741,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_sjw_digoxin_durr2000"
+      ],
+      "studies": [
+        {
+          "id": "ev_sjw_digoxin_durr2000",
+          "type": "clinical_pk",
+          "pmid": "11180019",
+          "doi": "10.1067/mcp.2000.112240"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -756,10 +784,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_digoxin_verapamil_klein1982"
+      ],
+      "studies": [
+        {
+          "id": "ev_digoxin_verapamil_klein1982",
+          "type": "clinical_pk",
+          "pmid": "7074765",
+          "doi": "10.1161/01.cir.65.5.998"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -790,9 +827,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_digoxin_pgp_koren1998"
+      ],
+      "studies": [
+        {
+          "id": "ev_digoxin_pgp_koren1998",
+          "type": "clinical_pk",
+          "pmid": "9467211",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -876,8 +922,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_nsaid_bleed",
+          "type": "observational",
+          "pmid": "11176762",
+          "doi": "10.1001/archinte.161.2.189"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -936,8 +991,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_warfarin_abx_lane2014"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_abx_lane2014",
+          "type": "observational",
+          "pmid": "24657899",
+          "doi": "10.1016/j.amjmed.2014.01.044"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -953,8 +1017,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_warfarin_abx_lane2014"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_abx_lane2014",
+          "type": "observational",
+          "pmid": "24657899",
+          "doi": "10.1016/j.amjmed.2014.01.044"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1038,10 +1111,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_doac_rifampin_hartter2012",
+          "type": "clinical_pk",
+          "pmid": "22348256",
+          "doi": "10.1111/j.1365-2125.2012.04218.x"
+        },
+        {
+          "id": "ev_doac_rifampin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1055,10 +1144,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_doac_rifampin_hartter2012",
+          "type": "clinical_pk",
+          "pmid": "22348256",
+          "doi": "10.1111/j.1365-2125.2012.04218.x"
+        },
+        {
+          "id": "ev_doac_rifampin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1072,10 +1177,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_doac_rifampin_hartter2012",
+          "type": "clinical_pk",
+          "pmid": "22348256",
+          "doi": "10.1111/j.1365-2125.2012.04218.x"
+        },
+        {
+          "id": "ev_doac_rifampin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1089,10 +1210,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_doac_rifampin_hartter2012",
+          "type": "clinical_pk",
+          "pmid": "22348256",
+          "doi": "10.1111/j.1365-2125.2012.04218.x"
+        },
+        {
+          "id": "ev_doac_rifampin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1140,8 +1277,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_spironolactone_tmpsmx_antoniou2011"
+      ],
+      "studies": [
+        {
+          "id": "ev_spironolactone_tmpsmx_antoniou2011",
+          "type": "observational",
+          "pmid": "21911446",
+          "doi": "10.1136/bmj.d5228"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1174,9 +1320,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_tramadol_serotonin_beakley2015",
+        "ev_ssri_cyp2d6_liston2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_tramadol_serotonin_beakley2015",
+          "type": "observational",
+          "pmid": "26218943",
+          "doi": null
+        },
+        {
+          "id": "ev_ssri_cyp2d6_liston2002",
+          "type": "clinical_pk",
+          "pmid": "11910262",
+          "doi": "10.1097/00004714-200204000-00010"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1191,8 +1353,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_tramadol_serotonin_beakley2015"
+      ],
+      "studies": [
+        {
+          "id": "ev_tramadol_serotonin_beakley2015",
+          "type": "observational",
+          "pmid": "26218943",
+          "doi": null
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1224,23 +1395,6 @@
     "recommendedSeverity": "moderate",
     "changed": false,
     "rationale": "Kept original severity.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Bupropion",
-    "drug2": "Tramadol",
-    "category": "seizure",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
     "evidence": {
       "refs": [],
       "studies": [],
@@ -1276,9 +1430,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_colchicine_clarithromycin_hung2005",
+        "ev_colchicine_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_colchicine_clarithromycin_hung2005",
+          "type": "observational",
+          "pmid": "16007523",
+          "doi": "10.1086/431592"
+        },
+        {
+          "id": "ev_colchicine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1293,9 +1463,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "studies": [
+        {
+          "id": "ev_colchicine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_colchicine_cyp3a4_hansten2022",
+          "type": "observational",
+          "pmid": "36522578",
+          "doi": "10.1007/s40264-022-01265-1"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1310,9 +1496,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "studies": [
+        {
+          "id": "ev_colchicine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_colchicine_cyp3a4_hansten2022",
+          "type": "observational",
+          "pmid": "36522578",
+          "doi": "10.1007/s40264-022-01265-1"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1327,9 +1529,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "studies": [
+        {
+          "id": "ev_colchicine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_colchicine_cyp3a4_hansten2022",
+          "type": "observational",
+          "pmid": "36522578",
+          "doi": "10.1007/s40264-022-01265-1"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1344,10 +1562,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_statin_cyp3a4_williams2002",
+          "type": "clinical_pk",
+          "pmid": "12036392",
+          "doi": "10.2165/00003088-200241050-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1361,10 +1595,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_statin_cyp3a4_williams2002",
+          "type": "clinical_pk",
+          "pmid": "12036392",
+          "doi": "10.2165/00003088-200241050-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1378,10 +1628,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_statin_cyp3a4_williams2002",
+          "type": "clinical_pk",
+          "pmid": "12036392",
+          "doi": "10.2165/00003088-200241050-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1395,10 +1661,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_statin_cyp3a4_williams2002",
+          "type": "clinical_pk",
+          "pmid": "12036392",
+          "doi": "10.2165/00003088-200241050-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1412,10 +1694,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "ev_simvastatin_label_cyp3a4"
+      ],
+      "studies": [
+        {
+          "id": "ev_statin_gemfibrozil_schneck2004",
+          "type": "clinical_pk",
+          "pmid": "15116058",
+          "doi": "10.1016/j.clpt.2003.12.014"
+        },
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1429,10 +1727,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "ev_rosuvastatin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_statin_gemfibrozil_schneck2004",
+          "type": "clinical_pk",
+          "pmid": "15116058",
+          "doi": "10.1016/j.clpt.2003.12.014"
+        },
+        {
+          "id": "ev_rosuvastatin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1480,9 +1794,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_rosuvastatin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rosuvastatin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1497,10 +1820,26 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_statin_cyp3a4_williams2002",
+          "type": "clinical_pk",
+          "pmid": "12036392",
+          "doi": "10.2165/00003088-200241050-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1531,8 +1870,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_tacrolimus_fluconazole_ferchichi2024"
+      ],
+      "studies": [
+        {
+          "id": "ev_tacrolimus_fluconazole_ferchichi2024",
+          "type": "case_report",
+          "pmid": "38385427",
+          "doi": "10.6002/ect.MESOT2023.P90"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1548,25 +1896,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Cyclosporine",
-    "drug2": "Simvastatin",
-    "category": "pk",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_tacrolimus_voriconazole_vanhove2017"
+      ],
+      "studies": [
+        {
+          "id": "ev_tacrolimus_voriconazole_vanhove2017",
+          "type": "observational",
+          "pmid": "28224698",
+          "doi": "10.1111/ajt.14232"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1634,10 +1974,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_tizanidine_fluvoxamine_granfors2004"
+      ],
+      "studies": [
+        {
+          "id": "ev_tizanidine_fluvoxamine_granfors2004",
+          "type": "clinical_pk",
+          "pmid": "15060511",
+          "doi": "10.1016/j.clpt.2003.12.005"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1651,10 +2000,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_theophylline_quinolone_wijnands1988"
+      ],
+      "studies": [
+        {
+          "id": "ev_theophylline_quinolone_wijnands1988",
+          "type": "clinical_pk",
+          "pmid": "3053575",
+          "doi": "10.1093/jac/22.supplement_c.109"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1668,9 +2026,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_theophylline_cyp1a2_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_theophylline_cyp1a2_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -1685,8 +2052,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_clozapine_ciprofloxacin_waters2025"
+      ],
+      "studies": [
+        {
+          "id": "ev_clozapine_ciprofloxacin_waters2025",
+          "type": "case_report",
+          "pmid": "40496008",
+          "doi": "10.9740/mhc.2025.06.191"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1702,8 +2078,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_clozapine_cyp1a2_chetty2007"
+      ],
+      "studies": [
+        {
+          "id": "ev_clozapine_cyp1a2_chetty2007",
+          "type": "observational",
+          "pmid": "17504220",
+          "doi": "10.2174/138920007780655469"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -1719,10 +2104,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_midazolam_cyp3a4_olkkola1994"
+      ],
+      "studies": [
+        {
+          "id": "ev_midazolam_cyp3a4_olkkola1994",
+          "type": "clinical_pk",
+          "pmid": "8181191",
+          "doi": "10.1038/clpt.1994.60"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1736,10 +2130,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_midazolam_cyp3a4_olkkola1994"
+      ],
+      "studies": [
+        {
+          "id": "ev_midazolam_cyp3a4_olkkola1994",
+          "type": "clinical_pk",
+          "pmid": "8181191",
+          "doi": "10.1038/clpt.1994.60"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -1753,10 +2156,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_midazolam_cyp3a4_olkkola1994"
+      ],
+      "studies": [
+        {
+          "id": "ev_midazolam_cyp3a4_olkkola1994",
+          "type": "clinical_pk",
+          "pmid": "8181191",
+          "doi": "10.1038/clpt.1994.60"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -2034,10 +2446,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_grapefruit_simvastatin_lilja1998"
+      ],
+      "studies": [
+        {
+          "id": "ev_grapefruit_simvastatin_lilja1998",
+          "type": "clinical_pk",
+          "pmid": "9834039",
+          "doi": "10.1016/S0009-9236(98)90130-8"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -2094,23 +2515,6 @@
     }
   },
   {
-    "drug1": "Sumatriptan",
-    "drug2": "Fluoxetine",
-    "category": "serotonin",
-    "oldSeverity": "moderate",
-    "recommendedSeverity": "moderate",
-    "changed": false,
-    "rationale": "Kept original severity.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
     "drug1": "Amiodarone",
     "drug2": "Warfarin",
     "category": "pk",
@@ -2145,9 +2549,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_amiodarone_simvastatin_ricaurte2006",
+        "ev_simvastatin_label_cyp3a4"
+      ],
+      "studies": [
+        {
+          "id": "ev_amiodarone_simvastatin_ricaurte2006",
+          "type": "case_report",
+          "pmid": "16537817",
+          "doi": "10.1345/aph.1G462"
+        },
+        {
+          "id": "ev_simvastatin_label_cyp3a4",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -2179,10 +2599,19 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
+      "refs": [
+        "ev_lamotrigine_valproate_rambeck1993"
+      ],
+      "studies": [
+        {
+          "id": "ev_lamotrigine_valproate_rambeck1993",
+          "type": "clinical_pk",
+          "pmid": "8119045",
+          "doi": "10.2165/00003088-199325060-00003"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
       "hasStrongInline": true,
       "missingRefs": []
     }
@@ -2565,8 +2994,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_mdma_ritonavir_papaseit2012"
+      ],
+      "studies": [
+        {
+          "id": "ev_mdma_ritonavir_papaseit2012",
+          "type": "case_report",
+          "pmid": "22460853",
+          "doi": "10.1007/s00134-012-2537-9"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -2672,8 +3110,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_cocaethylene_henning1996"
+      ],
+      "studies": [
+        {
+          "id": "ev_cocaethylene_henning1996",
+          "type": "animal",
+          "pmid": "8761012",
+          "doi": "10.1016/0024-3205(96)00227-5"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -3272,9 +3719,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_ssri_cyp2d6_liston2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_ssri_cyp2d6_liston2002",
+          "type": "clinical_pk",
+          "pmid": "11910262",
+          "doi": "10.1097/00004714-200204000-00010"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -3329,9 +3785,25 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_ssri_cyp2d6_liston2002",
+        "ev_bupropion_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_ssri_cyp2d6_liston2002",
+          "type": "clinical_pk",
+          "pmid": "11910262",
+          "doi": "10.1097/00004714-200204000-00010"
+        },
+        {
+          "id": "ev_bupropion_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -3422,23 +3894,6 @@
   },
   {
     "drug1": "Alcohol (Ethanol)",
-    "drug2": "Metformin",
-    "category": "pd",
-    "oldSeverity": "moderate",
-    "recommendedSeverity": "moderate",
-    "changed": false,
-    "rationale": "Kept original severity.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": false,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Alcohol (Ethanol)",
     "drug2": "Acetaminophen",
     "category": "metabolite",
     "oldSeverity": "severe",
@@ -3446,8 +3901,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_apap_alcohol_riordan2002"
+      ],
+      "studies": [
+        {
+          "id": "ev_apap_alcohol_riordan2002",
+          "type": "observational",
+          "pmid": "12006215",
+          "doi": "10.1080/13556210220120424"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -3463,9 +3927,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_cbd_clobazam_geffrey2015"
+      ],
+      "studies": [
+        {
+          "id": "ev_cbd_clobazam_geffrey2015",
+          "type": "clinical_pk",
+          "pmid": "26114620",
+          "doi": "10.1111/epi.13060"
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -3798,8 +4271,17 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
+      "refs": [
+        "ev_qt_torsades_tisdale2016"
+      ],
+      "studies": [
+        {
+          "id": "ev_qt_torsades_tisdale2016",
+          "type": "observational",
+          "pmid": "27212965",
+          "doi": "10.1177/1715163516641136"
+        }
+      ],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -3832,9 +4314,18 @@
     "changed": false,
     "rationale": "Severe support threshold met.",
     "evidence": {
-      "refs": [],
-      "studies": [],
-      "hasHighTierStudy": false,
+      "refs": [
+        "ev_digoxin_pgp_koren1998"
+      ],
+      "studies": [
+        {
+          "id": "ev_digoxin_pgp_koren1998",
+          "type": "clinical_pk",
+          "pmid": "9467211",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
       "missingRefs": []
@@ -4885,6 +5376,604 @@
         }
       ],
       "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Loperamide",
+    "drug2": "Quinidine",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_loperamide_pgp_inhibitor_cns"
+      ],
+      "studies": [
+        {
+          "id": "ev_loperamide_pgp_inhibitor_cns",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Loperamide",
+    "drug2": "Clarithromycin",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_loperamide_pgp_inhibitor_cns"
+      ],
+      "studies": [
+        {
+          "id": "ev_loperamide_pgp_inhibitor_cns",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rifaximin",
+    "drug2": "Cyclosporine",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_rifaximin_cyclosporine_transporter"
+      ],
+      "studies": [
+        {
+          "id": "ev_rifaximin_cyclosporine_transporter",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cimetidine",
+    "drug2": "Theophylline",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cimetidine_theophylline_clearance"
+      ],
+      "studies": [
+        {
+          "id": "ev_cimetidine_theophylline_clearance",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Omeprazole",
+    "drug2": "Mycophenolate",
+    "category": "absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_mycophenolate_ppi_solubility"
+      ],
+      "studies": [
+        {
+          "id": "ev_mycophenolate_ppi_solubility",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tofacitinib",
+    "drug2": "Ketoconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tofacitinib_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tofacitinib_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tofacitinib",
+    "drug2": "Fluconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tofacitinib_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tofacitinib_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tofacitinib",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tofacitinib_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tofacitinib_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Upadacitinib",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_upadacitinib_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_upadacitinib_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Zileuton",
+    "drug2": "Theophylline",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_zileuton_theophylline_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_zileuton_theophylline_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Zileuton",
+    "drug2": "Warfarin",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_zileuton_theophylline_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_zileuton_theophylline_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Zafirlukast",
+    "drug2": "Warfarin",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_zafirlukast_warfarin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_zafirlukast_warfarin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Roflumilast",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_roflumilast_cyp_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_roflumilast_cyp_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ethinyl Estradiol",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_rifampin_hormonal_contraception"
+      ],
+      "studies": [
+        {
+          "id": "ev_rifampin_hormonal_contraception",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ethinyl Estradiol",
+    "drug2": "Lamotrigine",
+    "category": "glucuronidation",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_estradiol_lamotrigine_ugt1a4"
+      ],
+      "studies": [
+        {
+          "id": "ev_estradiol_lamotrigine_ugt1a4",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Levonorgestrel",
+    "drug2": "Efavirenz",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_efavirenz_levonorgestrel_contraception"
+      ],
+      "studies": [
+        {
+          "id": "ev_efavirenz_levonorgestrel_contraception",
+          "type": "clinical_pk",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cinacalcet",
+    "drug2": "Paroxetine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cinacalcet_cyp2d6_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_cinacalcet_cyp2d6_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Alendronate",
+    "drug2": "Calcium",
+    "category": "absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_alendronate_cation_absorption"
+      ],
+      "studies": [
+        {
+          "id": "ev_alendronate_cation_absorption",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Mifepristone",
+    "drug2": "Simvastatin",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_mifepristone_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_mifepristone_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dantrolene",
+    "drug2": "Verapamil",
+    "category": "cardiac",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_dantrolene_calcium_channel_warning"
+      ],
+      "studies": [
+        {
+          "id": "ev_dantrolene_calcium_channel_warning",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rocuronium",
+    "drug2": "Sugammadex",
+    "category": "reversal",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sugammadex_rocuronium_reversal"
+      ],
+      "studies": [
+        {
+          "id": "ev_sugammadex_rocuronium_reversal",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sugammadex",
+    "drug2": "Ethinyl Estradiol",
+    "category": "binding",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sugammadex_contraception_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sugammadex_contraception_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Propofol",
+    "drug2": "Midazolam",
+    "category": "pharmacodynamic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_propofol_midazolam_sedation"
+      ],
+      "studies": [
+        {
+          "id": "ev_propofol_midazolam_sedation",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": false,
       "missingRefs": []

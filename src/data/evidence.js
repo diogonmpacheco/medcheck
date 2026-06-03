@@ -3,6 +3,557 @@
 
 const STUDY_DB = {
 
+  // ═══════════════════════════════════════════════════════════════════
+  // SEVERE-PAIR PROVENANCE BATCH (2026-06) — citations retrieved and
+  // faithfulness-checked against PubMed for the 53 severe KNOWN_DDI pairs
+  // that previously relied on inline regulatory text only. Each PMID/DOI
+  // was confirmed to resolve and to support the stated interaction.
+  // ═══════════════════════════════════════════════════════════════════
+
+  "ev_lithium_thiazide_label": {
+    id:"ev_lithium_thiazide_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Lithium carbonate Prescribing Information — Drug Interactions (thiazide diuretics)",
+    year:2023, source:"FDA / DailyMed",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{clearanceReductionPct:25, note:"Thiazides reduce renal lithium clearance by ~25%, raising serum lithium and toxicity risk; reduce lithium dose and monitor levels."},
+    temporal:{onset:"days"},
+    supports:["lithium_thiazide_reduced_clearance"],
+    contradicts:[],
+    limitations:["Magnitude varies with sodium balance and renal function"],
+    verified:true
+  },
+
+  "ev_mtx_interactions_bannwarth1996": {
+    id:"ev_mtx_interactions_bannwarth1996",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Clinical pharmacokinetics of low-dose pulse methotrexate in rheumatoid arthritis",
+    year:1996, source:"Bannwarth et al.", journal:"Clin Pharmacokinet",
+    pmid:"8882301", doi:"10.2165/00003088-199630030-00002",
+    studyDesign:"pharmacokinetic_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Methotrexate is renally cleared by glomerular filtration plus tubular secretion/reabsorption. NSAIDs/aspirin alter disposition; trimethoprim-sulfamethoxazole and probenecid increase methotrexate toxicity and should be avoided."},
+    temporal:{},
+    supports:["methotrexate_reduced_renal_clearance","methotrexate_oat_competition"],
+    contradicts:[],
+    limitations:["Narrative PK review; effect magnitude not quantified for every NSAID"],
+    verified:true
+  },
+
+  "ev_sjw_digoxin_durr2000": {
+    id:"ev_sjw_digoxin_durr2000",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"St John's Wort induces intestinal P-glycoprotein/MDR1 and intestinal and hepatic CYP3A4",
+    year:2000, source:"Durr et al.", journal:"Clin Pharmacol Ther",
+    pmid:"11180019", doi:"10.1067/mcp.2000.112240",
+    studyDesign:"healthy_volunteer_study", n:8,
+    phenotypes:[],
+    quantifiedEffects:{clearanceReductionPct:18, note:"14 days St John's Wort decreased digoxin exposure ~18% and increased duodenal P-glycoprotein/MDR1 1.4x via P-gp/CYP3A4 induction — reduces digoxin efficacy."},
+    temporal:{onset:"1-2_weeks", mechanism:"enzyme_transporter_induction"},
+    supports:["sjw_induces_pgp","digoxin_pgp_substrate"],
+    contradicts:[],
+    limitations:["Single dose digoxin; n=8"],
+    verified:true
+  },
+
+  "ev_digoxin_verapamil_klein1982": {
+    id:"ev_digoxin_verapamil_klein1982",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The influence of verapamil on serum digoxin concentration",
+    year:1982, source:"Klein et al.", journal:"Circulation",
+    pmid:"7074765", doi:"10.1161/01.cir.65.5.998",
+    studyDesign:"clinical_pk_study", n:49,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:1.7, clearanceReductionPct:53, note:"Verapamil raised serum digoxin from 0.76 to 1.31 ng/mL (~72%) and roughly halved renal digoxin clearance; digitalis toxicity in 7/49 patients."},
+    temporal:{onset:"days"},
+    supports:["digoxin_pgp_substrate","verapamil_inhibits_pgp"],
+    contradicts:[],
+    limitations:["Open-label; older assay methodology"],
+    verified:true
+  },
+
+  "ev_digoxin_pgp_koren1998": {
+    id:"ev_digoxin_pgp_koren1998",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Toxic digoxin-drug interactions: the major role of renal P-glycoprotein",
+    year:1998, source:"Koren et al.", journal:"Vet Hum Toxicol",
+    pmid:"9467211", doi:null,
+    studyDesign:"kinetic_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Reviews human kinetic data showing digoxin is actively secreted by renal tubular P-glycoprotein; cyclosporine, quinidine/quinine, verapamil and itraconazole inhibit this efflux, reducing renal digoxin clearance and causing toxicity."},
+    temporal:{},
+    supports:["digoxin_pgp_substrate","cyclosporine_inhibits_pgp","quinine_inhibits_pgp"],
+    contradicts:[],
+    limitations:["Narrative review; quinine inferred from quinidine data"],
+    verified:true
+  },
+
+  "ev_warfarin_abx_lane2014": {
+    id:"ev_warfarin_abx_lane2014",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Serious bleeding events due to warfarin and antibiotic co-prescription in a cohort of veterans",
+    year:2014, source:"Lane et al.", journal:"Am J Med",
+    pmid:"24657899", doi:"10.1016/j.amjmed.2014.01.044",
+    studyDesign:"retrospective_cohort", n:22272,
+    phenotypes:[],
+    quantifiedEffects:{oddsRatio:2.09, note:"In 22,272 warfarin users, serious bleeding HR was 2.09 for trimethoprim-sulfamethoxazole, 2.40 for clarithromycin; metronidazole classed high-risk. Fluconazole pushed INR>6 in 9.7%."},
+    temporal:{onset:"days"},
+    supports:["warfarin_cyp2c9_inhibition","warfarin_antibiotic_bleeding"],
+    contradicts:[],
+    limitations:["Observational; confounding by indication possible"],
+    verified:true
+  },
+
+  "ev_doac_rifampin_hartter2012": {
+    id:"ev_doac_rifampin_hartter2012",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Decrease in the oral bioavailability of dabigatran etexilate after co-medication with rifampicin",
+    year:2012, source:"Hartter et al.", journal:"Br J Clin Pharmacol",
+    pmid:"22348256", doi:"10.1111/j.1365-2125.2012.04218.x",
+    studyDesign:"healthy_volunteer_fixed_sequence", n:24,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:0.33, clearanceReductionPct:67, note:"7 days rifampicin (CYP3A4/P-gp inducer) reduced dabigatran AUC by 67% and Cmax by 65.5% — representative of the rifampin effect on P-gp/CYP3A4-dependent direct oral anticoagulants."},
+    temporal:{onset:"1-2_weeks", washout:"7_days", mechanism:"transporter_enzyme_induction"},
+    supports:["rifampin_induces_pgp","doac_pgp_substrate"],
+    contradicts:[],
+    limitations:["Dabigatran-specific; rivaroxaban/apixaban/edoxaban share mechanism per their labels"],
+    verified:true
+  },
+
+  "ev_doac_rifampin_label": {
+    id:"ev_doac_rifampin_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Direct oral anticoagulant Prescribing Information — combined P-gp and strong CYP3A4 inducers",
+    year:2023, source:"FDA / DailyMed (rivaroxaban, apixaban, edoxaban, dabigatran labels)",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"DOAC labels advise avoiding concomitant rifampin and other combined P-gp/strong CYP3A4 inducers because of clinically important reductions in anticoagulant exposure and possible loss of efficacy."},
+    temporal:{},
+    supports:["rifampin_induces_pgp","doac_pgp_substrate"],
+    contradicts:[],
+    limitations:["Class labeling; magnitude differs by agent"],
+    verified:true
+  },
+
+  "ev_spironolactone_tmpsmx_antoniou2011": {
+    id:"ev_spironolactone_tmpsmx_antoniou2011",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Trimethoprim-sulfamethoxazole induced hyperkalaemia in elderly patients receiving spironolactone: nested case-control study",
+    year:2011, source:"Antoniou et al.", journal:"BMJ",
+    pmid:"21911446", doi:"10.1136/bmj.d5228",
+    studyDesign:"nested_case_control", n:248,
+    phenotypes:[],
+    quantifiedEffects:{oddsRatio:12.4, note:"Among older spironolactone users, trimethoprim-sulfamethoxazole carried an adjusted odds ratio of 12.4 for hospitalization with hyperkalaemia vs amoxicillin."},
+    temporal:{onset:"days"},
+    supports:["trimethoprim_blocks_potassium_excretion","spironolactone_hyperkalemia"],
+    contradicts:[],
+    limitations:["Administrative database; residual confounding possible"],
+    verified:true
+  },
+
+  "ev_tramadol_serotonin_beakley2015": {
+    id:"ev_tramadol_serotonin_beakley2015",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Tramadol, Pharmacology, Side Effects, and Serotonin Syndrome: A Review",
+    year:2015, source:"Beakley et al.", journal:"Pain Physician",
+    pmid:"26218943", doi:null,
+    studyDesign:"narrative_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Tramadol inhibits serotonin/norepinephrine reuptake; combined with SSRIs/SNRIs it raises the risk of serotonin syndrome, and it independently lowers seizure threshold."},
+    temporal:{onset:"hours-days"},
+    supports:["tramadol_serotonergic","serotonin_syndrome_risk"],
+    contradicts:[],
+    limitations:["Review; incidence not quantified"],
+    verified:true
+  },
+
+  "ev_colchicine_clarithromycin_hung2005": {
+    id:"ev_colchicine_clarithromycin_hung2005",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Fatal interaction between clarithromycin and colchicine in patients with renal insufficiency: a retrospective study",
+    year:2005, source:"Hung et al.", journal:"Clin Infect Dis",
+    pmid:"16007523", doi:"10.1086/431592",
+    studyDesign:"retrospective_cohort", n:116,
+    phenotypes:[],
+    quantifiedEffects:{oddsRatio:23.4, note:"Concomitant colchicine+clarithromycin: 10.2% died vs 3.6% with sequential use; development of pancytopenia carried RR 23.4 for death. Colchicine is a CYP3A4/P-gp substrate."},
+    temporal:{onset:"days"},
+    supports:["colchicine_cyp3a4_pgp_substrate","clarithromycin_inhibits_cyp3a4_pgp"],
+    contradicts:[],
+    limitations:["Retrospective; enriched for renal insufficiency"],
+    verified:true
+  },
+
+  "ev_colchicine_label": {
+    id:"ev_colchicine_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Colchicine (Colcrys) Prescribing Information — CYP3A4 and P-glycoprotein inhibitors",
+    year:2023, source:"FDA / DailyMed",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Colchicine is contraindicated with strong CYP3A4 inhibitors (e.g., clarithromycin, ketoconazole, itraconazole, ritonavir) or P-gp inhibitors in patients with renal or hepatic impairment; fatal toxicity reported. Dose reduction required even in others."},
+    temporal:{},
+    supports:["colchicine_cyp3a4_pgp_substrate"],
+    contradicts:[],
+    limitations:["Class statement; magnitude varies by inhibitor"],
+    verified:true
+  },
+
+  "ev_colchicine_cyp3a4_hansten2022": {
+    id:"ev_colchicine_cyp3a4_hansten2022",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Colchicine Drug Interaction Errors and Misunderstandings: Recommendations for Improved Evidence-Based Management",
+    year:2022, source:"Hansten et al.", journal:"Drug Saf",
+    pmid:"36522578", doi:"10.1007/s40264-022-01265-1",
+    studyDesign:"systematic_case_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Evidence-based synthesis of ~100 reported cases: concomitant CYP3A4/P-gp inhibitors can cause life-threatening colchicine toxicity (pancytopenia, multiorgan failure, arrhythmias)."},
+    temporal:{},
+    supports:["colchicine_cyp3a4_pgp_substrate"],
+    contradicts:[],
+    limitations:["Case-based synthesis"],
+    verified:true
+  },
+
+  "ev_simvastatin_label_cyp3a4": {
+    id:"ev_simvastatin_label_cyp3a4",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Simvastatin (Zocor) Prescribing Information — Contraindicated and dose-limited interactions",
+    year:2023, source:"FDA / DailyMed",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Simvastatin (and lovastatin) are contraindicated with strong CYP3A4 inhibitors (clarithromycin, itraconazole, HIV protease inhibitors), with cyclosporine, and with gemfibrozil; dose is limited with amiodarone — each raises myopathy/rhabdomyolysis risk."},
+    temporal:{},
+    supports:["simvastatin_cyp3a4_substrate","statin_myopathy_risk"],
+    contradicts:[],
+    limitations:["Regulatory class statement"],
+    verified:true
+  },
+
+  "ev_statin_cyp3a4_williams2002": {
+    id:"ev_statin_cyp3a4_williams2002",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetic-pharmacodynamic drug interactions with HMG-CoA reductase inhibitors",
+    year:2002, source:"Williams & Feely", journal:"Clin Pharmacokinet",
+    pmid:"12036392", doi:"10.2165/00003088-200241050-00003",
+    studyDesign:"pharmacokinetic_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:10, note:"CYP3A4-metabolized statins (lovastatin, simvastatin) show large exposure increases with CYP3A4 inhibitors: itraconazole raises simvastatin and its active metabolite at least 10x; cyclosporine+lovastatin caused rhabdomyolysis."},
+    temporal:{},
+    supports:["simvastatin_cyp3a4_substrate","statin_myopathy_risk"],
+    contradicts:[],
+    limitations:["Review synthesizing multiple PK studies"],
+    verified:true
+  },
+
+  "ev_statin_gemfibrozil_schneck2004": {
+    id:"ev_statin_gemfibrozil_schneck2004",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The effect of gemfibrozil on the pharmacokinetics of rosuvastatin",
+    year:2004, source:"Schneck et al.", journal:"Clin Pharmacol Ther",
+    pmid:"15116058", doi:"10.1016/j.clpt.2003.12.014",
+    studyDesign:"randomized_crossover", n:20,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:1.88, note:"Gemfibrozil raised rosuvastatin AUC 1.88x and Cmax 2.21x (OATP1B1 inhibition); a similar ~2x effect is reported for pravastatin, simvastatin acid and lovastatin acid — additive myopathy risk."},
+    temporal:{onset:"days"},
+    supports:["gemfibrozil_inhibits_oatp1b1","statin_myopathy_risk"],
+    contradicts:[],
+    limitations:["Healthy volunteers; single statin dose"],
+    verified:true
+  },
+
+  "ev_rosuvastatin_label": {
+    id:"ev_rosuvastatin_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Rosuvastatin (Crestor) Prescribing Information — OATP1B1/BCRP inhibitor interactions",
+    year:2023, source:"FDA / DailyMed",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:1.6, note:"Rosuvastatin dose is restricted with cyclosporine, gemfibrozil and certain antivirals; eltrombopag raises rosuvastatin exposure ~55% (BCRP/OATP1B1 inhibition) — cap rosuvastatin dose."},
+    temporal:{},
+    supports:["rosuvastatin_oatp1b1_bcrp_substrate","statin_myopathy_risk"],
+    contradicts:[],
+    limitations:["Regulatory statement"],
+    verified:true
+  },
+
+  "ev_tacrolimus_fluconazole_ferchichi2024": {
+    id:"ev_tacrolimus_fluconazole_ferchichi2024",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Drug-Drug Interaction between Tacrolimus and Fluconazole in a Kidney Transplant Recipient",
+    year:2024, source:"Ferchichi et al.", journal:"Exp Clin Transplant",
+    pmid:"38385427", doi:"10.6002/ect.MESOT2023.P90",
+    studyDesign:"case_report", n:1,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:3.0, note:"Fluconazole raised tacrolimus trough by 125% then 212% (CYP3A4 inhibition); required a 50% tacrolimus dose reduction to stay in range."},
+    temporal:{onset:"days"},
+    supports:["tacrolimus_cyp3a4_substrate","fluconazole_inhibits_cyp3a4"],
+    contradicts:[],
+    limitations:["Single case"],
+    verified:true
+  },
+
+  "ev_tacrolimus_voriconazole_vanhove2017": {
+    id:"ev_tacrolimus_voriconazole_vanhove2017",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Determinants of the Magnitude of Interaction Between Tacrolimus and Voriconazole/Posaconazole in Solid Organ Recipients",
+    year:2017, source:"Vanhove et al.", journal:"Am J Transplant",
+    pmid:"28224698", doi:"10.1111/ajt.14232",
+    studyDesign:"retrospective_cohort", n:126,
+    phenotypes:["CYP3A5_expressor","CYP3A5_nonexpressor"],
+    quantifiedEffects:{aucFold:5.0, note:"Voriconazole increased tacrolimus dose-corrected trough ~5.0x (range 1.0-20.2x); a 66% tacrolimus dose reduction was insufficient for most patients. CYP3A5 expressors showed a blunted effect."},
+    temporal:{onset:"days"},
+    supports:["tacrolimus_cyp3a4_substrate","voriconazole_inhibits_cyp3a4"],
+    contradicts:[],
+    limitations:["Retrospective; high interindividual variability"],
+    verified:true
+  },
+
+  "ev_tizanidine_fluvoxamine_granfors2004": {
+    id:"ev_tizanidine_fluvoxamine_granfors2004",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Fluvoxamine drastically increases concentrations and effects of tizanidine: a potentially hazardous interaction",
+    year:2004, source:"Granfors et al.", journal:"Clin Pharmacol Ther",
+    pmid:"15060511", doi:"10.1016/j.clpt.2003.12.005",
+    studyDesign:"randomized_crossover", n:10,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:33, note:"Fluvoxamine (CYP1A2 inhibitor) increased tizanidine AUC 33x and Cmax 12x, with severe hypotension and sedation — concomitant use should be avoided."},
+    temporal:{onset:"days"},
+    supports:["tizanidine_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
+    contradicts:[],
+    limitations:["Healthy volunteers; n=10"],
+    verified:true
+  },
+
+  "ev_theophylline_quinolone_wijnands1988": {
+    id:"ev_theophylline_quinolone_wijnands1988",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Interaction between the fluoroquinolones and the bronchodilator theophylline",
+    year:1988, source:"Wijnands & Vree", journal:"J Antimicrob Chemother",
+    pmid:"3053575", doi:"10.1093/jac/22.supplement_c.109",
+    studyDesign:"clinical_pk_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{clearanceReductionPct:30, note:"Ciprofloxacin reduces theophylline total body clearance ~30% via CYP1A2 inhibition, with reported theophylline toxicity; enoxacin is stronger (~60%)."},
+    temporal:{onset:"days"},
+    supports:["theophylline_cyp1a2_substrate","ciprofloxacin_inhibits_cyp1a2"],
+    contradicts:[],
+    limitations:["Older review; magnitude varies by quinolone"],
+    verified:true
+  },
+
+  "ev_theophylline_cyp1a2_label": {
+    id:"ev_theophylline_cyp1a2_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Theophylline Prescribing Information — CYP1A2 inhibitors (fluvoxamine, ciprofloxacin)",
+    year:2023, source:"FDA / DailyMed",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Potent CYP1A2 inhibitors such as fluvoxamine markedly raise theophylline concentrations; the label advises avoiding the combination or substantially reducing theophylline dose with level monitoring."},
+    temporal:{},
+    supports:["theophylline_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
+    contradicts:[],
+    limitations:["Regulatory statement"],
+    verified:true
+  },
+
+  "ev_clozapine_ciprofloxacin_waters2025": {
+    id:"ev_clozapine_ciprofloxacin_waters2025",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Managing ciprofloxacin-clozapine interaction with immunoassay-based monitoring: A case report",
+    year:2025, source:"Waters et al.", journal:"Ment Health Clin",
+    pmid:"40496008", doi:"10.9740/mhc.2025.06.191",
+    studyDesign:"case_report", n:1,
+    phenotypes:[],
+    quantifiedEffects:{note:"Ciprofloxacin (CYP1A2 inhibitor) raised clozapine plasma concentration with increased sedation; the interaction is well documented and warrants dose reduction and level monitoring."},
+    temporal:{onset:"days"},
+    supports:["clozapine_cyp1a2_substrate","ciprofloxacin_inhibits_cyp1a2"],
+    contradicts:[],
+    limitations:["Single case; concurrent infection/smoking change"],
+    verified:true
+  },
+
+  "ev_clozapine_cyp1a2_chetty2007": {
+    id:"ev_clozapine_cyp1a2_chetty2007",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"CYP-mediated clozapine interactions: how predictable are they?",
+    year:2007, source:"Chetty & Murray", journal:"Curr Drug Metab",
+    pmid:"17504220", doi:"10.2174/138920007780655469",
+    studyDesign:"mechanistic_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"CYP1A2 is the major route of clozapine metabolism; interactions with potent CYP1A2 inhibitors such as fluvoxamine are consistent, predictable and usually clinically significant, raising clozapine levels."},
+    temporal:{},
+    supports:["clozapine_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
+    contradicts:[],
+    limitations:["Narrative review"],
+    verified:true
+  },
+
+  "ev_midazolam_cyp3a4_olkkola1994": {
+    id:"ev_midazolam_cyp3a4_olkkola1994",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Midazolam should be avoided in patients receiving the systemic antimycotics ketoconazole or itraconazole",
+    year:1994, source:"Olkkola et al.", journal:"Clin Pharmacol Ther",
+    pmid:"8181191", doi:"10.1038/clpt.1994.60",
+    studyDesign:"double_blind_crossover", n:9,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:12, note:"Ketoconazole and itraconazole increased oral midazolam AUC 10-15x and peak concentration 3-4x via CYP3A4 inhibition; other strong CYP3A4 inhibitors (clarithromycin, ritonavir) produce comparable effects."},
+    temporal:{onset:"hours", mechanism:"cyp3a4_inhibition"},
+    supports:["midazolam_cyp3a4_substrate","strong_cyp3a4_inhibition"],
+    contradicts:[],
+    limitations:["Azole-specific study; clarithromycin/ritonavir inferred from shared CYP3A4 mechanism"],
+    verified:true
+  },
+
+  "ev_grapefruit_simvastatin_lilja1998": {
+    id:"ev_grapefruit_simvastatin_lilja1998",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Grapefruit juice-simvastatin interaction: effect on serum concentrations of simvastatin, simvastatin acid, and HMG-CoA reductase inhibitors",
+    year:1998, source:"Lilja et al.", journal:"Clin Pharmacol Ther",
+    pmid:"9834039", doi:"10.1016/S0009-9236(98)90130-8",
+    studyDesign:"randomized_crossover", n:10,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:16, note:"High-dose grapefruit juice increased simvastatin AUC ~16x and Cmax ~9x via inhibition of intestinal CYP3A4 first-pass metabolism — raises myopathy risk."},
+    temporal:{onset:"hours"},
+    supports:["simvastatin_cyp3a4_substrate","grapefruit_inhibits_intestinal_cyp3a4"],
+    contradicts:[],
+    limitations:["Large grapefruit dose; effect smaller with normal intake"],
+    verified:true
+  },
+
+  "ev_amiodarone_simvastatin_ricaurte2006": {
+    id:"ev_amiodarone_simvastatin_ricaurte2006",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Simvastatin-amiodarone interaction resulting in rhabdomyolysis, azotemia, and possible hepatotoxicity",
+    year:2006, source:"Ricaurte et al.", journal:"Ann Pharmacother",
+    pmid:"16537817", doi:"10.1345/aph.1G462",
+    studyDesign:"case_report", n:1,
+    phenotypes:[],
+    quantifiedEffects:{note:"Simvastatin 80 mg + amiodarone produced rhabdomyolysis (CK 19,620 U/L) with renal failure via CYP3A4 inhibition; FDA limits simvastatin to 20 mg/day with amiodarone."},
+    temporal:{onset:"weeks"},
+    supports:["simvastatin_cyp3a4_substrate","amiodarone_inhibits_cyp3a4"],
+    contradicts:[],
+    limitations:["Single case"],
+    verified:true
+  },
+
+  "ev_lamotrigine_valproate_rambeck1993": {
+    id:"ev_lamotrigine_valproate_rambeck1993",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Lamotrigine clinical pharmacokinetics",
+    year:1993, source:"Rambeck & Wolf", journal:"Clin Pharmacokinet",
+    pmid:"8119045", doi:"10.2165/00003088-199325060-00003",
+    studyDesign:"pharmacokinetic_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:2.0, note:"Valproic acid inhibits lamotrigine glucuronidation, roughly doubling lamotrigine half-life (to 48-59 h); this elevation increases the risk of serious rash/Stevens-Johnson syndrome and mandates slower lamotrigine titration."},
+    temporal:{onset:"days"},
+    supports:["lamotrigine_ugt_substrate","valproate_inhibits_glucuronidation"],
+    contradicts:[],
+    limitations:["Review; rash risk inferred from labeling/titration data"],
+    verified:true
+  },
+
+  "ev_mdma_ritonavir_papaseit2012": {
+    id:"ev_mdma_ritonavir_papaseit2012",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Surviving life-threatening MDMA (3,4-methylenedioxymethamphetamine, ecstasy) toxicity caused by ritonavir",
+    year:2012, source:"Papaseit et al.", journal:"Intensive Care Med",
+    pmid:"22460853", doi:"10.1007/s00134-012-2537-9",
+    studyDesign:"case_report", n:1,
+    phenotypes:[],
+    quantifiedEffects:{note:"Ritonavir inhibition of CYP2D6 caused life-threatening MDMA toxicity (hyperthermia, seizures, requiring intensive care) — the combination should be avoided."},
+    temporal:{onset:"hours"},
+    supports:["mdma_cyp2d6_substrate","ritonavir_inhibits_cyp2d6"],
+    contradicts:[],
+    limitations:["Single case; classic fatal case reported by Henry 1998"],
+    verified:true
+  },
+
+  "ev_cocaethylene_henning1996": {
+    id:"ev_cocaethylene_henning1996",
+    type:EVIDENCE_TIER.ANIMAL,
+    title:"Cocaethylene is as cardiotoxic as cocaine but is less toxic than cocaine plus ethanol",
+    year:1996, source:"Henning & Wilson", journal:"Life Sci",
+    pmid:"8761012", doi:"10.1016/0024-3205(96)00227-5",
+    studyDesign:"controlled_animal_study", n:18,
+    phenotypes:[],
+    quantifiedEffects:{note:"In dogs, cocaine plus ethanol depressed cardiac contractility (dP/dt) by up to 68-78% — markedly more than cocaine alone — because ethanol drives hepatic transesterification of cocaine to the long-lived cardiotoxic metabolite cocaethylene."},
+    temporal:{onset:"minutes"},
+    supports:["cocaethylene_formation","cocaine_ethanol_cardiotoxicity"],
+    contradicts:[],
+    limitations:["Animal model; human data are observational"],
+    verified:true
+  },
+
+  "ev_ssri_cyp2d6_liston2002": {
+    id:"ev_ssri_cyp2d6_liston2002",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Differential time course of cytochrome P450 2D6 enzyme inhibition by fluoxetine, sertraline, and paroxetine in healthy volunteers",
+    year:2002, source:"Liston et al.", journal:"J Clin Psychopharmacol",
+    pmid:"11910262", doi:"10.1097/00004714-200204000-00010",
+    studyDesign:"open_label_parallel", n:45,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{note:"Measured with the dextromethorphan metabolic ratio, fluoxetine produced potent and persistent CYP2D6 inhibition (inhibition half-life ~7 days), which slows clearance of CYP2D6 substrates such as dextromethorphan."},
+    temporal:{washout:"up_to_6_weeks", mechanism:"cyp2d6_inhibition"},
+    supports:["fluoxetine_inhibits_cyp2d6","dextromethorphan_cyp2d6_substrate"],
+    contradicts:[],
+    limitations:["Probe-drug design; serotonergic risk inferred"],
+    verified:true
+  },
+
+  "ev_apap_alcohol_riordan2002": {
+    id:"ev_apap_alcohol_riordan2002",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Alcohol exposure and paracetamol-induced hepatotoxicity",
+    year:2002, source:"Riordan & Williams", journal:"Addict Biol",
+    pmid:"12006215", doi:"10.1080/13556210220120424",
+    studyDesign:"narrative_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Chronic alcohol use induces hepatic CYP2E1 2-3x (more toxic NAPQI) and depletes glutathione, providing a metabolic basis for acetaminophen hepatotoxicity at or near therapeutic doses in chronic drinkers."},
+    temporal:{},
+    supports:["alcohol_induces_cyp2e1","acetaminophen_napqi_hepatotoxicity"],
+    contradicts:[],
+    limitations:["Review; clinical risk depends on timing and nutrition"],
+    verified:true
+  },
+
+  "ev_cbd_clobazam_geffrey2015": {
+    id:"ev_cbd_clobazam_geffrey2015",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Drug-drug interaction between clobazam and cannabidiol in children with refractory epilepsy",
+    year:2015, source:"Geffrey et al.", journal:"Epilepsia",
+    pmid:"26114620", doi:"10.1111/epi.13060",
+    studyDesign:"prospective_cohort", n:13,
+    phenotypes:[],
+    quantifiedEffects:{note:"Cannabidiol raised the active metabolite norclobazam by ~500% and clobazam by ~60% (CYP2C19 inhibition); 10/13 needed clobazam dose reduction for sedation."},
+    temporal:{onset:"weeks", mechanism:"cyp2c19_inhibition"},
+    supports:["cbd_inhibits_cyp2c19","clobazam_cyp_substrate"],
+    contradicts:[],
+    limitations:["Pediatric cohort; n=13"],
+    verified:true
+  },
+
+  "ev_qt_torsades_tisdale2016": {
+    id:"ev_qt_torsades_tisdale2016",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Drug-induced QT interval prolongation and torsades de pointes: Role of the pharmacist in risk assessment, prevention and management",
+    year:2016, source:"Tisdale", journal:"Can Pharm J",
+    pmid:"27212965", doi:"10.1177/1715163516641136",
+    studyDesign:"clinical_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Amiodarone is among the highest-risk QT-prolonging drugs; combining it with other QT-prolonging agents such as chloroquine produces additive risk of QT prolongation and torsades de pointes."},
+    temporal:{},
+    supports:["amiodarone_qt_prolongation","additive_qt_risk"],
+    contradicts:[],
+    limitations:["Review; combination risk is additive/qualitative"],
+    verified:true
+  },
+
   // ═══ PAROXETINE / CYP2D6 ═══
   "ev_paroxetine_cyp2d6_fda": {
     id:"ev_paroxetine_cyp2d6_fda",
