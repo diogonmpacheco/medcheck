@@ -34,13 +34,14 @@ function renderGenotypePanel() {
   }
   const showEnzymes = Object.keys(GENOTYPE_EFFECTS).filter(e => relevantEnzymes.has(e));
   const showRiskAlleles = Object.keys(typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {}).filter(e => relevantRiskAlleles.has(e));
+  const importHtml = renderPharmGxImportCard();
   if (showEnzymes.length === 0 && showRiskAlleles.length === 0) {
-    el.innerHTML = '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
+    el.innerHTML = importHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
     return;
   }
 
   // Selector rows
-  let html = '<div style="margin-bottom:12px">';
+  let html = importHtml + '<div style="margin-bottom:12px">';
   html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set your genotype result to see how it changes predicted exposure or safety risk:</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
@@ -257,18 +258,6 @@ function renderGenotypeRiskEffectCard(card) {
 }
 
 function getSelectedGenotypePhenotype(enzyme) {
-  const legacy = typeof userGenetics !== 'undefined' ? userGenetics[enzyme] : null;
-  if (legacy) {
-    const legacyMap = {
-      ultrarapid: GENOTYPE_PHENOTYPE.UM,
-      rapid: GENOTYPE_PHENOTYPE.UM,
-      normal: GENOTYPE_PHENOTYPE.NM,
-      intermediate: GENOTYPE_PHENOTYPE.IM,
-      poor: GENOTYPE_PHENOTYPE.PM,
-      null: GENOTYPE_PHENOTYPE.PM,
-    };
-    return legacyMap[legacy] || GENOTYPE_PHENOTYPE.NM;
-  }
   return activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM;
 }
 
@@ -279,9 +268,8 @@ function getSelectedEnzymeExposureMult(enzyme, geno, inhibitorContext = []) {
 }
 
 function getSelectedGenotypeExposureMult(enzyme, geno) {
-  const legacy = typeof userGenetics !== 'undefined' ? userGenetics[enzyme] : null;
-  const legacyOpt = legacy ? PHENOTYPE_OPTIONS.find(o => o.id === legacy) : null;
-  return legacyOpt ? legacyOpt.mult : (GENOTYPE_EFFECTS[enzyme]?.[geno]?.auc_fold || 1);
+  if (typeof userGenetics !== 'undefined' && userGenetics[enzyme] === "null") return 20;
+  return GENOTYPE_EFFECTS[enzyme]?.[geno]?.auc_fold || 1;
 }
 
 function getSelectedInhibitorExposureMult(inhibitorContext = []) {
@@ -415,8 +403,130 @@ function renderGenotypeMetaboliteEffectCard(card) {
 }
 
 function setGenotype(enzyme, phenotype) {
-  activeGenotype[enzyme] = phenotype;
+  if (GENOTYPE_EFFECTS[enzyme]) setGenotypeState(enzyme, phenotype);
+  else activeGenotype[enzyme] = phenotype;
   renderAll();
+}
+
+function renderPharmGxImportCard() {
+  const id = "pharmgxImportText";
+  return `<div class="geno-import-card">
+    <div class="geno-import-title">DNA / PharmGx report import <span>local preview</span></div>
+    <div class="geno-import-note">Paste gene phenotype rows from a ClawBio-style PharmGx report, or simple JSON/CSV with gene and phenotype/status fields. Nothing is uploaded.</div>
+    <textarea id="${id}" class="geno-import-text" placeholder="CYP2C19 | *1/*2 | Intermediate Metabolizer&#10;CYP2D6 | *4/*4 | Poor Metabolizer&#10;HLA-B*57:01 | detected"></textarea>
+    <div class="geno-import-actions">
+      <button onclick="applyPharmGxImport()">Apply genotypes</button>
+      <span id="pharmgxImportStatus"></span>
+    </div>
+  </div>`;
+}
+
+function applyPharmGxImport() {
+  const input = document.getElementById("pharmgxImportText");
+  const parsed = parsePharmGxImport(input?.value || "");
+  const applied = [];
+  for (const row of parsed) {
+    if (applyPharmGxRow(row)) applied.push(row.gene);
+  }
+  if (applied.length) renderAll();
+  const status = document.getElementById("pharmgxImportStatus");
+  if (status) status.textContent = applied.length
+    ? `Applied ${applied.length}: ${applied.join(", ")}`
+    : "No supported MedCheck genes found";
+}
+
+function applyPharmGxRow(row) {
+  if (!row?.gene) return false;
+  if (GENOTYPE_EFFECTS[row.gene]) return setGenotypeState(row.gene, row.phenotype);
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[row.gene] && row.status) {
+    activeGenotype[row.gene] = row.status;
+    return true;
+  }
+  return false;
+}
+
+function parsePharmGxImport(text) {
+  const raw = String(text || "").trim();
+  if (!raw) return [];
+  const jsonRows = parsePharmGxJson(raw);
+  if (jsonRows.length) return jsonRows;
+  return raw.split(/\r?\n/)
+    .map(parsePharmGxLine)
+    .filter(Boolean);
+}
+
+function parsePharmGxJson(raw) {
+  try {
+    const data = JSON.parse(raw);
+    const rows = Array.isArray(data) ? data :
+      (data.gene_profiles || data.geneProfiles || data.genes || data.results || []);
+    if (!Array.isArray(rows)) return [];
+    return rows.map(row => parsePharmGxObjectRow(row)).filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+function parsePharmGxObjectRow(row) {
+  const gene = [
+    row.gene, row.Gene, row.symbol, row.variant, row.allele, row.marker, row.name
+  ].map(normalizePharmGxGene).find(Boolean);
+  if (!gene) return null;
+  const value = row.phenotype || row.Phenotype || row.metabolizerStatus || row.status || row.result || row.value;
+  const phenotype = phenotypeTextToGenotype(value);
+  const status = riskTextToStatus(value);
+  if (GENOTYPE_EFFECTS[gene] && phenotype) return { gene, phenotype };
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status };
+  return null;
+}
+
+function parsePharmGxLine(line) {
+  const clean = line.trim();
+  if (!clean || clean.startsWith("|---") || /^gene\s*[,\t|]/i.test(clean)) return null;
+  const parts = clean
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split(/\s*\|\s*|,|\t/)
+    .map(p => p.trim())
+    .filter(Boolean);
+  const gene = normalizePharmGxGene(parts.find(p => normalizePharmGxGene(p)));
+  if (!gene) return null;
+  const phenotypeText = parts.slice().reverse().find(p => phenotypeTextToGenotype(p));
+  const phenotype = phenotypeTextToGenotype(phenotypeText || clean);
+  const statusText = parts.slice().reverse().find(p => riskTextToStatus(p));
+  const status = riskTextToStatus(statusText || clean);
+  if (GENOTYPE_EFFECTS[gene] && phenotype) return { gene, phenotype };
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status };
+  return null;
+}
+
+function normalizePharmGxGene(value) {
+  const gene = String(value || "").trim().toUpperCase().replace(/\s+/g, "");
+  if (GENOTYPE_EFFECTS[gene]) return gene;
+  if (typeof GENOTYPE_RISK_EFFECTS === 'undefined') return null;
+  const riskKey = Object.keys(GENOTYPE_RISK_EFFECTS).find(key =>
+    key.toUpperCase().replace(/\s+/g, "") === gene ||
+    (GENOTYPE_RISK_EFFECTS[key].gene || "").toUpperCase().replace(/\s+/g, "") === gene
+  );
+  return riskKey || null;
+}
+
+function phenotypeTextToGenotype(value) {
+  const text = String(value || "").toLowerCase();
+  if (!text) return null;
+  if (/ultra|rapid metabolizer|increased function|increased_function/.test(text)) return GENOTYPE_PHENOTYPE.UM;
+  if (/intermediate|decreased function|decreased_function|decreased expression|decreased_expression|decreased\/intermediate/.test(text)) return GENOTYPE_PHENOTYPE.IM;
+  if (/poor|non[- ]?express|no function|no_function|high warfarin sensitivity|risk allele present/.test(text)) return GENOTYPE_PHENOTYPE.PM;
+  if (/normal|reference|standard|expressor|normal function|normal metabolizer/.test(text)) return GENOTYPE_PHENOTYPE.NM;
+  return null;
+}
+
+function riskTextToStatus(value) {
+  const text = String(value || "").toLowerCase();
+  if (!text) return null;
+  if (/absent|negative|not detected|not present|normal|no variant|wild[- ]?type/.test(text)) return GENOTYPE_RISK_STATUS.ABSENT;
+  if (/present|positive|detected|carrier|risk allele|deficient|variant found|pathogenic/.test(text)) return GENOTYPE_RISK_STATUS.PRESENT;
+  return null;
 }
 
 // ── renderPhenotypeAccumulation (#6) ────────────────────────────────

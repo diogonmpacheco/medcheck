@@ -205,28 +205,42 @@ const PHARMGKB_EVIDENCE = {
 
 let userGenetics = {};
 
+function genotypeToLegacyPhenotype(phenotype) {
+  if (!phenotype || phenotype === GENOTYPE_PHENOTYPE.NM) return "normal";
+  if (phenotype === GENOTYPE_PHENOTYPE.PM) return "poor";
+  if (phenotype === GENOTYPE_PHENOTYPE.IM) return "intermediate";
+  if (phenotype === GENOTYPE_PHENOTYPE.UM) return "ultrarapid";
+  return phenotype;
+}
+
+function setGenotypeState(enzyme, phenotype) {
+  if (!enzyme || !GENOTYPE_EFFECTS[enzyme]) return false;
+  const normalized = legacyPhenotypeToGenotype(phenotype);
+  const valid = GENOTYPE_EFFECTS[enzyme][normalized] ? normalized : GENOTYPE_PHENOTYPE.NM;
+  activeGenotype[enzyme] = valid;
+  const legacy = phenotype === "null" ? "null" : genotypeToLegacyPhenotype(valid);
+  if (legacy === "normal") delete userGenetics[enzyme];
+  else userGenetics[enzyme] = legacy;
+  return true;
+}
+
 function getPhenotypeMult(enzyme) {
-  const pheno = userGenetics[enzyme];
+  const active = activeGenotype && activeGenotype[enzyme];
+  const legacy = userGenetics[enzyme];
+  const pheno = legacy === "null" ? legacy : (active ? genotypeToLegacyPhenotype(active) : legacy);
   if (!pheno) return 1.0;
   const opt = PHENOTYPE_OPTIONS.find(o => o.id === pheno);
   return opt ? opt.mult : 1.0;
 }
 
 function setGenetics(enzyme, phenotype) {
-  if (phenotype === "normal" || !phenotype) delete userGenetics[enzyme];
-  else userGenetics[enzyme] = phenotype;
-  if (typeof activeGenotype !== 'undefined' && GENOTYPE_EFFECTS[enzyme]) {
-    activeGenotype[enzyme] = legacyPhenotypeToGenotype(phenotype);
-  }
+  setGenotypeState(enzyme, phenotype || "normal");
   renderGenetics();
   renderAll();
 }
 
 function removeGenetics(enzyme) {
-  delete userGenetics[enzyme];
-  if (typeof activeGenotype !== 'undefined' && GENOTYPE_EFFECTS[enzyme]) {
-    activeGenotype[enzyme] = GENOTYPE_PHENOTYPE.NM;
-  }
+  setGenotypeState(enzyme, GENOTYPE_PHENOTYPE.NM);
   renderGenetics();
   renderAll();
 }

@@ -54,7 +54,7 @@ function loadUrlDemoState() {
     });
   }
   for (const [gene, phenotype] of Object.entries(genotypeSpec)) {
-    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) activeGenotype[gene] = phenotype;
+    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype);
   }
 
   const tab = params.tab || demo?.tab;

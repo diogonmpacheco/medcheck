@@ -52,6 +52,7 @@ The project is intended for education, research, and review workflows. It is not
 - Drug-drug interactions and known curated DDI pairs
 - CYP and transporter substrate/inhibitor/inducer pathways
 - Pharmacogenomics across CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA risk alleles, G6PD, DPYD, TPMT, UGT1A1, NUDT15, and more
+- Local DNA / PharmGx report paste-in for supported gene phenotype and risk-allele rows, designed as a first bridge toward ClawBio-style pharmacogenetics workflows
 - Parent/metabolite divergence for prodrugs and active or toxic metabolites
 - PK curves with absolute parameters where available, plus relative-exposure fallback curves when only half-life data exists
 - Receptor occupancy and syndrome-style burden detection
@@ -68,7 +69,7 @@ The project is intended for education, research, and review workflows. It is not
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1075 KB** generated bundle (22323 lines)
+- **1081 KB** generated bundle (22457 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -78,7 +79,7 @@ The project is intended for education, research, and review workflows. It is not
 1. Open the [live app](https://diogonmpacheco.github.io/medcheck/).
 2. Search for medications, supplements, foods, or substances.
 3. Review safety, pharmacogenomics, PK, evidence, graph, burden, and washout panels.
-4. Set genotype phenotypes where relevant.
+4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
 For implementation details, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md).

@@ -671,8 +671,6 @@ function legacyPhenotypeToGenotype(phenotype) {
 }
 
 function selectedPhenotypeForEnzyme(enzyme) {
-  const legacy = userGenetics && userGenetics[enzyme];
-  if (legacy && legacy !== "normal") return legacyPhenotypeToGenotype(legacy);
   return activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM;
 }
 

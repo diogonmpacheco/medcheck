@@ -240,7 +240,7 @@ function getScenarioGenotypeRows(name, enzyme) {
   ];
   return [...new Map(phenos.map(p => [p[0], p])).values()].map(([pheno, label]) => {
     const fold = withTemporaryState(() => {
-      activeGenotype[enzyme] = pheno;
+      setGenotypeState(enzyme, pheno);
       return calcFold(name).fold;
     });
     return scenarioRow(`${enzyme} ${label}`, fold);
@@ -255,12 +255,15 @@ function scenarioRow(label, fold) {
 function withTemporaryState(fn) {
   const doseSnapshot = { ...drugDoses };
   const genoSnapshot = { ...activeGenotype };
+  const legacyGenoSnapshot = { ...userGenetics };
   try {
     return fn();
   } finally {
     Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     Object.assign(drugDoses, doseSnapshot);
     activeGenotype = genoSnapshot;
+    Object.keys(userGenetics).forEach(k => delete userGenetics[k]);
+    Object.assign(userGenetics, legacyGenoSnapshot);
   }
 }
 

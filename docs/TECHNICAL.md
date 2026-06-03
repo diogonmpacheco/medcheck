@@ -135,6 +135,22 @@ Custom links should use `substances=`. The older `drugs=` and `medications=` nam
 
 Supported tabs are `safety`, `pgx`, `pk`, and `evidence`.
 
+## DNA / PharmGx Report Import
+
+The pharmacogenomics panel includes a local paste-in importer for report-style gene rows. It is meant as the first integration step toward external DNA/report projects such as ClawBio, not as a raw DNA variant caller.
+
+Accepted inputs:
+
+- ClawBio-style Markdown/table rows, for example `CYP2C19 | *1/*2 | Intermediate Metabolizer`
+- Simple CSV or tab-separated rows containing a supported gene/risk marker and a phenotype/status
+- JSON arrays, or JSON objects with `gene_profiles`, `geneProfiles`, `genes`, or `results`
+
+The importer maps supported metabolizer phenotypes into `GENOTYPE_EFFECTS` (`poor_metabolizer`, `intermediate_metabolizer`, `normal_metabolizer`, `ultrarapid_metabolizer`) and supported risk markers into `GENOTYPE_RISK_EFFECTS` (`risk_allele_present` / `risk_allele_absent`). Current examples include CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA-B*15:02, HLA-B*57:01, HLA-B*58:01, G6PD deficiency, and related modeled markers.
+
+All parsing runs in the browser. Nothing is uploaded, stored, or sent to an API.
+
+Future raw-DNA integration should stay separate from MedCheck's clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
+
 ## Build And Validation
 
 ```bash
