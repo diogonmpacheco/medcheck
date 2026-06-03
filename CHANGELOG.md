@@ -1,5 +1,19 @@
 # MedCheck Changelog
 
+## v3.5.5 — 2026-06-03
+
+### Launch Preparation: Trust, Provenance, And Local PharmGx Import
+
+- Added local DNA / PharmGx report paste-in for supported phenotype and risk-allele rows.
+- Synchronized legacy genotype state with the newer `activeGenotype` model so URL demos, manual selectors, PK/fold models, and imports agree.
+- Quarantined unreviewed enrichment drafts and exposed verified vs review-pending evidence counts in generated stats.
+- Added a severe-pair provenance evidence batch and linked severe DDI rows to structured evidence refs.
+- Updated the local evidence ledger so strict validation covers the newly added PMIDs.
+- Rebuilt README stats, release metadata, severity reports, and the generated single-file `index.html`.
+- Release gate passes build, metadata, database audit, regression, smoke, strict validation, and whitespace checks.
+
+---
+
 ## v3.4.0 — 2026-05-26
 
 ### Phase F: Weighted Propagating Confidence & Convergence Detection

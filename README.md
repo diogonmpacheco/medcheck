@@ -12,7 +12,7 @@ A private, client-side pharmacology graph for exploring drug interactions, pharm
 
 MedCheck runs entirely in the browser. There are no accounts, no server, no API calls, and no medication data collection.
 
-Current data release: **Drug DB v1.2.3**, last reviewed **2026-05-29**.
+Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-03**.
 
 ---
 
@@ -65,11 +65,11 @@ The project is intended for education, research, and review workflows. It is not
 
 <!-- MEDCHECK_STATS_START -->
 - **316 drugs** in DRUG_DB
-- **258 evidence entries** in STUDY_DB (197 with PMIDs) — **140 verified**, **118 quarantined enrichment drafts** awaiting human review
+- **258 evidence entries** in STUDY_DB (202 with PMIDs) — **140 verified**, **118 quarantined enrichment drafts** awaiting human review
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1116 KB** generated bundle (23065 lines)
+- **1116 KB** generated bundle (23066 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -82,7 +82,7 @@ The project is intended for education, research, and review workflows. It is not
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
-For implementation details, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md).
+For implementation details, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For the current launch-readiness pass, see [Launch Audit](docs/LAUNCH_AUDIT.md).
 
 ---
 

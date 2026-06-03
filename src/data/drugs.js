@@ -4166,7 +4166,7 @@ const MEDCHECK_VERSION = {
   drugDb: "1.2.3",
   engineRewrite: true,
   schema: "graph-v1",
-  released: "2026-05-29",
+  released: "2026-06-03",
   features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity",
     "confidence-weighted-risk", "interaction-graph", "metabolite-actors", "chain-traversal",
     "dynamic-route-fractions", "transporter-parity", "structured-evidence",
@@ -4181,6 +4181,7 @@ const MEDCHECK_VERSION = {
     "v3.3: Repeated-dosing and steady-state PK simulator",
     "v3.4: Weighted propagating confidence and convergence detection",
     "v3.5: Genotype reverse traversal, actor-level exposure deltas, and validation harness",
+    "v3.5.5: Local PharmGx report import, enrichment quarantine, and severe-pair provenance batch",
     "Evidence provenance guard: severity claims require supporting evidence context"
   ]
 };
