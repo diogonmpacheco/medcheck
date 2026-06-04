@@ -123,6 +123,12 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2B6 activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"Higher CYP2B6 activity; lower parent exposure for sensitive substrates." },
   },
+  CYP3A4: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Low CYP3A4 activity context, including rare/no-function or strong reduced-expression patterns. CYP3A4*22 and non-genetic factors can raise exposure to sensitive substrates, but inhibitor/inducer stack and gut CYP3A4 often dominate." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Reduced CYP3A4 activity context; CYP3A4*22 carriers may have higher exposure for selected CYP3A4 substrates. Use as a cautious context flag, not a standalone dose rule." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP3A4 activity. Clinical CYP3A4 variability is strongly shaped by inhibitors, inducers, liver function, inflammation, and intestinal first-pass effects." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:null, note:"Higher CYP3A4 activity context; substrate exposure may fall, especially with environmental or medication induction. Germline ultra-rapid CYP3A4 prediction is less established than CYP2D6/CYP2C19." },
+  },
   CYP3A5: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"CYP3A5 non-expresser status. Tacrolimus concentration/dose is higher than in expressers; standard starting dose is usually closer than expresser dosing." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.7, freq_pct:null, note:"CYP3A5 expresser/intermediate status. Tacrolimus dose requirements are often higher; use therapeutic drug monitoring." },
@@ -141,6 +147,12 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2A6 activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:null, note:"Higher CYP2A6 activity; faster nicotine clearance." },
   },
+  CYP1A2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Lower CYP1A2 activity context; exposure to sensitive substrates such as caffeine, clozapine, theophylline, and tizanidine may rise. Smoking cessation or CYP1A2 inhibitors can matter more than genotype alone." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate CYP1A2 activity context; substrate exposure may rise modestly, especially without environmental induction." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP1A2 activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.6, freq_pct:null, note:"Higher or inducible CYP1A2 activity context; sensitive substrate exposure may fall. Smoking, charbroiled foods, and other induction context should be reviewed separately." },
+  },
   NAT2: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Slow acetylator phenotype; isoniazid and hydralazine exposure/toxicity risk can rise while some efficacy/toxicity tradeoffs differ by indication." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate acetylator phenotype." },
@@ -157,6 +169,11 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced BCRP/ABCG2 efflux. Rosuvastatin and sulfasalazine exposure can rise; gout/urate context may also matter." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate BCRP/ABCG2 function." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal BCRP/ABCG2 function." },
+  },
+  ABCB1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"Reduced P-gp/ABCB1 efflux context. Directionally, susceptible substrates such as digoxin, dabigatran, loperamide, and calcineurin inhibitors may have higher exposure or altered tissue penetration; clinical action remains drug- and study-specific." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate P-gp/ABCB1 function context; substrate exposure or CNS penetration may rise modestly for sensitive P-gp substrates." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference P-gp/ABCB1 function." },
   },
   VKORC1: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"Warfarin-sensitive VKORC1 context; lower maintenance dose is usually needed for the same INR target." },
@@ -184,6 +201,17 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.7, freq_pct:null, note:"Reduced UGT1A1 glucuronidation; SN-38 or bilirubin exposure can rise depending on substrate." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate UGT1A1 activity." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal UGT1A1 activity." },
+  },
+  UGT2B7: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"Reduced UGT2B7 glucuronidation context. Morphine, hydromorphone, oxymorphone, zidovudine, and some NSAID/glucuronide pathways may shift, but clinical direction depends on active vs inactive glucuronides." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.3, freq_pct:null, note:"Intermediate UGT2B7 activity context; glucuronide formation may be modestly reduced for sensitive substrates." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference UGT2B7 glucuronidation activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher UGT2B7 glucuronidation context; parent exposure may fall while glucuronide metabolite exposure may rise for selected substrates." },
+  },
+  GSTM1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"GSTM1 null context. GSTM1 enzyme activity is absent; detoxification capacity for electrophilic/oxidative drug intermediates may be lower. Evidence is context-specific and often strongest for oncology or anti-tuberculosis toxicity signals." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Possible reduced GSTM1 detoxification context; use cautiously because many reports classify GSTM1 as present vs null rather than graded activity." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"GSTM1 present/reference detoxification context." },
   },
   NUDT15: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"NUDT15 poor function; thiopurine cytotoxic nucleotide intolerance can be profound even when TPMT is normal." },
@@ -500,6 +528,56 @@ const GENOTYPE_RISK_EFFECTS = {
       },
     },
   },
+  "MTHFR C677T": {
+    gene:"MTHFR",
+    variant:"C677T / rs1801133",
+    label:"MTHFR C677T",
+    drugEffects:[
+      {
+        parent:"Methotrexate",
+        phenotype:"folate-pathway toxicity context",
+        note:"MTHFR C677T, especially TT/homozygous variant context, has been associated with higher methotrexate toxicity in some meta-analyses, but evidence is inconsistent by ancestry, indication, dose, and folate rescue. Do not use as a standalone methotrexate contraindication.",
+        clinicalAction:"flag folate-pathway risk context; review dose, renal function, interacting antifolates, CBC/LFT monitoring, and folic/folinic rescue plan",
+        evidenceRefs:["ev_mthfr_c677t_methotrexate_toxicity_meta"],
+      },
+      {
+        parent:"Trimethoprim-SMX",
+        phenotype:"additive antifolate context",
+        note:"MTHFR C677T does not by itself define trimethoprim-sulfamethoxazole toxicity, but it can be useful context when stacking antifolate drugs with methotrexate.",
+        clinicalAction:"avoid or closely monitor high-risk antifolate stacks",
+        evidenceRefs:["ev_mthfr_c677t_methotrexate_toxicity_meta"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"C677T not detected / not homozygous", severity:"baseline", note:"No MTHFR C677T risk marker selected. This does not remove ordinary methotrexate or antifolate toxicity risk." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"C677T risk marker detected", severity:"moderate", note:"MTHFR C677T risk context selected. Treat as a review prompt for antifolate exposure and monitoring, not as a standalone prescribing rule." },
+    },
+  },
+  "GABRG2 variant": {
+    gene:"GABRG2",
+    variant:"GABRG2 functional/pathogenic or rs211037 context",
+    label:"GABRG2 variant",
+    drugEffects:[
+      {
+        parent:"Diazepam",
+        phenotype:"GABA-A receptor response context",
+        note:"GABRG2 encodes the gamma-2 subunit of the GABA-A receptor. Variants are linked to epilepsy phenotypes and some studies/meta-analyses explore drug-resistant epilepsy, but evidence is not strong enough for an automatic benzodiazepine contraindication.",
+        clinicalAction:"specialist review if epilepsy, seizure clusters, or unexpected benzodiazepine/anti-seizure response is present",
+        evidenceRefs:["ev_gabrg2_epilepsy_drug_resistance_context"],
+      },
+      {
+        parent:"Phenobarbital",
+        phenotype:"GABA-A receptor response context",
+        note:"GABA-A receptor genetics may affect seizure biology and anti-seizure response context. MedCheck treats this as a review flag rather than a quantified PK effect.",
+        clinicalAction:"specialist review; avoid changing anti-seizure therapy from this marker alone",
+        evidenceRefs:["ev_gabrg2_epilepsy_drug_resistance_context"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"No GABRG2 risk marker selected. This does not exclude epilepsy risk or ordinary CNS depressant risk." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"variant detected", severity:"moderate", note:"GABRG2 variant context selected. Use as a neurologic/pharmacodynamic review flag, not as an automatic contraindication." },
+    },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
@@ -509,17 +587,22 @@ let activeGenotype = {
   CYP2C19: GENOTYPE_PHENOTYPE.NM,
   CYP2C9:  GENOTYPE_PHENOTYPE.NM,
   CYP2B6:  GENOTYPE_PHENOTYPE.NM,
+  CYP3A4:  GENOTYPE_PHENOTYPE.NM,
   CYP3A5:  GENOTYPE_PHENOTYPE.NM,
   CYP2C8:  GENOTYPE_PHENOTYPE.NM,
   CYP2A6:  GENOTYPE_PHENOTYPE.NM,
+  CYP1A2:  GENOTYPE_PHENOTYPE.NM,
   NAT2:    GENOTYPE_PHENOTYPE.NM,
   SLCO1B1: GENOTYPE_PHENOTYPE.NM,
+  ABCB1:   GENOTYPE_PHENOTYPE.NM,
   ABCG2:   GENOTYPE_PHENOTYPE.NM,
   VKORC1:  GENOTYPE_PHENOTYPE.NM,
   CYP4F2:  GENOTYPE_PHENOTYPE.NM,
   DPYD:    GENOTYPE_PHENOTYPE.NM,
   TPMT:    GENOTYPE_PHENOTYPE.NM,
   UGT1A1:  GENOTYPE_PHENOTYPE.NM,
+  UGT2B7:  GENOTYPE_PHENOTYPE.NM,
+  GSTM1:   GENOTYPE_PHENOTYPE.NM,
   NUDT15:  GENOTYPE_PHENOTYPE.NM,
   "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
@@ -530,6 +613,8 @@ let activeGenotype = {
   "RYR1/CACNA1S MH variant": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*13:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*32:01": GENOTYPE_RISK_STATUS.ABSENT,
+  "MTHFR C677T": GENOTYPE_RISK_STATUS.ABSENT,
+  "GABRG2 variant": GENOTYPE_RISK_STATUS.ABSENT,
 };
 
 // ── STUDY_DB ──

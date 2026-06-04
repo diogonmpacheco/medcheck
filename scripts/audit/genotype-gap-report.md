@@ -1,0 +1,57 @@
+# Genotype Gap Audit
+
+Generated: 2026-06-04T08:07:15.037Z
+
+## Executive Summary
+
+- Genotype panel genes: 25
+- Referenced MedCheck genes: 46
+- Missing panel genes: 21
+- Critical gaps: 0
+- High gaps: 0
+- External catalog genes read: 0
+- External catalog note: No external PGx catalog directory supplied.
+
+## Critical Gaps
+
+None.
+
+## High Gaps
+
+None.
+
+## Moderate / Low Gaps
+
+- MAO-A: MODERATE (30) — DRUG_DB, ENZYME_ACTORS, GENE_ENZYMES, KNOWN_DDI, METABOLITE_ACTORS, STUDY_DB
+- SLC22A6: MODERATE (29) — DRUG_DB, KNOWN_DDI, TRANSPORTER_ACTORS, TRANSPORTER_DDI
+- SLC22A8: MODERATE (29) — DRUG_DB, KNOWN_DDI, TRANSPORTER_ACTORS, TRANSPORTER_DDI
+- CYP2E1: MODERATE (27) — DRUG_DB, ENZYME_ACTORS, GENE_ENZYMES, KNOWN_DDI, METABOLITE_ACTORS, STUDY_DB
+- MAO-B: MODERATE (27) — DRUG_DB, ENZYME_ACTORS, GENE_ENZYMES, KNOWN_DDI, STUDY_DB
+- SLC22A2: MODERATE (22) — DRUG_DB, KNOWN_DDI, METABOLITE_ACTORS, STUDY_DB, TRANSPORTER_ACTORS, TRANSPORTER_DDI
+- SLC47A1: LOW (19) — DRUG_DB, KNOWN_DDI, TRANSPORTER_ACTORS, TRANSPORTER_DDI
+- COMT: LOW (8) — DRUG_DB, GENE_ENZYMES, METABOLITE_ACTORS, STUDY_DB
+- UGT1A9: LOW (8) — DRUG_DB, METABOLITE_ACTORS
+- ADRB1: LOW (5) — STUDY_DB
+- ADRB2: LOW (5) — STUDY_DB
+- CYP24A1: LOW (5) — ENZYME_ACTORS, METABOLITE_ACTORS
+- CYP27A1: LOW (5) — ENZYME_ACTORS, METABOLITE_ACTORS
+- CYP27B1: LOW (5) — ENZYME_ACTORS, METABOLITE_ACTORS
+- CYP2C18: LOW (5) — STUDY_DB
+- CYP2R1: LOW (5) — ENZYME_ACTORS, METABOLITE_ACTORS
+- OPRM1: LOW (5) — STUDY_DB
+- UGT1A2: LOW (5) — METABOLITE_ACTORS
+- UGT1A3: LOW (5) — METABOLITE_ACTORS
+- UGT1A4: LOW (5) — KNOWN_DDI, METABOLITE_ACTORS, STUDY_DB
+- UGT2B15: LOW (5) — GENE_ENZYMES, METABOLITE_ACTORS
+
+## External-Catalog-Only Genes
+
+Genes in the optional external PGx catalog but absent from MedCheck, sorted by impact score.
+
+None.
+
+## Covered Genes
+
+ABCB1, ABCG2, CYP1A2, CYP2A6, CYP2B6, CYP2C19, CYP2C8, CYP2C9, CYP2D6, CYP3A4, CYP3A5, CYP4F2, DPYD, GABRG2, GSTM1, HLA-A, HLA-B, MTHFR, NAT2, NUDT15, SLCO1B1, TPMT, UGT1A1, UGT2B7, VKORC1
+
+No third-party catalog data is bundled in MedCheck by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.

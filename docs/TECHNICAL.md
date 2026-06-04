@@ -151,6 +151,8 @@ All parsing runs in the browser. Nothing is uploaded, stored, or sent to an API.
 
 Future raw-DNA integration should stay separate from MedCheck's clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
 
+Backlog: accept direct gene-to-status JSON objects such as `{ "CYP2D6": "PM", "CYP3A5": "non_expresser" }`, normalize short labels and underscore-style function labels, and report unsupported rows instead of silently skipping them.
+
 ## Build And Validation
 
 ```bash
@@ -165,6 +167,17 @@ npm run test
 ```
 
 The release gate rebuilds the bundle, verifies README/version metadata, runs database audit, regression, smoke, strict validation, and whitespace checks.
+
+## Genotype Gap Audit
+
+```bash
+npm run audit:genotype-gaps
+node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalog
+```
+
+The genotype gap audit reads MedCheck source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, then scores missing panels by estimated clinical consequence of the null. If a local external PGx catalog is supplied, it also classifies catalog genes as covered, modeled without a panel, or absent from MedCheck.
+
+Generated reports are written to `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
 
 ## Release Checklist
 
