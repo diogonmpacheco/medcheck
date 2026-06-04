@@ -196,7 +196,7 @@ function getBrowseCategory(drug) {
   ) return "Recreational & Social";
 
   if (
-    textHasAny(cls, ["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa"]) ||
+    textHasAny(cls, ["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa", "anxiolytic"]) ||
     textHasAny(cls, ["antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "triptan", "dopamine", "dopa", "comt inhibitor"])
   ) return "Mental Health & Neurology";
 

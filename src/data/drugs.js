@@ -3368,165 +3368,6 @@ const DRUG_DB = [
 },
   // ── Salvaged Gemini enrichment: cardiology, oncology, infectious disease, neurology ──
 {
-    id: "dronedarone",
-    name: "Dronedarone",
-    cls: "Class III Antiarrhythmic",
-    brandNames: [
-      "Multaq"
-    ],
-    hl: 30,
-    timing: "AM-PM",
-    props: {
-      qtProlongationRisk: 2,
-      hepatotoxicityRisk: 2
-    },
-    routes: [
-      {
-        enzyme: "CYP3A4",
-        fraction: 0.8,
-        role: "primary_oxidative_clearance",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      }
-    ],
-    inh: [
-      {
-        target: "CYP3A4",
-        strength: "moderate",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      },
-      {
-        target: "CYP2D6",
-        strength: "moderate",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      },
-      {
-        target: "P-gp",
-        strength: "strong",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      }
-    ],
-    ind: [],
-    note: "Non-iodinated amiodarone analogue. Acts as a potent blocker of P-gp and moderate CYP3A4/2D6 environments. Carries key safety warning flags regarding advanced cardiac failure.",
-    alts: []
-  },
-{
-    id: "propafenone",
-    name: "Propafenone",
-    cls: "Class IC Antiarrhythmic",
-    brandNames: [
-      "Rythmol"
-    ],
-    hl: 6,
-    timing: "AM-PM",
-    props: {
-      qtProlongationRisk: 1
-    },
-    routes: [
-      {
-        enzyme: "CYP2D6",
-        fraction: 0.7,
-        role: "primary_hydroxylation",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "literature"
-          ]
-        }
-      },
-      {
-        enzyme: "CYP3A4",
-        fraction: 0.2,
-        role: "n_depropylation",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      }
-    ],
-    inh: [
-      {
-        target: "CYP2D6",
-        strength: "moderate",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "literature"
-          ]
-        }
-      },
-      {
-        target: "P-gp",
-        strength: "moderate",
-        evidence: {
-          confidence: "moderate",
-          sources: [
-            "literature"
-          ]
-        }
-      }
-    ],
-    ind: [],
-    note: "Sodium channel blocker with minor beta-blocking properties. CYP2D6 poor metabolizers experience marked parent drug accumulation, elevating localized proarrhythmic hazards.",
-    alts: [
-      {
-        name: "Flecainide",
-        reason: "Alternative Class IC agent with highly balanced structural excretion mechanisms."
-      }
-    ]
-  },
-{
-    id: "flecainide",
-    name: "Flecainide",
-    cls: "Class IC Antiarrhythmic",
-    brandNames: [
-      "Tambocor"
-    ],
-    hl: 20,
-    timing: "AM-PM",
-    props: {
-      proarrhythmicRisk: 2
-    },
-    routes: [
-      {
-        enzyme: "CYP2D6",
-        fraction: 0.3,
-        role: "partial_clearance",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      }
-    ],
-    inh: [],
-    ind: [],
-    note: "Narrow therapeutic index agent. One-third of clearance depends on CYP2D6; remaining portions eliminate unchanged via kidney infrastructure.",
-    alts: []
-  },
-{
     id: "imatinib",
     name: "Imatinib",
     cls: "BCR-ABL Tyrosine Kinase Inhibitor",
@@ -3575,47 +3416,6 @@ const DRUG_DB = [
     ],
     ind: [],
     note: "First-generation TKI compound profile. Relies strongly on consistent hepatic CYP3A4 activity to avoid unexpected variations in systemic trough concentrations.",
-    alts: []
-  },
-{
-    id: "erlotinib",
-    name: "Erlotinib",
-    cls: "EGFR Tyrosine Kinase Inhibitor",
-    brandNames: [
-      "Tarceva"
-    ],
-    hl: 36,
-    timing: "AM",
-    props: {
-      acneiformRashRisk: 1
-    },
-    routes: [
-      {
-        enzyme: "CYP3A4",
-        fraction: 0.7,
-        role: "primary_oxidative_degradation",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      },
-      {
-        enzyme: "CYP1A2",
-        fraction: 0.2,
-        role: "secondary_clearance_node",
-        evidence: {
-          confidence: "high",
-          sources: [
-            "FDA label"
-          ]
-        }
-      }
-    ],
-    inh: [],
-    ind: [],
-    note: "Solubility tracks with physiological gastric acid levels. Elevating stomach pH levels drastically reduces systemic bio-availability metrics.",
     alts: []
   },
 {
@@ -4203,6 +4003,14 @@ const DRUG_DB = [
 {id:"erlotinib",name:"Erlotinib",cls:"EGFR Tyrosine Kinase Inhibitor",brandNames:["Tarceva"],hl:36,timing:"EmptyStomach",props:{rashRisk:3,diarrheaRisk:2,hepatotoxicityRisk:1,pulmonaryToxicityRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.6,evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["16203810"]}},{enzyme:"CYP1A2",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[{target:"CYP3A4",strength:"weak",evidence:{confidence:"low",sources:["literature"]}},{target:"BCRP",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}],ind:[],note:"First-gen EGFR TKI. Acid-reducing agents reduce absorption. Smoking induces CYP1A2 → exposure ↓50% — smokers need higher doses. Strong CYP3A4 inhibitors increase exposure; inducers (rifampin) decrease 66%.",alts:[{name:"Osimertinib",reason:"Third-gen EGFR TKI; preferred for EGFR-mutant NSCLC"},{name:"Gefitinib",reason:"Alternative first-gen EGFR TKI"}]},
 {id:"gefitinib",name:"Gefitinib",cls:"EGFR Tyrosine Kinase Inhibitor",brandNames:["Iressa"],hl:48,timing:"AM",props:{rashRisk:3,diarrheaRisk:2,hepatotoxicityRisk:1,pulmonaryToxicityRisk:2},routes:[{enzyme:"CYP2D6",fraction:0.4,evidence:{confidence:"moderate",sources:["FDA label","literature"],pmid:["16492775"]}},{enzyme:"CYP3A4",fraction:0.4,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP1A2",fraction:0.1,evidence:{confidence:"low",sources:["literature"]}}],inh:[{target:"BCRP",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}},{target:"CYP2D6",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}],ind:[],note:"First-gen EGFR TKI with CYP2D6 + CYP3A4 dual metabolism. CYP2D6 PM: AUC ↑2× vs EM. Gefitinib inhibits CYP2D6 — can raise metoprolol levels. Acid reducers affect absorption. ILD/pneumonitis monitoring required.",alts:[{name:"Erlotinib",reason:"Alternative first-gen EGFR TKI"},{name:"Osimertinib",reason:"Preferred third-gen for first-line or T790M+"}]},
 {id:"everolimus",name:"Everolimus",cls:"mTOR Inhibitor",brandNames:["Afinitor","Zortress","Votubia"],hl:30,timing:"AM",props:{nti:true,infectionRisk:2,stomatitisRisk:3,pulmonaryToxicityRisk:2,hyperglycemia:2},routes:[{enzyme:"CYP3A4",fraction:0.8,evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["17609476"]}},{enzyme:"P-gp",fraction:0.15,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[{target:"P-gp",strength:"weak",evidence:{confidence:"low",sources:["literature"]}}],ind:[],note:"Narrow-therapeutic-index mTOR inhibitor. TDM required (trough 5-15 ng/mL oncology, 3-8 ng/mL transplant). Strong CYP3A4 inhibitors increase exposure 15×; strong inducers decrease 90%. Avoid grapefruit. Immunosuppression → PJP prophylaxis.",alts:[{name:"Sirolimus",reason:"Parent compound; similar CYP3A4/P-gp dependence"},{name:"Temsirolimus",reason:"IV mTOR inhibitor alternative"}]},
+// ──────────── Clinician workflow batch: primary care, cardiology, psychiatry ────────────
+{id:"buspirone",name:"Buspirone",cls:"Anxiolytic / 5-HT1A Partial Agonist",brandNames:["Buspar"],hl:3,timing:"AM-PM",props:{serotonergic:true,dizzinessRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.9,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Non-benzodiazepine anxiolytic with large CYP3A4 interaction sensitivity. Itraconazole, erythromycin, diltiazem/verapamil, ritonavir, and grapefruit can markedly increase exposure.",alts:[{name:"Sertraline",reason:"First-line long-term anxiety option but serotonergic and CYP-interaction context differs"}]},
+{id:"terbinafine",name:"Terbinafine",cls:"Allylamine Antifungal",brandNames:["Lamisil"],hl:36,timing:"AM",props:{hepatotoxicityRisk:2},routes:[{enzyme:"CYP2C9",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP1A2",fraction:0.2,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP3A4",fraction:0.2,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP2C8",fraction:0.15,evidence:{confidence:"low",sources:["FDA label"]}}],inh:[{target:"CYP2D6",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}}],ind:[],note:"Common oral onychomycosis treatment and clinically relevant CYP2D6 inhibitor. Can raise exposure to TCAs, SSRIs, beta-blockers, class IC antiarrhythmics, and dextromethorphan; check liver disease risk before use.",alts:[{name:"Itraconazole",reason:"Alternative antifungal with stronger CYP3A4 inhibition burden"}]},
+{id:"cephalexin",name:"Cephalexin",cls:"Cephalosporin Antibiotic",brandNames:["Keflex"],hl:1,timing:"AM-PM",props:{},routes:[{enzyme:"Renal Excretion Unchanged",fraction:0.9,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Common primary-care cephalosporin. Minimal CYP interactions, but label notes increased metformin exposure after single-dose coadministration.",alts:[{name:"Amoxicillin",reason:"Alternative beta-lactam depending on indication and local resistance"}]},
+{id:"nitroglycerin",name:"Nitroglycerin",cls:"Nitrate Antianginal",brandNames:["Nitrostat","Nitro-Dur","Nitrolingual"],hl:0.05,timing:"PRN",props:{hypotension:3},routes:[{enzyme:"Mitochondrial ALDH2 / Denitration",fraction:0.8,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Short-acting nitrate for angina. Contraindicated with PDE5 inhibitors and sGC stimulators because of potentially severe hypotension.",alts:[{name:"Ranolazine",reason:"Antianginal option without nitrate-PDE5 contraindication"}]},
+{id:"isosorbide_mononitrate",name:"Isosorbide Mononitrate",cls:"Nitrate Antianginal",brandNames:["Imdur","Monoket"],hl:5,timing:"AM",props:{hypotension:2},routes:[{enzyme:"Glucuronidation / Denitration",fraction:0.8,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Long-acting nitrate for angina prevention. Requires nitrate-free interval to prevent tolerance and is contraindicated with PDE5 inhibitors.",alts:[{name:"Ranolazine",reason:"Non-nitrate antianginal alternative"}]},
+{id:"sacubitril_valsartan",name:"Sacubitril/Valsartan",cls:"ARNI / ARB / Neprilysin Inhibitor",brandNames:["Entresto"],hl:12,timing:"AM-PM",props:{hyperkalemia:2,hypotension:2,angioedemaRisk:2},routes:[{enzyme:"Esterase Activation to LBQ657",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Renal/Biliary Excretion",fraction:0.5,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Heart-failure ARNI. Contraindicated with ACE inhibitors and requires 36-hour washout when switching to or from an ACE inhibitor. Hyperkalemia risk increases with potassium-sparing agents.",alts:[{name:"Valsartan",reason:"ARB component without neprilysin inhibition or ACE-inhibitor washout issue"}]},
+{id:"tirzepatide",name:"Tirzepatide",cls:"GIP/GLP-1 Receptor Agonist",brandNames:["Mounjaro","Zepbound"],hl:120,timing:"Weekly",props:{delayedGastricEmptying:2,hypoglycemiaRisk:1},routes:[{enzyme:"Proteolytic Degradation",fraction:1.0,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Weekly incretin agonist for diabetes/weight management. Delays gastric emptying, especially after initiation, and may alter absorption of oral drugs with narrow therapeutic margins.",alts:[{name:"Semaglutide",reason:"GLP-1 receptor agonist alternative with similar gastric-emptying caution"}]},
 
 ];
 

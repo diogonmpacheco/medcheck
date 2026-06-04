@@ -74,6 +74,21 @@ assert(window.eval('PK_DOSE_INTERVALS.codeine') === 6, 'PK dose interval rules d
 assert(window.eval('PHENOTYPE_RISK_RULES.qtc.thresholds[1]') === 5, 'Phenotype risk rules did not load');
 assert(window.eval('EDGE_TYPE_BASE_WEIGHT[EDGE_TYPE.SUBSTRATE_OF]') === 0.92, 'Edge base weight rules did not load');
 
+const drugUniqueness = window.eval(`(() => {
+  const names = new Map();
+  const ids = new Map();
+  for (const drug of DRUG_DB) {
+    names.set(drug.name, (names.get(drug.name) || 0) + 1);
+    ids.set(drug.id, (ids.get(drug.id) || 0) + 1);
+  }
+  return {
+    names: [...names].filter(([, count]) => count > 1).map(([name]) => name),
+    ids: [...ids].filter(([, count]) => count > 1).map(([id]) => id),
+  };
+})()`);
+assert(drugUniqueness.names.length === 0, `Duplicate DRUG_DB names: ${drugUniqueness.names.join(', ')}`);
+assert(drugUniqueness.ids.length === 0, `Duplicate DRUG_DB ids: ${drugUniqueness.ids.join(', ')}`);
+
 const graphIntegrity = window.eval(`(() => {
   const graph = getInteractionGraph();
   const metaboliteEdges = graph.edges.filter(e => e.type === EDGE_TYPE.METABOLIZED_TO || e.type === EDGE_TYPE.ACTIVATES);

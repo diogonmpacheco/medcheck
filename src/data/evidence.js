@@ -6766,6 +6766,84 @@ const STUDY_DB = {
     limitations:["FDA label specifies dose adjustments for both CYP3A4 inhibitors and inducers."],
     verified:false, reviewRequired:true, verifyNote:"Enrichment batch — ADHD alpha-2 agonist"
   },
+  "ev_buspirone_cyp3a_label": {
+    id:"ev_buspirone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Buspirone prescribing information - CYP3A4 inhibitors and grapefruit juice",
+    year:2025, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{itraconazoleAucFold:19, grapefruitAucFold:9.2, diltiazemAucFold:5.5, note:"Buspirone label PK sections report large exposure increases with itraconazole, grapefruit juice, erythromycin, verapamil, and diltiazem."},
+    temporal:{mechanism:"intestinal_and_hepatic_CYP3A4_inhibition"},
+    supports:["buspirone_cyp3a4_substrate","buspirone_strong_cyp3a_inhibitor_toxicity","buspirone_grapefruit_exposure_increase","buspirone_diltiazem_exposure_increase"],
+    contradicts:[],
+    limitations:["Magnitude varies by buspirone dose, inhibitor dose, and duration."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_terbinafine_cyp2d6_label": {
+    id:"ev_terbinafine_cyp2d6_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Terbinafine prescribing information - CYP2D6 inhibition",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Terbinafine is described as a CYP2D6 inhibitor with effects on desipramine and warnings for CYP2D6 substrate classes including TCAs, SSRIs, beta-blockers, antiarrhythmics, and MAO-B inhibitors."},
+    temporal:{mechanism:"CYP2D6_inhibition"},
+    supports:["terbinafine_cyp2d6_inhibitor","terbinafine_beta_blocker_exposure_context","terbinafine_tca_exposure_context"],
+    contradicts:[],
+    limitations:["Clinical magnitude differs by CYP2D6 substrate and patient phenotype."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_cephalexin_metformin_label": {
+    id:"ev_cephalexin_metformin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Cephalexin prescribing information - metformin interaction",
+    year:2025, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{cmaxIncreasePct:34, aucIncreasePct:24, clearanceReductionPct:14, note:"Cephalexin labeling reports increased metformin Cmax/AUC and reduced renal clearance after single-dose coadministration in healthy subjects."},
+    temporal:{mechanism:"renal_clearance_competition_or_transport_context"},
+    supports:["cephalexin_metformin_exposure_increase"],
+    contradicts:[],
+    limitations:["Multiple-dose clinical interaction data are not available in the label."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_nitrate_pde5_label": {
+    id:"ev_nitrate_pde5_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Nitrate prescribing information - PDE5 inhibitor contraindication",
+    year:2025, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Nitroglycerin and isosorbide mononitrate labeling contraindicate concomitant PDE5 inhibitor use because PDE5 inhibition potentiates nitrate vasodilation and can cause severe hypotension."},
+    temporal:{mechanism:"additive_cGMP_mediated_vasodilation"},
+    supports:["nitroglycerin_pde5_contraindication","isosorbide_mononitrate_pde5_contraindication","nitrate_sgc_potentiation_context"],
+    contradicts:[],
+    limitations:["Washout timing differs by PDE5 inhibitor half-life and clinical emergency context."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_sacubitril_valsartan_label": {
+    id:"ev_sacubitril_valsartan_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Sacubitril/valsartan prescribing information - ACE inhibitor contraindication and potassium risk",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{washoutHours:36, note:"Sacubitril/valsartan labeling contraindicates concomitant ACE inhibitor use and requires a 36-hour switch interval. Potassium-sparing diuretics, supplements, or salt substitutes can increase serum potassium."},
+    temporal:{mechanism:"neprilysin_ACE_bradykinin_and_RAAS_potassium_effects"},
+    supports:["sacubitril_valsartan_ace_inhibitor_contraindication","sacubitril_valsartan_36h_washout","sacubitril_valsartan_potassium_sparing_hyperkalemia_context"],
+    contradicts:[],
+    limitations:["Aliskiren contraindication depends on diabetes/renal-function context; not modeled as a pair unless aliskiren is present."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_tirzepatide_oral_absorption_label": {
+    id:"ev_tirzepatide_oral_absorption_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Tirzepatide prescribing information - delayed gastric emptying and oral medications",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Tirzepatide delays gastric emptying and may affect absorption of concomitantly administered oral medications; effect is greatest after initial dosing and diminishes over time."},
+    temporal:{mechanism:"delayed_gastric_emptying"},
+    supports:["tirzepatide_delayed_gastric_emptying","tirzepatide_oral_medication_absorption_context"],
+    contradicts:[],
+    limitations:["Warfarin pair is a conservative narrow-therapeutic-margin monitoring rule, not a direct contraindication."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
 
 };
 
