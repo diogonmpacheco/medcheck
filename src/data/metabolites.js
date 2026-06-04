@@ -3757,6 +3757,212 @@ const METAB = {
     note:"Residual active parent elimination. Included to keep the model from treating CYP3A metabolites as the sole clinical signal."
   }
 ],
+"Alectinib":[
+  {
+    n:"M4 active metabolite",
+    e:"CYP3A4",
+    a:"active",
+    p:45,
+    note:"Major active metabolite with similar ALK inhibition. CYP3A inhibitors or inducers can shift parent/M4 balance, but label data show limited net active-moiety change; food is the bigger exposure signal.",
+    evidenceRefs:["ev_alectinib_m4_food_label"]
+  },
+  {
+    n:"Alectinib unchanged active parent",
+    e:"CYP3A4",
+    a:"active",
+    p:55,
+    note:"Parent and M4 together form the active moiety. The label recommends dosing with food because food strongly raises combined exposure.",
+    evidenceRefs:["ev_alectinib_m4_food_label"]
+  }
+],
+"Brigatinib":[
+  {
+    n:"Brigatinib inactive oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:70,
+    note:"CYP3A-mediated clearance pathway. Strong inhibitors increase parent exposure; strong inducers can markedly reduce exposure and efficacy.",
+    evidenceRefs:["ev_brigatinib_cyp3a_label"]
+  },
+  {
+    n:"Brigatinib unchanged active parent",
+    e:"CYP3A4",
+    a:"active",
+    p:30,
+    note:"Parent brigatinib is the main ALK-inhibitory exposure signal; toxicity monitoring includes pulmonary, blood pressure, bradycardia, hepatic, and CPK effects.",
+    evidenceRefs:["ev_brigatinib_cyp3a_label"]
+  }
+],
+"Capmatinib":[
+  {
+    n:"Capmatinib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:50,
+    note:"CYP3A contributes to clearance; strong CYP3A inducers can substantially lower parent capmatinib exposure.",
+    evidenceRefs:["ev_capmatinib_cyp3a_transporter_label"]
+  },
+  {
+    n:"Aldehyde oxidase metabolites",
+    e:"Aldehyde Oxidase",
+    a:"inactive",
+    p:35,
+    note:"Non-CYP clearance route. Capmatinib also inhibits P-gp/BCRP, so victim-drug interactions can matter even when parent metabolism is not the whole story.",
+    evidenceRefs:["ev_capmatinib_cyp3a_transporter_label"]
+  }
+],
+"Sunitinib":[
+  {
+    n:"N-desethyl sunitinib (SU12662)",
+    e:"CYP3A4",
+    a:"active",
+    p:40,
+    note:"Primary active metabolite with similar kinase inhibition. CYP3A inhibition or induction changes total active exposure and can affect QT, blood pressure, hepatic, and tolerability risk.",
+    evidenceRefs:["ev_sunitinib_cyp3a_qt_label"]
+  },
+  {
+    n:"Sunitinib unchanged active parent",
+    e:"CYP3A4",
+    a:"active",
+    p:60,
+    note:"Parent plus active metabolite form the clinically relevant active moiety; dose adjustment is label-guided with strong CYP3A modifiers.",
+    evidenceRefs:["ev_sunitinib_cyp3a_qt_label"]
+  }
+],
+"Sorafenib":[
+  {
+    n:"Sorafenib N-oxide",
+    e:"CYP3A4",
+    a:"active",
+    p:15,
+    note:"Active oxidative metabolite. Sorafenib is also glucuronidated by UGT1A9, and label management is driven by parent exposure, bleeding/INR, hypertension, liver injury, and QT context.",
+    evidenceRefs:["ev_sorafenib_cyp_ugt_warfarin_label"]
+  },
+  {
+    n:"Sorafenib glucuronides",
+    e:"UGT1A9",
+    a:"inactive",
+    p:35,
+    note:"Glucuronidation contributes meaningfully to clearance; strong induction can reduce exposure and warfarin/bleeding monitoring is label-relevant.",
+    evidenceRefs:["ev_sorafenib_cyp_ugt_warfarin_label"]
+  }
+],
+"Lenvatinib":[
+  {
+    n:"Lenvatinib unchanged active parent",
+    e:"CYP3A4/Aldehyde Oxidase/Nonenzymatic",
+    a:"active",
+    p:70,
+    note:"Multiple clearance pathways mean CYP3A modifiers have modest average effects; hypertension, proteinuria, hepatic toxicity, and QT-risk co-medications dominate clinical handling.",
+    evidenceRefs:["ev_lenvatinib_qt_label"]
+  },
+  {
+    n:"Inactive oxidative/nonenzymatic metabolites",
+    e:"CYP3A4/Aldehyde Oxidase",
+    a:"inactive",
+    p:30,
+    note:"Included to avoid a parent-only simplification while preserving that QT/hypertension toxicity is the primary actionable signal.",
+    evidenceRefs:["ev_lenvatinib_qt_label"]
+  }
+],
+"Regorafenib":[
+  {
+    n:"M-2 active metabolite",
+    e:"CYP3A4/UGT1A9",
+    a:"active",
+    p:30,
+    note:"Active metabolite. Strong CYP3A inhibition can lower active metabolite exposure while increasing parent regorafenib, so parent-only DDI interpretation is misleading.",
+    evidenceRefs:["ev_regorafenib_cyp3a_ugt_bcrp_label"]
+  },
+  {
+    n:"M-5 active metabolite",
+    e:"CYP3A4/UGT1A9",
+    a:"active",
+    p:25,
+    note:"Active metabolite contributing to the active moiety and transporter inhibition context. Regorafenib also inhibits BCRP substrates.",
+    evidenceRefs:["ev_regorafenib_cyp3a_ugt_bcrp_label"]
+  },
+  {
+    n:"Regorafenib unchanged active parent",
+    e:"CYP3A4/UGT1A9",
+    a:"active",
+    p:45,
+    note:"Parent exposure increases with strong CYP3A inhibition and falls with strong induction; hepatotoxicity and BCRP substrate interactions are clinically important.",
+    evidenceRefs:["ev_regorafenib_cyp3a_ugt_bcrp_label"]
+  }
+],
+"Axitinib":[
+  {
+    n:"Axitinib oxidative metabolites",
+    e:"CYP3A4/CYP1A2",
+    a:"inactive",
+    p:80,
+    note:"CYP3A4/5 dominates axitinib clearance, with minor CYP1A2 contribution. Strong CYP3A inhibition or induction can materially change parent exposure.",
+    evidenceRefs:["ev_axitinib_cyp3a_label"]
+  },
+  {
+    n:"Axitinib unchanged active parent",
+    e:"CYP3A4",
+    a:"active",
+    p:20,
+    note:"Parent axitinib drives VEGFR inhibition and concentration-linked hypertension/hepatic/toxicity monitoring.",
+    evidenceRefs:["ev_axitinib_cyp3a_label"]
+  }
+],
+"Lumateperone":[
+  {
+    n:"Lumateperone reduced/oxidative metabolites",
+    e:"CYP3A4/UGT/AKR",
+    a:"inactive",
+    p:70,
+    note:"Multiple pathways contribute, but CYP3A inhibition or induction is the clearest label-backed interaction signal.",
+    evidenceRefs:["ev_lumateperone_cyp3a_label"]
+  },
+  {
+    n:"Lumateperone unchanged active parent",
+    e:"CYP3A4/UGT",
+    a:"active",
+    p:30,
+    note:"Parent antipsychotic exposure drives efficacy and tolerability; label dose reduction is required with strong CYP3A inhibition.",
+    evidenceRefs:["ev_lumateperone_cyp3a_label"]
+  }
+],
+"Levomilnacipran":[
+  {
+    n:"Levomilnacipran unchanged renal elimination",
+    e:"Renal",
+    a:"active",
+    p:58,
+    note:"Renal excretion is a major elimination pathway; renal impairment can increase exposure independently of CYP3A.",
+    evidenceRefs:["ev_levomilnacipran_cyp3a_renal_label"]
+  },
+  {
+    n:"Desethyl levomilnacipran and inactive metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:42,
+    note:"CYP3A4 contributes to metabolism, so strong CYP3A inhibitors cap the recommended maximum dose.",
+    evidenceRefs:["ev_levomilnacipran_cyp3a_renal_label"]
+  }
+],
+"Asenapine":[
+  {
+    n:"Asenapine N-glucuronide",
+    e:"UGT1A4",
+    a:"inactive",
+    p:50,
+    note:"Primary conjugation pathway. Smoking/CYP1A2 context is less dominant than with clozapine/olanzapine, but CYP1A2 inhibition can still shift exposure.",
+    evidenceRefs:["ev_asenapine_ugt1a4_cyp1a2_label"]
+  },
+  {
+    n:"N-desmethyl asenapine and oxidative metabolites",
+    e:"CYP1A2",
+    a:"inactive",
+    p:35,
+    note:"CYP1A2 oxidative clearance pathway; fluvoxamine co-use is the practical label-backed exposure concern.",
+    evidenceRefs:["ev_asenapine_ugt1a4_cyp1a2_label"]
+  }
+],
 "Vorapaxar":[
   {
     n:"M20 hydroxy metabolite",

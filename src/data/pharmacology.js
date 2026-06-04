@@ -157,6 +157,17 @@ const PK_PARAMS = {
   'apalutamide':    { F:1.00, ka:pkKaFromTmax(2.0, 72),   halfLife:72, Vd:3.9,  dose_mg:240,  note:"Active N-desmethyl metabolite; strong inducer that can lower many victim-drug exposures." },
   'darolutamide':   { F:0.30, ka:pkKaFromTmax(4.0, 20),   halfLife:20, Vd:1.7,  dose_mg:600,  note:"Food increases exposure; BCRP/OATP inhibition can raise rosuvastatin exposure." },
   'lorlatinib':     { F:0.81, ka:pkKaFromTmax(1.2, 24),   halfLife:24, Vd:4.4,  dose_mg:100,  note:"CYP3A substrate and inducer; strong CYP3A inducer co-use is contraindicated because of hepatotoxicity." },
+  'alectinib':      { F:0.37, ka:pkKaFromTmax(4.0, 33),   halfLife:33, Vd:4.0,  dose_mg:600,  note:"Active-moiety curve; food strongly increases alectinib+M4 exposure, while CYP3A modulators have limited net active-moiety effect." },
+  'brigatinib':     { F:1.00, ka:pkKaFromTmax(2.0, 25),   halfLife:25, Vd:2.0,  dose_mg:180,  note:"CYP3A substrate ALK inhibitor; strong inhibitors raise exposure and rifampin markedly lowers exposure." },
+  'capmatinib':     { F:0.70, ka:pkKaFromTmax(1.5, 6),    halfLife:6,  Vd:2.5,  dose_mg:400,  note:"MET inhibitor with CYP3A/AO clearance and P-gp/BCRP inhibition; strong inducers can markedly lower exposure." },
+  'sunitinib':      { F:0.50, ka:pkKaFromTmax(8.0, 50),   halfLife:50, Vd:22.0, dose_mg:50,   note:"Parent plus active SU12662 exposure; CYP3A modifiers and QT-risk co-meds can change safety margin." },
+  'sorafenib':      { F:0.38, ka:pkKaFromTmax(3.0, 30),   halfLife:30, Vd:3.0,  dose_mg:400,  note:"CYP3A/UGT multikinase inhibitor; strong inducers, warfarin/bleeding, hepatic injury, and QT context matter." },
+  'lenvatinib':     { F:0.85, ka:pkKaFromTmax(2.0, 28),   halfLife:28, Vd:1.5,  dose_mg:24,   note:"Mixed CYP3A/AO/nonenzymatic clearance; QT/hypertension/proteinuria risk is more actionable than simple CYP3A modulation." },
+  'regorafenib':    { F:0.69, ka:pkKaFromTmax(4.0, 28),   halfLife:28, Vd:1.0,  dose_mg:160,  note:"Active M-2/M-5 metabolites; CYP3A modifiers can shift parent/metabolite balance and BCRP substrates can rise." },
+  'axitinib':       { F:0.58, ka:pkKaFromTmax(3.0, 6),     halfLife:6,  Vd:2.3,  dose_mg:5,    note:"CYP3A-sensitive VEGFR TKI; strong inhibitors/inducers can require dose changes and BP/hepatic monitoring." },
+  'lumateperone':   { F:0.04, ka:pkKaFromTmax(2.0, 18),    halfLife:18, Vd:4.1,  dose_mg:42,   note:"CYP3A/UGT/AKR antipsychotic; strong CYP3A inhibitors require lower dose and inducers should be avoided." },
+  'levomilnacipran':{ F:0.92, ka:pkKaFromTmax(6.0, 12),    halfLife:12, Vd:5.0,  dose_mg:40,   note:"SNRI with renal excretion and CYP3A contribution; strong CYP3A inhibitors cap maximum dose." },
+  'asenapine':      { F:0.35, ka:pkKaFromTmax(1.0, 24),    halfLife:24, Vd:20.0, dose_mg:5,    note:"Sublingual/transdermal antipsychotic approximation; UGT1A4/CYP1A2 clearance and CYP2D6 victim context matter." },
 
   // PK simulation expansion: primary-care, psychiatry, neurology, endocrine, transplant.
   'fluvoxamine':     { F:0.53, ka:pkKaFromTmax(5.0, 15),   halfLife:15, Vd:25.0, dose_mg:100,  note:"Strong CYP1A2 and CYP2C19 inhibitor; PK curve is parent-only and does not encode inhibition persistence." },
