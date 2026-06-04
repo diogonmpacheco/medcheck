@@ -144,11 +144,12 @@ function onSearch(q) {
   });
   if (!matches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
 
-  // Group by class
+  // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
   matches.forEach(d => {
-    if (!groups[d.cls]) groups[d.cls] = [];
-    groups[d.cls].push(d);
+    const cat = getBrowseCategory(d);
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(d);
   });
 
   let html = "";
@@ -176,35 +177,94 @@ function highlight(text, q) {
   return text.replace(re, "<strong style='color:var(--accent)'>$1</strong>");
 }
 
+function textHasAny(text, terms) {
+  const haystack = String(text || "").toLowerCase();
+  return terms.some(term => haystack.includes(term));
+}
+
+function drugNameHasAny(drug, terms) {
+  const name = String(drug?.name || "").toLowerCase();
+  return terms.some(term => name.includes(term));
+}
+
+function getBrowseCategory(drug) {
+  const cls = String(drug?.cls || "");
+
+  if (
+    textHasAny(cls, ["recreational", "psychedelic", "hallucinogen", "empathogen", "dissociative", "cannabinoid"]) ||
+    drugNameHasAny(drug, ["alcohol", "cannabis", "mdma", "ghb", "cocaine", "heroin", "poppers", "kratom", "ayahuasca", "ketamine", "psilocybin", "lsd", "dmt", "2c-b", "2c-i"])
+  ) return "Recreational & Social";
+
+  if (
+    textHasAny(cls, ["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa"]) ||
+    textHasAny(cls, ["antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "triptan", "dopamine", "dopa", "comt inhibitor"])
+  ) return "Mental Health & Neurology";
+
+  if (
+    textHasAny(cls, ["statin", "fibrate", "beta-blocker", "ace inhibitor", "arb", "ccb", "diuretic", "thiazide", "antihypertensive", "alpha-blocker", "antiarrhythmic", "cardiac glycoside"]) ||
+    textHasAny(cls, ["antiplatelet", "anticoag", "doac", "pde5 inhibitor", "nitrate", "vasodilator", "thrombopoietin"])
+  ) return "Cardiovascular & Blood";
+
+  if (
+    textHasAny(cls, ["opioid", "analgesic", "nsaid", "muscle relaxant", "anesthetic", "sedative-hypnotic", "neuromuscular blocker", "nmb", "relaxant binding", "malignant hyperthermia"]) ||
+    textHasAny(cls, ["benzodiazepine", "volatile anesthetic"])
+  ) return "Pain, Sedation & Anesthesia";
+
+  if (
+    textHasAny(cls, ["antibiotic", "macrolide", "fluoroquinolone", "penicillin", "rifamycin", "sulfonamide", "nitrofuran", "nitroimidazole", "lincosamide", "glycopeptide", "tetracycline", "antistaphylococcal", "antitubercular"]) ||
+    textHasAny(cls, ["azole", "antifungal", "antimalarial", "aminoquinoline", "antiretroviral", "nrti", "protease inhibitor", "integrase inhibitor", "ccr5", "hcv", "antimicrobial", "aminoglycoside", "sulfone"])
+  ) return "Infectious Disease";
+
+  if (
+    textHasAny(cls, ["immunosuppressant", "antimetabolite", "dmard", "jak", "kinase inhibitor", "mtor", "chemotherapy", "egfr", "bcr-abl", "vegfr", "pyrimidine synthesis"])
+  ) return "Oncology, Immunology & Transplant";
+
+  if (
+    textHasAny(cls, ["ppi", "h2 blocker", "gi", "antidiarrheal", "prokinetic", "antiemetic", "5-ht3", "laxative", "pancreatic enzyme", "biguanide", "sglt2", "dpp-4", "glp-1", "sulfonylurea", "tzd", "thyroid", "antithyroid", "urate", "uricosuric", "gout", "xanthine oxidase", "xo inhibitor", "bisphosphonate", "calcimimetic"])
+  ) return "GI, Endocrine & Metabolic";
+
+  if (
+    textHasAny(cls, ["antihistamine", "beta-2 agonist", "decongestant", "antitussive", "expectorant", "leukotriene", "5-lipoxygenase", "pde4", "muscarinic", "cftr"]) ||
+    drugNameHasAny(drug, ["albuterol"])
+  ) return "Respiratory, Allergy & Cough";
+
+  if (
+    textHasAny(cls, ["estrogen", "progestin", "contraceptive", "serm", "progesterone receptor", "5-ari", "corticosteroid"])
+  ) return "Hormones & Reproductive";
+
+  if (
+    textHasAny(cls, ["supplement", "vitamin", "herbal", "food", "imaging agent"]) ||
+    drugNameHasAny(drug, ["grapefruit", "pomegranate", "black pepper", "vitamin k", "charbroiled", "smoked foods", "contrast dye"])
+  ) return "Supplements, Foods & Environment";
+
+  if (textHasAny(cls, ["stimulant", "adhd", "methylxanthine", "nri"])) return "Stimulants & ADHD";
+
+  return "Other Specialized Agents";
+}
+
 function renderBrowse() {
   const el = document.getElementById("browseWrap");
   const groups = {};
   DRUG_DB.forEach(d => {
-    let cat = d.cls;
-    // Simplify categories
-    if (cat.includes("Beta")) cat = "Beta-Blockers";
-    else if (cat.includes("Statin")) cat = "Statins";
-    else if (cat.includes("SSRI") || cat.includes("SNRI") || cat.includes("TCA") || cat.includes("MAOI") || cat.includes("RIMA") || cat.includes("Antidepressant") || cat.includes("Atypical AD") || cat.includes("NaSSA")) cat = "Antidepressants";
-    else if (cat.includes("Benzo")) cat = "Benzodiazepines & Sedatives";
-    else if (cat.includes("Opioid") || cat.includes("Analgesic")) cat = "Pain Medications";
-    else if (cat.includes("Antiplatelet") || cat.includes("Anticoag") || cat.includes("DOAC")) cat = "Blood Thinners";
-    else if (cat.includes("ACE") || cat.includes("ARB") || cat.includes("CCB") || cat.includes("Diuretic") || cat.includes("Antihyper")) cat = "Blood Pressure";
-    else if (cat.includes("Antipsychotic") || cat.includes("Psych")) cat = "Antipsychotics";
-    else if (cat.includes("Anticonvulsant") || cat.includes("Antiepileptic")) cat = "Anticonvulsants";
-    else if (cat.includes("Antibiotic") || cat.includes("Macrolide") || cat.includes("Fluoroquinolone") || cat.includes("Azole") || cat.includes("Antifungal") || cat.includes("Antimicrobial")) cat = "Antibiotics & Antifungals";
-    else if (cat.includes("PPI") || cat.includes("H2") || cat.includes("GI") || cat.includes("Antidiarrheal")) cat = "Stomach & GI";
-    else if (cat.includes("Supplement") || cat.includes("Vitamin") || cat.includes("Herbal")) cat = "Supplements & Herbs";
-    else if (cat.includes("Stimulant") || cat.includes("ADHD")) cat = "Stimulants & ADHD";
-    else if (cat.includes("Antihistamine") || cat.includes("Sleep")) cat = "Allergy & Sleep";
-    else if (cat.includes("Immunosup")) cat = "Immunosuppressants";
-    else if (cat.includes("Recreational") || cat.includes("Hallucinogen") || cat.includes("Empathogen") || cat.includes("Dissociative") || cat.includes("Depressant") || cat.includes("NRI") && cat.includes("Vasodilator") || d.name.includes("Cannabis") || d.name.includes("MDMA") || d.name.includes("GHB") || d.name.includes("Cocaine") || d.name.includes("Heroin") || d.name.includes("Poppers") || d.name.includes("Kratom") || d.name.includes("Ayahuasca") || d.name.includes("Meth") || d.name.includes("Ketamine") || d.name.includes("Psilocybin") || d.name.includes("LSD")) cat = "Recreational & Social";
+    const cat = getBrowseCategory(d);
     if (!groups[cat]) groups[cat] = [];
     if (!groups[cat].find(x => x.name === d.name)) groups[cat].push(d);
   });
 
-  const catOrder = ["Antidepressants","Pain Medications","Blood Pressure","Blood Thinners","Statins","Beta-Blockers",
-    "Stomach & GI","Antibiotics & Antifungals","Benzodiazepines & Sedatives","Antipsychotics","Anticonvulsants",
-    "Allergy & Sleep","Stimulants & ADHD","Supplements & Herbs","Immunosuppressants","Recreational & Social"];
+  const catOrder = [
+    "Mental Health & Neurology",
+    "Cardiovascular & Blood",
+    "Pain, Sedation & Anesthesia",
+    "Infectious Disease",
+    "GI, Endocrine & Metabolic",
+    "Oncology, Immunology & Transplant",
+    "Respiratory, Allergy & Cough",
+    "Hormones & Reproductive",
+    "Stimulants & ADHD",
+    "Supplements, Foods & Environment",
+    "Recreational & Social",
+    "Other Specialized Agents"
+  ];
   const sortedCats = [...new Set([...catOrder, ...Object.keys(groups)])];
 
   el.innerHTML = sortedCats.filter(c => groups[c]).map(cat => `
@@ -215,7 +275,7 @@ function renderBrowse() {
       </div>
       <div class="browse-items" data-cat="${cat}">
         ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d =>
-          `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}</div>`
+          `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span></div>`
         ).join("")}
       </div>
     </div>

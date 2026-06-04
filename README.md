@@ -69,7 +69,7 @@ The project is intended for education, research, and review workflows. It is not
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **32 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1136 KB** generated bundle (23304 lines)
+- **1138 KB** generated bundle (23365 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

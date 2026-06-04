@@ -458,6 +458,29 @@ assert(
   'Diazepam + Morphine should cross respiratory depression receptor threshold'
 );
 
+const browseCategoryAudit = window.eval(`(() => {
+  const byName = Object.fromEntries(DRUG_DB.map(d => [d.name, getBrowseCategory(d)]));
+  const counts = DRUG_DB.reduce((acc, d) => {
+    const cat = getBrowseCategory(d);
+    acc[cat] = (acc[cat] || 0) + 1;
+    return acc;
+  }, {});
+  return {
+    categories: Object.keys(counts).length,
+    singletonCategories: Object.values(counts).filter(n => n === 1).length,
+    lsd: byName.LSD,
+    albuterol: byName.Albuterol,
+    aspirinLowDose: byName['Aspirin (Low-Dose)'],
+    alcohol: byName['Alcohol (Ethanol)'],
+  };
+})()`);
+assert(browseCategoryAudit.categories <= 12, `Browse UI should stay consolidated, got ${browseCategoryAudit.categories} categories`);
+assert(browseCategoryAudit.singletonCategories <= 1, `Browse UI should avoid one-item category sprawl, got ${browseCategoryAudit.singletonCategories}`);
+assert(browseCategoryAudit.lsd === 'Recreational & Social', 'LSD should browse under Recreational & Social, not Antipsychotics');
+assert(browseCategoryAudit.albuterol === 'Respiratory, Allergy & Cough', 'Albuterol should browse under Respiratory, Allergy & Cough, not Beta-Blockers');
+assert(browseCategoryAudit.aspirinLowDose === 'Cardiovascular & Blood', 'Low-dose aspirin should browse under Cardiovascular & Blood');
+assert(browseCategoryAudit.alcohol === 'Recreational & Social', 'Alcohol should browse under Recreational & Social');
+
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 
 dom.window.close();
