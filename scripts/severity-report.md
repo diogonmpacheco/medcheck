@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 401
-Original severe: 251
-Recommended severe: 251
+Known DDI pairs: 480
+Original severe: 272
+Recommended severe: 272
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -99,10 +99,10 @@ Recommended downgrades: 0
 | Midazolam + Clarithromycin | pk | severe | severe | ev_midazolam_cyp3a4_olkkola1994 (clinical_pk PMID:8181191 DOI:10.1038/clpt.1994.60) | Severe support threshold met. |
 | Midazolam + Ketoconazole | pk | severe | severe | ev_midazolam_cyp3a4_olkkola1994 (clinical_pk PMID:8181191 DOI:10.1038/clpt.1994.60) | Severe support threshold met. |
 | Midazolam + Ritonavir | pk | severe | severe | ev_midazolam_cyp3a4_olkkola1994 (clinical_pk PMID:8181191 DOI:10.1038/clpt.1994.60) | Severe support threshold met. |
-| Levothyroxine + Calcium | absorption | moderate | moderate | No linked high-tier source | Kept original severity. |
-| Levothyroxine + Iron | absorption | moderate | moderate | No linked high-tier source | Kept original severity. |
-| Levothyroxine + Omeprazole | absorption | mild | mild | No linked high-tier source | Kept original severity. |
-| Levothyroxine + Esomeprazole | absorption | mild | mild | No linked high-tier source | Kept original severity. |
+| Levothyroxine + Calcium | absorption | moderate | moderate | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
+| Levothyroxine + Iron | absorption | moderate | moderate | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
+| Levothyroxine + Omeprazole | absorption | mild | mild | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
+| Levothyroxine + Esomeprazole | absorption | mild | mild | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
 | Metformin + Alcohol (Ethanol) | metabolic | moderate | moderate | No linked high-tier source | Kept original severity. |
 | Metformin + Trimethoprim-SMX | transporter | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Allopurinol + Azathioprine | metabolic | severe | severe | ev_allopurinol_azathioprine_xo_label (fda_label)<br>ev_azathioprine_tpmt_cpic2019 (guideline PMID:30447069 DOI:10.1002/cpt.1304) | Severe support threshold met. |
@@ -410,3 +410,82 @@ Recommended downgrades: 0
 | Lorlatinib + Everolimus | induction | severe | severe | ev_lorlatinib_cyp3a_label (fda_label)<br>ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
 | Lorlatinib + Combined Oral Contraceptive | induction | moderate | moderate | ev_lorlatinib_cyp3a_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
 | Darolutamide + Rosuvastatin | transporter | severe | severe | ev_darolutamide_bcrp_label (fda_label)<br>ev_rosuvastatin_label (fda_label) | Severe support threshold met. |
+| Alectinib + Meal / Food | food_active_moiety | moderate | moderate | ev_alectinib_m4_food_label (fda_label) | Kept original severity. |
+| Brigatinib + Itraconazole | pk | moderate | moderate | ev_brigatinib_cyp3a_label (fda_label) | Kept original severity. |
+| Brigatinib + Rifampin | induction | severe | severe | ev_brigatinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Capmatinib + Itraconazole | pk | moderate | moderate | ev_capmatinib_cyp3a_transporter_label (fda_label) | Kept original severity. |
+| Capmatinib + Rifampin | induction | severe | severe | ev_capmatinib_cyp3a_transporter_label (fda_label) | Severe support threshold met. |
+| Capmatinib + Digoxin | transport | moderate | moderate | ev_capmatinib_cyp3a_transporter_label (fda_label)<br>ev_digoxin_pgp_koren1998 (clinical_pk PMID:9467211) | Kept original severity. |
+| Capmatinib + Rosuvastatin | transport | moderate | moderate | ev_capmatinib_cyp3a_transporter_label (fda_label)<br>ev_rosuvastatin_label (fda_label) | Kept original severity. |
+| Lenvatinib + Amiodarone | qt | severe | severe | ev_lenvatinib_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Lenvatinib + Moxifloxacin | qt | moderate | moderate | ev_lenvatinib_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Kept original severity. |
+| Sunitinib + Ketoconazole | pk_qt | moderate | moderate | ev_sunitinib_cyp3a_qt_label (fda_label) | Kept original severity. |
+| Sunitinib + Rifampin | induction | severe | severe | ev_sunitinib_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Sunitinib + Amiodarone | qt | severe | severe | ev_sunitinib_cyp3a_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Sorafenib + Rifampin | induction | moderate | moderate | ev_sorafenib_cyp_ugt_warfarin_label (fda_label) | Kept original severity. |
+| Sorafenib + Warfarin | anticoagulation | moderate | moderate | ev_sorafenib_cyp_ugt_warfarin_label (fda_label) | Kept original severity. |
+| Regorafenib + Ketoconazole | active_metabolite_shift | moderate | moderate | ev_regorafenib_cyp3a_ugt_bcrp_label (fda_label) | Kept original severity. |
+| Regorafenib + Rifampin | active_metabolite_shift | severe | severe | ev_regorafenib_cyp3a_ugt_bcrp_label (fda_label) | Severe support threshold met. |
+| Regorafenib + Rosuvastatin | transport | moderate | moderate | ev_regorafenib_cyp3a_ugt_bcrp_label (fda_label)<br>ev_rosuvastatin_label (fda_label) | Kept original severity. |
+| Axitinib + Ketoconazole | pk | moderate | moderate | ev_axitinib_cyp3a_label (fda_label) | Kept original severity. |
+| Axitinib + Rifampin | induction | severe | severe | ev_axitinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Lumateperone + Ketoconazole | pk | moderate | moderate | ev_lumateperone_cyp3a_label (fda_label) | Kept original severity. |
+| Lumateperone + Rifampin | induction | severe | severe | ev_lumateperone_cyp3a_label (fda_label) | Severe support threshold met. |
+| Levomilnacipran + Ketoconazole | pk | moderate | moderate | ev_levomilnacipran_cyp3a_renal_label (fda_label) | Kept original severity. |
+| Asenapine + Fluvoxamine | pk | moderate | moderate | ev_asenapine_ugt1a4_cyp1a2_label (fda_label) | Kept original severity. |
+| Asenapine + Paroxetine | metabolic | moderate | moderate | ev_asenapine_ugt1a4_cyp1a2_label (fda_label)<br>ev_paroxetine_cyp2d6_fda (fda_label) | Kept original severity. |
+| Levothyroxine + Cholestyramine | absorption_binding | moderate | moderate | ev_levothyroxine_absorption_label (fda_label)<br>ev_cholestyramine_label (fda_label) | Kept original severity. |
+| Dasatinib + Famotidine | absorption | severe | severe | ev_dasatinib_cyp3a_acid_label (fda_label) | Severe support threshold met. |
+| Dasatinib + Calcium | absorption | moderate | moderate | ev_dasatinib_cyp3a_acid_label (fda_label) | Kept original severity. |
+| Erlotinib + Famotidine | absorption | moderate | moderate | ev_erlotinib_ppi_absorption (observational PMID:31045210) | Kept original severity. |
+| Erlotinib + Calcium | absorption | mild | mild | ev_erlotinib_ppi_absorption (observational PMID:31045210) | Kept original severity. |
+| Mycophenolate + Pantoprazole | absorption | moderate | moderate | ev_mycophenolate_ppi_solubility (clinical_pk PMID:21903891)<br>ev_mycophenolate_enterohepatic_label (fda_label) | Kept original severity. |
+| Ciprofloxacin + Calcium | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Ciprofloxacin + Iron | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Levofloxacin + Calcium | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Levofloxacin + Iron | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Moxifloxacin + Calcium | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Moxifloxacin + Iron | chelation_absorption | moderate | moderate | ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Doxycycline + Calcium | chelation_absorption | moderate | moderate | ev_tetracycline_cation_absorption_label (fda_label) | Kept original severity. |
+| Doxycycline + Iron | chelation_absorption | moderate | moderate | ev_tetracycline_cation_absorption_label (fda_label) | Kept original severity. |
+| Minocycline + Calcium | chelation_absorption | moderate | moderate | ev_tetracycline_cation_absorption_label (fda_label) | Kept original severity. |
+| Minocycline + Iron | chelation_absorption | moderate | moderate | ev_tetracycline_cation_absorption_label (fda_label) | Kept original severity. |
+| Amphetamine + Sodium Bicarbonate | renal_ph | moderate | moderate | ev_amphetamine_urinary_ph_label (fda_label) | Kept original severity. |
+| Lisdexamfetamine + Sodium Bicarbonate | renal_ph | moderate | moderate | ev_amphetamine_urinary_ph_label (fda_label)<br>ev_lisdexamfetamine_cyp2d6_fda (fda_label PMID:23578650) | Kept original severity. |
+| Amphetamine + Ascorbic Acid (Vitamin C) | renal_ph | mild | mild | ev_amphetamine_urinary_ph_label (fda_label) | Kept original severity. |
+| Lisdexamfetamine + Ascorbic Acid (Vitamin C) | renal_ph | mild | mild | ev_amphetamine_urinary_ph_label (fda_label)<br>ev_lisdexamfetamine_cyp2d6_fda (fda_label PMID:23578650) | Kept original severity. |
+| Lurasidone + Meal / Food | food_absorption | moderate | moderate | ev_lurasidone_food_label (fda_label) | Kept original severity. |
+| Atovaquone + Meal / Food | food_absorption | moderate | moderate | ev_atovaquone_food_label (fda_label) | Kept original severity. |
+| Nilotinib + Meal / Food | food_absorption_qt | severe | severe | ev_nilotinib_qt_cyp3a_label (fda_label) | Severe support threshold met. |
+| Maribavir + Valganciclovir | antiviral_antagonism | severe | severe | ev_maribavir_label (fda_label) | Severe support threshold met. |
+| Maribavir + Ganciclovir | antiviral_antagonism | severe | severe | ev_maribavir_label (fda_label) | Severe support threshold met. |
+| Maribavir + Rifampin | induction | severe | severe | ev_maribavir_label (fda_label) | Severe support threshold met. |
+| Maribavir + Carbamazepine | induction | moderate | moderate | ev_maribavir_label (fda_label) | Kept original severity. |
+| Maribavir + Digoxin | transport | moderate | moderate | ev_maribavir_label (fda_label)<br>ev_digoxin_pgp_koren1998 (clinical_pk PMID:9467211) | Kept original severity. |
+| Letermovir + Cyclosporine | transport_metabolic | moderate | moderate | ev_letermovir_immunosuppressant_label (fda_label PMID:30990905) | Kept original severity. |
+| Letermovir + Tacrolimus | metabolic | moderate | moderate | ev_letermovir_immunosuppressant_label (fda_label PMID:30990905)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Kept original severity. |
+| Letermovir + Sirolimus | metabolic | moderate | moderate | ev_letermovir_immunosuppressant_label (fda_label PMID:30990905) | Kept original severity. |
+| Letermovir + Rosuvastatin | transporter | moderate | moderate | ev_letermovir_immunosuppressant_label (fda_label PMID:30990905)<br>ev_rosuvastatin_label (fda_label) | Kept original severity. |
+| Valganciclovir + Zidovudine | myelosuppression | moderate | moderate | ev_valganciclovir_label (fda_label) | Kept original severity. |
+| Bedaquiline + Rifampin | induction | severe | severe | ev_bedaquiline_label (fda_label) | Severe support threshold met. |
+| Bedaquiline + Ketoconazole | metabolic_qt | moderate | moderate | ev_bedaquiline_label (fda_label) | Kept original severity. |
+| Bedaquiline + Moxifloxacin | qt | severe | severe | ev_bedaquiline_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Bedaquiline + Delamanid | qt | moderate | moderate | ev_bedaquiline_label (fda_label) | Kept original severity. |
+| Rifapentine + Combined Oral Contraceptive | induction | moderate | moderate | ev_rifapentine_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Rifapentine + Tacrolimus | induction | severe | severe | ev_rifapentine_label (fda_label)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Praziquantel + Rifampin | induction | severe | severe | ev_praziquantel_label (fda_label) | Severe support threshold met. |
+| Atovaquone + Rifampin | induction | severe | severe | ev_atovaquone_interactions_label (fda_label)<br>ev_atovaquone_food_label (fda_label) | Severe support threshold met. |
+| Atovaquone + Rifabutin | induction | moderate | moderate | ev_atovaquone_interactions_label (fda_label) | Kept original severity. |
+| Atovaquone + Doxycycline | absorption_exposure | moderate | moderate | ev_atovaquone_interactions_label (fda_label) | Kept original severity. |
+| Atovaquone + Metoclopramide | absorption_exposure | moderate | moderate | ev_malarone_label (fda_label)<br>ev_atovaquone_interactions_label (fda_label) | Kept original severity. |
+| Albendazole + Dexamethasone | active_metabolite_exposure | moderate | moderate | ev_albendazole_active_sulfoxide_label (fda_label) | Kept original severity. |
+| Albendazole + Praziquantel | active_metabolite_exposure | moderate | moderate | ev_albendazole_active_sulfoxide_label (fda_label) | Kept original severity. |
+| Albendazole + Cimetidine | active_metabolite_exposure | moderate | moderate | ev_albendazole_active_sulfoxide_label (fda_label) | Kept original severity. |
+| Griseofulvin + Warfarin | induction | moderate | moderate | ev_griseofulvin_induction_label (fda_label) | Kept original severity. |
+| Griseofulvin + Combined Oral Contraceptive | induction | moderate | moderate | ev_griseofulvin_induction_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Griseofulvin + Alcohol (Ethanol) | intolerance | moderate | moderate | ev_griseofulvin_induction_label (fda_label) | Kept original severity. |
+| Fondaparinux + Aspirin | bleeding | moderate | moderate | ev_fondaparinux_bleeding_label (fda_label) | Kept original severity. |
+| Fondaparinux + Clopidogrel | bleeding | moderate | moderate | ev_fondaparinux_bleeding_label (fda_label) | Kept original severity. |
+| Eptifibatide + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |
+| Tirofiban + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |
+| Abciximab + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |

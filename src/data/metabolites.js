@@ -3661,6 +3661,99 @@ const METAB = {
     note:"Pharmacologically active nucleotide analog. Not CYP-cleared; transporter induction and renal function shape clinical exposure context."
   }
 ],
+"Darunavir":[
+  {n:"Darunavir oxidative metabolites",e:"CYP3A4",a:"inactive",p:80,note:"Parent darunavir is the antiviral active moiety. Ritonavir/cobicistat boosting and CYP3A induction determine exposure more than active metabolite formation.",evidenceRefs:["ev_darunavir_boosted_cyp3a_label"]},
+  {n:"Unchanged darunavir",e:"Biliary/Fecal elimination",a:"active",p:20,note:"Residual active parent elimination. Included so boosted PI interactions are treated as parent-exposure changes, not active-metabolite activation.",evidenceRefs:["ev_darunavir_boosted_cyp3a_label"]}
+],
+"Rilpivirine":[
+  {n:"Rilpivirine oxidative metabolites",e:"CYP3A4",a:"inactive",p:75,note:"CYP3A-mediated clearance. Strong inducers lower parent exposure; acid suppression lowers absorption before metabolism.",evidenceRefs:["ev_rilpivirine_acid_cyp3a_qt_label"]},
+  {n:"Unchanged rilpivirine",e:"Biliary/Fecal elimination",a:"active",p:25,note:"Parent rilpivirine drives antiviral activity and QT exposure context.",evidenceRefs:["ev_rilpivirine_acid_cyp3a_qt_label"]}
+],
+"Bictegravir":[
+  {n:"Bictegravir glucuronide/oxidative metabolites",e:"UGT1A1/CYP3A4",a:"inactive",p:70,note:"Dual UGT1A1/CYP3A clearance. Rifampin-like induction can lower exposure, while cations reduce absorption before clearance pathways matter.",evidenceRefs:["ev_bictegravir_cation_induction_label"]},
+  {n:"Unchanged bictegravir",e:"Fecal/Renal elimination",a:"active",p:30,note:"Active parent exposure is the relevant antiviral signal.",evidenceRefs:["ev_bictegravir_cation_induction_label"]}
+],
+"Lamivudine":[
+  {n:"Lamivudine unchanged",e:"Renal tubular secretion",a:"active",p:70,note:"Clinically relevant active parent renal elimination. Trimethoprim-like renal transporter effects can increase exposure.",evidenceRefs:["ev_lamivudine_renal_transport_label"]},
+  {n:"Lamivudine trans-sulfoxide",e:"Minor oxidation",a:"inactive",p:5,note:"Minor inactive metabolite; renal parent clearance dominates the interaction profile.",evidenceRefs:["ev_lamivudine_renal_transport_label"]}
+],
+"Emtricitabine":[
+  {n:"Emtricitabine unchanged",e:"Renal tubular secretion",a:"active",p:85,note:"Active parent renal elimination dominates; minimal CYP burden.",evidenceRefs:["ev_taf_pgp_induction_label"]},
+  {n:"Emtricitabine sulfoxide/glucuronide metabolites",e:"Oxidation/Glucuronidation",a:"inactive",p:15,note:"Minor inactive metabolites included to make the low-metabolism NRTI profile explicit.",evidenceRefs:["ev_taf_pgp_induction_label"]}
+],
+"Flucytosine":[
+  {n:"Flucytosine unchanged",e:"Renal excretion",a:"active",p:90,note:"Active parent is cleared renally; amphotericin-related renal impairment can raise concentration-dependent marrow/GI/hepatic toxicity.",evidenceRefs:["ev_flucytosine_amphotericin_label"]},
+  {n:"5-fluorouracil microbial conversion",e:"Gut microbial deamination",a:"toxic",p:1,note:"Minor/non-human conversion pathway discussed historically; systemic toxicity modeling should rely on measured flucytosine levels.",evidenceRefs:["ev_flucytosine_amphotericin_label"]}
+],
+"Amphotericin B":[
+  {n:"Amphotericin B tissue-bound parent",e:"Tissue distribution",a:"active",p:80,t:24,note:"Active parent persists in tissues; nephrotoxicity and electrolyte wasting are the main interaction mechanisms rather than CYP metabolism.",evidenceRefs:["ev_flucytosine_amphotericin_label"]},
+  {n:"Renal tubular toxicity signal",e:"Renal toxicity mechanism",a:"toxic",p:20,note:"Functional toxicity pathway included because it can reduce clearance of renally eliminated companion drugs such as flucytosine.",evidenceRefs:["ev_flucytosine_amphotericin_label"]}
+],
+"Olaparib":[
+  {n:"Olaparib oxidative metabolites",e:"CYP3A4",a:"inactive",p:85,note:"CYP3A clearance route. Strong inhibitors increase parent exposure and strong inducers lower active parent exposure.",evidenceRefs:["ev_olaparib_cyp3a_label"]},
+  {n:"Unchanged olaparib",e:"Renal/Fecal elimination",a:"active",p:15,note:"Parent olaparib is the PARP-inhibiting active moiety.",evidenceRefs:["ev_olaparib_cyp3a_label"]}
+],
+"Rucaparib":[
+  {n:"Rucaparib oxidative metabolites",e:"CYP2D6/CYP1A2/CYP3A4",a:"inactive",p:60,note:"Multi-CYP metabolism. The clinically important signal also includes rucaparib inhibition of CYP1A2/CYP2C9/CYP2C19/CYP3A substrates.",evidenceRefs:["ev_rucaparib_cyp_substrate_label"]},
+  {n:"Unchanged rucaparib",e:"Renal/Fecal elimination",a:"active",p:40,note:"Parent rucaparib drives PARP inhibition and victim-drug CYP inhibition.",evidenceRefs:["ev_rucaparib_cyp_substrate_label"]}
+],
+"Niraparib":[
+  {n:"Niraparib carboxylic acid metabolite",e:"Carboxylesterase hydrolysis",a:"inactive",p:75,note:"Major non-CYP clearance product. Myelosuppression and hypertension monitoring are more actionable than CYP genotype.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]},
+  {n:"Unchanged niraparib",e:"Renal/Fecal elimination",a:"active",p:25,note:"Parent niraparib is the active PARP inhibitor.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]}
+],
+"Talazoparib":[
+  {n:"Talazoparib unchanged",e:"Renal excretion/P-gp-BCRP transport",a:"active",p:70,note:"Parent talazoparib is mostly unchanged; P-gp/BCRP inhibition and renal impairment can raise exposure.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]},
+  {n:"Talazoparib minor oxidative metabolites",e:"Oxidation",a:"inactive",p:10,note:"Minor inactive pathway; transporter and renal clearance are the clinically relevant routes.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]}
+],
+"Romidepsin":[
+  {n:"Romidepsin reduced thiol active form",e:"Intracellular reduction",a:"active_form",role:"active_form",p:80,note:"Romidepsin is activated intracellularly by reduction of its disulfide bond; CYP3A affects parent exposure before activation.",evidenceRefs:["ev_romidepsin_cyp3a_qt_warfarin_label"]},
+  {n:"Romidepsin oxidative metabolites",e:"CYP3A4",a:"inactive",p:60,note:"Clearance route susceptible to strong CYP3A inhibitors/inducers.",evidenceRefs:["ev_romidepsin_cyp3a_qt_warfarin_label"]}
+],
+"Abiraterone":[
+  {n:"Abiraterone sulfate",e:"SULT2A1",a:"inactive",p:35,note:"Major conjugated metabolite. Parent abiraterone drives CYP17 inhibition and CYP2D6/CYP2C8 inhibition.",evidenceRefs:["ev_abiraterone_cyp2d6_cyp2c8_label"]},
+  {n:"N-oxide abiraterone sulfate",e:"CYP3A4/SULT2A1",a:"inactive",p:25,note:"Inactive downstream metabolite; mineralocorticoid toxicity and CYP2D6/CYP2C8 victim interactions remain the clinical focus.",evidenceRefs:["ev_abiraterone_cyp2d6_cyp2c8_label"]}
+],
+"Belinostat":[
+  {n:"Belinostat glucuronide",e:"UGT1A1",a:"inactive",p:80,note:"Major clearance product. UGT1A1 poor function can increase belinostat exposure and myelosuppression/hepatic toxicity risk.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]},
+  {n:"Unchanged belinostat",e:"Renal/Fecal elimination",a:"active",p:20,note:"Parent belinostat is the active HDAC inhibitor.",evidenceRefs:["ev_parp_transporter_myelosuppression_label"]}
+],
+"Darolutamide":[
+  {n:"Keto-darolutamide",e:"CYP3A4/UGT1A9",a:"active",p:45,note:"Major active metabolite with similar androgen receptor activity. Transporter inhibition can raise rosuvastatin exposure.",evidenceRefs:["ev_darolutamide_bcrp_label"]},
+  {n:"Darolutamide glucuronide products",e:"UGT1A9",a:"inactive",p:35,note:"Inactive conjugation products; parent plus keto-darolutamide form the active moiety.",evidenceRefs:["ev_darolutamide_bcrp_label"]}
+],
+"Clorazepate":[
+  {n:"Nordiazepam (desmethyldiazepam)",e:"Acid decarboxylation",a:"active_form",role:"active_form",p:80,t:80,note:"Long-lived active benzodiazepine metabolite. This is the main sedative/fall-risk exposure, not parent clorazepate.",evidenceRefs:["ev_clorazepate_nordiazepam_label"]},
+  {n:"Oxazepam",e:"CYP2C19",a:"active",p:20,t:8,note:"Downstream active benzodiazepine metabolite; CYP3A and glucuronidation also contribute, but CYP2C19 is the audit-visible route.",evidenceRefs:["ev_clorazepate_nordiazepam_label"]}
+],
+"Midodrine":[
+  {n:"Desglymidodrine",e:"Esterase activation",a:"active_form",role:"active_form",p:80,t:3,note:"Active alpha-1 agonist responsible for pressor effect and supine hypertension risk.",evidenceRefs:["ev_midodrine_desglymidodrine_label"]},
+  {n:"Inactive polar metabolites",e:"Renal excretion",a:"inactive",p:20,note:"Renal function affects active-metabolite exposure and dosing safety.",evidenceRefs:["ev_midodrine_desglymidodrine_label"]}
+],
+"Droxidopa":[
+  {n:"Norepinephrine",e:"DOPA decarboxylase",a:"active_form",role:"active_form",p:80,t:2,note:"Active catecholamine formed from droxidopa. MAOI/COMT and other pressor contexts can amplify hypertensive risk.",evidenceRefs:["ev_droxidopa_norepinephrine_label"]},
+  {n:"DOPAC/HVA catechol metabolites",e:"MAO/COMT",a:"inactive",p:15,note:"Catecholamine breakdown products; MAOI/COMT inhibitors can alter catecholamine tone rather than simple parent-drug clearance.",evidenceRefs:["ev_droxidopa_norepinephrine_label"]}
+],
+"Nitazoxanide":[
+  {n:"Tizoxanide",e:"Esterase hydrolysis",a:"active_form",role:"active_form",p:90,t:1.5,note:"Active thiazolide formed rapidly after absorption; highly protein-bound and then glucuronidated.",evidenceRefs:["ev_nitazoxanide_tizoxanide_label"]},
+  {n:"Tizoxanide glucuronide",e:"UGT glucuronidation",a:"inactive",p:80,note:"Major inactive conjugate; low CYP burden.",evidenceRefs:["ev_nitazoxanide_tizoxanide_label"]}
+],
+"Dipyridamole":[
+  {n:"Dipyridamole glucuronides",e:"Glucuronidation",a:"inactive",p:80,note:"Main clearance route. Interaction relevance is additive antiplatelet/vasodilator effect rather than CYP inhibition.",evidenceRefs:["ev_dipyridamole_antiplatelet_label"]},
+  {n:"Unchanged dipyridamole",e:"Biliary elimination",a:"active",p:20,note:"Parent dipyridamole drives antiplatelet and vasodilator effect.",evidenceRefs:["ev_dipyridamole_antiplatelet_label"]}
+],
+"Artemether/Lumefantrine":[
+  {n:"Dihydroartemisinin",e:"CYP3A4/CYP2B6",a:"active",p:40,t:1,note:"Active artemether metabolite. Strong inducers can reduce antimalarial exposure and treatment response.",evidenceRefs:["ev_artemether_lumefantrine_cyp3a_qt_label"]},
+  {n:"Desbutyl-lumefantrine",e:"CYP3A4",a:"active",p:10,t:96,note:"Active lumefantrine metabolite; lumefantrine exposure is long-lived and QT/food context matters.",evidenceRefs:["ev_artemether_lumefantrine_cyp3a_qt_label"]},
+  {n:"Unchanged lumefantrine",e:"CYP3A4",a:"active",p:80,t:96,note:"Parent lumefantrine is long-lived; food increases absorption while CYP3A inducers can lower exposure.",evidenceRefs:["ev_artemether_lumefantrine_cyp3a_qt_label"]}
+],
+"Praziquantel":[
+  {n:"Hydroxypraziquantel metabolites",e:"CYP3A4",a:"inactive",p:80,note:"Primary oxidative clearance route. Rifampin-like CYP3A induction can markedly lower parent praziquantel exposure.",evidenceRefs:["ev_praziquantel_label"]},
+  {n:"Unchanged praziquantel",e:"CYP3A4",a:"active",p:20,note:"Parent praziquantel is the active antiparasitic exposure; food and induction context matter.",evidenceRefs:["ev_praziquantel_label"]}
+],
+"Argatroban":[
+  {n:"Argatroban hydroxylated metabolites",e:"CYP3A4",a:"weak",p:20,note:"Minor metabolites with substantially lower thrombin-inhibitory activity than parent.",evidenceRefs:["ev_argatroban_bleeding_label"]},
+  {n:"Unchanged argatroban",e:"Biliary clearance",a:"active",p:80,note:"Parent direct thrombin inhibitor drives anticoagulation; hepatic function and antithrombotic co-use dominate risk.",evidenceRefs:["ev_argatroban_bleeding_label"]}
+],
 "Cilostazol":[
   {
     n:"3,4-Dehydro-cilostazol",

@@ -211,6 +211,30 @@ const PK_PARAMS = {
   'praziquantel':    { F:0.80, ka:pkKaFromTmax(2.0, 1.5),  halfLife:1.5,Vd:2.5,  dose_mg:1200, note:"High first-pass CYP3A substrate; rifampin can markedly reduce antiparasitic exposure." },
   'atovaquone':      { F:0.23, ka:pkKaFromTmax(5.0, 70),   halfLife:70, Vd:8.8,  dose_mg:750,  note:"Food/fat-dependent absorption; rifampin/rifabutin and tetracycline can reduce exposure." },
   'proguanil':       { F:0.75, ka:pkKaFromTmax(4.0, 14),   halfLife:14, Vd:20.0, dose_mg:100,  note:"CYP2C19 prodrug to cycloguanil; atovaquone/proguanil efficacy is multi-factorial." },
+  'argatroban':      { F:1.00, ka:pkKaFromTmax(0.2, 0.75),  halfLife:0.75,Vd:0.17, dose_mg:50, note:"Infusion anticoagulant approximation; hepatic clearance, aPTT titration, bleeding, and warfarin-transition INR effects dominate." },
+  'amphotericin_b':  { F:1.00, ka:pkKaFromTmax(0.5, 24),    halfLife:24, Vd:4.0,  dose_mg:50,   note:"Infusion/tissue-distribution approximation; nephrotoxicity and electrolyte wasting are the key interaction mechanisms." },
+  'belinostat':      { F:1.00, ka:pkKaFromTmax(0.5, 1),     halfLife:1,  Vd:0.6,  dose_mg:1000, note:"Infusion approximation; UGT1A1 glucuronidation and myelosuppression/hepatic monitoring are key." },
+
+  // PK simulation expansion: HIV, PARP/HDAC oncology, renal-clearance, and prodrug blind spots.
+  'darunavir':       { F:0.37, ka:pkKaFromTmax(4.0, 15),   halfLife:15, Vd:2.0,  dose_mg:800,  note:"Boosted PI exposure is regimen-dependent; CYP3A/P-gp inhibition and rifamycin induction dominate risk." },
+  'rilpivirine':     { F:0.45, ka:pkKaFromTmax(4.0, 50),   halfLife:50, Vd:2.0,  dose_mg:25,   note:"Must be taken with food; acid suppression and CYP3A induction can cause antiviral underexposure." },
+  'bictegravir':     { F:0.70, ka:pkKaFromTmax(2.5, 18),   halfLife:18, Vd:0.9,  dose_mg:50,   note:"CYP3A/UGT1A1 substrate; cation chelation and rifampin-like induction lower exposure." },
+  'tenofovir_alafenamide':{ F:0.25, ka:pkKaFromTmax(1.0, 0.5), halfLife:0.5, Vd:1.2, dose_mg:25, note:"Plasma prodrug curve only; intracellular tenofovir diphosphate persists longer and is the active antiviral exposure." },
+  'lamivudine':      { F:0.86, ka:pkKaFromTmax(1.0, 6),    halfLife:6,  Vd:1.3,  dose_mg:300,  note:"Renally cleared unchanged; trimethoprim and kidney function can increase exposure." },
+  'emtricitabine':   { F:0.93, ka:pkKaFromTmax(2.0, 10),   halfLife:10, Vd:1.4,  dose_mg:200,  note:"Renally cleared NRTI with low CYP burden; regimen context and kidney function dominate." },
+  'flucytosine':     { F:0.85, ka:pkKaFromTmax(2.0, 3),    halfLife:3,  Vd:0.7,  dose_mg:1500, note:"Renally cleared with concentration-dependent marrow/GI/hepatic toxicity; TDM is preferred in serious fungal infection." },
+  'olaparib':        { F:0.70, ka:pkKaFromTmax(1.5, 15),   halfLife:15, Vd:2.4,  dose_mg:300,  note:"CYP3A substrate PARP inhibitor; inhibitors require dose reduction and inducers risk loss of efficacy." },
+  'rucaparib':       { F:0.36, ka:pkKaFromTmax(2.0, 17),   halfLife:17, Vd:1.7,  dose_mg:600,  note:"PARP inhibitor with multi-CYP metabolism and clinically relevant CYP1A2/CYP2C9 substrate inhibition." },
+  'niraparib':       { F:0.73, ka:pkKaFromTmax(3.0, 36),   halfLife:36, Vd:17.0, dose_mg:200,  note:"Less CYP-dependent PARP inhibitor; myelosuppression, BP, and renal/hepatic context dominate." },
+  'talazoparib':     { F:0.56, ka:pkKaFromTmax(1.0, 90),   halfLife:90, Vd:6.0,  dose_mg:1,    note:"Long half-life PARP inhibitor; P-gp/BCRP inhibition and renal impairment can raise exposure." },
+  'romidepsin':      { F:1.00, ka:pkKaFromTmax(0.5, 3),    halfLife:3,  Vd:0.7,  dose_mg:14,   note:"Infusion approximation; CYP3A exposure shifts, ECG context, and warfarin PT/INR monitoring matter." },
+  'abiraterone':     { F:0.10, ka:pkKaFromTmax(2.0, 12),   halfLife:12, Vd:4.0,  dose_mg:1000, note:"Food can massively increase exposure; CYP2D6/CYP2C8 inhibition and mineralocorticoid toxicity are key." },
+  'clorazepate':     { F:0.90, ka:pkKaFromTmax(1.0, 80),   halfLife:80, Vd:1.0,  dose_mg:7.5,  note:"Prodrug represented as long-lived nordiazepam active-moiety exposure; older age and inhibitors can prolong sedation." },
+  'midodrine':       { F:0.93, ka:pkKaFromTmax(1.0, 3),    halfLife:3,  Vd:0.7,  dose_mg:10,   note:"Prodrug represented as active desglymidodrine pressor exposure; BP timing is more important than CYP metabolism." },
+  'droxidopa':       { F:0.90, ka:pkKaFromTmax(2.0, 2.5),  halfLife:2.5,Vd:0.9,  dose_mg:300,  note:"Prodrug to norepinephrine; pressor interactions and supine hypertension drive safety." },
+  'nitazoxanide':    { F:0.70, ka:pkKaFromTmax(2.0, 1.5),  halfLife:1.5,Vd:0.5,  dose_mg:500,  note:"Parent rapidly forms active tizoxanide; low CYP burden, glucuronidation and protein binding context matter." },
+  'dipyridamole':    { F:0.60, ka:pkKaFromTmax(2.0, 10),   halfLife:10, Vd:2.0,  dose_mg:75,   note:"Antiplatelet/vasodilator; additive bleeding/hypotension more important than CYP metabolism." },
+  'artemether_lumefantrine':{ F:0.40, ka:pkKaFromTmax(6.0, 96), halfLife:96, Vd:5.0, dose_mg:480, note:"Active-moiety approximation weighted toward long-lived lumefantrine; food and CYP3A induction are high-impact." },
 };
 
 // pkConcentration(params, t_h) — one-compartment oral model

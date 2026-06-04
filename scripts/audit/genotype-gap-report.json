@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-04T14:23:47.199Z",
+  "generated": "2026-06-04T14:32:34.157Z",
   "medcheckVersion": "3.5.5",
   "genotypePanel": [
     "ABCB1",
@@ -322,7 +322,8 @@
         "gene": "UGT1A9",
         "foundIn": [
           "DRUG_DB",
-          "METABOLITE_ACTORS"
+          "METABOLITE_ACTORS",
+          "STUDY_DB"
         ],
         "catalogClass": "MEDCHECK_ONLY",
         "catalogDrugs": [],
