@@ -121,6 +121,108 @@ function renderGenotypePanel() {
   el.innerHTML = html;
 }
 
+function getHighestGenotypePrioritySignal() {
+  if (!activeStack.length) return null;
+  const signals = [];
+  for (const drugName of activeStack) {
+    const drug = getDrug(drugName);
+    if (!drug) continue;
+
+    for (const route of (drug.routes || [])) {
+      const enzyme = route.enzyme;
+      if (!GENOTYPE_EFFECTS[enzyme]) continue;
+      const phenotype = activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM;
+      const effect = GENOTYPE_EFFECTS[enzyme]?.[phenotype];
+      if (!effect || phenotype === GENOTYPE_PHENOTYPE.NM || effect.auc_fold === 1) continue;
+      const score = scoreGenotypeExposureSignal(effect.auc_fold, effect.note, drug);
+      if (score < 30) continue;
+      signals.push({
+        kind:"exposure",
+        score,
+        label:score >= 70 ? "PGx High" : "PGx Watch",
+        headline:`${enzyme} genotype may change ${drugName} exposure`,
+        summary:`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabel(phenotype)}. ${effect.note}`,
+        nextStep:score >= 70
+          ? "Review the pharmacogenomics finding before changing dose or adding inhibitors."
+          : "Review the pharmacogenomics panel and monitor dose-sensitive effects.",
+        evidenceRefs:[...(drug.evidenceRefs || [])],
+      });
+    }
+
+    for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
+      const { effect, phenotypeEffect, geno } = card;
+      const score = scoreGenotypeMetaboliteSignal(effect, phenotypeEffect);
+      if (score < 30) continue;
+      const direction = phenotypeEffect.direction === "decrease" ? "reduce" : "increase";
+      signals.push({
+        kind:"metabolite",
+        score,
+        label:score >= 70 ? "PGx High" : "PGx Watch",
+        headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
+        summary:`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabel(geno)}. ${phenotypeEffect.label || effect.note}`,
+        nextStep:score >= 70
+          ? "Review the pharmacogenomics finding before relying on this medication effect."
+          : "Review metabolite-level pharmacogenomics context.",
+        evidenceRefs:[...(effect.evidenceRefs || [])],
+      });
+    }
+
+    for (const card of getGenotypeRiskEffectCards(drugName)) {
+      const { risk, status, riskEffect, drugEffect } = card;
+      if (status !== GENOTYPE_RISK_STATUS.PRESENT) continue;
+      const score = riskEffect.severity === "high" ? 90 : riskEffect.severity === "moderate" ? 60 : 35;
+      signals.push({
+        kind:"risk",
+        score,
+        label:score >= 70 ? "PGx High" : "PGx Watch",
+        headline:`${risk.label} conflicts with ${drugEffect.parent}`,
+        summary:`${drugEffect.parent} is in your list and ${risk.label} is selected as present. ${drugEffect.clinicalAction || drugEffect.note}`,
+        nextStep:score >= 70
+          ? "Review this genotype-medication safety warning before using this medication."
+          : "Review this genotype-medication context with the rest of the profile.",
+        evidenceRefs:[...(drugEffect.evidenceRefs || [])],
+      });
+    }
+  }
+  signals.sort((a,b) => b.score - a.score);
+  return signals[0] || null;
+}
+
+function phenotypeLabel(phenotype) {
+  if (phenotype === GENOTYPE_PHENOTYPE.PM) return "poor metabolizer";
+  if (phenotype === GENOTYPE_PHENOTYPE.IM) return "intermediate metabolizer";
+  if (phenotype === GENOTYPE_PHENOTYPE.UM) return "ultrarapid metabolizer";
+  if (phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "present";
+  if (phenotype === GENOTYPE_RISK_STATUS.ABSENT) return "absent";
+  return "normal metabolizer";
+}
+
+function scoreGenotypeExposureSignal(fold, note, drug) {
+  const text = `${note || ""} ${drug?.note || ""}`.toLowerCase();
+  let score = 0;
+  if (fold >= 5 || fold <= 0.3) score = 75;
+  else if (fold >= 3 || fold <= 0.5) score = 65;
+  else if (fold >= 2 || fold <= 0.7) score = 50;
+  else if (fold >= 1.4 || fold <= 0.8) score = 35;
+  if (/contraindicat|avoid|life-threatening|fatal|severe|toxicity|bleeding|arrhythmia|respiratory depression|myelosuppression/.test(text)) score += 15;
+  if (drug?.props?.nti || drug?.props?.qtcRisk >= 2 || drug?.props?.myelosuppressionRisk >= 2) score += 10;
+  return Math.min(95, score);
+}
+
+function scoreGenotypeMetaboliteSignal(effect, phenotypeEffect) {
+  const fold = phenotypeEffect.fold || null;
+  const text = `${effect.note || ""} ${effect.clinicalAction || ""} ${phenotypeEffect.label || ""}`.toLowerCase();
+  let score = 35;
+  if (fold) {
+    if (fold >= 5 || fold <= 0.3) score = 75;
+    else if (fold >= 3 || fold <= 0.5) score = 65;
+    else if (fold >= 2 || fold <= 0.7) score = 50;
+  }
+  if (/contraindicat|avoid|life-threatening|fatal|severe|toxicity|failure risk|analgesia failure|stent thrombosis|myelosuppression|respiratory depression/.test(text)) score += 20;
+  if (/prodrug|active metabolite|key active|opioid-active/.test(text) && phenotypeEffect.direction === "decrease") score += 10;
+  return Math.min(95, score);
+}
+
 function normalizeEvidenceToken(value) {
   return String(value || '')
     .toLowerCase()

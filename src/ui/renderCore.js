@@ -75,20 +75,23 @@ function renderSummaryBar() {
   let severeCount = 0;
   let moderateCount = 0;
   let evidenceCount = 0;
+  let interactionScore = 0;
+  let genotypePriority = null;
   if (activeStack.length >= 2) {
     const risk = calcRisk();
+    interactionScore = risk.score;
     const severeInteractions = risk.interactions.filter(i => i.severity === "severe" || i.severity === "critical");
     const moderateInteractions = risk.interactions.filter(i => i.severity === "moderate");
     severeCount = severeInteractions.length;
     moderateCount = moderateInteractions.length;
     evidenceCount = new Set(risk.interactions.flatMap(i => i.evidenceRefs || [])).size;
-    riskClass = severeCount || risk.score >= 60 ? "high" : risk.score >= 30 ? "moderate" : "low";
-    scoreValue = risk.score;
+    riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
+    scoreValue = interactionScore;
     scoreLabel = risk.level.split(" ")[0];
     const topSevere = severeInteractions.slice(0, 2)
       .map(i => `${i.drug1} + ${i.drug2}`).join(", ");
     headline = severeCount > 0 ? "High-priority interaction found" :
-      risk.score >= 30 ? "Some monitoring may be needed" :
+      interactionScore >= 30 ? "Some monitoring may be needed" :
       "No major interaction signal found";
     summaryCopy = severeCount > 0
       ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more medicines.`
@@ -97,15 +100,37 @@ function renderSummaryBar() {
       ? "Start with the severe findings, then review genotype-adjusted levels."
       : "Review level changes and genotype notes for dose-sensitive medications.";
   } else {
+    genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
     headline = "Add another medication to check interactions";
     summaryCopy = "Single-medication pharmacogenomic, metabolite, and PK context is available below. Interaction risk needs at least two substances.";
     nextStep = "Add a second medication, supplement, herb, food, or recreational substance.";
   }
 
-  const activeGenotypes = Object.values(userGenetics || {})
-    .filter(value => value && value !== "normal")
+  if (!genotypePriority && typeof getHighestGenotypePrioritySignal === "function") {
+    genotypePriority = getHighestGenotypePrioritySignal();
+  }
+  const genotypeActionable = genotypePriority && genotypePriority.score >= 45 ? 1 : 0;
+  const genotypeEvidenceCount = genotypePriority ? (genotypePriority.evidenceRefs || []).length : 0;
+  if (genotypePriority && genotypePriority.score > interactionScore) {
+    riskClass = genotypePriority.score >= 70 ? "high" : genotypePriority.score >= 45 ? "moderate" : "low";
+    scoreValue = genotypePriority.score;
+    scoreLabel = genotypePriority.label;
+    headline = genotypePriority.headline;
+    summaryCopy = genotypePriority.summary;
+    nextStep = genotypePriority.nextStep;
+  }
+  evidenceCount += genotypeEvidenceCount;
+
+  const activeGenotypes = Object.values({ ...(activeGenotype || {}), ...(userGenetics || {}) })
+    .filter(value =>
+      value &&
+      value !== "normal" &&
+      value !== GENOTYPE_PHENOTYPE.NM &&
+      value !== GENOTYPE_RISK_STATUS.ABSENT
+    )
     .length;
-  const actionableCount = severeCount + moderateCount;
+  const actionableCount = severeCount + moderateCount + genotypeActionable;
+  const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "pgx" : "safety";
 
   let syndromeHtml = "";
   try {
@@ -126,7 +151,7 @@ function renderSummaryBar() {
       <div>
         <div class="summary-kicker">Highest Priority</div>
         <div class="summary-title">${headline}</div>
-        <div class="summary-copy">${summaryCopy} <span class="summary-jump" onclick="setTab('safety')">View findings</span></div>
+        <div class="summary-copy">${summaryCopy} <span class="summary-jump" onclick="setTab('${jumpTab}')">View findings</span></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>

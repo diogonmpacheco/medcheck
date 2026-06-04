@@ -325,6 +325,40 @@ assert(
   'CYP2C19 UM should quantify the separate active clopidogrel metabolite formation row'
 );
 
+loadCase(window, ['Clopidogrel']);
+window.setGenotype('CYP2C19', 'poor_metabolizer');
+const clopidogrelSummary = {
+  title: window.document.querySelector('.summary-title')?.textContent || '',
+  label: window.document.querySelector('.summary-risk .lbl')?.textContent || '',
+  metrics: Array.from(window.document.querySelectorAll('.summary-metric')).map(el => ({
+    value: el.querySelector('strong')?.textContent || '',
+    label: el.querySelector('span')?.textContent || '',
+  })),
+};
+assert(
+  clopidogrelSummary.title.includes('CYP2C19 genotype') &&
+  clopidogrelSummary.title.includes('Active thiol metabolite') &&
+  clopidogrelSummary.label === 'PGx High',
+  'Clopidogrel + CYP2C19 PM should be highest-priority PGx, not a generic single-medication prompt'
+);
+assert(
+  clopidogrelSummary.metrics.some(m => m.value === '1' && m.label === 'Genotype Inputs'),
+  'Summary should count only non-baseline genotype inputs'
+);
+
+loadCase(window, ['Abacavir']);
+window.eval(`activeGenotype["HLA-B*57:01"] = GENOTYPE_RISK_STATUS.PRESENT; renderAll();`);
+const abacavirSummary = {
+  title: window.document.querySelector('.summary-title')?.textContent || '',
+  label: window.document.querySelector('.summary-risk .lbl')?.textContent || '',
+};
+assert(
+  abacavirSummary.title.includes('HLA-B*57:01') &&
+  abacavirSummary.title.includes('Abacavir') &&
+  abacavirSummary.label === 'PGx High',
+  'Abacavir + HLA-B*57:01 present should surface as highest-priority PGx risk'
+);
+
 const pharmGxImportAudit = window.eval(`(() => {
   const imported = parsePharmGxImportDetailed(JSON.stringify({
     CYP2D6: "PM",

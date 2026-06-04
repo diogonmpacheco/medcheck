@@ -1486,7 +1486,7 @@ const DRUG_DB = [
  routes:[{enzyme:"CYP2B6",fraction:0.6,evidence:{confidence:"high",sources:["FDA label","CPIC guideline"]}},{enzyme:"CYP3A4",fraction:0.3,evidence:{confidence:"high",sources:["FDA label"]}}],
  inh:[{target:"CYP3A4",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C19",strength:"weak",evidence:{confidence:"moderate",sources:["FDA label"]}}],
  ind:[{target:"CYP3A4",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}}],
- note:"CPIC Level A: CYP2B6 poor metabolizers have substantially higher efavirenz exposure and CNS adverse-effect risk; CPIC recommends dose reduction in poor metabolizers.",
+ note:"Strong CPIC pharmacogenomic guidance: CYP2B6 poor metabolizers have substantially higher efavirenz exposure and CNS adverse-effect risk; CPIC recommends dose reduction in poor metabolizers.",
  alts:[]},{id:"isoniazid",
  name:"Isoniazid",
  cls:"Antitubercular",
@@ -1750,7 +1750,7 @@ const DRUG_DB = [
  routes:[{enzyme:"CES",fraction:0.3,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"CYP3A4",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}}],
  inh:[],
  ind:[],
- note:"CPIC Level A: UGT1A1*28/*28 poor metabolizers have higher SN-38 exposure and severe neutropenia risk; reduce starting dose and monitor CBC.",
+  note:"Strong CPIC pharmacogenomic guidance: UGT1A1*28/*28 poor metabolizers have higher SN-38 exposure and severe neutropenia risk; reduce starting dose and monitor CBC.",
  alts:[]},{id:"fluorouracil",
  name:"Fluorouracil",
  cls:"Chemotherapy",
@@ -1761,7 +1761,7 @@ const DRUG_DB = [
  routes:[{enzyme:"DPYD",fraction:0.8,evidence:{confidence:"high",sources:["FDA label","CPIC guideline"]}}],
  inh:[],
  ind:[],
- note:"CPIC Level A: DPYD poor/intermediate function can cause life-threatening fluoropyrimidine toxicity; genotype before treatment.",
+  note:"Strong CPIC pharmacogenomic guidance: DPYD poor/intermediate function can cause life-threatening fluoropyrimidine toxicity; genotype before treatment.",
  alts:[{name:"Raltitrexed",reason:"Non-fluoropyrimidine alternative for DPYD poor metabolizers"}]},{id:"capecitabine",
  name:"Capecitabine",
  cls:"Chemotherapy",
@@ -2949,7 +2949,7 @@ const DRUG_DB = [
   ],
   inh:[],
   ind:[],
-  note:"CPIC Level A: TPMT and/or NUDT15 poor/intermediate metabolizers risk severe, life-threatening myelosuppression at standard doses — reduce starting dose by phenotype (compound TPMT-IM/NUDT15-IM needs the largest reduction). 6-MP is the active moiety of azathioprine and shares the identical 6-TGN/6-MMP pathway. XO inhibitors (allopurinol/febuxostat) sharply ↑ toxicity. NOTE: routes are catabolic pathway WEIGHTS, not CYP clearance fractions.",
+  note:"Strong CPIC pharmacogenomic guidance: TPMT and/or NUDT15 poor/intermediate metabolizers risk severe, life-threatening myelosuppression at standard doses — reduce starting dose by phenotype (compound TPMT-IM/NUDT15-IM needs the largest reduction). 6-MP is the active moiety of azathioprine and shares the identical 6-TGN/6-MMP pathway. XO inhibitors (allopurinol/febuxostat) sharply ↑ toxicity. NOTE: routes are catabolic pathway WEIGHTS, not CYP clearance fractions.",
   alts:[]
 },{
   id:"thioguanine",
@@ -2997,7 +2997,7 @@ const DRUG_DB = [
   ],
   inh:[],
   ind:[],
-  note:"CPIC Level A (TPMT/NUDT15). Converts directly to 6-TGN — does NOT depend on xanthine oxidase, so (unlike azathioprine/6-MP) it has NO clinically significant allopurinol/febuxostat interaction. Higher hepatic SOS/VOD signal at high doses.",
+  note:"Strong CPIC pharmacogenomic guidance for TPMT/NUDT15. Converts directly to 6-TGN — does NOT depend on xanthine oxidase, so (unlike azathioprine/6-MP) it has NO clinically significant allopurinol/febuxostat interaction. Higher hepatic SOS/VOD signal at high doses.",
   alts:[]
 },{
   id:"tafenoquine",

@@ -34,6 +34,26 @@ function renderAlternatives() {
   `).join("");
 }
 
+const PGX_GUIDANCE_LABELS = {
+  A: "Strong PGx guidance",
+  B: "Moderate PGx guidance",
+  C: "Limited PGx signal"
+};
+
+const PGX_GUIDANCE_TITLES = {
+  A: "High-confidence pharmacogenomic guidance is available for at least one drug in this gene.",
+  B: "Moderate pharmacogenomic guidance or clinically useful evidence is available.",
+  C: "Early or limited pharmacogenomic signal; use as context, not a standalone prescribing rule."
+};
+
+function pgxGuidanceLabel(level) {
+  return PGX_GUIDANCE_LABELS[level] || "PGx evidence";
+}
+
+function pgxGuidanceTitle(level) {
+  return PGX_GUIDANCE_TITLES[level] || "Pharmacogenomic evidence is available.";
+}
+
 function renderGenetics() {
   const body = document.getElementById("geneList");
   const addSel = document.getElementById("geneAddSelect");
@@ -42,7 +62,7 @@ function renderGenetics() {
   const available = GENE_ENZYMES.filter(e => !userGenetics.hasOwnProperty(e));
   addSel.innerHTML = available.map(e => {
     const ev = PHARMGKB_EVIDENCE[e];
-    const tag = ev ? ` [CPIC ${ev.grade}]` : "";
+    const tag = ev ? ` (${pgxGuidanceLabel(ev.grade)})` : "";
     return `<option value="${e}">${e}${tag}</option>`;
   }).join("");
 
@@ -70,7 +90,7 @@ function renderGenetics() {
         evidenceHtml = relevantPairs.map(p => {
           const col = lvlColor[p.level] || lvlColor.C;
           return `<div style="font-size:11px;padding:3px 6px 3px 98px;display:flex;align-items:baseline;gap:6px">
-            <span style="font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:${col};color:#fff">CPIC ${p.level}</span>
+            <span title="${pgxGuidanceTitle(p.level)}" style="font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:${col};color:#fff">${pgxGuidanceLabel(p.level)}</span>
             <span style="color:var(--text1)"><b>${p.drug}</b>: ${p.action}</span>
           </div>`;
         }).join("");
@@ -78,7 +98,7 @@ function renderGenetics() {
     }
 
     const impactText = inStack.length ? `Affects: ${inStack.join(", ")}` : "";
-    const gradeTag = ev ? `<span style="font-size:9px;padding:1px 5px;border-radius:3px;background:${lvlColor[ev.grade]};color:#fff;margin-left:4px">${ev.guideline} ${ev.grade}</span>` : "";
+    const gradeTag = ev ? `<span title="${pgxGuidanceTitle(ev.grade)}" style="font-size:9px;padding:1px 5px;border-radius:3px;background:${lvlColor[ev.grade]};color:#fff;margin-left:4px">${ev.guideline} · ${pgxGuidanceLabel(ev.grade)}</span>` : "";
 
     return `<div class="gene-row">
       <div class="gene-name">${enzyme}${gradeTag}</div>
