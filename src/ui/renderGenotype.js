@@ -424,16 +424,21 @@ function renderPharmGxImportCard() {
 
 function applyPharmGxImport() {
   const input = document.getElementById("pharmgxImportText");
-  const parsed = parsePharmGxImport(input?.value || "");
+  const result = parsePharmGxImportDetailed(input?.value || "");
+  const parsed = result.rows;
   const applied = [];
   for (const row of parsed) {
     if (applyPharmGxRow(row)) applied.push(row.gene);
   }
   if (applied.length) renderAll();
   const status = document.getElementById("pharmgxImportStatus");
-  if (status) status.textContent = applied.length
-    ? `Applied ${applied.length}: ${applied.join(", ")}`
-    : "No supported MedCheck genes found";
+  if (status) {
+    const skippedText = result.skipped.length ? ` · skipped ${result.skipped.length}` : "";
+    status.textContent = applied.length
+      ? `Applied ${applied.length}: ${applied.join(", ")}${skippedText}`
+      : `No supported MedCheck genes found${skippedText}`;
+    if (result.skipped.length) status.title = `Skipped: ${result.skipped.slice(0,8).join("; ")}`;
+  }
 }
 
 function applyPharmGxRow(row) {
@@ -447,25 +452,53 @@ function applyPharmGxRow(row) {
 }
 
 function parsePharmGxImport(text) {
+  return parsePharmGxImportDetailed(text).rows;
+}
+
+function parsePharmGxImportDetailed(text) {
   const raw = String(text || "").trim();
-  if (!raw) return [];
+  if (!raw) return { rows:[], skipped:[] };
   const jsonRows = parsePharmGxJson(raw);
-  if (jsonRows.length) return jsonRows;
-  return raw.split(/\r?\n/)
-    .map(parsePharmGxLine)
-    .filter(Boolean);
+  if (jsonRows.rows.length || jsonRows.skipped.length) return jsonRows;
+  const rows = [];
+  const skipped = [];
+  for (const line of raw.split(/\r?\n/)) {
+    const parsed = parsePharmGxLine(line);
+    if (parsed) rows.push(parsed);
+    else if (line.trim() && !line.trim().startsWith("|---") && !/^gene\s*[,\t|]/i.test(line.trim())) skipped.push(line.trim());
+  }
+  return { rows, skipped };
 }
 
 function parsePharmGxJson(raw) {
   try {
     const data = JSON.parse(raw);
-    const rows = Array.isArray(data) ? data :
-      (data.gene_profiles || data.geneProfiles || data.genes || data.results || []);
-    if (!Array.isArray(rows)) return [];
-    return rows.map(row => parsePharmGxObjectRow(row)).filter(Boolean);
+    const sourceRows = normalizePharmGxJsonRows(data);
+    if (!sourceRows.length) return { rows:[], skipped:[] };
+    const rows = [];
+    const skipped = [];
+    for (const row of sourceRows) {
+      const parsed = parsePharmGxObjectRow(row);
+      if (parsed) rows.push(parsed);
+      else skipped.push(typeof row === "string" ? row : JSON.stringify(row));
+    }
+    return { rows, skipped };
   } catch (_) {
-    return [];
+    return { rows:[], skipped:[] };
   }
+}
+
+function normalizePharmGxJsonRows(data) {
+  if (Array.isArray(data)) return data;
+  const nested = data?.gene_profiles || data?.geneProfiles || data?.genes || data?.results || data?.profile || data?.genotypes;
+  if (Array.isArray(nested)) return nested;
+  if (nested && typeof nested === "object") return Object.entries(nested).map(([gene, value]) => ({ gene, value }));
+  if (data && typeof data === "object") {
+    const objectKeys = ["gene", "Gene", "symbol", "variant", "allele", "marker", "name"];
+    if (objectKeys.some(key => data[key])) return [data];
+    return Object.entries(data).map(([gene, value]) => ({ gene, value }));
+  }
+  return [];
 }
 
 function parsePharmGxObjectRow(row) {
@@ -505,28 +538,43 @@ function normalizePharmGxGene(value) {
   const gene = String(value || "").trim().toUpperCase().replace(/\s+/g, "");
   if (GENOTYPE_EFFECTS[gene]) return gene;
   if (typeof GENOTYPE_RISK_EFFECTS === 'undefined') return null;
-  const riskKey = Object.keys(GENOTYPE_RISK_EFFECTS).find(key =>
-    key.toUpperCase().replace(/\s+/g, "") === gene ||
+  const riskAliases = {
+    MTHFR: "MTHFR C677T",
+    GABRG2: "GABRG2 variant",
+    G6PD: "G6PD deficiency",
+    MTRNR1: "MT-RNR1 m.1555A>G",
+    "MT-RNR1": "MT-RNR1 m.1555A>G",
+    RYR1: "RYR1/CACNA1S MH variant",
+    CACNA1S: "RYR1/CACNA1S MH variant",
+  };
+  if (riskAliases[gene] && GENOTYPE_RISK_EFFECTS[riskAliases[gene]]) return riskAliases[gene];
+  const exactRiskKey = Object.keys(GENOTYPE_RISK_EFFECTS).find(key =>
+    key.toUpperCase().replace(/\s+/g, "") === gene
+  );
+  if (exactRiskKey) return exactRiskKey;
+  const geneMatches = Object.keys(GENOTYPE_RISK_EFFECTS).filter(key =>
     (GENOTYPE_RISK_EFFECTS[key].gene || "").toUpperCase().replace(/\s+/g, "") === gene
   );
-  return riskKey || null;
+  return geneMatches.length === 1 ? geneMatches[0] : null;
 }
 
 function phenotypeTextToGenotype(value) {
   const text = String(value || "").toLowerCase();
   if (!text) return null;
-  if (/ultra|rapid metabolizer|increased function|increased_function/.test(text)) return GENOTYPE_PHENOTYPE.UM;
-  if (/intermediate|decreased function|decreased_function|decreased expression|decreased_expression|decreased\/intermediate/.test(text)) return GENOTYPE_PHENOTYPE.IM;
-  if (/poor|non[- ]?express|no function|no_function|high warfarin sensitivity|risk allele present/.test(text)) return GENOTYPE_PHENOTYPE.PM;
-  if (/normal|reference|standard|expressor|normal function|normal metabolizer/.test(text)) return GENOTYPE_PHENOTYPE.NM;
+  const normalized = text.replace(/[_-]+/g, " ");
+  if (/^\s*(um|ultrarapid)\s*$/.test(text) || /ultra|rapid metabolizer|increased function/.test(normalized)) return GENOTYPE_PHENOTYPE.UM;
+  if (/^\s*im\s*$/.test(text) || /intermediate|decreased function|reduced function|decreased expression|decreased\/intermediate/.test(normalized)) return GENOTYPE_PHENOTYPE.IM;
+  if (/^\s*pm\s*$/.test(text) || /poor|null|non ?express|no function|high warfarin sensitivity|risk allele present/.test(normalized)) return GENOTYPE_PHENOTYPE.PM;
+  if (/^\s*nm\s*$/.test(text) || /normal|reference|standard|expressor|normal function|normal metabolizer/.test(normalized)) return GENOTYPE_PHENOTYPE.NM;
   return null;
 }
 
 function riskTextToStatus(value) {
   const text = String(value || "").toLowerCase();
   if (!text) return null;
-  if (/absent|negative|not detected|not present|normal|no variant|wild[- ]?type/.test(text)) return GENOTYPE_RISK_STATUS.ABSENT;
-  if (/present|positive|detected|carrier|risk allele|deficient|variant found|pathogenic/.test(text)) return GENOTYPE_RISK_STATUS.PRESENT;
+  const normalized = text.replace(/[_-]+/g, " ");
+  if (/absent|negative|not detected|not present|normal|no variant|wild ?type|hom cc|hom ref/.test(normalized)) return GENOTYPE_RISK_STATUS.ABSENT;
+  if (/present|positive|detected|carrier|risk allele|deficient|variant found|pathogenic|null|hom tt|hom alt|hetero|contraindicated/.test(normalized)) return GENOTYPE_RISK_STATUS.PRESENT;
   return null;
 }
 

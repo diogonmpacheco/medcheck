@@ -4166,7 +4166,7 @@ const MEDCHECK_VERSION = {
   drugDb: "1.2.3",
   engineRewrite: true,
   schema: "graph-v1",
-  released: "2026-06-03",
+  released: "2026-06-04",
   features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity",
     "confidence-weighted-risk", "interaction-graph", "metabolite-actors", "chain-traversal",
     "dynamic-route-fractions", "transporter-parity", "structured-evidence",

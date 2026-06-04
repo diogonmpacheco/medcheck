@@ -1,6 +1,6 @@
 # MedCheck Launch Audit
 
-Date: 2026-06-03
+Date: 2026-06-04
 
 This audit covers engineering consistency, release metadata, automated validation, and data-integrity checks for the public static app. It does not replace pharmacist, physician, or domain-expert review of individual clinical claims.
 
@@ -24,16 +24,18 @@ The release gate rebuilds the app and runs:
 - Smoke checks
 - Strict validation
 - Whitespace checks
+- Evidence ledger check
+- Genotype gap audit
 
 Current release stats:
 
 - 316 drugs
-- 258 evidence entries
+- 265 evidence entries
 - 235 curated DDI pairs
-- 25 genotype genes
+- 32 genotype genes
 - 27 metabolite actors
 - 52 receptor score profiles
-- 118 quarantined enrichment drafts awaiting human review
+- 125 quarantined enrichment drafts awaiting human review
 
 ## Additional Audit Checks
 
@@ -49,6 +51,7 @@ The launch audit also checked for:
 - Invalid route fractions
 - Orphan metabolite parent links
 - Runtime errors across curated and mixed medication/genotype stacks
+- Genotype coverage gaps with launch-blocking null impact scores
 
 No blocking issues were found in those checks.
 
@@ -57,11 +60,14 @@ No blocking issues were found in those checks.
 - Updated release date metadata from 2026-05-29 to 2026-06-03.
 - Added a v3.5.5 changelog entry covering the PharmGx importer, evidence quarantine, severe-pair provenance batch, and latest validation pass.
 - Rebuilt generated stats and the single-file app bundle.
+- Added genotype panel coverage for ABCB1, CYP1A2, CYP3A4, GSTM1, UGT2B7, MTHFR C677T, and GABRG2 risk-marker handling.
+- Removed bundled OpenPGx-specific audit language; the gap audit now supports optional local external PGx catalogs without shipping third-party catalog data.
+- Refreshed the genotype gap audit: 0 critical and 0 high-priority panel gaps remain for launch.
 
 ## Residual Risks
 
-- The 118 quarantined enrichment drafts are visible for review workflows but remain unverified until human review.
+- The 125 quarantined enrichment drafts are visible for review workflows but remain unverified until human review.
 - MedCheck is an explanatory and educational tool, not a clinical decision system.
 - The PharmGx importer accepts normalized phenotype and risk-marker rows; it is not a raw DNA or star-allele caller.
 - D3.js is loaded from a CDN for graph visualization, so the graph panel depends on that external asset being reachable.
-- A public 1.0 release still needs a product decision on tagging: either tag the current engine as the first public 1.0 release, or rename the app/package version to `1.0.0`.
+- A public 1.0 release still needs a product decision on tagging. Recommendation: publish the current engine as a public preview, then tag `v1.0.0` after review UX and DNA-import hardening land.

@@ -1,5 +1,18 @@
 # MedCheck Changelog
 
+## Unreleased — 2026-06-04
+
+### Launch Hardening
+
+- Updated launch audit, sitemap, release date, and generated stats to match the current bundle.
+- Expanded CI from basic smoke checks to the full release gate, evidence ledger check, severity report freshness check, and genotype gap audit.
+- Made the severity report deterministic by tying its generated header to the app release date instead of wall-clock time.
+- Hardened the DNA / PharmGx importer for direct gene-to-status JSON profiles, short phenotype labels, underscore labels, and explicit skipped-row reporting.
+- Added regression coverage for direct genotype profile imports across CYP, transporter, detox, and risk-marker examples.
+- Added compact evidence-card badges for curated evidence versus entries that still need human review.
+
+---
+
 ## v3.5.5 — 2026-06-03
 
 ### Launch Preparation: Trust, Provenance, And Local PharmGx Import

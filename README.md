@@ -12,7 +12,7 @@ A private, client-side pharmacology graph for exploring drug interactions, pharm
 
 MedCheck runs entirely in the browser. There are no accounts, no server, no API calls, and no medication data collection.
 
-Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-03**.
+Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-04**.
 
 ---
 
@@ -69,7 +69,7 @@ The project is intended for education, research, and review workflows. It is not
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **32 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1133 KB** generated bundle (23249 lines)
+- **1136 KB** generated bundle (23304 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

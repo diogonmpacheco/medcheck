@@ -5397,7 +5397,7 @@
         {
           "id": "ev_loperamide_pgp_inhibitor_cns",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "11014404",
           "doi": null
         }
       ],
@@ -5423,7 +5423,7 @@
         {
           "id": "ev_loperamide_pgp_inhibitor_cns",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "11014404",
           "doi": null
         }
       ],
@@ -5475,7 +5475,7 @@
         {
           "id": "ev_cimetidine_theophylline_clearance",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "2893637",
           "doi": null
         }
       ],
@@ -5501,7 +5501,7 @@
         {
           "id": "ev_mycophenolate_ppi_solubility",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "21903891",
           "doi": null
         }
       ],
@@ -5761,7 +5761,7 @@
         {
           "id": "ev_estradiol_lamotrigine_ugt1a4",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "16146436",
           "doi": null
         }
       ],
@@ -5787,7 +5787,7 @@
         {
           "id": "ev_efavirenz_levonorgestrel_contraception",
           "type": "clinical_pk",
-          "pmid": null,
+          "pmid": "25393993",
           "doi": null
         }
       ],

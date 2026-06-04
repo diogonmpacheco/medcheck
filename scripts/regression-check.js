@@ -295,6 +295,60 @@ assert(
   'CYP2C19 UM should quantify the separate active clopidogrel metabolite formation row'
 );
 
+const pharmGxImportAudit = window.eval(`(() => {
+  const imported = parsePharmGxImportDetailed(JSON.stringify({
+    CYP2D6: "PM",
+    CYP2C19: "NM",
+    CYP2C9: "NM",
+    CYP2B6: "NM",
+    CYP3A4: "NM",
+    CYP3A5: "non_expresser",
+    CYP1A2: "NM",
+    CYP2A6: "NM",
+    CYP4F2: "NM",
+    NAT2: "IM",
+    DPYD: "NM",
+    TPMT: "NM",
+    UGT1A1: "NM",
+    UGT2B7: "NM",
+    GSTM1: "null",
+    SLCO1B1: "increased_function",
+    ABCB1: "reduced_function",
+    ABCG2: "NM",
+    VKORC1: "NM",
+    MTHFR: "HOM_TT",
+    GABRG2: "HOM_ALT_contraindicated",
+    NOT_SUPPORTED_YET: "PM"
+  }));
+  imported.rows.forEach(row => applyPharmGxRow(row));
+  return {
+    rowCount: imported.rows.length,
+    skipped: imported.skipped,
+    cyp2d6: activeGenotype.CYP2D6,
+    cyp3a5: activeGenotype.CYP3A5,
+    nat2: activeGenotype.NAT2,
+    gstm1: activeGenotype.GSTM1,
+    slco1b1: activeGenotype.SLCO1B1,
+    abcb1: activeGenotype.ABCB1,
+    mthfr: activeGenotype["MTHFR C677T"],
+    gabrg2: activeGenotype["GABRG2 variant"],
+  };
+})()`);
+assert(pharmGxImportAudit.rowCount === 21, `Direct gene-status JSON import should parse 21 supported rows, got ${pharmGxImportAudit.rowCount}`);
+assert(pharmGxImportAudit.skipped.length === 1, 'Direct gene-status JSON import should report unsupported rows');
+assert(pharmGxImportAudit.cyp2d6 === 'poor_metabolizer', 'Importer should map CYP2D6 PM to poor_metabolizer');
+assert(pharmGxImportAudit.cyp3a5 === 'poor_metabolizer', 'Importer should map CYP3A5 non_expresser to poor_metabolizer');
+assert(pharmGxImportAudit.nat2 === 'intermediate_metabolizer', 'Importer should map NAT2 IM to intermediate_metabolizer');
+assert(pharmGxImportAudit.gstm1 === 'poor_metabolizer', 'Importer should map GSTM1 null to poor_metabolizer');
+assert(pharmGxImportAudit.slco1b1 === 'ultrarapid_metabolizer', 'Importer should map increased_function to ultrarapid_metabolizer');
+assert(pharmGxImportAudit.abcb1 === 'intermediate_metabolizer', 'Importer should map reduced_function to intermediate_metabolizer');
+assert(pharmGxImportAudit.mthfr === 'risk_allele_present', 'Importer should map MTHFR HOM_TT to risk allele present');
+assert(pharmGxImportAudit.gabrg2 === 'risk_allele_present', 'Importer should map GABRG2 HOM_ALT_contraindicated to risk allele present');
+assert(
+  window.eval(`parsePharmGxImportDetailed(JSON.stringify({ "HLA-B": "detected" })).skipped.length`) === 1,
+  'Importer should skip ambiguous generic HLA-B rows instead of guessing a specific HLA-B allele'
+);
+
 loadCase(window, ['Warfarin', 'Ibuprofen']);
 assert(hasInteraction(window, {
   drug1: 'Warfarin',

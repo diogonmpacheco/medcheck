@@ -1,6 +1,6 @@
 # MedCheck Severity Report
 
-Generated: 2026-06-03T12:06:48.021Z
+Generated for release date: 2026-06-04
 
 Known DDI pairs: 235
 Original severe: 147
@@ -221,11 +221,11 @@ Recommended downgrades: 0
 | Leflunomide + Warfarin | metabolic | moderate | moderate | ev_leflunomide_teriflunomide_half_life (clinical_trial PMID:21344102) | Kept original severity. |
 | Isoniazid + Carbamazepine | metabolic | severe | severe | ev_nat2_isoniazid_consensus (meta-analysis PMID:24685011) | Severe support threshold met. |
 | Hydralazine + Metoprolol | clearance | moderate | moderate | ev_nat2_isoniazid_consensus (meta-analysis PMID:24685011) | Kept original severity. |
-| Loperamide + Quinidine | transport | severe | severe | ev_loperamide_pgp_inhibitor_cns (clinical_pk) | Severe support threshold met. |
-| Loperamide + Clarithromycin | transport | severe | severe | ev_loperamide_pgp_inhibitor_cns (clinical_pk) | Severe support threshold met. |
+| Loperamide + Quinidine | transport | severe | severe | ev_loperamide_pgp_inhibitor_cns (clinical_pk PMID:11014404) | Severe support threshold met. |
+| Loperamide + Clarithromycin | transport | severe | severe | ev_loperamide_pgp_inhibitor_cns (clinical_pk PMID:11014404) | Severe support threshold met. |
 | Rifaximin + Cyclosporine | transport | moderate | moderate | ev_rifaximin_cyclosporine_transporter (fda_label) | Kept original severity. |
-| Cimetidine + Theophylline | metabolic | severe | severe | ev_cimetidine_theophylline_clearance (clinical_pk) | Severe support threshold met. |
-| Omeprazole + Mycophenolate | absorption | moderate | moderate | ev_mycophenolate_ppi_solubility (clinical_pk) | Kept original severity. |
+| Cimetidine + Theophylline | metabolic | severe | severe | ev_cimetidine_theophylline_clearance (clinical_pk PMID:2893637) | Severe support threshold met. |
+| Omeprazole + Mycophenolate | absorption | moderate | moderate | ev_mycophenolate_ppi_solubility (clinical_pk PMID:21903891) | Kept original severity. |
 | Tofacitinib + Ketoconazole | metabolic | severe | severe | ev_tofacitinib_cyp3a4_label (fda_label) | Severe support threshold met. |
 | Tofacitinib + Fluconazole | metabolic | severe | severe | ev_tofacitinib_cyp3a4_label (fda_label) | Severe support threshold met. |
 | Tofacitinib + Rifampin | induction | severe | severe | ev_tofacitinib_cyp3a4_label (fda_label) | Severe support threshold met. |
@@ -235,8 +235,8 @@ Recommended downgrades: 0
 | Zafirlukast + Warfarin | metabolic | severe | severe | ev_zafirlukast_warfarin_label (fda_label) | Severe support threshold met. |
 | Roflumilast + Rifampin | induction | severe | severe | ev_roflumilast_cyp_label (fda_label) | Severe support threshold met. |
 | Ethinyl Estradiol + Rifampin | induction | severe | severe | ev_rifampin_hormonal_contraception (guideline) | Severe support threshold met. |
-| Ethinyl Estradiol + Lamotrigine | glucuronidation | severe | severe | ev_estradiol_lamotrigine_ugt1a4 (clinical_pk) | Severe support threshold met. |
-| Levonorgestrel + Efavirenz | induction | severe | severe | ev_efavirenz_levonorgestrel_contraception (clinical_pk) | Severe support threshold met. |
+| Ethinyl Estradiol + Lamotrigine | glucuronidation | severe | severe | ev_estradiol_lamotrigine_ugt1a4 (clinical_pk PMID:16146436) | Severe support threshold met. |
+| Levonorgestrel + Efavirenz | induction | severe | severe | ev_efavirenz_levonorgestrel_contraception (clinical_pk PMID:25393993) | Severe support threshold met. |
 | Cinacalcet + Paroxetine | metabolic | severe | severe | ev_cinacalcet_cyp2d6_label (fda_label) | Severe support threshold met. |
 | Alendronate + Calcium | absorption | moderate | moderate | ev_alendronate_cation_absorption (fda_label) | Kept original severity. |
 | Mifepristone + Simvastatin | metabolic | severe | severe | ev_mifepristone_cyp3a4_label (fda_label) | Severe support threshold met. |

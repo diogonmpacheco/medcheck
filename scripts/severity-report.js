@@ -47,7 +47,7 @@ JSON.stringify((() => {
       missingRefs: refs.filter((id) => !STUDY_DB[id]),
     };
   }
-  return KNOWN_DDI.map((ddi) => {
+  const rows = KNOWN_DDI.map((ddi) => {
     const profile = evidenceProfile(ddi);
     let recommended = ddi.severity;
     let rationale = 'Kept original severity.';
@@ -68,9 +68,11 @@ JSON.stringify((() => {
       evidence: profile,
     };
   });
+  return { rows, releaseDate: MEDCHECK_VERSION.released };
 })())`;
 
-const rows = JSON.parse(vm.runInNewContext(code, { console }));
+const report = JSON.parse(vm.runInNewContext(code, { console }));
+const rows = report.rows;
 const stats = collectStats();
 const changed = rows.filter((row) => row.changed);
 const severeAfter = rows.filter((row) => row.recommendedSeverity === 'severe').length;
@@ -78,7 +80,7 @@ const severeAfter = rows.filter((row) => row.recommendedSeverity === 'severe').l
 const lines = [
   '# MedCheck Severity Report',
   '',
-  `Generated: ${new Date().toISOString()}`,
+  `Generated for release date: ${report.releaseDate}`,
   '',
   `Known DDI pairs: ${rows.length}`,
   `Original severe: ${stats.severeDdi}`,
