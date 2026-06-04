@@ -7130,6 +7130,32 @@ const STUDY_DB = {
     limitations:["The exact parent/metabolite contribution varies by dose, duration, age, renal/hepatic function, and therapeutic drug monitoring."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
   },
+  "ev_procainamide_nat2_label": {
+    id:"ev_procainamide_nat2_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Procainamide prescribing information - NAPA active metabolite and NAT2 acetylation",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:"4073534", doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:["NAT2"],
+    quantifiedEffects:{note:"Procainamide is acetylated by NAT2 to N-acetylprocainamide (NAPA), an active class III antiarrhythmic metabolite. Acetylator phenotype and renal function shift parent/NAPA exposure and toxicity context."},
+    temporal:{mechanism:"NAT2_active_metabolite_formation_and_renal_clearance"},
+    supports:["procainamide_METABOLIZED_TO_n-acetylprocainamide-napa","procainamide_nat2_parent_metabolite_balance","procainamide_napa_qt_context"],
+    contradicts:[],
+    limitations:["Clinical interpretation requires ECG/QT monitoring, renal function, dose, route, and therapeutic drug monitoring where available."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+  },
+  "ev_disopyramide_label": {
+    id:"ev_disopyramide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Disopyramide prescribing information - active mono-N-dealkyl metabolite and renal clearance",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Disopyramide is partly metabolized to mono-N-dealkyldisopyramide, an active metabolite with anticholinergic contribution, while renal clearance of unchanged parent remains clinically important."},
+    temporal:{mechanism:"CYP3A4_metabolite_formation_and_renal_parent_clearance"},
+    supports:["disopyramide_METABOLIZED_TO_mono-n-dealkyldisopyramide","disopyramide_anticholinergic_metabolite_context","disopyramide_renal_clearance_context"],
+    contradicts:[],
+    limitations:["Risk depends on renal function, serum concentration, QRS/QT monitoring, heart failure status, and anticholinergic vulnerability."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+  },
 
 };
 

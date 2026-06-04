@@ -1408,6 +1408,373 @@ const METAB = {
     p:20,
     note:"Long half-life supports metabolite accumulation with chronic dosing."
   }
+],
+"Mercaptopurine":[
+  {
+    n:"6-Thioguanine nucleotides (6-TGN)",
+    e:"HPRT/IMPDH",
+    a:"active_form",
+    role:"active_form",
+    p:40,
+    note:"Cytotoxic/immunosuppressive active metabolites incorporated into DNA. NUDT15 dephosphorylates TGTP to limit DNA-TG incorporation; loss-of-function increases myelosuppression risk.",
+    evidenceRefs:["ev_azathioprine_tpmt_cpic2019","ev_thiopurine_tpmt_nudt15_cpic2025"]
+  },
+  {
+    n:"6-Methylmercaptopurine (6-MMP)",
+    e:"TPMT",
+    a:"toxic",
+    p:30,
+    note:"TPMT methylation product; high 6-MMP/6-TGN ratios are linked to hepatotoxicity while TPMT loss-of-function shifts exposure toward 6-TGN.",
+    evidenceRefs:["ev_azathioprine_tpmt_cpic2019"]
+  },
+  {
+    n:"Thiouric acid",
+    e:"Xanthine oxidase",
+    a:"inactive",
+    p:30,
+    note:"XO oxidation pathway; blocked by allopurinol or febuxostat, which can raise active thiopurine nucleotide exposure."
+  }
+],
+"Thioguanine":[
+  {
+    n:"6-Thioguanine nucleotides (6-TGN)",
+    e:"HPRT",
+    a:"active_form",
+    role:"active_form",
+    p:60,
+    note:"Direct conversion to active 6-TGN; NUDT15 still governs DNA-thioguanine load and myelosuppression risk.",
+    evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"]
+  },
+  {
+    n:"6-Methylthioguanine",
+    e:"TPMT",
+    a:"inactive",
+    p:25,
+    note:"TPMT methylation; TPMT loss-of-function shifts the balance toward active 6-TGN."
+  },
+  {
+    n:"2-Amino-6-methylthiopurine / thiouric acid derivatives",
+    e:"Guanase/Aldehyde oxidase",
+    a:"inactive",
+    p:15,
+    note:"Minor oxidative inactivation; not the same xanthine-oxidase-dependent pathway as mercaptopurine."
+  }
+],
+"Tafenoquine":[
+  {
+    n:"Tafenoquine oxidative metabolites",
+    e:"CYP2D6",
+    a:"toxic",
+    p:20,
+    note:"Oxidative metabolite context for erythrocyte oxidative stress; clinically amplified in G6PD deficiency. Activation is less fully defined than primaquine.",
+    evidenceRefs:["ev_tafenoquine_g6pd_fda"]
+  },
+  {
+    n:"Tafenoquine (unchanged)",
+    e:"Hepatic/biliary",
+    a:"active",
+    p:80,
+    note:"Long-circulating parent drug with prolonged terminal half-life, so oxidative exposure cannot be rapidly stopped after dosing."
+  }
+],
+"Chloroquine":[
+  {
+    n:"Desethylchloroquine",
+    e:"CYP2C8/CYP3A4",
+    a:"active",
+    p:35,
+    note:"Major active metabolite with retained antimalarial activity.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+  },
+  {
+    n:"Bisdesethylchloroquine",
+    e:"CYP2D6",
+    a:"active",
+    p:10,
+    note:"Minor active metabolite.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+  },
+  {
+    n:"Chloroquine (unchanged)",
+    e:"Renal/tissue depot",
+    a:"active",
+    p:50,
+    note:"Large volume of distribution and long terminal half-life; parent persistence remains clinically important."
+  }
+],
+"Quinine":[
+  {
+    n:"3-Hydroxyquinine",
+    e:"CYP3A4",
+    a:"active",
+    p:60,
+    note:"Principal metabolite; some antimalarial activity and renal-impairment accumulation context.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+  },
+  {
+    n:"Quinine (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:20,
+    note:"Renal clearance contributes and can vary with urine pH."
+  }
+],
+"Sulfasalazine":[
+  {
+    n:"Sulfapyridine",
+    e:"Azoreductase (gut flora)",
+    a:"active",
+    p:60,
+    note:"Released by colonic bacterial azo-cleavage, then acetylated by NAT2. Slow acetylators can accumulate sulfapyridine and develop dose-limiting adverse effects.",
+    evidenceRefs:["ev_sulfasalazine_tpmt_inhibition"]
+  },
+  {
+    n:"5-Aminosalicylic acid (mesalamine)",
+    e:"Azoreductase (gut flora)",
+    a:"active_form",
+    role:"active_form",
+    p:40,
+    note:"Locally acting anti-inflammatory moiety with limited systemic absorption."
+  },
+  {
+    n:"N-Acetylsulfapyridine",
+    e:"NAT2",
+    a:"inactive",
+    p:30,
+    note:"NAT2 acetylation product of sulfapyridine."
+  }
+],
+"Cyclophosphamide":[
+  {
+    n:"4-Hydroxycyclophosphamide",
+    e:"CYP2B6/CYP3A4/CYP2C9",
+    a:"active_form",
+    role:"active_form",
+    p:45,
+    note:"Primary activation step for the prodrug; formation balance is clinically relevant for efficacy and toxicity.",
+    evidenceRefs:["ev_cyclophosphamide_cyp2b6_label"]
+  },
+  {
+    n:"Aldophosphamide",
+    e:"Tautomerization",
+    a:"active",
+    p:45,
+    note:"Equilibrates with 4-hydroxycyclophosphamide and decomposes to the alkylating and urotoxic metabolites."
+  },
+  {
+    n:"Phosphoramide mustard",
+    e:"Spontaneous decomposition",
+    a:"active_form",
+    role:"active_form",
+    p:40,
+    note:"Alkylating cytotoxic species responsible for much of the antineoplastic/immunosuppressive effect.",
+    evidenceRefs:["ev_cyclophosphamide_cyp2b6_label"]
+  },
+  {
+    n:"Acrolein",
+    e:"Spontaneous decomposition",
+    a:"toxic",
+    p:40,
+    note:"Urotoxic metabolite that drives hemorrhagic cystitis risk; mesna/hydration context belongs to toxicity prevention.",
+    evidenceRefs:["ev_cyclophosphamide_cyp2b6_label"]
+  },
+  {
+    n:"Dechloroethylcyclophosphamide",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Competing inactivation pathway paired with chloroacetaldehyde formation."
+  }
+],
+"Oseltamivir":[
+  {
+    n:"Oseltamivir carboxylate",
+    e:"Carboxylesterase activation",
+    a:"active_form",
+    role:"active_form",
+    p:75,
+    note:"Active neuraminidase inhibitor; exposure rises with probenecid through reduced renal tubular secretion.",
+    evidenceRefs:["ev_oseltamivir_probenecid_label"]
+  },
+  {
+    n:"Oseltamivir (unchanged prodrug)",
+    e:"Renal",
+    a:"inactive",
+    p:5,
+    note:"Parent prodrug has limited antiviral activity compared with oseltamivir carboxylate."
+  }
+],
+"Valacyclovir":[
+  {
+    n:"Acyclovir",
+    e:"Esterase activation",
+    a:"active_form",
+    role:"active_form",
+    p:80,
+    note:"Active antiviral formed rapidly from valacyclovir; renal clearance drives exposure and neurotoxicity context.",
+    evidenceRefs:["ev_valacyclovir_probenecid_label","ev_acyclovir_probenecid_label"]
+  },
+  {
+    n:"9-Carboxymethoxymethylguanine (CMMG)",
+    e:"Aldehyde oxidase",
+    a:"toxic",
+    p:5,
+    note:"Minor downstream acyclovir metabolite associated with renal-impairment neurotoxicity context."
+  }
+],
+"Hydroxyzine":[
+  {
+    n:"Cetirizine",
+    e:"Oxidative dealkylation",
+    a:"active",
+    p:45,
+    note:"Active antihistamine metabolite with lower sedation than parent hydroxyzine but renal persistence.",
+    evidenceRefs:["ev_hydroxyzine_qt_label"]
+  },
+  {
+    n:"Norchlorcyclizine",
+    e:"CYP3A4/CYP2C9",
+    a:"active",
+    p:20,
+    note:"Sedating piperazine metabolite context; parent anticholinergic/QT risk remains clinically important."
+  }
+],
+"Roflumilast":[
+  {
+    n:"Roflumilast N-oxide",
+    e:"CYP3A4/CYP1A2",
+    a:"active_form",
+    role:"active_form",
+    p:90,
+    note:"Major active metabolite; parent plus N-oxide account for PDE4 inhibitory activity.",
+    evidenceRefs:["ev_roflumilast_cyp_label"]
+  },
+  {
+    n:"Roflumilast N-oxide glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:10,
+    note:"Inactive conjugated elimination product."
+  }
+],
+"Thioridazine":[
+  {
+    n:"Mesoridazine",
+    e:"CYP2D6/CYP3A4",
+    a:"active",
+    p:30,
+    note:"Active phenothiazine metabolite with QT-prolongation relevance; CYP2D6 poor metabolism raises parent/metabolite risk context.",
+    evidenceRefs:["ev_thioridazine_qt_cyp2d6_fda"]
+  },
+  {
+    n:"Sulforidazine",
+    e:"CYP2D6/CYP3A4",
+    a:"active",
+    p:15,
+    note:"Active sulfoxide/sulfone metabolite in the same QT-risk family."
+  },
+  {
+    n:"Thioridazine ring-hydroxylated metabolites",
+    e:"CYP2D6",
+    a:"inactive",
+    p:20,
+    note:"Clearance products reduced when CYP2D6 activity is low or inhibited.",
+    evidenceRefs:["ev_thioridazine_qt_cyp2d6_fda"]
+  }
+],
+"Sacubitril/Valsartan":[
+  {
+    n:"Sacubitrilat (LBQ657)",
+    e:"Esterase activation",
+    a:"active_form",
+    role:"active_form",
+    p:50,
+    note:"Active neprilysin inhibitor formed from sacubitril; ACE-inhibitor washout and hypotension/angioedema context belong to the active moiety.",
+    evidenceRefs:["ev_sacubitril_valsartan_label"]
+  },
+  {
+    n:"Valsartan (unchanged)",
+    e:"Biliary/renal",
+    a:"active",
+    p:50,
+    note:"ARB component is largely recovered unchanged; transporter and potassium/renal context remain parent-driven."
+  }
+],
+"Procainamide":[
+  {
+    n:"N-Acetylprocainamide (NAPA)",
+    e:"NAT2",
+    a:"active",
+    p:50,
+    note:"Active class III antiarrhythmic metabolite with longer half-life and QT contribution; NAT2 phenotype shifts parent/NAPA balance.",
+    evidenceRefs:["ev_procainamide_nat2_label"]
+  },
+  {
+    n:"Procainamide (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:40,
+    note:"Renal clearance of active parent drug is clinically important for exposure and lupus-like toxicity context."
+  }
+],
+"Osimertinib":[
+  {
+    n:"AZ5104",
+    e:"CYP3A4/CYP3A5",
+    a:"active",
+    p:10,
+    note:"Active demethylated EGFR-inhibitor metabolite; induction can lower total active exposure.",
+    evidenceRefs:["ev_osimertinib_cyp3a_qt_label"]
+  },
+  {
+    n:"AZ7550",
+    e:"CYP3A4/CYP3A5",
+    a:"active",
+    p:10,
+    note:"Active circulating metabolite in osimertinib exposure context.",
+    evidenceRefs:["ev_osimertinib_cyp3a_qt_label"]
+  },
+  {
+    n:"Osimertinib (unchanged)",
+    e:"Hepatic",
+    a:"active",
+    p:70,
+    note:"Parent exposure remains the main label-driven interaction signal; strong induction is more important than inhibition."
+  }
+],
+"Dronedarone":[
+  {
+    n:"N-Desbutyl dronedarone",
+    e:"CYP3A4",
+    a:"active",
+    p:40,
+    note:"Main active metabolite; less potent than parent but contributes to CYP3A/P-gp interaction context.",
+    evidenceRefs:["ev_dronedarone_cyp3a_pgp_label"]
+  },
+  {
+    n:"Dronedarone (unchanged)",
+    e:"Hepatic/biliary",
+    a:"active",
+    p:50,
+    note:"Parent drug remains central to contraindications and P-gp/CYP3A interaction burden."
+  }
+],
+"Disopyramide":[
+  {
+    n:"Mono-N-dealkyldisopyramide",
+    e:"CYP3A4",
+    a:"active",
+    p:25,
+    note:"Active metabolite with clinically relevant anticholinergic contribution; renal clearance of parent and metabolite matters in toxicity.",
+    evidenceRefs:["ev_disopyramide_label"]
+  },
+  {
+    n:"Disopyramide (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:40,
+    note:"Unchanged parent drug contributes strongly to narrow-therapeutic-index and QT risk."
+  }
 ]
 };
 
@@ -1550,193 +1917,6 @@ const METABOLITE_ACTOR_ALIASES = {
   "m-chlorophenylpiperazine-mcpp": "mcpp",
   "pyridinium-metabolite-hpp": "hpp-plus",
   "napqi-n-acetyl-p-benzoquinone-imine": "napqi",
-  // ═══ ENRICHMENT BATCH 1 ═══
-  "Mercaptopurine":[
-    {
-      n:"6-Thioguanine nucleotides (6-TGN)",
-      e:"HPRT/IMPDH",
-      a:"active_form",
-      role:"active_form",
-      p:40,
-      note:"Cytotoxic/immunosuppressive active metabolites incorporated into DNA. NUDT15 dephosphorylates TGTP to limit DNA-TG incorporation — loss-of-function → myelosuppression.",
-      evidenceRefs:[
-        "ev_azathioprine_tpmt_cpic2019",
-        "ev_thiopurine_tpmt_nudt15_cpic2025"
-      ]
-    },
-    {
-      n:"6-Methylmercaptopurine (6-MMP)",
-      e:"TPMT",
-      a:"toxic",
-      p:30,
-      note:"TPMT methylation product; hepatotoxic at high 6-MMP/6-TGN ratios. TPMT loss-of-function shunts toward 6-TGN → myelosuppression.",
-      evidenceRefs:[
-        "ev_azathioprine_tpmt_cpic2019"
-      ]
-    },
-    {
-      n:"Thiouric acid",
-      e:"Xanthine oxidase",
-      a:"inactive",
-      p:30,
-      note:"XO oxidation pathway; blocked by allopurinol/febuxostat → ↑ active thiopurine nucleotides."
-    }
-  ],
-
-  "Thioguanine":[
-    {
-      n:"6-Thioguanine nucleotides (6-TGN)",
-      e:"HPRT",
-      a:"active_form",
-      role:"active_form",
-      p:60,
-      note:"Direct conversion to active 6-TGN without the XO step — hence no allopurinol interaction. NUDT15 still governs DNA-TG load.",
-      evidenceRefs:[
-        "ev_thiopurine_tpmt_nudt15_cpic2025"
-      ]
-    },
-    {
-      n:"6-Methylthioguanine",
-      e:"TPMT",
-      a:"inactive",
-      p:25,
-      note:"TPMT methylation; TPMT loss-of-function shifts balance toward active 6-TGN."
-    },
-    {
-      n:"2-Amino-6-methylthiopurine / thiouric (minor)",
-      e:"Guanase/Aldehyde oxidase",
-      a:"inactive",
-      p:15,
-      note:"Minor oxidative inactivation; NOT xanthine-oxidase dependent."
-    }
-  ],
-
-  "Tafenoquine":[
-    {
-      n:"Tafenoquine oxidative metabolites",
-      e:"CYP2D6",
-      a:"toxic",
-      p:20,
-      t:null,
-      note:"Hydroxylated/oxidative metabolites generate hydrogen peroxide → erythrocyte oxidative stress; the proximate hemolysis driver in G6PD deficiency. Activation pathway less defined than primaquine.",
-      evidenceRefs:[
-        "ev_tafenoquine_g6pd_fda"
-      ]
-    },
-    {
-      n:"Tafenoquine (unchanged)",
-      e:"Hepatic/biliary",
-      a:"active",
-      p:80,
-      note:"Long-circulating parent (t½ ~14d) — sustained oxidative exposure cannot be truncated by discontinuation."
-    }
-  ],
-
-  "Dapsone":[
-    {
-      n:"Dapsone hydroxylamine (DDS-NHOH)",
-      e:"CYP2C9",
-      a:"toxic",
-      p:30,
-      note:"Primary hematotoxic metabolite — drives dose-dependent methemoglobinemia and oxidative hemolysis (amplified in G6PD deficiency). Also formed via CYP3A4.",
-      inh:[],
-      evidenceRefs:[
-        "ev_dapsone_ddsnhoh_metabolite"
-      ]
-    },
-    {
-      n:"N-Acetyldapsone (MADDS)",
-      e:"NAT2",
-      a:"inactive",
-      p:40,
-      note:"Acetylation pathway; reversible to dapsone. NAT2 phenotype shifts the acetyl/hydroxylamine balance."
-    },
-    {
-      n:"Dapsone (unchanged)",
-      e:"Renal",
-      a:"active",
-      p:20,
-      note:"Long t½ (~28h) → metabolite accumulation with chronic dosing."
-    }
-  ],
-
-  "Chloroquine":[
-    {
-      n:"Desethylchloroquine",
-      e:"CYP2C8",
-      a:"active",
-      p:35,
-      t:null,
-      note:"Major active metabolite; antimalarial activity retained. Also formed via CYP3A4.",
-      evidenceRefs:[
-        "ev_g6pd_oxidative_antimalarials"
-      ]
-    },
-    {
-      n:"Bisdesethylchloroquine",
-      e:"CYP2D6",
-      a:"active",
-      p:10,
-      note:"Minor active metabolite."
-    },
-    {
-      n:"Chloroquine (unchanged)",
-      e:"Renal",
-      a:"active",
-      p:50,
-      note:"Large Vd, very long terminal t½ (tissue depot)."
-    }
-  ],
-
-  "Quinine":[
-    {
-      n:"3-Hydroxyquinine",
-      e:"CYP3A4",
-      a:"active",
-      p:60,
-      t:null,
-      note:"Principal metabolite; some antimalarial activity, accumulates in renal impairment.",
-      evidenceRefs:[
-        "ev_g6pd_oxidative_antimalarials"
-      ]
-    },
-    {
-      n:"Quinine (unchanged)",
-      e:"Renal",
-      a:"active",
-      p:20,
-      note:"Renal clearance increases in acidic urine."
-    }
-  ],
-
-  "Sulfasalazine":[
-    {
-      n:"Sulfapyridine",
-      e:"Azoreductase (gut flora)",
-      a:"active",
-      p:60,
-      t:null,
-      note:"Released by colonic bacterial azo-cleavage, then acetylated by NAT2. Slow acetylators accumulate it → dose-related adverse effects; oxidant sulfonamide → hemolysis risk in G6PD deficiency.",
-      evidenceRefs:[
-        "ev_sulfasalazine_tpmt_inhibition"
-      ]
-    },
-    {
-      n:"5-Aminosalicylic acid (mesalamine)",
-      e:"Azoreductase (gut flora)",
-      a:"active_form",
-      role:"active_form",
-      p:40,
-      note:"The locally-acting anti-inflammatory moiety; minimal systemic absorption."
-    },
-    {
-      n:"N-Acetylsulfapyridine",
-      e:"NAT2",
-      a:"inactive",
-      p:30,
-      note:"NAT2 acetylation product of sulfapyridine."
-    }
-  ],
 
 };
 
