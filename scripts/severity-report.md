@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 358
-Original severe: 221
-Recommended severe: 221
+Known DDI pairs: 383
+Original severe: 238
+Recommended severe: 238
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -360,6 +360,16 @@ Recommended downgrades: 0
 | Memantine + Sodium Bicarbonate | renal_ph | moderate | moderate | ev_memantine_urine_ph_label (fda_label) | Kept original severity. |
 | Oseltamivir + Probenecid | renal_transport | mild | mild | ev_oseltamivir_probenecid_label (fda_label) | Kept original severity. |
 | Acyclovir + Probenecid | renal_transport | moderate | moderate | ev_acyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Famciclovir + Probenecid | renal_transport | mild | mild | ev_famciclovir_penciclovir_label (fda_label) | Kept original severity. |
+| Cefepime + Acyclovir | renal_neurotoxicity | moderate | moderate | ev_cefepime_neurotoxicity_label (fda_label)<br>ev_acyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Cefepime + Valacyclovir | renal_neurotoxicity | moderate | moderate | ev_cefepime_neurotoxicity_label (fda_label)<br>ev_valacyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Dexmethylphenidate + Phenelzine | sympathomimetic_maoi | severe | severe | ev_dexmethylphenidate_label (fda_label)<br>ev_stimulant_maoi_fda (fda_label) | Severe support threshold met. |
+| Dexmethylphenidate + Tranylcypromine | sympathomimetic_maoi | severe | severe | ev_dexmethylphenidate_label (fda_label)<br>ev_stimulant_maoi_fda (fda_label) | Severe support threshold met. |
+| Sodium Nitroprusside + Sildenafil | pharmacodynamic | severe | severe | ev_nitroprusside_cyanide_label (fda_label)<br>ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Sodium Nitroprusside + Tadalafil | pharmacodynamic | severe | severe | ev_nitroprusside_cyanide_label (fda_label)<br>ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Potassium Chloride + Spironolactone | electrolyte | severe | severe | ev_potassium_hyperkalemia_label (fda_label)<br>ev_spironolactone_tmpsmx_antoniou2011 (observational PMID:21911446 DOI:10.1136/bmj.d5228) | Severe support threshold met. |
+| Potassium Chloride + Eplerenone | electrolyte | severe | severe | ev_potassium_hyperkalemia_label (fda_label)<br>ev_eplerenone_cyp3a_label (fda_label) | Severe support threshold met. |
+| Potassium Chloride + Lisinopril | electrolyte | moderate | moderate | ev_potassium_hyperkalemia_label (fda_label) | Kept original severity. |
 | Leflunomide + Cholestyramine | metabolite_elimination | moderate | moderate | ev_leflunomide_teriflunomide_half_life (clinical_trial PMID:21344102) | Kept original severity. |
 | Leflunomide + Rosuvastatin | transporter | moderate | moderate | ev_leflunomide_teriflunomide_label (fda_label) | Kept original severity. |
 | Teriflunomide + Rosuvastatin | transporter | moderate | moderate | ev_leflunomide_teriflunomide_label (fda_label) | Kept original severity. |
@@ -367,3 +377,18 @@ Recommended downgrades: 0
 | Primidone + Combined Oral Contraceptive | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
 | Phenobarbital + Combined Oral Contraceptive | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
 | Phenobarbital + Warfarin | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label) | Kept original severity. |
+| Vorapaxar + Ketoconazole | pk | severe | severe | ev_vorapaxar_cyp3a_label (fda_label) | Severe support threshold met. |
+| Vorapaxar + Clarithromycin | pk | severe | severe | ev_vorapaxar_cyp3a_label (fda_label) | Severe support threshold met. |
+| Vorapaxar + Rifampin | induction | severe | severe | ev_vorapaxar_cyp3a_label (fda_label) | Severe support threshold met. |
+| Crizotinib + Ketoconazole | pk | moderate | moderate | ev_crizotinib_cyp3a_label (fda_label) | Kept original severity. |
+| Crizotinib + Clarithromycin | pk_qt | severe | severe | ev_crizotinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Crizotinib + Rifampin | induction | severe | severe | ev_crizotinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Warfarin | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Tacrolimus | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Apixaban | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Warfarin | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Tacrolimus | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Apixaban | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Cilostazol + Ketoconazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |
+| Cilostazol + Omeprazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |
+| Cilostazol + Fluconazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |

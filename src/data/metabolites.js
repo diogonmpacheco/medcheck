@@ -3661,6 +3661,32 @@ const METAB = {
     note:"Pharmacologically active nucleotide analog. Not CYP-cleared; transporter induction and renal function shape clinical exposure context."
   }
 ],
+"Cilostazol":[
+  {
+    n:"3,4-Dehydro-cilostazol",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    note:"Major active metabolite with higher PDE3 inhibitory potency than parent in label pharmacology. CYP3A inhibitors raise parent/active-moiety exposure, so dose reduction matters.",
+    evidenceRefs:["ev_cilostazol_cyp_inhibitor_label"]
+  },
+  {
+    n:"4'-trans-Hydroxy-cilostazol",
+    e:"CYP2C19",
+    a:"active",
+    p:20,
+    note:"Active metabolite with lower potency than parent. CYP2C19 inhibition, including omeprazole/fluconazole-like contexts, can change the active-metabolite exposure pattern.",
+    evidenceRefs:["ev_cilostazol_cyp_inhibitor_label"]
+  },
+  {
+    n:"Inactive oxidative metabolites",
+    e:"CYP3A4/CYP2C19",
+    a:"inactive",
+    p:45,
+    note:"Background oxidative clearance route. Included to keep inhibitor effects framed as parent plus active-metabolite exposure, not a simple parent-only CYP interaction.",
+    evidenceRefs:["ev_cilostazol_cyp_inhibitor_label"]
+  }
+],
 "Crizotinib":[
   {
     n:"Crizotinib oxidative/lactam metabolites",
