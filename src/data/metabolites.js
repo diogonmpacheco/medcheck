@@ -3487,6 +3487,211 @@ const METAB = {
     note:"Reactive oxidative metabolite family implicated in hemolysis/methemoglobinemia risk, especially in G6PD deficiency.",
     evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
   }
+],
+"Famciclovir":[
+  {
+    n:"Penciclovir",
+    e:"Esterase/oxidase activation",
+    a:"active_form",
+    role:"active_form",
+    p:75,
+    note:"Active antiviral formed rapidly after oral dosing. Renal function and renal transport inhibition determine exposure more than CYP metabolism.",
+    evidenceRefs:["ev_famciclovir_penciclovir_label"]
+  },
+  {
+    n:"Penciclovir (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:70,
+    note:"Active metabolite cleared mainly unchanged by the kidney; dose-adjust in renal impairment.",
+    evidenceRefs:["ev_famciclovir_penciclovir_label"]
+  }
+],
+"Cefepime":[
+  {
+    n:"Cefepime (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:85,
+    note:"Minimal metabolism. Renal accumulation is the key toxicity pathway, especially encephalopathy, myoclonus, seizures, and nonconvulsive status epilepticus.",
+    evidenceRefs:["ev_cefepime_neurotoxicity_label"]
+  }
+],
+"Sodium Nitroprusside":[
+  {
+    n:"Nitric oxide",
+    e:"Nonenzymatic release",
+    a:"active",
+    p:100,
+    note:"Immediate vasodilator signal; additive with PDE5 inhibitors, nitrates, and other hypotensive agents.",
+    evidenceRefs:["ev_nitroprusside_cyanide_label"]
+  },
+  {
+    n:"Cyanide",
+    e:"Nitroprusside decomposition",
+    a:"toxic",
+    p:100,
+    note:"Toxic intermediate formed during infusion; risk rises with high dose, prolonged infusion, hepatic impairment, or low sulfur donor capacity.",
+    evidenceRefs:["ev_nitroprusside_cyanide_label"]
+  },
+  {
+    n:"Thiocyanate",
+    e:"Thiosulfate sulfurtransferase",
+    a:"toxic",
+    p:80,
+    note:"Detoxification product that can accumulate in renal impairment or prolonged infusion.",
+    evidenceRefs:["ev_nitroprusside_cyanide_label"]
+  }
+],
+"Dexmethylphenidate":[
+  {
+    n:"Ritalinic acid",
+    e:"CES1A1",
+    a:"inactive",
+    p:80,
+    note:"Primary inactive hydrolysis product. Dexmethylphenidate is not a CYP prodrug; MAOI contraindication is pharmacodynamic.",
+    evidenceRefs:["ev_dexmethylphenidate_label","ev_stimulant_maoi_fda"]
+  }
+],
+"Potassium Chloride":[
+  {
+    n:"Serum potassium load",
+    e:"Renal potassium handling",
+    a:"active",
+    p:100,
+    note:"Not metabolized. Captures supplement-driven potassium load that combines with RAAS blockade, MRAs, trimethoprim, NSAIDs, or renal impairment.",
+    evidenceRefs:["ev_potassium_hyperkalemia_label"]
+  }
+],
+"Desipramine":[
+  {
+    n:"2-Hydroxydesipramine",
+    e:"CYP2D6",
+    a:"inactive",
+    p:75,
+    note:"Primary oxidative clearance route. CYP2D6 poor metabolism or strong CYP2D6 inhibition raises parent desipramine and anticholinergic/QT toxicity risk.",
+    evidenceRefs:["ev_tca_cyp2d6_cpic"]
+  }
+],
+"Trimipramine":[
+  {
+    n:"Desmethyltrimipramine",
+    e:"CYP2D6/CYP2C19",
+    a:"active",
+    p:45,
+    note:"Active metabolite family. CYP2D6/CYP2C19 poor function or inhibitors can raise parent/metabolite exposure and TCA adverse effects.",
+    evidenceRefs:["ev_tca_cyp2d6_cpic"]
+  },
+  {
+    n:"Hydroxytrimipramine metabolites",
+    e:"CYP2D6",
+    a:"inactive",
+    p:30,
+    note:"Secondary oxidative clearance route relevant to CYP2D6 phenotype and inhibitor phenoconversion.",
+    evidenceRefs:["ev_tca_cyp2d6_cpic"]
+  }
+],
+"Protriptyline":[
+  {
+    n:"Hydroxyprotriptyline metabolites",
+    e:"CYP2D6",
+    a:"inactive",
+    p:60,
+    note:"CYP2D6-linked oxidative clearance. Parent protriptyline has long persistence, so CYP2D6 inhibition can produce delayed toxicity.",
+    evidenceRefs:["ev_tca_cyp2d6_cpic"]
+  }
+],
+"Iloperidone":[
+  {
+    n:"P88 metabolite",
+    e:"CYP2D6",
+    a:"active",
+    p:45,
+    note:"Active iloperidone metabolite. CYP2D6 poor metabolism changes active-moiety balance and can increase QT/orthostatic adverse effects.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  },
+  {
+    n:"P95 metabolite",
+    e:"CYP3A4",
+    a:"active",
+    p:45,
+    note:"Active metabolite formed through CYP3A4-linked pathways; CYP3A inhibitors add to CYP2D6 phenotype risk.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  }
+],
+"Pimavanserin":[
+  {
+    n:"AC-279 active metabolite",
+    e:"CYP3A4/CYP3A5",
+    a:"active",
+    p:60,
+    note:"Major active metabolite with similar receptor profile. CYP3A inhibitors raise parent and metabolite exposure, increasing QT/sedation risk."
+  }
+],
+"Delamanid":[
+  {
+    n:"DM-6705",
+    e:"Albumin/CYP3A4",
+    a:"active",
+    p:35,
+    note:"Key metabolite associated with QT prolongation signal. Exposure can rise with CYP3A inhibition and adds to other QT-risk TB drugs."
+  },
+  {
+    n:"Delamanid albumin-derived metabolites",
+    e:"Albumin metabolism",
+    a:"inactive",
+    p:45,
+    note:"Non-CYP metabolism is important, but CYP3A context remains clinically relevant for exposure and QT monitoring."
+  }
+],
+"Tenofovir Alafenamide":[
+  {
+    n:"Tenofovir",
+    e:"Cathepsin A/CES1 activation",
+    a:"active_form",
+    role:"active_form",
+    p:80,
+    note:"Active intracellular tenofovir delivery pathway. P-gp/BCRP inducers can lower prodrug exposure before activation."
+  },
+  {
+    n:"Tenofovir diphosphate",
+    e:"Intracellular phosphorylation",
+    a:"active",
+    p:100,
+    note:"Pharmacologically active nucleotide analog. Not CYP-cleared; transporter induction and renal function shape clinical exposure context."
+  }
+],
+"Crizotinib":[
+  {
+    n:"Crizotinib oxidative/lactam metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:70,
+    note:"CYP3A-mediated clearance pathway. Parent crizotinib is the main active exposure, so strong CYP3A inhibitors or inducers can shift QT, bradycardia, and hepatic toxicity risk."
+  },
+  {
+    n:"Unchanged crizotinib",
+    e:"Biliary/Fecal elimination",
+    a:"active",
+    p:20,
+    note:"Residual active parent elimination. Included to keep the model from treating CYP3A metabolites as the sole clinical signal."
+  }
+],
+"Vorapaxar":[
+  {
+    n:"M20 hydroxy metabolite",
+    e:"CYP3A4",
+    a:"active",
+    p:60,
+    note:"Major circulating active metabolite. CYP3A inhibition or induction can matter because PAR-1 platelet inhibition persists for a long time after exposure changes."
+  },
+  {
+    n:"M19 amine metabolite",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Secondary CYP3A-linked metabolite. Bleeding risk is driven mainly by the active parent/active-moiety antiplatelet effect."
+  }
 ]
 };
 
