@@ -7416,6 +7416,32 @@ const STUDY_DB = {
     limitations:["Contraindication in heart failure and bleeding/cardiovascular tolerance remain key clinical modifiers."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending cardiology/pharmacy review"
   },
+  "ev_lorlatinib_cyp3a_label": {
+    id:"ev_lorlatinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Lorlatinib prescribing information - CYP3A inducer contraindication and CYP3A substrate reduction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=004f93d7-a1cd-4b67-9207-31cdcb5c5976",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Lorlatinib labeling contraindicates strong CYP3A inducers because serious hepatotoxicity occurred with rifampin, and warns that lorlatinib can reduce exposure of CYP3A substrates."},
+    temporal:{mechanism:"CYP3A4_substrate_and_inducer", onset:"days", offset:"days-weeks"},
+    supports:["lorlatinib_contraindicated_with_strong_cyp3a_inducers","lorlatinib_reduces_cyp3a_substrate_exposure","lorlatinib_cyp3a4_substrate"],
+    contradicts:[],
+    limitations:["The hepatotoxicity warning is specific to strong CYP3A inducer co-use; substrate-victim management depends on the victim drug therapeutic index."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+  },
+  "ev_darolutamide_bcrp_label": {
+    id:"ev_darolutamide_bcrp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Darolutamide prescribing information - BCRP/OATP inhibition and rosuvastatin exposure",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1a7cb212-56e4-4b9d-a73d-bfee7fe4735e",
+    studyDesign:"regulatory_label", n:null, phenotypes:["ABCG2","SLCO1B1"],
+    quantifiedEffects:{aucFold:5, note:"Darolutamide labeling reports about a 5-fold increase in rosuvastatin exposure through BCRP/OATP transporter inhibition."},
+    temporal:{mechanism:"BCRP_OATP_inhibition"},
+    supports:["darolutamide_inhibits_bcrp_oatp","darolutamide_increases_rosuvastatin_exposure","rosuvastatin_transporter_substrate"],
+    contradicts:[],
+    limitations:["Rosuvastatin risk also depends on SLCO1B1/ABCG2 genotype, renal function, age, statin dose, and other myopathy risks."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+  },
 
 };
 

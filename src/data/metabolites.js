@@ -3687,6 +3687,60 @@ const METAB = {
     evidenceRefs:["ev_cilostazol_cyp_inhibitor_label"]
   }
 ],
+"Enzalutamide":[
+  {
+    n:"N-desmethyl enzalutamide",
+    e:"CYP2C8/CYP3A4",
+    a:"active",
+    p:70,
+    note:"Major active metabolite contributing to the active moiety. Induction effects are clinically important both for victim drugs and for enzalutamide exposure changes.",
+    evidenceRefs:["ev_enzalutamide_induction_label"]
+  },
+  {
+    n:"Inactive carboxylic acid metabolite",
+    e:"Carboxylesterase/oxidation",
+    a:"inactive",
+    p:30,
+    note:"Inactive downstream metabolite. Included to separate active-moiety persistence from clearance into inactive products.",
+    evidenceRefs:["ev_enzalutamide_induction_label"]
+  }
+],
+"Apalutamide":[
+  {
+    n:"N-desmethyl apalutamide",
+    e:"CYP2C8/CYP3A4",
+    a:"active",
+    p:70,
+    note:"Major active metabolite with clinically relevant androgen-receptor activity. The parent/metabolite active moiety persists while induction lowers many victim-drug exposures.",
+    evidenceRefs:["ev_apalutamide_induction_label"]
+  },
+  {
+    n:"Inactive oxidative metabolites",
+    e:"CYP2C8/CYP3A4",
+    a:"inactive",
+    p:30,
+    note:"Inactive clearance products. Included so the model does not treat apalutamide as a simple parent-only inducer.",
+    evidenceRefs:["ev_apalutamide_induction_label"]
+  }
+],
+"Lorlatinib":[
+  {
+    n:"M8 benzoic acid metabolite",
+    e:"CYP3A4/UGT1A4",
+    a:"inactive",
+    p:60,
+    note:"Major inactive circulating metabolite. Strong CYP3A inducer co-use is clinically distinct because it can cause serious hepatotoxicity, not just lower parent exposure.",
+    evidenceRefs:["ev_lorlatinib_cyp3a_label"]
+  },
+  {
+    n:"Unchanged lorlatinib active moiety",
+    e:"CYP3A4/UGT1A4 clearance",
+    a:"active",
+    p:40,
+    note:"Parent lorlatinib drives ALK/ROS1 inhibition and also induces CYP3A, which can lower sensitive CYP3A victim drugs.",
+    evidenceRefs:["ev_lorlatinib_cyp3a_label"]
+  }
+],
 "Crizotinib":[
   {
     n:"Crizotinib oxidative/lactam metabolites",

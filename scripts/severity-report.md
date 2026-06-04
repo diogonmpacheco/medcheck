@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 383
-Original severe: 238
-Recommended severe: 238
+Known DDI pairs: 401
+Original severe: 251
+Recommended severe: 251
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -392,3 +392,21 @@ Recommended downgrades: 0
 | Cilostazol + Ketoconazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |
 | Cilostazol + Omeprazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |
 | Cilostazol + Fluconazole | pk | moderate | moderate | ev_cilostazol_cyp_inhibitor_label (fda_label) | Kept original severity. |
+| Enzalutamide + Rivaroxaban | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Dabigatran | transporter_induction | moderate | moderate | ev_enzalutamide_induction_label (fda_label)<br>ev_edoxaban_p_gp_fda (fda_label) | Kept original severity. |
+| Enzalutamide + Cyclosporine | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Sirolimus | induction | severe | severe | ev_enzalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Enzalutamide + Everolimus | induction | severe | severe | ev_enzalutamide_induction_label (fda_label)<br>ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
+| Enzalutamide + Combined Oral Contraceptive | induction | moderate | moderate | ev_enzalutamide_induction_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Apalutamide + Rivaroxaban | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Dabigatran | transporter_induction | moderate | moderate | ev_apalutamide_induction_label (fda_label)<br>ev_edoxaban_p_gp_fda (fda_label) | Kept original severity. |
+| Apalutamide + Cyclosporine | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Sirolimus | induction | severe | severe | ev_apalutamide_induction_label (fda_label) | Severe support threshold met. |
+| Apalutamide + Everolimus | induction | severe | severe | ev_apalutamide_induction_label (fda_label)<br>ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
+| Apalutamide + Combined Oral Contraceptive | induction | moderate | moderate | ev_apalutamide_induction_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Lorlatinib + Rifampin | contraindicated_induction | severe | severe | ev_lorlatinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Lorlatinib + Tacrolimus | induction | severe | severe | ev_lorlatinib_cyp3a_label (fda_label)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Lorlatinib + Sirolimus | induction | severe | severe | ev_lorlatinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Lorlatinib + Everolimus | induction | severe | severe | ev_lorlatinib_cyp3a_label (fda_label)<br>ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
+| Lorlatinib + Combined Oral Contraceptive | induction | moderate | moderate | ev_lorlatinib_cyp3a_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Darolutamide + Rosuvastatin | transporter | severe | severe | ev_darolutamide_bcrp_label (fda_label)<br>ev_rosuvastatin_label (fda_label) | Severe support threshold met. |
