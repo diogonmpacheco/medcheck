@@ -131,6 +131,32 @@ const PK_PARAMS = {
   'metformin':      { F:0.55, ka:pkKaFromTmax(2.5, 5),    halfLife:5,  Vd:1.0,  dose_mg:500,  note:"No CYP metabolism; OCT/MATE transporters; renally cleared." },
   'tacrolimus':     { F:0.25, ka:pkKaFromTmax(1.5, 12),   halfLife:12, Vd:1.0,  dose_mg:5,    note:"Whole-blood PK; CYP3A5 expressers often need higher doses; narrow therapeutic index." },
   'sildenafil':     { F:0.41, ka:pkKaFromTmax(1.0, 4),    halfLife:4,  Vd:1.5,  dose_mg:50 },
+
+  // PK simulation expansion: common high-risk exposure-changing medicines.
+  'apixaban':       { F:0.50, ka:pkKaFromTmax(3.0, 12),   halfLife:12, Vd:0.30, dose_mg:5,    note:"Factor Xa inhibitor; CYP3A4/P-gp substrate with clinically important inducer/inhibitor exposure shifts." },
+  'rivaroxaban':    { F:0.80, ka:pkKaFromTmax(3.0, 9),    halfLife:9,  Vd:0.70, dose_mg:20,   note:"Food-dependent high-dose absorption; CYP3A4/P-gp substrate. Strong inducers can lower anticoagulant exposure." },
+  'dabigatran':     { F:0.065,ka:pkKaFromTmax(2.0, 13),   halfLife:13, Vd:0.90, dose_mg:150,  note:"Low-bioavailability prodrug; P-gp and renal function dominate exposure. Capsule integrity matters." },
+  'edoxaban':       { F:0.62, ka:pkKaFromTmax(1.5, 11),   halfLife:11, Vd:1.5,  dose_mg:60,   note:"P-gp substrate with substantial renal clearance; exposure changes with P-gp modulation and kidney function." },
+  'ticagrelor':     { F:0.36, ka:pkKaFromTmax(1.5, 7),    halfLife:7,  Vd:1.3,  dose_mg:90,   note:"CYP3A substrate with active metabolite; strong CYP3A inhibitors/inducers can markedly change antiplatelet exposure." },
+  'prasugrel':      { F:0.79, ka:pkKaFromTmax(0.5, 7),    halfLife:7,  Vd:0.9,  dose_mg:10,   note:"Active metabolite parameterized; parent prodrug is short-lived and not clinically represented by this curve." },
+  'cilostazol':     { F:0.90, ka:pkKaFromTmax(2.7, 11),   halfLife:11, Vd:2.8,  dose_mg:100,  note:"Parent plus active metabolites; CYP3A4/CYP2C19 inhibitors require dose reduction." },
+  'vorapaxar':      { F:1.00, ka:pkKaFromTmax(1.0, 192),  halfLife:192,Vd:6.0,  dose_mg:2.08, note:"Very long-lived PAR-1 antiplatelet active moiety; exposure and bleeding risk persist for weeks." },
+  'cyclosporine':   { F:0.30, ka:pkKaFromTmax(2.0, 8),    halfLife:8,  Vd:4.0,  dose_mg:100,  note:"Highly variable oral bioavailability; CYP3A/P-gp substrate with therapeutic-drug monitoring." },
+  'sirolimus':      { F:0.14, ka:pkKaFromTmax(1.5, 62),   halfLife:62, Vd:12.0, dose_mg:2,    note:"Long half-life mTOR inhibitor; CYP3A/P-gp substrate requiring trough monitoring." },
+  'everolimus':     { F:0.30, ka:pkKaFromTmax(1.0, 30),   halfLife:30, Vd:1.5,  dose_mg:5,    note:"CYP3A/P-gp substrate; strong inhibitors/inducers can produce large exposure changes." },
+  'quetiapine':     { F:0.09, ka:pkKaFromTmax(1.5, 6),    halfLife:6,  Vd:10.0, dose_mg:100,  note:"Extensive CYP3A first-pass metabolism; strong CYP3A inhibitors/inducers can require major dose changes." },
+  'lurasidone':     { F:0.19, ka:pkKaFromTmax(2.0, 18),   halfLife:18, Vd:6.0,  dose_mg:40,   note:"Food substantially increases absorption; CYP3A substrate with contraindicated strong inhibitors/inducers." },
+  'oxycodone':      { F:0.60, ka:pkKaFromTmax(1.3, 3.5),  halfLife:3.5,Vd:2.6,  dose_mg:10,   note:"CYP3A4 clearance with CYP2D6 oxymorphone formation; inhibitors raise opioid toxicity risk." },
+  'fentanyl':       { F:0.33, ka:pkKaFromTmax(1.5, 7),    halfLife:7,  Vd:4.0,  dose_mg:0.6,  note:"Oral/transmucosal parameter approximation; CYP3A substrate and highly formulation-dependent." },
+  'clarithromycin': { F:0.55, ka:pkKaFromTmax(2.0, 5),    halfLife:5,  Vd:3.0,  dose_mg:500,  note:"CYP3A/P-gp inhibitor with active 14-hydroxy metabolite; exposure rises with renal impairment." },
+  'fluconazole':    { F:0.90, ka:pkKaFromTmax(1.5, 30),   halfLife:30, Vd:0.7,  dose_mg:200,  note:"Renally cleared azole; inhibits CYP2C9/CYP2C19 and moderately inhibits CYP3A." },
+  'itraconazole':   { F:0.55, ka:pkKaFromTmax(4.0, 34),   halfLife:34, Vd:10.0, dose_mg:200,  note:"Absorption/formulation and gastric acidity matter; strong CYP3A/P-gp inhibitor." },
+  'ketoconazole':   { F:0.75, ka:pkKaFromTmax(2.0, 8),    halfLife:8,  Vd:0.4,  dose_mg:200,  note:"Strong CYP3A inhibitor; systemic use is hepatotoxicity-limited in many settings." },
+  'crizotinib':     { F:0.43, ka:pkKaFromTmax(4.0, 42),   halfLife:42, Vd:25.0, dose_mg:250,  note:"CYP3A substrate/inhibitor with QT/bradycardia risk; strong inducers markedly reduce exposure." },
+  'enzalutamide':   { F:0.84, ka:pkKaFromTmax(1.0, 140),  halfLife:140,Vd:1.6,  dose_mg:160,  note:"Long-lived androgen receptor inhibitor with active N-desmethyl metabolite and strong induction burden." },
+  'apalutamide':    { F:1.00, ka:pkKaFromTmax(2.0, 72),   halfLife:72, Vd:3.9,  dose_mg:240,  note:"Active N-desmethyl metabolite; strong inducer that can lower many victim-drug exposures." },
+  'darolutamide':   { F:0.30, ka:pkKaFromTmax(4.0, 20),   halfLife:20, Vd:1.7,  dose_mg:600,  note:"Food increases exposure; BCRP/OATP inhibition can raise rosuvastatin exposure." },
+  'lorlatinib':     { F:0.81, ka:pkKaFromTmax(1.2, 24),   halfLife:24, Vd:4.4,  dose_mg:100,  note:"CYP3A substrate and inducer; strong CYP3A inducer co-use is contraindicated because of hepatotoxicity." },
 };
 
 // pkConcentration(params, t_h) — one-compartment oral model

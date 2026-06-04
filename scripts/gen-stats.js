@@ -28,6 +28,7 @@ const statsBlock = `${start}
 - **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs)${stats.reviewQueue ? ` — **${stats.verifiedStudies} verified**, **${stats.reviewQueue} quarantined enrichment drafts** awaiting human review` : ''}
 - **${stats.ddiPairs} curated DDI pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.metaboliteEntries} curated metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
+- **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles**
 - **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**
 - **${stats.bundleKB || 'Not yet built'} KB** generated bundle${stats.bundleLines ? ` (${stats.bundleLines} lines)` : ''}

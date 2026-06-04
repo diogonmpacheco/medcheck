@@ -153,11 +153,15 @@ renderAll();
     const metaboliteLabel = MEDCHECK_STATS.metaboliteEntries
       ? `${MEDCHECK_STATS.metaboliteEntries} metabolites across ${MEDCHECK_STATS.metaboliteParents} parent substances`
       : null;
+    const pkLabel = MEDCHECK_STATS.pkParams
+      ? `${MEDCHECK_STATS.pkParams} absolute PK profiles`
+      : null;
     statsLine.textContent = [
       `${MEDCHECK_STATS.drugs} drugs`,
       evidenceLabel,
       `${MEDCHECK_STATS.ddiPairs} curated DDI pairs`,
       metaboliteLabel,
+      pkLabel,
       `${MEDCHECK_STATS.genotypeGenes} genotype genes`,
     ].filter(Boolean).join(" · ");
   }

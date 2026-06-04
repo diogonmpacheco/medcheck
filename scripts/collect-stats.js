@@ -35,6 +35,7 @@ JSON.stringify((() => {
   const metaboliteParents = Object.keys(METAB);
   const metaboliteEntries = Object.values(METAB).reduce((sum, metabolites) =>
     sum + (Array.isArray(metabolites) ? metabolites.length : 0), 0);
+  const pkParams = Object.keys(PK_PARAMS || {});
   const nonRegulatoryUncited = studyValues.filter((study) =>
     study.type !== EVIDENCE_TIER.FDA_LABEL &&
     study.type !== EVIDENCE_TIER.GUIDELINE &&
@@ -62,6 +63,7 @@ JSON.stringify((() => {
     metaboliteParents: metaboliteParents.length,
     metaboliteEntries,
     metaboliteActors: Object.keys(METABOLITE_ACTORS).length,
+    pkParams: pkParams.length,
     receptorScores: Object.keys(RECEPTOR_SCORES).length,
     beersFlags: Object.keys(BEERS_FLAGS).length,
     washoutRules: Object.keys(WASHOUT_DAYS).length,
