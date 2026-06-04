@@ -5,7 +5,7 @@ function renderInteractions(interactions) {
   const el = document.getElementById("interBody");
   const countEl = document.getElementById("interCount");
   if (!interactions.length) {
-    el.innerHTML = '<div style="text-align:center;color:var(--green);padding:12px;font-weight:600">No significant interactions detected</div>';
+    el.innerHTML = '<div class="finding-empty">No significant pairwise interactions detected for this stack.</div>';
     countEl.textContent = "";
     return;
   }
@@ -35,16 +35,31 @@ function renderInteractions(interactions) {
     const evId = `ev-panel-${idx}`;
     const evToggleId = `ev-toggle-${idx}`;
     const hasEv = studies.length > 0;
+    const reviewLabel = studies.some(s => s.reviewStatus === "verified") ? "human-reviewed evidence" : "needs evidence review";
+    const reviewClass = studies.some(s => s.reviewStatus === "verified") ? "review" : "warn";
+    const findingTitle = buildFindingTitle(i);
+    const pathwayLabel = i.enzyme || i.category || i.type || "pathway";
 
-    return `<div class="inter-card ${i.severity}">
-      <div class="inter-head">
-        <span class="inter-drugs">${i.drug1} ↔ ${i.drug2}</span>
-        <span class="inter-sev ${i.severity}">${i.severity}</span>
+    return `<div class="finding-card ${i.severity}">
+      <div class="finding-top">
+        <div>
+          <div class="finding-title">${findingTitle}</div>
+          <div class="finding-subtitle">${i.drug1} + ${i.drug2}</div>
+        </div>
+        <span class="finding-sev ${i.severity}">${i.severity}</span>
       </div>
-      <div class="inter-effect">${i.effect}</div>
-      <div class="inter-mech">${mechText}</div>
+      <div class="finding-effect">${i.effect}</div>
+      <div class="finding-grid">
+        <div class="finding-detail"><strong>Why</strong>${mechText || "Mechanism not specified."}</div>
+        <div class="finding-detail"><strong>Pathway</strong>${pathwayLabel}</div>
+        <div class="finding-detail"><strong>Discuss</strong>${actionText ? actionText.replace(/^Action:\s*/,"") : "Monitor in clinical context."}</div>
+      </div>
       ${traceText ? `<div class="inter-trace">${traceText}</div>` : ""}
-      ${actionText ? `<div class="inter-action">${actionText}</div>` : ""}
+      <div class="finding-meta">
+        <span class="finding-tag">${i.type || "interaction"}</span>
+        ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
+        ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
+      </div>
       ${hasEv ? `
       ${evSummary}
       <span class="ev-toggle" id="${evToggleId}" onclick="toggleEvPanel('${evId}','${evToggleId}')">
@@ -55,6 +70,30 @@ function renderInteractions(interactions) {
       </div>` : ''}
     </div>`;
   }).join("");
+}
+
+function buildFindingTitle(i) {
+  if (!i) return "Interaction finding";
+  const effect = String(i.effect || "").toLowerCase();
+  if (i.category === "prodrug" || /activation|active metabolite|less effective|reduced efficacy/.test(effect)) {
+    return `${i.drug1} may reduce ${i.drug2} effect`;
+  }
+  if (i.category === "bleed" || /bleed|anticoagul|platelet/.test(effect)) {
+    return `${i.drug1} and ${i.drug2} may raise bleeding risk`;
+  }
+  if (i.category === "qtc" || /qt|arrhythm/.test(effect)) {
+    return `${i.drug1} and ${i.drug2} may add QT risk`;
+  }
+  if (i.category === "serotonin" || /serotonin/.test(effect)) {
+    return `${i.drug1} and ${i.drug2} may add serotonin toxicity risk`;
+  }
+  if (i.type === "induction" || /decrease|reduced|lower|speeds/.test(effect)) {
+    return `${i.drug1} may lower ${i.drug2} exposure`;
+  }
+  if (i.type === "inhibition" || i.type === "transporter" || /increase|higher|raises|toxicity/.test(effect)) {
+    return `${i.drug1} may raise ${i.drug2} exposure`;
+  }
+  return `${i.drug1} and ${i.drug2} need review`;
 }
 
 function toggleEvPanel(panelId, toggleId) {

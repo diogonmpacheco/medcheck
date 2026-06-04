@@ -25,6 +25,7 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "safety";
+const MEDCHECK_TABS = ["safety","pgx","pk","evidence","advanced"];
 function setViewMode(m) {
   viewMode = m;
   document.getElementById("searchModeBtn").className = "mode-btn" + (m==="search"?" active":"");
@@ -35,7 +36,7 @@ function setViewMode(m) {
 
 function setTab(name) {
   activeTab = name;
-  ["safety","pgx","pk","evidence"].forEach(t => {
+  MEDCHECK_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     const btn = document.getElementById("tabbtn-" + t);
     if (panel) panel.classList.toggle("active", t === name);
@@ -49,14 +50,14 @@ function renderSummaryBar() {
   if (!bar || !tabBar) return;
 
   const safetyBtn = document.getElementById("tabbtn-safety");
-  const tabPanels = ["safety","pgx","pk","evidence"]
+  const tabPanels = MEDCHECK_TABS
     .map(t => document.getElementById("tab-" + t))
     .filter(Boolean);
   if (activeStack.length < 1) {
     bar.style.display = "none";
     tabBar.style.display = "none";
     tabPanels.forEach(panel => { panel.style.display = "none"; });
-    if (safetyBtn) safetyBtn.innerHTML = "Safety";
+    if (safetyBtn) safetyBtn.innerHTML = "Summary";
     return;
   }
 
@@ -65,26 +66,46 @@ function renderSummaryBar() {
   tabPanels.forEach(panel => { panel.style.display = ""; });
   setTab(activeTab);
 
-  let scoreHtml = "";
+  let riskClass = "neutral";
+  let scoreValue = "—";
+  let scoreLabel = "Add 2+";
   let headline = "";
+  let summaryCopy = "";
+  let nextStep = "";
   let severeCount = 0;
+  let moderateCount = 0;
+  let evidenceCount = 0;
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     const severeInteractions = risk.interactions.filter(i => i.severity === "severe" || i.severity === "critical");
+    const moderateInteractions = risk.interactions.filter(i => i.severity === "moderate");
     severeCount = severeInteractions.length;
-    scoreHtml = `<div class="summary-score" style="background:${risk.color}">
-        <span class="num">${risk.score}</span><span class="lbl">${risk.level.split(" ")[0]}</span>
-      </div>`;
+    moderateCount = moderateInteractions.length;
+    evidenceCount = new Set(risk.interactions.flatMap(i => i.evidenceRefs || [])).size;
+    riskClass = severeCount || risk.score >= 60 ? "high" : risk.score >= 30 ? "moderate" : "low";
+    scoreValue = risk.score;
+    scoreLabel = risk.level.split(" ")[0];
     const topSevere = severeInteractions.slice(0, 2)
-      .map(i => `${i.drug1} ↔ ${i.drug2}`).join(", ");
-    headline = severeCount > 0
-      ? `<strong>${severeCount} severe interaction${severeCount>1?"s":""}</strong>${topSevere ? ": " + topSevere : ""}. <span class="summary-jump" onclick="setTab('safety')">View safety →</span>`
-      : `No severe interactions detected across ${activeStack.length} medications. <span class="summary-jump" onclick="setTab('safety')">View details →</span>`;
+      .map(i => `${i.drug1} + ${i.drug2}`).join(", ");
+    headline = severeCount > 0 ? "High-priority interaction found" :
+      risk.score >= 30 ? "Some monitoring may be needed" :
+      "No major interaction signal found";
+    summaryCopy = severeCount > 0
+      ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more medicines.`
+      : `Checked ${activeStack.length} substances. MedCheck did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
+    nextStep = severeCount > 0
+      ? "Start with the severe findings, then review genotype-adjusted levels."
+      : "Review level changes and genotype notes for dose-sensitive medications.";
   } else {
-    scoreHtml = `<div class="summary-score" style="background:var(--text2)">
-        <span class="num">—</span><span class="lbl">ADD 2+</span></div>`;
-    headline = "Add a second medication to check for interactions. Pharmacogenomic and PK analysis for this drug is available in the tabs below.";
+    headline = "Add another medication to check interactions";
+    summaryCopy = "Single-medication pharmacogenomic, metabolite, and PK context is available below. Interaction risk needs at least two substances.";
+    nextStep = "Add a second medication, supplement, herb, food, or recreational substance.";
   }
+
+  const activeGenotypes = Object.values(userGenetics || {})
+    .filter(value => value && value !== "normal")
+    .length;
+  const actionableCount = severeCount + moderateCount;
 
   let syndromeHtml = "";
   try {
@@ -100,13 +121,33 @@ function renderSummaryBar() {
     // Summary should never block the rest of the UI.
   }
 
-  bar.innerHTML = `<div class="summary-row">${scoreHtml}<div class="summary-headline">${headline}</div></div>${syndromeHtml}`;
+  bar.innerHTML = `<div class="summary-card">
+    <div class="summary-main">
+      <div>
+        <div class="summary-kicker">Highest Priority</div>
+        <div class="summary-title">${headline}</div>
+        <div class="summary-copy">${summaryCopy} <span class="summary-jump" onclick="setTab('safety')">View findings</span></div>
+      </div>
+      <div class="summary-risk ${riskClass}">
+        <div class="num">${scoreValue}</div>
+        <div class="lbl">${scoreLabel}</div>
+      </div>
+    </div>
+    <div class="summary-metrics">
+      <div class="summary-metric"><strong>${activeStack.length}</strong><span>Substances</span></div>
+      <div class="summary-metric"><strong>${actionableCount}</strong><span>Actionable Findings</span></div>
+      <div class="summary-metric"><strong>${activeGenotypes}</strong><span>Genotype Inputs</span></div>
+      <div class="summary-metric"><strong>${evidenceCount}</strong><span>Evidence Links</span></div>
+    </div>
+    <div class="summary-next"><span class="summary-next-pill">Next</span><span>${nextStep}</span></div>
+    ${syndromeHtml}
+  </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
-  if (safetyBtn) safetyBtn.innerHTML = "Safety" + badge;
+  if (safetyBtn) safetyBtn.innerHTML = "Summary" + badge;
 }
 
 function updateEmptyTabs() {
-  ["safety","pgx","pk","evidence"].forEach(t => {
+  MEDCHECK_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     if (!panel || typeof panel.querySelectorAll !== "function") return;
     const sections = Array.from(panel.querySelectorAll(".section"));
@@ -126,6 +167,15 @@ function updateEmptyTabs() {
     } else if (note) {
       note.style.display = "none";
     }
+  });
+}
+
+function arrangeAdvancedSections() {
+  const advanced = document.getElementById("tab-advanced");
+  if (!advanced || typeof advanced.appendChild !== "function") return;
+  ["matrixSection","pdSection","cascadeSection","qualitySection","graphSection"].forEach(id => {
+    const section = document.getElementById(id);
+    if (section && section.parentElement !== advanced) advanced.appendChild(section);
   });
 }
 
@@ -299,6 +349,7 @@ function toggleSection(id) {
 
 // ── RENDER ALL ──
 function renderAll() {
+  arrangeAdvancedSections();
   renderMedList();
   renderGenetics();
   if (activeStack.length >= 1) {
