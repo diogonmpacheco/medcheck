@@ -7351,6 +7351,71 @@ const STUDY_DB = {
     limitations:["Hepatic function, food/acid-suppression context, hypertension, and QT/hepatotoxicity monitoring remain clinically important."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending oncology/pharmacy review"
   },
+  "ev_vorapaxar_cyp3a_label": {
+    id:"ev_vorapaxar_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Vorapaxar prescribing information - avoid strong CYP3A inhibitors or inducers",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f2abe3ed-ed3d-4215-a489-b18341ce85bc",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Vorapaxar labeling says to avoid strong CYP3A inhibitors or inducers. The interaction is clinically important because vorapaxar has a very long antiplatelet effect and bleeding risk persistence."},
+    temporal:{mechanism:"CYP3A4_parent_active_moiety_exposure", offset:"weeks"},
+    supports:["vorapaxar_cyp3a4_substrate","vorapaxar_avoid_strong_cyp3a_inhibitors","vorapaxar_avoid_strong_cyp3a_inducers"],
+    contradicts:[],
+    limitations:["Magnitude depends on inhibitor/inducer strength and timing; bleeding risk is strongly affected by indication, age, prior stroke/TIA, and background antithrombotic therapy."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending cardiology/pharmacy review"
+  },
+  "ev_crizotinib_cyp3a_label": {
+    id:"ev_crizotinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Crizotinib prescribing information - strong CYP3A inhibitors and inducers",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=2a51b0de-47d6-455e-a94c-d2c737b04ff7",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{aucFold:0.16, cmaxFold:0.21, note:"Crizotinib labeling reports that rifampin decreased steady-state AUC by about 84% and Cmax by about 79%; strong CYP3A inhibitors increase exposure and may increase adverse reactions."},
+    temporal:{mechanism:"CYP3A4_parent_clearance"},
+    supports:["crizotinib_cyp3a4_substrate","crizotinib_strong_cyp3a_inhibitor_exposure_increase","crizotinib_rifampin_exposure_decrease"],
+    contradicts:[],
+    limitations:["Oncology response, mutation context, ECG risk, hepatic function, and co-administered QT-risk drugs determine clinical action."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+  },
+  "ev_enzalutamide_induction_label": {
+    id:"ev_enzalutamide_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Enzalutamide prescribing information - CYP3A4, CYP2C9, and CYP2C19 induction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b129fdc9-1d8e-425c-a5a9-8a2ed36dfbdf",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Enzalutamide labeling describes it as a strong CYP3A4 inducer and moderate CYP2C9/CYP2C19 inducer, warning that sensitive substrates may lose activity."},
+    temporal:{mechanism:"enzyme_induction", onset:"days-weeks", offset:"weeks"},
+    supports:["enzalutamide_strong_cyp3a4_inducer","enzalutamide_moderate_cyp2c9_inducer","enzalutamide_moderate_cyp2c19_inducer"],
+    contradicts:[],
+    limitations:["Effect magnitude differs by victim drug; therapeutic-drug monitoring or pharmacodynamic monitoring is needed for narrow-therapeutic-index substrates."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+  },
+  "ev_apalutamide_induction_label": {
+    id:"ev_apalutamide_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Apalutamide prescribing information - CYP, UGT, and transporter substrate exposure reduction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d1cda4f7-cb33-46ea-b9ac-431f6452b1a5",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Apalutamide labeling warns that sensitive substrates of CYP3A4, CYP2C19, CYP2C9, UGT, P-gp, BCRP, or OATP1B1 may lose activity during coadministration."},
+    temporal:{mechanism:"enzyme_transporter_induction", onset:"days-weeks", offset:"weeks"},
+    supports:["apalutamide_cyp3a4_inducer","apalutamide_cyp2c9_inducer","apalutamide_cyp2c19_inducer","apalutamide_transporter_substrate_exposure_reduction"],
+    contradicts:[],
+    limitations:["Label warning is broad; victim-specific monitoring determines exact management."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+  },
+  "ev_cilostazol_cyp_inhibitor_label": {
+    id:"ev_cilostazol_cyp_inhibitor_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Cilostazol prescribing information - dose reduction with CYP3A4 or CYP2C19 inhibitors",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f728395c-684c-4087-a389-c323dbcb72dd",
+    studyDesign:"regulatory_label", n:null, phenotypes:["CYP2C19"],
+    quantifiedEffects:{note:"Cilostazol labeling recommends reducing dose to 50 mg twice daily with strong or moderate CYP3A4 inhibitors or CYP2C19 inhibitors because cilostazol/active metabolite exposure increases."},
+    temporal:{mechanism:"CYP3A4_CYP2C19_parent_and_active_metabolite_clearance"},
+    supports:["cilostazol_cyp3a4_substrate","cilostazol_cyp2c19_substrate","cilostazol_reduce_dose_with_cyp_inhibitors"],
+    contradicts:[],
+    limitations:["Contraindication in heart failure and bleeding/cardiovascular tolerance remain key clinical modifiers."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending cardiology/pharmacy review"
+  },
 
 };
 
