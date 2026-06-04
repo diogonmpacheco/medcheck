@@ -77,19 +77,24 @@ function renderSummaryBar() {
   let evidenceCount = 0;
   let interactionScore = 0;
   let genotypePriority = null;
+  let priorityInteraction = null;
+  let priorityStory = null;
+  let priorityEvidence = null;
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     interactionScore = risk.score;
     const severeInteractions = risk.interactions.filter(i => i.severity === "severe" || i.severity === "critical");
     const moderateInteractions = risk.interactions.filter(i => i.severity === "moderate");
-    severeCount = severeInteractions.length;
-    moderateCount = moderateInteractions.length;
+    priorityInteraction = severeInteractions[0] || moderateInteractions[0] || risk.interactions[0] || null;
+    const severePairs = uniqueInteractionPairLabels(severeInteractions);
+    const moderatePairs = uniqueInteractionPairLabels(moderateInteractions);
+    severeCount = severePairs.length;
+    moderateCount = moderatePairs.length;
     evidenceCount = new Set(risk.interactions.flatMap(i => i.evidenceRefs || [])).size;
     riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
     scoreValue = interactionScore;
     scoreLabel = risk.level.split(" ")[0];
-    const topSevere = severeInteractions.slice(0, 2)
-      .map(i => `${i.drug1} + ${i.drug2}`).join(", ");
+    const topSevere = severePairs.slice(0, 2).join(", ");
     headline = severeCount > 0 ? "High-priority interaction found" :
       interactionScore >= 30 ? "Some monitoring may be needed" :
       "No major interaction signal found";
@@ -99,6 +104,10 @@ function renderSummaryBar() {
     nextStep = severeCount > 0
       ? "Start with the severe findings, then review genotype-adjusted levels."
       : "Review level changes and genotype notes for dose-sensitive medications.";
+    if (priorityInteraction) {
+      priorityStory = buildInteractionPriorityStory(priorityInteraction);
+      priorityEvidence = getPriorityEvidenceLayer(priorityInteraction.evidenceRefs || [], priorityInteraction.evidence, priorityInteraction.sourceEngine || priorityInteraction.source);
+    }
   } else {
     genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
     headline = "Add another medication to check interactions";
@@ -118,8 +127,14 @@ function renderSummaryBar() {
     headline = genotypePriority.headline;
     summaryCopy = genotypePriority.summary;
     nextStep = genotypePriority.nextStep;
+    priorityStory = genotypePriority.story || buildGenotypePriorityStory(genotypePriority);
+    priorityEvidence = getPriorityEvidenceLayer(genotypePriority.evidenceRefs || [], null, "genotype");
   }
   evidenceCount += genotypeEvidenceCount;
+  if (!priorityStory) {
+    priorityStory = buildDefaultPriorityStory(activeStack.length);
+    priorityEvidence = priorityEvidence || getPriorityEvidenceLayer([], null, "model");
+  }
 
   const activeGenotypes = Object.values({ ...(activeGenotype || {}), ...(userGenetics || {}) })
     .filter(value =>
@@ -158,6 +173,7 @@ function renderSummaryBar() {
         <div class="lbl">${scoreLabel}</div>
       </div>
     </div>
+    ${renderPriorityStory(priorityStory, priorityEvidence)}
     <div class="summary-metrics">
       <div class="summary-metric"><strong>${activeStack.length}</strong><span>Substances</span></div>
       <div class="summary-metric"><strong>${actionableCount}</strong><span>Actionable Findings</span></div>
@@ -169,6 +185,101 @@ function renderSummaryBar() {
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (safetyBtn) safetyBtn.innerHTML = "Summary" + badge;
+}
+
+function uniqueInteractionPairLabels(interactions = []) {
+  const seen = new Set();
+  const labels = [];
+  for (const ix of interactions) {
+    const drugs = [ix.drug1, ix.drug2].filter(Boolean);
+    if (!drugs.length) continue;
+    const key = drugs.map(d => String(d).toLowerCase()).sort().join("|");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    labels.push(drugs.join(" + "));
+  }
+  return labels;
+}
+
+function buildInteractionPriorityStory(ix) {
+  if (!ix) return null;
+  const pair = [ix.drug1, ix.drug2].filter(Boolean).join(" + ");
+  const pathway = ix.enzyme || ix.affectedPathway || ix.category || "shared pathway";
+  const mechanism = ix.mechanism || ix.effect || "a modeled interaction";
+  const action = ix.clinicalAction || ix.management || (
+    ix.severity === "severe" || ix.severity === "critical"
+      ? "Review whether this combination should be avoided, substituted, dose-adjusted, or monitored before use."
+      : "Review dose, timing, monitoring, and whether the combination is still appropriate."
+  );
+  return {
+    why:`${pair || "This stack"} has the strongest medication-interaction signal in the current profile.`,
+    changes:`The concern is ${mechanism}${pathway ? ` through ${pathway}` : ""}.`,
+    review:action,
+  };
+}
+
+function buildGenotypePriorityStory(signal) {
+  if (!signal) return null;
+  return {
+    why:signal.why || "A selected genotype changes the interpretation of a medication already in the list.",
+    changes:signal.changes || signal.summary || "The genotype changes expected exposure, active metabolite formation, or hypersensitivity risk.",
+    review:signal.review || signal.nextStep || "Review the pharmacogenomics panel before relying on the standard medication assumption.",
+  };
+}
+
+function buildDefaultPriorityStory(count) {
+  if (count < 1) return null;
+  if (count < 2) {
+    return {
+      why:"MedCheck can already show pharmacogenomic, metabolite, and dose context for one medication.",
+      changes:"Pairwise interaction risk needs at least two substances, but genotype or metabolite context can still matter.",
+      review:"Add another substance or set known genotype results to personalize the review.",
+    };
+  }
+  return {
+    why:"No severe pairwise signal is currently ahead of the rest of the profile.",
+    changes:"Lower-priority genotype, transporter, metabolite, receptor, and dose context may still affect interpretation.",
+    review:"Review the findings tabs if the patient has narrow-therapeutic-index drugs, unusual symptoms, or known genotype results.",
+  };
+}
+
+function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "") {
+  const studies = [...new Set(refs || [])].map(ref => STUDY_DB[ref]).filter(Boolean);
+  const types = new Set(studies.map(s => s.type));
+  const sourceText = `${source || ""} ${(inlineEvidence?.sources || []).join(" ")} ${inlineEvidence?.confidence || ""}`.toLowerCase();
+  const hasGuidance = types.has(EVIDENCE_TIER.GUIDELINE) || types.has(EVIDENCE_TIER.FDA_LABEL) || /cpic|guideline|fda|label/.test(sourceText);
+  const hasHuman = [
+    EVIDENCE_TIER.META_ANALYSIS,
+    EVIDENCE_TIER.RCT,
+    EVIDENCE_TIER.CLINICAL_PK,
+    EVIDENCE_TIER.OBSERVATIONAL,
+    EVIDENCE_TIER.CASE_REPORT,
+  ].some(type => types.has(type)) || /clinical|observational|rct|meta/.test(sourceText);
+  const hasOnlyMechanistic = types.has(EVIDENCE_TIER.IN_VITRO) || types.has(EVIDENCE_TIER.ANIMAL) || /in vitro|animal|mechanistic/.test(sourceText);
+  if (hasGuidance) {
+    return { label:"Strong clinical guidance", className:"strong", note:studies.length ? `${studies.length} linked source${studies.length === 1 ? "" : "s"}, including guideline or label evidence.` : "Guideline or product-label evidence is attached." };
+  }
+  if (hasHuman) {
+    return { label:"Human clinical evidence", className:"moderate", note:studies.length ? `${studies.length} linked human source${studies.length === 1 ? "" : "s"}.` : "Human clinical evidence is referenced inline." };
+  }
+  if (hasOnlyMechanistic) {
+    return { label:"Mechanistic evidence", className:"limited", note:"Mechanistic evidence supports the pathway; clinical magnitude may be less certain." };
+  }
+  return { label:"Modeled review signal", className:"limited", note:"This is a conservative model signal; use the detailed tabs and evidence links for context." };
+}
+
+function renderPriorityStory(story, evidence) {
+  if (!story) return "";
+  const ev = evidence || getPriorityEvidenceLayer();
+  return `<div class="summary-story">
+    <div class="summary-story-row"><strong>Why this matters</strong>${story.why}</div>
+    <div class="summary-story-row"><strong>What changes</strong>${story.changes}</div>
+    <div class="summary-story-row"><strong>What to review</strong>${story.review}</div>
+    <div class="summary-confidence">
+      <span class="summary-confidence-pill ${ev.className === "strong" ? "" : ev.className}">${ev.label}</span>
+      <span class="summary-confidence-note">${ev.note}</span>
+    </div>
+  </div>`;
 }
 
 function updateEmptyTabs() {

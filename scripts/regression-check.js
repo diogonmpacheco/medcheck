@@ -330,6 +330,8 @@ window.setGenotype('CYP2C19', 'poor_metabolizer');
 const clopidogrelSummary = {
   title: window.document.querySelector('.summary-title')?.textContent || '',
   label: window.document.querySelector('.summary-risk .lbl')?.textContent || '',
+  story: window.document.querySelector('.summary-story')?.textContent || '',
+  confidence: window.document.querySelector('.summary-confidence-pill')?.textContent || '',
   metrics: Array.from(window.document.querySelectorAll('.summary-metric')).map(el => ({
     value: el.querySelector('strong')?.textContent || '',
     label: el.querySelector('span')?.textContent || '',
@@ -344,6 +346,13 @@ assert(
 assert(
   clopidogrelSummary.metrics.some(m => m.value === '1' && m.label === 'Genotype Inputs'),
   'Summary should count only non-baseline genotype inputs'
+);
+assert(
+  clopidogrelSummary.story.includes('Why this matters') &&
+  clopidogrelSummary.story.includes('What changes') &&
+  clopidogrelSummary.story.includes('What to review') &&
+  clopidogrelSummary.confidence.includes('Strong clinical guidance'),
+  'Highest-priority PGx summary should include clinical narrative and confidence layer'
 );
 
 loadCase(window, ['Abacavir']);

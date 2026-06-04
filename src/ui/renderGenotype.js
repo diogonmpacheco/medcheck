@@ -142,6 +142,11 @@ function getHighestGenotypePrioritySignal() {
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${enzyme} genotype may change ${drugName} exposure`,
         summary:`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabel(phenotype)}. ${effect.note}`,
+        why:`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`,
+        changes:`Expected parent-drug exposure shifts to about ${effect.auc_fold}x the normal-metabolizer baseline.`,
+        review:score >= 70
+          ? "Review dose sensitivity, toxicity signs, inhibitors/inducers, and whether therapeutic monitoring or an alternative is preferred."
+          : "Review whether the exposure shift changes monitoring, dose, or follow-up.",
         nextStep:score >= 70
           ? "Review the pharmacogenomics finding before changing dose or adding inhibitors."
           : "Review the pharmacogenomics panel and monitor dose-sensitive effects.",
@@ -160,6 +165,13 @@ function getHighestGenotypePrioritySignal() {
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
         summary:`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabel(geno)}. ${phenotypeEffect.label || effect.note}`,
+        why:`${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
+        changes:phenotypeEffect.fold
+          ? `${effect.metaboliteName} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
+          : `${effect.metaboliteName} is expected to ${direction}; the direction is modeled but the fold is not calibrated.`,
+        review:effect.clinicalAction || (score >= 70
+          ? "Review whether standard medication assumptions still apply before relying on efficacy or safety."
+          : "Review metabolite-level context and relevant monitoring."),
         nextStep:score >= 70
           ? "Review the pharmacogenomics finding before relying on this medication effect."
           : "Review metabolite-level pharmacogenomics context.",
@@ -177,6 +189,9 @@ function getHighestGenotypePrioritySignal() {
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${risk.label} conflicts with ${drugEffect.parent}`,
         summary:`${drugEffect.parent} is in your list and ${risk.label} is selected as present. ${drugEffect.clinicalAction || drugEffect.note}`,
+        why:`${risk.label} is a medication-specific risk marker for ${drugEffect.parent}.`,
+        changes:drugEffect.note,
+        review:drugEffect.clinicalAction || "Review whether this medication should be avoided or substituted.",
         nextStep:score >= 70
           ? "Review this genotype-medication safety warning before using this medication."
           : "Review this genotype-medication context with the rest of the profile.",
