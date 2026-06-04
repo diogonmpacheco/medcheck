@@ -3772,6 +3772,237 @@ const METAB = {
     p:20,
     note:"Secondary CYP3A-linked metabolite. Bleeding risk is driven mainly by the active parent/active-moiety antiplatelet effect."
   }
+],
+"Maribavir":[
+  {
+    n:"Maribavir unchanged parent",
+    e:"CYP3A4",
+    a:"active",
+    p:70,
+    note:"Parent drug drives CMV UL97 inhibition and P-gp/BCRP victim-drug interactions. Strong CYP3A induction lowers active parent exposure.",
+    evidenceRefs:["ev_maribavir_label"]
+  },
+  {
+    n:"Minor inactive oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:30,
+    note:"Included to avoid treating maribavir as a parent-only actor; the clinically important signal remains parent exposure and UL97 antagonism of ganciclovir activation.",
+    evidenceRefs:["ev_maribavir_label"]
+  }
+],
+"Letermovir":[
+  {
+    n:"Letermovir unchanged parent",
+    e:"OATP/biliary transport",
+    a:"active",
+    p:65,
+    note:"Parent letermovir is the active CMV terminase inhibitor and clinically relevant CYP3A/OATP interaction actor; cyclosporine substantially changes exposure context.",
+    evidenceRefs:["ev_letermovir_immunosuppressant_label"]
+  },
+  {
+    n:"Letermovir acyl glucuronide",
+    e:"UGT1A1/UGT1A3",
+    a:"inactive",
+    p:35,
+    note:"Glucuronidation contributes to clearance, but transplant risk is driven mainly by parent letermovir, cyclosporine, tacrolimus, sirolimus, and statin transporter/CYP interactions.",
+    evidenceRefs:["ev_letermovir_immunosuppressant_label"]
+  }
+],
+"Valganciclovir":[
+  {
+    n:"Ganciclovir",
+    e:"Esterases",
+    a:"active_form",
+    role:"active_form",
+    p:90,
+    note:"Valganciclovir is an oral prodrug rapidly converted to ganciclovir. The active moiety then requires intracellular/viral phosphorylation; renal function and marrow reserve dominate safety.",
+    evidenceRefs:["ev_valganciclovir_label"]
+  },
+  {
+    n:"Valganciclovir unchanged",
+    e:"Renal",
+    a:"active_form_precursor",
+    p:10,
+    note:"Residual prodrug exposure; included so prodrug conversion and renal clearance are visible in metabolite-aware views.",
+    evidenceRefs:["ev_valganciclovir_label"]
+  }
+],
+"Ganciclovir":[
+  {
+    n:"Ganciclovir triphosphate",
+    e:"Viral UL97 phosphorylation / cellular kinases",
+    a:"active",
+    p:15,
+    note:"Intracellular active antiviral nucleotide. Maribavir inhibits UL97, which can antagonize ganciclovir activation despite unchanged parent pharmacokinetics.",
+    evidenceRefs:["ev_valganciclovir_label","ev_maribavir_label"]
+  },
+  {
+    n:"Ganciclovir unchanged renal elimination",
+    e:"Renal",
+    a:"active",
+    p:85,
+    note:"Renal clearance drives dose adjustment and accumulation risk; marrow toxicity is additive with other myelosuppressive drugs.",
+    evidenceRefs:["ev_valganciclovir_label"]
+  }
+],
+"Zidovudine":[
+  {
+    n:"Zidovudine glucuronide",
+    e:"UGT2B7",
+    a:"inactive",
+    p:75,
+    note:"Major inactive clearance metabolite. The key interaction signal in this dataset is additive marrow suppression with ganciclovir/valganciclovir rather than CYP competition.",
+    evidenceRefs:["ev_valganciclovir_label"]
+  },
+  {
+    n:"Zidovudine triphosphate",
+    e:"Intracellular kinases",
+    a:"active",
+    p:5,
+    note:"Active NRTI triphosphate. Included to distinguish intracellular activation from systemic glucuronidation and marrow toxicity.",
+    evidenceRefs:["ev_valganciclovir_label"]
+  }
+],
+"Bedaquiline":[
+  {
+    n:"N-desmethyl bedaquiline (M2)",
+    e:"CYP3A4",
+    a:"active",
+    p:45,
+    note:"Major metabolite with lower antimycobacterial activity but relevant QT and toxicity context. Strong CYP3A induction reduces bedaquiline exposure; inhibition can increase long-half-life exposure burden.",
+    evidenceRefs:["ev_bedaquiline_label"]
+  },
+  {
+    n:"Bedaquiline unchanged active parent",
+    e:"CYP3A4",
+    a:"active",
+    p:55,
+    note:"Parent drug is the main MDR-TB efficacy signal and has a very long terminal half-life, making induction, inhibition, and additive QT combinations clinically important.",
+    evidenceRefs:["ev_bedaquiline_label"]
+  }
+],
+"Heparin":[
+  {
+    n:"Heparin reticuloendothelial/protein-bound clearance",
+    e:"Reticuloendothelial uptake",
+    a:"active",
+    p:65,
+    note:"No CYP metabolism. Procedural risk is pharmacodynamic bleeding and thrombocytopenia, especially with potent antiplatelets.",
+    evidenceRefs:["ev_gpiibiiia_bleeding_label"]
+  },
+  {
+    n:"Heparin renal clearance component",
+    e:"Renal",
+    a:"active",
+    p:25,
+    note:"Renal contribution is secondary for unfractionated heparin; monitoring is protocol and response based.",
+    evidenceRefs:["ev_gpiibiiia_bleeding_label"]
+  }
+],
+"Fondaparinux":[
+  {
+    n:"Fondaparinux unchanged renal elimination",
+    e:"Renal",
+    a:"active",
+    p:90,
+    note:"No CYP metabolism. Renal function and additive antiplatelet/anticoagulant bleeding risk dominate clinical handling.",
+    evidenceRefs:["ev_fondaparinux_bleeding_label"]
+  }
+],
+"Eptifibatide":[
+  {
+    n:"Eptifibatide unchanged renal elimination",
+    e:"Renal",
+    a:"active",
+    p:50,
+    note:"No CYP metabolism. Renal function and concurrent heparin/antithrombotic intensity drive procedural bleeding risk.",
+    evidenceRefs:["ev_gpiibiiia_bleeding_label"]
+  }
+],
+"Tirofiban":[
+  {
+    n:"Tirofiban unchanged renal elimination",
+    e:"Renal",
+    a:"active",
+    p:65,
+    note:"No CYP metabolism. The main actionable context is renal dosing plus additive procedural bleeding with heparin and other antithrombotics.",
+    evidenceRefs:["ev_gpiibiiia_bleeding_label"]
+  }
+],
+"Abciximab":[
+  {
+    n:"Platelet-bound abciximab active moiety",
+    e:"Platelet binding / reticuloendothelial clearance",
+    a:"active",
+    p:90,
+    note:"Monoclonal Fab with prolonged platelet-bound effect. The important signal is pharmacodynamic platelet inhibition, thrombocytopenia, and bleeding with heparin/procedural anticoagulation.",
+    evidenceRefs:["ev_gpiibiiia_bleeding_label"]
+  }
+],
+"Albendazole":[
+  {
+    n:"Albendazole sulfoxide",
+    e:"CYP3A4/FMO",
+    a:"active",
+    p:70,
+    note:"Primary active anthelmintic metabolite. Dexamethasone, praziquantel, and cimetidine can increase active sulfoxide exposure, so prolonged therapy needs liver/CBC monitoring.",
+    evidenceRefs:["ev_albendazole_active_sulfoxide_label"]
+  },
+  {
+    n:"Albendazole sulfone",
+    e:"CYP3A4",
+    a:"inactive",
+    p:25,
+    note:"Further oxidation product. Included to keep albendazole modeled as an active-metabolite drug rather than a simple parent exposure.",
+    evidenceRefs:["ev_albendazole_active_sulfoxide_label"]
+  }
+],
+"Atovaquone":[
+  {
+    n:"Atovaquone unchanged biliary/fecal elimination",
+    e:"Biliary/Fecal",
+    a:"active",
+    p:94,
+    note:"Atovaquone is largely eliminated unchanged; exposure depends strongly on food and is reduced by rifampin/rifabutin, metoclopramide, and tetracycline-class coadministration.",
+    evidenceRefs:["ev_atovaquone_food_label","ev_atovaquone_interactions_label","ev_malarone_label"]
+  }
+],
+"Proguanil":[
+  {
+    n:"Cycloguanil",
+    e:"CYP2C19",
+    a:"active",
+    p:45,
+    note:"Active DHFR-inhibiting metabolite. CYP2C19 phenotype can alter formation, although atovaquone/proguanil efficacy is not reducible to this pathway alone.",
+    evidenceRefs:["ev_malarone_label"]
+  },
+  {
+    n:"4-chlorophenylbiguanide",
+    e:"CYP2C19",
+    a:"inactive",
+    p:25,
+    note:"Additional CYP2C19-linked proguanil metabolite; renal impairment can prolong proguanil/cycloguanil exposure in repeated dosing.",
+    evidenceRefs:["ev_malarone_label"]
+  }
+],
+"Griseofulvin":[
+  {
+    n:"6-desmethylgriseofulvin",
+    e:"CYP3A4",
+    a:"inactive",
+    p:70,
+    note:"Major oxidative metabolite. The clinical signal is older enzyme-inducer behavior that can lower warfarin and hormonal contraceptive effect.",
+    evidenceRefs:["ev_griseofulvin_induction_label"]
+  },
+  {
+    n:"Griseofulvin unchanged parent",
+    e:"Biliary/Fecal",
+    a:"active",
+    p:30,
+    note:"Absorption is improved by fatty meals; alcohol intolerance and photosensitivity/hepatic monitoring are practical counseling points.",
+    evidenceRefs:["ev_griseofulvin_induction_label"]
+  }
 ]
 };
 

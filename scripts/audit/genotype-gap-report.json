@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-04T08:07:15.037Z",
+  "generated": "2026-06-04T14:23:47.199Z",
   "medcheckVersion": "3.5.5",
   "genotypePanel": [
     "ABCB1",
@@ -46,6 +46,7 @@
     "CYP2C9",
     "CYP2D6",
     "CYP2E1",
+    "CYP2J2",
     "CYP2R1",
     "CYP3A4",
     "CYP3A5",
@@ -79,6 +80,39 @@
   "gapAnalysis": {
     "missingFromPanel": [
       {
+        "gene": "CYP2E1",
+        "foundIn": [
+          "DRUG_DB",
+          "ENZYME_ACTORS",
+          "GENE_ENZYMES",
+          "KNOWN_DDI",
+          "METABOLITE_ACTORS",
+          "STUDY_DB"
+        ],
+        "catalogClass": "MEDCHECK_ONLY",
+        "catalogDrugs": [],
+        "catalogEvidenceLevel": null,
+        "catalogStudyCount": 0,
+        "catalogSnpCount": 0,
+        "drugsAffected": [
+          "Acetaminophen",
+          "Alcohol (Ethanol)",
+          "Eszopiclone",
+          "Metformin",
+          "Theophylline"
+        ],
+        "nullImpactScore": 30,
+        "nullImpactClass": "MODERATE",
+        "scoreBreakdown": {
+          "cpicTier": 3,
+          "drugCount": 15,
+          "afrequency": 1,
+          "safetyClass": 10,
+          "genotypeVariance": 0.5
+        },
+        "recommendation": "Track CYP2E1; add a panel when adding more drug-specific evidence."
+      },
+      {
         "gene": "MAO-A",
         "foundIn": [
           "DRUG_DB",
@@ -95,13 +129,23 @@
         "catalogSnpCount": 0,
         "drugsAffected": [
           "Ayahuasca (DMT+MAOI)",
+          "Dexmethylphenidate",
+          "Fluoxetine",
           "Grapefruit Juice",
           "LSD",
+          "Linezolid",
           "MDMA (Ecstasy)",
+          "Methylphenidate",
           "Moclobemide",
+          "Phenelzine",
+          "Selegiline",
+          "Sertraline",
           "Succinylcholine",
           "Sumatriptan",
-          "Tyramine-rich Foods"
+          "Tramadol",
+          "Tranylcypromine",
+          "Tyramine-rich Foods",
+          "Venlafaxine"
         ],
         "nullImpactScore": 30,
         "nullImpactClass": "MODERATE",
@@ -115,10 +159,49 @@
         "recommendation": "Track MAO-A; add a panel when adding more drug-specific evidence."
       },
       {
+        "gene": "MAO-B",
+        "foundIn": [
+          "DRUG_DB",
+          "ENZYME_ACTORS",
+          "GENE_ENZYMES",
+          "KNOWN_DDI",
+          "STUDY_DB"
+        ],
+        "catalogClass": "MEDCHECK_ONLY",
+        "catalogDrugs": [],
+        "catalogEvidenceLevel": null,
+        "catalogStudyCount": 0,
+        "catalogSnpCount": 0,
+        "drugsAffected": [
+          "Ayahuasca (DMT+MAOI)",
+          "Fluoxetine",
+          "Grapefruit Juice",
+          "LSD",
+          "Linezolid",
+          "Phenelzine",
+          "Rasagiline",
+          "Safinamide",
+          "Selegiline",
+          "Tranylcypromine",
+          "Tyramine-rich Foods"
+        ],
+        "nullImpactScore": 30,
+        "nullImpactClass": "MODERATE",
+        "scoreBreakdown": {
+          "cpicTier": 3,
+          "drugCount": 15,
+          "afrequency": 1,
+          "safetyClass": 10,
+          "genotypeVariance": 0.5
+        },
+        "recommendation": "Track MAO-B; add a panel when adding more drug-specific evidence."
+      },
+      {
         "gene": "SLC22A6",
         "foundIn": [
           "DRUG_DB",
           "KNOWN_DDI",
+          "METABOLITE_ACTORS",
           "TRANSPORTER_ACTORS",
           "TRANSPORTER_DDI"
         ],
@@ -148,6 +231,7 @@
         "foundIn": [
           "DRUG_DB",
           "KNOWN_DDI",
+          "METABOLITE_ACTORS",
           "TRANSPORTER_ACTORS",
           "TRANSPORTER_DDI"
         ],
@@ -171,69 +255,6 @@
           "genotypeVariance": 0.5
         },
         "recommendation": "Track SLC22A8; add a panel when adding more drug-specific evidence."
-      },
-      {
-        "gene": "CYP2E1",
-        "foundIn": [
-          "DRUG_DB",
-          "ENZYME_ACTORS",
-          "GENE_ENZYMES",
-          "KNOWN_DDI",
-          "METABOLITE_ACTORS",
-          "STUDY_DB"
-        ],
-        "catalogClass": "MEDCHECK_ONLY",
-        "catalogDrugs": [],
-        "catalogEvidenceLevel": null,
-        "catalogStudyCount": 0,
-        "catalogSnpCount": 0,
-        "drugsAffected": [
-          "Acetaminophen",
-          "Alcohol (Ethanol)",
-          "Metformin",
-          "Theophylline"
-        ],
-        "nullImpactScore": 27,
-        "nullImpactClass": "MODERATE",
-        "scoreBreakdown": {
-          "cpicTier": 3,
-          "drugCount": 12,
-          "afrequency": 1,
-          "safetyClass": 10,
-          "genotypeVariance": 0.5
-        },
-        "recommendation": "Track CYP2E1; add a panel when adding more drug-specific evidence."
-      },
-      {
-        "gene": "MAO-B",
-        "foundIn": [
-          "DRUG_DB",
-          "ENZYME_ACTORS",
-          "GENE_ENZYMES",
-          "KNOWN_DDI",
-          "STUDY_DB"
-        ],
-        "catalogClass": "MEDCHECK_ONLY",
-        "catalogDrugs": [],
-        "catalogEvidenceLevel": null,
-        "catalogStudyCount": 0,
-        "catalogSnpCount": 0,
-        "drugsAffected": [
-          "Ayahuasca (DMT+MAOI)",
-          "Grapefruit Juice",
-          "LSD",
-          "Tyramine-rich Foods"
-        ],
-        "nullImpactScore": 27,
-        "nullImpactClass": "MODERATE",
-        "scoreBreakdown": {
-          "cpicTier": 3,
-          "drugCount": 12,
-          "afrequency": 1,
-          "safetyClass": 10,
-          "genotypeVariance": 0.5
-        },
-        "recommendation": "Track MAO-B; add a panel when adding more drug-specific evidence."
       },
       {
         "gene": "SLC22A2",
@@ -272,6 +293,7 @@
         "foundIn": [
           "DRUG_DB",
           "KNOWN_DDI",
+          "METABOLITE_ACTORS",
           "TRANSPORTER_ACTORS",
           "TRANSPORTER_DDI"
         ],
@@ -297,6 +319,64 @@
         "recommendation": "Document SLC47A1; current modeled impact appears low."
       },
       {
+        "gene": "UGT1A9",
+        "foundIn": [
+          "DRUG_DB",
+          "METABOLITE_ACTORS"
+        ],
+        "catalogClass": "MEDCHECK_ONLY",
+        "catalogDrugs": [],
+        "catalogEvidenceLevel": null,
+        "catalogStudyCount": 0,
+        "catalogSnpCount": 0,
+        "drugsAffected": [
+          "Darolutamide",
+          "Propofol",
+          "Regorafenib",
+          "Sorafenib"
+        ],
+        "nullImpactScore": 17,
+        "nullImpactClass": "LOW",
+        "scoreBreakdown": {
+          "cpicTier": 3,
+          "drugCount": 12,
+          "afrequency": 1,
+          "safetyClass": 0,
+          "genotypeVariance": 0.5
+        },
+        "recommendation": "Document UGT1A9; current modeled impact appears low."
+      },
+      {
+        "gene": "UGT1A4",
+        "foundIn": [
+          "DRUG_DB",
+          "KNOWN_DDI",
+          "METABOLITE_ACTORS",
+          "RECEPTOR_SCORES",
+          "STUDY_DB"
+        ],
+        "catalogClass": "MEDCHECK_ONLY",
+        "catalogDrugs": [],
+        "catalogEvidenceLevel": null,
+        "catalogStudyCount": 0,
+        "catalogSnpCount": 0,
+        "drugsAffected": [
+          "Asenapine",
+          "Lorlatinib",
+          "Phenobarbital"
+        ],
+        "nullImpactScore": 14,
+        "nullImpactClass": "LOW",
+        "scoreBreakdown": {
+          "cpicTier": 3,
+          "drugCount": 9,
+          "afrequency": 1,
+          "safetyClass": 0,
+          "genotypeVariance": 0.5
+        },
+        "recommendation": "Document UGT1A4; current modeled impact appears low."
+      },
+      {
         "gene": "COMT",
         "foundIn": [
           "DRUG_DB",
@@ -310,13 +390,14 @@
         "catalogStudyCount": 0,
         "catalogSnpCount": 0,
         "drugsAffected": [
+          "Droxidopa",
           "Succinylcholine"
         ],
-        "nullImpactScore": 8,
+        "nullImpactScore": 11,
         "nullImpactClass": "LOW",
         "scoreBreakdown": {
           "cpicTier": 3,
-          "drugCount": 3,
+          "drugCount": 6,
           "afrequency": 1,
           "safetyClass": 0,
           "genotypeVariance": 0.5
@@ -324,10 +405,9 @@
         "recommendation": "Document COMT; current modeled impact appears low."
       },
       {
-        "gene": "UGT1A9",
+        "gene": "CYP2J2",
         "foundIn": [
-          "DRUG_DB",
-          "METABOLITE_ACTORS"
+          "DRUG_DB"
         ],
         "catalogClass": "MEDCHECK_ONLY",
         "catalogDrugs": [],
@@ -335,7 +415,7 @@
         "catalogStudyCount": 0,
         "catalogSnpCount": 0,
         "drugsAffected": [
-          "Propofol"
+          "Vorapaxar"
         ],
         "nullImpactScore": 8,
         "nullImpactClass": "LOW",
@@ -346,7 +426,7 @@
           "safetyClass": 0,
           "genotypeVariance": 0.5
         },
-        "recommendation": "Document UGT1A9; current modeled impact appears low."
+        "recommendation": "Document CYP2J2; current modeled impact appears low."
       },
       {
         "gene": "ADRB1",
@@ -571,30 +651,6 @@
           "genotypeVariance": 0.5
         },
         "recommendation": "Document UGT1A3; current modeled impact appears low."
-      },
-      {
-        "gene": "UGT1A4",
-        "foundIn": [
-          "KNOWN_DDI",
-          "METABOLITE_ACTORS",
-          "STUDY_DB"
-        ],
-        "catalogClass": "MEDCHECK_ONLY",
-        "catalogDrugs": [],
-        "catalogEvidenceLevel": null,
-        "catalogStudyCount": 0,
-        "catalogSnpCount": 0,
-        "drugsAffected": [],
-        "nullImpactScore": 5,
-        "nullImpactClass": "LOW",
-        "scoreBreakdown": {
-          "cpicTier": 3,
-          "drugCount": 0,
-          "afrequency": 1,
-          "safetyClass": 0,
-          "genotypeVariance": 0.5
-        },
-        "recommendation": "Document UGT1A4; current modeled impact appears low."
       },
       {
         "gene": "UGT2B15",
