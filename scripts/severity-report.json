@@ -12699,5 +12699,995 @@
       "hasStrongInline": true,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Darunavir",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_darunavir_boosted_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_darunavir_boosted_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Darunavir",
+    "drug2": "Simvastatin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_darunavir_boosted_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_darunavir_boosted_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Darunavir",
+    "drug2": "Midazolam",
+    "category": "pk_sedation",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_darunavir_boosted_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_darunavir_boosted_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rilpivirine",
+    "drug2": "Pantoprazole",
+    "category": "absorption",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_rilpivirine_acid_cyp3a_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rilpivirine_acid_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rilpivirine",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_rilpivirine_acid_cyp3a_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rilpivirine_acid_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rilpivirine",
+    "drug2": "Carbamazepine",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_rilpivirine_acid_cyp3a_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rilpivirine_acid_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rilpivirine",
+    "drug2": "Amiodarone",
+    "category": "qt",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_rilpivirine_acid_cyp3a_qt_label",
+        "ev_qt_torsades_tisdale2016"
+      ],
+      "studies": [
+        {
+          "id": "ev_rilpivirine_acid_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_qt_torsades_tisdale2016",
+          "type": "observational",
+          "pmid": "27212965",
+          "doi": "10.1177/1715163516641136"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bictegravir",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_bictegravir_cation_induction_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_bictegravir_cation_induction_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bictegravir",
+    "drug2": "Calcium",
+    "category": "chelation_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_bictegravir_cation_induction_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_bictegravir_cation_induction_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bictegravir",
+    "drug2": "Iron",
+    "category": "chelation_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_bictegravir_cation_induction_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_bictegravir_cation_induction_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tenofovir Alafenamide",
+    "drug2": "Rifampin",
+    "category": "transporter_induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_taf_pgp_induction_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_taf_pgp_induction_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tenofovir Alafenamide",
+    "drug2": "Carbamazepine",
+    "category": "transporter_induction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_taf_pgp_induction_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_taf_pgp_induction_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lamivudine",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
+    "category": "renal_transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_lamivudine_renal_transport_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_lamivudine_renal_transport_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Flucytosine",
+    "drug2": "Amphotericin B",
+    "category": "renal_toxicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_flucytosine_amphotericin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_flucytosine_amphotericin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Olaparib",
+    "drug2": "Ketoconazole",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_olaparib_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_olaparib_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Olaparib",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_olaparib_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_olaparib_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rucaparib",
+    "drug2": "Warfarin",
+    "category": "pk_anticoagulation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_rucaparib_cyp_substrate_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rucaparib_cyp_substrate_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rucaparib",
+    "drug2": "Caffeine",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_rucaparib_cyp_substrate_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_rucaparib_cyp_substrate_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Talazoparib",
+    "drug2": "Amiodarone",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_parp_transporter_myelosuppression_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_parp_transporter_myelosuppression_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Romidepsin",
+    "drug2": "Ketoconazole",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_romidepsin_cyp3a_qt_warfarin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_romidepsin_cyp3a_qt_warfarin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Romidepsin",
+    "drug2": "Warfarin",
+    "category": "anticoagulation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_romidepsin_cyp3a_qt_warfarin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_romidepsin_cyp3a_qt_warfarin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Romidepsin",
+    "drug2": "Amiodarone",
+    "category": "qt",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_romidepsin_cyp3a_qt_warfarin_label",
+        "ev_qt_torsades_tisdale2016"
+      ],
+      "studies": [
+        {
+          "id": "ev_romidepsin_cyp3a_qt_warfarin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_qt_torsades_tisdale2016",
+          "type": "observational",
+          "pmid": "27212965",
+          "doi": "10.1177/1715163516641136"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Abiraterone",
+    "drug2": "Metoprolol",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_abiraterone_cyp2d6_cyp2c8_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_abiraterone_cyp2d6_cyp2c8_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Abiraterone",
+    "drug2": "Warfarin",
+    "category": "electrolyte_anticoagulation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_abiraterone_cyp2d6_cyp2c8_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_abiraterone_cyp2d6_cyp2c8_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clorazepate",
+    "drug2": "Fluconazole",
+    "category": "active_metabolite_clearance",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_clorazepate_nordiazepam_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_clorazepate_nordiazepam_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Midodrine",
+    "drug2": "Droxidopa",
+    "category": "pressor",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_midodrine_desglymidodrine_label",
+        "ev_droxidopa_norepinephrine_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_midodrine_desglymidodrine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_droxidopa_norepinephrine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Droxidopa",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_droxidopa_norepinephrine_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_droxidopa_norepinephrine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Midodrine",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_midodrine_desglymidodrine_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_midodrine_desglymidodrine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nitazoxanide",
+    "drug2": "Warfarin",
+    "category": "protein_binding",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_nitazoxanide_tizoxanide_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_nitazoxanide_tizoxanide_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dipyridamole",
+    "drug2": "Aspirin",
+    "category": "bleeding",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dipyridamole_antiplatelet_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dipyridamole_antiplatelet_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dipyridamole",
+    "drug2": "Warfarin",
+    "category": "bleeding",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dipyridamole_antiplatelet_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dipyridamole_antiplatelet_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Argatroban",
+    "drug2": "Aspirin",
+    "category": "bleeding",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_argatroban_bleeding_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_argatroban_bleeding_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Argatroban",
+    "drug2": "Clopidogrel",
+    "category": "bleeding",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_argatroban_bleeding_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_argatroban_bleeding_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Argatroban",
+    "drug2": "Warfarin",
+    "category": "anticoagulation_transition",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_argatroban_bleeding_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_argatroban_bleeding_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Artemether/Lumefantrine",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_artemether_lumefantrine_cyp3a_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_artemether_lumefantrine_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Artemether/Lumefantrine",
+    "drug2": "Ketoconazole",
+    "category": "pk_qt",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_artemether_lumefantrine_cyp3a_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_artemether_lumefantrine_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Artemether/Lumefantrine",
+    "drug2": "Amiodarone",
+    "category": "qt",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_artemether_lumefantrine_cyp3a_qt_label",
+        "ev_qt_torsades_tisdale2016"
+      ],
+      "studies": [
+        {
+          "id": "ev_artemether_lumefantrine_cyp3a_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_qt_torsades_tisdale2016",
+          "type": "observational",
+          "pmid": "27212965",
+          "doi": "10.1177/1715163516641136"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
   }
 ]

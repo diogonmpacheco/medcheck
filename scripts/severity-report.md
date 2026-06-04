@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 480
-Original severe: 272
-Recommended severe: 272
+Known DDI pairs: 517
+Original severe: 288
+Recommended severe: 288
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -489,3 +489,40 @@ Recommended downgrades: 0
 | Eptifibatide + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |
 | Tirofiban + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |
 | Abciximab + Heparin | procedural_bleeding | severe | severe | ev_gpiibiiia_bleeding_label (fda_label) | Severe support threshold met. |
+| Darunavir + Rifampin | induction | severe | severe | ev_darunavir_boosted_cyp3a_label (fda_label) | Severe support threshold met. |
+| Darunavir + Simvastatin | pk | severe | severe | ev_darunavir_boosted_cyp3a_label (fda_label) | Severe support threshold met. |
+| Darunavir + Midazolam | pk_sedation | severe | severe | ev_darunavir_boosted_cyp3a_label (fda_label) | Severe support threshold met. |
+| Rilpivirine + Pantoprazole | absorption | severe | severe | ev_rilpivirine_acid_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Rilpivirine + Rifampin | induction | severe | severe | ev_rilpivirine_acid_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Rilpivirine + Carbamazepine | induction | severe | severe | ev_rilpivirine_acid_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Rilpivirine + Amiodarone | qt | moderate | moderate | ev_rilpivirine_acid_cyp3a_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Kept original severity. |
+| Bictegravir + Rifampin | induction | severe | severe | ev_bictegravir_cation_induction_label (fda_label) | Severe support threshold met. |
+| Bictegravir + Calcium | chelation_absorption | moderate | moderate | ev_bictegravir_cation_induction_label (fda_label) | Kept original severity. |
+| Bictegravir + Iron | chelation_absorption | moderate | moderate | ev_bictegravir_cation_induction_label (fda_label) | Kept original severity. |
+| Tenofovir Alafenamide + Rifampin | transporter_induction | severe | severe | ev_taf_pgp_induction_label (fda_label) | Severe support threshold met. |
+| Tenofovir Alafenamide + Carbamazepine | transporter_induction | moderate | moderate | ev_taf_pgp_induction_label (fda_label) | Kept original severity. |
+| Lamivudine + Trimethoprim/Sulfamethoxazole | renal_transport | moderate | moderate | ev_lamivudine_renal_transport_label (fda_label) | Kept original severity. |
+| Flucytosine + Amphotericin B | renal_toxicity | severe | severe | ev_flucytosine_amphotericin_label (fda_label) | Severe support threshold met. |
+| Olaparib + Ketoconazole | pk | moderate | moderate | ev_olaparib_cyp3a_label (fda_label) | Kept original severity. |
+| Olaparib + Rifampin | induction | severe | severe | ev_olaparib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Rucaparib + Warfarin | pk_anticoagulation | moderate | moderate | ev_rucaparib_cyp_substrate_label (fda_label) | Kept original severity. |
+| Rucaparib + Caffeine | pk | moderate | moderate | ev_rucaparib_cyp_substrate_label (fda_label) | Kept original severity. |
+| Talazoparib + Amiodarone | transport | moderate | moderate | ev_parp_transporter_myelosuppression_label (fda_label) | Kept original severity. |
+| Romidepsin + Ketoconazole | pk | moderate | moderate | ev_romidepsin_cyp3a_qt_warfarin_label (fda_label) | Kept original severity. |
+| Romidepsin + Warfarin | anticoagulation | moderate | moderate | ev_romidepsin_cyp3a_qt_warfarin_label (fda_label) | Kept original severity. |
+| Romidepsin + Amiodarone | qt | severe | severe | ev_romidepsin_cyp3a_qt_warfarin_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Abiraterone + Metoprolol | pk | moderate | moderate | ev_abiraterone_cyp2d6_cyp2c8_label (fda_label) | Kept original severity. |
+| Abiraterone + Warfarin | electrolyte_anticoagulation | moderate | moderate | ev_abiraterone_cyp2d6_cyp2c8_label (fda_label) | Kept original severity. |
+| Clorazepate + Fluconazole | active_metabolite_clearance | moderate | moderate | ev_clorazepate_nordiazepam_label (fda_label) | Kept original severity. |
+| Midodrine + Droxidopa | pressor | severe | severe | ev_midodrine_desglymidodrine_label (fda_label)<br>ev_droxidopa_norepinephrine_label (fda_label) | Severe support threshold met. |
+| Droxidopa + Phenelzine | pressor_maoi | severe | severe | ev_droxidopa_norepinephrine_label (fda_label) | Severe support threshold met. |
+| Midodrine + Phenelzine | pressor_maoi | severe | severe | ev_midodrine_desglymidodrine_label (fda_label) | Severe support threshold met. |
+| Nitazoxanide + Warfarin | protein_binding | mild | mild | ev_nitazoxanide_tizoxanide_label (fda_label) | Kept original severity. |
+| Dipyridamole + Aspirin | bleeding | moderate | moderate | ev_dipyridamole_antiplatelet_label (fda_label) | Kept original severity. |
+| Dipyridamole + Warfarin | bleeding | moderate | moderate | ev_dipyridamole_antiplatelet_label (fda_label) | Kept original severity. |
+| Argatroban + Aspirin | bleeding | moderate | moderate | ev_argatroban_bleeding_label (fda_label) | Kept original severity. |
+| Argatroban + Clopidogrel | bleeding | moderate | moderate | ev_argatroban_bleeding_label (fda_label) | Kept original severity. |
+| Argatroban + Warfarin | anticoagulation_transition | moderate | moderate | ev_argatroban_bleeding_label (fda_label) | Kept original severity. |
+| Artemether/Lumefantrine + Rifampin | induction | severe | severe | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Artemether/Lumefantrine + Ketoconazole | pk_qt | moderate | moderate | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label) | Kept original severity. |
+| Artemether/Lumefantrine + Amiodarone | qt | severe | severe | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
