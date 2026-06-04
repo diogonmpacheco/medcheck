@@ -32,6 +32,8 @@ You can also build custom share links with:
 
 `https://diogonmpacheco.github.io/medcheck/index.html?substances=warfarin,ibuprofen&tab=safety`
 
+For class-based entry points, see the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
+
 ---
 
 ## Why It Exists
@@ -71,7 +73,7 @@ The project is intended for education, research, and review workflows. It is not
 - **146 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **32 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1679 KB** generated bundle (28970 lines)
+- **1687 KB** generated bundle (29139 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

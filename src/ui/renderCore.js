@@ -318,35 +318,47 @@ function arrangeAdvancedSections() {
 function onSearch(q) {
   const el = document.getElementById("searchResults");
   if (!q || q.length < 1) { el.classList.remove("show"); return; }
-  const ql = q.toLowerCase();
   const seen = new Set();
-  const matches = DRUG_DB.filter(d => {
+  const seenAliasMatches = new Set();
+  const rawMatches = DRUG_DB
+    .map(d => ({ drug:d, match:scoreDrugSearch(d, q) }))
+    .filter(row => row.match.score > 0)
+    .sort((a,b) =>
+      b.match.score - a.match.score ||
+      drugSearchRichness(b.drug) - drugSearchRichness(a.drug) ||
+      a.drug.name.localeCompare(b.drug.name)
+    );
+  const matches = rawMatches.filter(row => {
+    const d = row.drug;
     if (seen.has(d.name)) return false;
-    const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, d.cls, ...(BRAND_NAMES[d.name] || [])];
-    const matched = terms.some(term => String(term || "").toLowerCase().includes(ql));
-    if (matched) { seen.add(d.name); return true; }
-    return false;
+    const aliasKey = getSearchAliasDedupeKey(row);
+    if (aliasKey && seenAliasMatches.has(aliasKey)) return false;
+    seen.add(d.name);
+    if (aliasKey) seenAliasMatches.add(aliasKey);
+    return true;
   });
   if (!matches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
 
   // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
-  matches.forEach(d => {
+  matches.forEach(row => {
+    const d = row.drug;
     const cat = getBrowseCategory(d);
     if (!groups[cat]) groups[cat] = [];
-    groups[cat].push(d);
+    groups[cat].push(row);
   });
 
   let html = "";
-  for (const [cls, drugs] of Object.entries(groups)) {
+  for (const [cls, rows] of Object.entries(groups)) {
     if (matches.length > 5) html += `<div class="sr-cat">${cls}</div>`;
-    drugs.forEach(d => {
+    rows.forEach(row => {
+      const d = row.drug;
       const added = activeStack.includes(d.name);
-      const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, ...(BRAND_NAMES[d.name] || [])];
-      const matchedAlias = terms.find(term => term !== d.name && term !== d.id && String(term || "").toLowerCase().includes(ql));
+      const matchedAlias = row.match.term && row.match.term !== d.name && row.match.term !== d.id ? row.match.term : "";
       const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d) : "";
       const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${d.name}` : highlight(d.name, q);
-      const secondaryHtml = secondary ? `<span class="sr-secondary">${secondary}</span>` : "";
+      const matchNote = row.match.reason && row.match.reason !== "name" ? `<span class="sr-match">${row.match.reason}</span>` : "";
+      const secondaryHtml = secondary || matchNote ? `<span class="sr-secondary">${[secondary, matchNote].filter(Boolean).join(" ")}</span>` : "";
       html += `<div class="sr-item" onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
         <span><span class="sr-name">${displayName}</span>${secondaryHtml}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${d.cls}</span>`}</span>
@@ -355,6 +367,82 @@ function onSearch(q) {
   }
   el.innerHTML = html;
   el.classList.add("show");
+}
+
+function getSearchAliasDedupeKey(row) {
+  const drug = row?.drug;
+  const term = row?.match?.term;
+  const reason = row?.match?.reason || "";
+  if (!drug || !term || reason === "name" || reason === "name prefix" || reason === "medication class") return "";
+  if (term === drug.name || term === drug.id || term === drug.cls) return "";
+  const norm = typeof normalizeDrugLookupKey === "function"
+    ? normalizeDrugLookupKey
+    : value => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return `alias:${norm(term)}`;
+}
+
+function drugSearchRichness(drug) {
+  return (drug.routes || []).length * 3 +
+    (drug.inh || []).length * 2 +
+    (drug.ind || []).length * 2 +
+    (drug.metInh || []).length * 2 +
+    (drug.evidenceRefs || []).length +
+    (drug.note ? 2 : 0);
+}
+
+function scoreDrugSearch(drug, query) {
+  const norm = typeof normalizeDrugLookupKey === "function"
+    ? normalizeDrugLookupKey
+    : value => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const q = norm(query);
+  if (!q) return { score:0, term:"", reason:"" };
+  const tokens = q.split(" ").filter(Boolean);
+  const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(drug) : [drug.name, drug.cls, ...(BRAND_NAMES[drug.name] || [])];
+  const searchable = terms.map(term => ({ raw:String(term || ""), key:norm(term) })).filter(term => term.key);
+  const joined = searchable.map(term => term.key).join(" ");
+  const genericKey = norm(drug.name);
+  let best = { score:0, term:"", reason:"" };
+  const setBest = (score, term, reason) => {
+    if (score > best.score) best = { score, term, reason };
+  };
+
+  if (genericKey === q) setBest(120, drug.name, "name");
+  if (genericKey.startsWith(q)) setBest(95, drug.name, "name prefix");
+  searchable.forEach(term => {
+    const isGeneric = term.raw === drug.name || term.raw === drug.id;
+    if (term.key === q) setBest(isGeneric ? 120 : 110, term.raw, isGeneric ? "name" : "brand or alias");
+    else if (term.key.startsWith(q)) setBest(isGeneric ? 95 : 88, term.raw, isGeneric ? "name prefix" : "brand or alias prefix");
+    else if (term.key.includes(q)) setBest(isGeneric ? 76 : 72, term.raw, isGeneric ? "partial name" : "partial brand or alias");
+  });
+  if (tokens.length > 1 && tokens.every(token => joined.includes(token))) setBest(68, drug.name, "matched words");
+  if (String(drug.cls || "").toLowerCase().includes(query.toLowerCase())) setBest(52, drug.cls, "medication class");
+  if (tokens.length === 1 && q.length >= 4) {
+    searchable.forEach(term => {
+      for (const part of term.key.split(" ")) {
+        if (part.length >= 4 && levenshteinWithin(part, q, q.length > 6 ? 2 : 1)) {
+          setBest(42, term.raw, "possible spelling match");
+        }
+      }
+    });
+  }
+  return best;
+}
+
+function levenshteinWithin(a, b, maxDistance) {
+  if (Math.abs(a.length - b.length) > maxDistance) return false;
+  const prev = Array.from({ length:b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const curr = [i];
+    let rowMin = curr[0];
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      curr[j] = Math.min(curr[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+      rowMin = Math.min(rowMin, curr[j]);
+    }
+    if (rowMin > maxDistance) return false;
+    for (let j = 0; j < curr.length; j++) prev[j] = curr[j];
+  }
+  return prev[b.length] <= maxDistance;
 }
 
 function highlight(text, q) {

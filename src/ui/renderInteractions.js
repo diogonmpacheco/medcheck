@@ -119,15 +119,15 @@ function simplifyMechanism(i) {
 
 function buildInteractionTrace(i) {
   if (!i) return "";
-  if (i.type === "metabolite-chain") return `${i.drug1} -> active metabolite/inhibitor -> ${i.enzyme || i.category || "pathway"} -> ${i.drug2}`;
-  if (i.type === "inhibition") return `${i.drug1} inhibits ${i.enzyme || "clearance pathway"} -> ${i.drug2} exposure rises`;
-  if (i.type === "induction") return `${i.drug1} induces ${i.enzyme || "clearance pathway"} -> ${i.drug2} exposure falls`;
-  if (i.type === "transporter" || i.category === "transporter") return `${i.drug1} -> transporter effect (${i.enzyme || i.category || "transporter"}) -> ${i.drug2} exposure changes`;
-  if (i.category === "prodrug") return `${i.drug2} activation pathway affected by ${i.drug1} -> active metabolite/clinical effect may fall`;
-  if (i.category === "bleed") return `${i.drug1} + ${i.drug2} -> additive anticoagulant/platelet effect -> bleeding risk`;
-  if (i.category === "serotonin") return `${i.drug1} + ${i.drug2} -> serotonergic effects add up -> serotonin toxicity risk`;
-  if (i.category === "qtc") return `${i.drug1} + ${i.drug2} -> repolarization effects add up -> QTc risk`;
-  if (i.mechanism) return `${i.drug1} + ${i.drug2} -> ${i.mechanism}`;
+  if (i.type === "metabolite-chain") return `Path: ${i.drug1} changes an active metabolite/inhibitor, then ${i.enzyme || i.category || "the pathway"} changes ${i.drug2} exposure.`;
+  if (i.type === "inhibition") return `Path: ${i.drug1} inhibits ${i.enzyme || "a clearance pathway"}, so ${i.drug2} exposure can rise.`;
+  if (i.type === "induction") return `Path: ${i.drug1} induces ${i.enzyme || "a clearance pathway"}, so ${i.drug2} exposure can fall.`;
+  if (i.type === "transporter" || i.category === "transporter") return `Path: ${i.drug1} changes ${i.enzyme || i.category || "transporter"} movement, so ${i.drug2} tissue or blood exposure can shift.`;
+  if (i.category === "prodrug") return `Path: ${i.drug1} affects ${i.drug2} activation, so active-metabolite formation or clinical effect may fall.`;
+  if (i.category === "bleed") return `Path: ${i.drug1} and ${i.drug2} add anticoagulant or platelet effects, raising bleeding risk.`;
+  if (i.category === "serotonin") return `Path: ${i.drug1} and ${i.drug2} add serotonergic effects, raising serotonin-toxicity risk.`;
+  if (i.category === "qtc") return `Path: ${i.drug1} and ${i.drug2} add repolarization effects, raising QTc risk.`;
+  if (i.mechanism) return `Path: ${i.drug1} plus ${i.drug2}: ${i.mechanism}`;
   return "";
 }
 
@@ -349,7 +349,7 @@ function severityRank(s) { return s === "severe" ? 3 : s === "moderate" ? 2 : 1;
 function renderTiming() {
   const el = document.getElementById("timingBody");
   const timingLabels = { AM: "Morning", PM: "Evening", BID: "Twice Daily", ANY: "Any Time" };
-  el.innerHTML = activeStack.map(name => {
+  const timingRows = activeStack.map(name => {
     const drug = getDrug(name);
     const t = drug ? drug.timing : "ANY";
     const hl = drug ? drug.hl : 0;
@@ -359,6 +359,77 @@ function renderTiming() {
       ${hl ? `<span class="timing-hl">Half-life: ${hl}h</span>` : ""}
     </div>`;
   }).join("");
+  el.innerHTML = timingRows + renderInteractionTimeline();
+}
+
+function renderInteractionTimeline() {
+  if (!activeStack.length) return "";
+  let interactions = [];
+  try {
+    interactions = activeStack.length >= 2 ? (calcRisk().interactions || []) : [];
+  } catch (e) {
+    interactions = [];
+  }
+  const rows = [];
+  activeStack.forEach(name => {
+    const drug = getDrug(name);
+    if (drug && drug.hl >= 48) {
+      const days = Math.ceil((drug.hl * 5) / 24);
+      rows.push({
+        phase:"Persists after stopping",
+        text:`${name} has a long half-life; meaningful exposure may remain for about ${days} days after the last dose.`,
+        className:"long"
+      });
+    }
+  });
+  interactions.slice(0, 6).forEach(ix => {
+    const severe = ix.severity === "severe" || ix.severity === "critical";
+    if (ix.type === "induction" || /induc/i.test(ix.mechanism || "")) {
+      rows.push({
+        phase:"Builds over days",
+        text:`${ix.drug1} may gradually increase ${ix.enzyme || "clearance"} activity, so the ${ix.drug2} effect can change over several days and may take 1-2 weeks to settle after stopping.`,
+        className:severe ? "severe" : "moderate"
+      });
+    } else if (ix.type === "inhibition" || /inhibit|block/i.test(ix.mechanism || "")) {
+      const text = ix.type === "inhibition"
+        ? `${ix.drug1} can reduce ${ix.enzyme || "clearance"} capacity for ${ix.drug2}; level changes often begin within the first few doses and persist while the inhibitor remains present.`
+        : `${ix.drug1} plus ${ix.drug2} includes an inhibition signal; level changes often begin within the first few doses and persist while the inhibitor remains present.`;
+      rows.push({
+        phase:"Can happen quickly",
+        text,
+        className:severe ? "severe" : "moderate"
+      });
+    } else if (ix.category === "pd" || ix.type === "pharmacodynamic") {
+      rows.push({
+        phase:"Effect adds immediately",
+        text:`${ix.drug1} and ${ix.drug2} can add pharmacodynamic burden as soon as both are active, even if blood levels are unchanged.`,
+        className:severe ? "severe" : "moderate"
+      });
+    } else if (ix.category === "metabolite" || ix.type === "metabolite-chain") {
+      rows.push({
+        phase:"Metabolite dependent",
+        text:`${ix.drug1} and ${ix.drug2} involve a metabolite pathway, so onset depends on parent-drug clearance and metabolite formation.`,
+        className:severe ? "severe" : "moderate"
+      });
+    }
+  });
+  const unique = [];
+  const seen = new Set();
+  rows.forEach(row => {
+    const key = `${row.phase}|${row.text}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(row);
+    }
+  });
+  if (!unique.length) return "";
+  return `<div class="timeline-box">
+    <div class="timeline-title">Interaction timeline</div>
+    ${unique.slice(0, 8).map(row => `<div class="timeline-item ${row.className}">
+      <div class="timeline-phase">${row.phase}</div>
+      <div class="timeline-text">${row.text}</div>
+    </div>`).join("")}
+  </div>`;
 }
 
 // ── renderEvidenceExplorer — full study browser ──

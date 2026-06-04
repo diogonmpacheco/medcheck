@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medication Class Interaction Guides | MedCheck</title>
+  <meta name="description" content="MedCheck medication class guides for pharmacogenomics, CYP interactions, transporter risk, metabolites, QT risk, bleeding risk, and PK exposure examples.">
+  <link rel="canonical" href="https://diogonmpacheco.github.io/medcheck/medication-classes.html">
+  <style>
+    :root{--bg:#f8fafc;--card:#fff;--text:#0f172a;--text2:#64748b;--accent:#2563eb;--accentBg:#dbeafe;--border:#e2e8f0;--red:#dc2626;--redBg:#fee2e2;--amber:#d97706;--amberBg:#fef3c7;--green:#16a34a;--greenBg:#dcfce7;--radius:12px;--shadow:0 1px 3px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    header{padding:28px 18px 18px;background:linear-gradient(180deg,var(--card),var(--bg));border-bottom:1px solid var(--border)}
+    main{max-width:860px;margin:0 auto;padding:18px}
+    .top{max-width:860px;margin:0 auto}
+    h1{font-size:28px;line-height:1.1;margin:0 0 8px;font-weight:800;letter-spacing:0}
+    p{margin:0;color:var(--text2)}
+    a{color:var(--accent);font-weight:700;text-decoration:none}
+    .back{display:inline-block;margin-bottom:14px;font-size:13px}
+    .guide{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px}
+    .guide h2{font-size:18px;margin:0 0 6px}
+    .guide p{font-size:14px;margin-bottom:10px}
+    .links{display:grid;gap:7px}
+    .links a{display:block;padding:9px 10px;border-radius:8px;background:var(--accentBg)}
+    .tagline{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+    .tag{font-size:11px;font-weight:800;border-radius:999px;padding:3px 8px;background:var(--greenBg);color:var(--green)}
+    .tag.warn{background:var(--amberBg);color:var(--amber)}
+    .tag.high{background:var(--redBg);color:var(--red)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <a class="back" href="./index.html">Back to MedCheck</a>
+      <h1>Medication Class Interaction Guides</h1>
+      <p>Clinician-friendly starting points for high-yield MedCheck reviews: pharmacogenomics, CYP inhibition or induction, active metabolites, transporters, bleeding risk, QT risk, and PK exposure.</p>
+    </div>
+  </header>
+  <main>
+    <section class="guide" id="anticoagulants-antiplatelets">
+      <h2>Anticoagulants and Antiplatelets</h2>
+      <p>High-value because bleeding risk, CYP2C9/VKORC1 context, NSAIDs, SSRIs, azoles, antiplatelet activation, and transporter effects can all overlap.</p>
+      <div class="links">
+        <a href="./index.html?substances=warfarin,fluconazole,ibuprofen&tab=safety">Warfarin + fluconazole + ibuprofen</a>
+        <a href="./index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx">Clopidogrel + omeprazole with CYP2C19 poor metabolism</a>
+        <a href="./index.html?substances=apixaban,clarithromycin&tab=pk">Apixaban + clarithromycin</a>
+      </div>
+      <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">CYP2C19</span><span class="tag warn">CYP2C9</span><span class="tag">transporters</span></div>
+    </section>
+
+    <section class="guide" id="psychiatry-neurology">
+      <h2>Psychiatry and Neurology</h2>
+      <p>Useful for CYP2D6 and CYP2C19 phenotype shifts, QT stacking, serotonin toxicity, anticholinergic burden, seizure threshold, and active-metabolite exceptions.</p>
+      <div class="links">
+        <a href="./index.html?substances=paroxetine,fluoxetine&tab=safety">Paroxetine + fluoxetine washout and CYP2D6 inhibition</a>
+        <a href="./index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Amitriptyline + diazepam + diphenhydramine with CYP2D6 poor metabolism</a>
+        <a href="./index.html?substances=lamotrigine,valproic_acid&tab=safety">Lamotrigine + valproic acid</a>
+      </div>
+      <div class="tagline"><span class="tag warn">CYP2D6</span><span class="tag warn">CYP2C19</span><span class="tag high">serotonin/QT</span><span class="tag">burden</span></div>
+    </section>
+
+    <section class="guide" id="cardiology-qt">
+      <h2>Cardiology, QT Risk, and Antiarrhythmics</h2>
+      <p>Prioritizes narrow-therapeutic-index exposure, QT stacking, CYP2D6 antiarrhythmic metabolism, macrolide or azole inhibition, and electrolyte-sensitive combinations.</p>
+      <div class="links">
+        <a href="./index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Flecainide + fluoxetine with CYP2D6 poor metabolism</a>
+        <a href="./index.html?substances=amiodarone,warfarin&tab=safety">Amiodarone + warfarin</a>
+        <a href="./index.html?substances=sotalol,azithromycin&tab=safety">Sotalol + azithromycin</a>
+      </div>
+      <div class="tagline"><span class="tag high">QT</span><span class="tag warn">CYP2D6</span><span class="tag">NTI</span></div>
+    </section>
+
+    <section class="guide" id="infectious-disease">
+      <h2>Antibiotics, Antifungals, and Antivirals</h2>
+      <p>Often interaction-heavy because azoles, macrolides, rifamycins, boosters, and antivirals can strongly inhibit or induce CYP3A4, CYP2C9, P-gp, or OATP pathways.</p>
+      <div class="links">
+        <a href="./index.html?substances=simvastatin,clarithromycin&tab=pk">Simvastatin + clarithromycin</a>
+        <a href="./index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=safety">Warfarin + trimethoprim-sulfamethoxazole</a>
+        <a href="./index.html?substances=tacrolimus,voriconazole&tab=pk">Tacrolimus + voriconazole</a>
+      </div>
+      <div class="tagline"><span class="tag high">CYP3A4</span><span class="tag warn">CYP2C9</span><span class="tag">P-gp</span></div>
+    </section>
+
+    <section class="guide" id="oncology-transplant">
+      <h2>Oncology, Immunology, and Transplant</h2>
+      <p>High-risk because many drugs have narrow therapeutic windows, prodrug activation, transporter relevance, genotype actionability, and severe inhibitor or inducer sensitivity.</p>
+      <div class="links">
+        <a href="./index.html?substances=tacrolimus,fluconazole&tab=pk">Tacrolimus + fluconazole</a>
+        <a href="./index.html?substances=azathioprine,allopurinol&genotype=TPMT:poor_metabolizer&tab=pgx">Azathioprine + allopurinol with TPMT poor metabolism</a>
+        <a href="./index.html?substances=tamoxifen,paroxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Tamoxifen + paroxetine with CYP2D6 poor metabolism</a>
+      </div>
+      <div class="tagline"><span class="tag high">NTI</span><span class="tag warn">prodrugs</span><span class="tag">PGx</span></div>
+    </section>
+  </main>
+</body>
+</html>
