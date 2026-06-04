@@ -32,6 +32,9 @@ JSON.stringify((() => {
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {});
+  const metaboliteParents = Object.keys(METAB);
+  const metaboliteEntries = Object.values(METAB).reduce((sum, metabolites) =>
+    sum + (Array.isArray(metabolites) ? metabolites.length : 0), 0);
   const nonRegulatoryUncited = studyValues.filter((study) =>
     study.type !== EVIDENCE_TIER.FDA_LABEL &&
     study.type !== EVIDENCE_TIER.GUIDELINE &&
@@ -56,6 +59,8 @@ JSON.stringify((() => {
     severitySplit,
     genotypeGenes: Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length +
       (typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? 0 : Object.keys(GENOTYPE_RISK_EFFECTS).length),
+    metaboliteParents: metaboliteParents.length,
+    metaboliteEntries,
     metaboliteActors: Object.keys(METABOLITE_ACTORS).length,
     receptorScores: Object.keys(RECEPTOR_SCORES).length,
     beersFlags: Object.keys(BEERS_FLAGS).length,

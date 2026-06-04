@@ -359,6 +359,51 @@ assert(pharmGxImportAudit.slco1b1 === 'ultrarapid_metabolizer', 'Importer should
 assert(pharmGxImportAudit.abcb1 === 'intermediate_metabolizer', 'Importer should map reduced_function to intermediate_metabolizer');
 assert(pharmGxImportAudit.mthfr === 'risk_allele_present', 'Importer should map MTHFR HOM_TT to risk allele present');
 assert(pharmGxImportAudit.gabrg2 === 'risk_allele_present', 'Importer should map GABRG2 HOM_ALT_contraindicated to risk allele present');
+
+const expandedGenotypeRuleAudit = window.eval(`(() => {
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+    CYP3A5: GENOTYPE_PHENOTYPE.PM,
+    NAT2: GENOTYPE_PHENOTYPE.IM,
+    SLCO1B1: GENOTYPE_PHENOTYPE.IM,
+    ABCB1: GENOTYPE_PHENOTYPE.IM,
+    GSTM1: GENOTYPE_PHENOTYPE.PM,
+  };
+  const expected = {
+    Tacrolimus: ['CYP3A5'],
+    Alprazolam: ['CYP3A5'],
+    Isoniazid: ['NAT2', 'GSTM1'],
+    Hydralazine: ['NAT2'],
+    Sulfasalazine: ['NAT2'],
+    Simvastatin: ['SLCO1B1'],
+    Atorvastatin: ['SLCO1B1'],
+    Rosuvastatin: ['SLCO1B1'],
+    Digoxin: ['ABCB1'],
+    Dabigatran: ['ABCB1'],
+    Acetaminophen: ['GSTM1'],
+  };
+  const missing = [];
+  const missingRefs = [];
+  for (const [drug, genes] of Object.entries(expected)) {
+    const cards = getGenotypeMetaboliteEffectCards(drug);
+    for (const gene of genes) {
+      const card = cards.find(c => c.effect.enzyme === gene);
+      if (!card) {
+        missing.push(drug + ':' + gene);
+        continue;
+      }
+      for (const ref of (card.effect.evidenceRefs || [])) {
+        if (!STUDY_DB[ref]) missingRefs.push(drug + ':' + gene + ':' + ref);
+      }
+    }
+  }
+  return { missing, missingRefs };
+})()`);
+assert(expandedGenotypeRuleAudit.missing.length === 0, `Expanded genotype rules missing cards: ${expandedGenotypeRuleAudit.missing.join(', ')}`);
+assert(expandedGenotypeRuleAudit.missingRefs.length === 0, `Expanded genotype rules missing evidence refs: ${expandedGenotypeRuleAudit.missingRefs.join(', ')}`);
+
 assert(
   window.eval(`parsePharmGxImportDetailed(JSON.stringify({ "HLA-B": "detected" })).skipped.length`) === 1,
   'Importer should skip ambiguous generic HLA-B rows instead of guessing a specific HLA-B allele'
