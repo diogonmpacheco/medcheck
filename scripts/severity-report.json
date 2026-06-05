@@ -15737,5 +15737,520 @@
       "hasStrongInline": false,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Isotretinoin",
+    "category": "pregnancy_teratogenicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Acitretin",
+    "category": "pregnancy_teratogenicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Methotrexate",
+    "category": "pregnancy_teratogenicity_abortifacient",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Mycophenolate",
+    "category": "pregnancy_teratogenicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Warfarin",
+    "category": "pregnancy_fetal_anticoagulation",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow",
+        "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
+          "type": "guideline",
+          "pmid": "28198005",
+          "doi": "10.1002/cpt.668"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Valproic Acid",
+    "category": "pregnancy_teratogenicity_neurodevelopment",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Lisinopril",
+    "category": "pregnancy_fetotoxicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Losartan",
+    "category": "pregnancy_fetotoxicity",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pregnancy / Trying to Conceive",
+    "drug2": "Leflunomide",
+    "category": "pregnancy_teratogenicity_washout",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_leflunomide_teriflunomide_half_life",
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_leflunomide_teriflunomide_half_life",
+          "type": "clinical_trial",
+          "pmid": "21344102",
+          "doi": null
+        },
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Oxytocin",
+    "drug2": "Misoprostol",
+    "category": "uterotonic_stacking",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Oxytocin",
+    "drug2": "Methylergonovine",
+    "category": "uterotonic_hemodynamics",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Oxytocin",
+    "drug2": "Carboprost",
+    "category": "uterotonic_stacking",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Magnesium Sulfate",
+    "drug2": "Nifedipine",
+    "category": "hypotension_neuromuscular",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Magnesium Sulfate",
+    "drug2": "Calcium Gluconate",
+    "category": "intentional_antidote",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow",
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methylergonovine",
+    "drug2": "Norepinephrine",
+    "category": "pressor_vasospasm",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methylergonovine",
+    "drug2": "Ketoconazole",
+    "category": "cyp3a_vasospasm",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Carboprost",
+    "drug2": "Albuterol",
+    "category": "bronchospasm_context",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Acitretin",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "teratogenic_metabolite_persistence",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rho(D) Immune Globulin",
+    "drug2": "MMR Vaccine",
+    "category": "immune_globulin_vaccine_timing",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_pregnancy_obstetric_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_pregnancy_obstetric_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]

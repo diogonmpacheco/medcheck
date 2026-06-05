@@ -8093,6 +8093,19 @@ const STUDY_DB = {
     limitations:["This is a medication coverage synthesis, not a dialysis prescription or CKD protocol. Residual kidney function, dialysis modality/schedule, dialyzability, potassium/phosphate/calcium/PTH values, volume status, transplant status, and local nephrology protocols govern exact decisions."],
     verified:false, reviewRequired:true, verifyNote:"Dialysis/advanced CKD enrichment batch synthesized from guideline/label sources; pending nephrology/pharmacy review"
   },
+  "ev_pregnancy_obstetric_workflow": {
+    id:"ev_pregnancy_obstetric_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Pregnancy and obstetric emergency medication workflow coverage: teratogenic exposure flags, hypertensive emergency, magnesium, uterotonics, hemorrhage, Rh prophylaxis, and vaccine timing",
+    year:2026, source:"ACOG/SMFM/CDC-FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://www.acog.org/clinical",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Pregnancy medication review must surface both emergency obstetric therapies and exposure warnings: magnesium sulfate, labetalol/hydralazine/nifedipine, uterotonics, tranexamic acid, antenatal corticosteroids, Rh(D) immune globulin, live-vaccine timing, and high-risk teratogens/fetotoxins including retinoids, methotrexate, mycophenolate, warfarin, valproate, ACE inhibitors, ARBs, and leflunomide/teriflunomide."},
+    temporal:{mechanism:"pregnancy_obstetric_medication_workflow", onset:"minutes_to_months", offset:"hours_to_years"},
+    supports:["pregnancy_context_teratogenicity_screening","obstetric_hemorrhage_uterotonic_Txa_workflow","preeclampsia_magnesium_antihypertensive_workflow","RhD_immune_globulin_vaccine_timing","retinoid_and_leflunomide_persistent_pregnancy_risk"],
+    contradicts:[],
+    limitations:["This is a medication coverage synthesis, not obstetric management advice. Gestational age, indication, fetal/maternal status, exposure timing, dose, local protocols, and maternal-fetal medicine consultation determine actual management."],
+    verified:false, reviewRequired:true, verifyNote:"Pregnancy/obstetric enrichment batch synthesized from guideline/label sources; pending OB/MFM/pharmacy review"
+  },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",

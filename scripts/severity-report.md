@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 594
-Original severe: 304
-Recommended severe: 304
+Known DDI pairs: 613
+Original severe: 316
+Recommended severe: 316
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -603,3 +603,22 @@ Recommended downgrades: 0
 | Epoetin Alfa + Iron Sucrose | intentional_anemia_support | mild | mild | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
 | Darbepoetin Alfa + Iron Sucrose | intentional_anemia_support | mild | mild | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
 | Cinacalcet + Calcitriol | calcium_pth_balance | moderate | moderate | ev_cinacalcet_cyp2d6_label (fda_label)<br>ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Pregnancy / Trying to Conceive + Isotretinoin | pregnancy_teratogenicity | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Acitretin | pregnancy_teratogenicity | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Methotrexate | pregnancy_teratogenicity_abortifacient | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Mycophenolate | pregnancy_teratogenicity | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Warfarin | pregnancy_fetal_anticoagulation | severe | severe | ev_pregnancy_obstetric_workflow (guideline)<br>ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017 (guideline PMID:28198005 DOI:10.1002/cpt.668) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Valproic Acid | pregnancy_teratogenicity_neurodevelopment | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Lisinopril | pregnancy_fetotoxicity | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Losartan | pregnancy_fetotoxicity | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Pregnancy / Trying to Conceive + Leflunomide | pregnancy_teratogenicity_washout | severe | severe | ev_leflunomide_teriflunomide_half_life (clinical_trial PMID:21344102)<br>ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Oxytocin + Misoprostol | uterotonic_stacking | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Oxytocin + Methylergonovine | uterotonic_hemodynamics | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Oxytocin + Carboprost | uterotonic_stacking | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Magnesium Sulfate + Nifedipine | hypotension_neuromuscular | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Magnesium Sulfate + Calcium Gluconate | intentional_antidote | mild | mild | ev_pregnancy_obstetric_workflow (guideline)<br>ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Methylergonovine + Norepinephrine | pressor_vasospasm | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Methylergonovine + Ketoconazole | cyp3a_vasospasm | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Carboprost + Albuterol | bronchospasm_context | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Acitretin + Alcohol (Ethanol) | teratogenic_metabolite_persistence | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
+| Rho(D) Immune Globulin + MMR Vaccine | immune_globulin_vaccine_timing | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
