@@ -12,6 +12,7 @@ const OUT_DIR = resolve(root, 'scripts/enrich');
 const CACHE_DIR = resolve(OUT_DIR, 'cache');
 const DRAFTS_PATH = resolve(OUT_DIR, 'drafts.json');
 const REPORT_PATH = resolve(OUT_DIR, 'review-report.md');
+const NOVELTY_INDEX_PATH = resolve(OUT_DIR, 'novelty-index.json');
 
 const ALLOWED_FETCH_HOSTS = new Set([
   'eutils.ncbi.nlm.nih.gov',
@@ -66,6 +67,8 @@ Options:
   --semantic-scholar-key Optional Semantic Scholar API key.
   --oa          Discover legal open-access locations via provider metadata + Unpaywall for DOI records.
   --oa-email    Email for Unpaywall. Falls back to --mailto or --email.
+  --min-novelty Minimum novelty score to keep a draft. Defaults to novelty-index setting or 30.
+  --ignore-novelty Keep novelty-scored drafts even when score is low.
   --self-test   Run offline guardrail tests; no network.
 
 Policy:
@@ -76,7 +79,7 @@ Policy:
 
 function parseArgs(argv) {
   const args = {};
-  const booleanArgs = new Set(['self-test', 'help', 'expand-citations', 'oa']);
+  const booleanArgs = new Set(['self-test', 'help', 'expand-citations', 'oa', 'ignore-novelty']);
   for (let i = 0; i < argv.length; i++) {
     const token = argv[i];
     if (!token.startsWith('--')) continue;
@@ -198,6 +201,27 @@ function loadExistingDrafts() {
   return JSON.parse(readFileSync(DRAFTS_PATH, 'utf8'));
 }
 
+function defaultNoveltyIndex() {
+  return {
+    schema: 'medcheck-enrichment-novelty-v1',
+    settings: { minNoveltyScore: 30, saturatedTopicPenalty: 20, repeatQuerySkipThreshold: 0.95 },
+    saturatedTopics: {},
+    missingFields: {},
+    knownQueryFingerprints: {},
+  };
+}
+
+function loadNoveltyIndex() {
+  if (!existsSync(NOVELTY_INDEX_PATH)) return defaultNoveltyIndex();
+  return { ...defaultNoveltyIndex(), ...JSON.parse(readFileSync(NOVELTY_INDEX_PATH, 'utf8')) };
+}
+
+function saveNoveltyIndex(index) {
+  mkdirSync(OUT_DIR, { recursive: true });
+  index.updated = new Date().toISOString().slice(0, 10);
+  writeFileSync(NOVELTY_INDEX_PATH, `${JSON.stringify(index, null, 2)}\n`, 'utf8');
+}
+
 function saveDrafts(drafts) {
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(DRAFTS_PATH, `${JSON.stringify(drafts, null, 2)}\n`, 'utf8');
@@ -211,6 +235,32 @@ function relationQuery(args) {
   const query = args.query?.trim();
   if (!query) throw new Error('--query is required');
   return query;
+}
+
+function canonicalRelation(relation) {
+  return String(relation || '').trim();
+}
+
+function articleIdentity(article) {
+  if (article.pmid) return `pmid:${article.pmid}`;
+  if (article.doi) return `doi:${String(article.doi).toLowerCase()}`;
+  return `title:${normalizeTitle(article.title)}`;
+}
+
+function fingerprintArticles(articles) {
+  return [...new Set(articles.map(articleIdentity).filter(Boolean))].sort();
+}
+
+function fingerprintOverlap(a = [], b = []) {
+  if (!a.length || !b.length) return 0;
+  const bSet = new Set(b);
+  const shared = a.filter(x => bSet.has(x)).length;
+  return shared / Math.max(a.length, b.length);
+}
+
+function queryFingerprintKey(relation, query, providers) {
+  const providerKey = (providers || []).slice().sort().join(',');
+  return createHash('sha256').update(`${canonicalRelation(relation)}\n${query}\n${providerKey}`).digest('hex');
 }
 
 function ncbiParams(args) {
@@ -667,6 +717,115 @@ function makeDraft(article, args) {
   };
 }
 
+function textForNovelty(draft) {
+  return normalizeTitle([
+    draft.title,
+    draft.quantifiedEffects?.note,
+    ...(draft.quantifiedEffects?.publicMetricSentences || []),
+  ].join(' '));
+}
+
+function fieldTerms(field) {
+  return String(field || '')
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(token => token.length >= 2);
+}
+
+function matchedFields(draft, noveltyIndex, relation) {
+  const fields = noveltyIndex.missingFields?.[canonicalRelation(relation)] || [];
+  const haystack = textForNovelty(draft);
+  return fields.filter(field => {
+    const terms = fieldTerms(field);
+    if (!terms.length) return false;
+    return terms.every(term => haystack.includes(term));
+  });
+}
+
+function saturatedMatches(draft, noveltyIndex, relation) {
+  const saturated = noveltyIndex.saturatedTopics?.[canonicalRelation(relation)];
+  if (!saturated) return { saturated:false, additions:[] };
+  const haystack = textForNovelty(draft);
+  const additions = (saturated.acceptOnlyIfAdds || []).filter(field => {
+    const terms = fieldTerms(field);
+    return terms.length && terms.every(term => haystack.includes(term));
+  });
+  return { saturated:true, additions };
+}
+
+function existingMetricSentences(liveData, existingDrafts) {
+  const sentences = new Set();
+  for (const draft of existingDrafts) {
+    for (const sentence of draft.quantifiedEffects?.publicMetricSentences || []) {
+      sentences.add(normalizeTitle(sentence));
+    }
+  }
+  for (const identifier of liveData.identifiers || []) {
+    if (identifier.title) sentences.add(normalizeTitle(identifier.title));
+  }
+  return sentences;
+}
+
+function noveltyScore(draft, context) {
+  const { liveData, existingDrafts, noveltyIndex, relation, metricSentenceMemory } = context;
+  const livePmids = new Set(liveData.identifiers.map(x => x.pmid).filter(Boolean).map(String));
+  const liveDois = new Set(liveData.identifiers.map(x => x.doi).filter(Boolean).map(x => String(x).toLowerCase()));
+  const liveTitles = new Set(liveData.identifiers.map(x => normalizeTitle(x.title)).filter(Boolean));
+  const existingIds = new Set(existingDrafts.map(articleIdentity));
+  const reasons = [];
+  let score = 0;
+
+  if (draft.pmid && !livePmids.has(String(draft.pmid)) && !existingIds.has(`pmid:${draft.pmid}`)) {
+    score += 25;
+    reasons.push('new PMID');
+  }
+  if (draft.doi && !liveDois.has(String(draft.doi).toLowerCase()) && !existingIds.has(`doi:${String(draft.doi).toLowerCase()}`)) {
+    score += 20;
+    reasons.push('new DOI');
+  }
+  if (!liveTitles.has(normalizeTitle(draft.title))) {
+    score += 10;
+    reasons.push('new title');
+  }
+  if (draft.quantifiedEffects?.publicMetricSentences?.length) {
+    const unseen = draft.quantifiedEffects.publicMetricSentences
+      .map(normalizeTitle)
+      .filter(sentence => sentence && !metricSentenceMemory.has(sentence));
+    if (unseen.length) {
+      score += Math.min(25, unseen.length * 10);
+      reasons.push(`new public metric sentence${unseen.length === 1 ? '' : 's'}`);
+    } else {
+      score -= 15;
+      reasons.push('metric sentence already seen');
+    }
+  }
+  if (draft.quantifiedEffects?.foldRange || draft.quantifiedEffects?.foldChange || draft.quantifiedEffects?.aucFold || draft.quantifiedEffects?.percentChange || draft.quantifiedEffects?.groupMetricValues) {
+    score += 15;
+    reasons.push('extractable quantitative signal');
+  }
+  const fields = matchedFields(draft, noveltyIndex, relation);
+  if (fields.length) {
+    score += Math.min(30, fields.length * 12);
+    reasons.push(`fills missing field: ${fields.slice(0, 3).join(', ')}`);
+  }
+  const saturated = saturatedMatches(draft, noveltyIndex, relation);
+  if (saturated.saturated && !saturated.additions.length) {
+    score -= noveltyIndex.settings?.saturatedTopicPenalty ?? 20;
+    reasons.push('basic saturated topic without specified novelty');
+  } else if (saturated.additions.length) {
+    score += Math.min(25, saturated.additions.length * 10);
+    reasons.push(`adds saturated-topic exception: ${saturated.additions.slice(0, 3).join(', ')}`);
+  }
+  const clamped = Math.max(0, Math.min(100, score));
+  return {
+    score: clamped,
+    reasons,
+    matchedMissingFields: fields,
+    saturatedTopic: saturated.saturated,
+    saturatedAdditions: saturated.additions,
+  };
+}
+
 function dedupeDrafts(candidates, liveData, existingDrafts) {
   const livePmids = new Set(liveData.identifiers.map(x => x.pmid).filter(Boolean).map(String));
   const liveDois = new Set(liveData.identifiers.map(x => x.doi).filter(Boolean).map(x => String(x).toLowerCase()));
@@ -689,7 +848,43 @@ function dedupeDrafts(candidates, liveData, existingDrafts) {
   return { kept, skipped };
 }
 
-function writeReport({ relation, query, added, skipped, providerErrors = [] }) {
+function filterNovelCandidates(candidates, context) {
+  const minNovelty = Number(context.args['min-novelty'] || context.noveltyIndex.settings?.minNoveltyScore || 30);
+  const kept = [];
+  const skipped = [];
+  for (const draft of candidates) {
+    const novelty = noveltyScore(draft, context);
+    draft.novelty = novelty;
+    if (context.args['ignore-novelty'] || novelty.score >= minNovelty) kept.push(draft);
+    else skipped.push({
+      id: draft.id,
+      reason: 'low_novelty',
+      title: draft.title,
+      noveltyScore: novelty.score,
+      noveltyReasons: novelty.reasons,
+    });
+  }
+  return { kept, skipped };
+}
+
+function updateQueryMemory(noveltyIndex, { relation, query, providers, articles, kept, skipped }) {
+  noveltyIndex.knownQueryFingerprints ||= {};
+  const key = queryFingerprintKey(relation, query, providers);
+  const fingerprint = fingerprintArticles(articles);
+  noveltyIndex.knownQueryFingerprints[key] = {
+    relation: canonicalRelation(relation),
+    query,
+    providers: providers.slice().sort(),
+    lastRun: new Date().toISOString(),
+    resultFingerprint: fingerprint,
+    resultCount: fingerprint.length,
+    keptCount: kept.length,
+    skippedCount: skipped.length,
+    keptIds: kept.map(d => d.pmid ? `pmid:${d.pmid}` : d.doi ? `doi:${d.doi}` : `title:${normalizeTitle(d.title)}`).slice(0, 50),
+  };
+}
+
+function writeReport({ relation, query, added, skipped, providerErrors = [], queryMemory = null }) {
   const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# MedCheck Enrichment Review Report\n';
   const lines = [
     '',
@@ -698,21 +893,27 @@ function writeReport({ relation, query, added, skipped, providerErrors = [] }) {
     `Run: ${new Date().toISOString()}`,
     `Query: \`${query}\``,
     `Added drafts: ${added.length}`,
-    `Skipped duplicates: ${skipped.length}`,
+    `Skipped/rejected: ${skipped.length}`,
+    queryMemory ? `Query memory overlap: ${(queryMemory.overlap * 100).toFixed(0)}%` : null,
     providerErrors.length ? `Provider warnings: ${providerErrors.length}` : null,
     '',
-    '| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |',
-    '|---|---|---|---|---|---|---|---|---|',
+    '| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |',
+    '|---|---|---|---:|---|---|---|---|---|---|---|',
   ].filter(Boolean);
   for (const draft of added) {
     const id = draft.pmid ? `PMID:${draft.pmid}` : draft.doi ? `DOI:${draft.doi}` : 'identifier missing';
     const oa = draft.openAccess?.isOpenAccess
       ? `[OA](${draft.openAccess.landingUrl || draft.openAccess.pdfUrl || draft.url})${draft.openAccess.status ? ` ${draft.openAccess.status}` : ''}`
       : 'paywalled/unknown';
-    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${oa} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.publicFactsUsable ? 'yes' : 'no'} | ${draft.needsFullTextForPrecision ? 'yes' : 'no'} |`);
+    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.novelty?.score ?? ''} | ${(draft.novelty?.reasons || []).slice(0, 4).join('; ')} | ${draft.provenance} | ${oa} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.publicFactsUsable ? 'yes' : 'no'} | ${draft.needsFullTextForPrecision ? 'yes' : 'no'} |`);
   }
   if (skipped.length) {
-    lines.push('', 'Skipped:', ...skipped.map(s => `- ${s.reason}: ${s.title}`));
+    lines.push('', 'Skipped/rejected:', ...skipped.slice(0, 80).map(s => {
+      const novelty = Number.isFinite(s.noveltyScore) ? ` score=${s.noveltyScore}` : '';
+      const why = s.noveltyReasons?.length ? ` (${s.noveltyReasons.slice(0, 3).join('; ')})` : '';
+      return `- ${s.reason}${novelty}: ${s.title}${why}`;
+    }));
+    if (skipped.length > 80) lines.push(`- ... ${skipped.length - 80} more skipped/rejected items`);
   }
   if (providerErrors.length) {
     lines.push('', 'Provider warnings:', ...providerErrors.map(e => `- ${e.provider}: ${e.message}`));
@@ -753,6 +954,34 @@ function selfTest() {
   if (articleMatchesRelation({ title:'Voriconazole therapy and CYP2C19 phenotype', abstract:'' }, 'clopidogrel:CYP2C19_active_metabolite')) {
     throw new Error('Relation mismatch self-test failed');
   }
+  const mockDraft = makeDraft({
+    pmid:'999',
+    doi:'10.1000/example',
+    title:'Clopidogrel active metabolite AUC dose escalation in CYP2C19 poor metabolizers',
+    year:2024,
+    source:'Test',
+    journal:'Test',
+    firstAuthor:'Tester',
+    pubTypes:['clinical trial'],
+    abstract:'Active metabolite AUC increased 2.0-fold after dose escalation in CYP2C19 poor metabolizers.',
+    url:'https://doi.org/10.1000/example',
+    oa:normalizeOpenAccess(),
+    provenance:'self-test',
+  }, { relation:'clopidogrel:CYP2C19_active_metabolite', supports:'clopidogrel_CYP2C19_active_metabolite_context' });
+  const novelty = noveltyScore(mockDraft, {
+    liveData:{ identifiers:[] },
+    existingDrafts:[],
+    noveltyIndex:{
+      settings:{ saturatedTopicPenalty:20 },
+      missingFields:{ 'clopidogrel:CYP2C19_active_metabolite':['active_metabolite_AUC','dose_escalation'] },
+      saturatedTopics:{ 'clopidogrel:CYP2C19_active_metabolite':{ acceptOnlyIfAdds:['dose_escalation','active_metabolite_auc'] } },
+    },
+    relation:'clopidogrel:CYP2C19_active_metabolite',
+    metricSentenceMemory:new Set(),
+  });
+  if (novelty.score < 60 || !novelty.reasons.some(r => r.includes('missing field'))) {
+    throw new Error('Novelty scoring self-test failed');
+  }
   console.log('Enrichment self-test passed.');
 }
 
@@ -770,6 +999,7 @@ async function main() {
   const relation = args.relation || query;
   const liveData = loadLiveData();
   const existingDrafts = loadExistingDrafts();
+  const noveltyIndex = loadNoveltyIndex();
   const providers = providersFromArgs(args);
   const articles = [];
   const providerErrors = [];
@@ -785,6 +1015,11 @@ async function main() {
   if (!articles.length && providerErrors.length) {
     throw new Error(`All providers failed for query: ${query}`);
   }
+  const queryMemoryKey = queryFingerprintKey(relation, query, providers);
+  const previousQueryMemory = noveltyIndex.knownQueryFingerprints?.[queryMemoryKey] || null;
+  const currentFingerprint = fingerprintArticles(articles);
+  const memoryOverlap = previousQueryMemory ? fingerprintOverlap(currentFingerprint, previousQueryMemory.resultFingerprint || []) : 0;
+  const repeatThreshold = noveltyIndex.settings?.repeatQuerySkipThreshold ?? 0.95;
   const relationMatchedArticles = [];
   const relationSkipped = [];
   for (const article of articles) {
@@ -793,10 +1028,26 @@ async function main() {
   }
   const articlesWithOpenAccess = await enrichOpenAccess(relationMatchedArticles, args);
   const candidates = articlesWithOpenAccess.map(article => makeDraft(article, { ...args, relation }));
-  const { kept, skipped } = dedupeDrafts(candidates, liveData, existingDrafts);
+  const metricSentenceMemory = existingMetricSentences(liveData, existingDrafts);
+  const noveltyFiltered = (previousQueryMemory && memoryOverlap >= repeatThreshold && !args['ignore-novelty'])
+    ? {
+        kept: [],
+        skipped: candidates.map(draft => ({
+          id: draft.id,
+          reason: 'repeat_query_exhausted',
+          title: draft.title,
+          noveltyScore: 0,
+          noveltyReasons: [`same top results as previous run (${Math.round(memoryOverlap * 100)}% overlap)`],
+        })),
+      }
+    : filterNovelCandidates(candidates, { args, liveData, existingDrafts, noveltyIndex, relation, metricSentenceMemory });
+  const { kept, skipped } = dedupeDrafts(noveltyFiltered.kept, liveData, existingDrafts);
+  const allSkipped = skipped.concat(noveltyFiltered.skipped, relationSkipped);
   saveDrafts([...existingDrafts, ...kept]);
-  writeReport({ relation, query, added: kept, skipped: skipped.concat(relationSkipped), providerErrors });
-  console.log(`Enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s), ${relationSkipped.length} relation mismatch(es), providers: ${providers.join(',')}.`);
+  updateQueryMemory(noveltyIndex, { relation, query, providers, articles, kept, skipped: allSkipped });
+  saveNoveltyIndex(noveltyIndex);
+  writeReport({ relation, query, added: kept, skipped: allSkipped, providerErrors, queryMemory: { overlap: memoryOverlap } });
+  console.log(`Enrichment complete: ${kept.length} novel draft(s), ${skipped.length} duplicate(s), ${noveltyFiltered.skipped.length} low/repeat novelty rejection(s), ${relationSkipped.length} relation mismatch(es), providers: ${providers.join(',')}.`);
   console.log(`Drafts: ${DRAFTS_PATH}`);
   console.log(`Report: ${REPORT_PATH}`);
 }

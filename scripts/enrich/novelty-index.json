@@ -1,0 +1,448 @@
+{
+  "schema": "medcheck-enrichment-novelty-v1",
+  "settings": {
+    "minNoveltyScore": 30,
+    "saturatedTopicPenalty": 20,
+    "repeatQuerySkipThreshold": 0.95
+  },
+  "saturatedTopics": {
+    "clopidogrel:CYP2C19_active_metabolite": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "dose_escalation",
+        "active_metabolite_auc",
+        "non_pci_indication",
+        "rare_allele",
+        "ancestry",
+        "pediatric",
+        "outcome_bleeding_or_thrombosis"
+      ]
+    },
+    "atomoxetine:CYP2D6_pediatric_PK": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "pediatric",
+        "activity_score",
+        "concentration_target",
+        "metabolite_ratio",
+        "CYP2C19_modifier",
+        "dose_model"
+      ]
+    },
+    "clobazam:CYP2C19_N_desmethylclobazam": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "norclobazam_ratio",
+        "cannabidiol_interaction",
+        "pediatric",
+        "sedation",
+        "therapeutic_drug_monitoring",
+        "dose_adjustment"
+      ]
+    },
+    "irinotecan:UGT1A1_SN38_PK": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "SN38_AUC",
+        "SN38G_SN38_ratio",
+        "UGT1A1_6",
+        "UGT1A7",
+        "UGT1A9",
+        "regimen_specific",
+        "neutropenia",
+        "diarrhea"
+      ]
+    },
+    "simvastatin:SLCO1B1_ABCG2_CYP_multigene": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "simvastatin_acid_auc",
+        "ABCG2",
+        "CYP2D6_41",
+        "multigene",
+        "myopathy",
+        "dose_specific"
+      ]
+    },
+    "voriconazole:CYP2C19_PK_TDM": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "clearance",
+        "trough",
+        "TDM",
+        "UM_subtherapeutic",
+        "dose_model",
+        "infection_population"
+      ]
+    }
+  },
+  "missingFields": {
+    "tramadol:CYP2D6_CYP2B6_metabolites": [
+      "M1_AUC",
+      "parent_AUC",
+      "CYP2B6_effect",
+      "enantiomer",
+      "UM_toxicity",
+      "PM_nonresponse"
+    ],
+    "metoprolol:CYP2D6_enantiomer_PK": [
+      "S_metoprolol_AUC",
+      "R_metoprolol_AUC",
+      "alpha_hydroxymetoprolol",
+      "heart_rate",
+      "UM_low_exposure"
+    ],
+    "escitalopram:CYP2C19_CYP2D6_serum": [
+      "escitalopram_serum_concentration",
+      "S_DCIT_ratio",
+      "CYP2C19_17",
+      "UM_failure",
+      "QT_or_tolerability"
+    ],
+    "efavirenz:CYP2B6_CYP2A6_UGT2B7": [
+      "8_hydroxyefavirenz",
+      "CYP2B6_516",
+      "CYP2A6_modifier",
+      "UGT2B7_modifier",
+      "CNS_toxicity",
+      "dose_reduction"
+    ],
+    "irinotecan:UGT1A1_SN38_PK": [
+      "SN38_AUC",
+      "SN38G_SN38_ratio",
+      "UGT1A1_28",
+      "UGT1A1_6",
+      "neutropenia",
+      "diarrhea"
+    ],
+    "clopidogrel:CYP2C19_active_metabolite": [
+      "active_metabolite_AUC",
+      "platelet_aggregation",
+      "dose_escalation",
+      "IM_vs_PM",
+      "non_PCI_indication"
+    ],
+    "simvastatin:SLCO1B1_ABCG2_CYP_multigene": [
+      "simvastatin_acid_AUC",
+      "SLCO1B1_521",
+      "ABCG2_421",
+      "CYP2D6_41",
+      "Cmax",
+      "myopathy"
+    ],
+    "atomoxetine:CYP2D6_pediatric_PK": [
+      "clearance",
+      "4_hydroxyatomoxetine",
+      "N_desmethylatomoxetine",
+      "activity_score",
+      "target_concentration"
+    ]
+  },
+  "knownQueryFingerprints": {
+    "5009289216a5abdae474177a6e60231a84ca961560b97b1d9876e0b0dc8f77ef": {
+      "relation": "tramadol:CYP2D6_CYP2B6_metabolites",
+      "query": "tramadol O-desmethyltramadol CYP2D6 CYP2B6 genotype pharmacokinetics metabolite AUC poor ultrarapid metabolizer",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:23.858Z",
+      "resultFingerprint": [
+        "pmid:19567715",
+        "pmid:21479998",
+        "pmid:21494059",
+        "pmid:28409480",
+        "pmid:29801580",
+        "pmid:29992026",
+        "pmid:31005596",
+        "pmid:33387367",
+        "pmid:38440181",
+        "pmid:38539313",
+        "pmid:41806469"
+      ],
+      "resultCount": 11,
+      "keptCount": 0,
+      "skippedCount": 12,
+      "keptIds": []
+    },
+    "1e9407915e2f69a9b2b503970436140511f72f0345381f3e52964a2f5eb95e6c": {
+      "relation": "metoprolol:CYP2D6_enantiomer_PK",
+      "query": "metoprolol CYP2D6 poor metabolizer ultrarapid metabolizer enantiomer pharmacokinetics AUC heart rate",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:24.500Z",
+      "resultFingerprint": [
+        "pmid:17875193",
+        "pmid:23665868",
+        "pmid:25210416",
+        "pmid:26528073",
+        "pmid:27729266",
+        "pmid:28296334",
+        "pmid:30564130",
+        "pmid:33322314",
+        "pmid:33363564",
+        "title:15th congress of the european association for clinical pharmacology and therapeutics eacpt"
+      ],
+      "resultCount": 10,
+      "keptCount": 0,
+      "skippedCount": 12,
+      "keptIds": []
+    },
+    "744b131893e23c3eff933f8dcd4917ca1a5c5af836a390d7cbfc97b9d4fbb4d0": {
+      "relation": "escitalopram:CYP2C19_CYP2D6_serum",
+      "query": "escitalopram CYP2C19 CYP2D6 genotype serum concentration desmethylcitalopram steady state ultrarapid poor metabolizer",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:25.164Z",
+      "resultFingerprint": [
+        "pmid:23226054",
+        "pmid:23549513",
+        "pmid:24302953",
+        "pmid:24525634",
+        "pmid:26313485",
+        "pmid:30837874",
+        "pmid:33363564",
+        "pmid:33977870",
+        "pmid:36068210",
+        "pmid:39598373",
+        "pmid:42147327"
+      ],
+      "resultCount": 11,
+      "keptCount": 0,
+      "skippedCount": 12,
+      "keptIds": []
+    },
+    "452a7eca3c511efc6ed8b1c89f5abcb77fd78c21d5c9761466d5783171a89b49": {
+      "relation": "simvastatin:SLCO1B1_ABCG2_CYP_multigene",
+      "query": "simvastatin simvastatin acid SLCO1B1 ABCG2 ABCB1 CYP2D6 CYP3A5 pharmacokinetics genotype AUC",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:25.488Z",
+      "resultFingerprint": [
+        "pmid:26367500",
+        "pmid:27729266",
+        "pmid:27936281",
+        "pmid:31792369",
+        "pmid:31861911",
+        "pmid:33193687",
+        "pmid:33807592",
+        "pmid:33922084",
+        "pmid:34187111",
+        "pmid:36353710",
+        "pmid:41806469"
+      ],
+      "resultCount": 11,
+      "keptCount": 0,
+      "skippedCount": 13,
+      "keptIds": []
+    },
+    "7f00944bf3a03b5709ca3e0525ca91d610c3fdaec0a849335b040f36cba300c9": {
+      "relation": "clobazam:CYP2C19_N_desmethylclobazam",
+      "query": "clobazam N-desmethylclobazam CYP2C19 poor metabolizer plasma concentration dose ratio adverse effects",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:26.703Z",
+      "resultFingerprint": [
+        "pmid:12451290",
+        "pmid:15533655",
+        "pmid:23623526",
+        "pmid:24345815",
+        "pmid:27285147",
+        "pmid:28910830",
+        "pmid:30374683",
+        "pmid:30583596",
+        "pmid:30791225",
+        "pmid:31239195",
+        "pmid:36983567",
+        "pmid:38675145",
+        "pmid:39658609",
+        "pmid:40142983",
+        "pmid:40709084",
+        "pmid:40734774",
+        "pmid:41465160"
+      ],
+      "resultCount": 17,
+      "keptCount": 2,
+      "skippedCount": 17,
+      "keptIds": [
+        "pmid:15533655",
+        "pmid:24345815"
+      ]
+    },
+    "d1ade24c42182e34d087ccc08d75c3da7961e4c76da90932b28941c5cb6dfc5a": {
+      "relation": "voriconazole:CYP2C19_PK_TDM",
+      "query": "voriconazole CYP2C19 genotype pharmacokinetics AUC trough therapeutic drug monitoring poor ultrarapid metabolizer",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:27.029Z",
+      "resultFingerprint": [
+        "pmid:24084636",
+        "pmid:25482746",
+        "pmid:25587296",
+        "pmid:25645660",
+        "pmid:28910830",
+        "pmid:29801580",
+        "pmid:39240338",
+        "pmid:39584620",
+        "pmid:41010003",
+        "pmid:41027046",
+        "pmid:41304736",
+        "pmid:42153394"
+      ],
+      "resultCount": 12,
+      "keptCount": 0,
+      "skippedCount": 12,
+      "keptIds": []
+    },
+    "18c325f752bcb46b3e767c3130241dba55dbe560a9e5b075a89c6262b8b5a5cd": {
+      "relation": "clopidogrel:CYP2C19_active_metabolite",
+      "query": "clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:38.478Z",
+      "resultFingerprint": [
+        "pmid:19106084",
+        "pmid:20979470",
+        "pmid:23588782",
+        "pmid:23698643",
+        "pmid:24710841",
+        "pmid:25609219",
+        "pmid:27729266",
+        "pmid:27981572",
+        "pmid:31092394",
+        "pmid:31128980",
+        "pmid:35034351",
+        "pmid:39430173",
+        "pmid:39933830",
+        "pmid:41028360",
+        "pmid:41338248",
+        "pmid:41390976",
+        "pmid:41656635",
+        "pmid:41893359"
+      ],
+      "resultCount": 18,
+      "keptCount": 0,
+      "skippedCount": 19,
+      "keptIds": []
+    },
+    "ffa35dd29aa943667c80fbba527015352fc669fb361ac014fb07751f73d9e325": {
+      "relation": "efavirenz:CYP2B6_CYP2A6_UGT2B7",
+      "query": "efavirenz CYP2B6 CYP2A6 UGT2B7 pharmacokinetics slow metabolizer genotype concentration neurotoxicity",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:27.402Z",
+      "resultFingerprint": [
+        "pmid:23467454",
+        "pmid:23734829",
+        "pmid:25495412",
+        "pmid:26203180",
+        "pmid:27709010",
+        "pmid:29945900",
+        "pmid:31324697",
+        "pmid:41216483"
+      ],
+      "resultCount": 8,
+      "keptCount": 0,
+      "skippedCount": 8,
+      "keptIds": []
+    },
+    "1aa319873b52e336f915d3dcc3a8ac3343f3b32d929339dbb0cec5430cf69672": {
+      "relation": "irinotecan:UGT1A1_SN38_PK",
+      "query": "irinotecan SN-38 SN-38G UGT1A1 genotype pharmacokinetics AUC neutropenia diarrhea",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:28.324Z",
+      "resultFingerprint": [
+        "doi:10.1158/1538-7445.am2013-2213",
+        "doi:10.1200/jco.2015.33.15_suppl.e13572",
+        "pmid:11489791",
+        "pmid:11805731",
+        "pmid:15007088",
+        "pmid:16636344",
+        "pmid:16895999",
+        "pmid:17192505",
+        "pmid:17577039",
+        "pmid:19755821",
+        "pmid:23236239",
+        "pmid:23789755",
+        "pmid:40285634",
+        "pmid:40430836",
+        "pmid:40936312",
+        "pmid:41472517",
+        "pmid:42122174",
+        "title:the early safety signal of sacituzumab govitecan related toxicity and the ugt1a1 28 genotype in metastatic breast cancer a real world preliminary report"
+      ],
+      "resultCount": 18,
+      "keptCount": 4,
+      "skippedCount": 18,
+      "keptIds": [
+        "doi:10.1158/1538-7445.am2013-2213",
+        "pmid:23789755",
+        "pmid:17192505",
+        "doi:10.1200/jco.2015.33.15_suppl.e13572"
+      ]
+    },
+    "63918ef258177bba65e839daaefa86c524c7ae3811c0026d9dcbe5d74000566f": {
+      "relation": "atomoxetine:CYP2D6_pediatric_PK",
+      "query": "atomoxetine CYP2D6 genotype stratified pharmacokinetics children ADHD AUC poor intermediate metabolizer 4-hydroxyatomoxetine",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:37:28.985Z",
+      "resultFingerprint": [
+        "doi:10.22541/au.165771198.87924835/v1",
+        "pmid:26660002",
+        "pmid:27052878",
+        "pmid:30801677",
+        "pmid:37879849",
+        "pmid:38117180",
+        "pmid:39534083",
+        "pmid:41906544"
+      ],
+      "resultCount": 8,
+      "keptCount": 0,
+      "skippedCount": 9,
+      "keptIds": []
+    }
+  },
+  "description": "Memory-guided novelty rules for enrichment discovery. Keep this compact: it steers searches away from saturated basics and toward missing public facts.",
+  "created": "2026-06-05",
+  "updated": "2026-06-05"
+}

@@ -8240,5 +8240,374 @@
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
     "_createdAt": "2026-06-05T09:24:38.850Z"
+  },
+  {
+    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_kkosaki2004_15533655",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "A major influence of CYP2C19 genotype on the steady-state concentration of N-desmethylclobazam.",
+    "year": 2004,
+    "source": "Brain & development (Tokyo. 1979)",
+    "journal": "Brain & development (Tokyo. 1979)",
+    "pmid": "15533655",
+    "doi": "10.1016/j.braindev.2004.02.010",
+    "url": "https://doi.org/10.1016/j.braindev.2004.02.010",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "clobazam_CYP2C19_active_metabolite_accumulation_context",
+      "n_desmethylclobazam_CYP2C19_clearance_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:26.696Z",
+    "novelty": {
+      "score": 35,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "basic saturated topic without specified novelty"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": true,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_jsaruwatari2014_24345815",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Effects of CYP2C19 and P450 Oxidoreductase Polymorphisms on the Population Pharmacokinetics of Clobazam and N-Desmethylclobazam in Japanese Patients With Epilepsy",
+    "year": 2014,
+    "source": "Therapeutic Drug Monitoring",
+    "journal": "Therapeutic Drug Monitoring",
+    "pmid": "24345815",
+    "doi": "10.1097/ftd.0000000000000015",
+    "url": "https://doi.org/10.1097/ftd.0000000000000015",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "clobazam_CYP2C19_active_metabolite_accumulation_context",
+      "n_desmethylclobazam_CYP2C19_clearance_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:26.696Z",
+    "novelty": {
+      "score": 35,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "basic saturated topic without specified novelty"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": true,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_irinotecan_ugt1a1_sn38_pk_bvalenzuela2013_null",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Abstract 2213: Influence of genetic polymorphism in UGT1A1, UGT1A7 and UGT1A9 on irinotecan, SN-38 and SN-38G pharmacokinetics.",
+    "year": 2013,
+    "source": "",
+    "journal": "",
+    "pmid": null,
+    "doi": "10.1158/1538-7445.am2013-2213",
+    "url": "https://doi.org/10.1158/1538-7445.am2013-2213",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "irinotecan_UGT1A1_SN38_exposure_context",
+      "SN38_glucuronidation_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:28.306Z",
+    "novelty": {
+      "score": 67,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "fills missing field: UGT1A1_6",
+        "adds saturated-topic exception: UGT1A1_6, UGT1A7, UGT1A9"
+      ],
+      "matchedMissingFields": [
+        "UGT1A1_6"
+      ],
+      "saturatedTopic": true,
+      "saturatedAdditions": [
+        "UGT1A1_6",
+        "UGT1A7",
+        "UGT1A9"
+      ]
+    }
+  },
+  {
+    "id": "draft_irinotecan_ugt1a1_sn38_pk_bvalenzuelajimnez2013_23789755",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "[Influence of genetic polymorphisms in UGT1A1, UGT1A7 and UGT1A9 on the pharmacokynetics of irinotecan, SN-38 and SN-38G].",
+    "year": 2013,
+    "source": "Farmacia Hospitalaria",
+    "journal": "Farmacia Hospitalaria",
+    "pmid": "23789755",
+    "doi": "10.7399/fh.2013.37.2.386",
+    "url": "https://doi.org/10.7399/fh.2013.37.2.386",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "irinotecan_UGT1A1_SN38_exposure_context",
+      "SN38_glucuronidation_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:28.306Z",
+    "novelty": {
+      "score": 92,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "fills missing field: UGT1A1_6",
+        "adds saturated-topic exception: UGT1A1_6, UGT1A7, UGT1A9"
+      ],
+      "matchedMissingFields": [
+        "UGT1A1_6"
+      ],
+      "saturatedTopic": true,
+      "saturatedAdditions": [
+        "UGT1A1_6",
+        "UGT1A7",
+        "UGT1A9"
+      ]
+    }
+  },
+  {
+    "id": "draft_irinotecan_ugt1a1_sn38_pk_rramchandani2007_17192505",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "The Role of SN‐38 Exposure, UGT1A1*28 Polymorphism, and Baseline Bilirubin Level in Predicting Severe Irinotecan Toxicity",
+    "year": 2007,
+    "source": "Journal of clinical pharmacology",
+    "journal": "Journal of clinical pharmacology",
+    "pmid": "17192505",
+    "doi": "10.1177/0091270006295060",
+    "url": "https://doi.org/10.1177/0091270006295060",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "irinotecan_UGT1A1_SN38_exposure_context",
+      "SN38_glucuronidation_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:28.306Z",
+    "novelty": {
+      "score": 89,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "fills missing field: UGT1A1_28, UGT1A1_6",
+        "adds saturated-topic exception: UGT1A1_6"
+      ],
+      "matchedMissingFields": [
+        "UGT1A1_28",
+        "UGT1A1_6"
+      ],
+      "saturatedTopic": true,
+      "saturatedAdditions": [
+        "UGT1A1_6"
+      ]
+    }
+  },
+  {
+    "id": "draft_irinotecan_ugt1a1_sn38_pk_nsutiman2015_null",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Evaluation of severe neutropenia and diarrhea in Asian cancer patients receiving UGT1A1 genotype-guided irinotecan dosing.",
+    "year": 2015,
+    "source": "",
+    "journal": "",
+    "pmid": null,
+    "doi": "10.1200/jco.2015.33.15_suppl.e13572",
+    "url": "https://doi.org/10.1200/jco.2015.33.15_suppl.e13572",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "irinotecan_UGT1A1_SN38_exposure_context",
+      "SN38_glucuronidation_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:37:28.306Z",
+    "novelty": {
+      "score": 85,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "fills missing field: UGT1A1_6, neutropenia, diarrhea",
+        "adds saturated-topic exception: UGT1A1_6, neutropenia, diarrhea"
+      ],
+      "matchedMissingFields": [
+        "UGT1A1_6",
+        "neutropenia",
+        "diarrhea"
+      ],
+      "saturatedTopic": true,
+      "saturatedAdditions": [
+        "UGT1A1_6",
+        "neutropenia",
+        "diarrhea"
+      ]
+    }
   }
 ]

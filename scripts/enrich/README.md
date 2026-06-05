@@ -32,6 +32,7 @@ Outputs:
 
 - `scripts/enrich/drafts.json`
 - `scripts/enrich/review-report.md`
+- `scripts/enrich/novelty-index.json`
 - cached legal-provider responses under `scripts/enrich/cache/`
 
 For a curated multi-query pass:
@@ -53,6 +54,15 @@ Public-facts policy:
 - Never copy protected wording, tables, figures, or full abstracts into MedCheck. Store paraphrased findings and citations instead.
 - Drafts from public-only evidence must remain `verified:false` and `reviewRequired:true` until human review.
 
+Novelty-first discovery:
+
+- The enrichment script scores every candidate before keeping it. New PMID/DOI, new public metric sentences, missing-field matches, and saturated-topic exceptions raise the score.
+- Low-novelty results are rejected into the review report with the reason, instead of being added to `drafts.json`.
+- `scripts/enrich/novelty-index.json` stores saturated topics, missing fields per relation, and query-result fingerprints.
+- Repeated queries with the same top results can be skipped automatically so reruns do not spend review attention on already-exhausted searches.
+- Saturated topics can still accept papers when they add specific missing value: for example dose escalation, active-metabolite AUC, ancestry, rare alleles, pediatric data, metabolite ratios, or TDM/dose-model data.
+- Use `--min-novelty N` to change the keep threshold for a run, or `--ignore-novelty` when deliberately auditing all provider results.
+
 Guardrails:
 
 - fetches only from `eutils.ncbi.nlm.nih.gov`, `www.ebi.ac.uk`, `api.openalex.org`, `api.semanticscholar.org`, and `api.unpaywall.org`
@@ -60,6 +70,7 @@ Guardrails:
 - never stores full text or verbatim abstracts
 - stores legal open-access metadata only; it does not download PDFs or article full text
 - dedupes by DOI, PMID, and normalized title against live `STUDY_DB` and existing drafts
+- dedupes and rejects using local novelty memory before adding new drafts
 - drafts use `sourceBasis:"public_metadata_or_abstract"` and remain eligible for qualitative enrichment even when the article itself is paywalled
 - drafts set `needsFullTextForPrecision:true` only when public sources do not expose enough quantitative detail
 - provider failures are recorded in the report without discarding successful results from other providers

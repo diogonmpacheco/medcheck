@@ -1125,3 +1125,298 @@ Skipped:
 
 Provider warnings:
 - semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=atomoxetine+CYP2D6+genotype+stratified+pharmacokinetics+children+ADHD+AUC+poor+intermediate+metabolizer+4-hydroxyatomoxetine&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## tramadol:CYP2D6_CYP2B6_metabolites
+Run: 2026-06-05T09:37:23.858Z
+Query: `tramadol O-desmethyltramadol CYP2D6 CYP2B6 genotype pharmacokinetics metabolite AUC poor ultrarapid metabolizer`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Enantioselective pharmacokinetics of tramadol and its three main metabolites; impact of <i>CYP2D6</i>, <i>CYP2B6</i>, and <i>CYP3A4</i> genotype.
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for <i>CYP2D6</i>, <i>OPRM1</i>, and <i>COMT</i> Genotypes and Select Opioid Therapy
+- low_novelty score=15: CYP2D6 in the Metabolism of Opioids for Mild to Moderate Pain (new DOI; new title; metric sentence already seen)
+- relation_mismatch: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- relation_mismatch: Influence of cytochrome <i>P450 2D6*10/*10</i> genotype on the risk for tramadol associated adverse effects: a retrospective cohort study.
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy.
+- relation_mismatch: Fetal and Infant Effects of Maternal Opioid Use during Pregnancy: A Literature Review including Clinical, Toxicological, Pharmacogenomic, and Epigenetic Aspects for Forensic Evaluation.
+- relation_mismatch: Desmetramadol Has the Safety and Analgesic Profile of Tramadol Without Its Metabolic Liabilities: Consecutive Randomized, Double-Blind, Placebo- and Active Comparator-Controlled Trials.
+- relation_mismatch: Opioid Metabolism
+- relation_mismatch: Cytochrome P450 in Pharmacogenetics: An Update
+- relation_mismatch: Genetic Testing for Opioid Pain Management: A Primer
+- relation_mismatch: Pain Management in Patients with Cancer: Focus on Opioid Analgesics
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=tramadol+O-desmethyltramadol+CYP2D6+CYP2B6+genotype+pharmacokinetics+metabolite+AUC+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## metoprolol:CYP2D6_enantiomer_PK
+Run: 2026-06-05T09:37:24.500Z
+Query: `metoprolol CYP2D6 poor metabolizer ultrarapid metabolizer enantiomer pharmacokinetics AUC heart rate`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Physiologically Based Pharmacokinetic Modeling of Metoprolol Enantiomers and α-Hydroxymetoprolol to Describe CYP2D6 Drug-Gene Interactions.
+- already_in_drafts: A meta-analysis of CYP2D6 metabolizer phenotype and metoprolol pharmacokinetics.
+- already_in_drafts: Physiologically Based Pharmacokinetic Modeling of Metoprolol Enantiomers and α-Hydroxymetoprolol to Describe CYP2D6 Drug-Gene Interactions
+- relation_mismatch: Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers.
+- relation_mismatch: Drug-gene interactions: inherent variability in drug maintenance dose requirements.
+- relation_mismatch: Steady-state pharmacokinetics of the enantiomers of perhexiline in CYP2D6 poor and extensive metabolizers administered Rac-perhexiline.
+- relation_mismatch: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Pharmacogenomics of Medications Commonly Used in the Intensive Care Unit
+- relation_mismatch: A Study on<i>CYP2C19</i>and<i>CYP2D6</i>Polymorphic Effects on Pharmacokinetics and Pharmacodynamics of Amitriptyline in Healthy Koreans
+- relation_mismatch: Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=metoprolol+CYP2D6+poor+metabolizer+ultrarapid+metabolizer+enantiomer+pharmacokinetics+AUC+heart+rate&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## escitalopram:CYP2C19_CYP2D6_serum
+Run: 2026-06-05T09:37:25.165Z
+Query: `escitalopram CYP2C19 CYP2D6 genotype serum concentration desmethylcitalopram steady state ultrarapid poor metabolizer`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Escitalopram pharmacogenetics: CYP2C19 relationships with dosing and clinical outcomes in autism spectrum disorder.
+- already_in_drafts: Effects of CYP2C19 and CYP2D6 gene variants on escitalopram and aripiprazole treatment outcome and serum levels: results from the CAN-BIND 1 study
+- already_in_drafts: CYP2D6 P34S Polymorphism and Outcomes of Escitalopram Treatment in Koreans with Major Depression
+- low_novelty score=15: Influence of CYP2C19 Metabolizer Status on Escitalopram/Citalopram Tolerability and Response in Youth With Anxiety and Depressive Disorders (new DOI; new title; metric sentence already seen)
+- relation_mismatch: Pharmacogenetics of antidepressant response: a focused review on CYP2C19, CYP2D6, SLC6A4, and HTR2A polymorphisms.
+- relation_mismatch: <i>CYP2C19</i> Genetic Variants and Major Depressive Disorder: A Systematic Review.
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Pharmacotherapy for mood disorders in pregnancy: a review of pharmacokinetic changes and clinical recommendations for therapeutic drug monitoring.
+- relation_mismatch: Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family.
+- relation_mismatch: Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants
+- relation_mismatch: Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family
+- relation_mismatch: Therapeutic monitoring of psychoactive drugs - antidepressants: A review
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=escitalopram+CYP2C19+CYP2D6+genotype+serum+concentration+desmethylcitalopram+steady+state+ultrarapid+poor+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## simvastatin:SLCO1B1_ABCG2_CYP_multigene
+Run: 2026-06-05T09:37:25.489Z
+Query: `simvastatin simvastatin acid SLCO1B1 ABCG2 ABCB1 CYP2D6 CYP3A5 pharmacokinetics genotype AUC`
+Added drafts: 0
+Skipped/rejected: 13
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_STUDY_DB: Impact of CYP2D6, CYP3A5, CYP2C19, CYP2A6, SLCO1B1, ABCB1, and ABCG2 gene polymorphisms on the pharmacokinetics of simvastatin and simvastatin acid.
+- already_in_STUDY_DB: Impact of CYP2D6, CYP3A5, CYP2C19, CYP2A6, SLCO1B1, ABCB1, and ABCG2 gene polymorphisms on the pharmacokinetics of simvastatin and simvastatin acid
+- relation_mismatch: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- relation_mismatch: Drug-drug-gene interactions as mediators of adverse drug reactions to diclofenac and statins: a case report and literature review.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: Pharmacogenetics of Statin-Induced Myotoxicity.
+- relation_mismatch: Pharmacogenetics Approach for the Improvement of COVID-19 Treatment.
+- relation_mismatch: Using Pharmacogenetics of Direct Oral Anticoagulants to Predict Changes in Their Pharmacokinetics and the Risk of Adverse Drug Reactions.
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- relation_mismatch: Statin-Related Myotoxicity: A Comprehensive Review of Pharmacokinetic, Pharmacogenomic and Muscle Components
+- relation_mismatch: Drug–drug–gene interactions and adverse drug reactions
+- relation_mismatch: Interindividual and interethnic variability in drug disposition: polymorphisms in organic anion transporting polypeptide 1B1 (OATP1B1; <i>SLCO1B1</i>)
+- relation_mismatch: Pharmacogenetics of Statin-Induced Myotoxicity
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=simvastatin+simvastatin+acid+SLCO1B1+ABCG2+ABCB1+CYP2D6+CYP3A5+pharmacokinetics+genotype+AUC&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clobazam:CYP2C19_N_desmethylclobazam
+Run: 2026-06-05T09:37:26.703Z
+Query: `clobazam N-desmethylclobazam CYP2C19 poor metabolizer plasma concentration dose ratio adverse effects`
+Added drafts: 2
+Skipped/rejected: 17
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_clobazam_cyp2c19_n_desmethylclobazam_kkosaki2004_15533655 | observational | PMID:15533655 | 35 | new PMID; new DOI; new title; basic saturated topic without specified novelty | search:semanticscholar | paywalled/unknown | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_jsaruwatari2014_24345815 | clinical_pk | PMID:24345815 | 35 | new PMID; new DOI; new title; basic saturated topic without specified novelty | search:semanticscholar | paywalled/unknown | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- low_novelty score=0: Evidence of polymorphic CYP2C19 involvement in the human metabolism of N-desmethylclobazam. (metric sentence already seen; extractable quantitative signal; basic saturated topic without specified novelty)
+- low_novelty score=10: Synergistic seizure reduction in patient with persistently elevated N-desmethylclobazam levels, CYP450 genetic polymorphism, and responsive neurostimulator targeting centromedian nuclei of bilateral thalami. (new DOI; new title; basic saturated topic without specified novelty)
+- low_novelty score=0: Evidence of Polymorphic CYP2C19 Involvement in the Human Metabolism of N-Desmethylclobazam (metric sentence already seen; extractable quantitative signal; basic saturated topic without specified novelty)
+- low_novelty score=20: A Phase 1, Open‐Label, Pharmacokinetic Trial to Investigate Possible Drug‐Drug Interactions Between Clobazam, Stiripentol, or Valproate and Cannabidiol in Healthy Subjects (new title; metric sentence already seen; extractable quantitative signal)
+- low_novelty score=0: Evidence of Polymorphic CYP2C19 Involvement in the Human Metabolism of N-Desmethylclobazam (basic saturated topic without specified novelty)
+- relation_mismatch: Medical Marijuana and Treatment Personalization: The Role of Genetics and Epigenetics in Response to THC and CBD.
+- relation_mismatch: An Overview of the Potential for Pharmacokinetic Interactions Between Drugs and Cannabis Products in Humans.
+- relation_mismatch: Adverse effects of antiseizure medications: a review of the impact of pharmacogenetics and drugs interactions in clinical practice.
+- relation_mismatch: CBD and THC in Special Populations: Pharmacokinetics and Drug-Drug Interactions.
+- relation_mismatch: Pharmacogenetics in the Treatment of Huntington's Disease: Review and Future Perspectives.
+- relation_mismatch: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+- relation_mismatch: A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects
+- relation_mismatch: Medicinal Cannabis—Potential Drug Interactions
+- relation_mismatch: Current Status and Prospects for Cannabidiol Preparations as New Therapeutic Agents
+- relation_mismatch: Effects of CYP2C19 and CYP2C9 polymorphisms on the efficacy and plasma concentration of lacosamide in pediatric patients with epilepsy in China
+- relation_mismatch: Impact of flavin-containing monooxygenase 3 and CYP2C19 genotypes on plasma disposition and adverse effects of voriconazole administered orally in immunocompromised patients.
+- relation_mismatch: Association of CYP2C19 polymorphisms and lansoprazole-associated respiratory adverse effects in children.
+## voriconazole:CYP2C19_PK_TDM
+Run: 2026-06-05T09:37:27.030Z
+Query: `voriconazole CYP2C19 genotype pharmacokinetics AUC trough therapeutic drug monitoring poor ultrarapid metabolizer`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Voriconazole therapy and CYP2C19 phenotype: identifying patients who may need alternative antifungal therapy.
+- already_in_drafts: Toward Genotype-Informed Dosing of Voriconazole: Head-to-Head Simulations Across CYP2C19 Phenotypes Using Population Pharmacokinetic Models.
+- already_in_drafts: Voriconazole therapeutic drug monitoring including analysis of CYP2C19 phenotype in immunocompromised pediatric patients with invasive fungal infections.
+- already_in_STUDY_DB: Identification of factors influencing the pharmacokinetics of voriconazole and the optimization of dosage regimens based on Monte Carlo simulation in patients with invasive fungal infections
+- low_novelty score=25: Consensus guidelines for optimising antifungal drug delivery and monitoring to avoid toxicity and improve outcomes in patients with haematological malignancy, 2014 (new DOI; new title; metric sentence already seen)
+- relation_mismatch: The Impact of Genetic Polymorphisms on the Clinical Efficacy of Azole Antifungals.
+- relation_mismatch: Pharmacogenetics of steady-state metabolism, pharmacokinetics, and adverse effects of voriconazole in healthy participants.
+- relation_mismatch: French-Speaking Network of Pharmacogenetics (RNPGx) Recommendations for Clinical Use of Mavacamten.
+- relation_mismatch: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+- relation_mismatch: Cytochrome P450 in Pharmacogenetics: An Update
+- relation_mismatch: Evaluation of sulfobutylether-β-cyclodextrin (SBECD) accumulation and voriconazole pharmacokinetics in critically ill patients undergoing continuous renal replacement therapy
+- relation_mismatch: Therapeutic drug monitoring for triazoles: A needs assessment review and recommendations from a Canadian perspective
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=voriconazole+CYP2C19+genotype+pharmacokinetics+AUC+trough+therapeutic+drug+monitoring+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clopidogrel:CYP2C19_active_metabolite
+Run: 2026-06-05T09:37:27.098Z
+Query: `clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer`
+Added drafts: 0
+Skipped/rejected: 19
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Applications of CYP450 Testing in the Clinical Setting
+- already_in_STUDY_DB: Effectiveness of clopidogrel dose escalation to normalize active metabolite exposure and antiplatelet effects in CYP2C19 poor metabolizers
+- low_novelty score=10: Influence of CYP450 Enzymes, CES1, PON1, ABCB1, and P2RY12 Polymorphisms on Clopidogrel Response in Patients Subjected to a Percutaneous Neurointervention. (new DOI; new title; metric sentence already seen)
+- low_novelty score=10: CYP2C19 genotype testing for clopidogrel: A guideline developed by the UK Centre of Excellence in Regulatory Science and Innovation in Pharmacogenomics (CERSI-PGx). (new DOI; new title; basic saturated topic without specified novelty)
+- low_novelty score=5: Cytochrome P-450 Polymorphisms and Response to Clopidogrel (new public metric sentences; basic saturated topic without specified novelty)
+- low_novelty score=10: Clinical Pharmacogenetics Implementation Consortium Guidelines for CYP2C19 Genotype and Clopidogrel Therapy: 2013 Update (new DOI; new title; basic saturated topic without specified novelty)
+- low_novelty score=0: Effects of<i>CYP2C19</i>Genotype on Outcomes of Clopidogrel Treatment (new DOI; new title; metric sentence already seen)
+- low_novelty score=10: Physiologically Based Pharmacokinetic Modeling for Sequential Metabolism: Effect of CYP2C19 Genetic Polymorphism on Clopidogrel and Clopidogrel Active Metabolite Pharmacokinetics (new DOI; new title; basic saturated topic without specified novelty)
+- low_novelty score=0: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India (new DOI; new title; metric sentence already seen)
+- low_novelty score=0: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update (basic saturated topic without specified novelty)
+- low_novelty score=7: Enhanced Platelet Response to Clopidogrel in Zucker Diabetic Fatty Rats due to Impaired Clopidogrel Inactivation by Carboxylesterase 1 and Increased Exposure to Active Metabolite (new DOI; new title; metric sentence already seen)
+- low_novelty score=7: Phase 1 study of novel anti-platelet agent to overcome pharmacogenomic limitations of clopidogrel (new DOI; new title; metric sentence already seen)
+- relation_mismatch: Clinical Application of Pharmacogenomics in Stroke Management: Current Evidence and Future Directions.
+- relation_mismatch: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India.
+- relation_mismatch: Repeated Intake of Grapefruit Juice Inhibits CYP2B6, CYP2C9, CYP2C19, and CYP3A4 while Lingonberry Powder Does Not Induce Major CYP Enzymes in Humans.
+- relation_mismatch: Prospective Trial on the Pharmacokinetics of Clopidogrel in Hemodialysis Patients.
+- relation_mismatch: Pharmacometabolomics Detects Unreported Clopidogrel Metabolites in the Urine of Kidney and Liver Transplant Recipients.
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium (CPIC) Guidelines for <i>CYP2C19</i> and Voriconazole Therapy
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+## efavirenz:CYP2B6_CYP2A6_UGT2B7
+Run: 2026-06-05T09:37:27.403Z
+Query: `efavirenz CYP2B6 CYP2A6 UGT2B7 pharmacokinetics slow metabolizer genotype concentration neurotoxicity`
+Added drafts: 0
+Skipped/rejected: 8
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Efavirenz Metabolism: Influence of Polymorphic CYP2B6 Variants and Stereochemistry
+- low_novelty score=15: Pharmacogenetics of cytochrome P450 2B6 (CYP2B6): advances on polymorphisms, mechanisms, and clinical relevance (new DOI; new title; metric sentence already seen)
+- low_novelty score=15: Insights into CYP2B6-mediated drug–drug interactions (new DOI; new title; metric sentence already seen)
+- low_novelty score=15: Influence of efavirenz pharmacokinetics and pharmacogenetics on neuropsychological disorders in Ugandan HIV-positive patients with or without tuberculosis: a prospective cohort study (new DOI; new title; metric sentence already seen)
+- relation_mismatch: Pharmacogenetics in Tuberculosis-HIV Coinfected Populations: A Systematic Review of Genetic Variants Influencing Antiretroviral and Anti-Tuberculosis Drug Response.
+- relation_mismatch: Pharmacogenomics of antimicrobial agents.
+- relation_mismatch: Efavirenz and the CNS: what we already know and questions that need to be answered
+- relation_mismatch: Adverse Neuropsychiatric Events and Recreational Use of Efavirenz and Other HIV-1 Antiretroviral Drugs
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=efavirenz+CYP2B6+CYP2A6+UGT2B7+pharmacokinetics+slow+metabolizer+genotype+concentration+neurotoxicity&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## irinotecan:UGT1A1_SN38_PK
+Run: 2026-06-05T09:37:28.325Z
+Query: `irinotecan SN-38 SN-38G UGT1A1 genotype pharmacokinetics AUC neutropenia diarrhea`
+Added drafts: 4
+Skipped/rejected: 18
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_irinotecan_ugt1a1_sn38_pk_bvalenzuela2013_null | clinical_pk | DOI:10.1158/1538-7445.am2013-2213 | 67 | new DOI; new title; fills missing field: UGT1A1_6; adds saturated-topic exception: UGT1A1_6, UGT1A7, UGT1A9 | search:semanticscholar | paywalled/unknown | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_bvalenzuelajimnez2013_23789755 | observational | PMID:23789755 | 92 | new PMID; new DOI; new title; fills missing field: UGT1A1_6 | search:semanticscholar | paywalled/unknown | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_rramchandani2007_17192505 | observational | PMID:17192505 | 89 | new PMID; new DOI; new title; fills missing field: UGT1A1_28, UGT1A1_6 | search:semanticscholar | paywalled/unknown | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_nsutiman2015_null | observational | DOI:10.1200/jco.2015.33.15_suppl.e13572 | 85 | new DOI; new title; fills missing field: UGT1A1_6, neutropenia, diarrhea; adds saturated-topic exception: UGT1A1_6, neutropenia, diarrhea | search:semanticscholar | paywalled/unknown | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- already_in_drafts: UGT1A1 predicts outcome in colorectal cancer treated with irinotecan and fluorouracil.
+- already_in_STUDY_DB: UGT1A1 promoter genotype correlates with SN-38 pharmacokinetics, but not severe toxicity in patients receiving low-dose irinotecan.
+- already_in_STUDY_DB: Comprehensive analysis of UGT1A polymorphisms predictive for pharmacokinetics and treatment outcome in patients with non-small-cell lung cancer treated with irinotecan and cisplatin.
+- already_in_drafts: Polymorphisms of UDP-glucuronosyltransferase and pharmacokinetics of irinotecan.
+- already_in_drafts: Safety and Efficacy of FOLFIRI-3 (Split-Dose Irinotecan) for Unresectable Colorectal Cancer: A Stratified Analysis Based on &lt;i&gt;UGT1A1&lt;/i&gt; Gene Polymorphisms.
+- already_in_drafts: Dose-Limiting Toxicities and the Maximum Tolerated Dose of Irinotecan Based on &lt;i&gt;UGT1A1&lt;/i&gt; Genotypes: A Systematic Review.
+- already_in_STUDY_DB: Comprehensive Analysis of<i>UGT1A</i>Polymorphisms Predictive for Pharmacokinetics and Treatment Outcome in Patients With Non–Small-Cell Lung Cancer Treated With Irinotecan and Cisplatin
+- already_in_STUDY_DB: <i>UGT1A1</i>Promoter Genotype Correlates With SN-38 Pharmacokinetics, but Not Severe Toxicity in Patients Receiving Low-Dose Irinotecan
+- already_in_drafts: <i>UGT1A1</i>predicts outcome in colorectal cancer treated with irinotecan and fluorouracil
+- already_in_drafts: Genetic Variants in the <i>UDP-glucuronosyltransferase 1A1</i> Gene Predict the Risk of Severe Neutropenia of Irinotecan
+- already_in_drafts: Role for Drug Transporters Beyond Tumor Resistance: Hepatic Functional Imaging and Genotyping of Multidrug Resistance Transporters for the Prediction of Irinotecan Toxicity
+- low_novelty score=22: Clinical pharmacokinetics and metabolism of irinotecan (CPT-11). (metric sentence already seen; extractable quantitative signal; fills missing field: UGT1A1_6)
+- low_novelty score=22: UGT1A1 promoter genotype correlates with SN-38 pharmacokinetics, but not severe toxicity in patients receiving low-dose irinotecan. (fills missing field: UGT1A1_6; adds saturated-topic exception: UGT1A1_6)
+- relation_mismatch: Pre-Therapeutic UGT1A1 Genotyping in Breast Cancer Patients Receiving Sacituzumab Govitecan to Improve Safety: A Meta-Analysis and Recommendation.
+- relation_mismatch: The Early Safety Signal of Sacituzumab Govitecan-Related Toxicity and the UGT1A1*28 Genotype in Metastatic Breast Cancer: A Real-World Preliminary Report
+- relation_mismatch: UGT1A1 and Sacituzumab Govitecan Toxicity: A Systematic Review and Meta-Analysis.
+- relation_mismatch: The C11orf24 Gene as a Useful Biomarker for Predicting Severe Neutropenia in Modified FOLFIRINOX for Pancreatic Cancer.
+- relation_mismatch: [Assessment of total bilirubin or SN-38/SN-38G ratio as a predictor of severe irinotecan toxicity].
+## atomoxetine:CYP2D6_pediatric_PK
+Run: 2026-06-05T09:37:28.985Z
+Query: `atomoxetine CYP2D6 genotype stratified pharmacokinetics children ADHD AUC poor intermediate metabolizer 4-hydroxyatomoxetine`
+Added drafts: 0
+Skipped/rejected: 9
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Single dose, CYP2D6 genotype-stratified pharmacokinetic study of atomoxetine in children with ADHD.
+- already_in_drafts: Pharmacokinetic Models Scaled Up from Humanized Liver Mouse Data Can Account for Drug Monitoring Results of Atomoxetine and Its 4-Hydroxylated and N-Demethylated Metabolites in Pediatric Patients Genotyped for Cytochrome P450 2D6
+- already_in_STUDY_DB: Population Pharmacokinetic Analysis of Atomoxetine and its Metabolites in Children and Adolescents with <scp>Attention‐Deficit</scp> /Hyperactivity Disorder
+- already_in_drafts: Precision pharmacotherapy of atomoxetine in children with ADHD: how to ensure the right dose for the right person?
+- low_novelty score=20: Clinical Pharmacogenetics Implementation Consortium Guideline for <scp>Cytochrome P450 (<i>CYP</i>)</scp><i>2D6</i> Genotype and Atomoxetine Therapy (new title; adds saturated-topic exception: pediatric)
+- low_novelty score=22: Understanding Atomoxetine Exposure Variability in Children and Adolescents With ADHD Through Population Pharmacokinetics (metric sentence already seen; extractable quantitative signal; fills missing field: clearance)
+- low_novelty score=5: Personalizing Atomoxetine Dosing in Children with ADHD: What Can We Learn from Current Supporting Evidence (new title; metric sentence already seen; adds saturated-topic exception: pediatric)
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline for Cytochrome P450 (CYP)2D6 Genotype and Atomoxetine Therapy.
+- relation_mismatch: Characterization of Atomoxetine Biotransformation and Implications for Development of PBPK Models for Dose Individualization in Children.
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=atomoxetine+CYP2D6+genotype+stratified+pharmacokinetics+children+ADHD+AUC+poor+intermediate+metabolizer+4-hydroxyatomoxetine&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clopidogrel:CYP2C19_active_metabolite
+Run: 2026-06-05T09:37:38.478Z
+Query: `clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer`
+Added drafts: 0
+Skipped/rejected: 19
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Influence of CYP450 Enzymes, CES1, PON1, ABCB1, and P2RY12 Polymorphisms on Clopidogrel Response in Patients Subjected to a Percutaneous Neurointervention. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP2C19 genotype testing for clopidogrel: A guideline developed by the UK Centre of Excellence in Regulatory Science and Innovation in Pharmacogenomics (CERSI-PGx). (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Cytochrome P-450 Polymorphisms and Response to Clopidogrel (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Clinical Pharmacogenetics Implementation Consortium Guidelines for CYP2C19 Genotype and Clopidogrel Therapy: 2013 Update (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Effects of<i>CYP2C19</i>Genotype on Outcomes of Clopidogrel Treatment (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Applications of CYP450 Testing in the Clinical Setting (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Physiologically Based Pharmacokinetic Modeling for Sequential Metabolism: Effect of CYP2C19 Genetic Polymorphism on Clopidogrel and Clopidogrel Active Metabolite Pharmacokinetics (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Effectiveness of clopidogrel dose escalation to normalize active metabolite exposure and antiplatelet effects in CYP2C19 poor metabolizers (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Enhanced Platelet Response to Clopidogrel in Zucker Diabetic Fatty Rats due to Impaired Clopidogrel Inactivation by Carboxylesterase 1 and Increased Exposure to Active Metabolite (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Phase 1 study of novel anti-platelet agent to overcome pharmacogenomic limitations of clopidogrel (same top results as previous run (100% overlap))
+- relation_mismatch: Clinical Application of Pharmacogenomics in Stroke Management: Current Evidence and Future Directions.
+- relation_mismatch: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India.
+- relation_mismatch: Repeated Intake of Grapefruit Juice Inhibits CYP2B6, CYP2C9, CYP2C19, and CYP3A4 while Lingonberry Powder Does Not Induce Major CYP Enzymes in Humans.
+- relation_mismatch: Prospective Trial on the Pharmacokinetics of Clopidogrel in Hemodialysis Patients.
+- relation_mismatch: Pharmacometabolomics Detects Unreported Clopidogrel Metabolites in the Urine of Kidney and Liver Transplant Recipients.
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium (CPIC) Guidelines for <i>CYP2C19</i> and Voriconazole Therapy
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
