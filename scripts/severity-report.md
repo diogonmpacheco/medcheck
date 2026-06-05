@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 563
-Original severe: 297
-Recommended severe: 297
+Known DDI pairs: 579
+Original severe: 304
+Recommended severe: 304
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -572,3 +572,19 @@ Recommended downgrades: 0
 | Sodium Chloride 0.9% + Sodium Bicarbonate | sodium_acid_base_load | mild | mild | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
 | Albumin Human + Phenytoin | protein_binding_interpretation | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
 | Lactated Ringer's Solution + Ceftriaxone | line_compatibility | mild | mild | ev_ceftriaxone_calcium_label (fda_label)<br>ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Alteplase + Warfarin | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Alteplase + Apixaban | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Alteplase + Rivaroxaban | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Tenecteplase + Warfarin | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Tenecteplase + Apixaban | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Tenecteplase + Rivaroxaban | thrombolysis_bleeding | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Andexanet Alfa + Apixaban | intentional_reversal | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Andexanet Alfa + Rivaroxaban | intentional_reversal | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Idarucizumab + Dabigatran | intentional_reversal | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Four-Factor Prothrombin Complex Concentrate + Warfarin | intentional_reversal | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Vitamin K + Warfarin | intentional_reversal | moderate | moderate | ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017 (guideline PMID:28198005 DOI:10.1002/cpt.668)<br>ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Desmopressin + Hydrochlorothiazide | hyponatremia | severe | severe | ev_stroke_neurocritical_workflow (guideline) | Severe support threshold met. |
+| Desmopressin + Sertraline | hyponatremia | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Mannitol + Furosemide | osmotic_diuresis | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Hypertonic Saline 3% + Sodium Bicarbonate | sodium_osmolar_load | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Fosphenytoin + Amiodarone | cardiac_conduction_pk | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |

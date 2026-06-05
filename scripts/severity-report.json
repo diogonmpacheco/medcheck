@@ -14882,5 +14882,428 @@
       "hasStrongInline": true,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Alteplase",
+    "drug2": "Warfarin",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Alteplase",
+    "drug2": "Apixaban",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Alteplase",
+    "drug2": "Rivaroxaban",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tenecteplase",
+    "drug2": "Warfarin",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tenecteplase",
+    "drug2": "Apixaban",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tenecteplase",
+    "drug2": "Rivaroxaban",
+    "category": "thrombolysis_bleeding",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Andexanet Alfa",
+    "drug2": "Apixaban",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Andexanet Alfa",
+    "drug2": "Rivaroxaban",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Idarucizumab",
+    "drug2": "Dabigatran",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Four-Factor Prothrombin Complex Concentrate",
+    "drug2": "Warfarin",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Vitamin K",
+    "drug2": "Warfarin",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
+          "type": "guideline",
+          "pmid": "28198005",
+          "doi": "10.1002/cpt.668"
+        },
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Desmopressin",
+    "drug2": "Hydrochlorothiazide",
+    "category": "hyponatremia",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Desmopressin",
+    "drug2": "Sertraline",
+    "category": "hyponatremia",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Mannitol",
+    "drug2": "Furosemide",
+    "category": "osmotic_diuresis",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Hypertonic Saline 3%",
+    "drug2": "Sodium Bicarbonate",
+    "category": "sodium_osmolar_load",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Fosphenytoin",
+    "drug2": "Amiodarone",
+    "category": "cardiac_conduction_pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_stroke_neurocritical_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_stroke_neurocritical_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]

@@ -8067,6 +8067,19 @@ const STUDY_DB = {
     limitations:["This is a workflow coverage synthesis, not a patient-specific sepsis protocol. Local antibiograms, infection source, renal/hepatic function, hemodynamics, ventilation strategy, and ICU protocols govern exact use."],
     verified:false, reviewRequired:true, verifyNote:"ICU/sepsis enrichment batch synthesized from guideline/label sources; pending intensivist/pharmacist review"
   },
+  "ev_stroke_neurocritical_workflow": {
+    id:"ev_stroke_neurocritical_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Stroke/thrombolysis/neurocritical medication workflow coverage: fibrinolysis, anticoagulant reversal, hemostasis support, seizure loading, and osmotherapy",
+    year:2026, source:"AHA/ASA stroke and ICH guidance / Neurocritical Care Society cerebral edema guidance / FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://www.heart.org/en/professional/quality-improvement/stroke",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Acute stroke and neurocritical workflows require thrombolysis eligibility checks, anticoagulant and antiplatelet bleeding context, urgent reversal options for warfarin/dabigatran/factor Xa inhibitors, sodium/osmolality monitoring for cerebral edema therapy, and seizure-loading choices that avoid parent-drug-only metabolism assumptions."},
+    temporal:{mechanism:"stroke_neurocritical_medication_workflow", onset:"minutes_to_hours", offset:"hours_to_days"},
+    supports:["acute_stroke_thrombolysis_anticoagulant_screening","ICH_anticoagulant_reversal_workflow","neurocritical_cerebral_edema_osmotherapy_monitoring","desmopressin_hyponatremia_context","fosphenytoin_to_phenytoin_prodrug_context"],
+    contradicts:[],
+    limitations:["This is a medication coverage synthesis, not an acute stroke protocol. Exact decisions depend on time-last-known-well, imaging, labs, renal function, anticoagulant timing/levels, local stroke-team criteria, and neurocritical care protocols."],
+    verified:false, reviewRequired:true, verifyNote:"Stroke/neurocritical enrichment batch synthesized from guideline/label sources; pending neurology/neurocritical-care/pharmacy review"
+  },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",
