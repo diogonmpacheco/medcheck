@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 517
-Original severe: 288
-Recommended severe: 288
+Known DDI pairs: 534
+Original severe: 290
+Recommended severe: 290
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -337,6 +337,23 @@ Recommended downgrades: 0
 | Cefuroxime + Probenecid | renal_transport | moderate | moderate | ev_cefuroxime_probenecid_label (fda_label) | Kept original severity. |
 | Insulin Glargine + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
 | Insulin Glargine + Tirzepatide | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label)<br>ev_tirzepatide_oral_absorption_label (fda_label) | Kept original severity. |
+| Fluticasone + Ritonavir | metabolic | severe | severe | ev_ritonavir_cyp3a4_booster_label (fda_label) | Severe support threshold met. |
+| Fluticasone + Cobicistat | metabolic | severe | severe | ev_cobicistat_cyp3a_label (fda_label PMID:24297288) | Severe support threshold met. |
+| Fluticasone + Nirmatrelvir/Ritonavir | metabolic | moderate | moderate | ev_paxlovid_cyp3a_label (fda_label) | Kept original severity. |
+| Albuterol + Propranolol | pharmacodynamic | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Ipratropium + Tiotropium | pharmacodynamic | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Senna + Digoxin | electrolyte | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Bisacodyl + Digoxin | electrolyte | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Polyethylene Glycol + Lithium | volume_status | mild | mild | No linked high-tier source | Kept original severity. |
+| Insulin Lispro + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Aspart + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Degludec + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Lispro + Tirzepatide | pharmacodynamic | moderate | moderate | ev_tirzepatide_oral_absorption_label (fda_label)<br>ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Aspart + Tirzepatide | pharmacodynamic | moderate | moderate | ev_tirzepatide_oral_absorption_label (fda_label)<br>ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Degludec + Tirzepatide | pharmacodynamic | moderate | moderate | ev_tirzepatide_oral_absorption_label (fda_label)<br>ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Estradiol + Rifampin | induction | moderate | moderate | ev_rifampin_hormonal_contraception (guideline) | Kept original severity. |
+| Progesterone + Rifampin | induction | moderate | moderate | ev_rifampin_hormonal_contraception (guideline) | Kept original severity. |
+| Medroxyprogesterone + Rifampin | induction | moderate | moderate | ev_rifampin_hormonal_contraception (guideline) | Kept original severity. |
 | Trimethoprim/Sulfamethoxazole + Warfarin | anticoagulation | severe | severe | ev_tmp_smx_label (fda_label) | Severe support threshold met. |
 | Trimethoprim/Sulfamethoxazole + Lisinopril | electrolyte | moderate | moderate | ev_tmp_smx_label (fda_label) | Kept original severity. |
 | Trimethoprim/Sulfamethoxazole + Methotrexate | pharmacodynamic | severe | severe | ev_tmp_smx_label (fda_label)<br>ev_methotrexate_oat3_probenecid (observational PMID:29871022) | Severe support threshold met. |

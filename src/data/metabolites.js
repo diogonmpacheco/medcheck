@@ -3019,6 +3019,178 @@ const METAB = {
     evidenceRefs:["ev_insulin_glargine_beta_blocker_label"]
   }
 ],
+"Fluticasone":[
+  {
+    n:"Fluticasone 17beta-carboxylic acid metabolite",
+    e:"CYP3A4",
+    a:"inactive",
+    p:80,
+    note:"Primary inactive oxidative metabolite. Strong CYP3A inhibitors can raise parent fluticasone enough to cause systemic corticosteroid effects.",
+    evidenceRefs:["ev_ritonavir_cyp3a4_booster_label","ev_cobicistat_cyp3a_label","ev_paxlovid_cyp3a_label"]
+  },
+  {
+    n:"Fluticasone (unchanged local/systemic parent)",
+    e:"CYP3A4",
+    a:"active",
+    p:20,
+    note:"Parent steroid drives benefit and toxicity; low oral bioavailability is no longer protective when systemic clearance is limited by strong CYP3A inhibition."
+  }
+],
+"Ipratropium":[
+  {
+    n:"Ipratropium (unchanged renal/fecal elimination)",
+    e:"Renal/Fecal",
+    a:"active",
+    p:80,
+    note:"Not meaningfully CYP-metabolized; additive anticholinergic pharmacodynamics are the main interaction concern."
+  },
+  {
+    n:"Ipratropium ester hydrolysis products",
+    e:"Ester hydrolysis",
+    a:"inactive",
+    p:20,
+    note:"Inactive hydrolysis products; systemic exposure is low after inhaled use."
+  }
+],
+"Polyethylene Glycol":[
+  {
+    n:"Polyethylene glycol (unabsorbed fecal elimination)",
+    e:"GI lumen",
+    a:"active",
+    p:99,
+    note:"Not a metabolite: PEG acts osmotically in the gut and is minimally absorbed. High-dose use can still matter through dehydration/electrolyte effects."
+  }
+],
+"Senna":[
+  {
+    n:"Rhein anthrone",
+    e:"Colonic bacterial activation",
+    a:"active_form",
+    role:"active_form",
+    p:70,
+    note:"Sennosides are converted by gut bacteria to active anthrone metabolites that stimulate motility and secretion."
+  },
+  {
+    n:"Rhein glucuronide/sulfate conjugates",
+    e:"UGT/SULT",
+    a:"inactive",
+    p:20,
+    note:"Conjugated excretory metabolites; repeated diarrhea/hypokalemia is the interaction-relevant signal."
+  }
+],
+"Bisacodyl":[
+  {
+    n:"Bis-(p-hydroxyphenyl)-pyridyl-2-methane (BHPM)",
+    e:"Intestinal/esterase activation",
+    a:"active_form",
+    role:"active_form",
+    p:90,
+    note:"Active stimulant laxative metabolite formed in the gut; electrolyte/volume effects matter more than CYP interactions."
+  },
+  {
+    n:"BHPM glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:10,
+    note:"Inactive conjugate for excretion."
+  }
+],
+"Insulin Lispro":[
+  {
+    n:"Insulin lispro peptide fragments",
+    e:"Proteolytic degradation",
+    a:"inactive",
+    p:100,
+    note:"Peptide catabolism rather than CYP metabolism; interaction burden is pharmacodynamic hypoglycemia."
+  }
+],
+"Insulin Aspart":[
+  {
+    n:"Insulin aspart peptide fragments",
+    e:"Proteolytic degradation",
+    a:"inactive",
+    p:100,
+    note:"Peptide catabolism rather than CYP metabolism; interaction burden is pharmacodynamic hypoglycemia."
+  }
+],
+"Insulin Degludec":[
+  {
+    n:"Insulin degludec albumin-bound depot",
+    e:"Depot dissociation",
+    a:"active",
+    p:70,
+    note:"Not a metabolite: albumin binding and depot dissociation create ultra-long basal exposure."
+  },
+  {
+    n:"Insulin degludec peptide fragments",
+    e:"Proteolytic degradation",
+    a:"inactive",
+    p:30,
+    note:"Cleared by protein catabolism rather than CYP enzymes."
+  }
+],
+"Estradiol":[
+  {
+    n:"Estrone",
+    e:"17beta-HSD",
+    a:"active",
+    p:35,
+    note:"Reversible estrogen metabolite; route and tissue context influence clinical relevance."
+  },
+  {
+    n:"Estradiol glucuronide/sulfate conjugates",
+    e:"UGT/SULT",
+    a:"inactive",
+    p:45,
+    note:"Conjugation supports elimination and enterohepatic cycling context; enzyme induction can lower estrogen exposure."
+  },
+  {
+    n:"Estriol",
+    e:"CYP3A4",
+    a:"weak",
+    p:10,
+    note:"Minor weaker estrogenic metabolite family; CYP1A2 can also contribute to hydroxylation context."
+  }
+],
+"Progesterone":[
+  {
+    n:"Allopregnanolone",
+    e:"5alpha-reductase/3alpha-HSD",
+    a:"active",
+    p:20,
+    note:"Neuroactive metabolite that can contribute to sedation and CNS effects."
+  },
+  {
+    n:"Pregnanediol glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:55,
+    note:"Major excretory metabolite used as a progesterone metabolism marker."
+  },
+  {
+    n:"Hydroxylated progesterone metabolites",
+    e:"CYP3A4",
+    a:"weak",
+    p:20,
+    note:"CYP3A-mediated metabolism is vulnerable to strong induction or inhibition."
+  }
+],
+"Medroxyprogesterone":[
+  {
+    n:"Hydroxylated medroxyprogesterone metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:70,
+    note:"CYP3A-mediated clearance supports inducer/inhibitor cautions; clinical importance depends strongly on oral vs depot formulation."
+  },
+  {
+    n:"Medroxyprogesterone conjugates",
+    e:"UGT/SULT",
+    a:"inactive",
+    p:20,
+    note:"Conjugated excretory metabolite family."
+  }
+],
 "Sugammadex":[
   {
     n:"Sugammadex-rocuronium inclusion complex",
