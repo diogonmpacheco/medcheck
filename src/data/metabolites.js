@@ -493,7 +493,7 @@ const METAB = {
   {n:"Iminostilbene",e:"CYP3A4",a:"inactive",p:5}
 ],
 "Phenytoin":[
-  {n:"5-(p-Hydroxyphenyl)-5-phenylhydantoin (HPPH)",e:"CYP2C9",a:"inactive",p:70,note:"Main metabolite — saturable kinetics at therapeutic doses"},
+  {n:"5-(p-Hydroxyphenyl)-5-phenylhydantoin (HPPH)",e:"CYP2C9",a:"inactive",p:70,note:"Main metabolite — saturable kinetics at therapeutic doses",evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"]},
   {n:"Catechol metabolite",e:"CYP2C19",a:"inactive",p:10},
   {n:"HPPH glucuronide",e:"UGT",a:"inactive",p:15}
 ],
