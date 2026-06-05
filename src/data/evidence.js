@@ -6324,6 +6324,48 @@ const STUDY_DB = {
     verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
+  "ev_nat1_arylamine_review": {
+    id:"ev_nat1_arylamine_review", public:true, type:EVIDENCE_TIER.REVIEW,
+    title:"Arylamine N-acetyltransferases: from drug metabolism and pharmacogenetics to drug discovery",
+    year:2014, source:"Sim et al.", journal:"British Journal of Pharmacology", pmid:"24467436", doi:"10.1111/bph.12598",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24467436/",
+    studyDesign:"review", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"Review describes NAT1/NAT2 as arylamine acetyltransferases involved in drugs including hydralazine and sulfonamides, plus PABA/PAS-like substrate biology and xenobiotic/carcinogen handling."},
+    temporal:{mechanism:"arylamine N-acetylation and O-acetylation bioactivation/deactivation"},
+    supports:["NAT1_arylamine_substrate_context","NAT1_PABA_PAS_context","NAT_sulfonamide_context"],
+    contradicts:["NAT1_is_not_a_broad_dose_guideline_gene"],
+    limitations:["Review-level evidence; NAT1 clinical actionability is weaker than NAT2 and strongly substrate-specific."],
+    verified:false, reviewRequired:true, verifyNote:"NAT1 panel enrichment pending pharmacology review"
+  },
+  "ev_nat1_paba_pas_polymorphism": {
+    id:"ev_nat1_paba_pas_polymorphism", public:true, type:EVIDENCE_TIER.REVIEW,
+    title:"Polymorphism of human acetyltransferases",
+    year:1995, source:"Review of human NAT polymorphism", journal:"Pharmacology & Therapeutics", pmid:"7889851", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/7889851/",
+    studyDesign:"review", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
+    quantifiedEffects:{note:"Review describes NAT1 as broadly distributed and high affinity for p-aminobenzoic acid and p-aminosalicylic acid, contrasted with NAT2 polymorphic acetylation for classic substrates."},
+    temporal:{mechanism:"NAT1-selective acetylation of PABA/PAS-like substrates"},
+    supports:["PABA_NAT1_probe_context","PAS_NAT1_substrate_context"],
+    contradicts:["PABA_PAS_context_is_not_a_modern_standalone_prescribing_rule"],
+    limitations:["Older review; useful for substrate specificity, not contemporary dose guidance."],
+    verified:false, reviewRequired:true, verifyNote:"NAT1/PAS/PABA context pending pharmacology review"
+  },
+  "ev_nat1_smx_hypersensitivity_context": {
+    id:"ev_nat1_smx_hypersensitivity_context", public:true, type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"NAT1 *10 and *11 alleles, expression, and sulfamethoxazole-induced hypersensitivity",
+    year:2011, source:"Wang et al.", journal:"Pharmacogenetics and Genomics", pmid:"21878835", doi:"10.1097/FPC.0b013e3283498ee9",
+    url:"https://pubmed.ncbi.nlm.nih.gov/21878835/",
+    studyDesign:"functional_expression_plus_clinical_association", n:469,
+    phenotypes:[GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"Study linked NAT1 *10/*11 increased expression/activity with sulfamethoxazole hypersensitivity context, with protective association observed only in subjects also carrying slow NAT2 acetylator genotype."},
+    temporal:{mechanism:"NAT1/NAT2 balance in sulfamethoxazole N-acetylation and idiosyncratic hypersensitivity"},
+    supports:["NAT1_sulfamethoxazole_hypersensitivity_context","NAT1_fast_acetylator_expression_context"],
+    contradicts:["NAT1_alone_does_not_predict_sulfonamide_allergy"],
+    limitations:["Association was context-specific and modified by NAT2; allergy history, HLA/immune factors, renal function, and clinical history dominate."],
+    verified:false, reviewRequired:true, verifyNote:"NAT1/SMX context pending infectious disease pharmacy review"
+  },
 
   "ev_comt_levodopa_parkinson_2012": {
     id: "ev_comt_levodopa_parkinson_2012",

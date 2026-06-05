@@ -3,7 +3,7 @@
 
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
-  "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
+  "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT1","NAT2","COMT","CYP2A6","CYP4F2",
   "SLCO1B1","ABCB1","ABCG2","GSTM1","GSTT1","GSTP1","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","ALDH2","SLC22A1","SLC22A2","SLC47A1","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
@@ -221,6 +221,15 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Isoniazid",level:"A",action:"Slow acetylator: ↑ hepatotoxicity; reduce dose/monitor LFTs"},
       {drug:"Sulfasalazine",level:"B",action:"Slow acetylator: ↑ ADR frequency"},
       {drug:"Hydralazine",level:"C",action:"Slow acetylator: ↑ SLE-like syndrome risk"}
+    ]
+  },
+  "NAT1":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Aminosalicylic Acid",level:"C",action:"NAT1-selective acetylation context; clinical TB regimen decisions still follow specialist protocols"},
+      {drug:"PABA",level:"C",action:"NAT1 probe/substrate context; mainly useful for supplements, dermatology products, and biochemical interpretation"},
+      {drug:"Trimethoprim/Sulfamethoxazole",level:"C",action:"Sulfonamide arylamine/hypersensitivity context is weak and not a substitute for allergy history or label warnings"}
     ]
   },
   "GSTM1":{
@@ -471,6 +480,7 @@ const ENZYME_ACTORS = {
   "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
   "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "BCHE":    {id:"BCHE",    type:ACTOR_TYPE.ENZYME, name:"BCHE",    family:"esterase", tissue:["plasma","liver"],    polymorphic:true, substrateCount:0},
+  "NAT1":    {id:"NAT1",    type:ACTOR_TYPE.ENZYME, name:"NAT1",    family:"NAT",    tissue:["liver","gut","many_tissues"], polymorphic:true, substrateCount:0},
   "NAT2":    {id:"NAT2",    type:ACTOR_TYPE.ENZYME, name:"NAT2",    family:"NAT",    tissue:["liver"],              polymorphic:true, substrateCount:0},
   "GSTM1":   {id:"GSTM1",   type:ACTOR_TYPE.ENZYME, name:"GSTM1",   family:"GST",    tissue:["liver","blood"],       polymorphic:true, substrateCount:0},
   "GSTT1":   {id:"GSTT1",   type:ACTOR_TYPE.ENZYME, name:"GSTT1",   family:"GST",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},

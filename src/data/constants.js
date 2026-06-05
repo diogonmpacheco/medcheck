@@ -161,6 +161,12 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference acetylator phenotype for this model." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:null, note:"Rapid acetylator phenotype; lower exposure for NAT2 substrates." },
   },
+  NAT1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"Reduced NAT1 acetylation context. NAT1 is more relevant for PABA/PAS-like arylamine substrates and some xenobiotic bioactivation/deactivation than for classic NAT2 slow-acetylator dosing." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.25, freq_pct:null, note:"Intermediate NAT1 activity context; treat as a review flag for PABA/PAS/sulfonamide/aromatic-amine exposure rather than a prescribing rule." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference NAT1 acetylation context." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher NAT1 expression/activity context. Some NAT1 alleles may increase expression; clinical actionability is limited and substrate-specific." },
+  },
   SLCO1B1: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.5, freq_pct:null, note:"Decreased OATP1B1 hepatic uptake. Simvastatin acid and several statins can have higher systemic exposure and higher muscle-symptom risk." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.5, freq_pct:null, note:"Decreased/intermediate OATP1B1 function; statin exposure may rise." },
@@ -790,6 +796,7 @@ let activeGenotype = {
   CYP2A6:  GENOTYPE_PHENOTYPE.NM,
   CYP1A2:  GENOTYPE_PHENOTYPE.NM,
   NAT2:    GENOTYPE_PHENOTYPE.NM,
+  NAT1:    GENOTYPE_PHENOTYPE.NM,
   SLCO1B1: GENOTYPE_PHENOTYPE.NM,
   ABCB1:   GENOTYPE_PHENOTYPE.NM,
   ABCG2:   GENOTYPE_PHENOTYPE.NM,

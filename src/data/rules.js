@@ -1783,4 +1783,94 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
     }
   },
+  {
+    parent:"Aminosalicylic Acid",
+    metaboliteId:"aminosalicylic-acid-nat1-acetylation",
+    metaboliteName:"NAT1 acetylated PAS metabolite context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"PAS/aminosalicylic acid is a classic NAT1-selective acetylation context. This is useful for PGx completeness and medication-list review, but TB regimen decisions remain specialist/protocol driven.",
+    evidenceRefs:["ev_nat1_arylamine_review","ev_nat1_paba_pas_polymorphism"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: possible higher parent PAS exposure/tolerability review" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate NAT1 context; monitor GI/hepatic tolerability in regimen context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 acetylation context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"higher NAT1 context: faster acetylation possible; clinical actionability limited" },
+    }
+  },
+  {
+    parent:"PABA",
+    metaboliteId:"paba-nat1-acetylation",
+    metaboliteName:"N-acetyl-PABA context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"PABA is included mostly as a NAT1 probe/substrate and supplement/dermatology actor. This helps explain arylamine/sulfonamide context without implying a medication dose rule.",
+    evidenceRefs:["ev_nat1_arylamine_review","ev_nat1_paba_pas_polymorphism"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: slower PABA acetylation possible" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate NAT1 context; usually low clinical actionability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"higher NAT1 context: faster acetylation possible" },
+    }
+  },
+  {
+    parent:"Trimethoprim/Sulfamethoxazole",
+    metaboliteId:"sulfamethoxazole-nat1-arylamine-context",
+    metaboliteName:"Sulfonamide arylamine acetylation context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"Sulfamethoxazole toxicity is driven by multiple pathways: CYP/oxidative hydroxylamine formation, acetylation, renal function, folate/marrow effects, and immune history. NAT1 is shown only as weak arylamine context; allergy history and label warnings dominate.",
+    evidenceRefs:["ev_nat1_smx_hypersensitivity_context","ev_tmp_smx_label"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: low-confidence sulfonamide hypersensitivity/toxicity review flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate NAT1 context; interpret with NAT2, renal, folate and allergy history" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"uncertain", label:"higher NAT1 expression context; clinical direction is not dose-calibrated" },
+    }
+  },
+  {
+    parent:"Sulfadiazine",
+    metaboliteId:"sulfadiazine-nat-arylamine-context",
+    metaboliteName:"Sulfonamide acetylation context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"Sulfadiazine is an older arylamine sulfonamide. NAT1/NAT2 context is weaker than renal function, hydration/crystalluria, rash history, and folate/marrow risk.",
+    evidenceRefs:["ev_nat1_arylamine_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: review sulfonamide tolerance and renal/crystalluria risk" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate NAT1 context; low-confidence modifier" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"uncertain", label:"higher NAT1 context; clinical actionability limited" },
+    }
+  },
+  {
+    parent:"Phenazopyridine",
+    metaboliteId:"phenazopyridine-arylamine-safety-context",
+    metaboliteName:"Azo/arylamine safety context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"Phenazopyridine safety is mostly renal impairment, methemoglobinemia/hemolysis, duration, and symptom masking. NAT1 is included only as an arylamine context flag.",
+    evidenceRefs:["ev_nat1_arylamine_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: low-confidence arylamine safety review flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate NAT1 context; renal/G6PD-like oxidant risk dominates" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"uncertain", label:"higher NAT1 context; no dose rule" },
+    }
+  },
+  {
+    parent:"Amonafide",
+    metaboliteId:"amonafide-nat-acetylation-context",
+    metaboliteName:"NAT acetylation oncology research context",
+    enzyme:"NAT1",
+    systemic:true,
+    note:"Amonafide is not a routine medication; it is included as a research oncology example where NAT acetylation can influence exposure/toxicity interpretation. NAT2 is likely more important than NAT1.",
+    evidenceRefs:["ev_nat1_arylamine_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced NAT1 context: research-only acetylation review flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate NAT1 context; NAT2 and oncology protocol dominate" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline NAT1 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"uncertain", label:"higher NAT1 context; no routine clinical action" },
+    }
+  },
 ];
