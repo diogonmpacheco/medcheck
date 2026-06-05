@@ -4469,6 +4469,55 @@ const METAB = {
     note:"Absorption is improved by fatty meals; alcohol intolerance and photosensitivity/hepatic monitoring are practical counseling points.",
     evidenceRefs:["ev_griseofulvin_induction_label"]
   }
+],
+"Protamine Sulfate":[
+  {n:"Protamine-heparin ion-pair complex",e:"Binding/reticuloendothelial clearance",a:"inactive",p:70,note:"Intentional complex that neutralizes heparin after bypass; excess protamine can itself impair coagulation and cause hemodynamic reactions.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Protamine peptide fragments",e:"Proteolytic degradation",a:"inactive",p:30,note:"Peptide/protein catabolism rather than CYP metabolism.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Tranexamic Acid":[
+  {n:"Tranexamic acid (unchanged renal elimination)",e:"Renal",a:"active",p:90,note:"No meaningful metabolism; renal function determines exposure and high exposure can increase seizure risk.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Minor deaminated/acetylated metabolites",e:"Minor conjugation",a:"inactive",p:10,note:"Minor pathway; not a CYP-mediated interaction driver.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Aminocaproic Acid":[
+  {n:"Aminocaproic acid (unchanged renal elimination)",e:"Renal",a:"active",p:80,note:"Renally cleared antifibrinolytic; accumulation increases toxicity risk in renal impairment.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Adipic acid metabolite",e:"Oxidative deamination",a:"inactive",p:15,note:"Minor non-CYP metabolic route.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Norepinephrine":[
+  {n:"Normetanephrine",e:"COMT",a:"inactive",p:45,note:"Catecholamine methylation product; MAOI/COMT contexts alter catecholamine tone rather than classic CYP clearance.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Vanillylmandelic acid (VMA)",e:"MAO/COMT",a:"inactive",p:45,note:"Downstream urinary catecholamine metabolite.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Epinephrine":[
+  {n:"Metanephrine",e:"COMT",a:"inactive",p:45,note:"Catecholamine methylation product; pressor interactions are pharmacodynamic.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Vanillylmandelic acid (VMA)",e:"MAO/COMT",a:"inactive",p:45,note:"Downstream urinary catecholamine metabolite.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Phenylephrine":[
+  {n:"Phenylephrine sulfate",e:"Sulfation",a:"inactive",p:60,note:"Major conjugated metabolite; alpha-1 pressor interactions dominate clinical risk.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"m-hydroxymandelic acid",e:"MAO",a:"inactive",p:20,note:"Minor oxidative metabolite.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Vasopressin":[
+  {n:"Vasopressin peptide fragments",e:"Peptidase degradation",a:"inactive",p:80,note:"Peptide hormone degradation rather than CYP metabolism; V1 vasoconstriction is the interaction signal.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Vasopressin (renal/hepatic clearance)",e:"Renal/Hepatic",a:"active",p:20,note:"Short-lived active hormone cleared by tissue metabolism and organ clearance.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Dobutamine":[
+  {n:"3-O-methyldobutamine",e:"COMT",a:"inactive",p:70,note:"Primary inactive catechol metabolite; beta-blockers can blunt parent inotropic response.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"Dobutamine conjugates",e:"Conjugation",a:"inactive",p:20,note:"Conjugated metabolites; not a CYP interaction pathway.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Milrinone":[
+  {n:"Milrinone (unchanged renal elimination)",e:"Renal",a:"active",p:85,note:"Renal clearance is the key exposure determinant; accumulation increases hypotension/arrhythmia risk.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"O-glucuronide milrinone",e:"UGT",a:"inactive",p:15,note:"Minor conjugated metabolite.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Dopamine":[
+  {n:"Homovanillic acid (HVA)",e:"MAO/COMT",a:"inactive",p:60,note:"Catecholamine breakdown product; tachyarrhythmia/pressor effects are parent pharmacodynamics.",evidenceRefs:["ev_cabg_perioperative_medications"]},
+  {n:"DOPAC",e:"MAO",a:"inactive",p:25,note:"Intermediate dopamine metabolite.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Calcium Chloride":[
+  {n:"Ionized calcium",e:"Electrolyte distribution",a:"active",p:100,note:"Not a metabolite: IV calcium increases available calcium immediately; line safety and arrhythmia context matter.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Calcium Gluconate":[
+  {n:"Ionized calcium from calcium gluconate",e:"Electrolyte distribution",a:"active",p:100,note:"Not a metabolite: calcium availability depends on distribution and clinical context.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Magnesium Sulfate":[
+  {n:"Magnesium ion",e:"Renal",a:"active",p:100,note:"Not a metabolite: renal excretion controls magnesium exposure; can potentiate neuromuscular blockade.",evidenceRefs:["ev_cabg_perioperative_medications"]}
 ]
 };
 

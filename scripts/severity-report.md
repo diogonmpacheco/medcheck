@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 534
-Original severe: 290
-Recommended severe: 290
+Known DDI pairs: 551
+Original severe: 296
+Recommended severe: 296
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -543,3 +543,20 @@ Recommended downgrades: 0
 | Artemether/Lumefantrine + Rifampin | induction | severe | severe | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label) | Severe support threshold met. |
 | Artemether/Lumefantrine + Ketoconazole | pk_qt | moderate | moderate | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label) | Kept original severity. |
 | Artemether/Lumefantrine + Amiodarone | qt | severe | severe | ev_artemether_lumefantrine_cyp3a_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Protamine Sulfate + Heparin | intentional_reversal | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Tranexamic Acid + Combined Oral Contraceptive | thrombosis | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Aminocaproic Acid + Combined Oral Contraceptive | thrombosis | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Tranexamic Acid + Warfarin | hemostasis_balance | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Norepinephrine + Phenelzine | pressor_maoi | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Epinephrine + Phenelzine | pressor_maoi | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Phenylephrine + Phenelzine | pressor_maoi | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Dopamine + Phenelzine | pressor_maoi | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Dobutamine + Metoprolol | pharmacodynamic_antagonism | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Dobutamine + Propranolol | pharmacodynamic_antagonism | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Milrinone + Nitroglycerin | hypotension | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Milrinone + Furosemide | electrolyte_arrhythmia | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Norepinephrine + Midodrine | pressor | moderate | moderate | ev_midodrine_desglymidodrine_label (fda_label)<br>ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Vasopressin + Norepinephrine | pressor_combination | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Calcium Chloride + Digoxin | calcium_digoxin | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
+| Calcium Gluconate + Digoxin | calcium_digoxin | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Magnesium Sulfate + Rocuronium | neuromuscular_blockade | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |

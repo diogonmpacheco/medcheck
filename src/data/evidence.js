@@ -8054,6 +8054,19 @@ const STUDY_DB = {
     verified:false, reviewRequired:true, verifyNote:"Label-backed anticoagulation enrichment pending cardiology/hematology/pharmacy review"
   },
 
+  "ev_cabg_perioperative_medications": {
+    id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",
+    year:2026, source:"ACC/AHA/STS/AATS/FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://www.jacc.org/doi/10.1016/j.jacc.2021.09.006",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"CABG care commonly involves aspirin/P2Y12 and statin/beta-blocker secondary prevention; intraoperative heparin/protamine anticoagulation management; antifibrinolytics such as tranexamic acid or aminocaproic acid for blood conservation; and ICU vasoactive/inotropic support such as norepinephrine, epinephrine, dopamine, dobutamine, milrinone, phenylephrine, and vasopressin."},
+    temporal:{mechanism:"perioperative_CABG_medication_context", onset:"minutes_to_days", offset:"minutes_to_weeks"},
+    supports:["cabg_antiplatelet_secondary_prevention","cabg_heparin_protamine_reversal","cabg_antifibrinolytic_blood_conservation","cabg_vasoactive_inotrope_support","cabg_electrolyte_and_bp_support"],
+    contradicts:[],
+    limitations:["This is a coverage and mechanism synthesis, not a patient-specific cardiac surgery protocol. Local surgical, anesthesia, ICU, renal-function, bleeding, and hemodynamic protocols govern exact use."],
+    verified:false, reviewRequired:true, verifyNote:"CABG enrichment batch synthesized from guideline/label sources; pending cardiac anesthesiology/cardiology/pharmacy review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

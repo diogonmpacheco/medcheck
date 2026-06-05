@@ -14107,5 +14107,454 @@
       "hasStrongInline": true,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Protamine Sulfate",
+    "drug2": "Heparin",
+    "category": "intentional_reversal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tranexamic Acid",
+    "drug2": "Combined Oral Contraceptive",
+    "category": "thrombosis",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Aminocaproic Acid",
+    "drug2": "Combined Oral Contraceptive",
+    "category": "thrombosis",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tranexamic Acid",
+    "drug2": "Warfarin",
+    "category": "hemostasis_balance",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Norepinephrine",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Epinephrine",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Phenylephrine",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dopamine",
+    "drug2": "Phenelzine",
+    "category": "pressor_maoi",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dobutamine",
+    "drug2": "Metoprolol",
+    "category": "pharmacodynamic_antagonism",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dobutamine",
+    "drug2": "Propranolol",
+    "category": "pharmacodynamic_antagonism",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Milrinone",
+    "drug2": "Nitroglycerin",
+    "category": "hypotension",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Milrinone",
+    "drug2": "Furosemide",
+    "category": "electrolyte_arrhythmia",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Norepinephrine",
+    "drug2": "Midodrine",
+    "category": "pressor",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_midodrine_desglymidodrine_label",
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_midodrine_desglymidodrine_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Vasopressin",
+    "drug2": "Norepinephrine",
+    "category": "pressor_combination",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Calcium Chloride",
+    "drug2": "Digoxin",
+    "category": "calcium_digoxin",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Calcium Gluconate",
+    "drug2": "Digoxin",
+    "category": "calcium_digoxin",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Magnesium Sulfate",
+    "drug2": "Rocuronium",
+    "category": "neuromuscular_blockade",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cabg_perioperative_medications"
+      ],
+      "studies": [
+        {
+          "id": "ev_cabg_perioperative_medications",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]
