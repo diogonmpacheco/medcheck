@@ -131,8 +131,8 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteId:"solanidine",
     metaboliteName:"Solanidine",
     enzyme:"CYP2D6",
-    note:"Diet-derived biomarker: solanidine concentration rises sharply when CYP2D6 activity is absent. This is exposure/phenotyping context, not a dietary toxicity threshold.",
-    evidenceRefs:["ev_solanidine_cyp2d6_hellden2024"],
+    note:"Diet-derived biomarker: solanidine concentration rises sharply when CYP2D6 activity is absent. This is exposure/phenotyping context, not a dietary toxicity threshold. Acute potato glycoalkaloid toxicity depends more on total α-solanine/α-chaconine exposure, greening/sprouting/peel burden, GI effects, and cholinesterase/membrane toxicity.",
+    evidenceRefs:["ev_solanidine_cyp2d6_hellden2024","ev_potato_glycoalkaloid_human_pk_mensinga2005","ev_potato_glycoalkaloid_efsa_2020"],
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { fold:18.9, direction:"increase", label:"+1887% plasma solanidine vs NM" },
       [GENOTYPE_PHENOTYPE.IM]: { fold:1.74, direction:"increase", label:"+74% plasma solanidine vs NM" },
@@ -152,6 +152,21 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"reduced 4-OH/SSDA formation; interpret parent/metabolite ratios cautiously" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline metabolite formation" },
       [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher metabolite/parent ratio expected; parent solanidine may be lower" },
+    }
+  },
+  {
+    parent:"Potatoes (Solanine/Solanidine)",
+    metaboliteId:"potato-glycoalkaloid-exposure-context",
+    metaboliteName:"α-Solanine/α-Chaconine exposure context",
+    enzyme:"CYP2D6",
+    systemic:true,
+    note:"This card separates food-toxicology exposure from CYP2D6 biomarker biology. Green/sprouted/peel-heavy potatoes and cultivar/storage differences can raise total glycoalkaloid burden; α-chaconine and α-solanine have GI membrane and cholinesterase-linked toxicity mechanisms. Genotype does not convert ordinary potatoes into a medication-like contraindication.",
+    evidenceRefs:["ev_potato_glycoalkaloid_human_pk_mensinga2005","ev_potato_glycoalkaloid_efsa_2020","ev_potato_glycoalkaloid_toxicology_review_1990"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"CYP2D6 PM/null: solanidine biomarker may accumulate, but total glycoalkaloid dose drives acute toxicity risk" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate CYP2D6: biomarker interpretation changes; exposure context still dominates" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 biomarker context; avoid high glycoalkaloid exposure regardless of genotype" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"higher CYP2D6 activity may lower solanidine biomarker, but does not remove food-toxicology exposure risk" },
     }
   },
   {

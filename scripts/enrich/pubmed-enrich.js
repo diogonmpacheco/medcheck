@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Multi-index enrichment draft generator.
-// Stores citations + paraphrased extracted findings only; never article text.
+// Stores citations + paraphrased public factual findings only; never article text.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { createHash } from 'crypto';
@@ -67,6 +67,10 @@ Options:
   --oa          Discover legal open-access locations via provider metadata + Unpaywall for DOI records.
   --oa-email    Email for Unpaywall. Falls back to --mailto or --email.
   --self-test   Run offline guardrail tests; no network.
+
+Policy:
+  Public abstracts, DOI metadata, labels, and guideline pages can support paraphrased qualitative facts even when full text is paywalled.
+  Full text is only needed for precision upgrades such as protected tables, figures, detailed subgroup values, or claims not visible in public sources.
 `;
 }
 
@@ -548,6 +552,9 @@ function makeDraft(article, args) {
   const tier = tierFromArticle(article);
   const extraction = extractQuantifiedEffects(article.abstract, args.relation);
   const doiUrl = article.doi ? ensureAllowedOutputUrl(`https://doi.org/${article.doi}`) : null;
+  const sourceBasis = article.abstract
+    ? 'public_abstract_or_metadata'
+    : 'public_citation_metadata';
   return {
     id: draftId(article, args.relation),
     _status: 'pending_review',
@@ -566,9 +573,14 @@ function makeDraft(article, args) {
     temporal: {},
     supports: (args.supports || '').split(',').map(s => s.trim()).filter(Boolean),
     contradicts: [],
-    limitations: extraction.hasNumber ? ['Abstract-level extraction only; requires human review before promotion'] : ['No abstract-extractable quantitative value'],
+    limitations: extraction.hasNumber
+      ? ['Public abstract/metadata extraction only; requires human review before promotion']
+      : ['Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation'],
     confidence: extraction.hasNumber ? 'moderate' : 'low',
-    needsFullText: !extraction.hasNumber,
+    publicFactsUsable: true,
+    sourceBasis,
+    needsFullText: false,
+    needsFullTextForPrecision: !extraction.hasNumber,
     openAccess: article.oa || normalizeOpenAccess(),
     provenance: article.provenance || 'search:unknown',
     verified: false,
@@ -611,15 +623,15 @@ function writeReport({ relation, query, added, skipped, providerErrors = [] }) {
     `Skipped duplicates: ${skipped.length}`,
     providerErrors.length ? `Provider warnings: ${providerErrors.length}` : null,
     '',
-    '| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Needs full text |',
-    '|---|---|---|---|---|---|---|---|',
+    '| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |',
+    '|---|---|---|---|---|---|---|---|---|',
   ].filter(Boolean);
   for (const draft of added) {
     const id = draft.pmid ? `PMID:${draft.pmid}` : draft.doi ? `DOI:${draft.doi}` : 'identifier missing';
     const oa = draft.openAccess?.isOpenAccess
       ? `[OA](${draft.openAccess.landingUrl || draft.openAccess.pdfUrl || draft.url})${draft.openAccess.status ? ` ${draft.openAccess.status}` : ''}`
       : 'paywalled/unknown';
-    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${oa} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
+    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${oa} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.publicFactsUsable ? 'yes' : 'no'} | ${draft.needsFullTextForPrecision ? 'yes' : 'no'} |`);
   }
   if (skipped.length) {
     lines.push('', 'Skipped:', ...skipped.map(s => `- ${s.reason}: ${s.title}`));

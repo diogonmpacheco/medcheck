@@ -45,6 +45,14 @@ node scripts/enrich/run-batch.js \
   --limit 8
 ```
 
+Public-facts policy:
+
+- Paywalled or unknown-open-access papers are still useful when the abstract, PubMed record, DOI landing page, label, or guideline exposes factual findings.
+- Safe-to-use public facts include identifiers, study design, sample size if public, genotype/drug directionality, public abstract-level effect sizes, broad metabolite relationships, and paraphrased conclusions.
+- Full text is only required for precision upgrades: exact tables, detailed subgroup values, figures, supplementary datasets, or any claim that cannot be supported from public metadata/abstract/label/guideline text.
+- Never copy protected wording, tables, figures, or full abstracts into MedCheck. Store paraphrased findings and citations instead.
+- Drafts from public-only evidence must remain `verified:false` and `reviewRequired:true` until human review.
+
 Guardrails:
 
 - fetches only from `eutils.ncbi.nlm.nih.gov`, `www.ebi.ac.uk`, `api.openalex.org`, `api.semanticscholar.org`, and `api.unpaywall.org`
@@ -52,7 +60,8 @@ Guardrails:
 - never stores full text or verbatim abstracts
 - stores legal open-access metadata only; it does not download PDFs or article full text
 - dedupes by DOI, PMID, and normalized title against live `STUDY_DB` and existing drafts
-- drafts default to `needsFullText:true` and `confidence:"low"` when no abstract-level number is extractable
+- drafts use `sourceBasis:"public_metadata_or_abstract"` and remain eligible for qualitative enrichment even when the article itself is paywalled
+- drafts set `needsFullTextForPrecision:true` only when public sources do not expose enough quantitative detail
 - provider failures are recorded in the report without discarding successful results from other providers
 
 Offline self-test:

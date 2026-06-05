@@ -1067,6 +1067,60 @@ const STUDY_DB = {
     verified:false, reviewRequired:true, verifyNote:"SSDA metabolite enrichment pending pharmacology review"
   },
 
+  "ev_potato_glycoalkaloid_human_pk_mensinga2005": {
+    id:"ev_potato_glycoalkaloid_human_pk_mensinga2005",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Potato glycoalkaloids and adverse effects in humans: an ascending dose study",
+    year:2005, source:"Regulatory Toxicology and Pharmacology", journal:"Regulatory Toxicology and Pharmacology",
+    pmid:"15649828", doi:"10.1016/j.yrtph.2004.09.004",
+    url:"https://doi.org/10.1016/j.yrtph.2004.09.004",
+    studyDesign:"single-dose ascending oral potato glycoalkaloid exposure study in healthy volunteers",
+    n:14,
+    phenotypes:["healthy_volunteers"],
+    quantifiedEffects:{note:"Human volunteer study of orally administered alpha-solanine and alpha-chaconine. It supports separating CYP2D6 solanidine biomarker interpretation from total potato glycoalkaloid dose/toxicity context; reported PK estimates include longer apparent persistence for alpha-chaconine than alpha-solanine."},
+    temporal:{mechanism:"oral_alpha_solanine_alpha_chaconine_food_exposure"},
+    supports:["potato_glycoalkaloid_human_pk_context","alpha_solanine_alpha_chaconine_exposure_context","glycoalkaloid_toxicity_is_exposure_driven"],
+    contradicts:["CYP2D6_genotype_alone_predicts_potato_toxicity"],
+    limitations:["Small healthy-volunteer study","Short sampling window limits half-life certainty","Not CYP2D6 genotype stratified","Food matrix and potato preparation can change exposure"],
+    verified:false, reviewRequired:true, verifyNote:"Potato glycoalkaloid human PK/toxicology enrichment pending toxicology review"
+  },
+
+  "ev_potato_glycoalkaloid_efsa_2020": {
+    id:"ev_potato_glycoalkaloid_efsa_2020",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"Risk assessment of glycoalkaloids in feed and food, in particular in potatoes and potato-derived products",
+    year:2020, source:"EFSA Journal", journal:"EFSA Journal",
+    pmid:null, doi:"10.2903/j.efsa.2020.6222",
+    url:"https://www.efsa.europa.eu/en/efsajournal/pub/6222",
+    studyDesign:"food safety risk assessment",
+    n:null,
+    phenotypes:["general_population"],
+    quantifiedEffects:{note:"EFSA identifies alpha-solanine and alpha-chaconine as the main potato glycoalkaloids for occurrence/risk assessment, frames acute human effects mainly as gastrointestinal/systemic toxicity after high exposure, and notes exposure varies with potato part, greening, sprouting, cultivar, storage, and processing."},
+    temporal:{mechanism:"total_potato_glycoalkaloid_exposure"},
+    supports:["potato_glycoalkaloid_exposure_variability_context","alpha_solanine_alpha_chaconine_food_toxicology_context","green_sprouted_peel_heavy_potato_high_exposure_context"],
+    contradicts:["ordinary_potatoes_are_a_genotype_specific_medication_contraindication"],
+    limitations:["Food safety risk assessment, not a pharmacogenetic dosing guideline","Does not quantify CYP2D6-specific risk"],
+    verified:false, reviewRequired:true, verifyNote:"EFSA potato glycoalkaloid context pending toxicology review"
+  },
+
+  "ev_potato_glycoalkaloid_toxicology_review_1990": {
+    id:"ev_potato_glycoalkaloid_toxicology_review_1990",
+    type:EVIDENCE_TIER.REVIEW,
+    title:"Solanine (glycoalkaloids) in potatoes: toxicological evaluation",
+    year:1990, source:"Food and Chemical Toxicology", journal:"Food and Chemical Toxicology",
+    pmid:"2272548", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/2272548/",
+    studyDesign:"toxicological evaluation/review",
+    n:null,
+    phenotypes:["general_population"],
+    quantifiedEffects:{note:"Toxicology review supporting potato glycoalkaloid hazard framing and the need to treat solanine/chaconine exposure as food toxicology rather than a simple parent-drug CYP substrate rule."},
+    temporal:{mechanism:"potato_glycoalkaloid_toxicity_context"},
+    supports:["potato_glycoalkaloid_toxicology_review_context","alpha_solanine_alpha_chaconine_food_toxicology_context"],
+    contradicts:["solanidine_CYP2D6_biomarker_equals_clinical_toxicity_threshold"],
+    limitations:["Older narrative toxicological evaluation","Not genotype stratified","Does not provide modern individualized pharmacogenetic thresholds"],
+    verified:false, reviewRequired:true, verifyNote:"Older potato glycoalkaloid toxicology review pending toxicology review"
+  },
+
   "ev_cruciferous_isothiocyanate_gstm1_2005": {
     id:"ev_cruciferous_isothiocyanate_gstm1_2005",
     type:EVIDENCE_TIER.CLINICAL_PK,

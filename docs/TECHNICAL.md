@@ -84,6 +84,8 @@ Important evidence helpers:
 
 Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer.
 
+Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means MedCheck should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
+
 ## Enzyme Capacity Model
 
 `computeEnzymeCapacity(enzyme, stack)` calculates net enzymatic capacity:

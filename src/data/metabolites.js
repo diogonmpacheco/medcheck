@@ -162,10 +162,12 @@ const METAB = {
   {n:"4'-Hydroxy-CBD",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Potatoes (Solanine/Solanidine)":[
-  {n:"Solanidine (α-solanine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate and diet-derived CYP2D6 activity biomarker. Clinical DDI burden remains theoretical.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001","ev_solanidine_cyp2d6_hellden2024"]},
+  {n:"Solanidine (α-solanine/α-chaconine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate and diet-derived CYP2D6 activity biomarker. CYP2D6 null status changes biomarker exposure, but food toxicity depends mostly on total glycoalkaloid dose and exposure context.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001","ev_solanidine_cyp2d6_hellden2024","ev_potato_glycoalkaloid_human_pk_mensinga2005"]},
   {n:"4-OH-solanidine",e:"CYP2D6",a:"inactive",p:25,t:8,note:"CYP2D6-formed solanidine metabolite. Metabolite/parent ratio falls sharply with strong CYP2D6 inhibition and likely CYP2D6 null function.",evidenceRefs:["ev_solanidine_metabolites_tamoxifen_2024"]},
   {n:"3,4-seco-solanidine-3,4-dioic acid (SSDA)",e:"CYP2D6",a:"inactive",p:15,t:12,note:"Urinary/plasma solanidine-derived downstream oxidation biomarker. SSDA/solanidine ratio is a sensitive CYP2D6 activity signal.",evidenceRefs:["ev_solanidine_metabolites_tamoxifen_2024","ev_solanidine_ssda_tay2022"]},
-  {n:"α-Solanine / α-Chaconine",e:"Dietary glycoalkaloids",a:"active",p:40,note:"Potato glycoalkaloids; cholinesterase inhibition shown in vitro.",evidenceRefs:["ev_solanidine_ache_griffin1995"]}
+  {n:"α-Solanine",e:"Dietary glycoalkaloid",a:"active",p:35,t:11,note:"Parent potato glycoalkaloid. Human volunteer and EFSA review data support GI/systemic toxicity framing at high exposure; apparent half-life is roughly 11 h but estimates are limited by short sampling windows.",evidenceRefs:["ev_potato_glycoalkaloid_human_pk_mensinga2005","ev_potato_glycoalkaloid_efsa_2020"]},
+  {n:"α-Chaconine",e:"Dietary glycoalkaloid",a:"active",p:45,t:19,note:"Major potato glycoalkaloid often exceeding α-solanine. It shares the solanidine aglycone and is important for combined potato glycoalkaloid toxicity/exposure review; apparent half-life is roughly 19 h in the human volunteer study.",evidenceRefs:["ev_potato_glycoalkaloid_human_pk_mensinga2005","ev_potato_glycoalkaloid_efsa_2020"]},
+  {n:"α-Solanine + α-Chaconine membrane/cholinesterase toxicity context",e:"Dietary glycoalkaloids",a:"toxic",p:50,note:"Food-toxicology effect layer: GI membrane disruption and cholinesterase inhibition are more relevant to acute glycoalkaloid toxicity than CYP2D6 biomarker changes alone.",evidenceRefs:["ev_solanidine_ache_griffin1995","ev_potato_glycoalkaloid_toxicology_review_1990","ev_potato_glycoalkaloid_efsa_2020"]}
 ],
 "Cruciferous Vegetables (Isothiocyanates)":[
   {n:"Sulforaphane",e:"Myrosinase / gut microbiome",a:"active",p:45,t:2,note:"Bioactive isothiocyanate formed from glucoraphanin; GST-mediated mercapturic acid pathway controls elimination and exposure duration.",evidenceRefs:["ev_cruciferous_isothiocyanate_gstm1_2005","ev_watercress_itc_gst_2009"]},
@@ -4701,6 +4703,8 @@ function isMetaboliteActive(metabolite) {
 const METABOLITE_ACTOR_ALIASES = {
   "solanidine-a-solanine-aglycone": "solanidine",
   "solanidine-solanine-aglycone": "solanidine",
+  "solanidine-solanine-chaconine-aglycone": "solanidine",
+  "solanidine-a-solanine-a-chaconine-aglycone": "solanidine",
   "hydroxybupropion-r-r-oh-bupropion": "hydroxybupropion",
   "o-desmethyltramadol-m1": "o-desmethyltramadol",
   "endoxifen-4-oh-n-desmethyltamoxifen": "endoxifen",
