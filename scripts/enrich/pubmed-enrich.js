@@ -18,6 +18,7 @@ const ALLOWED_FETCH_HOSTS = new Set([
   'www.ebi.ac.uk',
   'api.openalex.org',
   'api.semanticscholar.org',
+  'api.unpaywall.org',
 ]);
 const ALLOWED_OUTPUT_HOSTS = new Set([
   'pubmed.ncbi.nlm.nih.gov',
@@ -28,6 +29,13 @@ const ALLOWED_OUTPUT_HOSTS = new Set([
   'openalex.org',
   'www.semanticscholar.org',
 ]);
+const BLOCKED_OUTPUT_HOST_PATTERNS = [
+  /(^|\.)sci-hub\./i,
+  /(^|\.)scihub\./i,
+  /(^|\.)libgen\./i,
+  /(^|\.)z-lib\./i,
+  /(^|\.)zlibrary\./i,
+];
 
 const TYPE = {
   IN_VITRO: 'in_vitro',
@@ -56,13 +64,15 @@ Options:
   --mailto      Optional polite-pool email for OpenAlex.
   --api-key     Optional NCBI API key.
   --semantic-scholar-key Optional Semantic Scholar API key.
+  --oa          Discover legal open-access locations via provider metadata + Unpaywall for DOI records.
+  --oa-email    Email for Unpaywall. Falls back to --mailto or --email.
   --self-test   Run offline guardrail tests; no network.
 `;
 }
 
 function parseArgs(argv) {
   const args = {};
-  const booleanArgs = new Set(['self-test', 'help', 'expand-citations']);
+  const booleanArgs = new Set(['self-test', 'help', 'expand-citations', 'oa']);
   for (let i = 0; i < argv.length; i++) {
     const token = argv[i];
     if (!token.startsWith('--')) continue;
@@ -85,6 +95,18 @@ function ensureAllowedOutputUrl(url) {
   const host = new URL(url).hostname;
   if (!ALLOWED_OUTPUT_HOSTS.has(host)) {
     throw new Error(`Refusing non-allowlisted output URL: ${host}`);
+  }
+  return url;
+}
+
+function ensureSafeExternalOutputUrl(url) {
+  if (!url) return null;
+  const parsed = new URL(url);
+  if (!['https:', 'http:'].includes(parsed.protocol)) {
+    throw new Error(`Refusing non-web output URL: ${url}`);
+  }
+  if (BLOCKED_OUTPUT_HOST_PATTERNS.some(pattern => pattern.test(parsed.hostname))) {
+    throw new Error(`Refusing blocked output URL host: ${parsed.hostname}`);
   }
   return url;
 }
@@ -286,8 +308,23 @@ function normalizeArticle(article) {
     pubTypes: article.pubTypes || [],
     abstract: article.abstract || '',
     url: ensureAllowedOutputUrl(url),
+    oa: normalizeOpenAccess(article.oa),
     provenance: article.provenance,
     providerId: article.providerId || null,
+  };
+}
+
+function normalizeOpenAccess(oa = {}) {
+  const landingUrl = oa.landingUrl || oa.oaUrl || oa.url || null;
+  const pdfUrl = oa.pdfUrl || null;
+  return {
+    isOpenAccess: Boolean(oa.isOpenAccess || oa.is_oa || landingUrl || pdfUrl),
+    status: oa.status || oa.oa_status || null,
+    source: oa.source || null,
+    license: oa.license || null,
+    landingUrl: landingUrl ? ensureSafeExternalOutputUrl(landingUrl) : null,
+    pdfUrl: pdfUrl ? ensureSafeExternalOutputUrl(pdfUrl) : null,
+    evidence: oa.evidence || null,
   };
 }
 
@@ -309,6 +346,14 @@ async function searchEuropePmc(query, args) {
     pubTypes: row.pubTypeList?.pubType || [],
     abstract: row.abstractText || '',
     url: row.doi ? `https://doi.org/${row.doi}` : row.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${row.pmid}/` : `https://europepmc.org/article/${row.source || 'MED'}/${row.id}`,
+    oa: {
+      isOpenAccess: row.isOpenAccess === 'Y' || row.inEPMC === 'Y' || row.hasPDF === 'Y',
+      status: row.isOpenAccess === 'Y' ? 'oa' : null,
+      source: 'europepmc',
+      landingUrl: row.pmcid ? `https://pmc.ncbi.nlm.nih.gov/articles/${row.pmcid}/` : null,
+      pdfUrl: null,
+      evidence: row.hasPDF === 'Y' ? 'Europe PMC reports PDF availability' : null,
+    },
     provenance: 'search:europepmc',
     providerId: row.id,
   }));
@@ -332,6 +377,14 @@ async function searchOpenAlex(query, args) {
     pubTypes: [row.type, row.type_crossref].filter(Boolean),
     abstract: reconstructOpenAlexAbstract(row.abstract_inverted_index),
     url: row.doi || row.id,
+    oa: {
+      isOpenAccess: row.open_access?.is_oa || false,
+      status: row.open_access?.oa_status || null,
+      source: row.open_access?.oa_url ? 'openalex' : null,
+      landingUrl: row.open_access?.oa_url || row.primary_location?.landing_page_url || null,
+      pdfUrl: row.primary_location?.pdf_url || row.best_oa_location?.pdf_url || null,
+      license: row.primary_location?.license || row.best_oa_location?.license || null,
+    },
     provenance: 'search:openalex',
     providerId: row.id,
   }));
@@ -341,7 +394,7 @@ async function searchSemanticScholar(query, args) {
   const params = new URLSearchParams({
     query,
     limit: String(Number(args.limit || 10)),
-    fields: 'paperId,title,year,venue,authors,abstract,externalIds,publicationTypes,citationCount',
+    fields: 'paperId,title,year,venue,authors,abstract,externalIds,publicationTypes,citationCount,isOpenAccess,openAccessPdf',
   });
   const headers = providerHeaders('semanticscholar', args);
   const data = await fetchProviderJson(`https://api.semanticscholar.org/graph/v1/paper/search?${params}`, headers);
@@ -368,6 +421,13 @@ function semanticScholarArticle(row, provenance) {
     pubTypes: row.publicationTypes || [],
     abstract: row.abstract || '',
     url: row.url || (external.DOI ? `https://doi.org/${external.DOI}` : `https://www.semanticscholar.org/paper/${row.paperId}`),
+    oa: {
+      isOpenAccess: row.isOpenAccess || false,
+      status: row.isOpenAccess ? 'oa' : null,
+      source: row.openAccessPdf?.url ? 'semanticscholar' : null,
+      landingUrl: row.openAccessPdf?.url || null,
+      pdfUrl: row.openAccessPdf?.url || null,
+    },
     provenance,
     providerId: row.paperId,
   });
@@ -375,8 +435,8 @@ function semanticScholarArticle(row, provenance) {
 
 async function fetchSemanticScholarEdges(paperId, edgeType, headers) {
   const fields = edgeType === 'citations'
-    ? 'citingPaper.paperId,citingPaper.title,citingPaper.year,citingPaper.venue,citingPaper.authors,citingPaper.abstract,citingPaper.externalIds,citingPaper.publicationTypes'
-    : 'citedPaper.paperId,citedPaper.title,citedPaper.year,citedPaper.venue,citedPaper.authors,citedPaper.abstract,citedPaper.externalIds,citedPaper.publicationTypes';
+    ? 'citingPaper.paperId,citingPaper.title,citingPaper.year,citingPaper.venue,citingPaper.authors,citingPaper.abstract,citingPaper.externalIds,citingPaper.publicationTypes,citingPaper.isOpenAccess,citingPaper.openAccessPdf'
+    : 'citedPaper.paperId,citedPaper.title,citedPaper.year,citedPaper.venue,citedPaper.authors,citedPaper.abstract,citedPaper.externalIds,citedPaper.publicationTypes,citedPaper.isOpenAccess,citedPaper.openAccessPdf';
   const params = new URLSearchParams({ limit: '20', fields });
   const data = await fetchProviderJson(`https://api.semanticscholar.org/graph/v1/paper/${paperId}/${edgeType}?${params}`, headers);
   const key = edgeType === 'citations' ? 'citingPaper' : 'citedPaper';
@@ -384,6 +444,44 @@ async function fetchSemanticScholarEdges(paperId, edgeType, headers) {
     .map(edge => edge[key])
     .filter(Boolean)
     .map(row => semanticScholarArticle(row, `citation-graph:semanticscholar:${edgeType}`));
+}
+
+async function enrichOpenAccess(articles, args) {
+  if (!args.oa) return articles;
+  const email = args['oa-email'] || args.mailto || args.email;
+  if (!email) {
+    console.warn('Open-access discovery skipped: --oa requires --oa-email, --mailto, or --email for Unpaywall.');
+    return articles;
+  }
+  const enriched = [];
+  for (const article of articles) {
+    const existing = normalizeOpenAccess(article.oa);
+    if (!article.doi || existing.isOpenAccess) {
+      enriched.push({ ...article, oa: existing });
+      continue;
+    }
+    try {
+      const params = new URLSearchParams({ email });
+      const doi = encodeURIComponent(article.doi);
+      const data = await fetchProviderJson(`https://api.unpaywall.org/v2/${doi}?${params}`);
+      const best = data.best_oa_location || {};
+      enriched.push({
+        ...article,
+        oa: normalizeOpenAccess({
+          isOpenAccess: data.is_oa || false,
+          status: data.oa_status || null,
+          source: best.host_type ? `unpaywall:${best.host_type}` : 'unpaywall',
+          landingUrl: best.url_for_landing_page || data.oa_locations?.[0]?.url_for_landing_page || null,
+          pdfUrl: best.url_for_pdf || null,
+          license: best.license || null,
+          evidence: best.evidence || null,
+        }),
+      });
+    } catch (err) {
+      enriched.push({ ...article, oa: { ...existing, error: err.message } });
+    }
+  }
+  return enriched;
 }
 
 async function searchProvider(provider, query, args) {
@@ -471,6 +569,7 @@ function makeDraft(article, args) {
     limitations: extraction.hasNumber ? ['Abstract-level extraction only; requires human review before promotion'] : ['No abstract-extractable quantitative value'],
     confidence: extraction.hasNumber ? 'moderate' : 'low',
     needsFullText: !extraction.hasNumber,
+    openAccess: article.oa || normalizeOpenAccess(),
     provenance: article.provenance || 'search:unknown',
     verified: false,
     verifyNote: 'Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion',
@@ -512,12 +611,15 @@ function writeReport({ relation, query, added, skipped, providerErrors = [] }) {
     `Skipped duplicates: ${skipped.length}`,
     providerErrors.length ? `Provider warnings: ${providerErrors.length}` : null,
     '',
-    '| Draft | Tier | PMID/DOI | Provenance | Finding | Confidence | Needs full text |',
-    '|---|---|---|---|---|---|---|',
+    '| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Needs full text |',
+    '|---|---|---|---|---|---|---|---|',
   ].filter(Boolean);
   for (const draft of added) {
     const id = draft.pmid ? `PMID:${draft.pmid}` : draft.doi ? `DOI:${draft.doi}` : 'identifier missing';
-    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
+    const oa = draft.openAccess?.isOpenAccess
+      ? `[OA](${draft.openAccess.landingUrl || draft.openAccess.pdfUrl || draft.url})${draft.openAccess.status ? ` ${draft.openAccess.status}` : ''}`
+      : 'paywalled/unknown';
+    lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${oa} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
   }
   if (skipped.length) {
     lines.push('', 'Skipped:', ...skipped.map(s => `- ${s.reason}: ${s.title}`));
@@ -540,7 +642,15 @@ function selfTest() {
     'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=test',
     'https://api.openalex.org/works?search=test',
     'https://api.semanticscholar.org/graph/v1/paper/search?query=test',
+    'https://api.unpaywall.org/v2/10.1000/test?email=test@example.com',
   ]) ensureAllowedFetch(allowed);
+  let blockedOutput = false;
+  try {
+    ensureSafeExternalOutputUrl('https://sci-hub.se/example.pdf');
+  } catch {
+    blockedOutput = true;
+  }
+  if (!blockedOutput) throw new Error('Blocked output URL self-test failed');
   const extraction = extractQuantifiedEffects('Drug exposure AUC increased 2.4-fold and clearance decreased 40% in 12 subjects.', 'test');
   if (extraction.effects.aucFold !== 2.4 || extraction.effects.clearanceReductionPct !== 40 || extraction.n !== 12) {
     throw new Error('Extraction self-test failed');
@@ -579,7 +689,8 @@ async function main() {
   if (!articles.length && providerErrors.length) {
     throw new Error(`All providers failed for query: ${query}`);
   }
-  const candidates = articles.map(article => makeDraft(article, { ...args, relation }));
+  const articlesWithOpenAccess = await enrichOpenAccess(articles, args);
+  const candidates = articlesWithOpenAccess.map(article => makeDraft(article, { ...args, relation }));
   const { kept, skipped } = dedupeDrafts(candidates, liveData, existingDrafts);
   saveDrafts([...existingDrafts, ...kept]);
   writeReport({ relation, query, added: kept, skipped, providerErrors });

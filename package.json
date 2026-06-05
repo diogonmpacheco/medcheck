@@ -12,6 +12,7 @@
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
     "enrich:pubmed": "node scripts/enrich/pubmed-enrich.js --providers pubmed",
+    "enrich:batch": "node scripts/enrich/run-batch.js",
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
     "build": "node build.js",
     "build:min": "node build.js --minify",

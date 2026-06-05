@@ -2477,5 +2477,3334 @@
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
     "_createdAt": "2026-05-31T09:25:22.924Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_sahasrabudhesa2022_36056771",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Physiologically-Based Pharmacokinetic Model Development, Validation, and Application for Prediction of Eliglustat Drug-Drug Interactions.",
+    "year": 2022,
+    "source": "Clin Pharmacol Ther",
+    "journal": "Clin Pharmacol Ther",
+    "pmid": "36056771",
+    "doi": "10.1002/cpt.2738",
+    "url": "https://doi.org/10.1002/cpt.2738",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9828395/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.245Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_asiimweig2022_36353710",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Drug-Drug-Gene Interactions in Cardiovascular Medicine.",
+    "year": 2022,
+    "source": "Pharmgenomics Pers Med",
+    "journal": "Pharmgenomics Pers Med",
+    "pmid": "36353710",
+    "doi": "10.2147/pgpm.s338601",
+    "url": "https://doi.org/10.2147/pgpm.s338601",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9639705/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.246Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_vul2020_31993325",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Effects of paroxetine, ketoconazole, and rifampin on the metabolism of eliglustat, an oral substrate reduction therapy for Gaucher disease type 1.",
+    "year": 2020,
+    "source": "Mol Genet Metab Rep",
+    "journal": "Mol Genet Metab Rep",
+    "pmid": "31993325",
+    "doi": "10.1016/j.ymgmr.2019.100552",
+    "url": "https://doi.org/10.1016/j.ymgmr.2019.100552",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6976987/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.246Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_bennettll2015_26345314",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Eliglustat tartrate for the treatment of adults with type 1 Gaucher disease.",
+    "year": 2015,
+    "source": "Drug Des Devel Ther",
+    "journal": "Drug Des Devel Ther",
+    "pmid": "26345314",
+    "doi": "10.2147/dddt.s77760",
+    "url": "https://doi.org/10.2147/dddt.s77760",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4554398/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.246Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_unknown2024_null",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "EHA2024 Hybrid Congress",
+    "year": 2024,
+    "source": "Hemasphere",
+    "journal": "Hemasphere",
+    "pmid": null,
+    "doi": null,
+    "url": "https://europepmc.org/article/PMC/PMC11177578",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": null,
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11177578/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.246Z"
+  },
+  {
+    "id": "draft_eliglustat_cyp2d6_cyp3a4_eap2021_33977870",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants",
+    "year": 2021,
+    "source": "The World Journal of Biological Psychiatry",
+    "journal": "The World Journal of Biological Psychiatry",
+    "pmid": "33977870",
+    "doi": "10.1080/15622975.2021.1878427",
+    "url": "https://doi.org/10.1080/15622975.2021.1878427",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to eliglustat:CYP2D6_CYP3A4, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "eliglustat_CYP2D6_CYP3A4_exposure_context",
+      "eliglustat_conduction_QT_review"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.tandfonline.com/doi/pdf/10.1080/15622975.2021.1878427?needAccess=true",
+      "pdfUrl": "https://www.tandfonline.com/doi/pdf/10.1080/15622975.2021.1878427?needAccess=true",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:24.247Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_desta1999_9951426",
+    "_status": "pending_review",
+    "type": "rct",
+    "title": "Effect of clarithromycin on the pharmacokinetics and pharmacodynamics of pimozide in healthy poor and extensive metabolizers of cytochrome P450 2D6 (CYP2D6).",
+    "year": 1999,
+    "source": "Clinical pharmacology and therapeutics",
+    "journal": "Clinical pharmacology and therapeutics",
+    "pmid": "9951426",
+    "doi": "10.1016/S0009-9236(99)70117-7",
+    "url": "https://doi.org/10.1016/S0009-9236(99)70117-7",
+    "studyDesign": "randomized_controlled_trial",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": "closed",
+      "source": "unpaywall",
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.585Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_baldaccia2023_38004520",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "Pharmacogenetic Guidelines for Psychotropic Drugs: Optimizing Prescriptions in Clinical Practice.",
+    "year": 2023,
+    "source": "Pharmaceutics",
+    "journal": "Pharmaceutics",
+    "pmid": "38004520",
+    "doi": "10.3390/pharmaceutics15112540",
+    "url": "https://doi.org/10.3390/pharmaceutics15112540",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10674305/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_korkattipuoskarin2023_37495836",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Therapeutic dilemma's: antipsychotics use for neuropsychiatric symptoms of dementia, delirium and insomnia and risk of falling in older adults, a clinical review.",
+    "year": 2023,
+    "source": "Eur Geriatr Med",
+    "journal": "Eur Geriatr Med",
+    "pmid": "37495836",
+    "doi": "10.1007/s41999-023-00837-3",
+    "url": "https://doi.org/10.1007/s41999-023-00837-3",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10447285/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_stelmacha2023_36526889",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Antipsychotic drug-aripiprazole against schizophrenia, its therapeutic and metabolic effects associated with gene polymorphisms.",
+    "year": 2023,
+    "source": "Pharmacol Rep",
+    "journal": "Pharmacol Rep",
+    "pmid": "36526889",
+    "doi": "10.1007/s43440-022-00440-6",
+    "url": "https://doi.org/10.1007/s43440-022-00440-6",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9889418/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_czyrskia2021_34834376",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "The Overview on the Pharmacokinetic and Pharmacodynamic Interactions of Triazoles.",
+    "year": 2021,
+    "source": "Pharmaceutics",
+    "journal": "Pharmaceutics",
+    "pmid": "34834376",
+    "doi": "10.3390/pharmaceutics13111961",
+    "url": "https://doi.org/10.3390/pharmaceutics13111961",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8620887/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_shah2002_12207642",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "The significance of QT interval in drug development",
+    "year": 2002,
+    "source": "British Journal of Clinical Pharmacology",
+    "journal": "British Journal of Clinical Pharmacology",
+    "pmid": "12207642",
+    "doi": "10.1046/j.1365-2125.2002.01627.x",
+    "url": "https://doi.org/10.1046/j.1365-2125.2002.01627.x",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1046/j.1365-2125.2002.01627.x",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1046/j.1365-2125.2002.01627.x",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_pinto2011_21453273",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Clinically Relevant Genetic Variations in Drug Metabolizing Enzymes",
+    "year": 2011,
+    "source": "Current Drug Metabolism",
+    "journal": "Current Drug Metabolism",
+    "pmid": "21453273",
+    "doi": "10.2174/138920011795495321",
+    "url": "https://doi.org/10.2174/138920011795495321",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://www.eurekaselect.com/article/17806",
+      "pdfUrl": "http://www.eurekaselect.com/article/17806",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_obrien2009_19878641",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Chronic Myelogenous Leukemia",
+    "year": 2009,
+    "source": "Journal of the National Comprehensive Cancer Network",
+    "journal": "Journal of the National Comprehensive Cancer Network",
+    "pmid": "19878641",
+    "doi": "10.6004/jnccn.2009.0065",
+    "url": "https://doi.org/10.6004/jnccn.2009.0065",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://jnccn.org/downloadpdf/view/journals/jnccn/7/9/article-p984.pdf",
+      "pdfUrl": "https://jnccn.org/downloadpdf/view/journals/jnccn/7/9/article-p984.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_mladnka2018_29315692",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Comprehensive review of cardiovascular toxicity of drugs and related agents",
+    "year": 2018,
+    "source": "Medicinal Research Reviews",
+    "journal": "Medicinal Research Reviews",
+    "pmid": "29315692",
+    "doi": "10.1002/med.21476",
+    "url": "https://doi.org/10.1002/med.21476",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/med.21476",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/med.21476",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_pimozide_cyp2d6_cyp3a4_qt_vieweg2003_15213787",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "New Generation Antipsychotic Drugs and QTc Interval Prolongation",
+    "year": 2003,
+    "source": "The Primary Care Companion For CNS Disorders",
+    "journal": "The Primary Care Companion For CNS Disorders",
+    "pmid": "15213787",
+    "doi": "10.4088/pcc.v05n0504",
+    "url": "https://doi.org/10.4088/pcc.v05n0504",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to pimozide:CYP2D6_CYP3A4_QT, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "pimozide_CYP2D6_CYP3A4_QT_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.psychiatrist.com/read-pdf/25014",
+      "pdfUrl": "https://www.psychiatrist.com/read-pdf/25014",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:26.586Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_chaoyang2022_35620290",
+    "_status": "pending_review",
+    "type": "meta_analysis",
+    "title": "Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials.",
+    "year": 2022,
+    "source": "Frontiers in pharmacology",
+    "journal": "Frontiers in pharmacology",
+    "pmid": "35620290",
+    "doi": "10.3389/fphar.2022.824232",
+    "url": "https://doi.org/10.3389/fphar.2022.824232",
+    "studyDesign": "meta_analysis_or_systematic_review",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "unpaywall:publisher",
+      "license": "cc-by",
+      "landingUrl": "https://doi.org/10.3389/fphar.2022.824232",
+      "pdfUrl": null,
+      "evidence": "deprecated"
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.202Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_gardin2020_31392364",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Siponimod pharmacokinetics, safety, and tolerability in combination with the potent CYP3A4 inhibitor itraconazole in healthy subjects with different CYP2C9 genotypes.",
+    "year": 2020,
+    "source": "European journal of clinical pharmacology",
+    "journal": "European journal of clinical pharmacology",
+    "pmid": "31392364",
+    "doi": "10.1007/s00228-019-02729-7",
+    "url": "https://doi.org/10.1007/s00228-019-02729-7",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no supported quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": "closed",
+      "source": "unpaywall",
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.203Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_kimjd2026_41556627",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Efavirenz and CYP2C9 Genetic Polymorphisms Reduce CYP2C9 Activity in Healthy Participants.",
+    "year": 2026,
+    "source": "Clin Transl Sci",
+    "journal": "Clin Transl Sci",
+    "pmid": "41556627",
+    "doi": "10.1111/cts.70476",
+    "url": "https://doi.org/10.1111/cts.70476",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12817472/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.203Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_amstutzu2025_40687883",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Preventing adverse drug reactions and more: current clinical use of pharmacogenetic testing.",
+    "year": 2025,
+    "source": "Med Genet",
+    "journal": "Med Genet",
+    "pmid": "40687883",
+    "doi": "10.1515/medgen-2025-2019",
+    "url": "https://doi.org/10.1515/medgen-2025-2019",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12268254/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.203Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_courvillej2024_38716900",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Re-discover the value of protein binding assessments in hepatic and renal impairment studies and its contributions in drug labels and dose decisions.",
+    "year": 2024,
+    "source": "Clin Transl Sci",
+    "journal": "Clin Transl Sci",
+    "pmid": "38716900",
+    "doi": "10.1111/cts.13810",
+    "url": "https://doi.org/10.1111/cts.13810",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11077687/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.203Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_gomezmantillajd2023_36752991",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Can Mechanistic Static Models for Drug-Drug Interactions Support Regulatory Filing for Study Waivers and Label Recommendations?",
+    "year": 2023,
+    "source": "Clin Pharmacokinet",
+    "journal": "Clin Pharmacokinet",
+    "pmid": "36752991",
+    "doi": "10.1007/s40262-022-01204-4",
+    "url": "https://doi.org/10.1007/s40262-022-01204-4",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10042977/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.203Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_jin2017_29273968",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "In vitro studies and in silico predictions of fluconazole and CYP2C9 genetic polymorphism impact on siponimod metabolism and pharmacokinetics",
+    "year": 2017,
+    "source": "European Journal of Clinical Pharmacology",
+    "journal": "European Journal of Clinical Pharmacology",
+    "pmid": "29273968",
+    "doi": "10.1007/s00228-017-2404-2",
+    "url": "https://doi.org/10.1007/s00228-017-2404-2",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no supported quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s00228-017-2404-2.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s00228-017-2404-2.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.204Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_shabir2023_37631077",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Chemistry and Pharmacology of Fluorinated Drugs Approved by the FDA (2016–2022)",
+    "year": 2023,
+    "source": "Pharmaceuticals",
+    "journal": "Pharmaceuticals",
+    "pmid": "37631077",
+    "doi": "10.3390/ph16081162",
+    "url": "https://doi.org/10.3390/ph16081162",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/1424-8247/16/8/1162/pdf?version=1692109719",
+      "pdfUrl": "https://www.mdpi.com/1424-8247/16/8/1162/pdf?version=1692109719",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.204Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_glaenzel2018_29735753",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Metabolism and Disposition of Siponimod, a Novel Selective S1P1/S1P5 Agonist, in Healthy Volunteers and In Vitro Identification of Human Cytochrome P450 Enzymes Involved in Its Oxidative Metabolism",
+    "year": 2018,
+    "source": "Drug Metabolism and Disposition",
+    "journal": "Drug Metabolism and Disposition",
+    "pmid": "29735753",
+    "doi": "10.1124/dmd.117.079574",
+    "url": "https://doi.org/10.1124/dmd.117.079574",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://dmd.aspetjournals.org/content/dmd/46/7/1001.full.pdf",
+      "pdfUrl": "https://dmd.aspetjournals.org/content/dmd/46/7/1001.full.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.204Z"
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_huth2019_31199498",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Prediction of the Impact of Cytochrome P450 2C9 Genotypes on the Drug–Drug Interaction Potential of Siponimod With Physiologically‐Based Pharmacokinetic Modeling: A Comprehensive Approach for Drug Label Recommendations",
+    "year": 2019,
+    "source": "Clinical Pharmacology & Therapeutics",
+    "journal": "Clinical Pharmacology & Therapeutics",
+    "pmid": "31199498",
+    "doi": "10.1002/cpt.1547",
+    "url": "https://doi.org/10.1002/cpt.1547",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by-nc-nd",
+      "landingUrl": "https://ascpt.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.1547",
+      "pdfUrl": "https://ascpt.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.1547",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:29.204Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_zhull2025_40980418",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "CYP2C8-Mediated Drug-Drug Interactions and the Factors Influencing the Interaction Magnitude.",
+    "year": 2025,
+    "source": "Drug Des Devel Ther",
+    "journal": "Drug Des Devel Ther",
+    "pmid": "40980418",
+    "doi": "10.2147/dddt.s541536",
+    "url": "https://doi.org/10.2147/dddt.s541536",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to repaglinide:CYP2C8_SLCO1B1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12450030/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.505Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_aurinsalol2025_39982209",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "A Phenotyping Tool for Seven Cytochrome P450 Enzymes and Two Transporters: Application to Examine the Effects of Clopidogrel and Gemfibrozil.",
+    "year": 2025,
+    "source": "Clin Pharmacol Ther",
+    "journal": "Clin Pharmacol Ther",
+    "pmid": "39982209",
+    "doi": "10.1002/cpt.3610",
+    "url": "https://doi.org/10.1002/cpt.3610",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to repaglinide:CYP2C8_SLCO1B1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12087695/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.506Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_hernndezlorcam2025_41011221",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Dietary Modulation of CYP3A4 and Its Impact on Statins and Antidiabetic Drugs: A Narrative Review.",
+    "year": 2025,
+    "source": "Pharmaceuticals (Basel)",
+    "journal": "Pharmaceuticals (Basel)",
+    "pmid": "41011221",
+    "doi": "10.3390/ph18091351",
+    "url": "https://doi.org/10.3390/ph18091351",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to repaglinide:CYP2C8_SLCO1B1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12472979/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.506Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_unknown2022_null",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)",
+    "year": 2022,
+    "source": "Eur J Clin Pharmacol",
+    "journal": "Eur J Clin Pharmacol",
+    "pmid": null,
+    "doi": null,
+    "url": "https://europepmc.org/article/PMC/PMC9170876",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to repaglinide:CYP2C8_SLCO1B1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9170876/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.506Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_itkonen2019_null",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Clinical studies on pharmacokinetic drug-drug interactions caused by clopidogrel : focus on CYP2C8-mediated drug metabolism",
+    "year": 2019,
+    "source": "Työväentutkimus Vuosikirja",
+    "journal": "Työväentutkimus Vuosikirja",
+    "pmid": null,
+    "doi": null,
+    "url": "https://openalex.org/W2991617859",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "aucFold": 5,
+      "note": "Abstract-level extraction for repaglinide:CYP2C8_SLCO1B1 reports approximately 5-fold exposure change."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Abstract-level extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "needsFullText": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://hdl.handle.net/10138/306961",
+      "pdfUrl": "http://hdl.handle.net/10138/306961",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.507Z"
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_karonen2012_null",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "Pharmacokinetics of montelukast and zafirlukast as affected by CYP inhibitors",
+    "year": 2012,
+    "source": "Työväentutkimus Vuosikirja",
+    "journal": "Työväentutkimus Vuosikirja",
+    "pmid": null,
+    "doi": null,
+    "url": "https://openalex.org/W2626833015",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to repaglinide:CYP2C8_SLCO1B1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://hdl.handle.net/10138/37631",
+      "pdfUrl": "http://hdl.handle.net/10138/37631",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:30.507Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_liy2024_38071551",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Vincristine Disposition and Neurotoxicity Are Unchanged in Humanized CYP3A5 Mice.",
+    "year": 2024,
+    "source": "Drug Metab Dispos",
+    "journal": "Drug Metab Dispos",
+    "pmid": "38071551",
+    "doi": "10.1124/dmd.123.001466",
+    "url": "https://doi.org/10.1124/dmd.123.001466",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": null,
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10801630/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.015Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_zhangd2024_38645702",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Severe Vincristine-Induced Peripheral Neuropathic Weakness in Both Lower Limbs in an Asian Adolescent with <i>CYP3A4</i> rs2740574 TT Genotype.",
+    "year": 2024,
+    "source": "Pharmgenomics Pers Med",
+    "journal": "Pharmgenomics Pers Med",
+    "pmid": "38645702",
+    "doi": "10.2147/pgpm.s460878",
+    "url": "https://doi.org/10.2147/pgpm.s460878",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11032159/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_yangqy2021_34955843",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Vincristine-Induced Peripheral Neuropathy in Childhood Acute Lymphoblastic Leukemia: Genetic Variation as a Potential Risk Factor.",
+    "year": 2021,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "34955843",
+    "doi": "10.3389/fphar.2021.771487",
+    "url": "https://doi.org/10.3389/fphar.2021.771487",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8696478/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_triaricos2021_33923421",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Vincristine-Induced Peripheral Neuropathy (VIPN) in Pediatric Tumors: Mechanisms, Risk Factors, Strategies of Prevention and Treatment.",
+    "year": 2021,
+    "source": "Int J Mol Sci",
+    "journal": "Int J Mol Sci",
+    "pmid": "33923421",
+    "doi": "10.3390/ijms22084112",
+    "url": "https://doi.org/10.3390/ijms22084112",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8073828/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_pillareddyv2021_34080039",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Mechanistic physiology-based pharmacokinetic modeling to elucidate vincristine-induced peripheral neuropathy following treatment with novel kinase inhibitors.",
+    "year": 2021,
+    "source": "Cancer Chemother Pharmacol",
+    "journal": "Cancer Chemother Pharmacol",
+    "pmid": "34080039",
+    "doi": "10.1007/s00280-021-04302-5",
+    "url": "https://doi.org/10.1007/s00280-021-04302-5",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8316236/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_kerckhove2017_28286483",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Long-Term Effects, Pathophysiological Mechanisms, and Risk Factors of Chemotherapy-Induced Peripheral Neuropathies: A Comprehensive Literature Review",
+    "year": 2017,
+    "source": "Frontiers in Pharmacology",
+    "journal": "Frontiers in Pharmacology",
+    "pmid": "28286483",
+    "doi": "10.3389/fphar.2017.00086",
+    "url": "https://doi.org/10.3389/fphar.2017.00086",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2017.00086/pdf",
+      "pdfUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2017.00086/pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_egbelakin2010_21225912",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Increased risk of vincristine neurotoxicity associated with low CYP3A5 expression genotype in children with acute lymphoblastic leukemia",
+    "year": 2010,
+    "source": "Pediatric Blood & Cancer",
+    "journal": "Pediatric Blood & Cancer",
+    "pmid": "21225912",
+    "doi": "10.1002/pbc.22845",
+    "url": "https://doi.org/10.1002/pbc.22845",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://scholarworks.indianapolis.iu.edu/bitstreams/740515a1-7b9b-45e9-97a8-ece5f37325ce/download",
+      "pdfUrl": "https://scholarworks.indianapolis.iu.edu/bitstreams/740515a1-7b9b-45e9-97a8-ece5f37325ce/download",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_madsen2019_31214762",
+    "_status": "pending_review",
+    "type": "meta_analysis",
+    "title": "Aspects of vincristine-induced neuropathy in hematologic malignancies: a systematic review",
+    "year": 2019,
+    "source": "Cancer Chemotherapy and Pharmacology",
+    "journal": "Cancer Chemotherapy and Pharmacology",
+    "pmid": "31214762",
+    "doi": "10.1007/s00280-019-03884-5",
+    "url": "https://doi.org/10.1007/s00280-019-03884-5",
+    "studyDesign": "meta_analysis_or_systematic_review",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s00280-019-03884-5.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s00280-019-03884-5.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_vincristine_cyp3a_abcb1_velde2020_32635465",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Population Pharmacokinetics of Vincristine Related to Infusion Duration and Peripheral Neuropathy in Pediatric Oncology Patients",
+    "year": 2020,
+    "source": "Cancers",
+    "journal": "Cancers",
+    "pmid": "32635465",
+    "doi": "10.3390/cancers12071789",
+    "url": "https://doi.org/10.3390/cancers12071789",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to vincristine:CYP3A_ABCB1, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "vincristine_CYP3A_ABCB1_neurotoxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/2072-6694/12/7/1789/pdf?version=1594100002",
+      "pdfUrl": "https://www.mdpi.com/2072-6694/12/7/1789/pdf?version=1594100002",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:32.017Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_delrem2026_41931218",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Sequential Use of Trastuzumab Deruxtecan and Sacituzumab Govitecan in Patients with Breast Cancer: A Pharmacological Approach to Support the Clinical Rationale.",
+    "year": 2026,
+    "source": "Drugs",
+    "journal": "Drugs",
+    "pmid": "41931218",
+    "doi": "10.1007/s40265-026-02289-y",
+    "url": "https://doi.org/10.1007/s40265-026-02289-y",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13179276/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.537Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_maj2026_41971093",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Beyond cytotoxicity: molecular mechanisms of natural products as multi-targeting modulators and chemo-sensitizers in oncology.",
+    "year": 2026,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "41971093",
+    "doi": "10.3389/fphar.2026.1782874",
+    "url": "https://doi.org/10.3389/fphar.2026.1782874",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13066319/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_prezortegahu2025_41304752",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Camptothecin in Cancer Therapy: Current Challenges and Emerging Strategies with Nanoemulsions.",
+    "year": 2025,
+    "source": "Pharmaceutics",
+    "journal": "Pharmaceutics",
+    "pmid": "41304752",
+    "doi": "10.3390/pharmaceutics17111414",
+    "url": "https://doi.org/10.3390/pharmaceutics17111414",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12655487/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_husseinma2026_41827654",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Artificial Intelligence-Driven Natural Product Discovery for Cancer Metastasis and Chemoresistance: From Computational Prediction to Preclinical Validation.",
+    "year": 2026,
+    "source": "Cancers (Basel)",
+    "journal": "Cancers (Basel)",
+    "pmid": "41827654",
+    "doi": "10.3390/cancers18050719",
+    "url": "https://doi.org/10.3390/cancers18050719",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12984267/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_apczukromaskaj2023_36769175",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Kidney Drug Transporters in Pharmacotherapy.",
+    "year": 2023,
+    "source": "Int J Mol Sci",
+    "journal": "Int J Mol Sci",
+    "pmid": "36769175",
+    "doi": "10.3390/ijms24032856",
+    "url": "https://doi.org/10.3390/ijms24032856",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9917665/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_paczyk2014_25110414",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Pharmacogenetics research on chemotherapy resistance in colorectal cancer over the last 20 years",
+    "year": 2014,
+    "source": "World Journal of Gastroenterology",
+    "journal": "World Journal of Gastroenterology",
+    "pmid": "25110414",
+    "doi": "10.3748/wjg.v20.i29.9775",
+    "url": "https://doi.org/10.3748/wjg.v20.i29.9775",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.wjgnet.com/1007-9327/full/v20/i29/9775.htm",
+      "pdfUrl": "https://www.wjgnet.com/1007-9327/full/v20/i29/9775.htm",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_bluth2011_23226051",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Pharmacogenomics of drug metabolizing enzymes and transporters: implications for cancer therapy",
+    "year": 2011,
+    "source": "Pharmacogenomics and Personalized Medicine",
+    "journal": "Pharmacogenomics and Personalized Medicine",
+    "pmid": "23226051",
+    "doi": "10.2147/pgpm.s18861",
+    "url": "https://doi.org/10.2147/pgpm.s18861",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://www.dovepress.com/getfile.php?fileID=9541",
+      "pdfUrl": "https://www.dovepress.com/getfile.php?fileID=9541",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_angom2023_38002496",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Advances in Glioblastoma Therapy: An Update on Current Approaches",
+    "year": 2023,
+    "source": "Brain Sciences",
+    "journal": "Brain Sciences",
+    "pmid": "38002496",
+    "doi": "10.3390/brainsci13111536",
+    "url": "https://doi.org/10.3390/brainsci13111536",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/2076-3425/13/11/1536/pdf?version=1698744695",
+      "pdfUrl": "https://www.mdpi.com/2076-3425/13/11/1536/pdf?version=1698744695",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_mathijssen2002_11773157",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Impact of Body-Size Measures on Irinotecan Clearance: Alternative Dosing Recommendations",
+    "year": 2002,
+    "source": "Journal of Clinical Oncology",
+    "journal": "Journal of Clinical Oncology",
+    "pmid": "11773157",
+    "doi": "10.1200/jco.20.1.81",
+    "url": "https://doi.org/10.1200/jco.20.1.81",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "clearanceReductionPct": 34,
+      "note": "Abstract-level extraction for topotecan:ABCG2 reports about 34% clearance change."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Abstract-level extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "needsFullText": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": "other-oa",
+      "landingUrl": "https://pure.eur.nl/ws/files/46635130/download.pdf",
+      "pdfUrl": "https://pure.eur.nl/ws/files/46635130/download.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_topotecan_abcg2_zandvliet2015_29061939",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Mechanisms of Drug Resistance in Veterinary Oncology— A Review with an Emphasis on Canine Lymphoma",
+    "year": 2015,
+    "source": "Veterinary Sciences",
+    "journal": "Veterinary Sciences",
+    "pmid": "29061939",
+    "doi": "10.3390/vetsci2030150",
+    "url": "https://doi.org/10.3390/vetsci2030150",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to topotecan:ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "topotecan_ABCG2_BCRP_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/2306-7381/2/3/150/pdf?version=1439375195",
+      "pdfUrl": "https://www.mdpi.com/2306-7381/2/3/150/pdf?version=1439375195",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:33.538Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_moutonm2026_42137999",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Pharmacogenetics of Mycophenolic Acid in Patients of African Descent: Underrepresentation of African Data.",
+    "year": 2026,
+    "source": "Clin Transl Sci",
+    "journal": "Clin Transl Sci",
+    "pmid": "42137999",
+    "doi": "10.1111/cts.70599",
+    "url": "https://doi.org/10.1111/cts.70599",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13176945/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.911Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_yowhy2024_38884938",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Influence of genetic polymorphisms on pharmacokinetics and treatment response of mycophenolic acid: a scoping review.",
+    "year": 2024,
+    "source": "Pharmacogenomics",
+    "journal": "Pharmacogenomics",
+    "pmid": "38884938",
+    "doi": "10.1080/14622416.2024.2344430",
+    "url": "https://doi.org/10.1080/14622416.2024.2344430",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": null,
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11388138/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_asaree2025_40873215",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Biopharmaceutical Factors Involved in the Disposition of Mycophenolic Acid: A Comprehensive Review of ADME Properties and Their Potential Impact on Mycophenolic Acid Plasma Exposure.",
+    "year": 2025,
+    "source": "Curr Drug Metab",
+    "journal": "Curr Drug Metab",
+    "pmid": "40873215",
+    "doi": "10.2174/0113892002377209250815023105",
+    "url": "https://doi.org/10.2174/0113892002377209250815023105",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": null,
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12990159/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_maoj2024_39253382",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "<i>In vitro</i> mechanistic study on mycophenolate mofetil drug interactions: effect of prednisone, cyclosporine, and others.",
+    "year": 2024,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "39253382",
+    "doi": "10.3389/fphar.2024.1443794",
+    "url": "https://doi.org/10.3389/fphar.2024.1443794",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11381307/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_resztakm2021_34959272",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Recent Advances in Therapeutic Drug Monitoring of Voriconazole, Mycophenolic Acid, and Vancomycin: A Literature Review of Pediatric Studies.",
+    "year": 2021,
+    "source": "Pharmaceutics",
+    "journal": "Pharmaceutics",
+    "pmid": "34959272",
+    "doi": "10.3390/pharmaceutics13121991",
+    "url": "https://doi.org/10.3390/pharmaceutics13121991",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707246/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_patel2016_27385177",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Importance of Hepatic Transporters in Clinical Disposition of Drugs and Their Metabolites",
+    "year": 2016,
+    "source": "The Journal of Clinical Pharmacology",
+    "journal": "The Journal of Clinical Pharmacology",
+    "pmid": "27385177",
+    "doi": "10.1002/jcph.671",
+    "url": "https://doi.org/10.1002/jcph.671",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://accp1.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jcph.671",
+      "pdfUrl": "https://accp1.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jcph.671",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_genvigir2020_null",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Mycophenolic acid pharmacogenomics in kidney transplantation",
+    "year": 2020,
+    "source": "Journal of Translational Genetics and Genomics",
+    "journal": "Journal of Translational Genetics and Genomics",
+    "pmid": null,
+    "doi": "10.20517/jtgg.2020.37",
+    "url": "https://doi.org/10.20517/jtgg.2020.37",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "diamond",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://jtggjournal.com/article/download/3623",
+      "pdfUrl": "https://jtggjournal.com/article/download/3623",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_pithukpakorn2014_25540593",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Mycophenolic acid AUC in Thai kidney transplant recipients receiving low dose mycophenolate and its association with UGT2B7 polymorphisms",
+    "year": 2014,
+    "source": "Pharmacogenomics and Personalized Medicine",
+    "journal": "Pharmacogenomics and Personalized Medicine",
+    "pmid": "25540593",
+    "doi": "10.2147/pgpm.s72760",
+    "url": "https://doi.org/10.2147/pgpm.s72760",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://www.dovepress.com/getfile.php?fileID=22717",
+      "pdfUrl": "https://www.dovepress.com/getfile.php?fileID=22717",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_liu2022_35567285",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Pharmacokinetics of free and total mycophenolic acid in paediatric and adult renal transplant recipients: Exploratory analysis of the effects of clinical factors and gene variants",
+    "year": 2022,
+    "source": "Basic & Clinical Pharmacology & Toxicology",
+    "journal": "Basic & Clinical Pharmacology & Toxicology",
+    "pmid": "35567285",
+    "doi": "10.1111/bcpt.13743",
+    "url": "https://doi.org/10.1111/bcpt.13743",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcpt.13743",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcpt.13743",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:34.912Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_maslarinoua2023_37256234",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Pharmacogenomic-guided dosing of fluoropyrimidines beyond <i>DPYD</i>: time for a polygenic algorithm?",
+    "year": 2023,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "37256234",
+    "doi": "10.3389/fphar.2023.1184523",
+    "url": "https://doi.org/10.3389/fphar.2023.1184523",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10226670/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.401Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_garcaalfonsop2022_34773566",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Consensus of experts from the Spanish Pharmacogenetics and Pharmacogenomics Society and the Spanish Society of Medical Oncology for the genotyping of DPYD in cancer patients who are candidates for treatment with fluoropyrimidines.",
+    "year": 2022,
+    "source": "Clin Transl Oncol",
+    "journal": "Clin Transl Oncol",
+    "pmid": "34773566",
+    "doi": "10.1007/s12094-021-02708-4",
+    "url": "https://doi.org/10.1007/s12094-021-02708-4",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8885558/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_sissungtm2022_35267440",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Pharmacogenomics Testing in Phase I Oncology Clinical Trials: Constructive Criticism Is Warranted.",
+    "year": 2022,
+    "source": "Cancers (Basel)",
+    "journal": "Cancers (Basel)",
+    "pmid": "35267440",
+    "doi": "10.3390/cancers14051131",
+    "url": "https://doi.org/10.3390/cancers14051131",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8909728/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_gummadiac2021_34804277",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Genetic Polymorphisms in Pharmaceuticals and Chemotherapy.",
+    "year": 2021,
+    "source": "World J Oncol",
+    "journal": "World J Oncol",
+    "pmid": "34804277",
+    "doi": "10.14740/wjon1405",
+    "url": "https://doi.org/10.14740/wjon1405",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8577603/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_deacal2020_32832886",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "A review on the importance of genotyping and phenotyping in fluoropyrimidine treatment.",
+    "year": 2020,
+    "source": "Med Pharm Rep",
+    "journal": "Med Pharm Rep",
+    "pmid": "32832886",
+    "doi": "10.15386/mpr-1564",
+    "url": "https://doi.org/10.15386/mpr-1564",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7418836/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_lauschke2017_29181807",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Pharmacogenomic Biomarkers for Improved Drug Therapy—Recent Progress and Future Developments",
+    "year": 2017,
+    "source": "The AAPS Journal",
+    "journal": "The AAPS Journal",
+    "pmid": "29181807",
+    "doi": "10.1208/s12248-017-0161-x",
+    "url": "https://doi.org/10.1208/s12248-017-0161-x",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1208/s12248-017-0161-x.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1208/s12248-017-0161-x.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_fujita2008_18380793",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "<i>CYP2A6</i>and the plasma level of 5‐chloro‐2, 4‐dihydroxypyridine are determinants of the pharmacokinetic variability of tegafur and 5‐fluorouracil, respectively, in Japanese patients with cancer given S‐1",
+    "year": 2008,
+    "source": "Cancer Science",
+    "journal": "Cancer Science",
+    "pmid": "18380793",
+    "doi": "10.1111/j.1349-7006.2008.00773.x",
+    "url": "https://doi.org/10.1111/j.1349-7006.2008.00773.x",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1349-7006.2008.00773.x",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1349-7006.2008.00773.x",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.402Z"
+  },
+  {
+    "id": "draft_tegafur_cyp2a6_dpyd_bertholee2016_27641154",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Genotypes Affecting the Pharmacokinetics of Anticancer Drugs",
+    "year": 2016,
+    "source": "Clinical Pharmacokinetics",
+    "journal": "Clinical Pharmacokinetics",
+    "pmid": "27641154",
+    "doi": "10.1007/s40262-016-0450-z",
+    "url": "https://doi.org/10.1007/s40262-016-0450-z",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tegafur:CYP2A6_DPYD, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "tegafur_CYP2A6_activation_DPYD_toxicity_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1007%2Fs40262-016-0450-z.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1007%2Fs40262-016-0450-z.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:36.403Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_menp2017_27534869",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Cardiac safety of ophthalmic timolol.",
+    "year": 2017,
+    "source": "Expert opinion on drug safety",
+    "journal": "Expert opinion on drug safety",
+    "pmid": "27534869",
+    "doi": "10.1080/14740338.2016.1225718",
+    "url": "https://doi.org/10.1080/14740338.2016.1225718",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": "closed",
+      "source": "unpaywall",
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.175Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_nieminen2007_17366003",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Ophthalmic timolol: plasma concentration and systemic cardiopulmonary effects.",
+    "year": 2007,
+    "source": "Scandinavian journal of clinical and laboratory investigation",
+    "journal": "Scandinavian journal of clinical and laboratory investigation",
+    "pmid": "17366003",
+    "doi": "10.1080/00365510601034736",
+    "url": "https://doi.org/10.1080/00365510601034736",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": "closed",
+      "source": "unpaywall",
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.176Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_vaajanen2017_29299077",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "A Single Drop in the Eye – Effects on the Whole Body?",
+    "year": 2017,
+    "source": "The Open Ophthalmology Journal",
+    "journal": "The Open Ophthalmology Journal",
+    "pmid": "29299077",
+    "doi": "10.2174/1874364101711010305",
+    "url": "https://doi.org/10.2174/1874364101711010305",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "diamond",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://openophthalmologyjournal.com/VOLUME/11/PAGE/305/PDF/",
+      "pdfUrl": "https://openophthalmologyjournal.com/VOLUME/11/PAGE/305/PDF/",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.176Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_gu2023_37765258",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Application of Advanced Technologies—Nanotechnology, Genomics Technology, and 3D Printing Technology—In Precision Anesthesia: A Comprehensive Narrative Review",
+    "year": 2023,
+    "source": "Pharmaceutics",
+    "journal": "Pharmaceutics",
+    "pmid": "37765258",
+    "doi": "10.3390/pharmaceutics15092289",
+    "url": "https://doi.org/10.3390/pharmaceutics15092289",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/1999-4923/15/9/2289/pdf?version=1694000940",
+      "pdfUrl": "https://www.mdpi.com/1999-4923/15/9/2289/pdf?version=1694000940",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.176Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_opazotoro2023_36768422",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Genotype and Phenotype Influence the Personal Response to Prostaglandin Analogues and Beta-Blockers in Spanish Glaucoma and Ocular Hypertension Patients",
+    "year": 2023,
+    "source": "International Journal of Molecular Sciences",
+    "journal": "International Journal of Molecular Sciences",
+    "pmid": "36768422",
+    "doi": "10.3390/ijms24032093",
+    "url": "https://doi.org/10.3390/ijms24032093",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no supported quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/1422-0067/24/3/2093/pdf?version=1674212911",
+      "pdfUrl": "https://www.mdpi.com/1422-0067/24/3/2093/pdf?version=1674212911",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.176Z"
+  },
+  {
+    "id": "draft_timolol_cyp2d6_scuteri2023_37833756",
+    "_status": "pending_review",
+    "type": "meta_analysis",
+    "title": "Effect of genotype on individual response to the pharmacological treatment of glaucoma: a systematic review and meta-analysis",
+    "year": 2023,
+    "source": "Biology Direct",
+    "journal": "Biology Direct",
+    "pmid": "37833756",
+    "doi": "10.1186/s13062-023-00423-4",
+    "url": "https://doi.org/10.1186/s13062-023-00423-4",
+    "studyDesign": "meta_analysis_or_systematic_review",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to timolol:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://biologydirect.biomedcentral.com/counter/pdf/10.1186/s13062-023-00423-4",
+      "pdfUrl": "https://biologydirect.biomedcentral.com/counter/pdf/10.1186/s13062-023-00423-4",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:39.176Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_bordenba2021_34376788",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Appraisal and development of evidence-based clinical decision support to enable perioperative pharmacogenomic application.",
+    "year": 2021,
+    "source": "Pharmacogenomics J",
+    "journal": "Pharmacogenomics J",
+    "pmid": "34376788",
+    "doi": "10.1038/s41397-021-00248-2",
+    "url": "https://doi.org/10.1038/s41397-021-00248-2",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9267777/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_vsubramaniama2019_31547335",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Molecular Basis of Cancer Pain Management: An Updated Review.",
+    "year": 2019,
+    "source": "Medicina (Kaunas)",
+    "journal": "Medicina (Kaunas)",
+    "pmid": "31547335",
+    "doi": "10.3390/medicina55090584",
+    "url": "https://doi.org/10.3390/medicina55090584",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6780247/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_biswasm2022_35250581",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Pharmacogenetics and Precision Medicine Approaches for the Improvement of COVID-19 Therapies.",
+    "year": 2022,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "35250581",
+    "doi": "10.3389/fphar.2022.835136",
+    "url": "https://doi.org/10.3389/fphar.2022.835136",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8894812/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_dckercm2019_29498032",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Genomic Variation and Pharmacokinetics in Old Age: A Quantitative Review of Age- vs. Genotype-Related Differences.",
+    "year": 2019,
+    "source": "Clin Pharmacol Ther",
+    "journal": "Clin Pharmacol Ther",
+    "pmid": "29498032",
+    "doi": "10.1002/cpt.1057",
+    "url": "https://doi.org/10.1002/cpt.1057",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6585622/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_samer2013_23588782",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "Applications of CYP450 Testing in the Clinical Setting",
+    "year": 2013,
+    "source": "Molecular Diagnosis & Therapy",
+    "journal": "Molecular Diagnosis & Therapy",
+    "pmid": "23588782",
+    "doi": "10.1007/s40291-013-0028-5",
+    "url": "https://doi.org/10.1007/s40291-013-0028-5",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "other-oa",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s40291-013-0028-5.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s40291-013-0028-5.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_medwid2022_36366858",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Implementation of pharmacogenomics: Where are we now?",
+    "year": 2022,
+    "source": "British Journal of Clinical Pharmacology",
+    "journal": "British Journal of Clinical Pharmacology",
+    "pmid": "36366858",
+    "doi": "10.1111/bcp.15591",
+    "url": "https://doi.org/10.1111/bcp.15591",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "other-oa",
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcp.15591",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcp.15591",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
+  },
+  {
+    "id": "draft_cyp2c9_nsaid_oxicams_oliveira2022_36422246",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "CYP2C9 Polymorphism Influence in PK/PD Model of Naproxen and 6-O-Desmethylnaproxen in Oral Fluid",
+    "year": 2022,
+    "source": "Metabolites",
+    "journal": "Metabolites",
+    "pmid": "36422246",
+    "doi": "10.3390/metabo12111106",
+    "url": "https://doi.org/10.3390/metabo12111106",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to CYP2C9:NSAID_oxicams, but no quantitative value was extractable from the abstract."
+    },
+    "temporal": {},
+    "supports": [
+      "CYP2C9_oxicam_NSAID_exposure_bleeding_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "No abstract-extractable quantitative value"
+    ],
+    "confidence": "low",
+    "needsFullText": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/2218-1989/12/11/1106/pdf?version=1669023044",
+      "pdfUrl": "https://www.mdpi.com/2218-1989/12/11/1106/pdf?version=1669023044",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T08:54:40.580Z"
   }
 ]
