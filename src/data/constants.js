@@ -254,6 +254,21 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:4.0, freq_pct:null, note:"Intermediate BCHE activity context; succinylcholine or mivacurium paralysis may be prolonged. Review prior anesthesia history and consider nondepolarizing alternatives." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference plasma butyrylcholinesterase activity for succinylcholine/mivacurium hydrolysis." },
   },
+  IFNL3: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.5, freq_pct:null, note:"Unfavorable IFNL3/IL28B interferon-response context. This is an efficacy-response marker for peginterferon/ribavirin-era HCV regimens, not a clearance enzyme." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.75, freq_pct:null, note:"Intermediate IFNL3 interferon-response context. Modern direct-acting antiviral regimens usually supersede this marker, but it remains useful historical/regimen context." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Favorable/reference IFNL3 interferon-response context for peginterferon/ribavirin-era HCV treatment." },
+  },
+  IFNL4: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.5, freq_pct:null, note:"IFNL4-generating/unfavorable response context. Mainly affects spontaneous or interferon-based HCV clearance probability, not parent-drug exposure." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.75, freq_pct:null, note:"Intermediate IFNL4 response context; interpret with viral genotype, fibrosis, prior treatment, and whether interferon is actually being used." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference/favorable IFNL4 response context." },
+  },
+  OPRM1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.8, freq_pct:null, note:"Reduced mu-opioid receptor response context. CPIC does not recommend opioid dosing changes from OPRM1 alone; use as response/sedation review context only." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.9, freq_pct:null, note:"Intermediate OPRM1 response context. Analgesia and adverse effects remain strongly shaped by dose, tolerance, renal function, CYP2D6/CYP3A/UGT context, and co-sedatives." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference OPRM1 response context." },
+  },
 };
 
 const GENOTYPE_RISK_EFFECTS = {
@@ -653,6 +668,9 @@ let activeGenotype = {
   GSTM1:   GENOTYPE_PHENOTYPE.NM,
   NUDT15:  GENOTYPE_PHENOTYPE.NM,
   BCHE:    GENOTYPE_PHENOTYPE.NM,
+  IFNL3:   GENOTYPE_PHENOTYPE.NM,
+  IFNL4:   GENOTYPE_PHENOTYPE.NM,
+  OPRM1:   GENOTYPE_PHENOTYPE.NM,
   "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,

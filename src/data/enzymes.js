@@ -4,7 +4,7 @@
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
   "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
-  "SLCO1B1","ABCB1","ABCG2","BCHE","MAO-A","MAO-B"
+  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
   { id: "ultrarapid", label: "Ultrarapid Metabolizer", mult: 0.3, cssClass: "ultrarapid" },
@@ -247,6 +247,32 @@ const PHARMGKB_EVIDENCE = {
       {drug:"MDMA (Ecstasy)",level:"C",action:"Met/Met: ↑ dopamine/noradrenaline neurotoxicity"}
     ]
   },
+  "IFNL3":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Peginterferon Alfa",level:"B",action:"Unfavorable IFNL3/IL28B context lowers likelihood of response to peginterferon/ribavirin-era HCV therapy"},
+      {drug:"Ribavirin",level:"B",action:"Regimen-response context when used with peginterferon; modern DAA regimens usually dominate treatment choice"}
+    ]
+  },
+  "IFNL4":{
+    grade:"C",
+    guideline:"Literature/CPIC context",
+    pairs:[
+      {drug:"Peginterferon Alfa",level:"C",action:"IFNL4-generating variants are unfavorable response context for interferon-based HCV clearance"},
+      {drug:"Ribavirin",level:"C",action:"Use only as interferon-era regimen context, not as a ribavirin toxicity or exposure rule"}
+    ]
+  },
+  "OPRM1":{
+    grade:"C",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Morphine",level:"C",action:"Mu-opioid receptor response context; CPIC gives no opioid dosing recommendation based on OPRM1 alone"},
+      {drug:"Fentanyl",level:"C",action:"Response/sedation review context only; dose, tolerance, renal function, CYP/UGT and co-sedatives dominate"},
+      {drug:"Oxycodone",level:"C",action:"Low-actionability receptor-response context; do not treat as an exposure rule"},
+      {drug:"Methadone",level:"C",action:"Response context only; QT risk and CYP2B6/CYP3A interactions remain more actionable"}
+    ]
+  },
   "MAO-A":{
     grade:"C",
     guideline:"PharmGKB",
@@ -336,6 +362,9 @@ const ENZYME_ACTORS = {
   "UGT2B15": {id:"UGT2B15", type:ACTOR_TYPE.ENZYME, name:"UGT2B15", family:"UGT",    tissue:["liver"],               polymorphic:true, substrateCount:0},
   "UGT2B17": {id:"UGT2B17", type:ACTOR_TYPE.ENZYME, name:"UGT2B17", family:"UGT",    tissue:["liver","extrahepatic"],polymorphic:true, substrateCount:0},
   "COMT":    {id:"COMT",    type:ACTOR_TYPE.ENZYME, name:"COMT",    family:"methyltransferase", tissue:["liver","brain","synapse"], polymorphic:true, substrateCount:0},
+  "IFNL3":   {id:"IFNL3",   type:ACTOR_TYPE.ENZYME, name:"IFNL3/IL28B", family:"response_gene", tissue:["immune","liver"], polymorphic:true, substrateCount:0},
+  "IFNL4":   {id:"IFNL4",   type:ACTOR_TYPE.ENZYME, name:"IFNL4",   family:"response_gene", tissue:["immune","liver"], polymorphic:true, substrateCount:0},
+  "OPRM1":   {id:"OPRM1",   type:ACTOR_TYPE.ENZYME, name:"OPRM1/mu-opioid receptor", family:"receptor_gene", tissue:["brain","spinal_cord","gut"], polymorphic:true, substrateCount:0},
   "MAO-A":   {id:"MAO-A",   type:ACTOR_TYPE.ENZYME, name:"MAO-A",   family:"MAO",    tissue:["gut","liver","brain"],  polymorphic:false,substrateCount:0},
   "MAO-B":   {id:"MAO-B",   type:ACTOR_TYPE.ENZYME, name:"MAO-B",   family:"MAO",    tissue:["brain","platelets"],    polymorphic:false,substrateCount:0},
 };

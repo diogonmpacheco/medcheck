@@ -1363,4 +1363,102 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
     }
   },
+  {
+    parent:"Peginterferon Alfa",
+    metaboliteId:"ifnl3-interferon-response",
+    metaboliteName:"Interferon response likelihood",
+    enzyme:"IFNL3",
+    systemic:true,
+    note:"IFNL3/IL28B genotype is an efficacy-response marker for peginterferon/ribavirin-era HCV regimens. It does not change peginterferon exposure; modern DAA regimens usually make this less clinically central.",
+    evidenceRefs:["ev_ifnl3_hcv_interferon_cpic2014"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"unfavorable IFNL3 context: lower likelihood of virologic response to interferon-based therapy" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate response context; regimen, viral genotype, fibrosis, and prior treatment dominate" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"favorable/reference response context" },
+    }
+  },
+  {
+    parent:"Ribavirin",
+    metaboliteId:"ifnl3-ribavirin-regimen-response",
+    metaboliteName:"Peginterferon/ribavirin response context",
+    enzyme:"IFNL3",
+    systemic:true,
+    note:"When ribavirin is part of a peginterferon-based HCV regimen, IFNL3 can help contextualize response probability. This is not a ribavirin clearance or hemolytic-anemia rule.",
+    evidenceRefs:["ev_ifnl3_hcv_interferon_cpic2014"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"unfavorable IFNL3 context: reduced interferon/ribavirin response probability" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate response context; modern DAA alternatives usually matter more" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"favorable/reference response context" },
+    }
+  },
+  {
+    parent:"Peginterferon Alfa",
+    metaboliteId:"ifnl4-interferon-response",
+    metaboliteName:"IFNL4 interferon-response context",
+    enzyme:"IFNL4",
+    systemic:true,
+    note:"IFNL4-generating variants are unfavorable response context for spontaneous and interferon-based HCV clearance. Treat this as response biology, not PK.",
+    evidenceRefs:["ev_ifnl3_hcv_interferon_cpic2014"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"IFNL4-generating/unfavorable context: lower interferon-response probability" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate IFNL4 response context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"reference/favorable response context" },
+    }
+  },
+  {
+    parent:"Morphine",
+    metaboliteId:"oprm1-morphine-response",
+    metaboliteName:"Mu-opioid receptor response context",
+    enzyme:"OPRM1",
+    systemic:true,
+    note:"OPRM1 is pharmacodynamic: it may alter analgesic response or opioid sensitivity, but CPIC does not recommend morphine dosing changes based on OPRM1 alone. Read beside UGT2B7, renal function, tolerance, and co-sedatives.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_opioid_ugt2b7_glucuronidation_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"reduced receptor-response context; do not increase dose from genotype alone" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate receptor-response context; monitor analgesia and sedation clinically" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline response context" },
+    }
+  },
+  {
+    parent:"Fentanyl",
+    metaboliteId:"oprm1-fentanyl-response",
+    metaboliteName:"Mu-opioid receptor response context",
+    enzyme:"OPRM1",
+    systemic:true,
+    note:"Fentanyl effect is pharmacodynamic at OPRM1 while exposure is mainly CYP3A4-sensitive. OPRM1 can be shown as a response-context flag, but inhibitor/inducer and respiratory-depression context are more actionable.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"possible reduced analgesic response; no CPIC dose recommendation from OPRM1 alone" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate response context; co-sedatives and CYP3A4 interactions dominate" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline response context" },
+    }
+  },
+  {
+    parent:"Oxycodone",
+    metaboliteId:"oprm1-oxycodone-response",
+    metaboliteName:"Mu-opioid receptor response context",
+    enzyme:"OPRM1",
+    systemic:true,
+    note:"Oxycodone response reflects parent drug, CYP3A noroxycodone formation, minor CYP2D6 oxymorphone formation, receptor sensitivity, and tolerance. OPRM1 is a low-actionability response flag, not an exposure rule.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"possible reduced opioid response; CPIC does not recommend OPRM1-guided dosing" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate receptor-response context; interpret with CYP2D6/CYP3A and clinical response" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline response context" },
+    }
+  },
+  {
+    parent:"Methadone",
+    metaboliteId:"oprm1-methadone-response",
+    metaboliteName:"Mu-opioid receptor response context",
+    enzyme:"OPRM1",
+    systemic:true,
+    note:"Methadone safety is dominated by QT risk, accumulation, CYP2B6/CYP3A interactions, and dose titration. OPRM1 can contextualize response, but it is not a dosing rule.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"possible reduced response context; do not override QT/accumulation monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate response context; titration and ECG/interaction review dominate" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline response context" },
+    }
+  },
 ];

@@ -666,6 +666,12 @@ function parsePharmGxLine(line) {
 function normalizePharmGxGene(value) {
   const gene = String(value || "").trim().toUpperCase().replace(/\s+/g, "");
   if (GENOTYPE_EFFECTS[gene]) return gene;
+  const genotypeAliases = {
+    IL28B: "IFNL3",
+    MUOPIOIDRECEPTOR: "OPRM1",
+    MOR: "OPRM1",
+  };
+  if (genotypeAliases[gene] && GENOTYPE_EFFECTS[genotypeAliases[gene]]) return genotypeAliases[gene];
   if (typeof GENOTYPE_RISK_EFFECTS === 'undefined') return null;
   const riskAliases = {
     MTHFR: "MTHFR C677T",
