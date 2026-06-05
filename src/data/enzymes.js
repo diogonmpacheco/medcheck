@@ -2,7 +2,7 @@
 // Phase A: modular source — concatenated by build.js
 
 const GENE_ENZYMES = [
-  "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
+  "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5","CYP3A7",
   "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT1","NAT2","COMT","CYP2A6","CYP4F2",
   "SLCO1B1","ABCB1","ABCG2","GSTM1","GSTT1","GSTP1","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","ALDH2","SLC22A1","SLC22A2","SLC47A1","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
 ];
@@ -150,6 +150,15 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Chlorzoxazone",level:"C",action:"CYP2E1 phenotyping probe; useful for activity context rather than treatment selection"},
       {drug:"Acetaminophen",level:"C",action:"CYP2E1 forms toxic NAPQI; dose, alcohol, fasting, liver disease, and glutathione reserve dominate"},
       {drug:"Halothane",level:"C",action:"Older volatile anesthetic with CYP2E1 oxidative metabolism to reactive trifluoroacetylated intermediates"}
+    ]
+  },
+  "CYP3A7":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Etonogestrel",level:"C",action:"CYP3A7*1C/persistent expression has been associated with lower implant concentrations; BMI, duration, adherence, and CYP3A inducers still dominate clinical review"},
+      {drug:"Estradiol / endogenous estrogens",level:"C",action:"Persistent CYP3A7 expression shifts DHEA-S/estrogen metabolism; useful endocrine context, not a medication dose rule"},
+      {drug:"CYP3A oncology substrates",level:"D",action:"Exploratory cancer-outcome associations exist; do not treat as a chemotherapy dosing rule without specialist review"}
     ]
   },
   "DPYD":{
@@ -480,6 +489,7 @@ const ENZYME_ACTORS = {
   "CYP2D6":  {id:"CYP2D6",  type:ACTOR_TYPE.ENZYME, name:"CYP2D6",  family:"CYP450", tissue:["liver","brain","gut"], polymorphic:true, substrateCount:0},
   "CYP3A4":  {id:"CYP3A4",  type:ACTOR_TYPE.ENZYME, name:"CYP3A4",  family:"CYP450", tissue:["liver","gut"],         polymorphic:false,substrateCount:0},
   "CYP3A5":  {id:"CYP3A5",  type:ACTOR_TYPE.ENZYME, name:"CYP3A5",  family:"CYP450", tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
+  "CYP3A7":  {id:"CYP3A7",  type:ACTOR_TYPE.ENZYME, name:"CYP3A7",  family:"CYP450", tissue:["fetal_liver","neonatal_liver","adult_liver_variant"], polymorphic:true, substrateCount:0},
   "CYP2C19": {id:"CYP2C19", type:ACTOR_TYPE.ENZYME, name:"CYP2C19", family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2C9":  {id:"CYP2C9",  type:ACTOR_TYPE.ENZYME, name:"CYP2C9",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2C8":  {id:"CYP2C8",  type:ACTOR_TYPE.ENZYME, name:"CYP2C8",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},

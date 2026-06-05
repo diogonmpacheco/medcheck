@@ -8644,6 +8644,48 @@ const STUDY_DB = {
     limitations:["This is a coverage and mechanism synthesis, not a patient-specific cardiac surgery protocol. Local surgical, anesthesia, ICU, renal-function, bleeding, and hemodynamic protocols govern exact use."],
     verified:false, reviewRequired:true, verifyNote:"CABG enrichment batch synthesized from guideline/label sources; pending cardiac anesthesiology/cardiology/pharmacy review"
   },
+  "ev_cyp3a7_etonogestrel_implant_2019": {
+    id:"ev_cyp3a7_etonogestrel_implant_2019", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Influence of genetic variants on steady-state etonogestrel concentrations among contraceptive implant users",
+    year:2019, source:"Etonogestrel implant candidate-gene study", journal:"Obstetrics and Gynecology", pmid:"30870275", doi:"10.1097/AOG.0000000000003189",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30870275/",
+    studyDesign:"candidate gene pharmacokinetic association study", n:350,
+    phenotypes:[GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"CYP3A7*1C carrier status was associated with lower etonogestrel concentrations in the candidate-gene model, but BMI and implant duration were stronger clinical factors and the genetic signal requires replication."},
+    temporal:{mechanism:"persistent CYP3A7 expression and progestin clearance", onset:"weeks_to_months", offset:"months"},
+    supports:["CYP3A7_1C_etonogestrel_lower_concentration_context","etonogestrel_CYP3A7_review_flag"],
+    contradicts:["CYP3A7_is_not_a_standalone_contraceptive_failure_rule"],
+    limitations:["Candidate-gene association; not a prescribing guideline. Contraceptive decisions depend on formulation, adherence, implant age, BMI, CYP3A inducers, and reproductive-health clinician review."],
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7/etonogestrel enrichment pending reproductive pharmacology review"
+  },
+  "ev_cyp3a7_1c_dheas_2005": {
+    id:"ev_cyp3a7_1c_dheas_2005", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"A common polymorphism in the CYP3A7 gene is associated with a nearly 50% reduction in serum dehydroepiandrosterone sulfate levels",
+    year:2005, source:"CYP3A7*1C steroid-hormone association study", journal:"Journal of Clinical Endocrinology and Metabolism", pmid:"15985487", doi:"10.1210/jc.2005-0307",
+    url:"https://pubmed.ncbi.nlm.nih.gov/15985487/",
+    studyDesign:"population-based steroid hormone association study", n:553,
+    phenotypes:[GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"CYP3A7*1C carriers showed persistent adult CYP3A7 activity and substantially lower DHEA-S/estrone context, supporting CYP3A7 as a steroid/endocrine metabolism modifier."},
+    temporal:{mechanism:"persistent fetal CYP3A7 expression in adult steroid metabolism", onset:"lifelong", offset:"lifelong"},
+    supports:["CYP3A7_1C_persistent_expression_context","CYP3A7_DHEAS_steroid_metabolism_context"],
+    contradicts:["CYP3A7_is_not_a_general_adult_CYP3A_dose_rule"],
+    limitations:["Endogenous hormone association; does not by itself define medication dosing."],
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7 endocrine context pending endocrinology/pharmacology review"
+  },
+  "ev_cyp3a7_neonatal_review_2019": {
+    id:"ev_cyp3a7_neonatal_review_2019", public:true, type:EVIDENCE_TIER.REVIEW,
+    title:"Neonatal cytochrome P450 CYP3A7: a comprehensive review of its role in development, disease, and xenobiotic metabolism",
+    year:2019, source:"CYP3A7 review", journal:"Archives of Biochemistry and Biophysics", pmid:"31445893", doi:"10.1016/j.abb.2019.108078",
+    url:"https://pubmed.ncbi.nlm.nih.gov/31445893/",
+    studyDesign:"review", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"Review summarizes CYP3A7 fetal/neonatal expression, DHEA-S and retinoic-acid biology, adult persistence via CYP3A7*1C, and limited xenobiotic/drug-metabolism evidence."},
+    temporal:{mechanism:"fetal/neonatal CYP3A biology and adult persistence"},
+    supports:["CYP3A7_developmental_expression_context","CYP3A7_xenobiotic_review_context"],
+    contradicts:["CYP3A7_has_limited_routine_adult_prescribing_actionability"],
+    limitations:["Review-level evidence; most adult CYP3A drug interactions remain CYP3A4/CYP3A5/P-gp driven."],
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7 review context pending pharmacology review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

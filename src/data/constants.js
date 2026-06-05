@@ -137,6 +137,12 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP3A5 phenotype for this model." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"High CYP3A5 expression/activity context; sensitive CYP3A5 substrates may require higher exposure-guided dosing." },
   },
+  CYP3A7: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.0, freq_pct:null, note:"Typical postnatal silencing / low adult CYP3A7 expression context. Most adult CYP3A drug metabolism is handled by CYP3A4 and CYP3A5." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.85, freq_pct:null, note:"Possible low-level CYP3A7 expression context. Treat as a weak modifier for steroid/progestin and selected CYP3A substrate review." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference adult CYP3A7 context. CYP3A7 is mainly fetal/neonatal; adult drug actionability is limited and substrate-specific." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.75, freq_pct:null, note:"Persistent CYP3A7 expression context, often mapped from CYP3A7*1C. This may lower exposure for steroid/progestin substrates such as etonogestrel; use as a review flag, not a standalone contraceptive decision." },
+  },
   CYP2C8: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced CYP2C8 activity; sensitive substrates such as pioglitazone, repaglinide, paclitaxel, montelukast, and hydroxychloroquine may have higher exposure. Interpret with CYP2C8 inhibitors such as gemfibrozil or clopidogrel acyl glucuronide." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate CYP2C8 activity; modest substrate exposure increase possible, especially when a CYP2C8 inhibitor or hepatic uptake transporter issue is also present." },
@@ -798,6 +804,7 @@ let activeGenotype = {
   CYP2B6:  GENOTYPE_PHENOTYPE.NM,
   CYP3A4:  GENOTYPE_PHENOTYPE.NM,
   CYP3A5:  GENOTYPE_PHENOTYPE.NM,
+  CYP3A7:  GENOTYPE_PHENOTYPE.NM,
   CYP2C8:  GENOTYPE_PHENOTYPE.NM,
   CYP2A6:  GENOTYPE_PHENOTYPE.NM,
   CYP1A2:  GENOTYPE_PHENOTYPE.NM,

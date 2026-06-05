@@ -1933,4 +1933,34 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher/induced CYP2E1 context: toxicant activation concern" },
     }
   },
+  {
+    parent:"Etonogestrel",
+    metaboliteId:"etonogestrel-cyp3a7-clearance-context",
+    metaboliteName:"Etonogestrel CYP3A clearance context",
+    enzyme:"CYP3A7",
+    systemic:true,
+    note:"Etonogestrel implant concentrations are mainly governed by release rate, time since insertion, BMI, CYP3A inducers, and formulation. CYP3A7*1C/persistent expression is a plausible lower-exposure review flag, but it is not a standalone contraceptive-failure rule.",
+    evidenceRefs:["ev_cyp3a7_etonogestrel_implant_2019"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"baseline", label:"typical low adult CYP3A7 expression: no added CYP3A7 clearance flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"possible low CYP3A7 expression: weak etonogestrel review context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP3A7 context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"persistent CYP3A7 expression context: lower etonogestrel concentrations possible; review BMI, implant age, and CYP3A inducers" },
+    }
+  },
+  {
+    parent:"Estradiol",
+    metaboliteId:"cyp3a7-steroid-hormone-context",
+    metaboliteName:"CYP3A7 steroid hormone metabolism context",
+    enzyme:"CYP3A7",
+    systemic:true,
+    note:"Persistent CYP3A7 expression is a steroid/endocrine metabolism signal, especially for DHEA-S and estrogen-metabolite patterns. For hormone therapy or contraception, formulation, route, indication, thrombosis risk, and CYP3A inducers are more actionable than CYP3A7 alone.",
+    evidenceRefs:["ev_cyp3a7_1c_dheas_2005","ev_cyp3a7_neonatal_review_2019"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"baseline", label:"typical low adult CYP3A7 expression context" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"possible low-level CYP3A7 expression; endocrine context only" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP3A7 steroid context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"persistent CYP3A7 expression: altered DHEA-S/estrogen metabolism context; not a dose rule" },
+    }
+  },
 ];
