@@ -244,6 +244,16 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Possible reduced GSTM1 detoxification context; use cautiously because many reports classify GSTM1 as present vs null rather than graded activity." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"GSTM1 present/reference detoxification context." },
   },
+  GSTT1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.4, freq_pct:null, note:"GSTT1 null context. GSTT1 enzyme activity is absent; detoxification of selected halogenated/environmental substrates and some oncology conditioning contexts may shift. Evidence is inconsistent for many drugs." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.15, freq_pct:null, note:"Possible reduced GSTT1 detoxification context. Use as a broad detoxification review flag rather than a dose rule." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"GSTT1 present/reference detoxification context." },
+  },
+  GSTP1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"Reduced GSTP1 activity context, often mapped from rs1695/Ile105Val variant reports. Platinum chemotherapy toxicity/response signals exist, but evidence is tumor- and regimen-specific." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.25, freq_pct:null, note:"Intermediate GSTP1 detoxification context. Treat as oncology review context for platinum/alkylating regimens, not as a standalone dose change." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference GSTP1 detoxification context." },
+  },
   NUDT15: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"NUDT15 poor function; thiopurine cytotoxic nucleotide intolerance can be profound even when TPMT is normal." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"NUDT15 intermediate function; thiopurine dose reduction and close CBC monitoring are usually needed." },
@@ -795,6 +805,8 @@ let activeGenotype = {
   UGT2B17: GENOTYPE_PHENOTYPE.NM,
   COMT:    GENOTYPE_PHENOTYPE.NM,
   GSTM1:   GENOTYPE_PHENOTYPE.NM,
+  GSTT1:   GENOTYPE_PHENOTYPE.NM,
+  GSTP1:   GENOTYPE_PHENOTYPE.NM,
   NUDT15:  GENOTYPE_PHENOTYPE.NM,
   BCHE:    GENOTYPE_PHENOTYPE.NM,
   IFNL3:   GENOTYPE_PHENOTYPE.NM,

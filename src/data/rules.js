@@ -1657,4 +1657,130 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline OCT2 context" },
     }
   },
+  {
+    parent:"Cisplatin",
+    metaboliteId:"cisplatin-gstp1-platinum-detox",
+    metaboliteName:"Platinum detoxification/toxicity context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"GSTP1 rs1695/reduced activity has platinum-toxicity signals, especially hematologic/neutropenia patterns in meta-analysis, but evidence is not a CPIC dosing rule. Treat this as an oncology review flag beside renal function, hydration, audiology, cumulative dose, and regimen.",
+    evidenceRefs:["ev_gstp1_platinum_toxicity_meta"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: higher platinum toxicity review priority; not a standalone dose change" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate GSTP1 context: monitor toxicity stack and regimen factors" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
+  {
+    parent:"Carboplatin",
+    metaboliteId:"carboplatin-gstp1-platinum-detox",
+    metaboliteName:"Platinum detoxification/toxicity context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"Carboplatin toxicity is usually driven by renal dosing, marrow reserve, and regimen, but GSTP1 can be shown as a platinum-detoxification review context.",
+    evidenceRefs:["ev_gstp1_platinum_toxicity_meta"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: review marrow toxicity risk with Calvert dosing and prior therapy" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate GSTP1 context: toxicity-monitoring flag" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
+  {
+    parent:"Oxaliplatin",
+    metaboliteId:"oxaliplatin-gstp1-platinum-detox",
+    metaboliteName:"Platinum detoxification/neurotoxicity context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"Oxaliplatin neurotoxicity and myelosuppression are regimen- and cumulative-dose dependent. GSTP1 is useful as a context flag because platinum toxicity associations are reported, but it is not a formal dose rule.",
+    evidenceRefs:["ev_gstp1_platinum_toxicity_meta"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: prioritize neuropathy and marrow monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate GSTP1 context: review cumulative neuropathy risk" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
+  {
+    parent:"Cisplatin",
+    metaboliteId:"cisplatin-gstt1-null-context",
+    metaboliteName:"GSTT1 null platinum context",
+    enzyme:"GSTT1",
+    systemic:true,
+    note:"GSTT1 null status appears in platinum toxicity/outcome literature, but findings are inconsistent. Use as a lower-confidence toxicity context, especially when paired with GSTM1/GSTP1 or strong clinical risk factors.",
+    evidenceRefs:["ev_gstp1_platinum_toxicity_meta","ev_phase2_anticancer_gst_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"GSTT1 null: lower-confidence platinum toxicity review flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"possible reduced GSTT1 context; evidence inconsistent" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTT1-present context" },
+    }
+  },
+  {
+    parent:"Busulfan",
+    metaboliteId:"busulfan-gst-conditioning-clearance",
+    metaboliteName:"Busulfan glutathione clearance context",
+    enzyme:"GSTM1",
+    systemic:true,
+    note:"Busulfan is a narrow-index conditioning drug where GST variation can affect clearance/toxicity signals. This card is a genotype context reminder, not a replacement for protocol dosing and therapeutic drug monitoring.",
+    evidenceRefs:["ev_busulfan_gst_meta"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"GSTM1 null/reduced GST context: busulfan TDM and VOD/toxicity monitoring are high priority" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible reduced GST context; keep TDM and hepatic risk central" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTM1-present context" },
+    }
+  },
+  {
+    parent:"Busulfan",
+    metaboliteId:"busulfan-gstt1-conditioning-context",
+    metaboliteName:"GSTT1 conditioning detox context",
+    enzyme:"GSTT1",
+    systemic:true,
+    note:"GSTT1 null is included as a conditioning-regimen detoxification context. Busulfan AUC monitoring and liver/VOD risk assessment remain much more actionable than genotype alone.",
+    evidenceRefs:["ev_busulfan_gst_meta"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"GSTT1 null: conditioning toxicity review flag; do not bypass TDM" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"possible intermediate GSTT1 context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTT1-present context" },
+    }
+  },
+  {
+    parent:"Melphalan",
+    metaboliteId:"melphalan-gstp1-detox-context",
+    metaboliteName:"Alkylator detoxification context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"Melphalan is included as a lower-confidence GSTP1/GST detoxification context for oncology review. Evidence is not strong enough for a dose rule; marrow reserve, renal function, mucositis, and protocol dominate.",
+    evidenceRefs:["ev_phase2_anticancer_gst_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: toxicity-monitoring flag for alkylator regimens" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate GSTP1 context; evidence is lower confidence" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
+  {
+    parent:"Thiotepa",
+    metaboliteId:"thiotepa-gstp1-detox-context",
+    metaboliteName:"Alkylator detoxification context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"Thiotepa metabolism is primarily CYP3A4/CYP2B6 to TEPA, but GSTP1/GST context can be useful as a conservative detoxification review flag in conditioning regimens.",
+    evidenceRefs:["ev_phase2_anticancer_gst_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: review conditioning toxicity stack" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate GSTP1 context; CYP3A/CYP2B6 and protocol dominate" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
+  {
+    parent:"Chlorambucil",
+    metaboliteId:"chlorambucil-gstp1-detox-context",
+    metaboliteName:"Alkylator detoxification context",
+    enzyme:"GSTP1",
+    systemic:true,
+    note:"Chlorambucil is shown as a broad alkylator detoxification context only. It should not trigger genotype-based dose changes without human oncology review.",
+    evidenceRefs:["ev_phase2_anticancer_gst_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced GSTP1 context: marrow/toxicity review flag" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate GSTP1 context; lower-confidence evidence" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTP1 context" },
+    }
+  },
 ];

@@ -6773,6 +6773,48 @@ const STUDY_DB = {
     limitations:["Context-specific association evidence; not a CPIC-style prescribing rule."],
     verified:false, reviewRequired:true, verifyNote:"GSTM1 panel enrichment pending pharmacist/physician review; broader phase II review PMID 21659608"
   },
+  "ev_gstp1_platinum_toxicity_meta": {
+    id:"ev_gstp1_platinum_toxicity_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"GSTP1 polymorphism and platinum chemotherapy toxicities systematic review/meta-analysis",
+    year:2022, source:"Kim et al.", journal:"Pharmaceuticals (Basel)", pmid:"35455437", doi:"10.3390/ph15040439",
+    url:"https://pubmed.ncbi.nlm.nih.gov/35455437/",
+    studyDesign:"systematic_review_meta_analysis", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
+    quantifiedEffects:{note:"Meta-analysis reported GSTP1 rs1695 variant associations with platinum-induced toxicity signals, including higher hematological toxicity/neutropenia and tissue-specific opposite effects for some toxicity domains."},
+    temporal:{mechanism:"GSTP1-dependent glutathione conjugation/detoxification context for platinum compounds"},
+    supports:["GSTP1_platinum_toxicity_review_context","GSTP1_rs1695_reduced_activity_context"],
+    contradicts:["GSTP1_is_not_a_standalone_platinum_dose_rule"],
+    limitations:["Associations vary by tumor, regimen, ancestry, toxicity endpoint, and cumulative dose; oncology review required before any prescribing action."],
+    verified:false, reviewRequired:true, verifyNote:"GSTP1/platinum enrichment pending oncology pharmacy review"
+  },
+  "ev_busulfan_gst_meta": {
+    id:"ev_busulfan_gst_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"GST polymorphisms, busulfan pharmacokinetics, and veno-occlusive disease meta-analysis",
+    year:2019, source:"Busulfan GST pharmacogenetics meta-analysis", journal:"Pharmacogenomics", pmid:"30511436", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/30511436/",
+    studyDesign:"meta_analysis", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
+    quantifiedEffects:{note:"Meta-analysis associated GST variation, especially GSTA1 and GSTM1 null context, with busulfan clearance/toxicity signals. Clinical practice still relies on protocol dosing and therapeutic drug monitoring."},
+    temporal:{mechanism:"busulfan glutathione conjugation and conditioning-regimen exposure/toxicity"},
+    supports:["busulfan_GST_clearance_context","GSTM1_null_busulfan_review_flag"],
+    contradicts:["GST_genotype_does_not_replace_busulfan_TDM"],
+    limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a MedCheck panel."],
+    verified:false, reviewRequired:true, verifyNote:"Busulfan/GST enrichment pending transplant oncology pharmacy review"
+  },
+  "ev_phase2_anticancer_gst_review": {
+    id:"ev_phase2_anticancer_gst_review", public:true, type:EVIDENCE_TIER.REVIEW,
+    title:"Pharmacogenetic variability in phase II anticancer drug metabolism",
+    year:2011, source:"The Oncologist", journal:"The Oncologist", pmid:"21659608", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/21659608/",
+    studyDesign:"narrative_review", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
+    quantifiedEffects:{note:"Review covers phase II pharmacogenetic variability in anticancer therapy, including glutathione S-transferase genes and context-dependent oncology toxicity/response signals."},
+    temporal:{mechanism:"phase II detoxification and conjugation of anticancer drugs/intermediates"},
+    supports:["GSTP1_GSTT1_anticancer_detox_context","phase_II_oncology_pgx_review_context"],
+    contradicts:["GST_variants_are_not_global_anticancer_dose_rules"],
+    limitations:["Narrative synthesis; drug-specific implementation needs human review and stronger regimen-specific evidence."],
+    verified:false, reviewRequired:true, verifyNote:"Phase II anticancer GST context pending oncology pharmacy review"
+  },
   "ev_mthfr_c677t_methotrexate_toxicity_meta": {
     id:"ev_mthfr_c677t_methotrexate_toxicity_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
     title:"MTHFR C677T and methotrexate toxicity meta-analysis",

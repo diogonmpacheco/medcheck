@@ -4,7 +4,7 @@
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
   "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
-  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","ALDH2","SLC22A1","SLC22A2","SLC47A1","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
+  "SLCO1B1","ABCB1","ABCG2","GSTM1","GSTT1","GSTP1","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","ALDH2","SLC22A1","SLC22A2","SLC47A1","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
   { id: "ultrarapid", label: "Ultrarapid Metabolizer", mult: 0.3, cssClass: "ultrarapid" },
@@ -221,6 +221,33 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Isoniazid",level:"A",action:"Slow acetylator: ↑ hepatotoxicity; reduce dose/monitor LFTs"},
       {drug:"Sulfasalazine",level:"B",action:"Slow acetylator: ↑ ADR frequency"},
       {drug:"Hydralazine",level:"C",action:"Slow acetylator: ↑ SLE-like syndrome risk"}
+    ]
+  },
+  "GSTM1":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Busulfan",level:"C",action:"Null genotype is a conditioning-regimen toxicity/PK review flag; therapeutic drug monitoring remains central"},
+      {drug:"Acetaminophen",level:"C",action:"Detoxification reserve context for NAPQI risk stacking, especially overdose/alcohol/liver disease"},
+      {drug:"Isoniazid",level:"C",action:"Hepatotoxicity monitoring context alongside NAT2 and clinical risk factors"}
+    ]
+  },
+  "GSTT1":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Cisplatin",level:"C",action:"Null genotype is a platinum toxicity-context flag; evidence is inconsistent and tumor/regimen-specific"},
+      {drug:"Busulfan",level:"C",action:"Glutathione detoxification context for conditioning regimens; do not replace busulfan TDM"},
+      {drug:"Cruciferous Vegetables (Isothiocyanates)",level:"C",action:"Null genotype can alter isothiocyanate mercapturic-acid excretion kinetics"}
+    ]
+  },
+  "GSTP1":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Cisplatin",level:"C",action:"rs1695/reduced activity is associated with platinum toxicity signals; use as oncology review context"},
+      {drug:"Carboplatin",level:"C",action:"Platinum detoxification/toxicity context; no standalone dose rule"},
+      {drug:"Oxaliplatin",level:"C",action:"Platinum neurotoxicity/myelosuppression context; tumor and regimen matter"}
     ]
   },
   "ABCB1":{
@@ -445,6 +472,9 @@ const ENZYME_ACTORS = {
   "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "BCHE":    {id:"BCHE",    type:ACTOR_TYPE.ENZYME, name:"BCHE",    family:"esterase", tissue:["plasma","liver"],    polymorphic:true, substrateCount:0},
   "NAT2":    {id:"NAT2",    type:ACTOR_TYPE.ENZYME, name:"NAT2",    family:"NAT",    tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "GSTM1":   {id:"GSTM1",   type:ACTOR_TYPE.ENZYME, name:"GSTM1",   family:"GST",    tissue:["liver","blood"],       polymorphic:true, substrateCount:0},
+  "GSTT1":   {id:"GSTT1",   type:ACTOR_TYPE.ENZYME, name:"GSTT1",   family:"GST",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
+  "GSTP1":   {id:"GSTP1",   type:ACTOR_TYPE.ENZYME, name:"GSTP1",   family:"GST",    tissue:["tumor","blood","lung"], polymorphic:true, substrateCount:0},
   "VKORC1":  {id:"VKORC1",  type:ACTOR_TYPE.ENZYME, name:"VKORC1",  family:"vitamin_K_cycle", tissue:["liver"],      polymorphic:true, substrateCount:0},
   "NUDT15":  {id:"NUDT15",  type:ACTOR_TYPE.ENZYME, name:"NUDT15",  family:"nucleotide_hydrolase", tissue:["blood","bone_marrow"], polymorphic:true, substrateCount:0},
   "SLCO1B1": {id:"SLCO1B1", type:ACTOR_TYPE.ENZYME, name:"SLCO1B1/OATP1B1", family:"transporter_gene", tissue:["liver"], polymorphic:true, substrateCount:0},
