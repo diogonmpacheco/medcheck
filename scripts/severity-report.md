@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 613
-Original severe: 316
-Recommended severe: 316
+Known DDI pairs: 631
+Original severe: 326
+Recommended severe: 326
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -622,3 +622,21 @@ Recommended downgrades: 0
 | Carboprost + Albuterol | bronchospasm_context | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
 | Acitretin + Alcohol (Ethanol) | teratogenic_metabolite_persistence | severe | severe | ev_pregnancy_obstetric_workflow (guideline) | Severe support threshold met. |
 | Rho(D) Immune Globulin + MMR Vaccine | immune_globulin_vaccine_timing | moderate | moderate | ev_pregnancy_obstetric_workflow (guideline) | Kept original severity. |
+| Transplant Recipient / Perioperative + MMR Vaccine | live_vaccine_immunosuppression | severe | severe | ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Rabbit Antithymocyte Globulin + MMR Vaccine | live_vaccine_immunosuppression | severe | severe | ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Belatacept + MMR Vaccine | live_vaccine_immunosuppression | severe | severe | ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Basiliximab + Tacrolimus | intentional_induction_maintenance | mild | mild | ev_transplant_perioperative_workflow (guideline)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Kept original severity. |
+| Rabbit Antithymocyte Globulin + Valganciclovir | myelosuppression_infection | moderate | moderate | ev_transplant_perioperative_workflow (guideline)<br>ev_valganciclovir_label (fda_label) | Kept original severity. |
+| Tacrolimus + Posaconazole | cyp3a_tdm | severe | severe | ev_transplant_perioperative_workflow (guideline)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Tacrolimus + Clarithromycin | cyp3a_tdm | severe | severe | ev_transplant_perioperative_workflow (guideline)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Tacrolimus + Cobicistat | pharmacoenhancer_cyp3a | severe | severe | ev_transplant_perioperative_workflow (guideline)<br>ev_cobicistat_cyp3a_label (fda_label PMID:24297288)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Tacrolimus + Ibuprofen | nephrotoxicity | moderate | moderate | ev_transplant_perioperative_workflow (guideline) | Kept original severity. |
+| Tacrolimus + Trimethoprim/Sulfamethoxazole | hyperkalemia_nephrotoxicity | moderate | moderate | ev_transplant_perioperative_workflow (guideline)<br>ev_tmp_smx_label (fda_label) | Kept original severity. |
+| Cyclosporine + Posaconazole | cyp3a_tdm | severe | severe | ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Sirolimus + Cyclosporine | cyp3a_pgp_tdm | moderate | moderate | ev_transplant_perioperative_workflow (guideline) | Kept original severity. |
+| Sirolimus + Grapefruit Juice | cyp3a_food | severe | severe | ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Everolimus + Grapefruit Juice | cyp3a_food | severe | severe | ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476)<br>ev_transplant_perioperative_workflow (guideline) | Severe support threshold met. |
+| Mycophenolate + Valganciclovir | myelosuppression | moderate | moderate | ev_mycophenolate_enterohepatic_label (fda_label)<br>ev_valganciclovir_label (fda_label)<br>ev_transplant_perioperative_workflow (guideline) | Kept original severity. |
+| Foscarnet + Tacrolimus | nephrotoxicity_electrolyte | severe | severe | ev_transplant_perioperative_workflow (guideline)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Pentamidine + Tacrolimus | nephrotoxicity_qt_dysglycemia | moderate | moderate | ev_transplant_perioperative_workflow (guideline) | Kept original severity. |
+| Nystatin + Tacrolimus | low_systemic_antifungal_context | mild | mild | ev_transplant_perioperative_workflow (guideline) | Kept original severity. |

@@ -8106,6 +8106,19 @@ const STUDY_DB = {
     limitations:["This is a medication coverage synthesis, not obstetric management advice. Gestational age, indication, fetal/maternal status, exposure timing, dose, local protocols, and maternal-fetal medicine consultation determine actual management."],
     verified:false, reviewRequired:true, verifyNote:"Pregnancy/obstetric enrichment batch synthesized from guideline/label sources; pending OB/MFM/pharmacy review"
   },
+  "ev_transplant_perioperative_workflow": {
+    id:"ev_transplant_perioperative_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Transplant perioperative and immunosuppression medication workflow coverage: induction biologics, calcineurin/mTOR TDM, infection prophylaxis, CMV therapy, live vaccines, and nephrotoxicity",
+    year:2026, source:"KDIGO transplant recipient guidance / AST infectious disease interaction guidance / FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://kdigo.org/guidelines/transplant-recipient/",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Solid-organ transplant medication review requires trough-guided calcineurin/mTOR inhibitor management, CYP3A/P-gp/OATP interaction checks with azoles, macrolides, boosters, rifamycins, grapefruit, statins, and antivirals; induction/maintenance immunosuppression infection and vaccine context; CMV prophylaxis/treatment marrow and renal toxicity; PJP prophylaxis alternatives; and perioperative nephrotoxin/electrolyte monitoring."},
+    temporal:{mechanism:"transplant_perioperative_immunosuppression_workflow", onset:"hours_to_months", offset:"days_to_months"},
+    supports:["transplant_CNI_mTOR_TDM_interactions","transplant_azole_macrolide_booster_CYP3A_risk","transplant_live_vaccine_avoidance","transplant_CMV_PJP_prophylaxis_toxicity","transplant_nephrotoxin_electrolyte_monitoring"],
+    contradicts:[],
+    limitations:["This is a medication coverage synthesis, not a transplant protocol. Organ type, time from transplant, rejection risk, infection risk, trough targets, renal/hepatic function, pharmacogenetics, and transplant-center protocols determine actual management."],
+    verified:false, reviewRequired:true, verifyNote:"Transplant enrichment batch synthesized from guideline/label sources; pending transplant medicine/ID/pharmacy review"
+  },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",

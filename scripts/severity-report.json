@@ -16252,5 +16252,550 @@
       "hasStrongInline": false,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Transplant Recipient / Perioperative",
+    "drug2": "MMR Vaccine",
+    "category": "live_vaccine_immunosuppression",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rabbit Antithymocyte Globulin",
+    "drug2": "MMR Vaccine",
+    "category": "live_vaccine_immunosuppression",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Belatacept",
+    "drug2": "MMR Vaccine",
+    "category": "live_vaccine_immunosuppression",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Basiliximab",
+    "drug2": "Tacrolimus",
+    "category": "intentional_induction_maintenance",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rabbit Antithymocyte Globulin",
+    "drug2": "Valganciclovir",
+    "category": "myelosuppression_infection",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_valganciclovir_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_valganciclovir_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Posaconazole",
+    "category": "cyp3a_tdm",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Clarithromycin",
+    "category": "cyp3a_tdm",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Cobicistat",
+    "category": "pharmacoenhancer_cyp3a",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_cobicistat_cyp3a_label",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_cobicistat_cyp3a_label",
+          "type": "fda_label",
+          "pmid": "24297288",
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Ibuprofen",
+    "category": "nephrotoxicity",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
+    "category": "hyperkalemia_nephrotoxicity",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_tmp_smx_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tmp_smx_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cyclosporine",
+    "drug2": "Posaconazole",
+    "category": "cyp3a_tdm",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sirolimus",
+    "drug2": "Cyclosporine",
+    "category": "cyp3a_pgp_tdm",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sirolimus",
+    "drug2": "Grapefruit Juice",
+    "category": "cyp3a_food",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Everolimus",
+    "drug2": "Grapefruit Juice",
+    "category": "cyp3a_food",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_everolimus_cyp3a_pgp_label",
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_everolimus_cyp3a_pgp_label",
+          "type": "fda_label",
+          "pmid": "17609476",
+          "doi": null
+        },
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Mycophenolate",
+    "drug2": "Valganciclovir",
+    "category": "myelosuppression",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_mycophenolate_enterohepatic_label",
+        "ev_valganciclovir_label",
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_mycophenolate_enterohepatic_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_valganciclovir_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Foscarnet",
+    "drug2": "Tacrolimus",
+    "category": "nephrotoxicity_electrolyte",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pentamidine",
+    "drug2": "Tacrolimus",
+    "category": "nephrotoxicity_qt_dysglycemia",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nystatin",
+    "drug2": "Tacrolimus",
+    "category": "low_systemic_antifungal_context",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_transplant_perioperative_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_transplant_perioperative_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]
