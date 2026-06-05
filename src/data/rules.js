@@ -1461,4 +1461,102 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline response context" },
     }
   },
+  {
+    parent:"Sertraline",
+    metaboliteId:"slc6a4-ssri-response",
+    metaboliteName:"SERT response/tolerability context",
+    enzyme:"SLC6A4",
+    systemic:true,
+    note:"SLC6A4/5-HTTLPR is a pharmacodynamic response/tolerability marker for serotonin reuptake inhibitors. It should be read beside CYP exposure, diagnosis, prior response, activation/anxiety, and adherence rather than used as a standalone dose rule.",
+    evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"reduced-transporter-expression context; lower SSRI response or tolerability signal possible" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate response context; monitor early activation, GI effects, sleep, and symptom trajectory" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"reference response context" },
+    }
+  },
+  {
+    parent:"Escitalopram",
+    metaboliteId:"htr2a-escitalopram-response",
+    metaboliteName:"5-HT2A response/tolerability context",
+    enzyme:"HTR2A",
+    systemic:true,
+    note:"HTR2A is included in CPIC's serotonin reuptake inhibitor guideline as response/tolerability context. CYP2C19 exposure, QT context, prior SSRI response, and adverse effects remain more directly actionable.",
+    evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"uncertain", label:"HTR2A response/tolerability context; consider closer follow-up rather than genotype-only dose change" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate response context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"reference response context" },
+    }
+  },
+  {
+    parent:"Fluoxetine",
+    metaboliteId:"slc6a4-fluoxetine-response",
+    metaboliteName:"SERT response/tolerability context",
+    enzyme:"SLC6A4",
+    systemic:true,
+    note:"Fluoxetine has long parent/metabolite half-lives and CYP interaction complexity. SLC6A4 can add response/tolerability context but should not be treated as a clearance or dose rule.",
+    evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a","ev_fluoxetine_cyp2d6_fda"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"reduced SERT expression/response context; monitor response and activation/tolerability" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate SERT response context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"reference response context" },
+    }
+  },
+  {
+    parent:"Venlafaxine",
+    metaboliteId:"htr2a-venlafaxine-response",
+    metaboliteName:"5-HT2A response/tolerability context",
+    enzyme:"HTR2A",
+    systemic:true,
+    note:"Venlafaxine response is shaped by CYP2D6 conversion to O-desmethylvenlafaxine plus serotonergic/noradrenergic tolerability. HTR2A is a response-context flag, not a dose rule.",
+    evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"uncertain", label:"HTR2A response/tolerability context; monitor BP, activation, sleep, and symptom response" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate response context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"reference response context" },
+    }
+  },
+  {
+    parent:"Olanzapine",
+    metaboliteId:"htr2c-olanzapine-metabolic-risk",
+    metaboliteName:"Antipsychotic metabolic tolerability context",
+    enzyme:"HTR2C",
+    systemic:true,
+    note:"HTR2C variation has been studied as a weight/metabolic susceptibility marker for antipsychotics. Use this as a baseline-risk and monitoring prompt; olanzapine metabolic risk is already high independent of genotype.",
+    evidenceRefs:["ev_antipsychotic_receptor_pgx_context"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher metabolic/weight-gain susceptibility context; strengthen baseline weight/A1c/lipid monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate metabolic susceptibility context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline tolerability context" },
+    }
+  },
+  {
+    parent:"Risperidone",
+    metaboliteId:"drd2-risperidone-response",
+    metaboliteName:"D2 response/prolactin/EPS context",
+    enzyme:"DRD2",
+    systemic:true,
+    note:"DRD2 variation is a dopamine-receptor response/adverse-effect context for antipsychotics. Interpret with CYP2D6 active-moiety exposure, dose, EPS/prolactin history, and clinical response.",
+    evidenceRefs:["ev_antipsychotic_receptor_pgx_context","ev_antipsychotic_cyp2d6_labels"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher D2 adverse-effect/response context possible; monitor EPS/prolactin and response" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate D2 response context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline receptor-response context" },
+    }
+  },
+  {
+    parent:"Clozapine",
+    metaboliteId:"htr2c-clozapine-metabolic-risk",
+    metaboliteName:"Antipsychotic metabolic tolerability context",
+    enzyme:"HTR2C",
+    systemic:true,
+    note:"Clozapine metabolic risk is clinically important and not solved by a single genotype. HTR2C can add susceptibility context, while ANC monitoring, smoking/CYP1A2, constipation, myocarditis, seizures, and TDM remain central.",
+    evidenceRefs:["ev_antipsychotic_receptor_pgx_context"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher metabolic/weight-gain susceptibility context; do not weaken standard clozapine monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate metabolic susceptibility context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline tolerability context" },
+    }
+  },
 ];

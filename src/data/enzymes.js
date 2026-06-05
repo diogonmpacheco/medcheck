@@ -4,7 +4,7 @@
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
   "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
-  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","MAO-A","MAO-B"
+  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
   { id: "ultrarapid", label: "Ultrarapid Metabolizer", mult: 0.3, cssClass: "ultrarapid" },
@@ -273,6 +273,69 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Methadone",level:"C",action:"Response context only; QT risk and CYP2B6/CYP3A interactions remain more actionable"}
     ]
   },
+  "SLC6A4":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Sertraline",level:"B",action:"Serotonin-transporter response/tolerability context; not a clearance dose rule"},
+      {drug:"Escitalopram",level:"B",action:"Response context to read beside CYP2C19 exposure and prior SSRI response"},
+      {drug:"Citalopram",level:"B",action:"Response context; QT and CYP2C19 remain more actionable"},
+      {drug:"Fluoxetine",level:"B",action:"Response context to read beside CYP2D6/CYP2C19 and long half-life"}
+    ]
+  },
+  "HTR2A":{
+    grade:"B",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Sertraline",level:"B",action:"Serotonin-receptor response/tolerability context; no standalone dose change"},
+      {drug:"Escitalopram",level:"B",action:"Response context to read beside CYP2C19 and clinical history"},
+      {drug:"Venlafaxine",level:"B",action:"Response/tolerability context; CYP2D6 active-metabolite pathway remains more actionable"}
+    ]
+  },
+  "HTR2C":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Olanzapine",level:"C",action:"Weight/metabolic adverse-effect susceptibility context"},
+      {drug:"Risperidone",level:"C",action:"Weight/prolactin/EPS context; CYP2D6 exposure remains more actionable"},
+      {drug:"Clozapine",level:"C",action:"Metabolic-risk context; TDM, smoking/CYP1A2, and ANC monitoring dominate"}
+    ]
+  },
+  "DRD2":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Risperidone",level:"C",action:"Dopamine-receptor response/prolactin/EPS context"},
+      {drug:"Haloperidol",level:"C",action:"EPS/response context; dose and CYP2D6 remain more actionable"},
+      {drug:"Olanzapine",level:"C",action:"Response/tolerability context; not a dose rule"}
+    ]
+  },
+  "SCN1A":{
+    grade:"C",
+    guideline:"Neurology literature",
+    pairs:[
+      {drug:"Carbamazepine",level:"C",action:"Dravet/SCN1A loss-of-function context: sodium-channel blockers can worsen seizures"},
+      {drug:"Lamotrigine",level:"C",action:"Sodium-channel blocker; specialist review in SCN1A/Dravet-spectrum contexts"},
+      {drug:"Phenytoin",level:"C",action:"Sodium-channel blocker; phenotype and emergency context matter"}
+    ]
+  },
+  "SCN2A":{
+    grade:"C",
+    guideline:"Neurology literature",
+    pairs:[
+      {drug:"Carbamazepine",level:"C",action:"Variant-direction-dependent sodium-channel blocker response"},
+      {drug:"Lacosamide",level:"C",action:"Sodium-channel modulator; use only with specialist variant interpretation"}
+    ]
+  },
+  "KCNH2":{
+    grade:"C",
+    guideline:"Cardiac safety literature",
+    pairs:[
+      {drug:"Citalopram",level:"C",action:"Long-QT susceptibility context; ECG/electrolyte/interaction review"},
+      {drug:"Methadone",level:"C",action:"Long-QT susceptibility context; QT and accumulation monitoring"},
+      {drug:"Haloperidol",level:"C",action:"Long-QT susceptibility context; route/dose and QT stacking matter"}
+    ]
+  },
   "MAO-A":{
     grade:"C",
     guideline:"PharmGKB",
@@ -365,6 +428,13 @@ const ENZYME_ACTORS = {
   "IFNL3":   {id:"IFNL3",   type:ACTOR_TYPE.ENZYME, name:"IFNL3/IL28B", family:"response_gene", tissue:["immune","liver"], polymorphic:true, substrateCount:0},
   "IFNL4":   {id:"IFNL4",   type:ACTOR_TYPE.ENZYME, name:"IFNL4",   family:"response_gene", tissue:["immune","liver"], polymorphic:true, substrateCount:0},
   "OPRM1":   {id:"OPRM1",   type:ACTOR_TYPE.ENZYME, name:"OPRM1/mu-opioid receptor", family:"receptor_gene", tissue:["brain","spinal_cord","gut"], polymorphic:true, substrateCount:0},
+  "SLC6A4":  {id:"SLC6A4",  type:ACTOR_TYPE.ENZYME, name:"SLC6A4/SERT", family:"transporter_gene", tissue:["brain","platelets","gut"], polymorphic:true, substrateCount:0},
+  "HTR2A":   {id:"HTR2A",   type:ACTOR_TYPE.ENZYME, name:"HTR2A/5-HT2A receptor", family:"receptor_gene", tissue:["brain","platelets"], polymorphic:true, substrateCount:0},
+  "HTR2C":   {id:"HTR2C",   type:ACTOR_TYPE.ENZYME, name:"HTR2C/5-HT2C receptor", family:"receptor_gene", tissue:["brain","hypothalamus"], polymorphic:true, substrateCount:0},
+  "DRD2":    {id:"DRD2",    type:ACTOR_TYPE.ENZYME, name:"DRD2/dopamine D2 receptor", family:"receptor_gene", tissue:["brain","pituitary"], polymorphic:true, substrateCount:0},
+  "SCN1A":   {id:"SCN1A",   type:ACTOR_TYPE.ENZYME, name:"SCN1A/Nav1.1", family:"ion_channel_gene", tissue:["brain"], polymorphic:true, substrateCount:0},
+  "SCN2A":   {id:"SCN2A",   type:ACTOR_TYPE.ENZYME, name:"SCN2A/Nav1.2", family:"ion_channel_gene", tissue:["brain"], polymorphic:true, substrateCount:0},
+  "KCNH2":   {id:"KCNH2",   type:ACTOR_TYPE.ENZYME, name:"KCNH2/hERG", family:"ion_channel_gene", tissue:["heart"], polymorphic:true, substrateCount:0},
   "MAO-A":   {id:"MAO-A",   type:ACTOR_TYPE.ENZYME, name:"MAO-A",   family:"MAO",    tissue:["gut","liver","brain"],  polymorphic:false,substrateCount:0},
   "MAO-B":   {id:"MAO-B",   type:ACTOR_TYPE.ENZYME, name:"MAO-B",   family:"MAO",    tissue:["brain","platelets"],    polymorphic:false,substrateCount:0},
 };

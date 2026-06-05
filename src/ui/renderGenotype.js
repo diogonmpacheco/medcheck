@@ -681,6 +681,10 @@ function normalizePharmGxGene(value) {
     "MT-RNR1": "MT-RNR1 m.1555A>G",
     RYR1: "RYR1/CACNA1S MH variant",
     CACNA1S: "RYR1/CACNA1S MH variant",
+    SCN1A: "SCN1A sodium-channel variant",
+    SCN2A: "SCN2A sodium-channel variant",
+    KCNH2: "KCNH2 long-QT variant",
+    HERG: "KCNH2 long-QT variant",
   };
   if (riskAliases[gene] && GENOTYPE_RISK_EFFECTS[riskAliases[gene]]) return riskAliases[gene];
   const exactRiskKey = Object.keys(GENOTYPE_RISK_EFFECTS).find(key =>

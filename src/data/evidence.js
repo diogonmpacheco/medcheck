@@ -1572,6 +1572,77 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_ssri_snri_cpic_2023_slc6a4_htr2a": {
+    id:"ev_ssri_snri_cpic_2023_slc6a4_htr2a",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC guideline for CYP2D6, CYP2C19, CYP2B6, SLC6A4, and HTR2A genotypes and serotonin reuptake inhibitor antidepressants",
+    year:2023, source:"Clinical Pharmacology & Therapeutics",
+    pmid:"37032427", doi:"10.1002/cpt.2903",
+    url:"https://pubmed.ncbi.nlm.nih.gov/37032427/",
+    studyDesign:"clinical pharmacogenetic guideline",
+    n:null,
+    phenotypes:["SLC6A4_response_context","HTR2A_response_context","CYP2D6_CYP2C19_CYP2B6_metabolizer_status"],
+    quantifiedEffects:{note:"CPIC's 2023 serotonin reuptake inhibitor guideline includes pharmacodynamic SLC6A4 and HTR2A response/tolerability context alongside CYP2D6/CYP2C19/CYP2B6 exposure recommendations."},
+    temporal:{mechanism:"serotonin_reuptake_inhibitor_response_context"},
+    supports:["SLC6A4_SSRI_RESPONSE_CONTEXT","HTR2A_SSRI_RESPONSE_CONTEXT"],
+    contradicts:[],
+    limitations:["Pharmacodynamic gene effects are less deterministic than CYP exposure rules and should not be used as standalone dose changes"],
+    verified:true
+  },
+
+  "ev_antipsychotic_receptor_pgx_context": {
+    id:"ev_antipsychotic_receptor_pgx_context",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Pharmacogenetics of antipsychotic drug treatment: update and clinical implications",
+    year:2020, source:"Molecular Diagnosis & Therapy",
+    pmid:null, doi:"10.1007/s40291-020-00465-2",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7206586/",
+    studyDesign:"clinical pharmacogenetics review",
+    n:null,
+    phenotypes:["DRD2_response_context","HTR2C_weight_gain_context","COMT_response_context"],
+    quantifiedEffects:{note:"Antipsychotic receptor pharmacogenetics has signals for response, prolactin/EPS, and metabolic effects, but published prescribing recommendations remain much weaker than CYP2D6/CYP2C19 exposure guidance."},
+    temporal:{mechanism:"antipsychotic_receptor_response_and_tolerability_context"},
+    supports:["DRD2_ANTIPSYCHOTIC_RESPONSE_CONTEXT","HTR2C_ANTIPSYCHOTIC_WEIGHT_CONTEXT"],
+    contradicts:[],
+    limitations:["Associations vary by antipsychotic, ancestry, phenotype definition, and study design; use as review context only"],
+    verified:true
+  },
+
+  "ev_scn_channel_epilepsy_pharmacogenetics_review": {
+    id:"ev_scn_channel_epilepsy_pharmacogenetics_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Review of pharmacogenetics of antiseizure medications: focusing on genetic variants of mechanistic targets",
+    year:2024, source:"Frontiers in Pharmacology",
+    pmid:"39228521", doi:"10.3389/fphar.2024.1405464",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11368862/",
+    studyDesign:"pharmacogenetics review",
+    n:null,
+    phenotypes:["SCN1A_sodium_channel_context","SCN2A_sodium_channel_context"],
+    quantifiedEffects:{note:"Sodium-channel gene effects in epilepsy are variant- and syndrome-dependent. SCN1A/Dravet-spectrum loss-of-function contexts can make sodium-channel blockers hazardous, while some SCN2A gain-of-function contexts may respond differently."},
+    temporal:{mechanism:"sodium_channel_variant_antiseizure_response_context"},
+    supports:["SCN1A_SODIUM_CHANNEL_BLOCKER_CONTEXT","SCN2A_SODIUM_CHANNEL_BLOCKER_CONTEXT"],
+    contradicts:[],
+    limitations:["Requires molecular diagnosis and variant-function interpretation; not a direct dose rule"],
+    verified:true
+  },
+
+  "ev_kcnh2_drug_induced_qt_pharmacogenetics": {
+    id:"ev_kcnh2_drug_induced_qt_pharmacogenetics",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Pharmacogenetics of drug-induced arrhythmias",
+    year:2008, source:"Pharmacology & Therapeutics",
+    pmid:"24410513", doi:"10.1016/j.pharmthera.2007.09.001",
+    studyDesign:"cardiac pharmacogenetics review",
+    n:null,
+    phenotypes:["KCNH2_long_QT_susceptibility","drug_induced_TdP_context"],
+    quantifiedEffects:{note:"KCNH2/hERG biology is central to congenital LQT2 and acquired/drug-induced QT prolongation. Variant susceptibility should heighten ECG, electrolyte, dose, and interaction review for QT-risk medicines."},
+    temporal:{mechanism:"hERG_KCNH2_drug_induced_QT_susceptibility"},
+    supports:["KCNH2_QT_RISK_CONTEXT"],
+    contradicts:[],
+    limitations:["Not a single-gene rule for all drug-induced torsades risk; clinical risk factors and QT-stacking remain essential"],
+    verified:true
+  },
+
   "ev_opioid_ugt2b7_glucuronidation_review": {
     id:"ev_opioid_ugt2b7_glucuronidation_review",
     type:EVIDENCE_TIER.META_ANALYSIS,

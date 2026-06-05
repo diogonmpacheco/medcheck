@@ -269,6 +269,26 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.9, freq_pct:null, note:"Intermediate OPRM1 response context. Analgesia and adverse effects remain strongly shaped by dose, tolerance, renal function, CYP2D6/CYP3A/UGT context, and co-sedatives." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference OPRM1 response context." },
   },
+  SLC6A4: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.75, freq_pct:null, note:"Low serotonin-transporter expression/response context, often mapped from 5-HTTLPR S/S or reduced-function reports. CPIC 2023 treats this as antidepressant response/tolerability context, not a clearance rule." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.9, freq_pct:null, note:"Intermediate SLC6A4 response context for serotonin reuptake inhibitors; combine with CYP2D6/CYP2C19/CYP2B6 exposure, indication, prior response, and adverse-effect history." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference SLC6A4 response context." },
+  },
+  HTR2A: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.85, freq_pct:null, note:"HTR2A serotonin-receptor response/tolerability context for SSRIs/SNRIs. Evidence is less deterministic than CYP exposure rules; use as a shared-decision review flag." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.95, freq_pct:null, note:"Intermediate HTR2A response context; monitor efficacy, activation, sleep, and tolerability rather than changing dose from genotype alone." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference HTR2A response context." },
+  },
+  HTR2C: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.3, freq_pct:null, note:"HTR2C appetite/weight-gain susceptibility context for selected antipsychotics. This is a tolerability-risk flag, not a parent-drug exposure rule." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.15, freq_pct:null, note:"Intermediate HTR2C tolerability context; metabolic baseline, dose, antipsychotic choice, age, and lifestyle factors dominate." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference HTR2C tolerability context." },
+  },
+  DRD2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.3, freq_pct:null, note:"DRD2 dopamine-receptor response/adverse-effect context for antipsychotics. Associations with efficacy, EPS, and prolactin are study-specific; use as a review prompt only." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.1, freq_pct:null, note:"Intermediate DRD2 response context; do not override clinical response, dose, CYP2D6 exposure, or adverse-effect monitoring." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference DRD2 response context." },
+  },
 };
 
 const GENOTYPE_RISK_EFFECTS = {
@@ -636,6 +656,95 @@ const GENOTYPE_RISK_EFFECTS = {
       [GENOTYPE_RISK_STATUS.PRESENT]: { label:"variant detected", severity:"moderate", note:"GABRG2 variant context selected. Use as a neurologic/pharmacodynamic review flag, not as an automatic contraindication." },
     },
   },
+  "SCN1A sodium-channel variant": {
+    gene:"SCN1A",
+    variant:"SCN1A pathogenic/functional variant context",
+    label:"SCN1A sodium-channel variant",
+    drugEffects:[
+      {
+        parent:"Carbamazepine",
+        phenotype:"sodium-channel-blocker seizure worsening context",
+        note:"SCN1A loss-of-function/Dravet-spectrum context can make sodium-channel blockers such as carbamazepine clinically hazardous because seizures may worsen. This is neurologic syndrome context, not a PK interaction.",
+        clinicalAction:"specialist review; avoid sodium-channel blockers in Dravet/SCN1A loss-of-function contexts unless epilepsy specialist directs otherwise",
+        evidenceRefs:["ev_scn_channel_epilepsy_pharmacogenetics_review"],
+      },
+      {
+        parent:"Lamotrigine",
+        phenotype:"sodium-channel-blocker seizure worsening context",
+        note:"Lamotrigine is a sodium-channel blocker and may worsen seizures in some SCN1A loss-of-function/Dravet-spectrum settings despite being useful in other epilepsies.",
+        clinicalAction:"specialist review; do not use genotype context alone without phenotype/variant interpretation",
+        evidenceRefs:["ev_scn_channel_epilepsy_pharmacogenetics_review"],
+      },
+      {
+        parent:"Phenytoin",
+        phenotype:"sodium-channel-blocker seizure worsening context",
+        note:"Phenytoin can be problematic in SCN1A loss-of-function/Dravet-spectrum contexts; emergency use and chronic use require specialist risk-benefit interpretation.",
+        clinicalAction:"specialist review; prioritize seizure syndrome and variant effect",
+        evidenceRefs:["ev_scn_channel_epilepsy_pharmacogenetics_review"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"No SCN1A sodium-channel risk marker selected. This does not exclude epilepsy syndrome risk or ordinary anti-seizure medication precautions." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"variant detected", severity:"high", note:"SCN1A sodium-channel variant context selected. Sodium-channel blockers can worsen some SCN1A/Dravet-spectrum epilepsies; specialist interpretation is needed." },
+    },
+  },
+  "SCN2A sodium-channel variant": {
+    gene:"SCN2A",
+    variant:"SCN2A functional variant context",
+    label:"SCN2A sodium-channel variant",
+    drugEffects:[
+      {
+        parent:"Carbamazepine",
+        phenotype:"variant-direction-dependent sodium-channel-blocker response",
+        note:"SCN2A-related epilepsy can be gain- or loss-of-function. Sodium-channel blockers may help some gain-of-function presentations but can be inappropriate in others, so variant direction and age-of-onset matter.",
+        clinicalAction:"specialist review; do not generalize from gene name alone",
+        evidenceRefs:["ev_scn_channel_epilepsy_pharmacogenetics_review"],
+      },
+      {
+        parent:"Lacosamide",
+        phenotype:"variant-direction-dependent sodium-channel-blocker response",
+        note:"Lacosamide is a sodium-channel modulator. SCN2A variant direction can change whether sodium-channel modulation is plausible or risky.",
+        clinicalAction:"specialist review with molecular diagnosis and seizure phenotype",
+        evidenceRefs:["ev_scn_channel_epilepsy_pharmacogenetics_review"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"No SCN2A sodium-channel risk marker selected." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"variant detected", severity:"moderate", note:"SCN2A variant context selected. Sodium-channel blocker response depends on gain- vs loss-of-function and epilepsy syndrome." },
+    },
+  },
+  "KCNH2 long-QT variant": {
+    gene:"KCNH2",
+    variant:"KCNH2/LQT2 susceptibility context",
+    label:"KCNH2 long-QT variant",
+    drugEffects:[
+      {
+        parent:"Citalopram",
+        phenotype:"drug-induced QT/TdP susceptibility",
+        note:"KCNH2 encodes hERG/Kv11.1, a central channel in congenital and drug-induced long-QT biology. QT-risk medicines such as citalopram need extra ECG/electrolyte/interaction review when a long-QT susceptibility variant is present.",
+        clinicalAction:"review QT alternatives, ECG, potassium/magnesium, dose ceiling, and other QT/CYP inhibitors",
+        evidenceRefs:["ev_kcnh2_drug_induced_qt_pharmacogenetics"],
+      },
+      {
+        parent:"Methadone",
+        phenotype:"drug-induced QT/TdP susceptibility",
+        note:"Methadone has dose- and exposure-related QT liability. KCNH2 long-QT susceptibility context should heighten ECG and interaction review.",
+        clinicalAction:"review ECG plan, dose accumulation, CYP2B6/CYP3A interactions, and non-QT alternatives where appropriate",
+        evidenceRefs:["ev_kcnh2_drug_induced_qt_pharmacogenetics"],
+      },
+      {
+        parent:"Haloperidol",
+        phenotype:"drug-induced QT/TdP susceptibility",
+        note:"Haloperidol can prolong QT, especially IV/high-dose or with inhibitors/electrolyte disturbance. KCNH2 context should raise priority of QT-risk mitigation.",
+        clinicalAction:"review route/dose, ECG, electrolytes, and alternative antipsychotics",
+        evidenceRefs:["ev_kcnh2_drug_induced_qt_pharmacogenetics"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"No KCNH2 long-QT marker selected. This does not remove ordinary QT-risk checks." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"variant detected", severity:"high", note:"KCNH2/LQT2 susceptibility context selected. QT-risk medicines deserve ECG, electrolyte, dose, and interaction review." },
+    },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
@@ -671,6 +780,10 @@ let activeGenotype = {
   IFNL3:   GENOTYPE_PHENOTYPE.NM,
   IFNL4:   GENOTYPE_PHENOTYPE.NM,
   OPRM1:   GENOTYPE_PHENOTYPE.NM,
+  SLC6A4:  GENOTYPE_PHENOTYPE.NM,
+  HTR2A:   GENOTYPE_PHENOTYPE.NM,
+  HTR2C:   GENOTYPE_PHENOTYPE.NM,
+  DRD2:    GENOTYPE_PHENOTYPE.NM,
   "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,
@@ -682,6 +795,9 @@ let activeGenotype = {
   "HLA-A*32:01": GENOTYPE_RISK_STATUS.ABSENT,
   "MTHFR C677T": GENOTYPE_RISK_STATUS.ABSENT,
   "GABRG2 variant": GENOTYPE_RISK_STATUS.ABSENT,
+  "SCN1A sodium-channel variant": GENOTYPE_RISK_STATUS.ABSENT,
+  "SCN2A sodium-channel variant": GENOTYPE_RISK_STATUS.ABSENT,
+  "KCNH2 long-QT variant": GENOTYPE_RISK_STATUS.ABSENT,
 };
 
 // ── STUDY_DB ──
