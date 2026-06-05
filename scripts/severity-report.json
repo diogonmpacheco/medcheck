@@ -15305,5 +15305,437 @@
       "hasStrongInline": false,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Sevelamer",
+    "drug2": "Levothyroxine",
+    "category": "binding_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sevelamer",
+    "drug2": "Ciprofloxacin",
+    "category": "binding_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow",
+        "ev_fluoroquinolone_cation_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_fluoroquinolone_cation_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lanthanum Carbonate",
+    "drug2": "Levofloxacin",
+    "category": "chelation_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow",
+        "ev_fluoroquinolone_cation_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_fluoroquinolone_cation_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Calcium Acetate",
+    "drug2": "Levothyroxine",
+    "category": "chelation_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow",
+        "ev_levothyroxine_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_levothyroxine_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Calcium Acetate",
+    "drug2": "Calcitriol",
+    "category": "hypercalcemia",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Calcitriol",
+    "drug2": "Hydrochlorothiazide",
+    "category": "hypercalcemia",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Patiromer",
+    "drug2": "Levothyroxine",
+    "category": "binding_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Patiromer",
+    "drug2": "Ciprofloxacin",
+    "category": "binding_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow",
+        "ev_fluoroquinolone_cation_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_fluoroquinolone_cation_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sodium Zirconium Cyclosilicate",
+    "drug2": "Tacrolimus",
+    "category": "absorption_tdm",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sodium Zirconium Cyclosilicate",
+    "drug2": "Lisinopril",
+    "category": "hyperkalemia_management",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sodium Polystyrene Sulfonate",
+    "drug2": "Phenytoin",
+    "category": "binding_absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sodium Polystyrene Sulfonate",
+    "drug2": "Warfarin",
+    "category": "binding_absorption_anticoagulation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Epoetin Alfa",
+    "drug2": "Iron Sucrose",
+    "category": "intentional_anemia_support",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Darbepoetin Alfa",
+    "drug2": "Iron Sucrose",
+    "category": "intentional_anemia_support",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cinacalcet",
+    "drug2": "Calcitriol",
+    "category": "calcium_pth_balance",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cinacalcet_cyp2d6_label",
+        "ev_dialysis_advanced_ckd_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_cinacalcet_cyp2d6_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_dialysis_advanced_ckd_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]

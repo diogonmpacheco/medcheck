@@ -2,7 +2,7 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 579
+Known DDI pairs: 594
 Original severe: 304
 Recommended severe: 304
 Recommended downgrades: 0
@@ -588,3 +588,18 @@ Recommended downgrades: 0
 | Mannitol + Furosemide | osmotic_diuresis | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
 | Hypertonic Saline 3% + Sodium Bicarbonate | sodium_osmolar_load | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
 | Fosphenytoin + Amiodarone | cardiac_conduction_pk | moderate | moderate | ev_stroke_neurocritical_workflow (guideline) | Kept original severity. |
+| Sevelamer + Levothyroxine | binding_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Sevelamer + Ciprofloxacin | binding_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline)<br>ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Lanthanum Carbonate + Levofloxacin | chelation_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline)<br>ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Calcium Acetate + Levothyroxine | chelation_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline)<br>ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
+| Calcium Acetate + Calcitriol | hypercalcemia | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Calcitriol + Hydrochlorothiazide | hypercalcemia | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Patiromer + Levothyroxine | binding_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Patiromer + Ciprofloxacin | binding_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline)<br>ev_fluoroquinolone_cation_absorption_label (fda_label) | Kept original severity. |
+| Sodium Zirconium Cyclosilicate + Tacrolimus | absorption_tdm | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Kept original severity. |
+| Sodium Zirconium Cyclosilicate + Lisinopril | hyperkalemia_management | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Sodium Polystyrene Sulfonate + Phenytoin | binding_absorption | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Sodium Polystyrene Sulfonate + Warfarin | binding_absorption_anticoagulation | moderate | moderate | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Epoetin Alfa + Iron Sucrose | intentional_anemia_support | mild | mild | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Darbepoetin Alfa + Iron Sucrose | intentional_anemia_support | mild | mild | ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |
+| Cinacalcet + Calcitriol | calcium_pth_balance | moderate | moderate | ev_cinacalcet_cyp2d6_label (fda_label)<br>ev_dialysis_advanced_ckd_workflow (guideline) | Kept original severity. |

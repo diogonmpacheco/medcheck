@@ -8080,6 +8080,19 @@ const STUDY_DB = {
     limitations:["This is a medication coverage synthesis, not an acute stroke protocol. Exact decisions depend on time-last-known-well, imaging, labs, renal function, anticoagulant timing/levels, local stroke-team criteria, and neurocritical care protocols."],
     verified:false, reviewRequired:true, verifyNote:"Stroke/neurocritical enrichment batch synthesized from guideline/label sources; pending neurology/neurocritical-care/pharmacy review"
   },
+  "ev_dialysis_advanced_ckd_workflow": {
+    id:"ev_dialysis_advanced_ckd_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Dialysis/advanced CKD medication workflow coverage: binders, potassium management, CKD-MBD, anemia support, renal clearance, and narrow-index monitoring",
+    year:2026, source:"KDIGO CKD/CKD-MBD/anemia guidance / FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://kdigo.org/guidelines/",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Advanced CKD and dialysis workflows often hinge on renal clearance and non-CYP mechanisms: phosphate and potassium binders reducing oral drug absorption, sodium/calcium load, hyperkalemia management while preserving RAAS therapy, CKD-mineral bone calcium/phosphate/PTH balancing, ESA plus iron response, and narrow-index drug monitoring for digoxin, lithium, warfarin, tacrolimus, and antiseizure medicines."},
+    temporal:{mechanism:"dialysis_advanced_CKD_medication_workflow", onset:"hours_to_weeks", offset:"hours_to_weeks"},
+    supports:["dialysis_phosphate_binder_absorption_interactions","potassium_binder_oral_drug_separation","CKD_MBD_calcium_phosphate_PTH_monitoring","CKD_anemia_ESA_iron_support","advanced_CKD_narrow_index_TDM_context"],
+    contradicts:[],
+    limitations:["This is a medication coverage synthesis, not a dialysis prescription or CKD protocol. Residual kidney function, dialysis modality/schedule, dialyzability, potassium/phosphate/calcium/PTH values, volume status, transplant status, and local nephrology protocols govern exact decisions."],
+    verified:false, reviewRequired:true, verifyNote:"Dialysis/advanced CKD enrichment batch synthesized from guideline/label sources; pending nephrology/pharmacy review"
+  },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",
