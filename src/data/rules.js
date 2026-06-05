@@ -379,6 +379,125 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     }
   },
   {
+    parent:"Succinylcholine",
+    metaboliteId:"succinylcholine-bche-blockade-duration",
+    metaboliteName:"Neuromuscular blockade duration",
+    enzyme:"BCHE",
+    systemic:true,
+    note:"Succinylcholine is normally hydrolyzed rapidly by plasma butyrylcholinesterase. BCHE poor function does not create an active metabolite problem; it prevents rapid drug offset, so paralysis/apnea can persist after the expected procedural window.",
+    evidenceRefs:["ev_bche_succinylcholine_mivacurium_label","ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"BCHE inhibition/low enzyme activity: prolonged neuromuscular blockade expected",
+    clinicalAction:"avoid if known deficiency when feasible; prepare ventilation/sedation until recovery if exposure occurs",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"severe prolonged paralysis/apnea risk; use non-BCHE-dependent paralytic when possible" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"prolonged blockade risk; review anesthesia history and consider alternatives" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline rapid hydrolysis" },
+    }
+  },
+  {
+    parent:"Mivacurium",
+    metaboliteId:"mivacurium-bche-blockade-duration",
+    metaboliteName:"Neuromuscular blockade duration",
+    enzyme:"BCHE",
+    systemic:true,
+    note:"Mivacurium is also hydrolyzed by plasma butyrylcholinesterase. BCHE deficiency can turn a short-acting paralytic into a prolonged ventilation problem.",
+    evidenceRefs:["ev_bche_succinylcholine_mivacurium_label"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"BCHE inhibition/low enzyme activity: prolonged mivacurium blockade expected",
+    clinicalAction:"avoid if known deficiency when feasible; monitor train-of-four and ventilatory recovery",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"severe prolonged neuromuscular blockade risk" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"prolonged blockade risk; use caution and monitoring" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline rapid hydrolysis" },
+    }
+  },
+  {
+    parent:"Ibuprofen",
+    metaboliteId:"ibuprofen-cyp2c9-parent-exposure",
+    metaboliteName:"Parent ibuprofen exposure",
+    enzyme:"CYP2C9",
+    systemic:true,
+    note:"Ibuprofen is cleared partly by CYP2C9. CYP2C9 reduced function can raise parent NSAID exposure; the risk becomes more important with older age, renal disease, high dose, anticoagulants/antiplatelets, ACEi/ARB plus diuretic stacks, or GI bleed history.",
+    evidenceRefs:["ev_cyp2c9_nsaid_cpic2020"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C9 inhibition/phenoconversion: higher parent ibuprofen exposure expected",
+    clinicalAction:"consider lower dose/short duration or non-NSAID analgesic in high-risk patients",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher parent exposure and dose-related toxicity risk; CPIC NSAID context applies" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"moderately higher exposure possible; review dose, duration, kidney/GI/CV risk" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Celecoxib",
+    metaboliteId:"celecoxib-cyp2c9-parent-exposure",
+    metaboliteName:"Parent celecoxib exposure",
+    enzyme:"CYP2C9",
+    systemic:true,
+    note:"Celecoxib is a CYP2C9-sensitive NSAID. CYP2C9 poor metabolizers can have substantially higher parent exposure, so dose and duration matter even though COX-2 selectivity lowers some GI risk.",
+    evidenceRefs:["ev_cyp2c9_nsaid_cpic2020"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C9 inhibition/phenoconversion: higher parent celecoxib exposure expected",
+    clinicalAction:"consider lower starting dose or alternative in CYP2C9 poor metabolizers",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { fold:4.0, direction:"increase", label:"celecoxib exposure may be several-fold higher in CYP2C9 poor metabolizers" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate exposure increase; use lowest effective dose" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Meloxicam",
+    metaboliteId:"meloxicam-cyp2c9-parent-exposure",
+    metaboliteName:"Parent meloxicam exposure",
+    enzyme:"CYP2C9",
+    systemic:true,
+    note:"Meloxicam has CYP2C9-linked clearance and a long half-life. Reduced CYP2C9 activity can matter most during repeated dosing, renal/GI/CV risk, or anticoagulant/antiplatelet overlap.",
+    evidenceRefs:["ev_cyp2c9_nsaid_cpic2020"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C9 inhibition/phenoconversion: higher parent meloxicam exposure expected",
+    clinicalAction:"review dose, duration, renal function, and bleeding/cardiovascular context",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher exposure possible; long half-life can amplify accumulation" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"modest exposure increase possible" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Pioglitazone",
+    metaboliteId:"pioglitazone-cyp2c8-active-metabolites",
+    metaboliteName:"Pioglitazone active metabolite balance",
+    enzyme:"CYP2C8",
+    systemic:true,
+    note:"Pioglitazone is mainly CYP2C8-cleared and forms active metabolites. CYP2C8 reduced function or inhibition can raise parent exposure while also changing active metabolite balance; edema, heart-failure risk, hypoglycemia with insulin/sulfonylureas, and hepatic context dominate clinical interpretation.",
+    evidenceRefs:["ev_cyp2c8_pharmacogenetics_review_tornio2009"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C8 inhibition/phenoconversion: higher pioglitazone exposure expected",
+    clinicalAction:"monitor edema, weight gain, glycemic effect, and interacting CYP2C8 inhibitors",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher parent exposure possible; active metabolite direction is not a simple parent-only rule" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate exposure shift possible" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Paclitaxel",
+    metaboliteId:"paclitaxel-cyp2c8-parent-exposure",
+    metaboliteName:"Parent paclitaxel exposure",
+    enzyme:"CYP2C8",
+    systemic:true,
+    note:"Paclitaxel toxicity is parent-exposure driven; 6-alpha-hydroxypaclitaxel is mainly an inactive clearance product. CYP2C8 reduced function or inhibition can therefore raise neuropathy/myelosuppression risk without creating an active-metabolite signal.",
+    evidenceRefs:["ev_paclitaxel_cyp2c8_label","ev_cyp2c8_pharmacogenetics_review_tornio2009"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C8 inhibition/phenoconversion: higher parent paclitaxel exposure expected",
+    clinicalAction:"review neuropathy/myelosuppression risk and CYP2C8 inhibitors; oncology dosing remains protocol-driven",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher parent paclitaxel exposure possible; monitor toxicity" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"moderate parent exposure shift possible" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
     parent:"Proguanil",
     metaboliteId:"cycloguanil",
     metaboliteName:"Cycloguanil",
@@ -572,6 +691,57 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"HPPH formation reduced; parent phenytoin can accumulate 3-4x or more because kinetics are saturable; use TDM" },
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"partial clearance reduction; start lower and use TDM/clinical monitoring" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Phenytoin",
+    metaboliteId:"phenytoin-cyp2c9-cyp2c19-compound-clearance",
+    metaboliteName:"Compound CYP2C9/CYP2C19 clearance pressure",
+    enzyme:"CYP2C19",
+    systemic:true,
+    note:"Phenytoin is mostly CYP2C9-cleared, with CYP2C19 as a secondary pathway. CYP2C19 poor function alone is usually less important than CYP2C9, but it can compound CYP2C9 reduced function or inhibitor stacks because phenytoin has nonlinear, narrow-therapeutic-index kinetics.",
+    evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C19 inhibition/phenoconversion: secondary phenytoin clearance reserve reduced",
+    clinicalAction:"use therapeutic drug monitoring; interpret CYP2C19 together with CYP2C9, albumin, renal status, and interacting drugs",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"secondary clearance reserve reduced; can compound CYP2C9 PM/IM or CYP2C9 inhibition" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"partial secondary clearance reduction; usually monitor rather than genotype-only dose change" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Glipizide",
+    metaboliteId:"glipizide-cyp2c9-parent-exposure",
+    metaboliteName:"Parent glipizide exposure",
+    enzyme:"CYP2C9",
+    systemic:true,
+    note:"Glipizide is CYP2C9-cleared to largely inactive metabolites. Reduced CYP2C9 function can raise parent sulfonylurea exposure, but hypoglycemia risk is strongly shaped by age, meals, renal/hepatic function, dose, and combination therapy.",
+    evidenceRefs:["ev_sulfonylurea_cyp2c9_label_context"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C9 inhibition/phenoconversion: higher parent glipizide exposure expected",
+    clinicalAction:"review hypoglycemia risk; consider lower dose or closer glucose monitoring in high-risk contexts",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher parent exposure and hypoglycemia risk possible" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"moderate exposure shift possible" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Glyburide",
+    metaboliteId:"glyburide-cyp2c9-active-metabolite-balance",
+    metaboliteName:"Glyburide active moiety exposure",
+    enzyme:"CYP2C9",
+    systemic:true,
+    note:"Glyburide has active hydroxylated metabolites and a higher hypoglycemia burden than many alternatives. CYP2C9 reduced function may raise parent exposure while active metabolite formation/clearance is mixed, so this should be treated as active-moiety hypoglycemia risk rather than a simple inactive-metabolite rule.",
+    evidenceRefs:["ev_sulfonylurea_cyp2c9_label_context"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2C9 inhibition/phenoconversion: active sulfonylurea burden may rise",
+    clinicalAction:"review hypoglycemia risk and consider alternatives in older or renal-risk patients",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active sulfonylurea burden possible; hypoglycemia risk context" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"moderate active-moiety shift possible" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
     }
   },

@@ -4,7 +4,7 @@
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
   "UGT1A1","UGT2B7","UGT2B15","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
-  "SLCO1B1","ABCB1","ABCG2","MAO-A","MAO-B"
+  "SLCO1B1","ABCB1","ABCG2","BCHE","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
   { id: "ultrarapid", label: "Ultrarapid Metabolizer", mult: 0.3, cssClass: "ultrarapid" },
@@ -81,6 +81,24 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Losartan",level:"B",action:"PM: ↓ active metabolite → reduced efficacy"},
       {drug:"Glipizide",level:"C",action:"PM: ↑ levels; hypoglycemia risk"},
       {drug:"Glyburide",level:"C",action:"PM: ↑ levels; hypoglycemia risk"}
+    ]
+  },
+  "CYP2C8":{
+    grade:"B",
+    guideline:"PharmGKB/FDA labels",
+    pairs:[
+      {drug:"Paclitaxel",level:"B",action:"Reduced function or CYP2C8 inhibition may raise parent exposure; monitor neuropathy/myelosuppression"},
+      {drug:"Pioglitazone",level:"C",action:"Reduced function or inhibitors may raise parent and active metabolite exposure; edema/hypoglycemia context matters"},
+      {drug:"Repaglinide",level:"C",action:"CYP2C8/OATP1B1 substrate; gemfibrozil-like inhibition is high impact; genotype-only actionability is weaker"},
+      {drug:"Montelukast",level:"C",action:"CYP2C8 contributes to clearance; clinical actionability uncertain"}
+    ]
+  },
+  "BCHE":{
+    grade:"B",
+    guideline:"FDA labels / clinical anesthesia references",
+    pairs:[
+      {drug:"Succinylcholine",level:"B",action:"Deficiency: avoid or prepare for prolonged paralysis/apnea and ventilatory support"},
+      {drug:"Mivacurium",level:"B",action:"Deficiency: avoid or prepare for prolonged neuromuscular blockade"}
     ]
   },
   "CYP3A4":{
@@ -266,6 +284,7 @@ const ENZYME_ACTORS = {
   "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
   "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "BCHE":    {id:"BCHE",    type:ACTOR_TYPE.ENZYME, name:"BCHE",    family:"esterase", tissue:["plasma","liver"],    polymorphic:true, substrateCount:0},
   "NAT2":    {id:"NAT2",    type:ACTOR_TYPE.ENZYME, name:"NAT2",    family:"NAT",    tissue:["liver"],              polymorphic:true, substrateCount:0},
   "VKORC1":  {id:"VKORC1",  type:ACTOR_TYPE.ENZYME, name:"VKORC1",  family:"vitamin_K_cycle", tissue:["liver"],      polymorphic:true, substrateCount:0},
   "NUDT15":  {id:"NUDT15",  type:ACTOR_TYPE.ENZYME, name:"NUDT15",  family:"nucleotide_hydrolase", tissue:["blood","bone_marrow"], polymorphic:true, substrateCount:0},

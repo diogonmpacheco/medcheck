@@ -60,6 +60,7 @@ const EVIDENCE_TIER = Object.freeze({
   ANIMAL:       'animal',         // rodent/primate PK
   CASE_REPORT:  'case_report',    // individual patient observation
   OBSERVATIONAL:'observational',  // retrospective cohort/database
+  REVIEW:       'review',         // narrative/non-quantitative synthesis
   CLINICAL_PK:  'clinical_pk',    // prospective clinical PK study (gold standard for DDI)
   RCT:          'rct',            // randomized controlled trial
   META_ANALYSIS:'meta_analysis',  // quantitative synthesis of multiple studies
@@ -78,6 +79,7 @@ const EVIDENCE_WEIGHT = {
   [EVIDENCE_TIER.GUIDELINE]:    0.88,
   [EVIDENCE_TIER.CLINICAL_PK]:  0.85,
   [EVIDENCE_TIER.OBSERVATIONAL]:0.70,
+  [EVIDENCE_TIER.REVIEW]:       0.65,
   [EVIDENCE_TIER.CASE_REPORT]:  0.45,
   [EVIDENCE_TIER.ANIMAL]:       0.35,
   [EVIDENCE_TIER.IN_VITRO]:     0.30,
@@ -136,8 +138,8 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"High CYP3A5 expression/activity context; sensitive CYP3A5 substrates may require higher exposure-guided dosing." },
   },
   CYP2C8: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced CYP2C8 activity; sensitive substrates such as pioglitazone, repaglinide, montelukast, and hydroxychloroquine may have higher exposure." },
-    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate CYP2C8 activity; modest substrate exposure increase possible." },
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced CYP2C8 activity; sensitive substrates such as pioglitazone, repaglinide, paclitaxel, montelukast, and hydroxychloroquine may have higher exposure. Interpret with CYP2C8 inhibitors such as gemfibrozil or clopidogrel acyl glucuronide." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate CYP2C8 activity; modest substrate exposure increase possible, especially when a CYP2C8 inhibitor or hepatic uptake transporter issue is also present." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2C8 activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher CYP2C8 activity context; substrate exposure may be lower." },
   },
@@ -217,6 +219,11 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"NUDT15 poor function; thiopurine cytotoxic nucleotide intolerance can be profound even when TPMT is normal." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"NUDT15 intermediate function; thiopurine dose reduction and close CBC monitoring are usually needed." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal NUDT15 function." },
+  },
+  BCHE: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"Pseudocholinesterase/butyrylcholinesterase deficiency context. Succinylcholine and mivacurium hydrolysis can be severely impaired, causing prolonged paralysis/apnea after standard procedural doses." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:4.0, freq_pct:null, note:"Intermediate BCHE activity context; succinylcholine or mivacurium paralysis may be prolonged. Review prior anesthesia history and consider nondepolarizing alternatives." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference plasma butyrylcholinesterase activity for succinylcholine/mivacurium hydrolysis." },
   },
 };
 
@@ -611,6 +618,7 @@ let activeGenotype = {
   UGT2B7:  GENOTYPE_PHENOTYPE.NM,
   GSTM1:   GENOTYPE_PHENOTYPE.NM,
   NUDT15:  GENOTYPE_PHENOTYPE.NM,
+  BCHE:    GENOTYPE_PHENOTYPE.NM,
   "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,
