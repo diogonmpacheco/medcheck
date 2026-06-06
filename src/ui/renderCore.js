@@ -25,7 +25,7 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "safety";
-const MEDCHECK_TABS = ["safety","pgx","pk","evidence","advanced"];
+const MEDCHECK_TABS = ["safety","pgx","pk","network","evidence","advanced","contributor"];
 function setViewMode(m) {
   viewMode = m;
   document.getElementById("searchModeBtn").className = "mode-btn" + (m==="search"?" active":"");
@@ -308,11 +308,17 @@ function updateEmptyTabs() {
 
 function arrangeAdvancedSections() {
   const advanced = document.getElementById("tab-advanced");
+  const network = document.getElementById("tab-network");
+  const contributor = document.getElementById("tab-contributor");
   if (!advanced || typeof advanced.appendChild !== "function") return;
-  ["matrixSection","pdSection","cascadeSection","qualitySection","graphSection"].forEach(id => {
+  ["matrixSection","pdSection","cascadeSection"].forEach(id => {
     const section = document.getElementById(id);
     if (section && section.parentElement !== advanced) advanced.appendChild(section);
   });
+  const graphSection = document.getElementById("graphSection");
+  if (network && graphSection && graphSection.parentElement !== network) network.appendChild(graphSection);
+  const qualitySection = document.getElementById("qualitySection");
+  if (contributor && qualitySection && qualitySection.parentElement !== contributor) contributor.appendChild(qualitySection);
 }
 
 function onSearch(q) {
