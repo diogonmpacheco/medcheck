@@ -76,6 +76,10 @@ function renderGenetics() {
 
   body.innerHTML = activeGenes.map(enzyme => {
     const pheno = userGenetics[enzyme];
+    const phenotype = typeof legacyPhenotypeToGenotype === "function"
+      ? legacyPhenotypeToGenotype(pheno)
+      : (activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM);
+    const detail = activeGenotypeDetails?.[enzyme] || buildGeneInterpretation(enzyme, phenotype);
     const opt = PHENOTYPE_OPTIONS.find(o => o.id === pheno);
     const cssClass = opt ? opt.cssClass : "normal";
     const affected = DRUG_DB.filter(d => d.routes.some(r => r.enzyme === enzyme)).map(d => d.name);
@@ -103,11 +107,21 @@ function renderGenetics() {
     return `<div class="gene-row">
       <div class="gene-name">${enzyme}${gradeTag}</div>
       <select class="gene-select" onchange="setGenetics('${enzyme}', this.value)">
-        ${PHENOTYPE_OPTIONS.map(o => `<option value="${o.id}" ${o.id===pheno?"selected":""}>${o.label}</option>`).join("")}
+        ${PHENOTYPE_OPTIONS
+          .filter(o => GENOTYPE_EFFECTS[enzyme]?.[legacyPhenotypeToGenotype(o.id)])
+          .map(o => {
+            const optionPhenotype = legacyPhenotypeToGenotype(o.id);
+            const semantic = genotypeDisplayLabel(enzyme, optionPhenotype);
+            const label = semantic && !o.label.toLowerCase().includes(semantic.toLowerCase())
+              ? `${semantic} - ${o.label}`
+              : o.label;
+            return `<option value="${o.id}" ${o.id===pheno?"selected":""}>${label}</option>`;
+          }).join("")}
       </select>
-      <span class="gene-badge ${cssClass}">${badgeText[pheno] || "?"}</span>
+      <span class="gene-badge ${cssClass}">${genotypeDisplayLabel(enzyme, phenotype) || badgeText[pheno] || "?"}</span>
       <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
     </div>
+    <div style="font-size:10px;color:var(--text2);padding:0 4px 3px 98px">Reported: <b>${escapeHtml(detail.reportedLabel)}</b> · Interpreted as: <b>${escapeHtml(detail.functionalState)}</b></div>
     ${impactText ? `<div style="font-size:11px;color:var(--text2);padding:0 4px 3px 98px">${impactText}</div>` : ""}${evidenceHtml}`;
   }).join("") + renderGenotypeImpactPreview(activeGenes);
 }

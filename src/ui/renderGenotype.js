@@ -52,14 +52,16 @@ function renderGenotypePanel() {
     html += `<div class="geno-selector" style="margin-bottom:6px">
       <span class="geno-enz-label">${enz}</span>`;
     const phenotypeButtons = [
-      [GENOTYPE_PHENOTYPE.PM,'PM'],[GENOTYPE_PHENOTYPE.IM,'IM'],
-      [GENOTYPE_PHENOTYPE.NM,'NM'],[GENOTYPE_PHENOTYPE.UM,'UM']
-    ].filter(([k]) => GENOTYPE_EFFECTS[enz]?.[k]);
-    for (const [k, label] of phenotypeButtons) {
+      GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM,
+      GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM
+    ].filter(k => GENOTYPE_EFFECTS[enz]?.[k]);
+    for (const k of phenotypeButtons) {
+      const label = genotypeDisplayLabel(enz, k);
       const freq = GENOTYPE_EFFECTS[enz]?.[k]?.freq_pct || '?';
+      const semanticTitle = genotypeOptionTitle(enz, k);
       html += `<button class="geno-btn ${cur===k?'active':''}"
         onclick="setGenotype('${enz}','${k}')"
-        title="Frequency: ~${freq}% of population">${label} <span style="font-weight:400;font-size:9px">${freq}%</span></button>`;
+        title="${semanticTitle}; frequency: ~${freq}% of population">${label} <span style="font-weight:400;font-size:9px">${freq}%</span></button>`;
     }
     html += '</div>';
   }
@@ -99,6 +101,7 @@ function renderGenotypePanel() {
         <div class="geno-effect-title">${drugName} <span style="color:var(--text2);font-size:11px;font-weight:400">via ${enz}</span>
           <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
         </div>
+        ${renderGenotypeInterpretationLine(enz, geno)}
         <div class="geno-effect-note">${eff.note}</div>
         ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${eff.freq_pct}% | Vs NM baseline fold-change: ${fold.toFixed(1)}×</div>` : ''}
       </div>`;
@@ -145,7 +148,7 @@ function getHighestGenotypePrioritySignal() {
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${enzyme} genotype may change ${drugName} exposure`,
-        summary:`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabel(phenotype)}. ${effect.note}`,
+        summary:`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${effect.note}`,
         why:`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`,
         changes:`Expected parent-drug exposure shifts to about ${effect.auc_fold}x the normal-metabolizer baseline.`,
         review:score >= 70
@@ -168,7 +171,7 @@ function getHighestGenotypePrioritySignal() {
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
-        summary:`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabel(geno)}. ${phenotypeEffect.label || effect.note}`,
+        summary:`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`,
         why:`${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
         changes:phenotypeEffect.fold
           ? `${effect.metaboliteName} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
@@ -214,6 +217,68 @@ function phenotypeLabel(phenotype) {
   if (phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "present";
   if (phenotype === GENOTYPE_RISK_STATUS.ABSENT) return "absent";
   return "normal metabolizer";
+}
+
+function phenotypeLabelForGene(gene, phenotype) {
+  const semantics = getGeneSemantics(gene);
+  if (semantics.axis === GENE_SEMANTIC_AXIS.EXPRESSION) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return "non-expresser";
+    if (phenotype === GENOTYPE_PHENOTYPE.IM) return "intermediate expresser";
+    if (phenotype === GENOTYPE_PHENOTYPE.UM) return "high expresser";
+    return "reference expression";
+  }
+  if (semantics.axis === GENE_SEMANTIC_AXIS.COPY_NUMBER_NULL) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return `${gene} null`;
+    if (phenotype === GENOTYPE_PHENOTYPE.IM) return `reduced ${gene} detox context`;
+    return `${gene} present`;
+  }
+  if (semantics.axis === GENE_SEMANTIC_AXIS.DEFICIENCY) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return "deficient / very low activity";
+    if (phenotype === GENOTYPE_PHENOTYPE.IM) return "partial activity";
+    return "normal activity";
+  }
+  if (semantics.axis === GENE_SEMANTIC_AXIS.SENSITIVITY) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return "increased sensitivity";
+    if (phenotype === GENOTYPE_PHENOTYPE.UM) return "relative resistance";
+    return phenotypeLabel(phenotype).replace("metabolizer", "context");
+  }
+  if (semantics.axis === GENE_SEMANTIC_AXIS.TRANSPORT) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return "low transporter function";
+    if (phenotype === GENOTYPE_PHENOTYPE.IM) return "reduced transporter function";
+    if (phenotype === GENOTYPE_PHENOTYPE.UM) return "increased transporter function";
+    return "normal transporter function";
+  }
+  return phenotypeLabel(phenotype);
+}
+
+function genotypeOptionTitle(gene, phenotype) {
+  const interpretation = buildGeneInterpretation(gene, phenotype, { reportedLabel:genotypeDisplayLabel(gene, phenotype), source:"manual_selector" });
+  return `${interpretation.functionalState}; model use: ${interpretation.modelUse}`;
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderGenotypeInterpretationLine(gene, phenotype) {
+  const detail = activeGenotypeDetails?.[gene] || buildGeneInterpretation(gene, phenotype);
+  const reported = escapeHtml(detail.reportedLabel || genotypeDisplayLabel(gene, phenotype));
+  const interpreted = escapeHtml(detail.functionalState || phenotypeLabelForGene(gene, phenotype));
+  const modelUse = escapeHtml(detail.modelUse || "");
+  const scope = escapeHtml((detail.compartments || []).join(", "));
+  const nullLike = ["inherited_no_function","copy_number_null","inherited_deficiency","erythrocyte_deficiency"].includes(detail.mechanism);
+  const phenoconversion = nullLike
+    ? '<span style="color:var(--text2)">Inherited null/deficiency context; inhibitors should not be double-counted as if they removed enzyme again.</span>'
+    : detail.phenoconversion
+      ? '<span style="color:var(--text2)">Inherited baseline; medication inhibitors can phenoconvert remaining activity, mostly as systemic/liver pathway context.</span>'
+      : '<span style="color:var(--text2)">Not modeled as reversible liver-only phenoconversion.</span>';
+  return `<div style="font-size:10px;color:var(--text2);margin:2px 0 5px">
+    Reported: <b>${reported}</b> · Interpreted as: <b>${interpreted}</b>${modelUse ? ` · Model use: ${modelUse}` : ""}${scope ? ` · Scope: ${scope}` : ""}<br>${phenoconversion}
+  </div>`;
 }
 
 function scoreGenotypeExposureSignal(fold, note, drug) {
@@ -397,7 +462,9 @@ function getSelectedEnzymeExposureMult(enzyme, geno, inhibitorContext = []) {
 }
 
 function getSelectedGenotypeExposureMult(enzyme, geno) {
-  if (typeof userGenetics !== 'undefined' && userGenetics[enzyme] === "null") return 20;
+  if (typeof userGenetics !== 'undefined' && userGenetics[enzyme] === "null") {
+    return typeof getNullExposureMultiplier === "function" ? getNullExposureMultiplier(enzyme) : 20;
+  }
   return GENOTYPE_EFFECTS[enzyme]?.[geno]?.auc_fold || 1;
 }
 
@@ -527,14 +594,18 @@ function renderGenotypeMetaboliteEffectCard(card) {
     <div class="geno-effect-title">${effect.metaboliteName} <span style="color:var(--text2);font-size:11px;font-weight:400">from ${effect.parent} via ${effect.enzyme}</span>
       <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
     </div>
+    ${renderGenotypeInterpretationLine(effect.enzyme, card.geno)}
     <div class="geno-effect-note">${effect.note}</div>
     <div style="font-size:10px;color:var(--text2);margin-top:4px">${signal}: ${phenotypeEffect.label}${action ? ` · ${action}` : ""} · ${evidenceText}</div>
   </div>`;
 }
 
 function setGenotype(enzyme, phenotype) {
-  if (GENOTYPE_EFFECTS[enzyme]) setGenotypeState(enzyme, phenotype);
-  else activeGenotype[enzyme] = phenotype;
+  if (GENOTYPE_EFFECTS[enzyme]) setGenotypeState(enzyme, phenotype, { reportedLabel:genotypeDisplayLabel(enzyme, phenotype), source:"manual_selector" });
+  else {
+    activeGenotype[enzyme] = phenotype;
+    if (typeof activeGenotypeDetails !== "undefined") activeGenotypeDetails[enzyme] = buildRiskInterpretation(enzyme, phenotype, { source:"manual_selector" });
+  }
   renderAll();
 }
 
@@ -572,9 +643,10 @@ function applyPharmGxImport() {
 
 function applyPharmGxRow(row) {
   if (!row?.gene) return false;
-  if (GENOTYPE_EFFECTS[row.gene]) return setGenotypeState(row.gene, row.phenotype);
+  if (GENOTYPE_EFFECTS[row.gene]) return setGenotypeState(row.gene, row.phenotype, row.interpretation || row);
   if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[row.gene] && row.status) {
     activeGenotype[row.gene] = row.status;
+    if (typeof activeGenotypeDetails !== "undefined") activeGenotypeDetails[row.gene] = buildRiskInterpretation(row.gene, row.status, row.interpretation || row);
     return true;
   }
   return false;
@@ -636,10 +708,10 @@ function parsePharmGxObjectRow(row) {
   ].map(normalizePharmGxGene).find(Boolean);
   if (!gene) return null;
   const value = row.phenotype || row.Phenotype || row.metabolizerStatus || row.status || row.result || row.value;
-  const phenotype = phenotypeTextToGenotype(value);
-  const status = riskTextToStatus(value);
-  if (GENOTYPE_EFFECTS[gene] && phenotype) return { gene, phenotype };
-  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status };
+  const phenotype = phenotypeTextToGenotype(value, gene);
+  const status = riskTextToStatus(value, gene);
+  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) return { gene, phenotype:phenotype.phenotype, interpretation:phenotype };
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel:String(value || "").trim() }) };
   return null;
 }
 
@@ -654,12 +726,12 @@ function parsePharmGxLine(line) {
     .filter(Boolean);
   const gene = normalizePharmGxGene(parts.find(p => normalizePharmGxGene(p)));
   if (!gene) return null;
-  const phenotypeText = parts.slice().reverse().find(p => phenotypeTextToGenotype(p));
-  const phenotype = phenotypeTextToGenotype(phenotypeText || clean);
-  const statusText = parts.slice().reverse().find(p => riskTextToStatus(p));
-  const status = riskTextToStatus(statusText || clean);
-  if (GENOTYPE_EFFECTS[gene] && phenotype) return { gene, phenotype };
-  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status };
+  const phenotypeText = parts.slice().reverse().find(p => phenotypeTextToGenotype(p, gene));
+  const phenotype = phenotypeTextToGenotype(phenotypeText || clean, gene);
+  const statusText = parts.slice().reverse().find(p => riskTextToStatus(p, gene));
+  const status = riskTextToStatus(statusText || clean, gene);
+  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) return { gene, phenotype:phenotype.phenotype, interpretation:phenotype };
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel:statusText || clean }) };
   return null;
 }
 
@@ -700,21 +772,18 @@ function normalizePharmGxGene(value) {
   return geneMatches.length === 1 ? geneMatches[0] : null;
 }
 
-function phenotypeTextToGenotype(value) {
-  const text = String(value || "").toLowerCase();
-  if (!text) return null;
-  const normalized = text.replace(/[_-]+/g, " ");
-  if (/^\s*(um|ultrarapid)\s*$/.test(text) || /ultra|rapid metabolizer|increased function/.test(normalized)) return GENOTYPE_PHENOTYPE.UM;
-  if (/^\s*im\s*$/.test(text) || /intermediate|decreased function|reduced function|decreased expression|decreased\/intermediate/.test(normalized)) return GENOTYPE_PHENOTYPE.IM;
-  if (/^\s*pm\s*$/.test(text) || /poor|null|non ?express|no function|high warfarin sensitivity|risk allele present/.test(normalized)) return GENOTYPE_PHENOTYPE.PM;
-  if (/^\s*nm\s*$/.test(text) || /normal|reference|standard|expressor|normal function|normal metabolizer/.test(normalized)) return GENOTYPE_PHENOTYPE.NM;
-  return null;
+function phenotypeTextToGenotype(value, gene = null) {
+  return typeof normalizeGenePhenotypeInput === "function"
+    ? normalizeGenePhenotypeInput(gene, value)
+    : null;
 }
 
-function riskTextToStatus(value) {
+function riskTextToStatus(value, gene = null) {
   const text = String(value || "").toLowerCase();
   if (!text) return null;
   const normalized = text.replace(/[_-]+/g, " ");
+  const riskKey = gene && typeof GENOTYPE_RISK_EFFECTS !== "undefined" ? GENOTYPE_RISK_EFFECTS[gene] : null;
+  if (riskKey && /deficient|deficiency/.test(normalized)) return GENOTYPE_RISK_STATUS.PRESENT;
   if (/absent|negative|not detected|not present|normal|no variant|wild ?type|hom cc|hom ref/.test(normalized)) return GENOTYPE_RISK_STATUS.ABSENT;
   if (/present|positive|detected|carrier|risk allele|deficient|variant found|pathogenic|null|hom tt|hom alt|hetero|contraindicated/.test(normalized)) return GENOTYPE_RISK_STATUS.PRESENT;
   return null;

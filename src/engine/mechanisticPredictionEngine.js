@@ -25,6 +25,10 @@ function phenotypeIsNonReference(phenotype) {
   return phenotype && phenotype !== GENOTYPE_PHENOTYPE.NM && phenotype !== "normal";
 }
 
+function mechanisticPhenotypeLabel(gene, phenotype) {
+  return typeof phenotypeLabelForGene === "function" ? phenotypeLabelForGene(gene, phenotype) : phenotypeLabel(phenotype);
+}
+
 function phenotypeDirectionForEnzyme(gene, phenotype) {
   const fold = GENOTYPE_EFFECTS[gene]?.[phenotype]?.auc_fold || 1;
   if (fold > 1.15) return "slower";
@@ -156,13 +160,13 @@ function estimateDrugGenotypePrediction(parentName, route, phenotype) {
   return {
     id:`mech-pgx-drug-${toGraphId(parentName)}-${gene}`,
     kind:"genotype-drug",
-    title:`${gene} ${phenotypeLabel(phenotype)} may change ${parentName}`,
+    title:`${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change ${parentName}`,
     subtitle:"Mechanistic genotype read-through from the selected phenotype and the drug's modeled pathway fraction.",
     pathway:gene,
     drugs:[parentName],
     direction,
     clinicalMeaning:prodrug
-      ? `${parentName} is active-metabolite dependent, so ${gene} ${phenotypeLabel(phenotype)} may change effect more than parent exposure.`
+      ? `${parentName} is active-metabolite dependent, so ${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change effect more than parent exposure.`
       : `${parentName} uses ${gene} for about ${Math.round(fraction * 100)}% of modeled clearance, so this phenotype may shift exposure.`,
     action:"Use this as pathway context alongside the evidence-backed pharmacogenomics warning and dose guidance.",
     estimate:Number.isFinite(fold) ? Number(fold.toFixed(2)) : null,
@@ -248,7 +252,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
       out.push({
         id:`mech-pgx-${toGraphId(parentName)}-${getMetaboliteGraphId(met.n)}-${gene}`,
         kind:"genotype-metabolite",
-        title:`${gene} ${phenotypeLabel(phenotype)} may change ${met.n}`,
+        title:`${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change ${met.n}`,
         subtitle:documented
           ? `Mechanistic read-through of a curated genotype-metabolite rule for ${parentName}.`
           : `Model prediction from ${parentName} -> ${met.n}; no direct genotype-metabolite rule linked.`,
@@ -291,7 +295,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
           out.push({
             id:`mech-pgx-clear-${toGraphId(parentName)}-${actor.id}-${gene}`,
             kind:"genotype-metabolite",
-            title:`${gene} ${phenotypeLabel(phenotype)} may change ${actor.name}`,
+            title:`${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change ${actor.name}`,
             subtitle:documented
               ? `Mechanistic read-through of a curated metabolite-clearance rule for ${parentName}.`
               : `Model prediction from metabolite clearance route; no direct genotype-metabolite rule linked.`,

@@ -43,23 +43,35 @@ function loadUrlDemoState() {
       .filter((name, idx, arr) => name && arr.indexOf(name) === idx);
   }
 
-  const genotypeSpec = { ...(demo?.genotype || {}) };
+  const genotypeSpec = {};
+  for (const [gene, phenotype] of Object.entries(demo?.genotype || {})) {
+    genotypeSpec[gene] = { phenotype, reportedLabel:phenotype, mechanism:"demo" };
+  }
   const genotypeParam = params.genotype;
   if (genotypeParam) {
     const genotypeParams = Array.isArray(genotypeParam) ? genotypeParam : [genotypeParam];
     genotypeParams.forEach(param => {
       String(param || '').split(/[;,]/).forEach(pair => {
         const [rawGene, rawPhenotype] = pair.split(':').map(v => v && v.trim());
-        const gene = rawGene ? rawGene.toUpperCase() : "";
-        const phenotype = normalizeUrlPhenotype(rawPhenotype);
-        if (gene && phenotype && GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) {
-          genotypeSpec[gene] = phenotype;
+        const gene = rawGene && typeof normalizePharmGxGene === "function"
+          ? (normalizePharmGxGene(rawGene) || rawGene.toUpperCase())
+          : (rawGene ? rawGene.toUpperCase() : "");
+        const parsed = normalizeUrlPhenotype(gene, rawPhenotype);
+        if (gene && parsed?.phenotype && GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][parsed.phenotype]) {
+          genotypeSpec[gene] = parsed;
+        } else if (gene && parsed?.status && typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene]) {
+          genotypeSpec[gene] = parsed;
         }
       });
     });
   }
-  for (const [gene, phenotype] of Object.entries(genotypeSpec)) {
-    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype);
+  for (const [gene, spec] of Object.entries(genotypeSpec)) {
+    const phenotype = spec?.phenotype || spec;
+    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype, spec);
+    else if (typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene] && spec?.status) {
+      activeGenotype[gene] = spec.status;
+      if (typeof activeGenotypeDetails !== "undefined") activeGenotypeDetails[gene] = buildRiskInterpretation(gene, spec.status, spec);
+    }
   }
 
   const tab = params.tab || demo?.tab;
@@ -101,33 +113,16 @@ function parseQueryParams(search) {
   return out;
 }
 
-function normalizeUrlPhenotype(value) {
-  const raw = String(value || '').trim();
-  const key = raw.toUpperCase().replace(/[-\s]+/g, '_');
-  const aliases = {
-    PM: GENOTYPE_PHENOTYPE.PM,
-    POOR: GENOTYPE_PHENOTYPE.PM,
-    POOR_METABOLIZER: GENOTYPE_PHENOTYPE.PM,
-    IM: GENOTYPE_PHENOTYPE.IM,
-    INTERMEDIATE: GENOTYPE_PHENOTYPE.IM,
-    INTERMEDIATE_METABOLIZER: GENOTYPE_PHENOTYPE.IM,
-    NM: GENOTYPE_PHENOTYPE.NM,
-    NORMAL: GENOTYPE_PHENOTYPE.NM,
-    NORMAL_METABOLIZER: GENOTYPE_PHENOTYPE.NM,
-    RM: GENOTYPE_PHENOTYPE.RM,
-    RAPID: GENOTYPE_PHENOTYPE.RM,
-    RAPID_METABOLIZER: GENOTYPE_PHENOTYPE.RM,
-    UM: GENOTYPE_PHENOTYPE.UM,
-    ULTRARAPID: GENOTYPE_PHENOTYPE.UM,
-    ULTRA_RAPID: GENOTYPE_PHENOTYPE.UM,
-    ULTRARAPID_METABOLIZER: GENOTYPE_PHENOTYPE.UM,
-    NULL: GENOTYPE_PHENOTYPE.NULL,
-    NO_FUNCTION: GENOTYPE_PHENOTYPE.NULL,
-    INCREASED_FUNCTION: GENOTYPE_PHENOTYPE.UM,
-    REDUCED_FUNCTION: GENOTYPE_PHENOTYPE.IM,
-    DECREASED_FUNCTION: GENOTYPE_PHENOTYPE.PM,
-  };
-  return aliases[key] || raw;
+function normalizeUrlPhenotype(geneOrValue, maybeValue) {
+  const gene = maybeValue === undefined ? null : geneOrValue;
+  const value = maybeValue === undefined ? geneOrValue : maybeValue;
+  const parsed = typeof normalizeGenePhenotypeInput === "function"
+    ? normalizeGenePhenotypeInput(gene, value)
+    : null;
+  if (parsed) return parsed;
+  const status = typeof riskTextToStatus === "function" ? riskTextToStatus(value, gene) : null;
+  if (status) return { gene, status, reportedLabel:String(value || "").trim(), mechanism:status };
+  return { gene, phenotype:String(value || "").trim(), reportedLabel:String(value || "").trim(), mechanism:"raw" };
 }
 
 function resolveUrlDrugName(value) {

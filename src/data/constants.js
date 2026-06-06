@@ -98,6 +98,160 @@ const GENOTYPE_RISK_STATUS = Object.freeze({
   PRESENT: 'risk_allele_present',
 });
 
+const GENE_SEMANTIC_AXIS = Object.freeze({
+  ACTIVITY_SCORE: 'activity_score',
+  EXPRESSION: 'expression',
+  COPY_NUMBER_NULL: 'copy_number_null',
+  DEFICIENCY: 'deficiency',
+  RISK_ALLELE: 'risk_allele',
+  SENSITIVITY: 'sensitivity',
+  RESPONSE: 'response',
+  TRANSPORT: 'transport',
+});
+
+const GENE_SEMANTICS = {
+  CYP2D6: {
+    axis:GENE_SEMANTIC_AXIS.ACTIVITY_SCORE,
+    nullMechanism:"inherited_no_function",
+    nullStateLabel:"inherited no-function CYP2D6",
+    phenotypeStateLabel:"inherited CYP2D6 activity phenotype",
+    modelUseLabel:"poor-metabolizer exposure behavior",
+    phenoconversion:true,
+    legacyNull:true,
+    nullExposureFold:20,
+    compartments:["liver","gut","brain/CNS","cardiovascular"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"PM",
+      [GENOTYPE_PHENOTYPE.IM]:"IM",
+      [GENOTYPE_PHENOTYPE.NM]:"NM",
+      [GENOTYPE_PHENOTYPE.UM]:"UM",
+    },
+  },
+  CYP3A5: {
+    axis:GENE_SEMANTIC_AXIS.EXPRESSION,
+    phenotypeStateLabel:"CYP3A5 expression phenotype",
+    nullStateLabel:"CYP3A5 non-expresser",
+    modelUseLabel:"CYP3A5 non-expresser exposure behavior",
+    phenoconversion:false,
+    compartments:["liver","gut","kidney","extrahepatic tissue"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Non-exp.",
+      [GENOTYPE_PHENOTYPE.IM]:"Expr./IM",
+      [GENOTYPE_PHENOTYPE.NM]:"Reference",
+      [GENOTYPE_PHENOTYPE.UM]:"High expr.",
+    },
+  },
+  GSTM1: {
+    axis:GENE_SEMANTIC_AXIS.COPY_NUMBER_NULL,
+    nullMechanism:"copy_number_null",
+    nullStateLabel:"GSTM1 null/absent detoxification capacity",
+    phenotypeStateLabel:"GSTM1 detoxification capacity",
+    modelUseLabel:"reduced GSTM1 detoxification context",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["liver","blood/immune","gut","environmental detox"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Null",
+      [GENOTYPE_PHENOTYPE.IM]:"Reduced",
+      [GENOTYPE_PHENOTYPE.NM]:"Present",
+    },
+  },
+  GSTT1: {
+    axis:GENE_SEMANTIC_AXIS.COPY_NUMBER_NULL,
+    nullMechanism:"copy_number_null",
+    nullStateLabel:"GSTT1 null/absent detoxification capacity",
+    phenotypeStateLabel:"GSTT1 detoxification capacity",
+    modelUseLabel:"reduced GSTT1 detoxification context",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["liver","blood/immune","environmental detox"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Null",
+      [GENOTYPE_PHENOTYPE.IM]:"Reduced",
+      [GENOTYPE_PHENOTYPE.NM]:"Present",
+    },
+  },
+  BCHE: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    nullMechanism:"inherited_deficiency",
+    nullStateLabel:"BCHE deficiency / very low pseudocholinesterase activity",
+    phenotypeStateLabel:"BCHE activity phenotype",
+    modelUseLabel:"prolonged paralytic exposure/offset behavior",
+    phenoconversion:false,
+    legacyNull:true,
+    compartments:["plasma","procedural/anesthesia"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Deficient",
+      [GENOTYPE_PHENOTYPE.IM]:"Partial",
+      [GENOTYPE_PHENOTYPE.NM]:"Normal",
+    },
+  },
+  G6PD: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    nullMechanism:"erythrocyte_deficiency",
+    nullStateLabel:"G6PD deficient red-cell oxidative reserve",
+    phenotypeStateLabel:"G6PD red-cell oxidative reserve",
+    modelUseLabel:"oxidative hemolysis susceptibility context",
+    phenoconversion:false,
+    compartments:["RBC","blood"],
+  },
+  SLCO1B1: {
+    axis:GENE_SEMANTIC_AXIS.TRANSPORT,
+    phenotypeStateLabel:"OATP1B1 hepatic uptake function",
+    modelUseLabel:"transporter exposure behavior",
+    phenoconversion:false,
+    compartments:["liver","plasma"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Low uptake",
+      [GENOTYPE_PHENOTYPE.IM]:"Reduced",
+      [GENOTYPE_PHENOTYPE.NM]:"Normal",
+      [GENOTYPE_PHENOTYPE.UM]:"Increased",
+    },
+  },
+  ABCB1: {
+    axis:GENE_SEMANTIC_AXIS.TRANSPORT,
+    phenotypeStateLabel:"P-gp/ABCB1 efflux function",
+    modelUseLabel:"transporter/tissue-penetration context",
+    phenoconversion:false,
+    compartments:["gut","kidney","brain/CNS","blood-brain barrier"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Low efflux",
+      [GENOTYPE_PHENOTYPE.IM]:"Reduced",
+      [GENOTYPE_PHENOTYPE.NM]:"Normal",
+    },
+  },
+  ABCG2: {
+    axis:GENE_SEMANTIC_AXIS.TRANSPORT,
+    phenotypeStateLabel:"BCRP/ABCG2 efflux function",
+    modelUseLabel:"transporter exposure context",
+    phenoconversion:false,
+    compartments:["gut","liver","kidney","blood-brain barrier"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Low efflux",
+      [GENOTYPE_PHENOTYPE.IM]:"Reduced",
+      [GENOTYPE_PHENOTYPE.NM]:"Normal",
+    },
+  },
+  VKORC1: {
+    axis:GENE_SEMANTIC_AXIS.SENSITIVITY,
+    phenotypeStateLabel:"warfarin target sensitivity",
+    modelUseLabel:"warfarin sensitivity behavior, not clearance",
+    phenoconversion:false,
+    compartments:["liver","coagulation"],
+    optionLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"Sensitive",
+      [GENOTYPE_PHENOTYPE.IM]:"Intermediate",
+      [GENOTYPE_PHENOTYPE.NM]:"Reference",
+      [GENOTYPE_PHENOTYPE.UM]:"Resistant",
+    },
+  },
+  OPRM1: { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"opioid receptor response context", modelUseLabel:"response/tolerability context", phenoconversion:false, compartments:["brain/CNS"] },
+  SLC6A4:{ axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"serotonin transporter response context", modelUseLabel:"response/tolerability context", phenoconversion:false, compartments:["brain/CNS"] },
+  HTR2A: { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"serotonin receptor response context", modelUseLabel:"response/tolerability context", phenoconversion:false, compartments:["brain/CNS"] },
+  HTR2C: { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"serotonin receptor metabolic-risk context", modelUseLabel:"tolerability context", phenoconversion:false, compartments:["brain/CNS","metabolic"] },
+  DRD2:  { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"dopamine receptor response context", modelUseLabel:"response/tolerability context", phenoconversion:false, compartments:["brain/CNS"] },
+};
+
 // GENOTYPE_EFFECTS — fold-change multipliers vs NM baseline for key enzymes
 // Source: CPIC guidelines, FDA labels, clinical PK studies
 const GENOTYPE_EFFECTS = {
@@ -856,6 +1010,158 @@ let activeGenotype = {
   "SCN2A sodium-channel variant": GENOTYPE_RISK_STATUS.ABSENT,
   "KCNH2 long-QT variant": GENOTYPE_RISK_STATUS.ABSENT,
 };
+
+let activeGenotypeDetails = {};
+
+function getGeneSemantics(gene) {
+  const key = String(gene || "");
+  if (GENE_SEMANTICS[key]) return GENE_SEMANTICS[key];
+  const risk = typeof GENOTYPE_RISK_EFFECTS !== "undefined" ? GENOTYPE_RISK_EFFECTS[key] : null;
+  if (risk) {
+    return {
+      axis:GENE_SEMANTIC_AXIS.RISK_ALLELE,
+      phenotypeStateLabel:`${risk.label || key} risk marker`,
+      modelUseLabel:"risk-allele safety context",
+      phenoconversion:false,
+      compartments:risk.gene && /^HLA/.test(risk.gene) ? ["immune"] : ["systemic"],
+    };
+  }
+  return {
+    axis:GENE_SEMANTIC_AXIS.ACTIVITY_SCORE,
+    phenotypeStateLabel:`${key || "gene"} activity phenotype`,
+    modelUseLabel:"phenotype exposure behavior",
+    phenoconversion:true,
+    compartments:["liver","systemic"],
+  };
+}
+
+function getNullExposureMultiplier(gene) {
+  const semantics = getGeneSemantics(gene);
+  if (Number.isFinite(semantics.nullExposureFold)) return semantics.nullExposureFold;
+  return GENOTYPE_EFFECTS?.[gene]?.[GENOTYPE_PHENOTYPE.PM]?.auc_fold || 1;
+}
+
+function compactPhenotypeKey(value) {
+  return String(value || "")
+    .trim()
+    .toUpperCase()
+    .replace(/[-\s/]+/g, "_");
+}
+
+function normalizeGenePhenotypeInput(gene, value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  const key = compactPhenotypeKey(raw);
+  const normalized = raw.toLowerCase().replace(/[_-]+/g, " ");
+  const semantics = getGeneSemantics(gene);
+  const base = {
+    gene,
+    reportedLabel:raw,
+    source:"reported",
+    confidence:"reported",
+    axis:semantics.axis,
+  };
+
+  if (/^\s*(um|ultrarapid)\s*$/i.test(raw) || /ultra|increased function/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity" };
+  }
+  if (/^\s*(im|intermediate)\s*$/i.test(raw) || /intermediate|decreased function|reduced function|decreased expression|decreased\/intermediate/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.IM, mechanism:"inherited_reduced_activity" };
+  }
+  if (/non ?express|nonexpress|no expression/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.PM, mechanism:"inherited_low_expression" };
+  }
+  if (/null|no function|nonfunctional|deletion|deleted|absent|zero function/.test(normalized)) {
+    const mechanism = semantics.axis === GENE_SEMANTIC_AXIS.COPY_NUMBER_NULL
+      ? "copy_number_null"
+      : (semantics.nullMechanism || "inherited_no_function");
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.PM, mechanism };
+  }
+  if (/^\s*(pm|poor)\s*$/i.test(raw) || /poor|high warfarin sensitivity/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.PM, mechanism:"inherited_low_activity" };
+  }
+  if (/deficient|deficiency/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.PM, mechanism:semantics.nullMechanism || "inherited_deficiency" };
+  }
+  if (/^\s*(nm|normal)\s*$/i.test(raw) || /normal|reference|standard|expressor|normal function|normal metabolizer|present/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.NM, mechanism:"reference" };
+  }
+  if (/^\s*(rm|rapid)\s*$/i.test(raw) || /rapid metabolizer/.test(normalized)) {
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity", note:"MedCheck currently maps rapid metabolizer reports into the high-activity bucket." };
+  }
+
+  const directAliases = {
+    POOR_METABOLIZER: GENOTYPE_PHENOTYPE.PM,
+    INTERMEDIATE_METABOLIZER: GENOTYPE_PHENOTYPE.IM,
+    NORMAL_METABOLIZER: GENOTYPE_PHENOTYPE.NM,
+    ULTRA_RAPID: GENOTYPE_PHENOTYPE.UM,
+    ULTRARAPID_METABOLIZER: GENOTYPE_PHENOTYPE.UM,
+  };
+  if (directAliases[key]) return { ...base, phenotype:directAliases[key], mechanism:"reported_phenotype" };
+  if (Object.values(GENOTYPE_PHENOTYPE).includes(raw)) return { ...base, phenotype:raw, mechanism:"reported_phenotype" };
+  return null;
+}
+
+function buildGeneInterpretation(gene, phenotype, details = {}) {
+  const semantics = getGeneSemantics(gene);
+  const report = details.reportedLabel || genotypeDisplayLabel(gene, phenotype);
+  const mechanism = details.mechanism ||
+    (phenotype === GENOTYPE_PHENOTYPE.NM ? "reference" : "reported_phenotype");
+  const isNullLike = ["inherited_no_function","copy_number_null","inherited_deficiency","erythrocyte_deficiency"].includes(mechanism);
+  const state = details.functionalState ||
+    (isNullLike && semantics.nullStateLabel ? semantics.nullStateLabel : semantics.phenotypeStateLabel);
+  return {
+    gene,
+    reportedLabel:report,
+    phenotype,
+    axis:semantics.axis,
+    mechanism,
+    functionalState:state,
+    modelUse:details.modelUse || semantics.modelUseLabel || "phenotype exposure behavior",
+    compartments:details.compartments || semantics.compartments || ["systemic"],
+    phenoconversion:!!semantics.phenoconversion,
+    confidence:details.confidence || "reported",
+    note:details.note || "",
+  };
+}
+
+function genotypeDisplayLabel(gene, phenotype) {
+  const semantics = getGeneSemantics(gene);
+  const semanticLabel = semantics.optionLabels?.[phenotype];
+  if (semanticLabel) return semanticLabel;
+  if (phenotype === GENOTYPE_PHENOTYPE.PM) return "PM";
+  if (phenotype === GENOTYPE_PHENOTYPE.IM) return "IM";
+  if (phenotype === GENOTYPE_PHENOTYPE.NM) return "NM";
+  if (phenotype === GENOTYPE_PHENOTYPE.UM) return "UM";
+  if (phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "present";
+  if (phenotype === GENOTYPE_RISK_STATUS.ABSENT) return "absent";
+  return String(phenotype || "unknown");
+}
+
+function shouldUseLegacyNullState(gene, interpretation) {
+  const semantics = getGeneSemantics(gene);
+  if (!interpretation || !semantics.legacyNull) return false;
+  return ["inherited_no_function","inherited_deficiency","erythrocyte_deficiency"].includes(interpretation.mechanism);
+}
+
+function buildRiskInterpretation(riskKey, status, details = {}) {
+  const risk = typeof GENOTYPE_RISK_EFFECTS !== "undefined" ? GENOTYPE_RISK_EFFECTS[riskKey] : null;
+  const label = risk?.label || riskKey;
+  const riskEffect = risk?.effects?.[status];
+  return {
+    gene:riskKey,
+    reportedLabel:details.reportedLabel || (status === GENOTYPE_RISK_STATUS.PRESENT ? "present" : "absent"),
+    phenotype:status,
+    axis:GENE_SEMANTIC_AXIS.RISK_ALLELE,
+    mechanism:status === GENOTYPE_RISK_STATUS.PRESENT ? "risk_allele_present" : "risk_allele_absent",
+    functionalState:status === GENOTYPE_RISK_STATUS.PRESENT ? `${label} detected` : `${label} not detected`,
+    modelUse:"risk-allele safety context",
+    compartments:risk?.gene && /^HLA/.test(risk.gene) ? ["immune"] : ["systemic"],
+    phenoconversion:false,
+    confidence:details.confidence || "reported",
+    note:riskEffect?.note || "",
+  };
+}
 
 // ── STUDY_DB ──
 // First-class evidence entities. One study can support multiple graph edges.

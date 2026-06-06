@@ -17,6 +17,7 @@ function loadCase(win, drugs) {
   win.eval(`activeStack = [];
     drugDoses && Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     userGenetics = {};
+    activeGenotypeDetails = {};
     activeGenotype = {
       CYP2D6: GENOTYPE_PHENOTYPE.NM,
       CYP2C19: GENOTYPE_PHENOTYPE.NM,
@@ -409,6 +410,10 @@ const pharmGxImportAudit = window.eval(`(() => {
     cyp3a5: activeGenotype.CYP3A5,
     nat2: activeGenotype.NAT2,
     gstm1: activeGenotype.GSTM1,
+    cyp2d6Detail: activeGenotypeDetails.CYP2D6,
+    cyp3a5Detail: activeGenotypeDetails.CYP3A5,
+    gstm1Detail: activeGenotypeDetails.GSTM1,
+    gstm1Legacy: userGenetics.GSTM1,
     slco1b1: activeGenotype.SLCO1B1,
     abcb1: activeGenotype.ABCB1,
     mthfr: activeGenotype["MTHFR C677T"],
@@ -420,11 +425,73 @@ assert(pharmGxImportAudit.skipped.length === 1, 'Direct gene-status JSON import 
 assert(pharmGxImportAudit.cyp2d6 === 'poor_metabolizer', 'Importer should map CYP2D6 PM to poor_metabolizer');
 assert(pharmGxImportAudit.cyp3a5 === 'poor_metabolizer', 'Importer should map CYP3A5 non_expresser to poor_metabolizer');
 assert(pharmGxImportAudit.nat2 === 'intermediate_metabolizer', 'Importer should map NAT2 IM to intermediate_metabolizer');
-assert(pharmGxImportAudit.gstm1 === 'poor_metabolizer', 'Importer should map GSTM1 null to poor_metabolizer');
+assert(pharmGxImportAudit.gstm1 === 'poor_metabolizer', 'Importer should keep GSTM1 null in the PM calculation bucket');
+assert(pharmGxImportAudit.gstm1Legacy === 'poor', 'Importer should not use the generic legacy null multiplier for GSTM1 null');
+assert(pharmGxImportAudit.gstm1Detail.mechanism === 'copy_number_null', 'Importer should preserve GSTM1 null as copy-number/null semantics');
+assert(pharmGxImportAudit.gstm1Detail.functionalState.includes('GSTM1 null'), 'Importer should label GSTM1 null as null detox context');
+assert(pharmGxImportAudit.cyp3a5Detail.mechanism === 'inherited_low_expression', 'Importer should preserve CYP3A5 non-expresser as expression semantics');
 assert(pharmGxImportAudit.slco1b1 === 'ultrarapid_metabolizer', 'Importer should map increased_function to ultrarapid_metabolizer');
 assert(pharmGxImportAudit.abcb1 === 'intermediate_metabolizer', 'Importer should map reduced_function to intermediate_metabolizer');
 assert(pharmGxImportAudit.mthfr === 'risk_allele_present', 'Importer should map MTHFR HOM_TT to risk allele present');
 assert(pharmGxImportAudit.gabrg2 === 'risk_allele_present', 'Importer should map GABRG2 HOM_ALT_contraindicated to risk allele present');
+
+const nullVsPoorAudit = window.eval(`(() => {
+  activeGenotypeDetails = {};
+  userGenetics = {};
+  setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM);
+  const poor = { legacy:userGenetics.CYP2D6, detail:activeGenotypeDetails.CYP2D6 };
+  activeGenotypeDetails = {};
+  userGenetics = {};
+  setGenotypeState('CYP2D6', 'null');
+  const nul = { legacy:userGenetics.CYP2D6, detail:activeGenotypeDetails.CYP2D6, mult:getPhenotypeMult('CYP2D6') };
+  return { poor, nul };
+})()`);
+assert(nullVsPoorAudit.poor.legacy === 'poor', 'CYP2D6 PM should remain legacy poor, not null');
+assert(nullVsPoorAudit.poor.detail.mechanism !== 'inherited_no_function', 'CYP2D6 PM should not imply a known inherited-null state');
+assert(nullVsPoorAudit.nul.legacy === 'null', 'CYP2D6 null should preserve the legacy null channel for null-aware PK');
+assert(nullVsPoorAudit.nul.detail.mechanism === 'inherited_no_function', 'CYP2D6 null should preserve inherited no-function semantics');
+assert(nullVsPoorAudit.nul.mult === 20, 'CYP2D6 null should retain null-aware exposure multiplier where the old model expects it');
+
+const urlNullAudit = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  window.history.replaceState(null, '', '/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:null&tab=pgx');
+  loadUrlDemoState();
+  return {
+    phenotype:activeGenotype.CYP2D6,
+    legacy:userGenetics.CYP2D6,
+    detail:activeGenotypeDetails.CYP2D6,
+    tab:activeTab,
+  };
+})()`);
+assert(urlNullAudit.phenotype === 'poor_metabolizer', 'URL CYP2D6:null should use the PM calculation bucket');
+assert(urlNullAudit.legacy === 'null', 'URL CYP2D6:null should preserve inherited null legacy state');
+assert(urlNullAudit.detail.mechanism === 'inherited_no_function', 'URL CYP2D6:null should preserve no-function semantics');
+assert(urlNullAudit.tab === 'pgx', 'URL state should still restore the requested tab');
+
+const nullPhenoconversionAudit = window.eval(`(() => {
+  activeStack = ['Metoprolol'];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  setGenotypeState('CYP2D6', 'null');
+  const nullOnly = calcFold('Metoprolol');
+  activeStack = ['Metoprolol', 'Fluoxetine'];
+  const nullPlusInhibitor = calcFold('Metoprolol');
+  return {
+    nullFold:nullOnly.fold,
+    inhibitorFold:nullPlusInhibitor.fold,
+    nullDetail:activeGenotypeDetails.CYP2D6,
+  };
+})()`);
+assert(
+  nullPhenoconversionAudit.inhibitorFold === nullPhenoconversionAudit.nullFold,
+  `Inherited CYP2D6 null should not be phenoconverted again by an inhibitor (${nullPhenoconversionAudit.nullFold} vs ${nullPhenoconversionAudit.inhibitorFold})`
+);
+assert(
+  nullPhenoconversionAudit.nullDetail.functionalState.includes('no-function CYP2D6'),
+  'CYP2D6 null detail should explain tissue-wide no-function semantics'
+);
 
 const expandedGenotypeRuleAudit = window.eval(`(() => {
   activeGenotype = {

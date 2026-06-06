@@ -444,12 +444,24 @@ function genotypeToLegacyPhenotype(phenotype) {
   return phenotype;
 }
 
-function setGenotypeState(enzyme, phenotype) {
+function setGenotypeState(enzyme, phenotype, details = {}) {
   if (!enzyme || !GENOTYPE_EFFECTS[enzyme]) return false;
-  const normalized = legacyPhenotypeToGenotype(phenotype);
+  const parsed = typeof normalizeGenePhenotypeInput === "function"
+    ? normalizeGenePhenotypeInput(enzyme, details.reportedLabel || phenotype)
+    : null;
+  const normalized = legacyPhenotypeToGenotype(parsed?.phenotype || phenotype);
   const valid = GENOTYPE_EFFECTS[enzyme][normalized] ? normalized : GENOTYPE_PHENOTYPE.NM;
   activeGenotype[enzyme] = valid;
-  const legacy = phenotype === "null" ? "null" : genotypeToLegacyPhenotype(valid);
+  const interpretation = typeof buildGeneInterpretation === "function"
+    ? buildGeneInterpretation(enzyme, valid, { ...(parsed || {}), ...details })
+    : null;
+  if (typeof activeGenotypeDetails !== "undefined") {
+    if (valid === GENOTYPE_PHENOTYPE.NM && !details.reportedLabel) delete activeGenotypeDetails[enzyme];
+    else activeGenotypeDetails[enzyme] = interpretation;
+  }
+  const legacy = typeof shouldUseLegacyNullState === "function" && shouldUseLegacyNullState(enzyme, interpretation)
+    ? "null"
+    : genotypeToLegacyPhenotype(valid);
   if (legacy === "normal") delete userGenetics[enzyme];
   else userGenetics[enzyme] = legacy;
   return true;
@@ -460,6 +472,7 @@ function getPhenotypeMult(enzyme) {
   const legacy = userGenetics[enzyme];
   const pheno = legacy === "null" ? legacy : (active ? genotypeToLegacyPhenotype(active) : legacy);
   if (!pheno) return 1.0;
+  if (pheno === "null" && typeof getNullExposureMultiplier === "function") return getNullExposureMultiplier(enzyme);
   const opt = PHENOTYPE_OPTIONS.find(o => o.id === pheno);
   return opt ? opt.mult : 1.0;
 }
