@@ -43,7 +43,7 @@
     .view{display:none}
     .view.active{display:block}
     .toolbar{display:grid;grid-template-columns:1.4fr .8fr .8fr auto;gap:10px;margin-bottom:14px;align-items:center}
-    .genotype-toolbar{grid-template-columns:1.2fr .8fr auto}
+    .genotype-toolbar{grid-template-columns:1.15fr .95fr .95fr}
     .field,.select,.primary{height:38px;border-radius:8px;border:1px solid var(--border);background:var(--surface);padding:0 11px;color:var(--text)}
     .field{width:100%}
     .primary{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:800;cursor:pointer}
@@ -88,13 +88,7 @@
     .gene-tile span{font-size:12px;color:var(--text2)}
     .genetics-card{margin-bottom:14px}
     .genetics-copy{font-size:12px;color:var(--text2);margin:0 0 10px;line-height:1.4}
-    .gene-add{display:flex;gap:8px;margin-bottom:8px}
-    .gene-add select{flex:1}
-    .gene-row{display:flex;align-items:center;gap:8px;padding:8px 4px;border-top:1px solid var(--border)}
-    .gene-name{font-weight:850;font-size:13px;width:96px;flex-shrink:0}
-    .gene-select{flex:1;height:36px;border:1px solid var(--border);border-radius:8px;background:var(--surface);padding:0 9px;color:var(--text)}
-    .gene-badge{font-size:11px;font-weight:850;padding:3px 8px;border-radius:8px;min-width:44px;text-align:center;background:var(--blueBg);color:var(--blue)}
-    .gene-detail{font-size:11px;color:var(--text2);padding:0 4px 2px 100px}
+    .genotype-detail{font-size:11px;color:var(--text2);font-weight:750;margin-top:-4px}
     .network{height:430px;position:relative;background:linear-gradient(180deg,#fffcf8,#f3f7fb);border-radius:8px;border:1px solid var(--border);overflow:hidden}
     .node{position:absolute;border:2px solid #fff;border-radius:999px;box-shadow:0 4px 14px rgba(23,32,42,.16);display:grid;place-items:center;text-align:center;font-weight:850;font-size:12px;padding:8px;color:#fff}
     .n1{left:9%;top:16%;width:92px;height:92px;background:var(--blue)}
@@ -171,28 +165,17 @@
       <main>
         <section class="view active" id="view-genotype">
           <article class="card genetics-card">
-            <div class="card-head"><h3>My Genetics <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional — makes results more accurate)</span></h3></div>
+            <div class="card-head"><h3>Genotype Focus</h3><span class="tag violet" id="genotypePickTag">CYP2D6</span></div>
             <div class="card-body">
-              <p class="genetics-copy">If you know your enzyme metabolizer status from pharmacogenomic testing, set it here. This adjusts drug level predictions based on how fast your body processes each medication.</p>
-              <div class="gene-add">
-                <select class="select" id="geneAddSelect" aria-label="Add enzyme"></select>
-                <button class="primary" id="geneAddButton">Review Enzyme</button>
+              <p class="genetics-copy">Pick a genotype signal and status to pivot the data around its substances, metabolites, transporters, and evidence rows.</p>
+              <div class="toolbar genotype-toolbar">
+                <select class="select" id="geneSearch" aria-label="Gene"></select>
+                <select class="select" id="phenotypeSelect" aria-label="Status"></select>
+                <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="parent">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="transporter">Transporter</option><option value="evidence">PGx evidence</option><option value="risk">Risk/context</option></select>
               </div>
-              <div id="geneList">
-                <div class="gene-row">
-                  <div class="gene-name" id="selectedGeneName">CYP2D6</div>
-                  <select class="gene-select" id="phenotypeSelect" aria-label="Phenotype"></select>
-                  <span class="gene-badge" id="selectedGeneBadge">PM</span>
-                </div>
-                <div class="gene-detail" id="selectedGeneDetail"></div>
-              </div>
+              <div class="genotype-detail" id="genotypePickDetail"></div>
             </div>
           </article>
-          <div class="toolbar genotype-toolbar">
-            <input class="field" id="geneSearch" value="CYP2D6" aria-label="Custom gene or pathway search" placeholder="Or search any gene/pathway">
-            <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="parent">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="transporter">Transporter</option><option value="evidence">PGx evidence</option><option value="risk">Risk/context</option></select>
-            <button class="primary" id="geneReview">Review</button>
-          </div>
           <div class="status" id="geneStatus">Loading MedCheck data...</div>
           <div class="metric-row" id="geneMetrics">
             <div class="metric"><strong>42</strong><span>substances</span></div>
@@ -399,7 +382,7 @@
     const sentence = (value) => String(value || "").replace(/_/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
     const tag = (text, color = "") => `<span class="tag ${color}">${esc(text)}</span>`;
     const pageSize = 50;
-    const state = { geneShowAll:false, actionShowAll:{}, classShowAll:false, networkShowAll:false, patientShowAll:false, selectedRiskKey:"" };
+    const state = { geneShowAll:false, actionShowAll:{}, classShowAll:false, networkShowAll:false, patientShowAll:false };
     const copy = {
       genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
       action:["Clinical Action View","Group the database by what a clinician does next: avoid, adjust dose, monitor, switch, or document no expected action."],
@@ -452,31 +435,40 @@
       return model?.phenotypeLabels?.[value] || semantics.optionLabels?.[value] || semantics.phenotypeLabels?.[value] || sentence(value);
     }
 
-    function modelGroupLabel(axis) {
-      return ({
-        activity_score:"CYP / enzyme activity",
-        expression:"Expression",
-        transport:"Transporters",
-        deficiency:"Deficiency / toxicity",
-        sensitivity:"Sensitivity",
-        response:"Response",
-        risk_allele:"Risk variants",
-        evidence:"Evidence genes",
-      })[axis] || sentence(axis || "Other");
-    }
-
-    function renderGeneAddSelect() {
-      const genes = Object.keys(genotypeEffectsModel || {}).sort((a, b) => {
+    function sortedSelectableGenes() {
+      return [...new Set([...(index.genes || []), ...Object.keys(genotypeEffectsModel || {})])].sort((a, b) => {
         const aCyp = a.startsWith("CYP") ? 0 : 1;
         const bCyp = b.startsWith("CYP") ? 0 : 1;
         return aCyp - bCyp || a.localeCompare(b);
       });
-      $("#geneAddSelect").innerHTML = genes.map((gene) => {
-        const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[gene] : null;
-        const tag = evidence ? ` (${evidence.guideline || "PGx"} ${evidence.grade || ""})` : "";
-        return `<option value="${esc(gene)}">${esc(gene + tag)}</option>`;
+    }
+
+    function renderGeneSelect() {
+      const genes = sortedSelectableGenes();
+      const transporterGenes = new Set(["ABCB1", "ABCG2", "SLCO1B1", "SLC22A1", "SLC22A2", "SLC47A1", "ABCC2", "ABCC4", "OATP1B1"]);
+      const groups = [
+        ["CYP enzymes", genes.filter((gene) => gene.startsWith("CYP"))],
+        ["Transporters", genes.filter((gene) => !gene.startsWith("CYP") && transporterGenes.has(gene))],
+        ["Other genotype signals", genes.filter((gene) => !gene.startsWith("CYP") && !transporterGenes.has(gene))],
+      ];
+      $("#geneSearch").innerHTML = groups.filter(([, items]) => items.length).map(([label, items]) => {
+        const options = items.map((gene) => {
+          const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[gene] : null;
+          const suffix = evidence ? ` (${evidence.guideline || "PGx"}${evidence.grade ? ` ${evidence.grade}` : ""})` : "";
+          return `<option value="${esc(gene)}">${esc(gene + suffix)}</option>`;
+        }).join("");
+        return `<optgroup label="${esc(label)}">${options}</optgroup>`;
       }).join("");
-      $("#geneAddSelect").value = selectedGene();
+    }
+
+    function setGeneSelection(gene) {
+      const value = String(gene || "CYP2D6").trim().toUpperCase();
+      if (![...$("#geneSearch").options].some((option) => option.value === value)) {
+        const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[value] : null;
+        const suffix = evidence ? ` (${evidence.guideline || "PGx"}${evidence.grade ? ` ${evidence.grade}` : ""})` : "";
+        $("#geneSearch").insertAdjacentHTML("beforeend", `<option value="${esc(value)}">${esc(value + suffix)}</option>`);
+      }
+      $("#geneSearch").value = value;
     }
 
     function phenotypeOptions(gene) {
@@ -494,7 +486,6 @@
       const gene = selectedGene();
       const relationship = $("#relationshipSelect").value || "all";
       let rows = index.byGene[gene] || [];
-      if (state.selectedRiskKey) rows = rows.filter((row) => row.searchText.includes(state.selectedRiskKey.toLowerCase()));
       return relationship === "all" ? rows : rows.filter((row) => row.role === relationship);
     }
 
@@ -513,7 +504,7 @@
         [rows.filter((r) => r.role === "metabolite").length, "metabolite rows"],
         [rows.filter((r) => r.role === "modulator" || r.role === "transporter").length, "modulators"],
       ].map(([num, label]) => `<div class="metric"><strong>${num}</strong><span>${label}</span></div>`).join("");
-      $(".card-head .tag.violet").textContent = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
+      $("#genotypePickTag").textContent = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
       const activationRows = rows.filter((r) => /activation|active|ineffective|failure|avoid/i.test(r.actionText + r.signal));
       const exposureRows = rows.filter((r) => /exposure|auc|level|clearance|dose|fold/i.test(r.actionText + r.signal));
       const modulatorRows = rows.filter((r) => r.role === "modulator" || r.role === "transporter");
@@ -522,12 +513,12 @@
         ["Exposure shift", exposureRows.length, "amber", "Rows suggesting exposure, clearance, level, or dose review.", exposureRows.slice(0, 8)],
         ["Modulation / transport", modulatorRows.length, "violet", "Inhibitors, inducers, transporters, and actor-context edges.", modulatorRows.slice(0, 8)],
       ].map(([title, count, color, body, items]) => {
-        const genotypeValue = state.selectedRiskKey && phenotype ? `${state.selectedRiskKey}:${phenotype}` : phenotype ? `${gene}:${phenotype}` : "";
+        const genotypeValue = phenotype ? `${gene}:${phenotype}` : "";
         return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:genotypeValue, tab:"pgx" }), title, `${count} rows`, color, body, items.map((item) => item.subject).slice(0, 6));
       }).join("");
       $("#geneSubstanceRows").innerHTML = shown.map((row) => {
         const entity = index.getEntity(row.subject);
-        const genotypeValue = state.selectedRiskKey && phenotype ? `${state.selectedRiskKey}:${phenotype}` : phenotype ? `${gene}:${phenotype}` : "";
+        const genotypeValue = phenotype ? `${gene}:${phenotype}` : "";
         const href = appLinkForRelation(row, { genotype:genotypeValue, tab:"pgx" });
         return `<tr><td><a href="${esc(href)}">${esc(row.subject)}</a><br>${tag(`${row.class} · ${entity?.linkable ? "app substance" : `${row.entityKind} · no direct app substance`}`)}</td><td>${esc(sentence(row.role))}</td><td>${esc(row.signal)}</td><td>${tag(row.actionGroup, row.severity)}</td></tr>`;
       }).join("") || `<tr><td colspan="4">No indexed relationships found for ${esc(gene)}.</td></tr>`;
@@ -666,42 +657,26 @@
       $("#phenotypeSelect").innerHTML = options;
       if ([...$("#phenotypeSelect").options].some((option) => option.value === current)) $("#phenotypeSelect").value = current;
       const phenotype = $("#phenotypeSelect").value || "";
-      $("#selectedGeneName").textContent = gene || "Custom";
-      $("#selectedGeneBadge").textContent = phenotype ? phenotypeLabel(gene, phenotype).split(/\s|-/)[0].slice(0, 10) : "CTX";
-      $("#selectedGeneDetail").innerHTML = phenotype
-        ? `Reported: <b>${esc(phenotypeLabel(gene, phenotype))}</b> · Review rows using <b>${esc(gene)}</b>`
-        : `No modeled metabolizer/function statuses for <b>${esc(gene)}</b>; showing evidence/context rows only.`;
-      if ($("#geneAddSelect") && [...$("#geneAddSelect").options].some((option) => option.value === gene)) $("#geneAddSelect").value = gene;
-    }
-
-    function syncGeneticsFromSearch() {
-      state.selectedRiskKey = "";
-    }
-
-    function applyGeneFromSelect() {
-      const gene = $("#geneAddSelect").value || "CYP2D6";
-      state.selectedRiskKey = "";
-      $("#geneSearch").value = gene;
-      $("#relationshipSelect").value = "all";
-      state.geneShowAll = false;
-      state.networkShowAll = false;
-      updatePhenotypeOptions();
-      renderGeneView();
+      const model = selectedModel();
+      $("#genotypePickTag").textContent = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
+      $("#genotypePickDetail").innerHTML = phenotype
+        ? `<b>${esc(gene)}</b> is set to <b>${esc(phenotypeLabel(gene, phenotype, model))}</b>; rows below show where that signal touches substances, metabolites, transporters, or evidence.`
+        : `<b>${esc(gene)}</b> does not have a modeled status list here; rows below show evidence and context links only.`;
     }
 
     function initDataViews() {
       const params = new URLSearchParams(location.search);
-      renderGeneAddSelect();
+      renderGeneSelect();
       $("#geneSearch").setAttribute("list", "geneOptions");
       const priorityGenes = (index.modeledGenotypes || []).filter((item) => item.kind === "modeled_gene").map((item) => item.gene);
       const geneOptions = [...new Set([...priorityGenes, ...index.genes])];
       document.body.insertAdjacentHTML("beforeend", `<datalist id="geneOptions">${geneOptions.map((gene) => `<option value="${esc(gene)}"></option>`).join("")}</datalist>`);
       const areas = [...new Set([...Object.keys(index.byClass), ...Object.keys(index.byActionGroup), "parent", "metabolite", "transporter", "modulator", "evidence", "risk"])].sort();
       $("#actionArea").innerHTML += areas.map((area) => `<option value="${esc(area)}">${esc(area)}</option>`).join("");
-      if (params.get("gene")) $("#geneSearch").value = params.get("gene").toUpperCase();
-      syncGeneticsFromSearch();
+      setGeneSelection(params.get("gene") || "CYP2D6");
       updatePhenotypeOptions();
       if (params.get("phenotype") && [...$("#phenotypeSelect").options].some((option) => option.value === params.get("phenotype"))) $("#phenotypeSelect").value = params.get("phenotype");
+      updatePhenotypeOptions();
       if (params.get("relationship") && [...$("#relationshipSelect").options].some((option) => option.value === params.get("relationship"))) $("#relationshipSelect").value = params.get("relationship");
       if (params.get("action")) $("#actionSearch").value = params.get("action");
       if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
@@ -717,9 +692,7 @@
       };
       if (!params.get("patientMeds")) $("#patientMeds").value = presets[$("#patientMedSet").value] || presets.example;
       document.querySelectorAll(".nav-btn").forEach((button) => button.addEventListener("click", () => { activateView(button.dataset.view); history.replaceState(null, "", `?view=${button.dataset.view}`); }));
-      $("#geneReview").addEventListener("click", renderGeneView);
-      $("#geneAddButton").addEventListener("click", applyGeneFromSelect);
-      $("#geneSearch").addEventListener("change", () => { syncGeneticsFromSearch(); updatePhenotypeOptions(); state.geneShowAll = false; state.networkShowAll = false; renderGeneView(); });
+      $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; state.networkShowAll = false; renderGeneView(); });
       $("#phenotypeSelect").addEventListener("change", () => { updatePhenotypeOptions(); renderGeneView(); });
       $("#relationshipSelect").addEventListener("change", () => { state.geneShowAll = false; renderGeneView(); });
       $("#actionFilter").addEventListener("click", renderActionView);
