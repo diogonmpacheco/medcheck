@@ -20,42 +20,42 @@
     a.row,a.callout{color:inherit;display:block}
     a.row:hover,a.callout:hover{border-color:var(--accent);background:var(--accentBg)}
     button,input,select{font:inherit;min-width:0}
-    .shell{min-height:100vh;display:grid;grid-template-columns:260px minmax(0,1fr)}
-    .rail{background:#251f1a;color:#fff;padding:20px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px}
+    .shell{min-height:100vh;display:block}
+    .view-nav{background:#251f1a;color:#fff;padding:12px 24px;display:grid;gap:10px}
     .brand{display:flex;align-items:center;gap:10px}
     .mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;font-weight:900}
     .brand h1{font-size:18px;line-height:1;margin:0}
     .brand span{display:block;font-size:11px;color:#d8cfc4;font-weight:600;margin-top:3px}
-    .rail nav{display:grid;gap:7px}
-    .nav-btn{width:100%;border:0;border-radius:8px;background:transparent;color:#f4eee6;padding:10px 11px;text-align:left;cursor:pointer;display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:center;font-weight:750}
-    .nav-btn small{display:block;color:#c6b9ab;font-size:11px;font-weight:600;margin-top:2px}
+    .brand,.view-nav nav,.view-nav-note{width:100%;max-width:980px;margin:0 auto}
+    .view-nav nav{display:grid;gap:7px}
+    .nav-btn{width:100%;border:0;border-radius:8px;background:transparent;color:#f4eee6;padding:7px 10px;text-align:left;cursor:pointer;display:grid;grid-template-columns:1fr;gap:0;align-items:start;font-weight:750}
+    .nav-btn > span:first-child{display:none}
+    .nav-btn small{display:none}
     .nav-btn.active,.nav-btn:hover{background:#3a3028}
     .nav-btn.active{box-shadow:inset 3px 0 0 var(--accent)}
-    .rail-note{margin-top:auto;border-top:1px solid rgba(255,255,255,.13);padding-top:14px;color:#cfc4b7;font-size:12px}
+    .view-nav-note{display:none}
     .content{min-width:0}
     header{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 24px}
-    .topline{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1180px;margin:0 auto}
+    .topline{display:grid;gap:12px;max-width:980px;margin:0 auto}
     .title h2{font-size:24px;margin:0 0 4px;letter-spacing:0}
     .title p{margin:0;color:var(--text2);font-size:14px;max-width:760px}
-    .actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .actions{display:grid;gap:8px;justify-items:start}
     .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--surface2);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--text2);font-weight:800;white-space:nowrap}
-    main{max-width:1180px;margin:0 auto;padding:20px 24px 34px}
+    main{max-width:980px;margin:0 auto;padding:20px 24px 34px}
     .view{display:none}
     .view.active{display:block}
-    .toolbar{display:grid;grid-template-columns:1.4fr .8fr .8fr auto;gap:10px;margin-bottom:14px;align-items:center}
-    .genotype-toolbar{grid-template-columns:1.15fr .95fr .95fr}
+    .toolbar,.genotype-toolbar{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px;align-items:center}
     .field,.select,.primary{height:38px;border-radius:8px;border:1px solid var(--border);background:var(--surface);padding:0 11px;color:var(--text)}
     .field{width:100%}
     .primary{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:800;cursor:pointer}
     .status{font-size:12px;color:var(--text2);font-weight:800;margin:-4px 0 14px}
     .grid{display:grid;gap:14px}
-    .two{grid-template-columns:minmax(0,.95fr) minmax(0,1.35fr)}
-    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .two,.three{grid-template-columns:1fr}
     .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-    .card-head{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .card-head{padding:13px 14px;border-bottom:1px solid var(--border);display:grid;gap:8px;justify-items:start}
     .card-head h3{font-size:15px;margin:0}
     .card-body{padding:14px}
-    .metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .metric-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px}
     .metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 12px}
     .metric strong{display:block;font-size:22px;line-height:1}
     .metric span{display:block;font-size:11px;color:var(--text2);font-weight:800;margin-top:5px;text-transform:uppercase}
@@ -66,23 +66,23 @@
     .tag.violet{background:var(--violetBg);color:var(--violet)}
     .list{display:grid;gap:8px}
     .row{border:1px solid var(--border);border-radius:8px;background:var(--surface2);padding:10px 11px}
-    .row-main{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;min-width:0}
+    .row-main{display:grid;gap:6px;justify-items:start;min-width:0}
     .row h4{margin:0;font-size:14px;min-width:0;overflow-wrap:anywhere}
     .row p{margin:4px 0 0;color:var(--text2);font-size:12px;overflow-wrap:anywhere}
     .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .subgrid{display:grid;grid-template-columns:1fr;gap:8px}
     .table{width:100%;border-collapse:collapse;font-size:12px}
     .table th,.table td{padding:9px 8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
     .table th{font-size:11px;text-transform:uppercase;color:var(--text2);background:var(--surface2)}
     .table tr:last-child td{border-bottom:0}
     .bars{display:grid;gap:9px}
-    .bar-row{display:grid;grid-template-columns:126px 1fr 46px;gap:8px;align-items:center;font-size:12px}
+    .bar-row{display:grid;grid-template-columns:1fr;gap:5px;align-items:start;font-size:12px}
     .track{height:12px;border-radius:999px;background:#ece7df;overflow:hidden}
     .fill{height:100%;border-radius:999px;background:var(--accent)}
     .fill.blue{background:var(--blue)}
     .fill.green{background:var(--green)}
     .fill.violet{background:var(--violet)}
-    .profile{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .profile{display:grid;grid-template-columns:1fr;gap:8px}
     .gene-tile{border:1px solid var(--border);border-radius:8px;padding:9px 10px;background:var(--surface2)}
     .gene-tile strong{display:block;font-size:13px}
     .gene-tile span{font-size:12px;color:var(--text2)}
@@ -103,23 +103,19 @@
     .callout{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2);padding:11px 12px}
     .callout strong{display:block;font-size:13px;margin-bottom:3px}
     .callout span{color:var(--text2);font-size:12px}
-    .pager{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0 0;color:var(--text2);font-size:12px;font-weight:800}
+    .pager{display:grid;gap:8px;justify-items:start;margin:10px 0 0;color:var(--text2);font-size:12px;font-weight:800}
     .pager button{border:1px solid var(--border);background:var(--surface2);border-radius:8px;padding:6px 10px;color:var(--text);font-weight:850;cursor:pointer}
     .muted{color:var(--text2)}
     @media (max-width:900px){
-      .shell{display:block}
-      .rail{position:static;height:auto}
-      .rail nav{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .topline{align-items:flex-start;flex-direction:column}
-      .toolbar,.two,.three,.metric-row{grid-template-columns:1fr}
       main{padding:16px}
       header{padding:16px}
+      .view-nav{padding:16px}
     }
   </style>
 </head>
 <body>
   <div class="shell">
-    <aside class="rail">
+    <div class="view-nav">
       <div class="brand">
         <div class="mark">M</div>
         <div>
@@ -134,8 +130,8 @@
         <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Severity and reach</small></span></button>
         <button class="nav-btn" data-view="patient"><span>PT</span><span>Patient simulator<small>Profile-first impact list</small></span></button>
       </nav>
-      <div class="rail-note">Alternate entry points for exploring MedCheck data. Example links open the main app with focused medication stacks.</div>
-    </aside>
+      <div class="view-nav-note">Alternate entry points for exploring MedCheck data. Example links open the main app with focused medication stacks.</div>
+    </div>
 
     <div class="content">
       <header>
