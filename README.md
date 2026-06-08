@@ -10,7 +10,7 @@ A private, client-side pharmacology graph for exploring how drugs, genes, metabo
 [![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/medcheck)](https://github.com/diogonmpacheco/medcheck/issues)
 [![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/medcheck/)
 
-MedCheck runs entirely in the browser. There are no accounts, no server, no API calls, and no medication data collection.
+MedCheck runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to MedCheck. The graph view loads D3 from a public CDN unless you self-host that asset.
 
 Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-04**.
 
@@ -40,6 +40,8 @@ For alternate entry points, see the [MedCheck Data Views](https://diogonmpacheco
 
 MedCheck is a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
+The only routine third-party request is the D3 graph library loaded from CDN for visualization; no medication stack, genotype setting, or search content is sent with that request.
+
 ---
 
 ## What It Shows
@@ -47,6 +49,10 @@ MedCheck is a static client-side app. It does not use accounts, analytics, cooki
 Most interaction checkers return isolated warnings. MedCheck instead shows how a medication stack behaves as a connected system: interaction warnings, pharmacogenomics, metabolites, PK curves, evidence, receptor burden, Beers-style flags, and washout timing.
 
 The project is intended for education, research, and review workflows. It is not a clinical decision system.
+
+## Current Limitations
+
+MedCheck is intentionally conservative about what it claims. PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as clinically verified.
 
 ---
 
@@ -60,7 +66,7 @@ The project is intended for education, research, and review workflows. It is not
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2155 KB** generated bundle (33987 lines)
+- **2155 KB** generated bundle (33970 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
