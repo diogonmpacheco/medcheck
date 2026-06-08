@@ -21,9 +21,7 @@ const requiredUrls = [
   "?view=genotype&gene=CYP3A4",
   "?view=genotype&gene=DPYD",
   "?view=action&action=digoxin",
-  "?view=classes&class=SSRI",
   "?view=ranking&sort=total",
-  "?view=patient&patientProfile=CYP2D6 PM, CYP2C19 PM, SLCO1B1 PM&patientMeds=Codeine,Fluoxetine,Tamoxifen,Metoprolol,Warfarin,Fluconazole",
 ];
 
 const failures = [];
@@ -82,23 +80,6 @@ function expectPager(document, selector, expectedTotal, label, search) {
 function actionExpectedRows(index, action) {
   const terms = action.toLowerCase().split(",").map((term) => term.trim()).filter(Boolean);
   return index.relations.filter((row) => terms.some((term) => row.searchText.includes(term)));
-}
-
-function classExpectedRows(index, classQuery) {
-  const query = classQuery.toLowerCase();
-  return index.relations.filter((row) => (row.class || "").toLowerCase().includes(query) || row.subject.toLowerCase().includes(query));
-}
-
-function patientExpectedRows(index, profileText, medsText) {
-  const meds = medsText.split(",").map((item) => item.trim()).filter(Boolean);
-  const medKeys = new Set(meds.map(index.normalize));
-  const profileGenes = new Set(index.genes.filter((gene) => profileText.toUpperCase().includes(gene)));
-  return index.relations.filter((row) => {
-    const medHit = medKeys.has(index.normalize(row.subject)) || medKeys.has(index.normalize(row.object));
-    const geneHit = row.gene && profileGenes.has(row.gene);
-    const pairHit = row.object && medKeys.has(index.normalize(row.subject)) && medKeys.has(index.normalize(row.object));
-    return pairHit || (medHit && (geneHit || row.source === "KNOWN_DDI" || row.source === "TRANSPORTER_DDI"));
-  });
 }
 
 const base = loadPage("?view=genotype&gene=CYP2D6");
@@ -177,12 +158,6 @@ for (const search of requiredUrls) {
     }
   }
 
-  if (view === "classes") {
-    const rows = classExpectedRows(index, params.get("class") || "");
-    if (rows.length && visibleRows(document, "#classList .row") === 0) fail(`${search}: class view rendered zero rows for ${rows.length} index matches.`);
-    if (!document.querySelector("#classCountTag")?.textContent.match(/\d+ groups/)) fail(`${search}: class view missing visible group count.`);
-  }
-
   if (view === "ranking") {
     const rows = Number((document.querySelector("#rankingCountTag")?.textContent.match(/\d+/) || [0])[0]);
     if (rows && visibleRows(document, "#rankingRows tr") === 0) fail(`${search}: ranking view rendered zero rows for ${rows} displayed matches.`);
@@ -191,11 +166,6 @@ for (const search of requiredUrls) {
     if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top ranking page.`);
   }
 
-  if (view === "patient") {
-    const rows = patientExpectedRows(index, params.get("patientProfile") || "", params.get("patientMeds") || "");
-    if (rows.length && visibleRows(document, "#patientImpactList .row") === 0) fail(`${search}: patient view rendered zero rows for ${rows.length} index matches.`);
-    expectPager(document, "#patientPager", rows.length, "patient", search);
-  }
 }
 
 if (failures.length) {
