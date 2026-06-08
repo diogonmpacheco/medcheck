@@ -1,4 +1,4 @@
-// MedCheck — Alternatives, genetics panel, combinations, transporters, metabolites
+// MedCheck Engine — Alternatives, genetics panel, combinations, transporters, metabolites
 // Phase A: modular source — concatenated by build.js
 
 function renderAlternatives() {

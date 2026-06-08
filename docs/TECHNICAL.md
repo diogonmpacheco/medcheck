@@ -1,16 +1,20 @@
-# MedCheck Technical Notes
+# PharmTrace Technical Notes
 
 This page keeps implementation details out of the README front page while preserving the architecture, build, and validation workflow for contributors.
 
 ## Architecture
 
-MedCheck distributes as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
+PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in active development. Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+
+Status: pre-v1, source-linked, actively validated, and pending future professional clinical review.
+
+PharmTrace currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
 
 The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
 
 ## Capability Surface
 
-MedCheck currently models:
+MedCheck Engine currently models:
 
 - Drug-drug interactions and known curated DDI pairs
 - CYP and transporter substrate, inhibitor, and inducer pathways
@@ -102,7 +106,7 @@ Important evidence helpers:
 
 Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer.
 
-Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means MedCheck should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
+Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means PharmTrace should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
 
 ## Enzyme Capacity Model
 
@@ -119,7 +123,7 @@ Mechanism-based inhibitors carry a 1.3x amplification factor. `computeAllEnzymeC
 
 ## PK Models
 
-MedCheck has two PK paths:
+MedCheck Engine has two PK paths:
 
 - Absolute one-compartment PK for drugs with `PK_PARAMS`
 - Relative exposure fallback for drugs with half-life data but incomplete absolute F/ka/Vd/dose parameters
@@ -169,7 +173,7 @@ The importer maps supported metabolizer phenotypes into `GENOTYPE_EFFECTS` (`poo
 
 All parsing runs in the browser. Nothing is uploaded, stored, or sent to an API.
 
-Future raw-DNA integration should stay separate from MedCheck's clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
+Future raw-DNA integration should stay separate from the MedCheck Engine clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
 
 Backlog: accept direct gene-to-status JSON objects such as `{ "CYP2D6": "PM", "CYP3A5": "non_expresser" }`, normalize short labels and underscore-style function labels, and report unsupported rows instead of silently skipping them.
 
@@ -201,13 +205,13 @@ npm run audit:genotype-gaps
 node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalog
 ```
 
-The genotype gap audit reads MedCheck source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, then scores missing panels by estimated clinical consequence of the null. If a local external PGx catalog is supplied, it also classifies catalog genes as covered, modeled without a panel, or absent from MedCheck.
+The genotype gap audit reads MedCheck Engine source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, then scores missing panels by estimated clinical consequence of the null. If a local external PGx catalog is supplied, it also classifies catalog genes as covered, modeled without a panel, or absent from MedCheck Engine.
 
 Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
 
 ## Release Checklist
 
-1. Update `MEDCHECK_VERSION` in `src/data/drugs.js` when app behavior changes.
+1. Update `MEDCHECK_VERSION` in `src/data/drugs.js` when MedCheck Engine behavior changes.
 2. Update Drug DB version/date when curated data changes.
 3. Run `npm run launch:v1`.
 4. Commit source changes plus rebuilt `index.html`.

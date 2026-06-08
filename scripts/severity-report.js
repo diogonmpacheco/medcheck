@@ -78,7 +78,7 @@ const changed = rows.filter((row) => row.changed);
 const severeAfter = rows.filter((row) => row.recommendedSeverity === 'severe').length;
 
 const lines = [
-  '# MedCheck Severity Report',
+    '# MedCheck Engine Severity Report',
   '',
   `Generated for release date: ${report.releaseDate}`,
   '',

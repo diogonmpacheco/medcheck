@@ -1,4 +1,4 @@
-// MedCheck — Relative-exposure PK fallback model.
+// MedCheck Engine — Relative-exposure PK fallback model.
 // Uses drug half-life plus genotype/DDI exposure fold when full PK_PARAMS are absent.
 
 const PK_REL_RESIDUAL_ACTIVITY = {

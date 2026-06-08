@@ -1,4 +1,4 @@
-// MedCheck — Enzyme occupancy, inhibition fold-change, gut extraction
+// MedCheck Engine — Enzyme occupancy, inhibition fold-change, gut extraction
 // Phase A: modular source — concatenated by build.js
 
 function getAllInhibitions(drug) {

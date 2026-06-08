@@ -1,4 +1,4 @@
-// MedCheck — Pathway diversions, combination products, known DDI pairs
+// MedCheck Engine — Pathway diversions, combination products, known DDI pairs
 // Phase A: modular source — concatenated by build.js
 
 const PATHWAY_DIVERSION = {

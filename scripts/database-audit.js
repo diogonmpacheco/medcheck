@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// MedCheck database audit
+// MedCheck Engine database audit
 // Run after `node build.js`; audits the generated bundle data for structural gaps.
 
 import { readFileSync } from 'fs';

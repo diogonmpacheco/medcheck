@@ -1,4 +1,4 @@
-// MedCheck — PK parameters, temporal profiles, phenotype/burden scoring data
+// MedCheck Engine — PK parameters, temporal profiles, phenotype/burden scoring data
 // Phase A: modular source — concatenated by build.js
 
 const TEMPORAL_PROFILES = {

@@ -1,6 +1,12 @@
-# MedCheck
+# PharmTrace
 
-A private, client-side pharmacology graph for exploring how drugs, genes, metabolites, foods, transporters, receptor burden, washout timing, and PK exposure act together as one system.
+**AI-assisted medication safety and pharmacogenomics platform.**
+
+PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in active development.
+
+Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+
+Status: pre-v1, source-linked, actively validated, and pending future professional clinical review.
 
 **Live app:** [diogonmpacheco.github.io/medcheck](https://diogonmpacheco.github.io/medcheck/)
 
@@ -10,7 +16,17 @@ A private, client-side pharmacology graph for exploring how drugs, genes, metabo
 [![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/medcheck)](https://github.com/diogonmpacheco/medcheck/issues)
 [![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/medcheck/)
 
-MedCheck runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to MedCheck. The graph view loads D3 from a public CDN unless you self-host that asset.
+## MedCheck Engine
+
+MedCheck Engine is the first module of PharmTrace. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, and source-linked evidence.
+
+The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to PharmTrace. The graph view loads D3 from a public CDN unless you self-host that asset.
+
+## Naming Note
+
+This project was initially developed under the working name “MedCheck”. The broader platform is now named “PharmTrace”, with “MedCheck Engine” preserved as the name of the first medication-safety module.
+
+The deployed GitHub Pages URL and repository links still use `/medcheck/` until the GitHub repository/pages path is renamed.
 
 Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-04**.
 
@@ -42,13 +58,13 @@ You can also build custom share links with:
 
 `https://diogonmpacheco.github.io/medcheck/index.html?substances=warfarin,ibuprofen&tab=safety`
 
-For alternate entry points, see the [MedCheck Data Views](https://diogonmpacheco.github.io/medcheck/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
+For alternate entry points, see the [PharmTrace Data Views](https://diogonmpacheco.github.io/medcheck/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
 
 ---
 
 ## Privacy
 
-MedCheck is a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
+PharmTrace currently ships the MedCheck Engine as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
 The only routine third-party request is the D3 graph library loaded from CDN for visualization; no medication stack, genotype setting, or search content is sent with that request.
 
@@ -56,13 +72,13 @@ The only routine third-party request is the D3 graph library loaded from CDN for
 
 ## What It Shows
 
-Most interaction checkers return isolated warnings. MedCheck instead shows how a medication stack behaves as a connected system: interaction warnings, pharmacogenomics, metabolites, PK curves, evidence, receptor burden, Beers-style flags, and washout timing.
+Most interaction checkers return isolated warnings. MedCheck Engine instead shows how a medication stack behaves as a connected system: interaction warnings, pharmacogenomics, metabolites, PK curves, evidence, receptor burden, Beers-style flags, and washout timing.
 
 The project is intended for education, research, and review workflows. It is not a clinical decision system.
 
 ## Current Limitations
 
-MedCheck is intentionally conservative about what it claims. PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
+PharmTrace is intentionally conservative about what it claims. MedCheck Engine PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
 
 ---
 
@@ -76,16 +92,16 @@ MedCheck is intentionally conservative about what it claims. PK curves use a one
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2168 KB** generated bundle (34315 lines)
+- **2169 KB** generated bundle (34317 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
 
 ## How To Use
 
-1. Open the [live app](https://diogonmpacheco.github.io/medcheck/).
+1. Open the [live PharmTrace app](https://diogonmpacheco.github.io/medcheck/).
 2. Search for medications, supplements, foods, or substances.
-3. Review safety, pharmacogenomics, PK, evidence, graph, burden, and washout panels.
+3. Review MedCheck Engine safety, pharmacogenomics, PK, evidence, graph, burden, and washout panels.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
@@ -95,7 +111,7 @@ For internals, data structures, build instructions, and validation workflow, see
 
 ## Contribute / Review Data
 
-MedCheck contains source-linked data. No evidence entry has been professionally reviewed yet. Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
+PharmTrace contains source-linked MedCheck Engine data. No evidence entry has been professionally reviewed yet. Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
 
 The safety contract is simple: a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
 
@@ -105,9 +121,9 @@ Helpful contributions include data review, missing evidence refs, duplicate or s
 
 ## License
 
-MedCheck is open source under the [MIT License](LICENSE).
+PharmTrace is open source under the [MIT License](LICENSE).
 
-You can use, modify, and build on it freely. If you use MedCheck in another project, please share where it is being used and include a link back to the project when practical:
+You can use, modify, and build on it freely. If you use PharmTrace or the MedCheck Engine in another project, please share where it is being used and include a link back to the project when practical:
 
 `https://github.com/diogonmpacheco/medcheck`
 
@@ -117,4 +133,4 @@ This attribution request is appreciated, but the license remains permissive.
 
 ## Disclaimer
 
-This tool is for **educational purposes only**. It does not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Always consult a qualified doctor or pharmacist before making changes to medications.
+PharmTrace and the MedCheck Engine are for **educational exploration only**. They are not medical advice, not a clinical decision support system, not professionally clinically reviewed, and do not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making changes to medications.

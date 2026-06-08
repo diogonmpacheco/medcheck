@@ -1,4 +1,4 @@
-// MedCheck — Evidence explorer panel
+// MedCheck Engine — Evidence explorer panel
 // Phase A: modular source — concatenated by build.js
 
 function renderEvidenceExplorer() {

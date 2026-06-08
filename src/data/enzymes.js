@@ -1,4 +1,4 @@
-// MedCheck — Enzyme/genotype data and legacy genetics system
+// MedCheck Engine — Enzyme/genotype data and legacy genetics system
 // Phase A: modular source — concatenated by build.js
 
 const GENE_ENZYMES = [

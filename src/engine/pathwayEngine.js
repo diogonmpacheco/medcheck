@@ -1,4 +1,4 @@
-// MedCheck — Graph construction and effect traversal
+// MedCheck Engine — Graph construction and effect traversal
 // Phase A: modular source — concatenated by build.js
 
 function toGraphId(name) {

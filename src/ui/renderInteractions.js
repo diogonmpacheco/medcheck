@@ -1,4 +1,4 @@
-// MedCheck — Interaction cards, fold bars, timing, matrix
+// MedCheck Engine — Interaction cards, fold bars, timing, matrix
 // Phase A: modular source — concatenated by build.js
 
 function renderInteractions(interactions) {

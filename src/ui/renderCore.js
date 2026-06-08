@@ -1,4 +1,4 @@
-// MedCheck — Core app state management and main render loop
+// MedCheck Engine — Core app state management and main render loop
 // Phase A: modular source — concatenated by build.js
 
 function addDrug(name) {
@@ -95,7 +95,7 @@ function renderSummaryBar() {
       "No major interaction signal found";
     summaryCopy = severeCount > 0
       ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more medicines.`
-      : `Checked ${activeStack.length} substances. MedCheck did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
+      : `Checked ${activeStack.length} substances. MedCheck Engine did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
     nextStep = severeCount > 0
       ? "Start with the severe findings, then review genotype-adjusted levels."
       : "Review level changes and genotype notes for dose-sensitive medications.";
@@ -190,7 +190,7 @@ function buildDefaultPriorityStory(count) {
   if (count < 1) return null;
   if (count < 2) {
     return {
-      why:"MedCheck can already show pharmacogenomic, metabolite, and dose context for one medication.",
+      why:"MedCheck Engine can already show pharmacogenomic, metabolite, and dose context for one medication.",
       changes:"Pairwise interaction risk needs at least two substances, but genotype or metabolite context can still matter.",
       review:"Add another substance or set known genotype results to personalize the review.",
     };
@@ -653,13 +653,13 @@ function encodeUrlStateValueLocal(value) {
   return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
 }
 
-function buildMedCheckIssueUrl({ type = "data", title = "MedCheck feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
+function buildMedCheckIssueUrl({ type = "data", title = "PharmTrace feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
   const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
   const shareLink = currentStackShareUrl(activeTab || "safety");
   const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
   const labels = type === "bug" ? "bug" : "data-review";
   const body = [
-    "## MedCheck context",
+    "## PharmTrace / MedCheck Engine context",
     `- Stack: ${stack}`,
     `- Share link: ${shareLink}`,
     currentUrl ? `- Current URL: ${currentUrl}` : "",
@@ -673,7 +673,7 @@ function buildMedCheckIssueUrl({ type = "data", title = "MedCheck feedback", foc
     "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
     "",
     "## Review note",
-    "MedCheck is educational, source-linked, and pending professional review. Do not include private patient data."
+    "PharmTrace is educational, source-linked, pre-v1, and pending professional clinical review. MedCheck Engine outputs are not medical advice or clinical decision support. Do not include private patient data."
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
     title,

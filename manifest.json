@@ -1,7 +1,7 @@
 {
-  "name": "MedCheck — Drug Interaction Checker",
-  "short_name": "MedCheck",
-  "description": "Check how your medications interact. Free, private, no data collected.",
+  "name": "PharmTrace — MedCheck Engine",
+  "short_name": "PharmTrace",
+  "description": "AI-assisted medication safety and pharmacogenomics platform with the MedCheck Engine module.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#fef7f0",

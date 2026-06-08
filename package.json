@@ -1,7 +1,7 @@
 {
-  "name": "medcheck",
+  "name": "pharmtrace",
   "version": "3.5.5",
-  "description": "Systems pharmacology graph engine — drug interactions, PK simulation, genotype-stratified evidence. Single HTML file, no server, no tracking.",
+  "description": "AI-assisted medication safety and pharmacogenomics platform.",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -21,7 +21,7 @@
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
     "build": "node build.js",
     "build:min": "node build.js --minify",
-    "build:dev": "node build.js --out /tmp/medcheck_dev.html",
+    "build:dev": "node build.js --out /tmp/pharmtrace_dev.html",
     "smoke": "node scripts/smoke-check.js",
     "launch:qa": "node scripts/launch-qa-audit.js",
     "launch:v1": "node scripts/launch-v1-check.js",

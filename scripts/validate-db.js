@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// MedCheck validation harness
+// MedCheck Engine validation harness
 // Non-mutating: reports provenance/reference gaps without editing source data.
 
 import { readFileSync } from 'fs';
@@ -328,13 +328,13 @@ if (!reference) {
 } else {
   for (const [enzyme, phenos] of Object.entries(reference.GENOTYPE_EFFECTS || {})) {
     if (!data.GENOTYPE_EFFECTS[enzyme]) {
-      add('warnings', 'reference_enzyme_missing_in_medcheck', `${enzyme} exists in reference but not MedCheck`, enzyme);
+      add('warnings', 'reference_enzyme_missing_in_medcheck', `${enzyme} exists in reference but not MedCheck Engine`, enzyme);
       continue;
     }
     for (const [phenotype, refEffect] of Object.entries(phenos || {})) {
       const local = data.GENOTYPE_EFFECTS[enzyme][phenotype];
       if (!local) {
-        add('warnings', 'reference_phenotype_missing_in_medcheck', `${enzyme}/${phenotype} exists in reference but not MedCheck`, `${enzyme}/${phenotype}`);
+        add('warnings', 'reference_phenotype_missing_in_medcheck', `${enzyme}/${phenotype} exists in reference but not MedCheck Engine`, `${enzyme}/${phenotype}`);
         continue;
       }
       const tolerance = refEffect.tolerance || 0.25;

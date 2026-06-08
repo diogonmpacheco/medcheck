@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>MedCheck — Drug Interaction Checker, Pharmacogenomics & Medication Safety</title>
-<meta name="description" content="MedCheck is a free, private drug interaction checker and pharmacogenomics tool for medication safety, CYP enzymes, metabolites, supplements, herbs, and clinical pharmacology. No accounts, no tracking, runs entirely in your browser.">
+<title>PharmTrace — AI-Assisted Medication Safety &amp; Pharmacogenomics</title>
+<meta name="description" content="PharmTrace is an AI-assisted medication safety and pharmacogenomics platform. Its MedCheck Engine explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.">
+<meta name="keywords" content="pharmacogenomics, medication safety, drug interactions, pharmacokinetics, CYP2D6, CYP enzymes, active metabolites, toxic metabolites, transporter pathways, evidence modeling, AI-assisted healthcare tools">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://diogonmpacheco.github.io/medcheck/">
 <meta name="theme-color" content="#e85d26">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="MedCheck">
+<meta name="apple-mobile-web-app-title" content="PharmTrace">
 <!-- Open Graph (WhatsApp, iMessage, social previews) -->
-<meta property="og:title" content="MedCheck — Drug Interaction Checker & Pharmacogenomics Tool">
-<meta property="og:description" content="Free, private medication safety tool for drug interactions, pharmacogenomics, CYP enzymes, metabolites, supplements, and herbs. Runs entirely in your browser.">
+<meta property="og:title" content="PharmTrace — AI-Assisted Medication Safety &amp; Pharmacogenomics">
+<meta property="og:description" content="PharmTrace is an AI-assisted medication safety and pharmacogenomics platform. Its MedCheck Engine explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://diogonmpacheco.github.io/medcheck/">
 <meta property="og:image" content="https://diogonmpacheco.github.io/medcheck/og-image.png">
@@ -22,8 +23,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MedCheck — Drug Interaction Checker & Pharmacogenomics Tool">
-<meta name="twitter:description" content="Free, private medication safety tool for drug interactions, pharmacogenomics, CYP enzymes, metabolites, supplements, and herbs.">
+<meta name="twitter:title" content="PharmTrace — AI-Assisted Medication Safety &amp; Pharmacogenomics">
+<meta name="twitter:description" content="PharmTrace is an AI-assisted medication safety and pharmacogenomics platform. Its MedCheck Engine explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.">
 <meta name="twitter:image" content="https://diogonmpacheco.github.io/medcheck/og-image.png">
 <!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
@@ -530,8 +531,8 @@ a{color:var(--accent)}
 </head>
 <body>
 <div class="header">
-  <h1>MedCheck</h1>
-  <p>Check how your medications interact — free, private, no data collected</p>
+  <h1>PharmTrace</h1>
+  <p>MedCheck Engine — medication safety, pharmacogenomics, metabolites, and source-linked evidence</p>
 </div>
 
 <div class="search-wrap">
@@ -811,25 +812,26 @@ a{color:var(--accent)}
 <div class="disclaimer">
   <div class="disclaimer-box">
     <strong>Important Disclaimer</strong>
-    This tool is for educational purposes only. It does not replace professional medical advice. Always consult your doctor or pharmacist before making any changes to your medications. No personal data is collected or stored — everything runs locally in your browser.
+    PharmTrace is a pre-v1 research prototype for educational exploration only. It is not medical advice, not a clinical decision support system, and not professionally clinically reviewed. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making any medication decision. No personal data is collected or stored; the MedCheck Engine runs locally in your browser.
   </div>
-  <div class="version-strip" aria-label="MedCheck version">
+  <div class="version-strip" aria-label="PharmTrace / MedCheck Engine version">
+    <span><strong>PharmTrace — MedCheck Engine</strong></span>
     <span>Engine <strong id="ver-engine">...</strong></span>
     <span>Drug DB <strong id="ver-db">...</strong></span>
     <span>Drugs <strong id="ver-count">...</strong></span>
     <span>Schema <strong id="ver-schema">...</strong></span>
     <span>Reviewed <strong id="ver-date">...</strong></span>
-    <span><a href="https://github.com/diogonmpacheco/medcheck" rel="noopener">Open source</a></span>
+    <span><a href="https://github.com/diogonmpacheco/medcheck" rel="noopener">Source repository</a></span>
   </div>
 </div>
 
 <script>
-// MedCheck bundle — built 2026-06-08T12:22:53.707Z
+// PharmTrace / MedCheck Engine bundle — built 2026-06-08T18:43:29.803Z
 // DO NOT EDIT: auto-generated by build.js
 
 
 // ═══ data/constants.js ═══
-// MedCheck — Shared constants and enums
+// MedCheck Engine — Shared constants and enums
 // Phase A: modular source — concatenated by build.js
 
 const INH_MULT = { strong: 5.0, moderate: 2.0, weak: 1.25 };
@@ -1399,7 +1401,7 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher UGT2B15 glucuronidation context; parent exposure may fall for selected substrates." },
   },
   UGT2B17: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"UGT2B17 deletion/low-function context. Effects are substrate-specific and often strongest for androgen/steroid glucuronidation; MedCheck uses it as a caution flag for oxazepam/temazepam-like glucuronidation rather than a dose rule." },
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"UGT2B17 deletion/low-function context. Effects are substrate-specific and often strongest for androgen/steroid glucuronidation; MedCheck Engine uses it as a caution flag for oxazepam/temazepam-like glucuronidation rather than a dose rule." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate UGT2B17 activity context; usually a weak modifier unless the substrate is strongly UGT2B17-dependent." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference UGT2B17 activity." },
   },
@@ -1846,7 +1848,7 @@ const GENOTYPE_RISK_EFFECTS = {
       {
         parent:"Phenobarbital",
         phenotype:"GABA-A receptor response context",
-        note:"GABA-A receptor genetics may affect seizure biology and anti-seizure response context. MedCheck treats this as a review flag rather than a quantified PK effect.",
+        note:"GABA-A receptor genetics may affect seizure biology and anti-seizure response context. MedCheck Engine treats this as a review flag rather than a quantified PK effect.",
         clinicalAction:"specialist review; avoid changing anti-seizure therapy from this marker alone",
         evidenceRefs:["ev_gabrg2_epilepsy_drug_resistance_context"],
       },
@@ -2085,7 +2087,7 @@ function normalizeGenePhenotypeInput(gene, value) {
     return { ...base, phenotype:GENOTYPE_PHENOTYPE.NM, mechanism:"reference" };
   }
   if (/^\s*(rm|rapid)\s*$/i.test(raw) || /rapid metabolizer/.test(normalized)) {
-    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity", note:"MedCheck currently maps rapid metabolizer reports into the high-activity bucket." };
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity", note:"MedCheck Engine currently maps rapid metabolizer reports into the high-activity bucket." };
   }
 
   const directAliases = {
@@ -2173,7 +2175,7 @@ function buildRiskInterpretation(riskKey, status, details = {}) {
 //
 
 // ═══ data/rules.js ═══
-// MedCheck — Clinical rule configuration
+// MedCheck Engine — Clinical rule configuration
 // Centralized numeric rule tables used by engines and renderers.
 
 // Structural/mechanistic reliability, independent of study evidence.
@@ -3423,7 +3425,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Digoxin P-gp efflux",
     enzyme:"ABCB1",
     systemic:true,
-    note:"Digoxin is a narrow-therapeutic-index P-gp substrate. ABCB1 genotype associations are inconsistent, so MedCheck treats reduced P-gp function as a conservative exposure-monitoring context rather than a fixed dose rule.",
+    note:"Digoxin is a narrow-therapeutic-index P-gp substrate. ABCB1 genotype associations are inconsistent, so MedCheck Engine treats reduced P-gp function as a conservative exposure-monitoring context rather than a fixed dose rule.",
     evidenceRefs:["ev_abcb1_pgp_variant_summary","ev_digoxin_pgp_koren1998"],
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced P-gp context: possible higher digoxin exposure/tissue penetration; prioritize levels, renal function, and P-gp inhibitor review" },
@@ -4188,11 +4190,11 @@ const GENOTYPE_METABOLITE_EFFECTS = [
 ];
 
 // ═══ data/drugs.js ═══
-// MedCheck — Drug database and dose management
+// MedCheck Engine — Drug database and dose management
 // Phase A: modular source — concatenated by build.js
 
 /* ================================================================
-   MEDCHECK — DRUG INTERACTION ENGINE
+   MEDCHECK ENGINE — DRUG INTERACTION ENGINE
    Extracted from VirtualBody PGx Digital Twin, adapted for public use
    ================================================================ */
 
@@ -8445,7 +8447,7 @@ const DRUG_DB = [
 {id:"fosphenytoin",name:"Fosphenytoin",cls:"Anticonvulsant Prodrug / Hydantoin",brandNames:["Cerebyx"],hl:0.25,timing:"IV",props:{qtcRisk:1,hypotension:2,arrhythmiaRisk:2},routes:[{enzyme:"Phosphatase Conversion to Phenytoin",fraction:0.95,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"IV prodrug rapidly converted to phenytoin. Interaction behavior follows phenytoin after conversion: CYP2C9/CYP2C19 exposure sensitivity, enzyme induction, protein binding, and cardiac infusion reactions.",alts:[{name:"Levetiracetam",reason:"Non-enzyme-inducing antiseizure alternative"},{name:"Phenytoin",reason:"Active hydantoin form"}]},
 {id:"dipyridamole",name:"Dipyridamole",cls:"Antiplatelet / PDE Inhibitor",brandNames:["Persantine","Aggrenox component"],hl:10,timing:"AM-PM",props:{bleedingRisk:1,hypotension:1},routes:[{enzyme:"Glucuronidation",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[{target:"PDE",strength:"weak",evidence:{confidence:"moderate",sources:["FDA label"]}}],ind:[],note:"Antiplatelet/vasodilator; interaction relevance is additive bleeding with anticoagulants/antiplatelets and additive hypotension with vasodilators.",alts:[{name:"Aspirin (Low-Dose)",reason:"Antiplatelet alternative"},{name:"Clopidogrel",reason:"CYP2C19 prodrug antiplatelet"}]},
 {id:"cilostazol",name:"Cilostazol",cls:"PDE3 Inhibitor / Antiplatelet",brandNames:["Pletal"],hl:11,timing:"AM-PM",props:{bleedingRisk:1,tachycardiaRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"CYP2C19",fraction:0.35,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"CYP3A4/CYP2C19 substrate with active metabolites; inhibitors require dose reduction and heart-failure contraindication is clinically important.",alts:[{name:"Clopidogrel",reason:"Antiplatelet with CYP2C19 activation issue"},{name:"Aspirin (Low-Dose)",reason:"Antiplatelet alternative"}]},
-{id:"vorapaxar",name:"Vorapaxar",cls:"PAR-1 Antiplatelet",brandNames:["Zontivity"],hl:192,timing:"AM",props:{bleedingRisk:3},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Very long-lived antiplatelet; CYP3A inhibitors/inducers and irreversible bleeding risk context matter. CYP2J2 is a minor label-described pathway but is not modeled as a first-class MedCheck actor.",alts:[{name:"Clopidogrel",reason:"Antiplatelet alternative"},{name:"Ticagrelor",reason:"P2Y12 antiplatelet alternative"}]},
+{id:"vorapaxar",name:"Vorapaxar",cls:"PAR-1 Antiplatelet",brandNames:["Zontivity"],hl:192,timing:"AM",props:{bleedingRisk:3},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Very long-lived antiplatelet; CYP3A inhibitors/inducers and irreversible bleeding risk context matter. CYP2J2 is a minor label-described pathway but is not modeled as a first-class MedCheck Engine actor.",alts:[{name:"Clopidogrel",reason:"Antiplatelet alternative"},{name:"Ticagrelor",reason:"P2Y12 antiplatelet alternative"}]},
 {id:"heparin",name:"Heparin",cls:"Unfractionated Heparin / Parenteral Anticoagulant",brandNames:["UFH"],hl:1.5,timing:"Infusion",props:{bleedingRisk:3,thrombocytopeniaRisk:2},routes:[{enzyme:"Reticuloendothelial Clearance",fraction:0.55,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Renal Clearance",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Short-acting parenteral anticoagulant. Interaction risk is mostly additive bleeding with antiplatelets, thrombolytics, and procedural anticoagulation protocols, plus HIT/thrombocytopenia monitoring.",alts:[{name:"Enoxaparin",reason:"Low molecular weight heparin alternative"},{name:"Bivalirudin",reason:"Direct thrombin inhibitor alternative in selected procedural/HIT contexts"}]},
 {id:"enoxaparin",name:"Enoxaparin",cls:"Low Molecular Weight Heparin",brandNames:["Lovenox","Clexane"],hl:4.5,timing:"Injection",props:{bleedingRisk:3,renalDoseSensitive:2},routes:[{enzyme:"Reticuloendothelial/Renal Clearance",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"No CYP metabolism; renal function and additive anticoagulant/antiplatelet bleeding burden drive safety.",alts:[{name:"Fondaparinux",reason:"Factor Xa anticoagulant alternative"},{name:"Heparin",reason:"Shorter-acting parenteral anticoagulant"}]},
 {id:"fondaparinux",name:"Fondaparinux",cls:"Factor Xa Anticoagulant",brandNames:["Arixtra"],hl:17,timing:"Injection",props:{bleedingRisk:3,renalDoseSensitive:3},routes:[{enzyme:"Renal Excretion Unchanged",fraction:0.9,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Renally cleared anticoagulant; contraindicated or limited in renal impairment and additive bleeding combinations.",alts:[{name:"Enoxaparin",reason:"LMWH alternative"},{name:"Apixaban",reason:"Oral Xa inhibitor alternative"}]},
@@ -8532,7 +8534,7 @@ const DRUG_DB = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════
-// MEDCHECK VERSION & METADATA
+// MEDCHECK ENGINE VERSION & METADATA
 // ═══════════════════════════════════════════════════════════════════
 const MEDCHECK_VERSION = {
   engine: "3.5.5",
@@ -8894,7 +8896,7 @@ function getDrug(name) {
 // Each: [drugA, drugB, severity, category, mechanism, effect]
 
 // ═══ data/enzymes.js ═══
-// MedCheck — Enzyme/genotype data and legacy genetics system
+// MedCheck Engine — Enzyme/genotype data and legacy genetics system
 // Phase A: modular source — concatenated by build.js
 
 const GENE_ENZYMES = [
@@ -9460,7 +9462,7 @@ const CV_ESTIMATES = {
 // foldChangeBands(centralFold, enzyme) — returns {low, mid, high} for ±1 SD
 
 // ═══ data/metabolites.js ═══
-// MedCheck — Metabolite database and actor definitions
+// MedCheck Engine — Metabolite database and actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const METAB = {
@@ -14557,7 +14559,7 @@ const METABOLITE_ACTORS = {
 // Non-drug compounds that interact with the metabolic graph
 
 // ═══ data/transporters.js ═══
-// MedCheck — Transporter DDI data and actor definitions
+// MedCheck Engine — Transporter DDI data and actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const TRANSPORTER_DDI = [
@@ -14754,7 +14756,7 @@ const TRANSPORTER_ACTORS = {
 // Utility: normalize name to graph id
 
 // ═══ data/actors.js ═══
-// MedCheck — Food, endogenous, receptor, and phenotype actor definitions
+// MedCheck Engine — Food, endogenous, receptor, and phenotype actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const FOOD_ACTORS = {
@@ -14976,7 +14978,7 @@ const PHENOTYPE_ACTORS = {
 // Enzymes as first-class actors in the graph with capacity and expression data
 
 // ═══ data/pharmacology.js ═══
-// MedCheck — PK parameters, temporal profiles, phenotype/burden scoring data
+// MedCheck Engine — PK parameters, temporal profiles, phenotype/burden scoring data
 // Phase A: modular source — concatenated by build.js
 
 const TEMPORAL_PROFILES = {
@@ -15796,7 +15798,7 @@ function computeAdverseBurden(drugList) {
 // Returns {Emetab, Etransporter, Fg, note}
 
 // ═══ data/evidence.js ═══
-// MedCheck — Study database and evidence ingestion pipeline
+// MedCheck Engine — Study database and evidence ingestion pipeline
 // Phase A: modular source — concatenated by build.js
 
 const STUDY_DB = {
@@ -17021,7 +17023,7 @@ const STUDY_DB = {
     temporal:{mechanism:"isothiocyanate_GSH_GST_mercapturic_acid_clearance"},
     supports:["GST_null_status_modifies_isothiocyanate_excretion","PEITC_mercapturic_acid_pathway"],
     contradicts:[],
-    limitations:["Dietary exposure study; GSTT1 is not yet a first-class MedCheck genotype selector, and bioavailability is not equivalent to harm"],
+    limitations:["Dietary exposure study; GSTT1 is not yet a first-class MedCheck Engine genotype selector, and bioavailability is not equivalent to harm"],
     verified:false, reviewRequired:true, verifyNote:"Watercress isothiocyanate enrichment pending nutrition pharmacology review"
   },
 
@@ -21462,7 +21464,7 @@ const STUDY_DB = {
     studyDesign:"regulatory_label",
     n:null,
     phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
-    quantifiedEffects:{note:"Glipizide and glyburide labeling describes hepatic metabolism and hypoglycemia risk; CYP2C9 contributes substantially to oxidative clearance in the MedCheck model, so reduced CYP2C9 function is represented as a hypoglycemia-risk context rather than a genotype-only dose rule."},
+    quantifiedEffects:{note:"Glipizide and glyburide labeling describes hepatic metabolism and hypoglycemia risk; CYP2C9 contributes substantially to oxidative clearance in the MedCheck Engine model, so reduced CYP2C9 function is represented as a hypoglycemia-risk context rather than a genotype-only dose rule."},
     temporal:{mechanism:"reduced_CYP2C9_sulfonylurea_clearance"},
     supports:["glipizide_SUBSTRATE_OF_CYP2C9","glyburide_SUBSTRATE_OF_CYP2C9","sulfonylurea_hypoglycemia_context"],
     contradicts:[],
@@ -22812,7 +22814,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/20170205/",
     studyDesign:"literature_review_plus_observational_associations", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
-    quantifiedEffects:{note:"Common ABCB1 variants and haplotypes such as rs1045642, rs1128503, and rs2032582 have been associated with altered P-gp expression/function and variable substrate exposure. Effects are inconsistent across drugs and studies, so MedCheck models a conservative directional reduced-efflux phenotype rather than a drug-specific dose rule."},
+    quantifiedEffects:{note:"Common ABCB1 variants and haplotypes such as rs1045642, rs1128503, and rs2032582 have been associated with altered P-gp expression/function and variable substrate exposure. Effects are inconsistent across drugs and studies, so MedCheck Engine models a conservative directional reduced-efflux phenotype rather than a drug-specific dose rule."},
     temporal:{mechanism:"P-gp efflux transporter function at gut, blood-brain barrier, kidney, liver, and placenta"},
     supports:["ABCB1_P-gp_reduced_efflux_context", "ABCB1_digoxin_dabigatran_loperamide_calcineurin_context"],
     contradicts:["ABCB1_effects_are_context_dependent_and_not_uniform_across_substrates"],
@@ -22826,7 +22828,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/10233211/",
     studyDesign:"caffeine_phenotyping_and_clinical_pk_context", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
-    quantifiedEffects:{note:"CYP1A2 genotype/inducibility studies using caffeine show context-dependent activity differences, especially with smoking induction. Clinical CYP1A2 activity also predicts clozapine concentration variability. MedCheck therefore models conservative directional CYP1A2 activity states and keeps environment/drug inhibition context prominent."},
+    quantifiedEffects:{note:"CYP1A2 genotype/inducibility studies using caffeine show context-dependent activity differences, especially with smoking induction. Clinical CYP1A2 activity also predicts clozapine concentration variability. MedCheck Engine therefore models conservative directional CYP1A2 activity states and keeps environment/drug inhibition context prominent."},
     temporal:{mechanism:"CYP1A2 hepatic oxidative clearance; inducible by smoking and other aryl-hydrocarbon receptor signals"},
     supports:["CYP1A2_caffeine_clozapine_theophylline_tizanidine_exposure_context"],
     contradicts:["CYP1A2_genotype_effect_is_context_dependent_and_environmentally_inducible"],
@@ -22854,7 +22856,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/12920162/",
     studyDesign:"in_vitro_kinetic_study_plus_clinical_review_context", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
-    quantifiedEffects:{note:"UGT2B7 contributes to morphine 3- and 6-glucuronidation and other glucuronide pathways. Variant effects are substrate- and study-dependent, so MedCheck models directional glucuronidation context rather than a fixed dose rule."},
+    quantifiedEffects:{note:"UGT2B7 contributes to morphine 3- and 6-glucuronidation and other glucuronide pathways. Variant effects are substrate- and study-dependent, so MedCheck Engine models directional glucuronidation context rather than a fixed dose rule."},
     temporal:{mechanism:"phase II glucuronidation; parent-to-glucuronide balance may alter parent exposure and active/toxic metabolite context"},
     supports:["UGT2B7_morphine_glucuronidation_context", "UGT2B7_opioid_glucuronide_review_flag"],
     contradicts:["UGT2B7_global_variant_effect_is_not_uniform_across_substrates"],
@@ -22900,7 +22902,7 @@ const STUDY_DB = {
     temporal:{mechanism:"busulfan glutathione conjugation and conditioning-regimen exposure/toxicity"},
     supports:["busulfan_GST_clearance_context","GSTM1_null_busulfan_review_flag"],
     contradicts:["GST_genotype_does_not_replace_busulfan_TDM"],
-    limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a MedCheck panel."],
+    limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a MedCheck Engine panel."],
     verified:false, reviewRequired:true, verifyNote:"Busulfan/GST enrichment pending transplant oncology pharmacy review"
   },
   "ev_phase2_anticancer_gst_review": {
@@ -23242,7 +23244,7 @@ const STUDY_DB = {
     temporal:{mechanism:"CES1_hydrolysis_plus_MAOI_catecholamine_potentiation"},
     supports:["dexmethylphenidate_METABOLIZED_TO_ritalinic_acid","dexmethylphenidate_maoi_contraindication"],
     contradicts:[],
-    limitations:["CES1 genetic evidence is emerging and not yet represented as a full genotype selector in MedCheck."],
+    limitations:["CES1 genetic evidence is emerging and not yet represented as a full genotype selector in MedCheck Engine."],
     verified:false, reviewRequired:true, verifyNote:"Medication/genotype enrichment batch - stimulant label"
   },
   "ev_thioridazine_qt_cyp2d6_fda": {
@@ -24967,7 +24969,7 @@ function getIngestionQueueStatus() {
 // Usage: getTemporalProfile(actorId) → { onset, offset, mechanism, reversible }
 
 // ═══ data/interactions.js ═══
-// MedCheck — Pathway diversions, combination products, known DDI pairs
+// MedCheck Engine — Pathway diversions, combination products, known DDI pairs
 // Phase A: modular source — concatenated by build.js
 
 const PATHWAY_DIVERSION = {
@@ -26579,10 +26581,10 @@ const KNOWN_DDI = [
 // ═══ data/generatedStats.js ═══
 // Auto-generated by scripts/gen-stats.js. Do not edit by hand.
 const MEDCHECK_STATS = {
-  "generatedAt": "2026-06-08T12:22:53.542Z",
-  "bundleBytes": 2219967,
-  "bundleKB": 2168,
-  "bundleLines": 34315,
+  "generatedAt": "2026-06-08T18:43:29.638Z",
+  "bundleBytes": 2221132,
+  "bundleKB": 2169,
+  "bundleLines": 34317,
   "drugs": 625,
   "studies": 455,
   "sourceLinkedStudies": 455,
@@ -26611,7 +26613,7 @@ const MEDCHECK_STATS = {
 };
 
 // ═══ engine/evidenceEngine.js ═══
-// MedCheck — Evidence resolution and display
+// MedCheck Engine — Evidence resolution and display
 // Phase A: modular source — concatenated by build.js
 
 function evidenceConfidence(ev) {
@@ -27039,7 +27041,7 @@ function assertEvidencedSeverity(severity, drug1, drug2, enzyme) {
 
   if (prov.confidence < 0.30 && severity === 'severe') {
     // Downgrade severe → moderate when evidence is extremely thin
-    console.warn(`[MedCheck] Downgraded '${severity}' for ${drug1}+${drug2} via ${enzyme} — confidence only ${Math.round(prov.confidence*100)}%. Evidence: ${prov.provenance_note}`);
+    console.warn(`[MedCheck Engine] Downgraded '${severity}' for ${drug1}+${drug2} via ${enzyme} — confidence only ${Math.round(prov.confidence*100)}%. Evidence: ${prov.provenance_note}`);
     return 'moderate';
   }
   return severity;
@@ -27128,7 +27130,7 @@ function studyCardHTML(study) {
 }
 
 // ═══ engine/pathwayEngine.js ═══
-// MedCheck — Graph construction and effect traversal
+// MedCheck Engine — Graph construction and effect traversal
 // Phase A: modular source — concatenated by build.js
 
 function toGraphId(name) {
@@ -27924,7 +27926,7 @@ function buildClinicalSummary() {
 // ── Evidence Tier Hierarchy ──
 
 // ═══ engine/enzymeEngine.js ═══
-// MedCheck — Enzyme occupancy, inhibition fold-change, gut extraction
+// MedCheck Engine — Enzyme occupancy, inhibition fold-change, gut extraction
 // Phase A: modular source — concatenated by build.js
 
 function getAllInhibitions(drug) {
@@ -28773,7 +28775,7 @@ function traverseFromGenotype(enzyme, phenotype, opts) {
 // getStudy(id) — returns a STUDY_DB entry or null
 
 // ═══ engine/pkEngine.js ═══
-// MedCheck — Repeated-dosing and steady-state PK simulation.
+// MedCheck Engine — Repeated-dosing and steady-state PK simulation.
 // Base one-compartment helpers live in data/pharmacology.js.
 
 // ═══════════════════════════════════════════════════════════════════
@@ -28879,7 +28881,7 @@ function pkGetInteractionFold(drugName) {
 // Sources: Beers Criteria, STOPP/START, CredibleMeds QTc risk list, ADS anticholinergic scale
 
 // ═══ engine/pkRelativeEngine.js ═══
-// MedCheck — Relative-exposure PK fallback model.
+// MedCheck Engine — Relative-exposure PK fallback model.
 // Uses drug half-life plus genotype/DDI exposure fold when full PK_PARAMS are absent.
 
 const PK_REL_RESIDUAL_ACTIVITY = {
@@ -29044,7 +29046,7 @@ function pkRelativeForDrug(drugName, opts) {
 }
 
 // ═══ engine/phenotypeEngine.js ═══
-// MedCheck — Phenotype risk accumulation and washout calendar
+// MedCheck Engine — Phenotype risk accumulation and washout calendar
 // Phase A: modular source — concatenated by build.js
 
 function computePhenotypeAccumulation(drugList) {
@@ -29411,7 +29413,7 @@ function computeReceptorOccupancy(drugNames) {
 // Source: Anticholinergic Cognitive Burden Scale (Rudolph et al. 2008, updated)
 
 // ═══ engine/scoringEngine.js ═══
-// MedCheck — Adverse burden scoring.
+// MedCheck Engine — Adverse burden scoring.
 // computeAdverseBurden lives in data/pharmacology.js with ACB_SCORES and
 // BEERS_FLAGS so those data tables and the scorer stay versioned together.
 
@@ -29424,7 +29426,7 @@ function computeReceptorOccupancy(drugNames) {
 // Returns {Emetab, Etransporter, Fg, note}
 
 // ═══ engine/interactionEngine.js ═══
-// MedCheck — Core interaction finder, risk calculator, metabolite analysis
+// MedCheck Engine — Core interaction finder, risk calculator, metabolite analysis
 // Phase A: modular source — concatenated by build.js
 
 function normalizeInteractionRisk(interaction) {
@@ -30355,7 +30357,7 @@ function analyzeMetabolites() {
    ================================================================ */
 
 // ═══ engine/mechanisticPredictionEngine.js ═══
-// MedCheck — Mechanistic interpretation layer
+// MedCheck Engine — Mechanistic interpretation layer
 // Evidence-backed warnings remain authoritative; this layer explains pathway math.
 
 const MECHANISTIC_PREDICTION_GENES = [
@@ -30693,7 +30695,7 @@ function getMechanisticPredictions(stack = activeStack) {
 }
 
 // ═══ ui/renderCore.js ═══
-// MedCheck — Core app state management and main render loop
+// MedCheck Engine — Core app state management and main render loop
 // Phase A: modular source — concatenated by build.js
 
 function addDrug(name) {
@@ -30790,7 +30792,7 @@ function renderSummaryBar() {
       "No major interaction signal found";
     summaryCopy = severeCount > 0
       ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more medicines.`
-      : `Checked ${activeStack.length} substances. MedCheck did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
+      : `Checked ${activeStack.length} substances. MedCheck Engine did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
     nextStep = severeCount > 0
       ? "Start with the severe findings, then review genotype-adjusted levels."
       : "Review level changes and genotype notes for dose-sensitive medications.";
@@ -30885,7 +30887,7 @@ function buildDefaultPriorityStory(count) {
   if (count < 1) return null;
   if (count < 2) {
     return {
-      why:"MedCheck can already show pharmacogenomic, metabolite, and dose context for one medication.",
+      why:"MedCheck Engine can already show pharmacogenomic, metabolite, and dose context for one medication.",
       changes:"Pairwise interaction risk needs at least two substances, but genotype or metabolite context can still matter.",
       review:"Add another substance or set known genotype results to personalize the review.",
     };
@@ -31348,13 +31350,13 @@ function encodeUrlStateValueLocal(value) {
   return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
 }
 
-function buildMedCheckIssueUrl({ type = "data", title = "MedCheck feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
+function buildMedCheckIssueUrl({ type = "data", title = "PharmTrace feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
   const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
   const shareLink = currentStackShareUrl(activeTab || "safety");
   const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
   const labels = type === "bug" ? "bug" : "data-review";
   const body = [
-    "## MedCheck context",
+    "## PharmTrace / MedCheck Engine context",
     `- Stack: ${stack}`,
     `- Share link: ${shareLink}`,
     currentUrl ? `- Current URL: ${currentUrl}` : "",
@@ -31368,7 +31370,7 @@ function buildMedCheckIssueUrl({ type = "data", title = "MedCheck feedback", foc
     "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
     "",
     "## Review note",
-    "MedCheck is educational, source-linked, and pending professional review. Do not include private patient data."
+    "PharmTrace is educational, source-linked, pre-v1, and pending professional clinical review. MedCheck Engine outputs are not medical advice or clinical decision support. Do not include private patient data."
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
     title,
@@ -31512,7 +31514,7 @@ function renderRiskGauge(risk) {
 }
 
 // ═══ ui/renderInteractions.js ═══
-// MedCheck — Interaction cards, fold bars, timing, matrix
+// MedCheck Engine — Interaction cards, fold bars, timing, matrix
 // Phase A: modular source — concatenated by build.js
 
 function renderInteractions(interactions) {
@@ -31858,7 +31860,7 @@ function severityRank(s) { return s === "severe" ? 3 : s === "moderate" ? 2 : 1;
 // filterable by evidence tier. Each card shows full provenance.
 
 // ═══ ui/renderMechanisticPredictions.js ═══
-// MedCheck — Mechanistic interpretation renderer
+// MedCheck Engine — Mechanistic interpretation renderer
 
 function renderMechanisticPredictions() {
   const sec = document.getElementById("mechanisticSection");
@@ -31881,7 +31883,7 @@ function renderMechanisticPredictions() {
   if (countEl) countEl.textContent = `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
   el.innerHTML = `
     <div class="mechanistic-note">
-      This section shows model-only pathway read-through from MedCheck's enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
+      This section shows model-only pathway read-through from MedCheck Engine enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
     </div>
     ${predictions.slice(0, 12).map(renderMechanisticPredictionCard).join("")}
     ${predictions.length > 12 ? `<div class="finding-empty">Showing 12 of ${predictions.length} model predictions for readability.</div>` : ""}
@@ -31923,7 +31925,7 @@ function renderMechanisticPredictionCard(prediction) {
 }
 
 // ═══ ui/renderEvidence.js ═══
-// MedCheck — Evidence explorer panel
+// MedCheck Engine — Evidence explorer panel
 // Phase A: modular source — concatenated by build.js
 
 function renderEvidenceExplorer() {
@@ -32084,7 +32086,7 @@ function renderQualityDashboard() {
 // Color-coded by phenotype severity; confidence shown as percentage.
 
 // ═══ ui/renderCascade.js ═══
-// MedCheck — Effect cascade visualization
+// MedCheck Engine — Effect cascade visualization
 // Phase F: weighted propagating confidence, convergence detection, impact scoring
 // Phase A: modular source — concatenated by build.js
 
@@ -32269,7 +32271,7 @@ function renderCascade() {
 }
 
 // ═══ ui/renderAlternatives.js ═══
-// MedCheck — Alternatives, genetics panel, combinations, transporters, metabolites
+// MedCheck Engine — Alternatives, genetics panel, combinations, transporters, metabolites
 // Phase A: modular source — concatenated by build.js
 
 function renderAlternatives() {
@@ -32738,7 +32740,7 @@ function renderMetabolites() {
 // Close search results when clicking outside
 
 // ═══ ui/renderGenotype.js ═══
-// MedCheck — Genotype panel and phenotype selector
+// MedCheck Engine — Genotype panel and phenotype selector
 // Phase A: modular source — concatenated by build.js
 
 const GENOTYPE_METABOLITE_RISK_KEYS = {
@@ -33343,7 +33345,7 @@ function applyPharmGxImport() {
     const skippedText = result.skipped.length ? ` · skipped ${result.skipped.length}` : "";
     status.textContent = applied.length
       ? `Applied ${applied.length}: ${applied.join(", ")}${skippedText}`
-      : `No supported MedCheck genes found${skippedText}`;
+      : `No supported MedCheck Engine genes found${skippedText}`;
     if (result.skipped.length) status.title = `Skipped: ${result.skipped.slice(0,8).join("; ")}`;
   }
 }
@@ -33527,7 +33529,7 @@ function riskTextToStatus(value, gene = null) {
 // ── renderPhenotypeAccumulation (#6) ────────────────────────────────
 
 // ═══ ui/renderPhenotype.js ═══
-// MedCheck — Phenotype risk accumulation panel
+// MedCheck Engine — Phenotype risk accumulation panel
 // Phase A: modular source — concatenated by build.js
 
 function renderPhenotypeAccumulation() {
@@ -33581,7 +33583,7 @@ function renderPhenotypeAccumulation() {
 // ── renderPKSimulation (#1) ──────────────────────────────────────
 
 // ═══ ui/renderPK.js ═══
-// MedCheck — PK simulation panel
+// MedCheck Engine — PK simulation panel
 // Phase E: repeated dosing, steady-state, interaction-adjusted curves
 // Phase A: modular source — concatenated by build.js
 
@@ -33779,7 +33781,7 @@ function pkRelativeInterpretationLabel(key) {
 // ── renderInteractionGraph — D3 force-directed graph (#4) ──────────
 
 // ═══ ui/renderGraph.js ═══
-// MedCheck — D3.js interaction network graph
+// MedCheck Engine — D3.js interaction network graph
 // Phase A: modular source — concatenated by build.js
 
 function renderInteractionGraph() {
@@ -33943,7 +33945,7 @@ function renderInteractionGraph() {
 // ── renderWashoutCalendar (#9) ──────────────────────────────────────
 
 // ═══ ui/renderBurden.js ═══
-// MedCheck — Washout calendar and adverse burden panels
+// MedCheck Engine — Washout calendar and adverse burden panels
 // Phase A: modular source — concatenated by build.js
 
 function renderWashoutCalendar() {
@@ -34063,7 +34065,7 @@ function renderAdverseBurden() {
 }
 
 // ═══ main.js ═══
-// MedCheck — App initialization
+// MedCheck Engine — App initialization
 // Phase A: modular source — concatenated by build.js
 
 document.addEventListener("click", function(e) {

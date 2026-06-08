@@ -60,7 +60,7 @@ main();
 
 function main() {
   try {
-    log('Reading MedCheck src...');
+    log('Reading MedCheck Engine src...');
     const medcheck = readMedcheck(medcheckSrc);
     log('Reading optional external PGx catalog...');
     const catalog = readCatalog(catalogDir);
@@ -276,10 +276,10 @@ function scoreBreakdown(gene, drugCount, worstSeverity) {
 
 function recommendation(gene, catalogClass, score, studyCount) {
   if (catalogClass === 'CLASS_C') {
-    return `${gene} is absent from MedCheck. Consider adding source data before a genotype panel if it remains high priority (${score}); external catalog studies available: ${studyCount}.`;
+    return `${gene} is absent from MedCheck Engine. Consider adding source data before a genotype panel if it remains high priority (${score}); external catalog studies available: ${studyCount}.`;
   }
   if (score >= 70) return `Add a genotype panel for ${gene} in the next genotype expansion pass; the null impact is critical.`;
-  if (score >= 45) return `Plan a ${gene} genotype panel after critical gaps; enough MedCheck logic references it that missing personalization may matter.`;
+  if (score >= 45) return `Plan a ${gene} genotype panel after critical gaps; enough MedCheck Engine logic references it that missing personalization may matter.`;
   if (score >= 20) return `Track ${gene}; add a panel when adding more drug-specific evidence.`;
   return `Document ${gene}; current modeled impact appears low.`;
 }
@@ -296,7 +296,7 @@ Generated: ${report.generated}
 ## Executive Summary
 
 - Genotype panel genes: ${report.genotypePanel.length}
-- Referenced MedCheck genes: ${report.allReferencedGenes.length}
+- Referenced MedCheck Engine genes: ${report.allReferencedGenes.length}
 - Missing panel genes: ${report.gapAnalysis.missingFromPanel.length}
 - Critical gaps: ${critical.length}
 - High gaps: ${high.length}
@@ -316,7 +316,7 @@ ${rest.length ? rest.map((g) => `- ${g.gene}: ${g.nullImpactClass} (${g.nullImpa
 
 ## External-Catalog-Only Genes
 
-Genes in the optional external PGx catalog but absent from MedCheck, sorted by impact score.
+Genes in the optional external PGx catalog but absent from MedCheck Engine, sorted by impact score.
 
 ${table(openOnly)}
 
@@ -324,13 +324,13 @@ ${table(openOnly)}
 
 ${report.gapAnalysis.covered.join(', ')}
 
-No third-party catalog data is bundled in MedCheck by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.
+No third-party catalog data is bundled in PharmTrace by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.
 `;
 }
 
 function table(rows) {
   if (!rows.length) return 'None.';
-  const head = '| Gene | In MedCheck? | CPIC Tier | Impact Score | Drugs Affected | External Studies Available |\n|---|---|---:|---:|---|---:|';
+  const head = '| Gene | In MedCheck Engine? | CPIC Tier | Impact Score | Drugs Affected | External Studies Available |\n|---|---|---:|---:|---|---:|';
   const body = rows.map((g) => `| ${g.gene} | ${g.catalogClass === 'CLASS_C' ? 'No' : 'Yes'} | ${g.scoreBreakdown.cpicTier} | ${g.nullImpactScore} | ${g.drugsAffected.slice(0, 8).join(', ') || '-'}${g.drugsAffected.length > 8 ? ', ...' : ''} | ${g.catalogStudyCount} |`);
   return [head, ...body].join('\n');
 }
@@ -387,7 +387,7 @@ function buildProfile(profilePathArg, gaps) {
         phenotype,
         message: phenotype === 'unknown'
           ? 'genotype unknown — gap prevents personalized prediction'
-          : 'YOU ARE AFFECTED BY THIS GAP — your non-NM phenotype is not modeled in MedCheck for this gene',
+          : 'YOU ARE AFFECTED BY THIS GAP — your non-NM phenotype is not modeled in MedCheck Engine for this gene',
         drugsAffected: gap.drugsAffected,
         estimatedFold: PM_NM_FOLD[gap.gene] ?? 1.0,
       };

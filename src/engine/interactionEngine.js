@@ -1,4 +1,4 @@
-// MedCheck — Core interaction finder, risk calculator, metabolite analysis
+// MedCheck Engine — Core interaction finder, risk calculator, metabolite analysis
 // Phase A: modular source — concatenated by build.js
 
 function normalizeInteractionRisk(interaction) {

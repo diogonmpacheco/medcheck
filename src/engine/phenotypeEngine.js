@@ -1,4 +1,4 @@
-// MedCheck — Phenotype risk accumulation and washout calendar
+// MedCheck Engine — Phenotype risk accumulation and washout calendar
 // Phase A: modular source — concatenated by build.js
 
 function computePhenotypeAccumulation(drugList) {

@@ -1,4 +1,4 @@
-// MedCheck — Washout calendar and adverse burden panels
+// MedCheck Engine — Washout calendar and adverse burden panels
 // Phase A: modular source — concatenated by build.js
 
 function renderWashoutCalendar() {

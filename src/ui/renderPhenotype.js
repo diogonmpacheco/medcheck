@@ -1,4 +1,4 @@
-// MedCheck — Phenotype risk accumulation panel
+// MedCheck Engine — Phenotype risk accumulation panel
 // Phase A: modular source — concatenated by build.js
 
 function renderPhenotypeAccumulation() {

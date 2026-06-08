@@ -1,4 +1,4 @@
-// MedCheck data views derived index
+// MedCheck Engine data views derived index
 // Builds a single static-browser index for alternate data navigation pages.
 
 (function buildDataViewsIndex(global) {

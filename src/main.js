@@ -1,4 +1,4 @@
-// MedCheck — App initialization
+// MedCheck Engine — App initialization
 // Phase A: modular source — concatenated by build.js
 
 document.addEventListener("click", function(e) {

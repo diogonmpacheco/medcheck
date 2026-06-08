@@ -1,4 +1,4 @@
-// MedCheck — D3.js interaction network graph
+// MedCheck Engine — D3.js interaction network graph
 // Phase A: modular source — concatenated by build.js
 
 function renderInteractionGraph() {

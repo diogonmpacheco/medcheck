@@ -1,4 +1,4 @@
-// MedCheck — Effect cascade visualization
+// MedCheck Engine — Effect cascade visualization
 // Phase F: weighted propagating confidence, convergence detection, impact scoring
 // Phase A: modular source — concatenated by build.js
 

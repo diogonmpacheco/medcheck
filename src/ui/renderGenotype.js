@@ -1,4 +1,4 @@
-// MedCheck — Genotype panel and phenotype selector
+// MedCheck Engine — Genotype panel and phenotype selector
 // Phase A: modular source — concatenated by build.js
 
 const GENOTYPE_METABOLITE_RISK_KEYS = {
@@ -603,7 +603,7 @@ function applyPharmGxImport() {
     const skippedText = result.skipped.length ? ` · skipped ${result.skipped.length}` : "";
     status.textContent = applied.length
       ? `Applied ${applied.length}: ${applied.join(", ")}${skippedText}`
-      : `No supported MedCheck genes found${skippedText}`;
+      : `No supported MedCheck Engine genes found${skippedText}`;
     if (result.skipped.length) status.title = `Skipped: ${result.skipped.slice(0,8).join("; ")}`;
   }
 }

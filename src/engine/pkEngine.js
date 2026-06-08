@@ -1,4 +1,4 @@
-// MedCheck — Repeated-dosing and steady-state PK simulation.
+// MedCheck Engine — Repeated-dosing and steady-state PK simulation.
 // Base one-compartment helpers live in data/pharmacology.js.
 
 // ═══════════════════════════════════════════════════════════════════
