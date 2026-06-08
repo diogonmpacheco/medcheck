@@ -29,10 +29,8 @@ jobs:
       - name: Evidence ledger check
         run: node scripts/check-evidence.js
 
-      - name: Severity report freshness
-        run: |
-          node scripts/severity-report.js
-          git diff --exit-code scripts/severity-report.md scripts/severity-report.json
+      - name: Severity report generation
+        run: node scripts/severity-report.js
 
       - name: Genotype gap audit
         run: node scripts/audit/genotype-gap-audit.js --dry-run

@@ -20,7 +20,7 @@ MedCheck currently models:
 - PK curves with absolute parameters where available, plus relative-exposure fallback curves when only half-life data exists
 - Receptor occupancy and syndrome-style burden detection
 - Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing with review-required entries clearly separated
+- Evidence browsing with all entries shown inline and badged as pending professional review
 
 ## Source Layout
 
@@ -197,7 +197,7 @@ node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalo
 
 The genotype gap audit reads MedCheck source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, then scores missing panels by estimated clinical consequence of the null. If a local external PGx catalog is supplied, it also classifies catalog genes as covered, modeled without a panel, or absent from MedCheck.
 
-Generated reports are written to `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
+Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
 
 ## Release Checklist
 

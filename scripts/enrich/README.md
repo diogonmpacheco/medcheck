@@ -28,11 +28,11 @@ node scripts/enrich/pubmed-enrich.js \
   --limit 5
 ```
 
-Outputs:
+State and outputs:
 
 - `scripts/enrich/drafts.json`
-- `scripts/enrich/review-report.md`
 - `scripts/enrich/novelty-index.json`
+- ignored local review output: `scripts/enrich/review-report.md`
 - cached legal-provider responses under `scripts/enrich/cache/`
 
 For a curated multi-query pass:
