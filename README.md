@@ -66,7 +66,7 @@ MedCheck is intentionally conservative about what it claims. PK curves use a one
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2154 KB** generated bundle (33940 lines)
+- **2157 KB** generated bundle (34042 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

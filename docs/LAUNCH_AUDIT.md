@@ -37,6 +37,8 @@ Current release stats:
 - 52 receptor score profiles
 - 455 evidence entries pending professional review
 - 294 launch-enrichment entries marked `reviewRequired:true` for internal enrichment/scoring control
+- 228 internal launch-enrichment entries feed graph confidence calculations
+- 154 internal launch-enrichment entries feed DDI evidence-profile calculations
 
 ## Additional Audit Checks
 
@@ -68,7 +70,7 @@ No blocking issues were found in those checks.
 ## Residual Risks
 
 - All evidence entries remain pending professional review; no current evidence row should be presented as professionally verified.
-- The 294 `reviewRequired:true` launch-enrichment entries are visible for review workflows, but that internal flag does not mean the remaining entries are professionally reviewed.
+- The 294 `reviewRequired:true` launch-enrichment entries are visible for review workflows and can feed calculations through explicit refs or support-key matching, but that internal flag does not mean the remaining entries are professionally reviewed.
 - MedCheck is an explanatory and educational tool, not a clinical decision system.
 - The PharmGx importer accepts normalized phenotype and risk-marker rows; it is not a raw DNA or star-allele caller.
 - D3.js is loaded from a CDN for graph visualization, so the graph panel depends on that external asset being reachable.

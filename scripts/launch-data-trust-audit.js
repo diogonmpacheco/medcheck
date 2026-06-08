@@ -39,6 +39,7 @@ globalThis.__AUDIT__ = {
   ENZYME_ACTORS, TRANSPORTER_ACTORS, PHARMGKB_EVIDENCE, PK_PARAMS,
   BEERS_FLAGS, MEDCHECK_STATS, EVIDENCE_TIER,
   normalizeDrugLookupKey, getDrugAliases,
+  getInteractionGraph, resolveEvidenceRefs, getEdgeEvidenceSupportKeys, getDdiEvidenceProfile,
 };`, context);
   return { data: context.__AUDIT__, elements };
 }
@@ -100,6 +101,24 @@ const professionalReviewed = publicStudies
   .filter(study => study.professionalReviewed === true || study.clinicalReviewed === true || ['professional_reviewed', 'clinician_reviewed'].includes(study.reviewStatus))
   .map(study => ({ id: study.id, title: study.title, reviewStatus: study.reviewStatus || null }));
 const pendingProfessionalReviewStudies = publicStudies.length - professionalReviewed.length;
+const graphPendingEvidence = new Set();
+const ddiPendingEvidence = new Set();
+if (typeof data.getInteractionGraph === 'function') {
+  for (const edge of data.getInteractionGraph().edges || []) {
+    const studies = data.resolveEvidenceRefs(edge.props?.evidenceRefs || [], data.getEdgeEvidenceSupportKeys(edge));
+    for (const study of studies || []) {
+      if (study.reviewRequired === true) graphPendingEvidence.add(study.id);
+    }
+  }
+}
+if (typeof data.getDdiEvidenceProfile === 'function') {
+  for (const ddi of data.KNOWN_DDI || []) {
+    const profile = data.getDdiEvidenceProfile(ddi);
+    for (const study of profile.studies || []) {
+      if (study.reviewRequired === true) ddiPendingEvidence.add(study.id);
+    }
+  }
+}
 
 const report = {
   generatedAt: new Date().toISOString(),
@@ -111,6 +130,8 @@ const report = {
     pendingProfessionalReviewStudies,
     professionalReviewedStudies: professionalReviewed.length,
     internalReviewRequiredEntries: publicStudies.filter(study => study.reviewRequired === true).length,
+    internalReviewRequiredFeedingGraphCalculations: graphPendingEvidence.size,
+    internalReviewRequiredFeedingDdiProfiles: ddiPendingEvidence.size,
     ddiPairs: data.KNOWN_DDI.length,
     severeDdi: data.KNOWN_DDI.filter(ddi => ddi.severity === 'severe' || ddi.severity === 'critical').length,
   },

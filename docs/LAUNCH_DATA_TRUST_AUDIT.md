@@ -17,11 +17,13 @@ This audit checked the generated launch bundle (`index.html`) after rebuilding f
 | Pending professional review entries | 453 |
 | Professional-reviewed evidence entries | 0 |
 | Internal `reviewRequired:true` enrichment entries | 294 |
+| Internal enrichment entries feeding graph calculations | 228 |
+| Internal enrichment entries feeding DDI evidence profiles | 154 |
 | Interaction pairs after fixes | 627 |
 | Severe/critical interaction pairs after fixes | 323 |
 | Severe/critical pairs linked only to pending-review evidence | 188 |
 
-Note: generated stats and README intentionally count all `STUDY_DB` entries. No entry has been marked professionally reviewed yet. The `reviewRequired:true` flag is an internal enrichment/scoring control, not the boundary between reviewed and unreviewed evidence. The 188 severe/critical rows linked only to internally review-required evidence are intentionally integrated for public-preview feedback, but the whole evidence set must remain visibly pending professional review.
+Note: generated stats and README intentionally count all `STUDY_DB` entries. No entry has been marked professionally reviewed yet. The `reviewRequired:true` flag is an internal enrichment/scoring control, not the boundary between reviewed and unreviewed evidence. The 188 severe/critical rows linked only to internally review-required evidence are intentionally integrated for public-preview feedback, and internal enrichment evidence contributes to graph confidence and DDI evidence-profile calculations while the whole evidence set remains visibly pending professional review.
 
 ## Check Results
 

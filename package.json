@@ -11,6 +11,7 @@
     "audit:genotype-gaps": "node scripts/audit/genotype-gap-audit.js",
     "audit:data-views": "node scripts/audit/data-views-audit.js",
     "audit:evidence-review-ui": "node scripts/audit/evidence-review-ui-audit.js",
+    "audit:evidence-calculation": "node scripts/audit/evidence-calculation-audit.js",
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "audit:mechanistic-gaps": "node scripts/audit/mechanistic-curation-gaps.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",

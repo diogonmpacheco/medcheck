@@ -11,6 +11,7 @@ MedCheck can launch as a public educational preview once the release gate passes
 - All 455 `STUDY_DB` entries have source identifiers.
 - All 455 `STUDY_DB` entries are pending professional review.
 - 294 launch-enrichment entries remain marked `reviewRequired:true` as an internal enrichment/scoring control.
+- Internal launch-enrichment entries are calculation-bearing: support-key evidence feeds graph confidence and DDI evidence-profile calculations.
 - 188 severe/critical interaction rows are linked only to pending-review evidence. These are intentionally kept in the public preview for feedback and discovery.
 - 0 entries are currently marked as professionally reviewed.
 - Evidence must stay visible inline with pending-professional-review badges and the panel-level professional-review notice.
