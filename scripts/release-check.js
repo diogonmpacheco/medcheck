@@ -79,6 +79,7 @@ run('Database audit', node, ['scripts/database-audit.js']);
 run('Data views audit', node, ['scripts/audit/data-views-audit.js']);
 run('Evidence review UI audit', node, ['scripts/audit/evidence-review-ui-audit.js']);
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
+run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);
 run('Smoke check', node, ['scripts/smoke-check.js']);
 run('Strict validation', node, ['scripts/validate-db.js', '--strict']);

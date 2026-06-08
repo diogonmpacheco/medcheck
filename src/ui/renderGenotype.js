@@ -9,7 +9,10 @@ function renderGenotypePanel() {
   const sec = document.getElementById("genotypeSection");
   const el = document.getElementById("genotypeBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("genotypeSection", "genotypeBody");
+    return;
+  }
   if (sec) sec.style.display = "";
 
   // Determine which enzymes are relevant for current stack

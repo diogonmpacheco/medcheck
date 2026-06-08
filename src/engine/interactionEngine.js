@@ -725,6 +725,28 @@ function calcRisk() {
   });
   if (pdActive.length) { score += 15 * pdActive.length; factors.push({ label: `${pdActive.length} pathway diversion${pdActive.length>1?"s":""} active (genetics)`, color: "red" }); }
 
+  // Genotype/metabolite hazards: avoid a "minimal" combo score when a selected
+  // genotype creates a contraindication-level or life-threatening safety signal.
+  const genotypeSafety = collectActiveGenotypeSafetySignals();
+  if (genotypeSafety.critical.length) {
+    score += Math.min(70, 45 + ((genotypeSafety.critical.length - 1) * 10));
+    factors.push({
+      label:`${genotypeSafety.critical.length} genotype/metabolite critical alert${genotypeSafety.critical.length>1?"s":""}`,
+      color:"red",
+    });
+  } else if (genotypeSafety.severe.length) {
+    score += Math.min(35, 20 + ((genotypeSafety.severe.length - 1) * 5));
+    factors.push({
+      label:`${genotypeSafety.severe.length} genotype/metabolite safety alert${genotypeSafety.severe.length>1?"s":""}`,
+      color:"red",
+    });
+  } else if (genotypeSafety.context.length) {
+    factors.push({
+      label:`${genotypeSafety.context.length} genotype/metabolite context flag${genotypeSafety.context.length>1?"s":""}`,
+      color:"amber",
+    });
+  }
+
   if (severe) factors.unshift({ label: `${severe} severe interaction${severe>1?"s":""}`, color: "red" });
   if (moderate) factors.push({ label: `${moderate} moderate`, color: "amber" });
   if (mild) factors.push({ label: `${mild} mild`, color: "green" });
@@ -737,6 +759,82 @@ function calcRisk() {
   else { level = "MINIMAL"; color = "var(--green)"; }
 
   return { score, level, color, factors, interactions };
+}
+
+function collectActiveGenotypeSafetySignals() {
+  const out = { critical:[], severe:[], context:[] };
+  if (!activeStack.length) return out;
+
+  const addSignal = (bucket, label, text) => {
+    const id = `${label}|${text}`.toLowerCase();
+    if (out.critical.concat(out.severe, out.context).some(row => row.id === id)) return;
+    out[bucket].push({ id, label, text });
+  };
+
+  for (const name of activeStack) {
+    for (const effect of GENOTYPE_METABOLITE_EFFECTS || []) {
+      if (effect.parent !== name) continue;
+      const phenotype = selectedGenotypeSafetyPhenotype(effect.enzyme);
+      const phenotypeEffect = effect.effects?.[phenotype];
+      if (!phenotypeEffect || phenotypeEffect.direction === "baseline") continue;
+      const effectText = [
+        effect.parent,
+        effect.metaboliteName,
+        effect.note,
+        effect.clinicalAction,
+        phenotypeEffect.label,
+      ].filter(Boolean).join(" ");
+      const bucket = genotypeSafetyBucket(effectText);
+      if (bucket) addSignal(bucket, `${effect.parent || name}: ${effect.metaboliteName || effect.enzyme || "genotype effect"}`, effectText);
+    }
+
+    for (const [riskKey, risk] of Object.entries(GENOTYPE_RISK_EFFECTS || {})) {
+      const status = activeGenotype?.[riskKey] || GENOTYPE_RISK_STATUS.ABSENT;
+      if (status !== GENOTYPE_RISK_STATUS.PRESENT) continue;
+      const riskEffect = risk.effects?.[status];
+      for (const drugEffect of risk.drugEffects || []) {
+        if (drugEffect.parent !== name) continue;
+        const effectText = [
+          drugEffect.parent,
+          drugEffect.phenotype,
+          drugEffect.note,
+          drugEffect.clinicalAction,
+          riskEffect?.note,
+        ].filter(Boolean).join(" ");
+        const bucket = genotypeSafetyBucket(effectText);
+        if (bucket) addSignal(bucket, `${drugEffect.parent || name}: ${risk.label || riskKey}`, effectText);
+      }
+    }
+  }
+
+  return out;
+}
+
+function selectedGenotypeSafetyPhenotype(enzyme) {
+  if (GENOTYPE_EFFECTS?.[enzyme]) return activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM;
+  const riskKey = genotypeMetaboliteRiskKey(enzyme);
+  if (riskKey) {
+    return activeGenotype?.[riskKey] === GENOTYPE_RISK_STATUS.PRESENT
+      ? GENOTYPE_PHENOTYPE.PM
+      : GENOTYPE_PHENOTYPE.NM;
+  }
+  return GENOTYPE_PHENOTYPE.NM;
+}
+
+function genotypeMetaboliteRiskKey(enzyme) {
+  const riskKeyByPseudoEnzyme = {
+    G6PD:"G6PD deficiency",
+  };
+  return riskKeyByPseudoEnzyme[enzyme] || null;
+}
+
+function genotypeSafetyBucket(text) {
+  const value = String(text || "");
+  if (!value.trim()) return null;
+  if (/contraindicat|life[-\s]?threat|fatal|malignant hyperthermia/i.test(value)) return "critical";
+  if (/severe|toxicit|myelosuppression|neutropenia|hemolys|methemoglobin|apnea|paralysis|torsades|arrhythm|qt/i.test(value)) return "severe";
+  if (/monitor|avoid|dose|specialist|risk|CBC|blood count/i.test(value)) return "context";
+  return null;
 }
 
 /* ================================================================

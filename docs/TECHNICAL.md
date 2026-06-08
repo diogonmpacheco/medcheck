@@ -183,10 +183,16 @@ npm run smoke
 npm run regression
 npm run validate
 npm run release:check
+npm run launch:qa
+npm run launch:v1
 npm run test
 ```
 
-The release gate rebuilds the bundle, verifies README/version metadata, runs database audit, regression, smoke, strict validation, and whitespace checks.
+The release gate rebuilds the bundle, verifies README/version metadata, runs database audit, Data Views audit, evidence review UI audit, evidence calculation audit, deep launch QA, regression, smoke, strict validation, and whitespace checks.
+
+`npm run launch:qa` runs the deep pre-v1 scenario matrix across five less-common stacks: thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk. It also asserts that visible panels contain content and hidden panels do not retain stale content from prior stacks.
+
+`npm run launch:v1` is the final pre-push gate. It runs stats, build, release checks, launch data trust audit, and the evidence ledger check.
 
 ## Genotype Gap Audit
 
@@ -203,7 +209,7 @@ Generated reports are written to ignored local files at `scripts/audit/genotype-
 
 1. Update `MEDCHECK_VERSION` in `src/data/drugs.js` when app behavior changes.
 2. Update Drug DB version/date when curated data changes.
-3. Run `npm run release:check`.
+3. Run `npm run launch:v1`.
 4. Commit source changes plus rebuilt `index.html`.
 5. Push `main` to GitHub Pages.
 

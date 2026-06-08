@@ -28,6 +28,16 @@ These links open the live app with example medication stacks already loaded:
 | [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/medcheck/index.html?substances=simvastatin,clarithromycin&tab=pk) | CYP3A4 inhibition, exposure shift, PK simulation |
 | [Older-adult burden](https://diogonmpacheco.github.io/medcheck/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
 
+For deeper v1 QA, these examples stress less-common problems that many parent-drug-only checkers miss:
+
+| Deep demo | What it shows |
+|---|---|
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Cytotoxic 6-TGN accumulation, xanthine oxidase diversion, and marrow-toxicity review |
+| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Active 5-FU accumulation and life-threatening fluoropyrimidine toxicity context |
+| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | SN-38 active-metabolite toxicity and CBC monitoring context |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/medcheck/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | Oxidant hemolysis/methemoglobinemia across unrelated parent drugs |
+| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/medcheck/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | Prolonged paralysis/apnea plus malignant-hyperthermia susceptibility |
+
 You can also build custom share links with:
 
 `https://diogonmpacheco.github.io/medcheck/index.html?substances=warfarin,ibuprofen&tab=safety`
@@ -66,7 +76,7 @@ MedCheck is intentionally conservative about what it claims. PK curves use a one
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2157 KB** generated bundle (34042 lines)
+- **2168 KB** generated bundle (34315 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -79,7 +89,7 @@ MedCheck is intentionally conservative about what it claims. PK curves use a one
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
-For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md) and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
+For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
 
 ---
 
@@ -89,7 +99,7 @@ MedCheck contains source-linked data. No evidence entry has been professionally 
 
 The safety contract is simple: a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
 
-Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. For data review, start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md), cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep entries pending professional review until an appropriate reviewer signs off.
+Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. Use the report links on warning and evidence cards, or start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). Cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep entries pending professional review until an appropriate reviewer signs off.
 
 ---
 

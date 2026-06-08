@@ -15,7 +15,7 @@ function assert(condition, message) {
 
 function loadCase(win, drugs) {
   win.eval(`activeStack = [];
-    drugDoses && Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+    if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     userGenetics = {};
     activeGenotypeDetails = {};
     activeGenotype = {

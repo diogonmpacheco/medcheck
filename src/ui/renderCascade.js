@@ -6,7 +6,10 @@ function renderCascade() {
   const el      = document.getElementById("cascadeBody");
   const section = document.getElementById("cascadeSection");
   if (!el) return;
-  if (activeStack.length < 1) { if (section) section.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("cascadeSection", "cascadeBody");
+    return;
+  }
   if (section) section.style.display = "";
 
   const graph   = getInteractionGraph();

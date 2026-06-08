@@ -13,8 +13,12 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function norm(text) {
+  return String(text || '').replace(/\s+/g, ' ').trim();
+}
+
 function includesAny(text, needles) {
-  const lower = String(text || '').toLowerCase();
+  const lower = norm(text).toLowerCase();
   return needles.some((needle) => lower.includes(String(needle).toLowerCase()));
 }
 
@@ -22,7 +26,7 @@ function slug(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-function stackUrl(drugs, genotypes, tab = 'safety') {
+function stackUrl(drugs, genotypes, tab = 'pgx') {
   const parts = [`substances=${drugs.map(slug).join(',')}`];
   for (const genotype of genotypes) parts.push(`genotype=${encodeURIComponent(genotype).replace(/%3A/g, ':')}`);
   parts.push(`tab=${tab}`);
@@ -36,6 +40,102 @@ function firstEvidenceLink(study) {
   if (study.pmid) return `https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/`;
   return study.id;
 }
+
+const PANEL_DEFS = [
+  { name:'risk', sectionId:'riskSection', bodyId:'riskBody' },
+  { name:'known interactions', sectionId:'interSection', bodyId:'interBody' },
+  { name:'combination alerts', sectionId:'comboSection', bodyId:'comboBody' },
+  { name:'mechanistic interpretation', sectionId:'mechanisticSection', bodyId:'mechanisticBody' },
+  { name:'transporter interactions', sectionId:'transporterSection', bodyId:'transporterBody' },
+  { name:'interaction grid', sectionId:'matrixSection', bodyId:'matrixBody' },
+  { name:'alternatives', sectionId:'altSection', bodyId:'altBody' },
+  { name:'fold exposure', sectionId:'foldSection', bodyId:'foldBody' },
+  { name:'genotype effects', sectionId:'genotypeSection', bodyId:'genotypeBody' },
+  { name:'metabolites', sectionId:'metabSection', bodyId:'metabBody' },
+  { name:'downstream effects', sectionId:'cascadeSection', bodyId:'cascadeBody' },
+  { name:'side-effect burden', sectionId:'phenoAccumSection', bodyId:'phenoAccumBody' },
+  { name:'PK simulation', sectionId:'pkSimSection', bodyId:'pkSimBody' },
+  { name:'washout calendar', sectionId:'washoutSection', bodyId:'washoutBody' },
+  { name:'burden flags', sectionId:'burdenSection', bodyId:'burdenBody' },
+  { name:'network', sectionId:'graphSection', bodyId:'graphBody' },
+  { name:'evidence', sectionId:'evidenceSection', bodyId:'evidenceBody' },
+  { name:'review queue', sectionId:'qualitySection', bodyId:'qualityBody' },
+];
+
+const DEEP_CASES = [
+  {
+    name:'Thiopurine marrow toxicity',
+    why:'Allopurinol changes thiopurine metabolism; TPMT/NUDT15 loss-of-function shifts toward cytotoxic 6-TGN.',
+    drugs:['Azathioprine', 'Allopurinol'],
+    genotypes:['TPMT:PM', 'NUDT15:PM'],
+    expect:{
+      summary:['myelosuppression', '6-Thioguanine', 'TPMT'],
+      fold:['6-Thioguanine', '6-TGN', 'CBC'],
+      genotype:['TPMT', 'NUDT15', 'Azathioprine'],
+      metabolites:['6-Mercaptopurine', '6-Thioguanine'],
+      evidence:['Azathioprine', 'CPIC', 'Allopurinol'],
+      feedback:['Report data issue', 'Suggest evidence fix'],
+    },
+  },
+  {
+    name:'Fluoropyrimidine fatal toxicity',
+    why:'Capecitabine looks like a parent prodrug, but the safety-critical actor is 5-FU accumulation when DPYD is deficient.',
+    drugs:['Capecitabine'],
+    genotypes:['DPYD:PM'],
+    expect:{
+      summary:['DPYD', '5-Fluorouracil', 'life-threatening toxicity'],
+      fold:['5-Fluorouracil', 'life-threatening toxicity'],
+      genotype:['DPYD', 'Capecitabine'],
+      metabolites:['5-Fluorouracil', 'DPYD'],
+      evidence:['Fluoropyrimidines', 'DPYD', 'CPIC'],
+      feedback:['Suggest evidence fix'],
+    },
+  },
+  {
+    name:'Irinotecan SN-38 toxicity',
+    why:'The parent drug is less informative than SN-38 exposure and UGT1A1 detoxification capacity.',
+    drugs:['Irinotecan'],
+    genotypes:['UGT1A1:PM'],
+    expect:{
+      summary:['UGT1A1', 'SN-38', 'CBC'],
+      fold:['SN-38', 'monitor CBC'],
+      genotype:['UGT1A1', 'Irinotecan'],
+      metabolites:['SN-38', 'UGT1A1'],
+      evidence:['Irinotecan', 'UGT1A1'],
+      feedback:['Suggest evidence fix'],
+    },
+  },
+  {
+    name:'G6PD oxidant stack',
+    why:'Several oxidant drugs can look unrelated by parent name, but converge on red-cell oxidative reserve.',
+    drugs:['Rasburicase', 'Primaquine', 'Dapsone'],
+    genotypes:['G6PD:deficiency'],
+    expect:{
+      summary:['G6PD deficiency', 'Rasburicase', 'contraindicated'],
+      fold:['hemolysis', 'methemoglobinemia', 'G6PD'],
+      genotype:['G6PD deficiency', 'Primaquine', 'Dapsone'],
+      metabolites:['Primaquine', 'Dapsone hydroxylamine'],
+      evidence:['G6PD', 'Rasburicase'],
+      risk:['genotype/metabolite critical alert'],
+      forbiddenRisk:['MINIMAL', 'Risk score: 0/100'],
+      feedback:['Suggest evidence fix'],
+    },
+  },
+  {
+    name:'Anesthesia pharmacogenetics',
+    why:'Succinylcholine risk is driven by BCHE hydrolysis plus malignant-hyperthermia susceptibility, not by a normal DDI pair.',
+    drugs:['Succinylcholine'],
+    genotypes:['BCHE:null', 'RYR1:present'],
+    expect:{
+      summary:['BCHE', 'Succinylcholine', 'prolonged paralysis'],
+      fold:['Neuromuscular blockade', 'prolonged paralysis'],
+      genotype:['BCHE', 'RYR1'],
+      metabolites:['Succinylmonocholine', 'malignant hyperthermia'],
+      evidence:['Succinylcholine', 'BCHE'],
+      feedback:['Suggest evidence fix'],
+    },
+  },
+];
 
 console.log('Building launch QA HTML...');
 execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
@@ -59,198 +159,98 @@ const dom = new JSDOM(readFileSync(OUT, 'utf8'), {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 
-function loadCase({ drugs, genotypes = [], tab = 'safety' }) {
-  window.eval(`activeStack = [];
-    drugDoses && Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+function loadCase({ drugs, genotypes = [], tab = 'pgx' }) {
+  window.eval(`
+    activeStack = [];
+    if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     userGenetics = {};
     activeGenotypeDetails = {};
-    activeGenotype = {
-      CYP2D6: GENOTYPE_PHENOTYPE.NM,
-      CYP2C19: GENOTYPE_PHENOTYPE.NM,
-      CYP2C9: GENOTYPE_PHENOTYPE.NM,
-    };`);
+    activeGenotype = {};
+    Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+    Object.keys(GENOTYPE_RISK_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_RISK_STATUS.ABSENT);
+  `);
   const url = stackUrl(drugs, genotypes, tab);
   window.history.replaceState(null, '', `/${url}`);
   window.loadUrlDemoState();
   window.renderAll();
+  window.setTab(tab);
 }
 
-function collect({ name, drugs, genotypes = [], tab = 'safety', expect }) {
-  loadCase({ drugs, genotypes, tab });
-  const summaryTitle = window.document.querySelector('.summary-title')?.textContent || '';
-  const priority = window.document.querySelector('.summary-risk .lbl')?.textContent || '';
-  const summary = window.document.getElementById('summaryBar')?.textContent || '';
-  const warningText = window.eval('calcRisk()').interactions.map((i) => `${i.severity} ${i.drug1} + ${i.drug2}: ${i.mechanism} ${i.effect}`).join(' | ');
-  const mechanisticText = window.document.getElementById('mechanisticBody')?.textContent || '';
-  const genotypeText = window.document.getElementById('genotypeBody')?.textContent || '';
-  const evidenceText = window.document.getElementById('evidenceBody')?.textContent || '';
-  const refs = window.eval(`Array.from(getStackEvidenceContext().evidenceRefs || [])`);
-  const knownRefs = refs.filter((ref) => window.eval(`!!STUDY_DB[${JSON.stringify(ref)}]`));
-  const link = firstEvidenceLink(knownRefs.map((ref) => window.eval(`STUDY_DB[${JSON.stringify(ref)}]`))[0]);
-  const url = stackUrl(drugs, genotypes, tab);
-
-  const debug = () => JSON.stringify({
-    priority, summaryTitle,
-    summary: summary.slice(0, 500),
-    warningText: warningText.slice(0, 500),
-    mechanisticText: mechanisticText.slice(0, 500),
-    genotypeText: genotypeText.slice(0, 500),
-    evidenceText: evidenceText.slice(0, 500),
-    activeGenotype: window.eval('activeGenotype'),
-  }, null, 2);
-
-  assert(includesAny(`${priority} ${summaryTitle} ${summary}`, expect.priority), `${name}: missing priority ${expect.priority.join(' / ')}\n${debug()}`);
-  assert(includesAny(`${warningText} ${summary} ${genotypeText}`, expect.warning), `${name}: missing known warning ${expect.warning.join(' / ')}\n${debug()}`);
-  assert(includesAny(`${mechanisticText} ${summary} ${warningText}`, expect.mechanism), `${name}: missing mechanism ${expect.mechanism.join(' / ')}\n${debug()}`);
-  assert(includesAny(genotypeText, expect.genotype), `${name}: missing genotype/metabolite card ${expect.genotype.join(' / ')}\n${debug()}`);
-  assert(includesAny(evidenceText, expect.evidence), `${name}: missing evidence text ${expect.evidence.join(' / ')}\n${debug()}`);
-  assert(url.includes('substances=') && genotypes.every((g) => url.includes(encodeURIComponent(g).replace(/%3A/g, ':'))), `${name}: URL missing substances/genotypes`);
-
+function panelState(def) {
+  const section = window.document.getElementById(def.sectionId);
+  const body = window.document.getElementById(def.bodyId);
   return {
-    name,
-    stack: [...drugs, ...genotypes].join(' + '),
-    priority: `${priority} - ${summaryTitle}`.trim(),
-    warning: expect.warning[0],
-    mechanism: expect.mechanism[0],
-    genotypeCard: expect.genotype[0],
-    evidence: expect.evidence[0],
-    evidenceLink: link,
-    url,
+    name:def.name,
+    visible:section ? section.style.display !== 'none' : false,
+    text:norm(body?.textContent || ''),
   };
 }
 
-const cases = [
-  {
-    name:'SSRI switch',
-    drugs:['Paroxetine', 'Fluoxetine'],
-    expect:{
-      priority:['High-priority interaction found', 'High'],
-      warning:['serotonin', 'CYP2D6 inhibition'],
-      mechanism:['CYP2D6', 'serotonin'],
-      genotype:['CYP2D6', 'Norfluoxetine'],
-      evidence:['Paroxetine', 'Fluoxetine', 'CYP2D6'],
-    },
-  },
-  {
-    name:'CYP2D6 null',
-    drugs:['Metoprolol', 'Fluoxetine'],
-    genotypes:['CYP2D6:null'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found', 'PGx High'],
-      warning:['bradycardia', 'hypotension'],
-      mechanism:['CYP2D6', 'metoprolol clearance'],
-      genotype:['no-function CYP2D6', 'Metoprolol'],
-      evidence:['Metoprolol', 'Fluoxetine', 'CYP2D6'],
-    },
-  },
-  {
-    name:'Clopidogrel',
-    drugs:['Clopidogrel', 'Omeprazole'],
-    genotypes:['CYP2C19:PM'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found', 'PGx High'],
-      warning:['active metabolite', 'stent thrombosis'],
-      mechanism:['CYP2C19', 'bioactivation'],
-      genotype:['Active thiol metabolite', 'CYP2C19'],
-      evidence:['Clopidogrel', 'CYP2C19'],
-    },
-  },
-  {
-    name:'Statin',
-    drugs:['Simvastatin', 'Clarithromycin'],
-    genotypes:['SLCO1B1:reduced_function'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found'],
-      warning:['rhabdomyolysis'],
-      mechanism:['CYP3A4', 'P-gp'],
-      genotype:['SLCO1B1', 'Simvastatin'],
-      evidence:['Simvastatin', 'Clarithromycin'],
-    },
-  },
-  {
-    name:'Warfarin',
-    drugs:['Warfarin', 'Trimethoprim/Sulfamethoxazole'],
-    genotypes:['CYP2C9:PM', 'VKORC1:sensitive'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found', 'PGx High'],
-      warning:['bleeding', 'INR'],
-      mechanism:['CYP2C9', 'warfarin'],
-      genotype:['VKORC1', 'CYP2C9'],
-      evidence:['Warfarin', 'CYP2C9'],
-    },
-  },
-  {
-    name:'Opioid',
-    drugs:['Codeine', 'Bupropion'],
-    genotypes:['CYP2D6:null'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found', 'PGx High'],
-      warning:['activation blocked', 'analgesia'],
-      mechanism:['CYP2D6', 'Morphine'],
-      genotype:['Morphine', 'CYP2D6'],
-      evidence:['Codeine', 'CYP2D6'],
-    },
-  },
-  {
-    name:'Oncology',
-    drugs:['Azathioprine', 'Allopurinol'],
-    genotypes:['TPMT:PM', 'NUDT15:PM'],
-    tab:'pgx',
-    expect:{
-      priority:['High-priority interaction found', 'PGx High'],
-      warning:['myelosuppression', 'toxicity'],
-      mechanism:['xanthine oxidase', '6-TGN'],
-      genotype:['6-thioguanine', 'TPMT'],
-      evidence:['Azathioprine', 'TPMT'],
-    },
-  },
-  {
-    name:'G6PD',
-    drugs:['Rasburicase', 'Primaquine', 'Dapsone'],
-    genotypes:['G6PD:deficiency'],
-    tab:'pgx',
-    expect:{
-      priority:['PGx High', 'High-priority'],
-      warning:['hemolysis', 'methemoglobinemia'],
-      mechanism:['oxidative', 'G6PD'],
-      genotype:['G6PD deficiency', 'Primaquine'],
-      evidence:['G6PD', 'Primaquine'],
-    },
-  },
-  {
-    name:'HLA',
-    drugs:['Abacavir'],
-    genotypes:['HLA-B*57:01:present'],
-    tab:'pgx',
-    expect:{
-      priority:['PGx High'],
-      warning:['hypersensitivity'],
-      mechanism:['HLA-B*57:01', 'immune'],
-      genotype:['HLA-B*57:01', 'Abacavir'],
-      evidence:['Abacavir', 'HLA-B'],
-    },
-  },
-  {
-    name:'Anesthesia',
-    drugs:['Succinylcholine'],
-    genotypes:['BCHE:null', 'RYR1:present'],
-    tab:'pgx',
-    expect:{
-      priority:['PGx High'],
-      warning:['malignant hyperthermia', 'prolonged apnea'],
-      mechanism:['BCHE', 'RYR1'],
-      genotype:['BCHE', 'RYR1'],
-      evidence:['Succinylcholine', 'BCHE'],
-    },
-  },
-];
+function collect({ name, why, drugs, genotypes = [], tab = 'pgx', expect }) {
+  loadCase({ drugs, genotypes, tab });
 
-const rows = cases.map(collect);
+  const summary = norm(window.document.getElementById('summaryBar')?.textContent || '');
+  const risk = norm(window.document.getElementById('riskBody')?.textContent || '');
+  const fold = norm(window.document.getElementById('foldBody')?.textContent || '');
+  const genotype = norm(window.document.getElementById('genotypeBody')?.textContent || '');
+  const metabolites = norm(window.document.getElementById('metabBody')?.textContent || '');
+  const evidence = norm(window.document.getElementById('evidenceBody')?.textContent || '');
+  const feedbackText = norm(window.document.body.textContent || '');
+  const refs = window.eval(`Array.from(getStackEvidenceContext().evidenceRefs || [])`);
+  const knownRefs = refs.filter((ref) => window.eval(`!!STUDY_DB[${JSON.stringify(ref)}]`));
+  const evidenceLink = firstEvidenceLink(knownRefs.map((ref) => window.eval(`STUDY_DB[${JSON.stringify(ref)}]`))[0]);
+  const feedbackLinks = Array.from(window.document.querySelectorAll('a.feedback-link')).map(a => a.getAttribute('href') || '');
+  const panels = PANEL_DEFS.map(panelState);
+  const visiblePanels = panels.filter(p => p.visible).map(p => p.name);
+
+  const debug = () => JSON.stringify({
+    summary: summary.slice(0, 500),
+    risk: risk.slice(0, 500),
+    fold: fold.slice(0, 500),
+    genotype: genotype.slice(0, 500),
+    metabolites: metabolites.slice(0, 500),
+    evidence: evidence.slice(0, 500),
+    visiblePanels,
+    staleHiddenPanels: panels.filter(p => !p.visible && p.text).map(p => ({ name:p.name, text:p.text.slice(0, 120) })),
+  }, null, 2);
+
+  assert(includesAny(summary, expect.summary), `${name}: missing expected summary signal ${expect.summary.join(' / ')}\n${debug()}`);
+  if (expect.risk) {
+    assert(includesAny(risk, expect.risk), `${name}: missing risk-panel signal ${expect.risk.join(' / ')}\n${debug()}`);
+  }
+  for (const term of expect.forbiddenRisk || []) {
+    assert(!risk.includes(term), `${name}: forbidden risk-panel text ${term}\n${debug()}`);
+  }
+  assert(includesAny(fold, expect.fold), `${name}: missing fold/metabolite exposure signal ${expect.fold.join(' / ')}\n${debug()}`);
+  assert(includesAny(genotype, expect.genotype), `${name}: missing genotype signal ${expect.genotype.join(' / ')}\n${debug()}`);
+  assert(includesAny(metabolites, expect.metabolites), `${name}: missing metabolite panel signal ${expect.metabolites.join(' / ')}\n${debug()}`);
+  assert(includesAny(evidence, expect.evidence), `${name}: missing evidence signal ${expect.evidence.join(' / ')}\n${debug()}`);
+  for (const term of expect.feedback) {
+    assert(feedbackText.includes(term), `${name}: missing feedback link text ${term}\n${debug()}`);
+  }
+  assert(feedbackLinks.length >= 1, `${name}: expected contextual feedback links\n${debug()}`);
+  assert(feedbackLinks.every(href => href.includes('github.com/diogonmpacheco/medcheck/issues/new')), `${name}: feedback link does not target GitHub issues\n${debug()}`);
+
+  for (const panel of panels) {
+    if (panel.visible) {
+      assert(panel.text.length > 0, `${name}: visible panel "${panel.name}" rendered empty\n${debug()}`);
+    } else {
+      assert(panel.text.length === 0, `${name}: hidden panel "${panel.name}" retained stale text\n${debug()}`);
+    }
+  }
+
+  return {
+    name,
+    why,
+    stack:[...drugs, ...genotypes].join(' + '),
+    visiblePanels,
+    feedbackLinks:feedbackLinks.length,
+    evidenceLink,
+    url:stackUrl(drugs, genotypes, tab),
+  };
+}
+
+const rows = DEEP_CASES.map(collect);
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 
 dom.window.close();

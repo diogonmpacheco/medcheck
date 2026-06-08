@@ -30,6 +30,31 @@ const DEMO_CASES = {
     drugs: ['Amitriptyline', 'Diazepam', 'Diphenhydramine', 'Oxycodone'],
     tab: 'safety',
   },
+  'thiopurine-marrow-toxicity': {
+    drugs: ['Azathioprine', 'Allopurinol'],
+    genotype: { TPMT: GENOTYPE_PHENOTYPE.PM, NUDT15: GENOTYPE_PHENOTYPE.PM },
+    tab: 'pgx',
+  },
+  'fluoropyrimidine-dpyd-toxicity': {
+    drugs: ['Capecitabine'],
+    genotype: { DPYD: GENOTYPE_PHENOTYPE.PM },
+    tab: 'pgx',
+  },
+  'irinotecan-sn38-toxicity': {
+    drugs: ['Irinotecan'],
+    genotype: { UGT1A1: GENOTYPE_PHENOTYPE.PM },
+    tab: 'pgx',
+  },
+  'g6pd-oxidant-stack': {
+    drugs: ['Rasburicase', 'Primaquine', 'Dapsone'],
+    genotype: { 'G6PD deficiency': GENOTYPE_RISK_STATUS.PRESENT },
+    tab: 'pgx',
+  },
+  'anesthesia-pgx-risk': {
+    drugs: ['Succinylcholine'],
+    genotype: { BCHE: GENOTYPE_PHENOTYPE.PM, 'RYR1/CACNA1S MH variant': GENOTYPE_RISK_STATUS.PRESENT },
+    tab: 'pgx',
+  },
 };
 
 function loadUrlDemoState() {
@@ -45,7 +70,12 @@ function loadUrlDemoState() {
 
   const genotypeSpec = {};
   for (const [gene, phenotype] of Object.entries(demo?.genotype || {})) {
-    genotypeSpec[gene] = { phenotype, reportedLabel:phenotype, mechanism:"demo" };
+    const riskEffects = typeof GENOTYPE_RISK_EFFECTS !== "undefined" ? GENOTYPE_RISK_EFFECTS : {};
+    if (riskEffects[gene] && Object.values(GENOTYPE_RISK_STATUS).includes(phenotype)) {
+      genotypeSpec[gene] = { status:phenotype, reportedLabel:phenotype, mechanism:"demo" };
+    } else {
+      genotypeSpec[gene] = { phenotype, reportedLabel:phenotype, mechanism:"demo" };
+    }
   }
   const genotypeParam = params.genotype;
   if (genotypeParam) {
@@ -152,13 +182,19 @@ function replaceDemoUrlWithSubstances(demo) {
   if (!window.history || typeof window.history.replaceState !== 'function') return;
   const query = [
     ['substances', demo.drugs.map(slugForUrlDrugName).join(',')],
-    ...Object.entries(demo.genotype || {}).map(([gene, phenotype]) => ['genotype', `${gene}:${phenotype}`]),
+    ...Object.entries(demo.genotype || {}).map(([gene, phenotype]) => ['genotype', demoGenotypeUrlToken(gene, phenotype)]),
     ['tab', demo.tab || 'safety'],
   ].map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValue(value)}`).join('&');
   const path = (window.location.pathname || '').endsWith('/')
     ? `${window.location.pathname}index.html`
     : (window.location.pathname || 'index.html');
   window.history.replaceState(null, '', `${path}?${query}`);
+}
+
+function demoGenotypeUrlToken(gene, phenotype) {
+  if (gene === "G6PD deficiency" && phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "G6PD:deficiency";
+  if (gene === "RYR1/CACNA1S MH variant" && phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "RYR1:present";
+  return `${gene}:${phenotype}`;
 }
 
 function slugForUrlDrugName(name) {

@@ -39,10 +39,12 @@ function loadBundleContext() {
   vm.runInContext(`${match[1]}
 globalThis.__VALIDATE__ = {
   DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
+  GENOTYPE_RISK_EFFECTS, GENOTYPE_RISK_STATUS,
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
   ENZYME_ACTORS, TRANSPORTER_ACTORS, TRANSPORTER_DDI, PHARMGKB_EVIDENCE,
   FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS, EVIDENCE_TIER,
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
+  normalizePharmGxGene, normalizeUrlPhenotype,
 };`, context);
   return context.__VALIDATE__;
 }
@@ -174,6 +176,7 @@ for (const drug of data.DRUG_DB || []) {
 const linkSources = [
   ['README.md', readFileSync('README.md', 'utf8')],
   ['medication-classes.html', readFileSync('medication-classes.html', 'utf8')],
+  ['medication-class-examples.html', readFileSync('medication-class-examples.html', 'utf8')],
   ['data-views.html', readFileSync('data-views.html', 'utf8')],
 ];
 const savedLinkPattern = /https:\/\/diogonmpacheco\.github\.io\/medcheck\/index\.html\?[^)\s"']+|\.\/index\.html\?[^"\s']+/g;
@@ -189,11 +192,21 @@ for (const [source, text] of linkSources) {
         add('errors', 'saved_link_unresolved_substance', `${source} link ${raw} cannot resolve substance "${token}"`, `${source}:${token}`);
       }
     }
-    const genotype = url.searchParams.get('genotype');
-    if (genotype) {
+    const genotypes = url.searchParams.getAll('genotype');
+    for (const genotype of genotypes) {
       for (const pair of genotype.split(/[;,]/).filter(Boolean)) {
-        const [gene, phenotype] = pair.split(':').map(v => v && v.trim());
-        if (!gene || !phenotype || !data.GENOTYPE_EFFECTS[gene] || !data.GENOTYPE_EFFECTS[gene][phenotype]) {
+        const sep = pair.lastIndexOf(':');
+        const rawGene = sep >= 0 ? pair.slice(0, sep).trim() : pair.trim();
+        const rawPhenotype = sep >= 0 ? pair.slice(sep + 1).trim() : '';
+        const gene = rawGene && typeof data.normalizePharmGxGene === 'function'
+          ? (data.normalizePharmGxGene(rawGene) || rawGene.toUpperCase())
+          : (rawGene ? rawGene.toUpperCase() : '');
+        const parsed = typeof data.normalizeUrlPhenotype === 'function'
+          ? data.normalizeUrlPhenotype(gene, rawPhenotype)
+          : { gene, phenotype:rawPhenotype };
+        const resolvesMetabolismPhenotype = !!(gene && parsed?.phenotype && data.GENOTYPE_EFFECTS[gene]?.[parsed.phenotype]);
+        const resolvesRiskStatus = !!(gene && parsed?.status && data.GENOTYPE_RISK_EFFECTS?.[gene]?.effects?.[parsed.status]);
+        if (!resolvesMetabolismPhenotype && !resolvesRiskStatus) {
           add('errors', 'saved_link_unresolved_genotype', `${source} link ${raw} cannot resolve genotype "${pair}"`, `${source}:${pair}`);
         }
       }

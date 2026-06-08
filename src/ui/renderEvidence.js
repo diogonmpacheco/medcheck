@@ -8,7 +8,7 @@ function renderEvidenceExplorer() {
   if (!el) return;
 
   if (activeStack.length < 1) {
-    if (section) section.style.display = "none";
+    hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     return;
   }
 
@@ -37,7 +37,7 @@ function renderEvidenceExplorer() {
   }
 
   if (relevantStudies.size === 0 && reviewStudies.size === 0) {
-    if (section) section.style.display = "none";
+    hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     return;
   }
 
@@ -99,7 +99,10 @@ function renderQualityDashboard() {
   const el = document.getElementById("qualityBody");
   const countEl = document.getElementById("qualityCount");
   if (!el) return;
-  if (activeStack.length < 1) { if (section) section.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
+    return;
+  }
 
   const studies = Object.values(STUDY_DB || {});
   const publicStudies = studies.filter(s => s.public !== false);

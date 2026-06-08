@@ -23,21 +23,16 @@ MedCheck can launch as a public educational preview once the release gate passes
 - Added Data Views audit coverage to the release gate.
 - Added GitHub issue templates for external data review and app/UX feedback.
 - Removed dead genotype evidence helper code that still encoded the old quarantine behavior.
+- Added contextual report links on warning/evidence cards for external feedback.
+- Added a deep launch QA audit for five less-common metabolite/genotype scenarios and stale-panel detection.
+- Added `npm run launch:v1` as the single pre-push launch gate.
 
 ## Must Pass Before Publishing
 
 Run:
 
 ```sh
-node scripts/gen-stats.js
-node build.js
-node scripts/audit/data-views-audit.js
-node scripts/audit/evidence-review-ui-audit.js
-node scripts/smoke-check.js
-node scripts/regression-check.js
-node scripts/validate-db.js
-node scripts/release-check.js
-node scripts/check-evidence.js
+npm run launch:v1
 ```
 
 Expected result: all pass with no structural errors. Validation may still report pending-review evidence as informational output.
@@ -45,6 +40,7 @@ Expected result: all pass with no structural errors. Validation may still report
 ## Post-Launch Feedback Loop
 
 - Ask reviewers to use the GitHub issue templates rather than unstructured comments.
+- Prefer the contextual report links on warning/evidence cards because they include stack and evidence context.
 - Prioritize the top launch trust audit items first: pregnancy/obstetric, transplant, CABG, stroke/neurocritical, dialysis/CKD, and tacrolimus/CYP3A5.
 - Promote entries to professional-reviewed status only after source review by an appropriate pharmacist/physician/domain expert.
 

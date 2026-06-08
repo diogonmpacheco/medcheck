@@ -5,7 +5,10 @@ function renderInteractionGraph() {
   const sec = document.getElementById("graphSection");
   const el = document.getElementById("graphBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("graphSection", "graphBody");
+    return;
+  }
   if (sec) sec.style.display = "";
 
   const graph = getInteractionGraph();

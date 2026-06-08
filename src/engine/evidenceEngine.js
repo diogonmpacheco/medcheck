@@ -489,6 +489,13 @@ function studyCardHTML(study) {
   const unverified = study.verifyNote
     ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ Review note — ${study.verifyNote}</div>` : '';
   const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
+  const feedbackLink = renderFeedbackLink("Suggest evidence fix", {
+    type:"data",
+    title:`[Data review]: ${study.id || "evidence entry"}`,
+    focus:`Evidence entry ${study.id || ""}: ${study.title || "Untitled study"}`,
+    details:`Evidence ID: ${study.id || "unknown"}\nTitle: ${study.title || "Untitled study"}\nSource: ${study.source || study.journal || "not specified"}\nCurrent concern or correction:`,
+    evidenceRefs:study.id ? [study.id] : [],
+  });
 
   return `<div class="ev-card">
     <div class="ev-card-head">
@@ -503,5 +510,6 @@ function studyCardHTML(study) {
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
     ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">⏱ Onset: ${study.temporal.onset}${study.temporal.washout ? ` · Washout: ${study.temporal.washout}` : ''}</div>` : ''}
     ${unverified}${contradicts}${limits}
+    <div class="feedback-row">${feedbackLink}</div>
   </div>`;
 }

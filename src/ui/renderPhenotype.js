@@ -5,7 +5,10 @@ function renderPhenotypeAccumulation() {
   const sec = document.getElementById("phenoAccumSection");
   const el = document.getElementById("phenoAccumBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("phenoAccumSection", "phenoAccumBody");
+    return;
+  }
   if (sec) sec.style.display = "";
 
   const drugs = activeStack.map(n => DRUG_DB.find(d => d.name === n)).filter(Boolean);

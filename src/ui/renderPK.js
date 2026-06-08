@@ -6,10 +6,16 @@ function renderPKSimulation() {
   const sec = document.getElementById("pkSimSection");
   const el  = document.getElementById("pkSimBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("pkSimSection", "pkSimBody");
+    return;
+  }
 
   const drugsWithPK = activeStack.filter(n => getPKParams(n) || pkRelativeForDrug(n, { nPoints:20 }));
-  if (!drugsWithPK.length) { if (sec) sec.style.display = "none"; return; }
+  if (!drugsWithPK.length) {
+    hideSectionAndClear("pkSimSection", "pkSimBody");
+    return;
+  }
   if (sec) sec.style.display = "";
 
   let html = '<div class="pk-grid">';

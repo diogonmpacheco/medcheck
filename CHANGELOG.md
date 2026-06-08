@@ -4,6 +4,10 @@
 
 ### Launch Hardening
 
+- Added a deep pre-v1 launch QA audit covering five uncommon/hard scenarios: thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk.
+- Made the launch QA audit assert panel hygiene: visible panels must render content and hidden panels must not retain stale text from previous stacks.
+- Added contextual GitHub feedback links to warning and evidence cards so external reviewers can report data/evidence issues with stack and evidence context.
+- Added the public trust model document and `npm run launch:v1` final launch gate.
 - Updated launch audit, sitemap, release date, and generated stats to match the current bundle.
 - Expanded CI from basic smoke checks to the full release gate, evidence ledger check, severity report freshness check, and genotype gap audit.
 - Made the severity report deterministic by tying its generated header to the app release date instead of wall-clock time.

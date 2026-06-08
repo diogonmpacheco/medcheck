@@ -5,10 +5,16 @@ function renderWashoutCalendar() {
   const sec = document.getElementById("washoutSection");
   const el = document.getElementById("washoutBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("washoutSection", "washoutBody");
+    return;
+  }
 
   const events = computeWashoutCalendar(activeStack);
-  if (events.length === 0) { if (sec) sec.style.display = "none"; return; }
+  if (events.length === 0) {
+    hideSectionAndClear("washoutSection", "washoutBody");
+    return;
+  }
   if (sec) sec.style.display = "";
 
   const maxDays = Math.max(...events.map(e => e.days));
@@ -42,7 +48,10 @@ function renderAdverseBurden() {
   const sec = document.getElementById("burdenSection");
   const el = document.getElementById("burdenBody");
   if (!el) return;
-  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (activeStack.length < 1) {
+    hideSectionAndClear("burdenSection", "burdenBody");
+    return;
+  }
 
   const drugs = activeStack.map(n => DRUG_DB.find(d => d.name === n)).filter(Boolean);
   const burden = computeAdverseBurden(drugs);

@@ -35,6 +35,13 @@ function renderInteractions(interactions) {
     const reviewClass = reviewLabel === "professionally reviewed evidence" ? "review" : "warn";
     const findingTitle = buildFindingTitle(i);
     const pathwayLabel = i.enzyme || i.category || i.type || "pathway";
+    const feedbackLink = renderFeedbackLink("Report data issue", {
+      type:"data",
+      title:`[Data review]: ${i.drug1} + ${i.drug2}`,
+      focus:`Interaction warning: ${i.drug1} + ${i.drug2}`,
+      details:`Warning: ${i.effect || "No effect text"}\nMechanism: ${mechText || "Not specified"}\nSeverity shown: ${i.severity || "unknown"}`,
+      evidenceRefs:i.evidenceRefs || [],
+    });
 
     return `<div class="finding-card ${i.severity}">
       <div class="finding-top">
@@ -57,6 +64,7 @@ function renderInteractions(interactions) {
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
       ${hasEv ? `${evSummary}<div class="ev-summary-line"><span class="summary-jump" onclick="setTab('evidence')">Open Evidence tab</span> for citations and review status.</div>` : ''}
+      <div class="feedback-row">${feedbackLink}</div>
     </div>`;
   }).join("");
 }

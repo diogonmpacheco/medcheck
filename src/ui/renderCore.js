@@ -598,6 +598,96 @@ function toggleSection(id) {
   body.classList.toggle("open");
 }
 
+function hideSectionAndClear(sectionId, bodyId, countId = null) {
+  const section = document.getElementById(sectionId);
+  const body = bodyId ? document.getElementById(bodyId) : null;
+  const count = countId ? document.getElementById(countId) : null;
+  if (section) section.style.display = "none";
+  if (body) body.innerHTML = "";
+  if (count) count.textContent = "";
+}
+
+function currentStackShareUrl(tab = activeTab) {
+  const params = [];
+  if (activeStack.length) {
+    params.push(["substances", activeStack.map(name => {
+      const drug = getDrug(name);
+      return drug?.id || toGraphId(name);
+    }).join(",")]);
+  }
+  for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
+  if (tab) params.push(["tab", tab]);
+  const query = params
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
+    .join("&");
+  return `https://diogonmpacheco.github.io/medcheck/index.html${query ? `?${query}` : ""}`;
+}
+
+function activeGenotypeUrlTokens() {
+  const tokens = [];
+  const genotypeState = typeof activeGenotype !== "undefined" ? activeGenotype : {};
+  for (const [gene, phenotype] of Object.entries(genotypeState || {})) {
+    if (GENOTYPE_EFFECTS[gene] && phenotype && phenotype !== GENOTYPE_PHENOTYPE.NM) {
+      tokens.push(`${gene}:${genotypeTokenForUrl(phenotype)}`);
+    } else if (typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene] && phenotype === GENOTYPE_RISK_STATUS.PRESENT) {
+      tokens.push(riskMarkerTokenForUrl(gene));
+    }
+  }
+  return tokens;
+}
+
+function genotypeTokenForUrl(phenotype) {
+  if (phenotype === GENOTYPE_PHENOTYPE.PM) return "PM";
+  if (phenotype === GENOTYPE_PHENOTYPE.IM) return "IM";
+  if (phenotype === GENOTYPE_PHENOTYPE.UM) return "UM";
+  return String(phenotype || "");
+}
+
+function riskMarkerTokenForUrl(gene) {
+  if (gene === "G6PD deficiency") return "G6PD:deficiency";
+  if (gene === "RYR1/CACNA1S MH variant") return "RYR1:present";
+  return `${gene}:present`;
+}
+
+function encodeUrlStateValueLocal(value) {
+  return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
+}
+
+function buildMedCheckIssueUrl({ type = "data", title = "MedCheck feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
+  const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
+  const shareLink = currentStackShareUrl(activeTab || "safety");
+  const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
+  const labels = type === "bug" ? "bug" : "data-review";
+  const body = [
+    "## MedCheck context",
+    `- Stack: ${stack}`,
+    `- Share link: ${shareLink}`,
+    currentUrl ? `- Current URL: ${currentUrl}` : "",
+    focus ? `- Focus: ${focus}` : "",
+    evidenceRefs && evidenceRefs.length ? `- Evidence refs: ${evidenceRefs.join(", ")}` : "",
+    "",
+    "## What should change?",
+    details || "Describe the suspected issue, missing evidence, stale source, or confusing behavior.",
+    "",
+    "## Public sources",
+    "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
+    "",
+    "## Review note",
+    "MedCheck is educational, source-linked, and pending professional review. Do not include private patient data."
+  ].filter(Boolean).join("\n");
+  const params = new URLSearchParams({
+    title,
+    body,
+    labels,
+  });
+  return `https://github.com/diogonmpacheco/medcheck/issues/new?${params.toString()}`;
+}
+
+function renderFeedbackLink(label, options = {}) {
+  const href = buildMedCheckIssueUrl(options);
+  return `<a class="feedback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${escapeHtml(label)}</a>`;
+}
+
 // ── RENDER ALL ──
 function renderAll() {
   arrangeAdvancedSections();
@@ -621,19 +711,19 @@ function renderAll() {
     document.getElementById("metabSection").style.display = "";
     document.getElementById("pdSection").style.display = "";
   } else {
-    document.getElementById("foldSection").style.display = "none";
-    document.getElementById("metabSection").style.display = "none";
-    document.getElementById("pdSection").style.display = "none";
-    document.getElementById("cascadeSection").style.display = "none";
-    document.getElementById("evidenceSection").style.display = "none";
-    document.getElementById("qualitySection").style.display = "none";
-    document.getElementById("genotypeSection").style.display = "none";
-    document.getElementById("mechanisticSection").style.display = "none";
-    document.getElementById("phenoAccumSection").style.display = "none";
-    document.getElementById("pkSimSection").style.display = "none";
-    document.getElementById("graphSection").style.display = "none";
-    document.getElementById("washoutSection").style.display = "none";
-    document.getElementById("burdenSection").style.display = "none";
+    hideSectionAndClear("foldSection", "foldBody");
+    hideSectionAndClear("metabSection", "metabBody");
+    hideSectionAndClear("pdSection", "pdBody");
+    hideSectionAndClear("cascadeSection", "cascadeBody");
+    hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
+    hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
+    hideSectionAndClear("genotypeSection", "genotypeBody");
+    hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");
+    hideSectionAndClear("phenoAccumSection", "phenoAccumBody");
+    hideSectionAndClear("pkSimSection", "pkSimBody");
+    hideSectionAndClear("graphSection", "graphBody");
+    hideSectionAndClear("washoutSection", "washoutBody");
+    hideSectionAndClear("burdenSection", "burdenBody");
   }
   if (activeStack.length >= 2) {
     const risk = calcRisk();
@@ -650,12 +740,12 @@ function renderAll() {
     document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
-    document.getElementById("riskSection").style.display = "none";
-    document.getElementById("interSection").style.display = "none";
-    document.getElementById("comboSection").style.display = "none";
-    document.getElementById("transporterSection").style.display = "none";
-    document.getElementById("matrixSection").style.display = "none";
-    document.getElementById("altSection").style.display = "none";
+    hideSectionAndClear("riskSection", "riskBody");
+    hideSectionAndClear("interSection", "interBody", "interCount");
+    hideSectionAndClear("comboSection", "comboBody", "comboCount");
+    hideSectionAndClear("transporterSection", "transporterBody", "transporterCount");
+    hideSectionAndClear("matrixSection", "matrixBody");
+    hideSectionAndClear("altSection", "altBody");
   }
   renderSummaryBar();
   updateEmptyTabs();

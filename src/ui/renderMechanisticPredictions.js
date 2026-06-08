@@ -7,13 +7,13 @@ function renderMechanisticPredictions() {
   if (!sec || !el) return;
 
   if (!activeStack.length || typeof getMechanisticPredictions !== "function") {
-    sec.style.display = "none";
+    hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");
     return;
   }
 
   const predictions = getMechanisticPredictions(activeStack).filter(p => !p.documented);
   if (!predictions.length) {
-    sec.style.display = "none";
+    hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");
     return;
   }
 
