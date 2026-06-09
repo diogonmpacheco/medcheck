@@ -257,7 +257,7 @@ const DRUG_DB = [
  timing:"AM",
  props:{seizureRisk:1},
  routes:[{enzyme:"CYP2B6",fraction:0.7,evidence:{confidence:"moderate",sources:["FDA label"]}}],
- inh:[{target:"CYP2D6",strength:"strong",doseDependent:true,evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[{target:"CYP2D6",strength:"strong",doseDependent:true,evidenceRefs:["ev_bupropion_cyp2d6_fda"],evidence:{confidence:"high",sources:["FDA label"],refs:["ev_bupropion_cyp2d6_fda"]}}],
  ind:[],
  metInh:[{target:"CYP2D6",strength:"strong",evidence:{confidence:"moderate",sources:["literature"]}},{target:"CYP2B6",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}},{target:"CYP2C19",strength:"weak",evidence:{confidence:"moderate",sources:["literature"]}}],
  alts:[]},{id:"mirtazapine",
@@ -696,7 +696,7 @@ const DRUG_DB = [
  timing:"AM",
  props:{bleedingRisk:2},
  routes:[{enzyme:"CYP2C19",fraction:0.5,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP3A4",fraction:0.2,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP2B6",fraction:0.1,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"CYP1A2",fraction:0.05,evidence:{confidence:"moderate",sources:["FDA label"]}}],
- inh:[{target:"CYP2C8",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[{target:"CYP2C8",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2B6",strength:"moderate",evidenceRefs:["ev_clopidogrel_bupropion_cyp2b6_turpeinen2005"],evidence:{confidence:"high",sources:["clinical PK study","FDA label"],refs:["ev_clopidogrel_bupropion_cyp2b6_turpeinen2005"]}}],
  ind:[],
  metInh:[{target:"CYP2C8",strength:"strong",evidence:{confidence:"moderate",sources:["literature"]}}],
  prodrug:true,
@@ -4700,5 +4700,5 @@ function getDrug(name) {
   return DRUG_DB.find(d => d.name.toLowerCase() === lower) || null;
 }
 
-// ── KNOWN DDI PAIRS — clinically validated interactions the enzyme model can't capture ──
+// ── KNOWN DDI PAIRS — curated source-linked interactions the enzyme model can't capture ──
 // Each: [drugA, drugB, severity, category, mechanism, effect]

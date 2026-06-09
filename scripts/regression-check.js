@@ -563,6 +563,57 @@ assert(urlNullAudit.legacy === 'null', 'URL CYP2D6:null should preserve inherite
 assert(urlNullAudit.detail.mechanism === 'inherited_no_function', 'URL CYP2D6:null should preserve no-function semantics');
 assert(urlNullAudit.tab === 'pgx', 'URL state should still restore the requested tab');
 
+const publicNebivololNullDemoAudit = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety');
+  loadUrlDemoState();
+  const interactions = findInteractions();
+  const sameEnzymeInhibitor = interactions.find(i =>
+    i.drug1 === 'Bupropion' &&
+    i.drug2 === 'Nebivolol' &&
+    i.enzyme === 'CYP2D6'
+  );
+  const bidirectionalPair = interactions.find(i =>
+    i.drug1 === 'Bupropion' &&
+    i.drug2 === 'Clopidogrel' &&
+    i.evidenceRefs?.includes('ev_clopidogrel_bupropion_cyp2b6_turpeinen2005')
+  );
+  return {
+    activeStack,
+    activeTab,
+    legacy:userGenetics.CYP2D6,
+    phenotype:activeGenotype.CYP2D6,
+    mechanism:activeGenotypeDetails.CYP2D6?.mechanism,
+    nebivololFold:calcFold('Nebivolol').fold,
+    bupropionFold:calcFold('Bupropion').fold,
+    hasSameEnzymeInhibitor:!!sameEnzymeInhibitor,
+    bidirectionalMechanism:bidirectionalPair?.mechanism || '',
+    bidirectionalRefs:bidirectionalPair?.evidenceRefs || [],
+    hasBidirectionalPair:!!bidirectionalPair,
+  };
+})()`);
+assert(
+  publicNebivololNullDemoAudit.activeStack.join('|') === 'Bupropion|Clopidogrel|Nebivolol',
+  'Public bupropion+clopidogrel+nebivolol demo should load all three drugs'
+);
+assert(publicNebivololNullDemoAudit.activeTab === 'safety', 'Public nebivolol null demo should open Summary tab');
+assert(publicNebivololNullDemoAudit.legacy === 'null', 'Public nebivolol null demo should preserve CYP2D6 null legacy state');
+assert(publicNebivololNullDemoAudit.phenotype === 'poor_metabolizer', 'Public nebivolol null demo should calculate with PM phenotype bucket');
+assert(publicNebivololNullDemoAudit.mechanism === 'inherited_no_function', 'Public nebivolol null demo should preserve inherited no-function semantics');
+assert(publicNebivololNullDemoAudit.nebivololFold === 23, 'CYP2D6 null should use the observed nebivolol null fold');
+assert(publicNebivololNullDemoAudit.bupropionFold >= 1.6 && publicNebivololNullDemoAudit.bupropionFold <= 1.8, 'Clopidogrel should shift bupropion exposure through CYP2B6');
+assert(!publicNebivololNullDemoAudit.hasSameEnzymeInhibitor, 'CYP2D6-null nebivolol should not show a bupropion CYP2D6-inhibition card');
+assert(publicNebivololNullDemoAudit.hasBidirectionalPair, 'Public nebivolol null demo should include source-linked bupropion+clopidogrel pathway context');
+assert(publicNebivololNullDemoAudit.bidirectionalMechanism.includes('Hydroxybupropion is harder to predict'), 'Public nebivolol null demo should not claim hydroxybupropion is simply lower in CYP2D6 null context');
+assert(publicNebivololNullDemoAudit.bidirectionalRefs.includes('ev_bupropion_cyp2d6_hesse1996'), 'Public nebivolol null demo should cite hydroxybupropion CYP2D6 level/dose context');
+
 const urlReportedValueAudit = window.eval(`(() => {
   activeStack = [];
   activeGenotypeDetails = {};

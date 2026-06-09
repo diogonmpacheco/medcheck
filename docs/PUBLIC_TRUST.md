@@ -1,6 +1,6 @@
 # PharmTrace Public Trust Model
 
-Generated: 2026-06-08
+Generated: 2026-06-09
 
 ## Launch Status
 
@@ -8,16 +8,16 @@ PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in 
 
 Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
-Status: pre-v1, source-linked, actively validated, and pending future professional clinical review.
+Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
 PharmTrace is a source-linked educational preview. It is designed to make pharmacology, pharmacogenomics, metabolites, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
 
 Current evidence status:
 
-- 455 `STUDY_DB` entries are source-linked.
-- 455 entries are pending professional review.
+- 456 `STUDY_DB` entries are source-linked.
+- 456 entries are pending professional review.
 - 0 entries are professionally reviewed.
-- `reviewRequired:true` is an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+- 295 entries are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final until reviewed.
 
 ## What A Reviewer Should Check

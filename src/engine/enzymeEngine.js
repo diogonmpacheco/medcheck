@@ -1,6 +1,10 @@
 // MedCheck Engine — Enzyme occupancy, inhibition fold-change, gut extraction
 // Phase A: modular source — concatenated by build.js
 
+function inhibitionEvidenceRefs(inh) {
+  return [...new Set([...(inh.evidenceRefs || []), ...(inh.evidence?.refs || [])])];
+}
+
 function getAllInhibitions(drug) {
   // Combine parent drug inhibitions + metabolite-mediated inhibitions
   // Returns [{target, strength, mechanism, doseDependent, timeDependent, ...}] using normalized DRUG_DB field names
@@ -8,7 +12,8 @@ function getAllInhibitions(drug) {
     target: i.target, strength: i.strength,
     mechanism: i.mechanism, doseDependent: i.doseDependent,
     timeDependent: i.timeDependent, autoInhibition: i.autoInhibition,
-    evidence: i.evidence
+    evidence: i.evidence,
+    evidenceRefs: inhibitionEvidenceRefs(i)
   }));
   if (drug.metInh && drug.metInh.length) {
     for (const mi of drug.metInh) {
@@ -16,13 +21,17 @@ function getAllInhibitions(drug) {
       if (!existing) {
         allInh.push({target: mi.target, strength: mi.strength,
           mechanism: mi.mechanism, doseDependent: mi.doseDependent,
-          timeDependent: mi.timeDependent, evidence: mi.evidence});
+          timeDependent: mi.timeDependent, evidence: mi.evidence,
+          evidenceRefs: inhibitionEvidenceRefs(mi)});
       } else {
+        existing.evidenceRefs = [...new Set([...(existing.evidenceRefs || []), ...inhibitionEvidenceRefs(mi)])];
+        if (!existing.evidence && mi.evidence) existing.evidence = mi.evidence;
         const existStr = INH_MULT[existing.strength] || 1;
         const newStr = INH_MULT[mi.strength] || 1;
         if (newStr > existStr) {
           existing.strength = mi.strength;
           existing.mechanism = mi.mechanism || existing.mechanism;
+          existing.evidence = mi.evidence || existing.evidence;
         }
       }
     }

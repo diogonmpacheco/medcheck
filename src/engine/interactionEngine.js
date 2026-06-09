@@ -116,6 +116,8 @@ function findInteractions() {
       for (const inh of allInh) {
         for (const route of victim.routes) {
           if (inh.target === route.enzyme) {
+            const victimGeno = userGenetics[route.enzyme];
+            if (victimGeno === "null") continue;
             const key = [activeStack[i], activeStack[j], inh.target, "inh"].join("|");
             const knownKey = [activeStack[i], activeStack[j], "known"].sort().join("|");
             if (!seen.has(key) && !seen.has(knownKey)) {
@@ -143,20 +145,17 @@ function findInteractions() {
               }
 
               // GENOTYPE CONTEXT: if user has reduced enzyme, DDI compounds the effect
-              const victimGeno = userGenetics[route.enzyme];
               let genoMultiplier = 1;
               if (victimGeno === "poor") genoMultiplier = 1.5; // PM + inhibitor = functional null
               else if (victimGeno === "intermediate") genoMultiplier = 1.2;
-              const inheritedNull = victimGeno === "null";
-              const effectiveFold = inheritedNull ? 1 : impactFold * genoMultiplier;
+              const effectiveFold = impactFold * genoMultiplier;
 
               // DYNAMIC SEVERITY: continuous scoring, not just categorical
               let sevScore = 0;
               sevScore += Math.min(effectiveFold - 1, 5) * 20; // up to 100 pts for fold change
-              if (!inheritedNull && isProdrug && route.fraction >= 0.3) sevScore += 30; // prodrug activation blocked
-              if (!inheritedNull && inh.mechanism === "mechanism_based") sevScore += 15; // irreversible
+              if (isProdrug && route.fraction >= 0.3) sevScore += 30; // prodrug activation blocked
+              if (inh.mechanism === "mechanism_based") sevScore += 15; // irreversible
               if (victimGeno === "poor") sevScore += 20; // genetic vulnerability
-              if (inheritedNull) sevScore += 8; // context note, but do not remove the same enzyme twice
               if (victim.props && victim.props.narrowTherapeutic) sevScore += 25; // narrow TI drug
 
               // Evidence confidence adjusts severity display
@@ -179,9 +178,7 @@ function findInteractions() {
                 drug1: activeStack[i], drug2: activeStack[j], enzyme: inh.target,
                 type: isProdrug ? "prodrug-inhibition" : "inhibition",
                 strength: inh.strength,
-                effect: inheritedNull
-                  ? `${route.enzyme} already modeled as inherited null; ${activeStack[i]} inhibition should not add another ${route.enzyme} exposure jump`
-                  : isProdrug
+                effect: isProdrug
                   ? `↓ ${activeStack[j]} efficacy (prodrug activation blocked via ${inh.target})${doseDep}`
                   : `↑ ${activeStack[j]} levels (~${effectiveFold.toFixed(1)}× AUC)${doseDep}`,
                 severity: sev, sevScore: Math.round(sevScore),
@@ -191,11 +188,10 @@ function findInteractions() {
                 mechanismBased: inh.mechanism === "mechanism_based",
                 doseDependent: !!inh.doseDependent,
                 confidence: confidence,
+                evidenceRefs: inh.evidenceRefs || inh.evidence?.refs || [],
                 enzymeCapacity: enzymeCapacityMap[inh.target] || null,
-                mechanism: inheritedNull
-                  ? `${route.enzyme} inherited null already removes the modeled ${route.enzyme} capacity; ${activeStack[i]} inhibition is not stacked again`
-                  : isProdrug
-                    ? `${activeStack[i]} ${inh.strength}ly inhibits ${inh.target} (${Math.round(route.fraction*100)}% of ${activeStack[j]} activation), reducing active metabolite formation${inh.mechanism === "mechanism_based" ? " [irreversible MBI]" : ""}`
+                mechanism: isProdrug
+                  ? `${activeStack[i]} ${inh.strength}ly inhibits ${inh.target} (${Math.round(route.fraction*100)}% of ${activeStack[j]} activation), reducing active metabolite formation${inh.mechanism === "mechanism_based" ? " [irreversible MBI]" : ""}`
                   : `${activeStack[i]} ${inh.strength}ly inhibits ${inh.target}, which metabolizes ${Math.round(route.fraction*100)}% of ${activeStack[j]} → ~${effectiveFold.toFixed(1)}× blood levels${inh.mechanism === "mechanism_based" ? " [irreversible MBI]" : ""}${victimGeno && victimGeno !== "normal" ? ` [${victimGeno} metabolizer — compounded]` : ""}`
               });
             }
@@ -582,6 +578,7 @@ function findInteractions() {
       const victimRoute = victimDrug ? (victimDrug.routes || []).find(r => r.enzyme === chain.enzyme) : null;
       const victimIsProdrug = victimDrug && victimDrug.prodrug;
       const fraction = victimRoute ? victimRoute.fraction : 0;
+      if (userGenetics[chain.enzyme] === "null") continue;
 
       // Only report if meaningful impact (metabolite on a minor pathway is not clinically significant)
       if (fraction < 0.1 && !victimIsProdrug) continue;

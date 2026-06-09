@@ -1,6 +1,6 @@
 # PharmTrace V1 Launch Closure
 
-Generated: 2026-06-08
+Generated: 2026-06-09
 
 ## Launch Position
 
@@ -8,9 +8,9 @@ PharmTrace can launch with the MedCheck Engine as a public educational preview o
 
 ## Data Integration Decision
 
-- All 455 `STUDY_DB` entries have source identifiers.
-- All 455 `STUDY_DB` entries are pending professional review.
-- 294 launch-enrichment entries remain marked `reviewRequired:true` as an internal enrichment/scoring control.
+- All 456 `STUDY_DB` entries have source identifiers.
+- All 456 `STUDY_DB` entries are pending professional review.
+- 295 launch-enrichment entries remain marked `reviewRequired:true` as an internal enrichment/scoring control.
 - Internal launch-enrichment entries are calculation-bearing: support-key evidence feeds graph confidence and DDI evidence-profile calculations.
 - 188 severe/critical interaction rows are linked only to pending-review evidence. These are intentionally kept in the public preview for feedback and discovery.
 - 0 entries are currently marked as professionally reviewed.

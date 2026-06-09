@@ -78,7 +78,7 @@ const KNOWN_DDI = [
   {drug1:"Clopidogrel",drug2:"Fluconazole",severity:"moderate",category:"prodrug",mechanism:"Fluconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",effect:"↓ Clopidogrel efficacy",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
   {drug1:"Clopidogrel",drug2:"Voriconazole",severity:"moderate",category:"prodrug",mechanism:"Voriconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",effect:"↓ Clopidogrel efficacy",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
   // ── Bupropion metabolite interactions ──
-  {drug1:"Bupropion",drug2:"Clopidogrel",severity:"mild",category:"prodrug",mechanism:"Bupropion/hydroxybupropion weakly inhibit CYP2C19, one pathway in clopidogrel activation. CYP2D6 inhibition is not the clopidogrel activation mechanism.",effect:"Possible small reduction in clopidogrel activation; monitor context rather than treating as a severe interaction",evidence:{confidence:"low",sources:["mechanistic review"]}},
+  {drug1:"Bupropion",drug2:"Clopidogrel",severity:"mild",category:"bidirectional_pk",mechanism:"Clopidogrel can inhibit CYP2B6 bupropion hydroxylation, so parent bupropion can rise. Hydroxybupropion is harder to predict in CYP2D6 PM/null: less may be formed, but what is formed may clear more slowly. Bupropion/hydroxybupropion may weakly slow CYP2C19-dependent clopidogrel activation, but that signal is less established.",effect:"Context-dependent pathway shift; review the stack when CYP2D6-sensitive beta-blockers such as nebivolol are also present. Nebivolol is not expected to meaningfully reduce clopidogrel activation.",evidence:{confidence:"moderate",sources:["clinical PK study","FDA label"]},evidenceRefs:["ev_clopidogrel_bupropion_cyp2b6_turpeinen2005","ev_bupropion_cyp2d6_hesse1996"]},
   {drug1:"Bupropion",drug2:"Tamoxifen",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tamoxifen conversion to active endoxifen",effect:"↓↓ Tamoxifen efficacy — contraindicated",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_tamoxifen_cyp2d6_cpic"]},
   {drug1:"Bupropion",drug2:"Codeine",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking codeine conversion to morphine",effect:"↓↓ Codeine efficacy — no analgesic effect",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_codeine_cyp2d6_cpic"]},
   {drug1:"Bupropion",drug2:"Tramadol",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tramadol conversion to active O-desmethyltramadol. Also both lower seizure threshold",effect:"↓↓ Tramadol efficacy + ↑ seizure risk",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_bupropion_cyp2d6_kotlyar2005"]},
@@ -836,7 +836,7 @@ const KNOWN_DDI = [
     severity: "severe",
     category: "metabolic",
     mechanism: "Potent mechanism-based inhibition of hepatic microsomal CYP3A4 complexes.",
-    effect: "↑↑ Spikes systemic maraviroc levels significantly. Mandatory clinical action: reduce maraviroc dose from 300mg twice daily down to 150mg twice daily.",
+    effect: "↑↑ Can raise systemic maraviroc levels significantly. FDA-label review point: dose reduction from 300mg twice daily to 150mg twice daily is commonly specified with strong CYP3A inhibitors.",
     evidence: {
       confidence: "high",
       sources: [

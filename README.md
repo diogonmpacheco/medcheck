@@ -1,12 +1,12 @@
 # PharmTrace
 
-**AI-assisted medication safety and pharmacogenomics platform.**
+**AI-assisted medication safety and pharmacogenomics platform in active development.**
 
-PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in active development.
+PharmTrace is a pre-v1 project for exploring medication-safety mechanisms, pharmacogenomics, and source-linked evidence.
 
 Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
-Status: pre-v1, source-linked, actively validated, and pending future professional clinical review.
+Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
 **Live app:** [diogonmpacheco.github.io/PharmTrace](https://diogonmpacheco.github.io/PharmTrace/)
 
@@ -28,7 +28,7 @@ This project was initially developed under the working name “MedCheck”. The 
 
 The GitHub repository and Pages URL now use `PharmTrace`. Some internal engine identifiers still use `MEDCHECK_*` because they name the first module and preserve build compatibility.
 
-Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-04**.
+Data version: **Drug DB v1.2.3**. All evidence remains pending professional clinical review.
 
 ---
 
@@ -44,14 +44,14 @@ These links open the live app with example medication stacks already loaded:
 | [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=simvastatin,clarithromycin&tab=pk) | Clarithromycin blocks one of simvastatin's main cleanup routes. Simvastatin can rise higher than intended, increasing muscle-toxicity concern. |
 | [Older-adult burden](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Each medicine can add sedation, confusion, or fall risk. The important signal is the combined burden, not only one pair of drugs. |
 
-For deeper v1 QA, these examples stress problems that are often missed because the danger is not only the parent drug name. It may come from what the body turns the drug into, what the body fails to clear, or a genetic weakness that only appears when the pathway is modeled.
+The deeper examples below stress cases that are often missed when a checker only looks at parent drug names. The important signal may come from an active metabolite, a toxic metabolite, a blocked clearance pathway, or a genetic no-function state.
 
 | Deep demo | Why it is often missed |
 |---|---|
 | [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Allopurinol can push azathioprine down a more toxic route. If TPMT or NUDT15 cleanup is weak, the toxic 6-TGN metabolite can build up and threaten bone marrow. |
 | [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, that active cancer-drug metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
 | [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; if that pathway is weak, diarrhea and low-blood-count risk can rise. |
-| [Bupropion + codeine + CYP2D6 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=pgx) | Bupropion is not just the parent pill: its hydroxybupropion metabolite helps block CYP2D6. Codeine needs CYP2D6 to become morphine, so pain relief can drop when the pathway is blocked or genetically slow. |
+| [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety) | This stack hides several problems at once. Clopidogrel can slow the pathway that turns bupropion into hydroxybupropion, so parent bupropion may rise. Hydroxybupropion is harder to predict: less may be made, but without functional CYP2D6, what is made may clear more slowly. Nebivolol is the clearest risk because it relies heavily on CYP2D6 for clearance; without that pathway, nebivolol exposure can climb sharply. Clopidogrel activation may also be slightly weaker if CYP2C19 is slowed, but that signal is less certain. |
 | [G6PD oxidant stack](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | These drugs look unrelated by name, but all can stress red blood cells. With G6PD deficiency, that shared stress can trigger red-cell breakdown or methemoglobinemia. |
 | [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1 risk can point to malignant hyperthermia susceptibility during anesthesia. |
 
@@ -87,13 +87,13 @@ PharmTrace is intentionally conservative about what it claims. MedCheck Engine P
 
 <!-- MEDCHECK_STATS_START -->
 - **625 drugs** in DRUG_DB
-- **455 evidence entries** in STUDY_DB (274 with PMIDs; 455 with source identifiers) — **455 pending professional review**, **0 professionally reviewed**
+- **456 evidence entries** in STUDY_DB (275 with PMIDs; 456 with source identifiers) — **456 pending professional review**, **0 professionally reviewed**
 - **627 interaction pairs** (323 severe, 280 moderate, 24 mild)
 - **1171 metabolite entries** across **467 parent substances** (33 first-class metabolite actors)
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2169 KB** generated bundle (34317 lines)
+- **2171 KB** generated bundle (34346 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -134,4 +134,4 @@ This attribution request is appreciated, but the license remains permissive.
 
 ## Disclaimer
 
-PharmTrace and the MedCheck Engine are for **educational exploration only**. They are not medical advice, not a clinical decision support system, not professionally clinically reviewed, and do not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making changes to medications.
+PharmTrace and the MedCheck Engine are for **educational exploration only**. They are not medical advice, not a clinical decision support system, not professionally reviewed, and do not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making changes to medications.

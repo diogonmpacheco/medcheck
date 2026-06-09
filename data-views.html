@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PharmTrace Data Views | MedCheck Engine Genotype, Clinical Action & Gene Ranking Explorer</title>
-  <meta name="description" content="Explore PharmTrace MedCheck Engine data from alternate entry points: genotype lookup, clinical action groups, and gene severity ranking.">
+  <title>PharmTrace Data Views | MedCheck Engine Genotype, Review Action & Gene Ranking Explorer</title>
+  <meta name="description" content="Explore PharmTrace MedCheck Engine data from alternate entry points: genotype lookup, review action groups, and gene severity ranking.">
   <link rel="canonical" href="https://diogonmpacheco.github.io/PharmTrace/data-views.html">
   <style>
     :root{
@@ -125,7 +125,7 @@
       </div>
       <nav aria-label="Draft views">
         <button class="nav-btn active" data-view="genotype"><span>GT</span><span>Genotype lookup<small>Gene-first substance index</small></span></button>
-        <button class="nav-btn" data-view="action"><span>CA</span><span>Clinical action<small>Decision-first grouping</small></span></button>
+        <button class="nav-btn" data-view="action"><span>RA</span><span>Review actions<small>Discovery grouping</small></span></button>
         <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Severity and reach</small></span></button>
       </nav>
       <div class="view-nav-note">Alternate entry points for exploring MedCheck Engine data. Example links open the PharmTrace app with focused medication stacks.</div>
@@ -255,7 +255,7 @@
     const state = { geneShowAll:false, actionShowAll:{}, rankingShowAll:false };
     const copy = {
       genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
-      action:["Clinical Action View","Group the database by what a clinician does next: avoid, adjust dose, monitor, switch, or document no expected action."],
+      action:["Review Action View","Group source-linked rows by the next review question: avoid, adjust dose, monitor, switch, or document no expected action. These groupings are discovery prompts, not clinical instructions."],
       ranking:["Gene Ranking","Rank genotype-linked genes by substance reach, metabolite coverage, modulators, transporter rows, evidence, and high-severity burden."],
     };
     const actionGroups = [["Avoid","red"], ["Adjust Dose","amber"], ["Switch/Alternative","violet"], ["Monitor","green"], ["Informational",""]];

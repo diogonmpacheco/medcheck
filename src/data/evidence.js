@@ -906,6 +906,29 @@ const STUDY_DB = {
     verified:false
   },
 
+  "ev_clopidogrel_bupropion_cyp2b6_turpeinen2005": {
+    id:"ev_clopidogrel_bupropion_cyp2b6_turpeinen2005",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Effect of clopidogrel and ticlopidine on CYP2B6 activity as measured by bupropion hydroxylation",
+    year:2005, source:"Turpeinen et al.", journal:"Clin Pharmacol Ther",
+    pmid:"15961986", doi:"10.1016/j.clpt.2005.02.010",
+    url:"https://pubmed.ncbi.nlm.nih.gov/15961986/",
+    studyDesign:"healthy-volunteer crossover probe study", n:12,
+    phenotypes:["CYP2B6"],
+    quantifiedEffects:{
+      bupropionAucFoldWithClopidogrel:1.6,
+      hydroxybupropionAucChangePctWithClopidogrel:-52,
+      note:"Clopidogrel inhibited CYP2B6-catalyzed bupropion hydroxylation, increasing parent bupropion exposure while reducing hydroxybupropion exposure in the probe study. In CYP2D6 PM/null contexts, lower hydroxybupropion formation and potentially slower hydroxybupropion processing point in opposite directions; net metabolite exposure is not calibrated."
+    },
+    temporal:{mechanism:"CYP2B6_bupropion_hydroxylation_inhibition"},
+    supports:["clopidogrel_inhibits_CYP2B6","clopidogrel_bupropion_parent_metabolite_shift"],
+    contradicts:[],
+    limitations:["Small healthy-volunteer probe study","Does not directly test the full bupropion + clopidogrel + nebivolol stack","Does not quantify net hydroxybupropion exposure when CYP2D6 function is absent"],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Mechanistic chain is source-linked but pending professional clinical review."
+  },
+
   "ev_clopidogrel_active_thiol_kim2014": {
     id:"ev_clopidogrel_active_thiol_kim2014",
     type:EVIDENCE_TIER.CLINICAL_PK,
@@ -6127,7 +6150,7 @@ const STUDY_DB = {
     n: null,
     phenotypes: [],
     quantifiedEffects: {
-      note: "Delineates mandatory clinical action guidelines when handling structural P-gp systemic clearance modifiers."
+      note: "Summarizes label-directed review points for structural P-gp systemic clearance modifiers."
     },
     temporal: {
       mechanism: "Intestinal transport block leading to immediate hyper-absorption cascades."

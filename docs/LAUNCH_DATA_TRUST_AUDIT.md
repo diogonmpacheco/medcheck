@@ -1,6 +1,6 @@
 # Launch Data Trust Audit
 
-Audit date: 2026-06-06
+Audit date: 2026-06-09
 
 ## Scope
 
@@ -11,14 +11,14 @@ This audit checked the generated launch bundle (`index.html`) after rebuilding f
 | Metric | Count |
 | --- | ---: |
 | Drugs in `DRUG_DB` | 625 |
-| Evidence entries in `STUDY_DB` | 455 |
-| Public evidence entries | 453 |
-| Public source-linked evidence entries | 453 |
-| Pending professional review entries | 453 |
+| Evidence entries in `STUDY_DB` | 456 |
+| Public evidence entries | 454 |
+| Public source-linked evidence entries | 454 |
+| Pending professional review entries | 454 |
 | Professional-reviewed evidence entries | 0 |
-| Internal `reviewRequired:true` enrichment entries | 294 |
-| Internal enrichment entries feeding graph calculations | 228 |
-| Internal enrichment entries feeding DDI evidence profiles | 154 |
+| Internal `reviewRequired:true` enrichment entries | 295 |
+| Internal enrichment entries feeding graph calculations | 229 |
+| Internal enrichment entries feeding DDI evidence profiles | 155 |
 | Interaction pairs after fixes | 627 |
 | Severe/critical interaction pairs after fixes | 323 |
 | Severe/critical pairs linked only to pending-review evidence | 188 |
@@ -62,9 +62,9 @@ The remaining queue is expected launch review work, not a structural data failur
 
 | Queue | Count |
 | --- | ---: |
-| Public evidence entries pending professional review | 453 |
-| `reviewRequired:true` evidence entries | 294 |
-| Internal review-required entries with PMID, DOI, or URL | 294 |
+| Public evidence entries pending professional review | 454 |
+| `reviewRequired:true` evidence entries | 295 |
+| Internal review-required entries with PMID, DOI, or URL | 295 |
 | Pending-review entries accidentally marked professionally reviewed | 0 |
 | Pending-review entries hidden from evidence UI badges | 0 |
 
@@ -72,31 +72,31 @@ The internal `reviewRequired:true` subset identifies enrichment entries that sti
 
 ## Top 25 Human-Review Priorities
 
-1. `ev_pregnancy_obstetric_workflow` - Pregnancy/obstetric workflow coverage; weighted DDI severity score 68.
-2. `ev_transplant_perioperative_workflow` - Transplant perioperative/immunosuppression workflow coverage; score 62.
-3. `ev_cabg_perioperative_medications` - CABG/cardiac surgery perioperative medications; score 59.
-4. `ev_stroke_neurocritical_workflow` - Stroke/thrombolysis/neurocritical workflow coverage; score 55.
-5. `ev_dialysis_advanced_ckd_workflow` - Dialysis/advanced CKD workflow coverage; score 43.
-6. `ev_tacrolimus_cyp3a5_consensus` - CPIC CYP3A5/tacrolimus dosing guideline; score 43.
-7. `ev_apalutamide_induction_label` - Apalutamide CYP/UGT/transporter label; score 34.
-8. `ev_coc_label` - Combined oral contraceptive enzyme induction and lamotrigine label; score 34.
-9. `ev_enzalutamide_induction_label` - Enzalutamide CYP induction label; score 34.
-10. `ev_icu_sepsis_shock_workflow` - ICU/sepsis/shock workflow coverage; score 34.
-11. `ev_fluoroquinolone_cation_absorption_label` - Fluoroquinolone cation-chelation label; score 27.
-12. `ev_everolimus_cyp3a_pgp_label` - Everolimus CYP3A4/P-gp label; score 24.
-13. `ev_insulin_glargine_beta_blocker_label` - Insulin glargine hypoglycemia masking context; score 24.
-14. `ev_nitrate_pde5_label` - Nitrate/PDE5 contraindication label; score 24.
-15. `ev_cobicistat_cyp3a_label` - Cobicistat strong CYP3A4 inhibition label; score 23.
-16. `ev_dofetilide_renal_cation_label` - Dofetilide renal cation transport contraindications; score 20.
-17. `ev_lorlatinib_cyp3a_label` - Lorlatinib CYP3A inducer/substrate label; score 19.
-18. `ev_paxlovid_cyp3a_label` - Paxlovid CYP3A inhibition/inducer contraindications; score 19.
-19. `ev_maribavir_label` - Maribavir UL97/CYP3A/P-gp label; score 18.
-20. `ev_edoxaban_p_gp_fda` - Edoxaban P-gp transport scaling factors; score 17.
-21. `ev_dronedarone_cyp3a_pgp_label` - Dronedarone CYP3A4/P-gp interactions label; score 16.
-22. `ev_levothyroxine_absorption_label` - Levothyroxine absorption-reduction label; score 16.
-23. `ev_stimulant_maoi_fda` - Stimulant/MAOI contraindication label; score 16.
-24. `ev_erlotinib_ppi_absorption` - Erlotinib/PPI pharmacokinetic evidence; score 17.
-25. `ev_rilpivirine_acid_cyp3a_qt_label` - Rilpivirine acid/CYP3A/QT context label; score 15.
+1. `ev_pregnancy_obstetric_workflow` - Pregnancy and obstetric emergency medication workflow coverage; score 70.
+2. `ev_transplant_perioperative_workflow` - Transplant perioperative and immunosuppression workflow coverage; score 64.
+3. `ev_maoi_ssri_serotonin` - Serotonin syndrome clinical review and diagnostic criteria; score 62.
+4. `ev_cabg_perioperative_medications` - CABG/cardiac surgery perioperative medication coverage; score 61.
+5. `ev_stroke_neurocritical_workflow` - Stroke/thrombolysis/neurocritical workflow coverage; score 57.
+6. `ev_mdma_meth_cyp2d6_review` - MDMA, methamphetamine, and CYP2D6 pharmacogenetics review; score 48.
+7. `ev_dialysis_advanced_ckd_workflow` - Dialysis/advanced CKD medication workflow coverage; score 45.
+8. `ev_tacrolimus_cyp3a5_consensus` - CPIC CYP3A5/tacrolimus dosing guideline; score 45.
+9. `ev_qt_torsades_tisdale2016` - Drug-induced QT prolongation and torsades pharmacist review; score 41.
+10. `ev_apalutamide_induction_label` - Apalutamide CYP/UGT/transporter label; score 36.
+11. `ev_coc_label` - Combined oral contraceptive enzyme induction and lamotrigine label; score 36.
+12. `ev_enzalutamide_induction_label` - Enzalutamide CYP induction label; score 36.
+13. `ev_icu_sepsis_shock_workflow` - ICU/sepsis/shock medication workflow coverage; score 36.
+14. `ev_simvastatin_label_cyp3a4` - Simvastatin contraindicated and dose-limited interactions label; score 30.
+15. `ev_fluoroquinolone_cation_absorption_label` - Fluoroquinolone cation-chelation label; score 29.
+16. `ev_everolimus_cyp3a_pgp_label` - Everolimus narrow-index CYP3A4/P-gp interactions label; score 26.
+17. `ev_insulin_glargine_beta_blocker_label` - Insulin glargine hypoglycemia masking context; score 26.
+18. `ev_nitrate_pde5_label` - Nitrate/PDE5 inhibitor contraindication label; score 26.
+19. `ev_sodium_oxybate_cns_depressants_label` - Sodium oxybate alcohol/CNS depressant contraindication label; score 26.
+20. `ev_cobicistat_cyp3a_label` - Cobicistat strong CYP3A4 inhibition label; score 25.
+21. `ev_rosuvastatin_label` - Rosuvastatin OATP1B1/BCRP inhibitor interactions label; score 23.
+22. `ev_dofetilide_renal_cation_label` - Dofetilide renal cation transport contraindications; score 22.
+23. `ev_maoi_ssri_serotonin_fda` - FDA labels for MAOI contraindication with serotonergic agents; score 22.
+24. `ev_lorlatinib_cyp3a_label` - Lorlatinib CYP3A inducer/substrate label; score 21.
+25. `ev_paxlovid_cyp3a_label` - Paxlovid CYP3A inhibition and strong inducer contraindications; score 21.
 
 ## Validation Commands
 
