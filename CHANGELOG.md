@@ -1,5 +1,13 @@
 # Diognosis Changelog
 
+## v0.1.0-alpha.1 — 2026-06-10
+
+### First Public Technical Preview
+
+- Starts Diognosis public pre-v1 versioning at `v0.1.0-alpha.1` after the platform rename and LinkedIn/GitHub positioning cleanup.
+- Keeps MedCheck Engine as the first module name while presenting Diognosis as the broader source-linked medication safety and pharmacogenomics platform.
+- Preserves the historical `v3.x` entries below as internal engine-development milestones before the public alpha line.
+
 ## Unreleased — 2026-06-04
 
 ### Launch Hardening

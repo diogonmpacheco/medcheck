@@ -70,7 +70,7 @@ const dom = new JSDOM(html, {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 
-assert(window.eval('MEDCHECK_VERSION.engine') === '3.5.5', 'Regression build loaded wrong engine version');
+assert(window.eval('MEDCHECK_VERSION.engine') === '0.1.0-alpha.1', 'Regression build loaded wrong engine version');
 assert(window.eval('PK_DOSE_INTERVALS.codeine') === 6, 'PK dose interval rules did not load');
 assert(window.eval('PHENOTYPE_RISK_RULES.qtc.thresholds[1]') === 5, 'Phenotype risk rules did not load');
 assert(window.eval('EDGE_TYPE_BASE_WEIGHT[EDGE_TYPE.SUBSTRATE_OF]') === 0.92, 'Edge base weight rules did not load');

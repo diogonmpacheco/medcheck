@@ -100,7 +100,7 @@ Recommended LinkedIn role:
 
 Recommended LinkedIn description:
 
-`Building Diognosis, an AI-assisted medication safety and pharmacogenomics platform. Its first module, MedCheck Engine, explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.`
+`Building Diognosis, a source-linked medication safety and pharmacogenomics platform. Its first module, MedCheck Engine, explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.`
 
 ### 6. Open-Source Maintainer
 
@@ -228,7 +228,7 @@ Reasoning:
 
 Suggested wording:
 
-`Diognosis is an AI-assisted medication safety and pharmacogenomics platform in active development. Its first module, MedCheck Engine, explores drug interactions, pharmacogenomics, active and toxic metabolites, PK exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.`
+`Diognosis is a source-linked medication safety and pharmacogenomics platform in active development. Its first module, MedCheck Engine, explores drug interactions, pharmacogenomics, active and toxic metabolites, PK exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.`
 
 Status line:
 
@@ -239,14 +239,14 @@ Status line:
 - GitHub repository name: `Diognosis`
 - Package name: `diognosis`
 - README title: `Diognosis`
-- Browser title: `Diognosis — AI-Assisted Medication Safety & Pharmacogenomics`
+- Browser title: `Diognosis — Source-Linked Medication Safety & Pharmacogenomics`
 - LinkedIn company/project name: `Diognosis`
 - LinkedIn experience title: `Founder & Product Lead — Diognosis`
-- One-sentence project description: `Diognosis is an AI-assisted medication safety and pharmacogenomics platform whose first module, MedCheck Engine, explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.`
-- GitHub short description: `AI-assisted medication safety and pharmacogenomics platform with source-linked evidence.`
-- SEO title: `Diognosis — AI-Assisted Medication Safety & Pharmacogenomics`
-- SEO meta description: `Diognosis is an AI-assisted medication safety and pharmacogenomics platform. Its MedCheck Engine explores drug interactions, pharmacogenomics, active and toxic metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.`
-- GitHub topics: `pharmacogenomics`, `medication-safety`, `drug-interactions`, `pharmacokinetics`, `cyp2d6`, `cyp-enzymes`, `active-metabolites`, `toxic-metabolites`, `transporter-pathways`, `evidence-graph`, `healthcare-ai`, `static-web-app`, `open-source-health`
+- One-sentence project description: `Diognosis is a source-linked medication safety and pharmacogenomics platform whose first module, MedCheck Engine, explores drug interactions, pharmacogenomics, metabolites, PK exposure shifts, transporter pathways, and source-linked evidence.`
+- GitHub short description: `Source-linked medication safety and pharmacogenomics platform exploring drug interactions, metabolites, PK shifts, and genetic risk signals.`
+- SEO title: `Diognosis — Source-Linked Medication Safety & Pharmacogenomics`
+- SEO meta description: `Diognosis is a source-linked medication safety and pharmacogenomics platform exploring drug interactions, metabolites, PK shifts, and genetic risk signals.`
+- GitHub topics: `pharmacogenomics`, `medication-safety`, `drug-interactions`, `pharmacokinetics`, `cyp2d6`, `cyp-enzymes`, `active-metabolites`, `toxic-metabolites`, `transporter-pathways`, `evidence-graph`, `evidence-modeling`, `static-web-app`, `open-source-health`
 
 ## Required External Checks Before Rename
 

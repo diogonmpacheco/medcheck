@@ -4,7 +4,7 @@ Generated: 2026-06-09
 
 ## Launch Status
 
-Diognosis is an AI-assisted medication safety and pharmacogenomics platform in active development.
+Diognosis is a source-linked medication safety and pharmacogenomics platform in active development.
 
 Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 

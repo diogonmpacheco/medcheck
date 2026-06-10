@@ -1,6 +1,6 @@
 # Diognosis
 
-**AI-assisted medication safety and pharmacogenomics platform in active development.**
+**Source-linked medication safety and pharmacogenomics platform exploring drug interactions, metabolites, PK shifts, and genetic risk signals.**
 
 Diognosis is a pre-v1, source-linked research prototype for exploring medication-safety mechanisms, pharmacogenomics, and evidence-backed interaction signals.
 
@@ -8,7 +8,7 @@ Its first module, **MedCheck Engine**, explores drug-drug interactions, pharmaco
 
 **Status:** pre-v1, under active validation, pending professional clinical review, and not medical advice.
 
-**Data:** Drug DB v1.2.3.
+**Data:** **Drug DB v1.2.3**.
 
 **Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/)
 
@@ -85,7 +85,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2171 KB** generated bundle (34346 lines)
+- **2171 KB** generated bundle (34347 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

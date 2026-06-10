@@ -9112,14 +9112,14 @@ const STUDY_DB = {
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
 //
-// Architecture for AI-assisted + human-reviewed study ingestion.
+// Architecture for structured + human-reviewed study ingestion.
 //
-// CRITICAL WARNING: AI hallucinations in pharmacology are dangerous.
+// CRITICAL WARNING: Automated extraction errors in pharmacology are dangerous.
 // DO NOT auto-publish extracted evidence without pharmacist/physician review.
 //
 // Pipeline flow:
 //   PubMed / FDA / CPIC search
-//   → AI extraction → normalized draft (createStudyDraft)
+//   → structured extraction → normalized draft (createStudyDraft)
 //   → INGESTION_QUEUE (awaiting review)
 //   → human review & approval
 //   → merge into STUDY_DB
@@ -9130,7 +9130,7 @@ const STUDY_DB = {
 const INGESTION_QUEUE = [];   // drafts awaiting review
 
 // createStudyDraft — create a structured evidence draft from raw inputs
-// Called by future AI extraction pipeline or manual entry
+// Called by future structured extraction pipeline or manual entry
 function createStudyDraft({pmid, doi, title, year, source, journal, type, studyDesign, n,
                            phenotypes, quantifiedEffects, temporal, supports, contradicts, limitations}) {
   const id = `draft_${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
