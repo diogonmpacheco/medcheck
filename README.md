@@ -1,16 +1,14 @@
-<img src="logo.png" alt="Diognosis logo" width="96" align="right">
-
 # Diognosis
 
 **AI-assisted medication safety and pharmacogenomics platform in active development.**
 
-Diognosis is a pre-v1 project for exploring medication-safety mechanisms, pharmacogenomics, and source-linked evidence.
+Diognosis is a pre-v1, source-linked research prototype for exploring medication-safety mechanisms, pharmacogenomics, and evidence-backed interaction signals.
 
-Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Its first module, **MedCheck Engine**, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
-Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
+**Status:** pre-v1, under active validation, pending professional clinical review, and not medical advice.
 
-Data version: **Drug DB v1.2.3**. All evidence remains pending professional clinical review.
+**Data:** Drug DB v1.2.3.
 
 **Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/)
 
