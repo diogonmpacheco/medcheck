@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="Diognosis logo" width="140">
+</p>
+
 # Diognosis
 
 **AI-assisted medication safety and pharmacogenomics platform in active development.**
