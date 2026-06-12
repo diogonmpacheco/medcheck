@@ -209,6 +209,7 @@ function formatOpenTargetsReviewDecision(value) {
     keep_context: "keep context",
     rejected: "rejected",
     candidate_for_diognosis_evidence: "evidence candidate",
+    linked_to_diognosis_evidence: "linked evidence",
     promoted_for_severity: "promoted",
   };
   return labels[key] || key.replace(/_/g, " ");

@@ -64,6 +64,7 @@ const SOURCE_CATEGORY = Object.freeze({
 const REVIEW_DECISION = Object.freeze({
   UNREVIEWED: 'unreviewed',
   NEEDS_MORE_REVIEW: 'needs_more_review',
+  LINKED_TO_DIOGNOSIS_EVIDENCE: 'linked_to_diognosis_evidence',
   REJECTED: 'rejected',
   PROMOTED_FOR_SEVERITY: 'promoted_for_severity',
 });

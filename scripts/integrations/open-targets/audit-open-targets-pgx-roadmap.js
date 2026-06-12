@@ -74,7 +74,7 @@ function classifyPair(pair, coverage, roadmap, firstTargetGenes) {
   const firstReviewTarget = firstTargetGenes.has(`${pair.chemblId}|${gene}`);
   const highEvidence = pair.highEvidence;
 
-  if (firstReviewTarget) return 'first_review_candidate';
+  if (firstReviewTarget) return 'first_review_linked';
   if (gene === 'unknown') return roadmap.unsupportedGeneDispositions.unknown?.disposition || 'needs_source_gene_normalization';
   if (selector && (warningCard || metaboliteRule)) return 'covered_keep_context';
   if (selector) return roadmap.selectorOnlyDispositions[gene]?.disposition || 'selector_only_review_warning_card';
@@ -125,7 +125,8 @@ function buildReport() {
         highEvidence: isHighEvidence(fact),
         labels: new Set([fact.label || '']),
         factCount: 1,
-        promotionDecision: promotionRows.find(row => row.reviewDecision === 'candidate_for_diognosis_evidence')?.reviewDecision ||
+        promotionDecision: promotionRows.find(row => row.reviewDecision === 'linked_to_diognosis_evidence')?.reviewDecision ||
+          promotionRows.find(row => row.reviewDecision === 'candidate_for_diognosis_evidence')?.reviewDecision ||
           promotionRows[0]?.reviewDecision ||
           'unreviewed',
       });
@@ -168,7 +169,7 @@ function buildReport() {
   const summary = {
     schemaVersion: 1,
     uniquePairs: pairs.length,
-    firstReviewCandidates: pairs.filter(pair => pair.classification === 'first_review_candidate').length,
+    firstReviewLinked: pairs.filter(pair => pair.classification === 'first_review_linked').length,
     coveredKeepContext: pairs.filter(pair => pair.classification === 'covered_keep_context').length,
     selectorOnlyReview: pairs.filter(pair => pair.classification === 'selector_only_review_warning_card' || pair.classification.includes('needs_warning_card_review')).length,
     unsupportedContextOnly: pairs.filter(pair => pair.classification === 'context_only_no_selector').length,
@@ -246,7 +247,7 @@ This roadmap turns Open Targets/ClinPGx context into explicit implementation dis
 | Metric | Count |
 | --- | ---: |
 | Unique PGx pairs | ${report.summary.uniquePairs} |
-| First review candidates | ${report.summary.firstReviewCandidates} |
+| First review linked rows | ${report.summary.firstReviewLinked} |
 | Covered, keep context | ${report.summary.coveredKeepContext} |
 | Selector-only / warning-card review | ${report.summary.selectorOnlyReview} |
 | Unsupported context-only pairs | ${report.summary.unsupportedContextOnly} |
@@ -262,9 +263,9 @@ Reviewed at: ${report.reviewedAt}
 
 ${report.unsupportedGenes.length ? report.unsupportedGenes.map(row => `- ${row.gene}: ${row.disposition} (${row.pairCount} pair${row.pairCount === 1 ? '' : 's'}) — ${row.rationale}`).join('\n') : 'None.'}
 
-## First Review Candidates
+## First Review Linked Rows
 
-${pairTable(report.pairs.filter(pair => pair.classification === 'first_review_candidate'))}
+${pairTable(report.pairs.filter(pair => pair.classification === 'first_review_linked'))}
 
 ## Covered / Keep Context
 
@@ -272,12 +273,12 @@ ${pairTable(report.pairs.filter(pair => pair.classification === 'covered_keep_co
 
 ## Other PGx Context
 
-${pairTable(report.pairs.filter(pair => pair.classification !== 'first_review_candidate' && pair.classification !== 'covered_keep_context'))}
+${pairTable(report.pairs.filter(pair => pair.classification !== 'first_review_linked' && pair.classification !== 'covered_keep_context'))}
 
 ## Completion Contract
 
 - Every unsupported gene has a disposition.
-- First-review targets are separated from context-only PGx rows.
+- First-review targets are linked to Diognosis evidence and separated from context-only PGx rows.
 - Covered rows remain useful for audit and UI context but do not change warning severity.
 `;
 }

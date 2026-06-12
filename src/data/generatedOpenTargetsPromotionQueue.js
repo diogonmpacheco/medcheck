@@ -10,7 +10,8 @@ const OPEN_TARGETS_PROMOTION_QUEUE_SUMMARY = Object.freeze({
   "unreviewed": 0,
   "keepContext": 223,
   "rejected": 0,
-  "candidateForDiognosisEvidence": 47,
+  "candidateForDiognosisEvidence": 0,
+  "linkedToDiognosisEvidence": 47,
   "promotedForSeverity": 0,
   "promotionReady": 0,
   "blockedPromotions": 0,
@@ -42,6 +43,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -68,6 +72,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -94,6 +101,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -120,6 +130,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -146,6 +159,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -172,6 +188,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -198,6 +217,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -224,6 +246,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -250,6 +275,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -276,6 +304,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -302,6 +333,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -328,6 +362,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -354,6 +391,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -380,6 +420,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -406,6 +449,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -432,6 +478,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -458,6 +507,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -484,6 +536,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -510,6 +565,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -536,6 +594,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -562,6 +623,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -588,6 +652,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -614,6 +681,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -640,6 +710,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_drug_warnings"
   },
   {
@@ -656,7 +729,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "HLA-B",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -665,7 +738,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "Classic high-actionability Abacavir/HLA-B hypersensitivity relationship; keep Open Targets rows non-scoring while creating a Diognosis evidence task.",
+    "rationale": "Classic high-actionability Abacavir/HLA-B hypersensitivity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_abacavir_hlab5701_cpic2012"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_abacavir_hla_b"
   },
   {
@@ -682,7 +760,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -691,7 +769,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -708,7 +791,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -717,7 +800,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -734,7 +822,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -743,7 +831,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -760,7 +853,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -769,7 +862,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -786,7 +884,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -795,7 +893,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -812,7 +915,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -821,7 +924,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -838,7 +946,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -847,7 +955,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -864,7 +977,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -873,7 +986,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -890,7 +1008,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -899,7 +1017,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -916,7 +1039,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -925,7 +1048,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -942,7 +1070,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -951,7 +1079,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -968,7 +1101,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "DPYD",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -977,7 +1110,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Capecitabine/DPYD fluoropyrimidine-toxicity relationship is already represented by Diognosis source-linked evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_fluorouracil_dpyd_amstutz2018"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_capecitabine_dpyd"
   },
   {
@@ -994,7 +1132,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1003,7 +1141,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1020,7 +1166,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1029,7 +1175,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1046,7 +1200,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1055,7 +1209,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1072,7 +1234,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1081,7 +1243,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1098,7 +1268,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1107,7 +1277,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1124,7 +1302,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1133,7 +1311,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1150,7 +1336,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1159,7 +1345,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1176,7 +1370,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1185,7 +1379,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1202,7 +1404,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1211,7 +1413,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1228,7 +1438,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1237,7 +1447,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1254,7 +1472,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1263,7 +1481,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1280,7 +1506,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C19",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1289,7 +1515,15 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion.",
+    "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship is already represented by Diognosis source-linked CPIC, PK/PD, and outcome evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_clopidogrel_cyp2c19_cpic",
+      "ev_clopidogrel_active_thiol_kim2014",
+      "ev_clopidogrel_cyp2c19_mega2009",
+      "ev_clopidogrel_dose_escalation_horenstein2014"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_clopidogrel_cyp2c19"
   },
   {
@@ -1306,7 +1540,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1315,7 +1549,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1332,7 +1573,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1341,7 +1582,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1358,7 +1606,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1367,7 +1615,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1384,7 +1639,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1393,7 +1648,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1410,7 +1672,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1419,7 +1681,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1436,7 +1705,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1445,7 +1714,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1462,7 +1738,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1471,7 +1747,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1488,7 +1771,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1497,7 +1780,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1514,7 +1804,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1523,7 +1813,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1540,7 +1837,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1549,7 +1846,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1566,7 +1870,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1575,7 +1879,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1592,7 +1903,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2D6",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -1601,7 +1912,14 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship is already represented by Diognosis source-linked CPIC and case evidence; keep Open Targets rows non-scoring and link them to those refs.",
+    "evidenceRefs": [
+      "ev_opioid_cyp2d6_cpic_2020",
+      "ev_codeine_cyp2d6_cpic",
+      "ev_codeine_ultrarapid_deaths"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_codeine_cyp2d6"
   },
   {
@@ -1628,6 +1946,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1654,6 +1975,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1680,6 +2004,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1706,6 +2033,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1732,6 +2062,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1758,6 +2091,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1784,6 +2120,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1810,6 +2149,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1836,6 +2178,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1862,6 +2207,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1888,6 +2236,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1914,6 +2265,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1940,6 +2294,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1966,6 +2323,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -1992,6 +2352,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2018,6 +2381,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2044,6 +2410,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2070,6 +2439,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2096,6 +2468,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2122,6 +2497,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2148,6 +2526,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2174,6 +2555,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2200,6 +2584,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2226,6 +2613,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2252,6 +2642,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2278,6 +2671,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2304,6 +2700,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2330,6 +2729,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2356,6 +2758,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2382,6 +2787,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2408,6 +2816,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2434,6 +2845,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2460,6 +2874,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2486,6 +2903,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2512,6 +2932,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2528,7 +2951,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2537,7 +2960,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2554,7 +2982,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2563,7 +2991,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2580,7 +3013,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2589,7 +3022,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2616,6 +3054,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2632,7 +3073,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2641,7 +3082,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2658,7 +3104,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2667,7 +3113,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2694,6 +3145,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -2710,7 +3164,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "VKORC1",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2719,7 +3173,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/VKORC1 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/VKORC1 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_vkorc1"
   },
   {
@@ -2736,7 +3195,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2745,7 +3204,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2762,7 +3226,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2771,7 +3235,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2788,7 +3257,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2797,7 +3266,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2814,7 +3288,7 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "targetGene": "CYP2C9",
     "sourceEvidenceLevel": "1A",
     "source": "clinpgx",
-    "reviewDecision": "candidate_for_diognosis_evidence",
+    "reviewDecision": "linked_to_diognosis_evidence",
     "importedContextOnly": true,
     "notSeverityBearing": true,
     "promotionReady": false,
@@ -2823,7 +3297,12 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "suggestedAction": "Compare against Diognosis genotype selector, metabolite rule, and warning card coverage.",
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
-    "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review.",
+    "rationale": "High-actionability Warfarin/CYP2C9 dosing-sensitivity relationship is already represented by Diognosis source-linked CPIC evidence; keep Open Targets rows non-scoring and link them to the Diognosis evidence ref.",
+    "evidenceRefs": [
+      "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"
+    ],
+    "evidenceReviewStatus": "diognosis_source_linked_pending_professional_review",
+    "diognosisEvidenceDecision": "covered_by_existing_diognosis_evidence",
     "decisionId": "candidate_warfarin_cyp2c9"
   },
   {
@@ -2850,6 +3329,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -2876,6 +3358,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -2902,6 +3387,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -2928,6 +3416,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -2954,6 +3445,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -2980,6 +3474,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3006,6 +3503,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3032,6 +3532,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3058,6 +3561,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3084,6 +3590,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3110,6 +3619,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3136,6 +3648,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3162,6 +3677,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3188,6 +3706,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3214,6 +3735,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3240,6 +3764,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3266,6 +3793,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3292,6 +3822,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3318,6 +3851,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3344,6 +3880,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3370,6 +3909,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3396,6 +3938,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3422,6 +3967,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3448,6 +3996,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3474,6 +4025,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3500,6 +4054,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3526,6 +4083,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3552,6 +4112,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3578,6 +4141,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3604,6 +4170,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3630,6 +4199,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3656,6 +4228,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3682,6 +4257,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3708,6 +4286,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3734,6 +4315,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3760,6 +4344,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3786,6 +4373,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3812,6 +4402,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3838,6 +4431,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3864,6 +4460,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3890,6 +4489,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3916,6 +4518,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3942,6 +4547,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3968,6 +4576,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -3994,6 +4605,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4020,6 +4634,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4046,6 +4663,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4072,6 +4692,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4098,6 +4721,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4124,6 +4750,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4150,6 +4779,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4176,6 +4808,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4202,6 +4837,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4228,6 +4866,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4254,6 +4895,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4280,6 +4924,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4306,6 +4953,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4332,6 +4982,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4358,6 +5011,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4384,6 +5040,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4410,6 +5069,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4436,6 +5098,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4462,6 +5127,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_target_safety"
   },
   {
@@ -4488,6 +5156,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4514,6 +5185,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4540,6 +5214,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4566,6 +5243,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4592,6 +5272,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4618,6 +5301,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4644,6 +5330,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4670,6 +5359,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4696,6 +5388,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4722,6 +5417,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4748,6 +5446,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4774,6 +5475,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4800,6 +5504,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4826,6 +5533,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4852,6 +5562,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4878,6 +5591,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4904,6 +5620,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4930,6 +5649,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4956,6 +5678,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_remaining_pharmacogenetics"
   },
   {
@@ -4982,6 +5707,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5008,6 +5736,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5034,6 +5765,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5060,6 +5794,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5086,6 +5823,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5112,6 +5852,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5138,6 +5881,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5164,6 +5910,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5190,6 +5939,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5216,6 +5968,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5242,6 +5997,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5268,6 +6026,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5294,6 +6055,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5320,6 +6084,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5346,6 +6113,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5372,6 +6142,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5398,6 +6171,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5424,6 +6200,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5450,6 +6229,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5476,6 +6258,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5502,6 +6287,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5528,6 +6316,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5554,6 +6345,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5580,6 +6374,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5606,6 +6403,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5632,6 +6432,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5658,6 +6461,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5684,6 +6490,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5710,6 +6519,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5736,6 +6548,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5762,6 +6577,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5788,6 +6606,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5814,6 +6635,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5840,6 +6664,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5866,6 +6693,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5892,6 +6722,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5918,6 +6751,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5944,6 +6780,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5970,6 +6809,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -5996,6 +6838,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6022,6 +6867,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6048,6 +6896,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6074,6 +6925,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6100,6 +6954,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6126,6 +6983,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6152,6 +7012,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6178,6 +7041,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6204,6 +7070,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6230,6 +7099,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6256,6 +7128,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6282,6 +7157,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6308,6 +7186,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6334,6 +7215,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6360,6 +7244,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6386,6 +7273,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6412,6 +7302,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6438,6 +7331,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6464,6 +7360,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6490,6 +7389,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6516,6 +7418,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6542,6 +7447,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6568,6 +7476,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6594,6 +7505,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6620,6 +7534,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6646,6 +7563,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6672,6 +7592,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6698,6 +7621,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6724,6 +7650,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6750,6 +7679,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6776,6 +7708,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6802,6 +7737,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6828,6 +7766,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6854,6 +7795,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6880,6 +7824,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6906,6 +7853,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6932,6 +7882,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6958,6 +7911,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -6984,6 +7940,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -7010,6 +7969,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   },
   {
@@ -7036,6 +7998,9 @@ const GENERATED_OPEN_TARGETS_PROMOTION_QUEUE = Object.freeze([
     "reviewedBy": "Codex data review",
     "reviewedAt": "2026-06-12",
     "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved.",
+    "evidenceRefs": [],
+    "evidenceReviewStatus": null,
+    "diognosisEvidenceDecision": null,
     "decisionId": "context_all_faers"
   }
 ]);

@@ -52,9 +52,9 @@ function renderReviewWorkbench(overrides = {}) {
     </div>
     <div class="review-workbench-summary">
       ${renderReviewWorkbenchTile("Internal evidence", model.summary.internalRows, `${model.summary.calculationBearingRows} calculation-bearing`)}
-      ${renderReviewWorkbenchTile("First targets", model.summary.firstTargets, `${model.summary.candidateRows} candidate rows`)}
+      ${renderReviewWorkbenchTile("First targets", model.summary.firstTargets, `${model.summary.linkedRows} linked rows`)}
       ${renderReviewWorkbenchTile("PGx roadmap", model.summary.pgxPairs, `${model.summary.unsupportedPgxPairs} unsupported`)}
-      ${renderReviewWorkbenchTile("Promotion queue", model.summary.promotionRows, `${model.summary.promotionCandidates} candidates`)}
+      ${renderReviewWorkbenchTile("Promotion queue", model.summary.promotionRows, `${model.summary.promotionLinked} linked · ${model.summary.promotionCandidates} candidates`)}
     </div>
     <div class="review-workbench-filter" data-review-workbench-filter-wrap="true">
       ${renderReviewWorkbenchFilter("all", "All", model.rows.length, true)}
@@ -120,10 +120,11 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
       internalRows: internalRows.length || fallbackRows.filter(row => row.kind === "internal").length,
       calculationBearingRows: rows.filter(row => row.kind === "internal" && row.calculationBearing).length,
       firstTargets: firstTargetRows.length || fallbackRows.filter(row => row.kind === "first_target").length,
-      candidateRows: firstTargetRows.reduce((sum, row) => sum + (row.raw.candidateRowCount || 0), 0),
+      linkedRows: firstTargetRows.reduce((sum, row) => sum + (row.raw.linkedContextRowCount || 0), 0),
       pgxPairs: pgxRows.length,
       unsupportedPgxPairs: pgxRows.filter(row => !row.raw.hasGenotypeSelector).length,
       promotionRows: promotionRows.length,
+      promotionLinked: promotionRows.filter(row => row.raw.reviewDecision === "linked_to_diognosis_evidence").length,
       promotionCandidates: promotionRows.filter(row => row.raw.reviewDecision === "candidate_for_diognosis_evidence").length,
       pgxRoadmap: getOpenTargetsPgxGapSummary(),
     },
@@ -214,17 +215,18 @@ function normalizeReviewWorkbenchFirstTargetRow(row, stackMatched) {
     stackMatched,
     title: `${row.medcheckName || row.chemblId || "Open Targets"} / ${(row.genes || []).join(", ") || "review target"}`,
     badges: ["First review target", row.status || "review target"],
-    decision: row.disposition || "candidate_for_diognosis_evidence",
-    priority: row.candidateRowCount || 0,
+    decision: row.disposition || "linked_to_diognosis_evidence",
+    priority: row.linkedContextRowCount || 0,
     meta: [
       row.chemblId ? `ChEMBL: ${row.chemblId}` : "",
       row.scenarioId ? `Scenario: ${row.scenarioId}` : "",
-      `${row.candidateRowCount || 0} candidate row${row.candidateRowCount === 1 ? "" : "s"}`,
+      `${row.linkedContextRowCount || 0} linked context row${row.linkedContextRowCount === 1 ? "" : "s"}`,
+      (row.evidenceRefs || []).length ? `Evidence refs: ${row.evidenceRefs.join(", ")}` : "",
       row.coverage?.selectorGenes?.length ? `Selector: ${row.coverage.selectorGenes.join(", ")}` : "Selector: no",
       row.coverage?.metaboliteRules?.length ? "Metabolite rule: yes" : "Metabolite rule: no",
       row.coverage?.warningCardGenes?.length ? "Warning card: yes" : "Warning card: no",
     ].filter(Boolean),
-    detail: row.evidenceTask || row.currentAssessment || "Candidate for Diognosis evidence review.",
+    detail: row.evidenceTask || row.currentAssessment || "Linked to Diognosis evidence review.",
     raw: row,
   };
 }

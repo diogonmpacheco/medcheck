@@ -27,6 +27,7 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 
 const report = dom.window.eval(`(() => {
   const contextId = "ev_open_targets_context_fixture";
+  const linkedId = "ev_open_targets_linked_fixture";
   const promotedId = "ev_open_targets_promoted_fixture";
   STUDY_DB[contextId] = {
     id: contextId,
@@ -44,6 +45,23 @@ const report = dom.window.eval(`(() => {
     openTargetsRelease: "fixture",
     openTargetsSourceDataset: "drugWarnings",
     supports: ["fixture_open_targets_context"],
+  };
+  STUDY_DB[linkedId] = {
+    id: linkedId,
+    type: EVIDENCE_TIER.GUIDELINE,
+    title: "Open Targets linked-to-Diognosis fixture",
+    source: "Open Targets",
+    studyDesign: "external_context_fixture",
+    reviewRequired: true,
+    sourceCategory: SOURCE_CATEGORY.OPEN_TARGETS_CONTEXT,
+    importedContextOnly: true,
+    notSeverityBearing: true,
+    reviewDecision: REVIEW_DECISION.LINKED_TO_DIOGNOSIS_EVIDENCE,
+    openTargetsDrugId: "CHEMBL.LINKED",
+    chemblId: "CHEMBL.LINKED",
+    openTargetsRelease: "fixture",
+    openTargetsSourceDataset: "pharmacogenetics",
+    supports: ["fixture_linked_context"],
   };
   STUDY_DB[promotedId] = {
     id: promotedId,
@@ -77,6 +95,13 @@ const report = dom.window.eval(`(() => {
     evidenceRefs: [promotedId],
     evidence: { confidence: "low", sources: [] },
   };
+  const linkedDdi = {
+    drug1: "Fixture A",
+    drug2: "Fixture D",
+    severity: "severe",
+    evidenceRefs: [linkedId],
+    evidence: { confidence: "low", sources: [] },
+  };
   const contextEdge = {
     from: "fixture_a",
     to: "CYP3A4",
@@ -86,6 +111,7 @@ const report = dom.window.eval(`(() => {
 
   const contextProfile = getDdiEvidenceProfile(contextOnlyDdi);
   const promotedProfile = getDdiEvidenceProfile(promotedDdi);
+  const linkedProfile = getDdiEvidenceProfile(linkedDdi);
   const normalizedContext = normalizeEvidence(contextOnlyDdi);
 
   const result = {
@@ -98,6 +124,10 @@ const report = dom.window.eval(`(() => {
     contextEdgeConfidence: computeEdgeConfidence(contextEdge),
     normalizedContextStudyCount: normalizedContext.studyCount,
     normalizedContextOnlyCount: normalizedContext.contextOnlyStudyCount,
+    linkedIsExternal: isExternalContextEvidence(STUDY_DB[linkedId]),
+    linkedSeverityBearing: isSeverityBearingEvidence(STUDY_DB[linkedId]),
+    linkedHighTier: linkedProfile.hasHighTierStudy,
+    linkedCalibratedSeverity: calibrateDdiSeverity(linkedDdi),
     promotedIsExternal: isExternalContextEvidence(STUDY_DB[promotedId]),
     promotedSeverityBearing: isSeverityBearingEvidence(STUDY_DB[promotedId]),
     promotedHighTier: promotedProfile.hasHighTierStudy,
@@ -105,6 +135,7 @@ const report = dom.window.eval(`(() => {
   };
 
   delete STUDY_DB[contextId];
+  delete STUDY_DB[linkedId];
   delete STUDY_DB[promotedId];
   return result;
 })()`);
@@ -119,9 +150,13 @@ assert(report.contextCalibratedSeverity === 'moderate', `External context alone 
 assert(report.contextEdgeConfidence <= 0.5, `External context alone must not raise edge confidence, got ${report.contextEdgeConfidence}`);
 assert(report.normalizedContextStudyCount === 0, `Severity normalization should ignore context-only studies, got ${report.normalizedContextStudyCount}`);
 assert(report.normalizedContextOnlyCount === 1, `Severity normalization should retain context count for audit, got ${report.normalizedContextOnlyCount}`);
+assert(report.linkedIsExternal === true, 'Linked Open Targets fixture should still be recognized as external context');
+assert(report.linkedSeverityBearing === false, 'Linked Open Targets context must not be severity-bearing by itself');
+assert(report.linkedHighTier === false, 'Linked Open Targets context must not count as high-tier severity evidence');
+assert(report.linkedCalibratedSeverity === 'moderate', `Linked external context alone must not preserve severe severity, got ${report.linkedCalibratedSeverity}`);
 assert(report.promotedIsExternal === true, 'Promoted fixture should still be recognized as external provenance');
 assert(report.promotedSeverityBearing === true, 'Explicitly promoted external context should be severity-bearing');
 assert(report.promotedHighTier === true, 'Promoted external context should count once review fields allow it');
 assert(report.promotedCalibratedSeverity === 'severe', `Promoted high-tier context should preserve severe severity, got ${report.promotedCalibratedSeverity}`);
 
-console.log('External context firewall audit passed: unreviewed Open Targets-style context stays non-severity-bearing.');
+console.log('External context firewall audit passed: unreviewed and linked Open Targets-style context stays non-severity-bearing.');

@@ -71,8 +71,9 @@ const report = dom.window.eval(`(() => {
         chemblId:"CHEMBL_XSS",
         genes:["CYP2D6<script>"],
         status:"completed_review_target",
-        disposition:"candidate_for_diognosis_evidence",
-        candidateRowCount:1,
+        disposition:"linked_to_diognosis_evidence",
+        linkedContextRowCount:1,
+        evidenceRefs:["ev_xss"],
         scenarioId:"xss",
         evidenceTask:"<img src=x onerror='window.__reviewWorkbenchXss=1'>",
         coverage:{ selectorGenes:["CYP2D6"], metaboliteRules:[], warningCardGenes:[] }

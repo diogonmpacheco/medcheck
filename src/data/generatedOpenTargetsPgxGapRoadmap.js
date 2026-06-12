@@ -6,7 +6,7 @@ const OPEN_TARGETS_PGX_GAP_ROADMAP_SCHEMA_VERSION = 1;
 const OPEN_TARGETS_PGX_GAP_ROADMAP_SUMMARY = Object.freeze({
   "schemaVersion": 1,
   "uniquePairs": 75,
-  "firstReviewCandidates": 38,
+  "firstReviewLinked": 38,
   "coveredKeepContext": 28,
   "selectorOnlyReview": 0,
   "unsupportedContextOnly": 8,
@@ -767,12 +767,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk of hypersensitivity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": false,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -789,12 +789,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased risk and reduced severity of drug toxicity"
       ],
       "factCount": 3,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -809,12 +809,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "altered risk of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -831,12 +831,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk and increased severity of drug toxicity"
       ],
       "factCount": 3,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -851,12 +851,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "altered risk of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -871,12 +871,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "altered risk of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -891,12 +891,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk and increased severity of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -911,12 +911,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased risk of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -931,12 +931,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "altered risk of drug toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -951,12 +951,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -971,12 +971,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -991,12 +991,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased platelet inhibition and increased residual platelet aggregation"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1012,12 +1012,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased platelet inhibition and increased residual platelet aggregation"
       ],
       "factCount": 2,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1032,12 +1032,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1052,12 +1052,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of clopidogrel"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1072,12 +1072,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of clopidogrel"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1092,12 +1092,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of clopidogrel"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1112,12 +1112,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1132,12 +1132,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1152,12 +1152,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk for adverse cardiac and cerebrovascular events"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1172,12 +1172,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased risk of toxicity"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1193,12 +1193,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk of toxicity"
       ],
       "factCount": 2,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1213,12 +1213,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of codeine"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1234,12 +1234,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "similar analgesic response"
       ],
       "factCount": 2,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1254,12 +1254,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "similar analgesic response to codeine"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1274,12 +1274,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of codeine"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1294,12 +1294,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased analgesic response"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1314,12 +1314,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of codeine"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1335,12 +1335,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "decreased metabolism of codeine"
       ],
       "factCount": 2,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1355,12 +1355,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "lower dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1375,12 +1375,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "lower dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1395,12 +1395,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "lower dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1416,12 +1416,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk of over-anticoagulation"
       ],
       "factCount": 2,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1436,12 +1436,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk of bleeding"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1456,12 +1456,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "increased risk of bleeding"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1476,12 +1476,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "lower dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1496,12 +1496,12 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "lower dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": true,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
-      "reviewerDisposition": "first_review_candidate",
+      "classification": "first_review_linked",
+      "reviewerDisposition": "first_review_linked",
       "reviewerRationale": null
     },
     {
@@ -1516,11 +1516,11 @@ const GENERATED_OPEN_TARGETS_PGX_GAP_ROADMAP = Object.freeze({
         "require an increased dose of warfarin"
       ],
       "factCount": 1,
-      "promotionDecision": "candidate_for_diognosis_evidence",
+      "promotionDecision": "linked_to_diognosis_evidence",
       "hasGenotypeSelector": true,
       "hasWarningCard": false,
       "hasMetaboliteRule": true,
-      "classification": "first_review_candidate",
+      "classification": "first_review_linked",
       "reviewerDisposition": "covered_selector_and_metabolite_rule_needs_warning_card_review",
       "reviewerRationale": "VKORC1 is modeled through warfarin dose sensitivity, but warning-card display should be reviewed against Diognosis evidence before promotion."
     },

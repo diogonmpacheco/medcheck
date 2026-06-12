@@ -9,7 +9,7 @@ This roadmap turns Open Targets/ClinPGx context into explicit implementation dis
 | Metric | Count |
 | --- | ---: |
 | Unique PGx pairs | 75 |
-| First review candidates | 38 |
+| First review linked rows | 38 |
 | Covered, keep context | 28 |
 | Selector-only / warning-card review | 0 |
 | Unsupported context-only pairs | 8 |
@@ -33,48 +33,48 @@ Reviewed at: 2026-06-12
 - TNF: context_only_no_selector (1 pair) — Exploratory Abacavir immunogenetic context; HLA-B*57:01 remains the actionable first target.
 - unknown: needs_source_gene_normalization (1 pair) — Open Targets rows did not expose a stable gene symbol. Keep as context and do not create selectors until source mapping is clarified.
 
-## First Review Candidates
+## First Review Linked Rows
 
 | Drug | Gene | Evidence | Marker | Classification | Selector | Metabolite Rule | Warning Card |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Abacavir | HLA-B | 1A | PA165987830 | first_review_candidate | yes | no | yes |
-| Capecitabine | DPYD | 1A | rs3918290 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs1801265 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs67376798 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs17376848 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs1801158 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs56038477 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs75017182 | first_review_candidate | yes | yes | yes |
-| Capecitabine | DPYD | 1A | rs2297595 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816533 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816533 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165980636 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165980635 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165980635 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165980636 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816524 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816540 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816522 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816522 | first_review_candidate | yes | yes | yes |
-| Clopidogrel | CYP2C19 | 1A | PA165816524 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816576 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165988479 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816577 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816581 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816576 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816576 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816583 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165816578 | first_review_candidate | yes | yes | yes |
-| Codeine | CYP2D6 | 1A | PA165988488 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816543 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816544 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816547 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816552 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816546 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816543 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816545 | first_review_candidate | yes | yes | yes |
-| Warfarin | CYP2C9 | 1A | PA165816546 | first_review_candidate | yes | yes | yes |
-| Warfarin | VKORC1 | 1A | rs9923231 | first_review_candidate | yes | yes | no |
+| Abacavir | HLA-B | 1A | PA165987830 | first_review_linked | yes | no | yes |
+| Capecitabine | DPYD | 1A | rs3918290 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs1801265 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs67376798 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs17376848 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs1801158 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs56038477 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs75017182 | first_review_linked | yes | yes | yes |
+| Capecitabine | DPYD | 1A | rs2297595 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816533 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816533 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165980636 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165980635 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165980635 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165980636 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816524 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816540 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816522 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816522 | first_review_linked | yes | yes | yes |
+| Clopidogrel | CYP2C19 | 1A | PA165816524 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816576 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165988479 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816577 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816581 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816576 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816576 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816583 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165816578 | first_review_linked | yes | yes | yes |
+| Codeine | CYP2D6 | 1A | PA165988488 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816543 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816544 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816547 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816552 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816546 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816543 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816545 | first_review_linked | yes | yes | yes |
+| Warfarin | CYP2C9 | 1A | PA165816546 | first_review_linked | yes | yes | yes |
+| Warfarin | VKORC1 | 1A | rs9923231 | first_review_linked | yes | yes | no |
 
 ## Covered / Keep Context
 
@@ -126,5 +126,5 @@ Reviewed at: 2026-06-12
 ## Completion Contract
 
 - Every unsupported gene has a disposition.
-- First-review targets are separated from context-only PGx rows.
+- First-review targets are linked to Diognosis evidence and separated from context-only PGx rows.
 - Covered rows remain useful for audit and UI context but do not change warning severity.
