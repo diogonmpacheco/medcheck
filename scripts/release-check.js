@@ -17,10 +17,16 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function extractMedCheckBundle(html) {
+  const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
+    .filter((match) => !/\bsrc\s*=/.test(match[0]));
+  if (!scripts.length) throw new Error('Could not find generated bundle in index.html.');
+  return scripts[scripts.length - 1][1];
+}
+
 function loadBundleContext() {
   const html = readFileSync('index.html', 'utf8');
-  const match = html.match(/<script>([\s\S]*)<\/script>\s*<\/body>/);
-  if (!match) throw new Error('Could not find generated bundle in index.html.');
+  const bundle = extractMedCheckBundle(html);
 
   const elements = {};
   const context = {
@@ -46,7 +52,7 @@ function loadBundleContext() {
     clearTimeout(){},
   };
   vm.createContext(context);
-  vm.runInContext(`${match[1]}
+  vm.runInContext(`${bundle}
 globalThis.__RELEASE_CHECK__ = { DRUG_DB, STUDY_DB, MEDCHECK_VERSION };`, context);
   return context.__RELEASE_CHECK__;
 }
@@ -83,6 +89,7 @@ run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);
 run('Smoke check', node, ['scripts/smoke-check.js']);
 run('Strict validation', node, ['scripts/validate-db.js', '--strict']);
+run('Privacy/static audit', node, ['scripts/audit/privacy-static-audit.js']);
 run('Whitespace diff check', 'git', ['diff', '--check']);
 
 console.log('\nRelease check passed.');

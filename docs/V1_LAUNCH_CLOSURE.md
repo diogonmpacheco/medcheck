@@ -49,4 +49,4 @@ Expected result: all pass with no structural errors. Validation may still report
 - Decide whether `index.html` remains committed or moves to deploy-time build output.
 - Add golden-value numeric tests for PK and enzyme-capacity math.
 - Integrate structured literature tools into enrichment for tier suggestions and faithfulness checks.
-- Replace CDN-loaded D3 with a vendored asset if zero third-party requests becomes a release requirement.
+- Keep the vendored D3 and privacy/static audit in the release gate so the app remains free of routine third-party runtime requests.

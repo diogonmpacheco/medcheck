@@ -22,7 +22,7 @@ Its first module, **MedCheck Engine**, explores drug-drug interactions, pharmaco
 
 MedCheck Engine is the first module of Diognosis. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, and source-linked evidence.
 
-The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view loads D3 from a public CDN unless you self-host that asset.
+The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view uses a vendored D3 build that is bundled locally at build time.
 
 ## Try A Demo
 
@@ -59,7 +59,7 @@ For alternate entry points, see the [Diognosis Data Views](https://diogonmpachec
 
 Diognosis currently ships the MedCheck Engine as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
-The only routine third-party request is the D3 graph library loaded from CDN for visualization; no medication stack, genotype setting, or search content is sent with that request.
+There are no routine third-party runtime requests. Evidence links, demo links, and GitHub feedback links are only opened when selected.
 
 ---
 
@@ -85,7 +85,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
-- **2199 KB** generated bundle (34793 lines)
+- **2472 KB** generated bundle (34797 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

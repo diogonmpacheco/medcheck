@@ -8,7 +8,7 @@ Diognosis is a source-linked medication safety and pharmacogenomics platform in 
 
 Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
-Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
+Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is vendored locally and bundled at build time for graph visualization.
 
 The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
 

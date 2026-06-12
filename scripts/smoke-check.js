@@ -26,9 +26,7 @@ const browserErrors = [];
 const virtualConsole = new VirtualConsole();
 virtualConsole.on('jsdomError', (err) => {
   const msg = err && err.message ? err.message : String(err);
-  if (!msg.includes('Could not load script: "https://cdnjs.cloudflare.com/ajax/libs/d3/')) {
-    browserErrors.push(msg);
-  }
+  browserErrors.push(msg);
 });
 virtualConsole.on('error', (msg) => browserErrors.push(String(msg)));
 

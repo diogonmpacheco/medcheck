@@ -3,10 +3,16 @@ import { readFileSync } from 'fs';
 import vm from 'vm';
 import { collectStats } from './collect-stats.js';
 
+function extractMedCheckBundle(html) {
+  const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
+    .filter((match) => !/\bsrc\s*=/.test(match[0]));
+  if (!scripts.length) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
+  return scripts[scripts.length - 1][1];
+}
+
 function loadBundleContext() {
   const html = readFileSync('index.html', 'utf8');
-  const match = html.match(/<script>([\s\S]*)<\/script>\s*<\/body>/);
-  if (!match) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
+  const bundle = extractMedCheckBundle(html);
 
   const elements = {};
   const context = {
@@ -32,7 +38,7 @@ function loadBundleContext() {
     clearTimeout(){},
   };
   vm.createContext(context);
-  vm.runInContext(`${match[1]}
+  vm.runInContext(`${bundle}
 globalThis.__AUDIT__ = {
   DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,

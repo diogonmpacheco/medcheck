@@ -73,5 +73,5 @@ No blocking issues were found in those checks.
 - The 295 `reviewRequired:true` launch-enrichment entries are visible for review workflows and can feed calculations through explicit refs or support-key matching, but that internal flag does not mean the remaining entries are professionally reviewed.
 - Diognosis and the MedCheck Engine are explanatory and educational tools, not clinical decision support systems.
 - The PharmGx importer accepts normalized phenotype and risk-marker rows; it is not a raw DNA or star-allele caller.
-- D3.js is loaded from a CDN for graph visualization, so the graph panel depends on that external asset being reachable.
+- D3.js is vendored locally and bundled at build time for graph visualization; the privacy/static audit now fails on external runtime resources, tracking surface, unexpected storage, or live Open Targets API calls.
 - A public 1.0 release still needs a product decision on tagging. Recommendation: publish the current engine as a public preview, then tag `v1.0.0` after review UX and DNA-import hardening land.
