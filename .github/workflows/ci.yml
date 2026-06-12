@@ -38,6 +38,9 @@ jobs:
       - name: External context UI audit
         run: node scripts/audit/external-safety-context-ui-audit.js
 
+      - name: Scenario snapshot audit
+        run: node scripts/audit/scenario-snapshot-audit.js
+
       - name: Open Targets snapshot freshness
         run: node scripts/integrations/open-targets/import-open-targets.js --check
 

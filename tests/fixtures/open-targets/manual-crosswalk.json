@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "description": "Fixture-only Diognosis to ChEMBL/Open Targets mappings for scenario snapshot audits.",
+  "release": "fixture-2026-06",
+  "mappings": [
+    {
+      "medcheckName": "Paroxetine",
+      "chemblId": "CHEMBL490",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Codeine",
+      "chemblId": "CHEMBL485",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Simvastatin",
+      "chemblId": "CHEMBL1064",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Clarithromycin",
+      "chemblId": "CHEMBL1741",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Capecitabine",
+      "chemblId": "CHEMBL1773",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Clozapine",
+      "chemblId": "CHEMBL42",
+      "note": "fixture_manual_mapping"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "drugId": "CHEMBL1773",
+    "drugName": "Capecitabine",
+    "geneSymbol": "DPYD",
+    "variant": "DPYD decreased-function alleles",
+    "phenotypeText": "fluoropyrimidine toxicity risk",
+    "drugResponseCategory": "toxicity",
+    "clinicalAnnotationLevel": "ClinPGx fixture high-evidence pair",
+    "datasource": "Open Targets fixture ClinPGx"
+  },
+  {
+    "drugId": "CHEMBL490",
+    "drugName": "Paroxetine",
+    "geneSymbol": "CYP2D6",
+    "variant": "CYP2D6 poor metabolizer",
+    "phenotypeText": "altered antidepressant exposure/response context",
+    "drugResponseCategory": "exposure",
+    "clinicalAnnotationLevel": "ClinPGx fixture review pair",
+    "datasource": "Open Targets fixture ClinPGx"
+  }
+]

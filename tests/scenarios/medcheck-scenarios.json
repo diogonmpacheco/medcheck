@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "description": "Regression scenarios for MedCheck model output and Open Targets fixture context. External context must render as review-only data and must not alter calcRisk().",
+  "openTargetsFixture": {
+    "inputDir": "tests/fixtures/open-targets/input",
+    "manualCrosswalk": "tests/fixtures/open-targets/manual-crosswalk.json",
+    "release": "fixture-2026-06",
+    "minMappedRows": 6,
+    "minContextFactsIncluded": 10
+  },
+  "scenarios": [
+    {
+      "id": "ot-paroxetine-codeine-context",
+      "name": "Paroxetine + codeine with black-box, FAERS, ClinPGx, and target-safety context",
+      "stack": ["Paroxetine", "Codeine"],
+      "tab": "evidence",
+      "expectedExternalDatasets": ["drugWarnings", "faersSignificant", "pharmacogenetics", "targetSafety"],
+      "minExternalContextCards": 5,
+      "mustNotAlterRisk": true
+    },
+    {
+      "id": "ot-simvastatin-clarithromycin-context",
+      "name": "Simvastatin + clarithromycin with FAERS and target-safety context",
+      "stack": ["Simvastatin", "Clarithromycin"],
+      "tab": "evidence",
+      "expectedExternalDatasets": ["faersSignificant", "targetSafety"],
+      "minExternalContextCards": 2,
+      "mustNotAlterRisk": true
+    },
+    {
+      "id": "ot-capecitabine-dpyd-clinpgx-context",
+      "name": "Capecitabine + DPYD poor metabolizer with unreviewed ClinPGx context",
+      "stack": ["Capecitabine"],
+      "genotype": { "DPYD": "PM" },
+      "tab": "pgx",
+      "expectedExternalDatasets": ["pharmacogenetics"],
+      "minExternalContextCards": 1,
+      "mustNotAlterRisk": true
+    },
+    {
+      "id": "ot-clozapine-warning-withdrawal-target-context",
+      "name": "Clozapine with black-box, withdrawal-status, and target-safety context",
+      "stack": ["Clozapine"],
+      "tab": "evidence",
+      "expectedExternalDatasets": ["drugWarnings", "targetSafety"],
+      "minExternalContextCards": 4,
+      "mustNotAlterRisk": true
+    }
+  ]
+}

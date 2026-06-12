@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/audit/scenario-snapshot-audit.js",
+  "fixtureImport": {
+    "release": "fixture-2026-06",
+    "mappedRows": 6,
+    "contextFactsIncluded": 10,
+    "datasetCounts": {
+      "drugWarnings": 3,
+      "faersSignificant": 2,
+      "molecule": 6,
+      "pharmacogenetics": 2,
+      "targetSafety": 3
+    },
+    "inputFingerprint": "cae3549505eb6bea"
+  },
+  "scenarios": [
+    {
+      "id": "ot-paroxetine-codeine-context",
+      "stack": [
+        "Paroxetine",
+        "Codeine"
+      ],
+      "genotype": {},
+      "riskScore": 88,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 2,
+      "severityCounts": {
+        "severe": 1,
+        "moderate": 1
+      },
+      "factorCount": 7,
+      "topInteractions": [
+        {
+          "pair": "Paroxetine + Codeine",
+          "severity": "severe",
+          "type": "prodrug-inhibition",
+          "source": null,
+          "enzyme": "CYP2D6"
+        },
+        {
+          "pair": "Paroxetine + Codeine",
+          "severity": "moderate",
+          "type": "pharmacodynamic",
+          "source": null,
+          "enzyme": "Seizure"
+        }
+      ],
+      "externalContextCount": 5,
+      "externalContextDatasets": [
+        "drugWarnings",
+        "faersSignificant",
+        "pharmacogenetics",
+        "targetSafety"
+      ],
+      "externalContextCardCount": 5,
+      "externalContextSectionVisible": true,
+      "externalContextCountText": "5 context cards · not risk-scoring",
+      "externalContextReviewBadges": 5,
+      "riskUnchangedAfterExternalContext": true,
+      "afterRiskScore": 88,
+      "afterInteractionCount": 2
+    },
+    {
+      "id": "ot-simvastatin-clarithromycin-context",
+      "stack": [
+        "Simvastatin",
+        "Clarithromycin"
+      ],
+      "genotype": {},
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 2,
+      "severityCounts": {
+        "severe": 2
+      },
+      "factorCount": 3,
+      "topInteractions": [
+        {
+          "pair": "Simvastatin + Clarithromycin",
+          "severity": "severe",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "pk"
+        },
+        {
+          "pair": "Clarithromycin + Simvastatin",
+          "severity": "severe",
+          "type": "combination",
+          "source": "combination",
+          "enzyme": "toxic overlap"
+        }
+      ],
+      "externalContextCount": 2,
+      "externalContextDatasets": [
+        "faersSignificant",
+        "targetSafety"
+      ],
+      "externalContextCardCount": 2,
+      "externalContextSectionVisible": true,
+      "externalContextCountText": "2 context cards · not risk-scoring",
+      "externalContextReviewBadges": 2,
+      "riskUnchangedAfterExternalContext": true,
+      "afterRiskScore": 100,
+      "afterInteractionCount": 2
+    },
+    {
+      "id": "ot-capecitabine-dpyd-clinpgx-context",
+      "stack": [
+        "Capecitabine"
+      ],
+      "genotype": {
+        "DPYD": "PM"
+      },
+      "riskScore": 45,
+      "riskLevel": "MODERATE RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "factorCount": 1,
+      "topInteractions": [],
+      "externalContextCount": 1,
+      "externalContextDatasets": [
+        "pharmacogenetics"
+      ],
+      "externalContextCardCount": 1,
+      "externalContextSectionVisible": true,
+      "externalContextCountText": "1 context card · not risk-scoring",
+      "externalContextReviewBadges": 1,
+      "riskUnchangedAfterExternalContext": true,
+      "afterRiskScore": 45,
+      "afterInteractionCount": 0
+    },
+    {
+      "id": "ot-clozapine-warning-withdrawal-target-context",
+      "stack": [
+        "Clozapine"
+      ],
+      "genotype": {},
+      "riskScore": 0,
+      "riskLevel": "MINIMAL",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "factorCount": 0,
+      "topInteractions": [],
+      "externalContextCount": 5,
+      "externalContextDatasets": [
+        "drugWarnings",
+        "targetSafety"
+      ],
+      "externalContextCardCount": 5,
+      "externalContextSectionVisible": true,
+      "externalContextCountText": "5 context cards · not risk-scoring",
+      "externalContextReviewBadges": 5,
+      "riskUnchangedAfterExternalContext": true,
+      "afterRiskScore": 0,
+      "afterInteractionCount": 0
+    }
+  ]
+}

@@ -17,6 +17,7 @@
     "audit:external-context-ui": "node scripts/audit/external-safety-context-ui-audit.js",
     "audit:open-targets": "node scripts/integrations/open-targets/import-open-targets.js --check",
     "audit:privacy-static": "node scripts/audit/privacy-static-audit.js",
+    "audit:scenario-snapshots": "node scripts/audit/scenario-snapshot-audit.js",
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "audit:mechanistic-gaps": "node scripts/audit/mechanistic-curation-gaps.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
@@ -35,7 +36,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/audit/privacy-static-audit.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/audit/privacy-static-audit.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

@@ -1,0 +1,23 @@
+[
+  {
+    "drugId": "CHEMBL490",
+    "drugName": "Paroxetine",
+    "warningType": "black_box_warning",
+    "description": "Fixture boxed-warning context for suicidality review; context-only.",
+    "datasource": "Open Targets fixture drug warnings"
+  },
+  {
+    "drugId": "CHEMBL42",
+    "drugName": "Clozapine",
+    "warningType": "black_box_warning",
+    "description": "Fixture boxed-warning context for agranulocytosis/seizure monitoring review; context-only.",
+    "datasource": "Open Targets fixture drug warnings"
+  },
+  {
+    "drugId": "CHEMBL42",
+    "drugName": "Clozapine",
+    "warningType": "withdrawn_or_discontinued",
+    "description": "Fixture withdrawal-status card used only to exercise the review UI contract.",
+    "datasource": "Open Targets fixture drug warnings"
+  }
+]

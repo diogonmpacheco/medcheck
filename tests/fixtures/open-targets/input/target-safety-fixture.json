@@ -1,0 +1,29 @@
+[
+  {
+    "drugId": "CHEMBL490",
+    "drugName": "Paroxetine",
+    "targetGeneSymbol": "SLC6A4",
+    "toxicityClass": "serotonergic pathway liability",
+    "description": "Fixture target-safety context for serotonergic burden review.",
+    "evidenceLevel": "Open Targets fixture target safety",
+    "datasource": "Open Targets fixture target safety"
+  },
+  {
+    "drugId": "CHEMBL1064",
+    "drugName": "Simvastatin",
+    "targetGeneSymbol": "HMGCR",
+    "toxicityClass": "skeletal muscle liability",
+    "description": "Fixture target-safety context for statin muscle toxicity review.",
+    "evidenceLevel": "Open Targets fixture target safety",
+    "datasource": "Open Targets fixture target safety"
+  },
+  {
+    "drugId": "CHEMBL42",
+    "drugName": "Clozapine",
+    "targetGeneSymbol": "KCNH2",
+    "toxicityClass": "cardiac repolarization liability",
+    "description": "Fixture target-safety context for QT review.",
+    "evidenceLevel": "Open Targets fixture target safety",
+    "datasource": "Open Targets fixture target safety"
+  }
+]

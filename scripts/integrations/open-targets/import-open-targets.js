@@ -20,12 +20,12 @@ const SOURCE_MODULES = [
 ];
 
 const DATASET_HINTS = [
-  ['molecule', ['molecule', 'drug', 'drugs']],
   ['drugWarnings', ['drugwarnings', 'drug_warnings', 'warning', 'warnings']],
   ['faersSignificant', ['faerssignificant', 'faers', 'pharmacovigilance']],
   ['pharmacogenetics', ['pharmacogenetics', 'clinpgx', 'pharmgkb']],
   ['targetSafety', ['targetsafety', 'target_safety', 'safety']],
   ['mechanismOfAction', ['mechanismofaction', 'mechanism_of_action', 'moa']],
+  ['molecule', ['molecule', 'drug', 'drugs']],
 ];
 
 function parseArgs(argv) {
@@ -34,6 +34,8 @@ function parseArgs(argv) {
     manualCrosswalk: DEFAULT_MANUAL_CROSSWALK,
     release: null,
     maxContextPerDrug: 100,
+    outJs: OUT_JS,
+    outMd: OUT_MD,
     check: false,
   };
   for (let idx = 0; idx < argv.length; idx += 1) {
@@ -43,6 +45,8 @@ function parseArgs(argv) {
     else if (arg === '--manual-crosswalk') args.manualCrosswalk = resolve(argv[++idx]);
     else if (arg === '--release') args.release = argv[++idx];
     else if (arg === '--max-context-per-drug') args.maxContextPerDrug = Number(argv[++idx]);
+    else if (arg === '--out-js') args.outJs = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!Number.isFinite(args.maxContextPerDrug) || args.maxContextPerDrug < 0) {
@@ -638,8 +642,8 @@ try {
   const inputFiles = collectInputFiles(args.inputDir);
   const snapshot = buildSnapshot(data, inputFiles, manual, args);
   const fingerprint = stableFingerprint(inputFiles, args.manualCrosswalk);
-  const wroteJs = writeIfChanged(OUT_JS, renderJs(snapshot, fingerprint), args.check);
-  const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(snapshot, fingerprint), args.check);
+  const wroteJs = writeIfChanged(args.outJs, renderJs(snapshot, fingerprint), args.check);
+  const wroteMd = writeIfChanged(args.outMd, renderMarkdown(snapshot, fingerprint), args.check);
 
   console.log(JSON.stringify({
     ok: true,
