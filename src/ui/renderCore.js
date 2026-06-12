@@ -16,6 +16,27 @@ function removeDrug(name) {
   renderAll();
 }
 
+function addFoodActor(id) {
+  const actor = typeof getSupplementActor === "function" ? getSupplementActor(id) : null;
+  const actorId = actor ? actor.id : id;
+  if (!activeStack.includes(actorId)) {
+    activeStack.push(actorId);
+    document.getElementById("searchInput").value = "";
+    document.getElementById("searchResults").classList.remove("show");
+    renderAll();
+  }
+}
+
+function removeFoodActor(id) {
+  const actor = typeof getSupplementActor === "function" ? getSupplementActor(id) : null;
+  const actorId = actor ? actor.id : id;
+  activeStack = activeStack.filter(n => {
+    const selectedActor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(n) : null;
+    return (selectedActor ? selectedActor.id : n) !== actorId;
+  });
+  renderAll();
+}
+
 function swapDrug(oldName, newName) {
   const idx = activeStack.indexOf(oldName);
   if (idx >= 0) activeStack[idx] = newName;
@@ -94,18 +115,18 @@ function renderSummaryBar() {
       interactionScore >= 30 ? "Some monitoring may be needed" :
       "No major interaction signal found";
     summaryCopy = severeCount > 0
-      ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more medicines.`
+      ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more substances.`
       : `Checked ${activeStack.length} substances. MedCheck Engine did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
     nextStep = severeCount > 0
       ? "Start with the severe findings, then review genotype-adjusted levels."
-      : "Review level changes and genotype notes for dose-sensitive medications.";
+      : "Review level changes and genotype notes for dose-sensitive substances.";
     if (priorityInteraction) {
       priorityStory = buildInteractionPriorityStory(priorityInteraction);
     }
   } else {
     genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
-    headline = "Add another medication to check interactions";
-    summaryCopy = "Single-medication pharmacogenomic, metabolite, and PK context is available below. Interaction risk needs at least two substances.";
+    headline = "Add another substance to check interactions";
+    summaryCopy = "Single-substance pharmacogenomic, metabolite, and PK context appears below when available. Interaction risk needs at least two substances.";
     nextStep = "Add a second medication, supplement, herb, food, or recreational substance.";
   }
 
@@ -171,7 +192,7 @@ function buildInteractionPriorityStory(ix) {
       : "Review dose, timing, monitoring, and whether the combination is still appropriate."
   );
   return {
-    why:`${pair || "This stack"} has the strongest medication-interaction signal in the current profile.`,
+    why:`${pair || "This stack"} has the strongest substance-interaction signal in the current profile.`,
     changes:`The concern is ${mechanism}${pathway ? ` through ${pathway}` : ""}.`,
     review:action,
   };
@@ -190,7 +211,7 @@ function buildDefaultPriorityStory(count) {
   if (count < 1) return null;
   if (count < 2) {
     return {
-      why:"MedCheck Engine can already show pharmacogenomic, metabolite, and dose context for one medication.",
+      why:"MedCheck Engine can already show pharmacogenomic, metabolite, and dose context for one medication when available.",
       changes:"Pairwise interaction risk needs at least two substances, but genotype or metabolite context can still matter.",
       review:"Add another substance or set known genotype results to personalize the review.",
     };
@@ -251,8 +272,8 @@ function updateEmptyTabs() {
         panel.appendChild(note);
       }
       note.textContent = activeStack.length < 2
-        ? "Add a second medication to populate this view."
-        : "No data available for this medication set.";
+        ? "Add a second substance to populate this view."
+        : "No data available for this substance set.";
       note.style.display = "";
     } else if (note) {
       note.style.display = "none";
@@ -300,7 +321,8 @@ function onSearch(q) {
     if (aliasKey) seenAliasMatches.add(aliasKey);
     return true;
   });
-  if (!matches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
+  const actorMatches = findSupplementActorMatches(q);
+  if (!matches.length && !actorMatches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
 
   // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
@@ -328,8 +350,92 @@ function onSearch(q) {
       </div>`;
     });
   }
+  if (actorMatches.length) {
+    html += `<div class="sr-cat">Food / Supplement</div>`;
+    actorMatches.forEach(row => {
+      const actor = row.actor;
+      const added = activeStack.some(item => {
+        const selectedActor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(item) : null;
+        return selectedActor && selectedActor.id === actor.id;
+      });
+      const secondary = formatActorSources(actor);
+      const matchedAlias = row.match.term && row.match.term !== actor.name && row.match.term !== actor.id ? row.match.term : "";
+      const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${actor.name}` : highlight(actor.name, q);
+      html += `<div class="sr-item" onclick="${added ? `removeFoodActor('${actor.id}')` : `addFoodActor('${actor.id}')`}">
+        <span><span class="sr-name">${displayName}</span>${secondary ? `<span class="sr-secondary">${secondary}</span>` : ""}</span>
+        <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class">Food/Supplement</span>'}</span>
+      </div>`;
+    });
+  }
   el.innerHTML = html;
   el.classList.add("show");
+}
+
+function findSupplementActorMatches(query) {
+  const actorMaps = [
+    typeof FOOD_ACTORS !== "undefined" ? FOOD_ACTORS : {},
+    typeof ENDOGENOUS_ACTORS !== "undefined" ? ENDOGENOUS_ACTORS : {},
+  ];
+  const seen = new Set();
+  return actorMaps
+    .flatMap(actorMap => Object.values(actorMap || {}))
+    .filter(actor => actor && (actor.type === ACTOR_TYPE.FOOD || (actor.type === ACTOR_TYPE.ENDOGENOUS && actor.sources)))
+    .map(actor => ({ actor, match:scoreSupplementActorSearch(actor, query) }))
+    .filter(row => row.match.score > 0)
+    .filter(row => {
+      if (seen.has(row.actor.id)) return false;
+      seen.add(row.actor.id);
+      return true;
+    })
+    .sort((a,b) =>
+      b.match.score - a.match.score ||
+      supplementActorSearchRichness(b.actor) - supplementActorSearchRichness(a.actor) ||
+      a.actor.name.localeCompare(b.actor.name)
+    )
+    .slice(0, 12);
+}
+
+function scoreSupplementActorSearch(actor, query) {
+  const norm = typeof normalizeDrugLookupKey === "function"
+    ? normalizeDrugLookupKey
+    : value => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const q = norm(query);
+  if (!q) return { score:0, term:"", reason:"" };
+  const tokens = q.split(" ").filter(Boolean);
+  const terms = typeof getSupplementActorSearchTerms === "function"
+    ? getSupplementActorSearchTerms(actor)
+    : [actor.name, actor.id, ...(actor.sources || [])];
+  const searchable = terms.map(term => ({ raw:String(term || ""), key:norm(term) })).filter(term => term.key);
+  const joined = searchable.map(term => term.key).join(" ");
+  const actorKey = norm(actor.name);
+  let best = { score:0, term:"", reason:"" };
+  const setBest = (score, term, reason) => {
+    if (score > best.score) best = { score, term, reason };
+  };
+
+  if (actorKey === q) setBest(112, actor.name, "name");
+  if (actorKey.startsWith(q)) setBest(90, actor.name, "name prefix");
+  searchable.forEach(term => {
+    const isPrimary = term.raw === actor.name || term.raw === actor.id;
+    if (term.key === q) setBest(isPrimary ? 112 : 96, term.raw, isPrimary ? "name" : "source");
+    else if (term.key.startsWith(q)) setBest(isPrimary ? 90 : 80, term.raw, isPrimary ? "name prefix" : "source prefix");
+    else if (term.key.includes(q)) setBest(isPrimary ? 72 : 64, term.raw, isPrimary ? "partial name" : "partial source");
+  });
+  if (tokens.length > 1 && tokens.every(token => joined.includes(token))) setBest(62, actor.name, "matched words");
+  return best;
+}
+
+function supplementActorSearchRichness(actor) {
+  return (actor.routes || []).length * 3 +
+    (actor.inh || []).length * 2 +
+    (actor.ind || []).length * 2 +
+    (actor.sources || []).length +
+    (actor.note ? 2 : 0);
+}
+
+function formatActorSources(actor) {
+  const sources = (actor.sources || []).slice(0, 3).map(source => String(source || "").replace(/_/g, " "));
+  return sources.length ? sources.join(", ") : "";
 }
 
 function getSearchAliasDedupeKey(row) {
@@ -611,8 +717,9 @@ function currentStackShareUrl(tab = activeTab) {
   const params = [];
   if (activeStack.length) {
     params.push(["substances", activeStack.map(name => {
-      const drug = getDrug(name);
-      return drug?.id || toGraphId(name);
+      const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
+      const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
+      return actor?.id || drug?.id || toGraphId(name);
     }).join(",")]);
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
@@ -690,6 +797,7 @@ function renderFeedbackLink(label, options = {}) {
 
 // ── RENDER ALL ──
 function renderAll() {
+  const activeDrugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
   arrangeAdvancedSections();
   renderMedList();
   renderGenetics();
@@ -707,9 +815,9 @@ function renderAll() {
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
-    document.getElementById("foldSection").style.display = "";
-    document.getElementById("metabSection").style.display = "";
-    document.getElementById("pdSection").style.display = "";
+    document.getElementById("foldSection").style.display = activeDrugNames.length ? "" : "none";
+    document.getElementById("metabSection").style.display = activeDrugNames.length ? "" : "none";
+    document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
   } else {
     hideSectionAndClear("foldSection", "foldBody");
     hideSectionAndClear("metabSection", "metabBody");
@@ -756,26 +864,32 @@ function renderMedList() {
   const el = document.getElementById("medList");
   const countEl = document.getElementById("medCount");
   if (!activeStack.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">💊</div>Add your medications above to see how they interact</div>';
+    el.innerHTML = '<div class="empty-state"><div class="icon">💊</div>Add medications, supplements, or foods above to see how they interact</div>';
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${activeStack.length} medication${activeStack.length>1?"s":""}`;
+  countEl.textContent = `${activeStack.length} substance${activeStack.length>1?"s":""}`;
   el.innerHTML = activeStack.map(name => {
-    const escaped = name.replace(/'/g,"\\'");
+    const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
+    const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
+    const actorId = actor?.id || "";
+    const escaped = (drug ? drug.name : name).replace(/'/g,"\\'");
     const tiers = DOSE_TIERS[name];
     let doseHtml = "";
-    if (tiers) {
+    if (drug && tiers) {
       const current = getDoseTier(name);
       const opts = Object.entries(tiers.tiers).map(([k,v]) =>
         `<option value="${k}"${k===current?" selected":""}>${v.label}</option>`
       ).join("");
       doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
     }
-    const drug = getDrug(name);
-    const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "";
-    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${getDrugDisplayName(drug || name)}</span>${secondary ? `<span class="med-chip-secondary">${secondary}</span>` : ""}</span>`;
-    return `<span class="med-chip" title="${secondary ? secondary.replace(/"/g, "&quot;") : ""}">${labelHtml}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
+    const secondary = drug
+      ? (typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "")
+      : (actor ? formatActorSources(actor) : "");
+    const primary = drug ? getDrugDisplayName(drug) : (actor ? actor.name : name);
+    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${primary}</span>${secondary ? `<span class="med-chip-secondary">${secondary}</span>` : ""}</span>`;
+    const removeAction = actor && !drug ? `removeFoodActor('${actorId}')` : `removeDrug('${escaped}')`;
+    return `<span class="med-chip" title="${secondary ? secondary.replace(/"/g, "&quot;") : ""}">${labelHtml}${doseHtml}<span class="x" onclick="${removeAction}">×</span></span>`;
   }).join("") + renderActorExposureSummary();
 }
 

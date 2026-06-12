@@ -58,6 +58,112 @@ const FOOD_ACTORS = {
     persistence:{halfLife:6},
     note:"Often combined with curcumin to increase bioavailability; inhibits first-pass metabolism"
   },
+  "st-johns-wort": {
+    id:"st-johns-wort", type:ACTOR_TYPE.FOOD,
+    name:"St John's Wort (Hypericum perforatum)",
+    sources:["supplement","herbal_tea"],
+    routes:[{enzyme:"CYP3A4",fraction:0.5},{enzyme:"CYP2C9",fraction:0.2}],
+    inh:[],
+    ind:[{target:"CYP3A4",strength:"strong",evidence:{confidence:"high",sources:["literature"],pmid:["11180019"]}},
+         {target:"P-gp",strength:"strong",evidence:{confidence:"high",sources:["literature"],pmid:["11180019"]}},
+         {target:"CYP2C9",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"]}}],
+    persistence:{halfLife:12, note:"Hyperforin-mediated PXR activation; 1-2 week onset and about 1 week offset after stopping"},
+    note:"Strong CYP3A4/P-gp inducer via PXR. Can lower exposure to narrow-therapeutic-index CYP3A4/P-gp substrates, including transplant, antiviral, anticoagulant, contraceptive, and cardiac medicines."
+  },
+  "sulforaphane": {
+    id:"sulforaphane", type:ACTOR_TYPE.FOOD,
+    name:"Sulforaphane (Watercress / Broccoli sprouts)",
+    sources:["watercress","broccoli_sprouts","broccoli"],
+    routes:[{enzyme:"CYP1A2",fraction:0.3},{enzyme:"GSTM1",fraction:0.4}],
+    inh:[],
+    ind:[{target:"CYP1A2",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["19843669"]}},
+         {target:"GSTM1",strength:"moderate",evidence:{confidence:"low",sources:["literature"]}}],
+    persistence:{halfLife:2, note:"Short parent exposure; pathway effects depend on ongoing intake"},
+    note:"Cruciferous isothiocyanate context. Modeled as a CYP1A2/GSTM1 dietary signal, with genotype relevance strongest for GSTM1-null interpretation rather than acute DDI prediction."
+  },
+  "caffeine": {
+    id:"caffeine", type:ACTOR_TYPE.FOOD,
+    name:"Caffeine",
+    sources:["coffee","tea","energy_drinks","cola"],
+    routes:[{enzyme:"CYP1A2",fraction:0.95,evidence:{confidence:"high",sources:["literature"],pmid:["10942180"]}}],
+    inh:[],
+    ind:[],
+    persistence:{halfLife:5},
+    note:"Canonical CYP1A2 probe substrate. CYP1A2 inhibitors such as fluvoxamine or ciprofloxacin can raise caffeine exposure; smoking and cruciferous intake can lower it."
+  },
+  "quercetin": {
+    id:"quercetin", type:ACTOR_TYPE.FOOD,
+    name:"Quercetin",
+    sources:["onions","apples","supplement"],
+    routes:[{enzyme:"CYP3A4",fraction:0.3},{enzyme:"UGT",fraction:0.4}],
+    inh:[{target:"OATP1B1",strength:"moderate",evidence:{confidence:"moderate",sources:["literature"],pmid:["22114872"]}},
+         {target:"P-gp",strength:"weak",evidence:{confidence:"low",sources:["literature"],pmid:["20335952"]}}],
+    ind:[],
+    persistence:{halfLife:3, note:"Low oral bioavailability; gut/hepatic effects dominate"},
+    note:"Flavonoid with in vitro OATP1B1/P-gp modulation. Treat as supplement-dose context; food-level exposure is usually lower and clinical direction may vary by substrate."
+  },
+  "resveratrol": {
+    id:"resveratrol", type:ACTOR_TYPE.FOOD,
+    name:"Resveratrol",
+    sources:["red_wine","supplement","grapes"],
+    routes:[{enzyme:"CYP1A1",fraction:0.3},{enzyme:"SULT",fraction:0.5}],
+    inh:[{target:"CYP2C9",strength:"weak",evidence:{confidence:"low",sources:["literature"],pmid:["32985569"]}},
+         {target:"BCRP",strength:"weak",evidence:{confidence:"low",sources:["literature"],pmid:["32985569"]}}],
+    ind:[],
+    persistence:{halfLife:2, note:"Very low bioavailability from food; clinical relevance mainly at supplement doses"},
+    note:"Polyphenol with weak modeled CYP2C9/BCRP inhibition at supplement-dose context. Food-level red wine exposure should not be treated as equivalent to high-dose supplements."
+  },
+  "pomegranate-juice": {
+    id:"pomegranate-juice", type:ACTOR_TYPE.FOOD,
+    name:"Pomegranate Juice",
+    sources:["pomegranate_juice"],
+    routes:[],
+    inh:[{target:"CYP3A4",strength:"weak",evidence:{confidence:"low",sources:["review"],pmid:["24813412"]}},
+         {target:"CYP2C9",strength:"weak",evidence:{confidence:"low",sources:["review"],pmid:["24813412"]}}],
+    ind:[],
+    persistence:{halfLife:12, note:"Modeled conservatively because human clinical PK studies are mixed"},
+    note:"Preclinical CYP3A4/CYP2C9 inhibition signal, but human substrate studies have often found little or no exposure change. Use as a low-confidence review prompt for narrow-therapeutic-index substrates."
+  },
+  "nac": {
+    id:"nac", type:ACTOR_TYPE.FOOD,
+    name:"N-Acetylcysteine (NAC)",
+    sources:["supplement"],
+    routes:[{enzyme:"GSTM1",fraction:0.5}],
+    inh:[],
+    ind:[],
+    persistence:{halfLife:6},
+    note:"Glutathione precursor and acetaminophen-overdose antidote context. Included for supplement-stack visibility and GSTM1/null discussions, not as a strong CYP interaction actor."
+  },
+  "coq10": {
+    id:"coq10", type:ACTOR_TYPE.FOOD,
+    name:"Coenzyme Q10 (Ubiquinone)",
+    sources:["supplement"],
+    routes:[{enzyme:"CYP3A4",fraction:0.3}],
+    inh:[],
+    ind:[],
+    persistence:{halfLife:33, note:"Long t½; lipophilic; accumulates with supplementation"},
+    note:"Supplement commonly used with statins. Case reports and mixed data describe possible warfarin response changes; modeled as context rather than enzyme inhibition."
+  },
+  "methylfolate": {
+    id:"methylfolate", type:ACTOR_TYPE.FOOD,
+    name:"L-Methylfolate (5-MTHF)",
+    sources:["supplement","fortified_foods"],
+    routes:[{enzyme:"DHFR",fraction:0.3}],
+    inh:[],
+    ind:[],
+    persistence:{halfLife:3},
+    note:"Active folate form bypassing MTHFR. Relevant to folate-pathway and methotrexate context, with no significant CYP interaction modeled."
+  },
+  "vitamin-d3": {
+    id:"vitamin-d3", type:ACTOR_TYPE.FOOD,
+    name:"Vitamin D3 (Cholecalciferol)",
+    sources:["supplement","sunlight"],
+    routes:[{enzyme:"CYP27B1",fraction:0.8},{enzyme:"CYP24A1",fraction:0.5}],
+    inh:[],
+    ind:[],
+    persistence:{halfLife:720, note:"25-OH-D half-life is measured in weeks; fat-soluble depot"},
+    note:"Vitamin D metabolism is linked to CYP24A1, CYP27B1, and alternative CYP3A4 catabolism under strong induction. Included for supplement-stack visibility and inducer context."
+  },
 };
 
 // ── Endogenous Substrate Actors ──
@@ -93,6 +199,52 @@ const ENDOGENOUS_ACTORS = {
     note:"CYP2D6 involved in brain dopamine metabolism; PM may have altered dopaminergic tone"
   },
 };
+
+function getSupplementActor(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  const slug = toGraphId(raw);
+  return FOOD_ACTORS[raw] || FOOD_ACTORS[slug] ||
+    ENDOGENOUS_ACTORS[raw] || ENDOGENOUS_ACTORS[slug] || null;
+}
+
+function getSupplementActorSearchTerms(actor) {
+  if (!actor) return [];
+  return [...new Set([
+    actor.name,
+    actor.id,
+    ...(actor.sources || []).map(source => String(source || "").replace(/_/g, " ")),
+    ...(actor.sources || []),
+  ].filter(Boolean))];
+}
+
+function getStackEntryLabel(value) {
+  const actor = getStackSupplementActor(value);
+  if (actor) return actor.name;
+  const drug = getStackDrug(value);
+  if (drug) return drug.name;
+  const fallbackActor = getSupplementActor(value);
+  if (fallbackActor) return fallbackActor.name;
+  return String(value || "");
+}
+
+function getStackSupplementActor(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  return FOOD_ACTORS[raw] || ENDOGENOUS_ACTORS[raw] || null;
+}
+
+function getStackDrug(value) {
+  if (getStackSupplementActor(value)) return null;
+  return typeof getDrug === "function" ? getDrug(value) : null;
+}
+
+function getActiveDrugNames(stack = activeStack) {
+  return [...new Set((stack || []).map(name => {
+    const drug = getStackDrug(name);
+    return drug ? drug.name : null;
+  }).filter(Boolean))];
+}
 
 // ── Receptor Actors ──
 // Pharmacological receptors as first-class graph nodes.

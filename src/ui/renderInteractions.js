@@ -10,7 +10,10 @@ function renderInteractions(interactions) {
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${curatedInteractions.length} source-linked`;
+  const hasModeledActorSignal = curatedInteractions.some(i => i.actorSource && !(i.evidenceRefs || []).length);
+  countEl.textContent = hasModeledActorSignal
+    ? `${curatedInteractions.length} review finding${curatedInteractions.length === 1 ? "" : "s"}`
+    : `${curatedInteractions.length} source-linked`;
   el.innerHTML = curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);
@@ -72,6 +75,7 @@ function renderInteractions(interactions) {
 function isCuratedInteractionWarning(interaction) {
   if (!interaction) return false;
   if (interaction.type === "known-ddi" || interaction.source === "known" || interaction.sourceEngine === "curated") return true;
+  if (interaction.actorSource && interaction.source === "graph") return true;
   return !!(interaction.evidenceRefs && interaction.evidenceRefs.length && interaction.evidenceStatus === "explicit");
 }
 
@@ -138,7 +142,12 @@ function clinicalActionForInteraction(i) {
 
 function renderFoldBars() {
   const el = document.getElementById("foldBody");
-  el.innerHTML = activeStack.map(name => {
+  const drugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
+  if (!drugNames.length) {
+    el.innerHTML = "";
+    return;
+  }
+  el.innerHTML = drugNames.map(name => {
     const result = calcFold(name);
     const fold = result.fold;
     const drug = getDrug(name);

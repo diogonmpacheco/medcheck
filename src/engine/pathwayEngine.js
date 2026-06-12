@@ -111,15 +111,15 @@ function buildInteractionGraph() {
     actors[fid] = food;
     for (const route of (food.routes || [])) {
       edges.push({ from:fid, to:route.enzyme, type:EDGE_TYPE.SUBSTRATE_OF,
-        props:{fraction:route.fraction} });
+        props:{fraction:route.fraction, evidence:route.evidence, evidenceRefs:route.evidenceRefs || route.evidence?.refs || []} });
     }
     for (const inh of (food.inh || [])) {
       edges.push({ from:fid, to:inh.target, type:EDGE_TYPE.INHIBITS,
-        props:{strength:inh.strength, mechanism:inh.mechanism} });
+        props:{strength:inh.strength, mechanism:inh.mechanism, evidence:inh.evidence, evidenceRefs:inh.evidenceRefs || inh.evidence?.refs || []} });
     }
     for (const ind of (food.ind || [])) {
       edges.push({ from:fid, to:ind.target, type:EDGE_TYPE.INDUCES,
-        props:{strength:ind.strength} });
+        props:{strength:ind.strength, mechanism:ind.mechanism, evidence:ind.evidence, evidenceRefs:ind.evidenceRefs || ind.evidence?.refs || []} });
     }
   }
 

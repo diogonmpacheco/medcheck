@@ -40,7 +40,7 @@ function getAllInhibitions(drug) {
 }
 
 function calcFold(drugName) {
-  const drug = getDrug(drugName);
+  const drug = typeof getStackDrug === "function" ? getStackDrug(drugName) : getDrug(drugName);
   if (!drug || drug.routes.length === 0) return { fold: 1, details: [], prodrug: drug ? drug.prodrug : 0, nonlinear: false, autoInhibited: false };
 
   let details = [];
@@ -206,7 +206,7 @@ function calcFold(drugName) {
     // DDI: external drug inhibitions/inductions
     for (const otherName of activeStack) {
       if (otherName === drugName) continue;
-      const other = getDrug(otherName);
+      const other = typeof getStackDrug === "function" ? getStackDrug(otherName) : getDrug(otherName);
       if (!other) continue;
 
       const allInh = getAllInhibitions(other);
@@ -495,7 +495,7 @@ function computeEnzymeCapacity(enzyme, stack) {
   let inhibitorProduct = 1.0;  // cumulative reduction (multiply together)
 
   for (const drugName of drugList) {
-    const drug = getDrug(drugName);
+    const drug = typeof getStackDrug === "function" ? getStackDrug(drugName) : getDrug(drugName);
     if (!drug) continue;
     const allInh = getAllInhibitions(drug);
     for (const inh of allInh) {
@@ -525,7 +525,7 @@ function computeEnzymeCapacity(enzyme, stack) {
   let inducerProduct = 1.0;  // cumulative induction (>1 = capacity increased)
 
   for (const drugName of drugList) {
-    const drug = getDrug(drugName);
+    const drug = typeof getStackDrug === "function" ? getStackDrug(drugName) : getDrug(drugName);
     if (!drug) continue;
     for (const ind of (drug.ind || [])) {
       if (ind.target !== enzyme) continue;
@@ -559,7 +559,7 @@ function computeEnzymeCapacity(enzyme, stack) {
   const affectedSubstrates = [];
   let totalCompetingFraction = 0;
   for (const drugName of drugList) {
-    const drug = getDrug(drugName);
+    const drug = typeof getStackDrug === "function" ? getStackDrug(drugName) : getDrug(drugName);
     if (!drug) continue;
     const route = (drug.routes || []).find(r => r.enzyme === enzyme);
     if (route && route.fraction > 0.2) {  // only significant substrates
@@ -646,7 +646,7 @@ function computeAllEnzymeCapacities(stack) {
   // Collect all enzymes touched by any drug in the stack
   const enzymesInvolved = new Set();
   for (const drugName of drugList) {
-    const drug = getDrug(drugName);
+    const drug = typeof getStackDrug === "function" ? getStackDrug(drugName) : getDrug(drugName);
     if (!drug) continue;
     for (const r of (drug.routes || [])) enzymesInvolved.add(r.enzyme);
     for (const i of (drug.inh || [])) enzymesInvolved.add(i.target);

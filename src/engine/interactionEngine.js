@@ -71,7 +71,7 @@ function auditInteractionEvidence(interactions) {
 function findInteractions() {
   const interactions = [];
   const seen = new Set();
-  const drugs = activeStack.map(getDrug).filter(Boolean);
+  const drugs = activeStack.map(name => getStackDrug(name)).filter(Boolean);
 
   // ── Phase B: compute enzyme capacity map upfront ──────────────────
   // Gives every interaction card access to the global enzyme state so
@@ -107,8 +107,8 @@ function findInteractions() {
   for (let i = 0; i < activeStack.length; i++) {
     for (let j = 0; j < activeStack.length; j++) {
       if (i === j) continue;
-      const perpetrator = getDrug(activeStack[i]);
-      const victim = getDrug(activeStack[j]);
+      const perpetrator = getStackDrug(activeStack[i]);
+      const victim = getStackDrug(activeStack[j]);
       if (!perpetrator || !victim) continue;
 
       const allInh = getAllInhibitions(perpetrator);
@@ -502,10 +502,10 @@ function findInteractions() {
   TRANSPORTER_DDI.forEach(t => {
     const subPresent = activeStack.includes(t.substrate);
     const inhPresent = activeStack.includes(t.inhibitor) ||
-      (t.inhibitor === "NSAIDs" && activeStack.some(n => { const d = getDrug(n); return d && d.cls === "NSAID"; }));
+      (t.inhibitor === "NSAIDs" && activeStack.some(n => { const d = getStackDrug(n); return d && d.cls === "NSAID"; }));
     if (!subPresent || !inhPresent) return;
     const actualInh = t.inhibitor === "NSAIDs"
-      ? activeStack.find(n => { const d = getDrug(n); return d && d.cls === "NSAID"; })
+      ? activeStack.find(n => { const d = getStackDrug(n); return d && d.cls === "NSAID"; })
       : t.inhibitor;
     const key = [t.substrate, actualInh, t.transporter, "transporter"].sort().join("|");
     if (seen.has(key)) return;
@@ -541,6 +541,11 @@ function findInteractions() {
       const victimInStack = activeStack.find(n => toGraphId(n) === chain.victim);
       if (!sourceInStack || !victimInStack) continue;
       if (sourceInStack === victimInStack) continue; // skip self-interactions
+      const sourceDrug = getStackDrug(sourceInStack);
+      const victimDrug = getStackDrug(victimInStack);
+      if (!victimDrug) continue;
+      const sourceLabel = sourceDrug ? sourceDrug.name : sourceName;
+      const victimLabel = victimDrug.name;
 
       const chainKey = [sourceInStack, victimInStack, chain.enzyme, chain.type].join("|");
       // Check if the pairwise approach already found this interaction
@@ -562,11 +567,13 @@ function findInteractions() {
       } else if (chain.type === 'metabolite_induction_chain' && metabName) {
         chainDesc = `${sourceInStack} → ${metabName} → induces ${chain.enzyme} → ↓ ${victimInStack} levels`;
       } else if (chain.type === 'direct_inhibition') {
-        continue; // already caught by pairwise — skip to avoid duplicates
+        if (sourceDrug) continue; // already caught by pairwise for drug sources
+        chainDesc = `${sourceLabel} inhibits ${chain.enzyme} → ↑ ${victimLabel} levels`;
       } else if (chain.type === 'direct_induction') {
-        continue; // already caught by pairwise
+        if (sourceDrug) continue; // already caught by pairwise for drug sources
+        chainDesc = `${sourceLabel} induces ${chain.enzyme} → ↓ ${victimLabel} levels`;
       } else {
-        chainDesc = `${chain.type}: ${sourceInStack} → ${chain.enzyme} → ${victimInStack}`;
+        chainDesc = `${chain.type}: ${sourceLabel} → ${chain.enzyme} → ${victimLabel}`;
       }
 
       // Determine severity from chain strength
@@ -574,28 +581,47 @@ function findInteractions() {
       const sev = sevMap[chain.strength] || "moderate";
 
       // Get the victim drug's route fraction for this enzyme
-      const victimDrug = getDrug(victimInStack);
       const victimRoute = victimDrug ? (victimDrug.routes || []).find(r => r.enzyme === chain.enzyme) : null;
       const victimIsProdrug = victimDrug && victimDrug.prodrug;
+      const victimActivationSensitive = isProdrugActivationRoute(victimDrug, chain.enzyme);
       const fraction = victimRoute ? victimRoute.fraction : 0;
       if (userGenetics[chain.enzyme] === "null") continue;
 
       // Only report if meaningful impact (metabolite on a minor pathway is not clinically significant)
       if (fraction < 0.1 && !victimIsProdrug) continue;
 
+      const isDirectInduction = chain.type === 'direct_induction';
+      const isDirectInhibition = chain.type === 'direct_inhibition';
+      const firstEdgeProps = chain.chain?.[0]?.edge?.props || {};
+      const edgeEvidence = firstEdgeProps.evidence || null;
+      const edgeEvidenceRefs = firstEdgeProps.evidenceRefs || edgeEvidence?.refs || [];
+
       interactions.push({
-        drug1: sourceInStack, drug2: victimInStack, enzyme: chain.enzyme,
-        type: chain.type === 'metabolite_inhibition_chain'
+        drug1: sourceLabel, drug2: victimLabel, enzyme: chain.enzyme,
+        type: isDirectInhibition ? (victimActivationSensitive ? "prodrug-inhibition" : "inhibition") :
+          isDirectInduction ? (victimActivationSensitive ? "prodrug-induction" : "induction") :
+          chain.type === 'metabolite_inhibition_chain'
           ? (victimIsProdrug ? "prodrug-inhibition" : "metabolite-chain")
           : "metabolite-chain",
         strength: chain.strength,
-        effect: victimIsProdrug
-          ? `↓ ${victimInStack} efficacy (activation blocked via metabolite chain)`
-          : `↑ ${victimInStack} levels (metabolite-mediated ${chain.enzyme} inhibition)`,
+        effect: isDirectInduction
+          ? (victimActivationSensitive
+            ? `↑ ${victimLabel} activation (more active metabolite formed)`
+            : `↓ ${victimLabel} levels`)
+          : isDirectInhibition
+          ? (victimActivationSensitive
+            ? `↓ ${victimLabel} efficacy (activation blocked via ${chain.enzyme})`
+            : `↑ ${victimLabel} levels (actor-mediated ${chain.enzyme} inhibition)`)
+          : victimIsProdrug
+          ? `↓ ${victimLabel} efficacy (activation blocked via metabolite chain)`
+          : `↑ ${victimLabel} levels (metabolite-mediated ${chain.enzyme} inhibition)`,
         severity: sev,
         mechanism: chainDesc,
         source: "graph",
-        confidence: "moderate",
+        confidence: edgeEvidence?.confidence || "moderate",
+        evidence: edgeEvidence,
+        evidenceRefs: edgeEvidenceRefs,
+        actorSource: !sourceDrug,
         graphChain: chain
       });
     }
@@ -611,6 +637,14 @@ function findInteractions() {
   });
 
   return interactions.map(normalizeInteractionRisk);
+}
+
+function isProdrugActivationRoute(drug, enzyme) {
+  if (!drug?.prodrug || !enzyme) return false;
+  return (METAB[drug.name] || []).some(met =>
+    met.e === enzyme &&
+    (met.role === "active_form" || met.a === "active_form")
+  );
 }
 
 function calcRisk() {
@@ -636,7 +670,8 @@ function calcRisk() {
   }
 
   // FOLD-CHANGE MAGNITUDE BONUS — high AUC changes are dangerous regardless of category
-  const foldResults = activeStack.map(n => calcFold(n));
+  const foldSubjects = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getStackDrug(name));
+  const foldResults = foldSubjects.map(n => calcFold(n));
   const maxFoldResult = foldResults.reduce((best, r) => r.fold > best.fold ? r : best, { fold: 1 });
   const minFoldResult = foldResults.reduce((worst, r) => r.fold < worst.fold ? r : worst, { fold: 1 });
   const maxFold = maxFoldResult.fold;
@@ -682,7 +717,7 @@ function calcRisk() {
   }
 
   // PD risk — confidence-weighted: use evidence from DRUG_DB props where available
-  const drugs = activeStack.map(getDrug).filter(Boolean);
+  const drugs = activeStack.map(name => getStackDrug(name)).filter(Boolean);
   const qtcDrugs = drugs.filter(d=>(d.props.qtcRisk||0)>=2);
   if (qtcDrugs.length >= 2) factors.push({ label: "QTc prolongation risk", color: "red" });
   const seroDrugs = drugs.filter(d=>d.props.serotonergic);
@@ -699,7 +734,7 @@ function calcRisk() {
   if (drugs.filter(d=>d.props.hyperkalemia).length >= 2) factors.push({ label: "Hyperkalemia risk", color: "amber" });
   if (drugs.filter(d=>d.props.seizureRisk).length >= 2) factors.push({ label: "Seizure threshold lowered", color: "amber" });
   if (drugs.filter(d=>d.props.sedation).length >= 3) factors.push({ label: "Heavy CNS depression", color: "red" });
-  if (activeStack.length >= 8) factors.push({ label: `${activeStack.length} medications (polypharmacy)`, color: "amber" });
+  if (activeStack.length >= 8) factors.push({ label: `${activeStack.length} substances in stack`, color: "amber" });
 
   // Combination product risk
   const comboInteractions = interactions.filter(i => i.source === "combination");

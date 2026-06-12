@@ -164,9 +164,19 @@ function normalizeUrlPhenotype(geneOrValue, maybeValue) {
 function resolveUrlDrugName(value) {
   const raw = String(value || '').trim();
   if (!raw) return null;
+  const slug = toGraphId(raw);
+  const exactDrug = DRUG_DB.find(d =>
+    d.id === raw ||
+    d.name.toLowerCase() === raw.toLowerCase()
+  );
+  const keyedActor = (typeof FOOD_ACTORS !== "undefined" && (FOOD_ACTORS[raw] || FOOD_ACTORS[slug])) ||
+    (typeof ENDOGENOUS_ACTORS !== "undefined" && (ENDOGENOUS_ACTORS[raw] || ENDOGENOUS_ACTORS[slug])) ||
+    null;
+  if (keyedActor && !exactDrug) return keyedActor.id;
   const direct = getDrug(raw);
   if (direct) return direct.name;
-  const slug = toGraphId(raw);
+  const actor = typeof getSupplementActor === "function" ? getSupplementActor(raw) : null;
+  if (actor) return actor.id;
   const match = DRUG_DB.find(d =>
     d.id === raw ||
     d.id === slug ||
