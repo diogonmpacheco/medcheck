@@ -130,9 +130,16 @@ function renderQualityDashboard() {
   const stackStudies = publicStudies.filter(s => activeStack.some(name =>
     JSON.stringify([s.id,s.title,s.source,s.supports,s.quantifiedEffects]).toLowerCase().includes(name.toLowerCase())
   ));
+  const openTargetsSnapshot = typeof getOpenTargetsSnapshot === "function" ? getOpenTargetsSnapshot() : null;
+  const openTargetsSummary = openTargetsSnapshot?.summary || {};
+  const openTargetsPromotionSummary = typeof OPEN_TARGETS_PROMOTION_QUEUE_SUMMARY !== "undefined" ? OPEN_TARGETS_PROMOTION_QUEUE_SUMMARY : null;
+  const stackExternalContextCount = typeof collectOpenTargetsSafetyContext === "function"
+    ? collectOpenTargetsSafetyContext(activeStack, openTargetsSnapshot).length
+    : 0;
+  const openTargetsRelease = openTargetsSummary.release || openTargetsSnapshot?.release || "not imported";
 
   if (section) section.style.display = "";
-  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${pendingProfessionalReview} pending professional review · ${qualitative.length} qualitative PGx effects`;
+  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${pendingProfessionalReview} pending professional review · ${stackExternalContextCount} external context cards`;
 
   const issueItems = [
     ...reviewNotes.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence review note:</strong> ${s.id} · ${s.verifyNote}</div>`),
@@ -147,6 +154,7 @@ function renderQualityDashboard() {
       <div class="quality-tile"><div class="quality-num">${quantified.length}</div><div class="quality-label">Quantified PGx Effects</div><div class="quality-note">Metabolite/active-form rows with numeric folds</div></div>
       <div class="quality-tile"><div class="quality-num">${qualitative.length}</div><div class="quality-label">Qualitative PGx Effects</div><div class="quality-note">Shown without invented fold numbers</div></div>
       <div class="quality-tile"><div class="quality-num">${professionalReviewed.length}</div><div class="quality-label">Professionally Reviewed Evidence</div><div class="quality-note">${pendingProfessionalReview} entries still pending pharmacist/physician review</div></div>
+      <div class="quality-tile"><div class="quality-num">${stackExternalContextCount}</div><div class="quality-label">External Context Cards</div><div class="quality-note">${openTargetsSummary.contextFactsIncluded || 0} imported facts · ${openTargetsPromotionSummary?.unreviewed || 0} awaiting review · ${safeHtml(openTargetsRelease)}</div></div>
       <div class="quality-tile"><div class="quality-num">${estimatedFoldCount}</div><div class="quality-label">Live Model Estimates</div><div class="quality-note">Estimated folds visible in the current stack</div></div>
     </div>
     ${issueItems ? `<div class="quality-list">${issueItems}</div>` : `<div class="quality-list"><div class="quality-item"><strong>Current stack:</strong> no structural quality warnings surfaced by the local dashboard.</div></div>`}

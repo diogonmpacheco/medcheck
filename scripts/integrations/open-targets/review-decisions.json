@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "description": "Reviewer decisions for Open Targets context facts. Facts default to context-only until a reviewer records keep_context, rejected, or promoted_for_severity with required metadata.",
+  "decisions": []
+}

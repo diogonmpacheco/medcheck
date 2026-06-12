@@ -119,12 +119,13 @@ function renderExternalSafetyContext(snapshot = null) {
   bindExternalSafetyContextHandlers();
   if (section) section.style.display = "";
   if (count) {
-    count.textContent = `${contexts.length} context card${contexts.length === 1 ? "" : "s"} · not risk-scoring`;
+    const release = contexts[0]?.openTargetsRelease || "release not specified";
+    count.textContent = `${contexts.length} context card${contexts.length === 1 ? "" : "s"} · not risk-scoring · ${release}`;
   }
 
   body.innerHTML = `
     <div class="external-context-notice">
-      Imported Open Targets / ChEMBL facts are shown as context only. They do not change MedCheck warnings, severity, or calculations unless a Diognosis reviewer explicitly promotes the signal.
+      Imported Open Targets / ChEMBL facts are review context. They do not change MedCheck warnings, severity, or calculations unless a Diognosis reviewer promotes the signal through the promotion queue.
     </div>
     <div class="external-context-grid">
       ${contexts.map(renderExternalSafetyContextCard).join("")}
@@ -147,15 +148,19 @@ function renderExternalSafetyContextCard(context) {
   ].filter(Boolean);
   const reviewHref = buildExternalSafetyContextReviewUrl(context);
   const contextNote = `Context only · reviewRequired:${Boolean(context.reviewRequired)} · importedContextOnly:${Boolean(context.importedContextOnly)} · notSeverityBearing:${Boolean(context.notSeverityBearing)}`;
+  const reviewDecision = formatOpenTargetsReviewDecision(context.reviewDecision);
+  const actionHint = actionHintForOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
 
   return `<div class="external-context-card" data-source-category="open_targets_context">
     <div class="external-context-head">
       <span class="ev-review-badge needs-review">needs Diognosis review</span>
       <span class="external-context-type">${safeHtml(typeLabel)}</span>
+      <span class="external-context-decision">${safeHtml(reviewDecision)}</span>
     </div>
     <div class="external-context-title">${safeHtml(context.label)}</div>
     <div class="external-context-meta">${safeTextList(meta, "<br>")}</div>
     <div class="external-context-note">${safeHtml(contextNote)}</div>
+    <div class="external-context-action">${safeHtml(actionHint)}</div>
     <div class="feedback-row"><a class="feedback-link external-context-report" data-external-context-report="true" href="${safeAttr(reviewHref)}" target="_blank" rel="noopener">Suggest context review</a></div>
   </div>`;
 }
@@ -171,6 +176,26 @@ function formatOpenTargetsDataset(value) {
     withdrawn_or_discontinued: "Withdrawal status",
   };
   return labels[key] || key.replace(/_/g, " ");
+}
+
+function formatOpenTargetsReviewDecision(value) {
+  const key = safeText(value || "unreviewed");
+  const labels = {
+    unreviewed: "unreviewed",
+    keep_context: "keep context",
+    rejected: "rejected",
+    promoted_for_severity: "promoted",
+  };
+  return labels[key] || key.replace(/_/g, " ");
+}
+
+function actionHintForOpenTargetsDataset(value) {
+  const key = safeText(value || "context");
+  if (key === "drugWarnings") return "Review label source before promotion.";
+  if (key === "pharmacogenetics") return "Compare with genotype selector, metabolite rule, and warning card coverage.";
+  if (key === "targetSafety") return "Use as mechanistic review context unless linked to reviewed evidence.";
+  if (key === "faersSignificant") return "Treat FAERS signal as context because confounding is unresolved.";
+  return "Keep non-scoring unless reviewed and promoted.";
 }
 
 function buildExternalSafetyContextReviewUrl(context) {

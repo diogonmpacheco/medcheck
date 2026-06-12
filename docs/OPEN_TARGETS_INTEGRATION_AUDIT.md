@@ -9,38 +9,53 @@ This audit covers the static, build-time Open Targets crosswalk. No Open Targets
 | Metric | Count |
 | --- | ---: |
 | MedCheck substances considered | 625 |
-| Open Targets molecules loaded | 0 |
-| Input files | 0 |
-| Mapped rows | 0 |
-| Unmapped rows | 603 |
+| Open Targets molecules loaded | 10 |
+| Input files | 5 |
+| Mapped rows | 10 |
+| Unmapped rows | 593 |
 | Ambiguous rows | 0 |
-| Manual rows | 0 |
+| Manual rows | 10 |
 | Combination/context rows requiring Diognosis review | 22 |
-| Context facts loaded | 0 |
-| Context facts included | 0 |
+| Identity rows requiring review | 32 |
+| Context facts loaded | 270 |
+| Context facts included | 270 |
 
-Open Targets release: not specified
+Open Targets release: 26.03
 
-Input fingerprint: `85aa4115c716d707`
+Input fingerprint: `0e1446b4809fb26d`
 
 ## Input Files
 
 | Path | Dataset | Records |
 | --- | --- | ---: |
-| none | none | 0 |
+| scripts/integrations/open-targets/input/drug-warnings-open-targets-spotlookups.json | drugWarnings | 24 |
+| scripts/integrations/open-targets/input/faers-open-targets-spotlookups.json | faersSignificant | 80 |
+| scripts/integrations/open-targets/input/molecule-open-targets-spotlookups.json | molecule | 10 |
+| scripts/integrations/open-targets/input/pharmacogenetics-open-targets-spotlookups.json | pharmacogenetics | 103 |
+| scripts/integrations/open-targets/input/target-safety-open-targets-spotlookups.json | targetSafety | 63 |
 
 ## Mapping Status
 
 | Status | Count |
 | --- | ---: |
+| manual | 10 |
 | requires_manual_combination_review | 22 |
-| unmapped | 603 |
+| unmapped | 593 |
 
 ## Mapped Rows
 
-| Diognosis substance | ChEMBL/Open Targets ID | Open Targets name | Match status | Confidence |
-| --- | --- | --- | --- | ---: |
-| none | none | none | none | 0 |
+| Diognosis substance | ChEMBL/Open Targets ID | Open Targets name | Match status | Confidence | Identity decision |
+| --- | --- | --- | --- | ---: | --- |
+| Abacavir | CHEMBL1380 | ABACAVIR | manual | 1 | provisionally_accepted_for_context_import |
+| Capecitabine | CHEMBL1773 | CAPECITABINE | manual | 1 | provisionally_accepted_for_context_import |
+| Clarithromycin | CHEMBL1741 | CLARITHROMYCIN | manual | 1 | provisionally_accepted_for_context_import |
+| Clopidogrel | CHEMBL1771 | CLOPIDOGREL | manual | 1 | provisionally_accepted_for_context_import |
+| Clozapine | CHEMBL42 | CLOZAPINE | manual | 1 | provisionally_accepted_for_context_import |
+| Codeine | CHEMBL485 | CODEINE | manual | 1 | provisionally_accepted_for_context_import |
+| Paroxetine | CHEMBL490 | PAROXETINE | manual | 1 | provisionally_accepted_for_context_import |
+| Simvastatin | CHEMBL1064 | SIMVASTATIN | manual | 1 | provisionally_accepted_for_context_import |
+| Tamoxifen | CHEMBL83 | TAMOXIFEN | manual | 1 | provisionally_accepted_for_context_import |
+| Warfarin | CHEMBL1464 | WARFARIN | manual | 1 | provisionally_accepted_for_context_import |
 
 ## Rows Requiring Manual Review
 

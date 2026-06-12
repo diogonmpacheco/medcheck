@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "description": "Initial real Open Targets spot-lookup seed. These mappings are provisional identity mappings for context-only import; they are not professional clinical review.",
+  "substances": [
+    {
+      "medcheckName": "Paroxetine",
+      "chemblId": "CHEMBL490",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; used for context-only safety and PGx cards."
+    },
+    {
+      "medcheckName": "Codeine",
+      "chemblId": "CHEMBL485",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; salts remain separate ChEMBL child/salt entities."
+    },
+    {
+      "medcheckName": "Simvastatin",
+      "chemblId": "CHEMBL1064",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Clarithromycin",
+      "chemblId": "CHEMBL1741",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Capecitabine",
+      "chemblId": "CHEMBL1773",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Clozapine",
+      "chemblId": "CHEMBL42",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Warfarin",
+      "chemblId": "CHEMBL1464",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; salt entities remain out of scope."
+    },
+    {
+      "medcheckName": "Abacavir",
+      "chemblId": "CHEMBL1380",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; sulfate salt remains out of scope."
+    },
+    {
+      "medcheckName": "Clopidogrel",
+      "chemblId": "CHEMBL1771",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; bisulfate salt remains out of scope."
+    },
+    {
+      "medcheckName": "Tamoxifen",
+      "chemblId": "CHEMBL83",
+      "identityDecision": "provisionally_accepted_for_context_import",
+      "note": "Exact Open Targets parent molecule match; citrate salt remains out of scope."
+    }
+  ]
+}

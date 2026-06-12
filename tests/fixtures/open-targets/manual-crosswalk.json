@@ -32,6 +32,26 @@
       "medcheckName": "Clozapine",
       "chemblId": "CHEMBL42",
       "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Warfarin",
+      "chemblId": "CHEMBL1464",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Abacavir",
+      "chemblId": "CHEMBL1380",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Clopidogrel",
+      "chemblId": "CHEMBL1771",
+      "note": "fixture_manual_mapping"
+    },
+    {
+      "medcheckName": "Tamoxifen",
+      "chemblId": "CHEMBL83",
+      "note": "fixture_manual_mapping"
     }
   ]
 }

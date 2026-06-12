@@ -25,5 +25,14 @@
     "description": "Fixture target-safety context for QT review.",
     "evidenceLevel": "Open Targets fixture target safety",
     "datasource": "Open Targets fixture target safety"
+  },
+  {
+    "drugId": "CHEMBL83",
+    "drugName": "Tamoxifen",
+    "targetGeneSymbol": "ESR1",
+    "toxicityClass": "estrogen receptor pathway liability",
+    "description": "Fixture target-safety context for endocrine pathway review.",
+    "evidenceLevel": "Open Targets fixture target safety",
+    "datasource": "Open Targets fixture target safety"
   }
 ]

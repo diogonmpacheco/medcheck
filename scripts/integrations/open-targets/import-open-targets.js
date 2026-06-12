@@ -454,8 +454,16 @@ function buildSnapshot(data, inputs, manual, args) {
   const indexes = buildMoleculeIndexes(molecules);
   const crosswalk = data.DRUG_DB.map((drug) => {
     const terms = medcheckTerms(drug, data);
-    const match = chooseBestMatch(drug, terms, indexes, manualMappingForDrug(drug, manual));
+    const manualMapping = manualMappingForDrug(drug, manual);
+    const match = chooseBestMatch(drug, terms, indexes, manualMapping);
     const molecule = match.molecule;
+    const identityReviewDecision = manualMapping?.identityReviewDecision ||
+      (match.matchStatus === 'manual' ? 'manual_mapping_needs_review' :
+        ['exact_name', 'exact_alias'].includes(match.matchStatus) ? 'algorithmic_match_needs_review' : 'unresolved');
+    const identityReviewRequired = manualMapping?.reviewRequired !== false && (
+      Boolean(match.chemblId) ||
+      ['ambiguous', 'manual_unresolved', 'requires_manual_combination_review'].includes(match.matchStatus)
+    );
     return {
       medcheckId: drug.id || null,
       medcheckName: drug.name,
@@ -471,6 +479,9 @@ function buildSnapshot(data, inputs, manual, args) {
       matchStatus: match.matchStatus,
       matchConfidence: match.matchConfidence,
       matchReason: match.matchReason,
+      identityReviewDecision,
+      identityReviewRequired,
+      identityReviewNote: manualMapping?.note || match.matchReason || null,
       sourceDatasets: molecule?.sourceDatasets || [],
       combinationProductAuthority: isCombinationLike(drug) ? 'diognosis' : null,
     };
@@ -498,6 +509,7 @@ function buildSnapshot(data, inputs, manual, args) {
     ambiguousRows: crosswalk.filter(row => row.matchStatus === 'ambiguous').length,
     manualRows: crosswalk.filter(row => row.matchStatus === 'manual').length,
     combinationReviewRows: crosswalk.filter(row => row.matchStatus === 'requires_manual_combination_review').length,
+    identityReviewRequiredRows: crosswalk.filter(row => row.identityReviewRequired).length,
     contextFactsLoaded: rawContextFacts.length,
     contextFactsIncluded: Object.values(contextByChemblId).reduce((sum, list) => sum + list.length, 0),
     datasetCounts,
@@ -558,8 +570,8 @@ function renderMarkdown(snapshot, fingerprint) {
   const mappedRows = snapshot.crosswalk
     .filter(row => row.chemblId)
     .slice(0, 40)
-    .map(row => `| ${escapeCell(row.medcheckName)} | ${escapeCell(row.chemblId)} | ${escapeCell(row.openTargetsName)} | ${escapeCell(row.matchStatus)} | ${row.matchConfidence} |`)
-    .join('\n') || '| none | none | none | none | 0 |';
+    .map(row => `| ${escapeCell(row.medcheckName)} | ${escapeCell(row.chemblId)} | ${escapeCell(row.openTargetsName)} | ${escapeCell(row.matchStatus)} | ${row.matchConfidence} | ${escapeCell(row.identityReviewDecision)} |`)
+    .join('\n') || '| none | none | none | none | 0 | none |';
   const reviewRows = snapshot.crosswalk
     .filter(row => row.matchStatus === 'requires_manual_combination_review' || row.matchStatus === 'ambiguous')
     .slice(0, 40)
@@ -584,6 +596,7 @@ This audit covers the static, build-time Open Targets crosswalk. No Open Targets
 | Ambiguous rows | ${summary.ambiguousRows} |
 | Manual rows | ${summary.manualRows} |
 | Combination/context rows requiring Diognosis review | ${summary.combinationReviewRows} |
+| Identity rows requiring review | ${summary.identityReviewRequiredRows} |
 | Context facts loaded | ${summary.contextFactsLoaded} |
 | Context facts included | ${summary.contextFactsIncluded} |
 
@@ -605,8 +618,8 @@ ${statusRows}
 
 ## Mapped Rows
 
-| Diognosis substance | ChEMBL/Open Targets ID | Open Targets name | Match status | Confidence |
-| --- | --- | --- | --- | ---: |
+| Diognosis substance | ChEMBL/Open Targets ID | Open Targets name | Match status | Confidence | Identity decision |
+| --- | --- | --- | --- | ---: | --- |
 ${mappedRows}
 
 ## Rows Requiring Manual Review

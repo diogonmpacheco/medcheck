@@ -1,6 +1,77 @@
 {
   "schemaVersion": 1,
   "description": "Manual Diognosis to Open Targets/ChEMBL mapping overrides. Keep combination products unresolved unless each ingredient is intentionally modeled elsewhere.",
-  "release": null,
-  "mappings": []
+  "release": "26.03",
+  "mappings": [
+    {
+      "medcheckName": "Paroxetine",
+      "chemblId": "CHEMBL490",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; context-only import pending Diognosis identity review."
+    },
+    {
+      "medcheckName": "Codeine",
+      "chemblId": "CHEMBL485",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; salts remain separate ChEMBL entities."
+    },
+    {
+      "medcheckName": "Simvastatin",
+      "chemblId": "CHEMBL1064",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Clarithromycin",
+      "chemblId": "CHEMBL1741",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Capecitabine",
+      "chemblId": "CHEMBL1773",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Clozapine",
+      "chemblId": "CHEMBL42",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match."
+    },
+    {
+      "medcheckName": "Warfarin",
+      "chemblId": "CHEMBL1464",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; salt entities remain out of scope."
+    },
+    {
+      "medcheckName": "Abacavir",
+      "chemblId": "CHEMBL1380",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; sulfate salt remains out of scope."
+    },
+    {
+      "medcheckName": "Clopidogrel",
+      "chemblId": "CHEMBL1771",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; bisulfate salt remains out of scope."
+    },
+    {
+      "medcheckName": "Tamoxifen",
+      "chemblId": "CHEMBL83",
+      "identityReviewDecision": "provisionally_accepted_for_context_import",
+      "reviewRequired": true,
+      "note": "Exact Open Targets parent molecule match; citrate salt remains out of scope."
+    }
+  ]
 }

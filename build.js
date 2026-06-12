@@ -40,6 +40,7 @@ const MODULE_ORDER = [
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
+  'data/generatedOpenTargetsPromotionQueue.js', // static Open Targets review/promotion queue
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
