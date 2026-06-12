@@ -26,6 +26,7 @@
     "enrich:validate-batches": "node scripts/enrich/validate-batches.js",
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
     "integrate:open-targets": "node scripts/integrations/open-targets/import-open-targets.js",
+    "demo:open-targets": "node scripts/demo/open-targets-fixture-demo.js",
     "build": "node build.js",
     "build:min": "node build.js --minify",
     "build:dev": "node build.js --out /tmp/diognosis_dev.html",
