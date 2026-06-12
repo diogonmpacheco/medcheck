@@ -39,6 +39,7 @@ const MODULE_ORDER = [
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
+  'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
@@ -52,10 +53,12 @@ const MODULE_ORDER = [
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
 
   // ── UI layer (depends on engine + data) ──
+  'ui/renderSafe.js',         // escaping helpers for generated/imported strings
   'ui/renderCore.js',         // addDrug, removeDrug, renderAll, renderMedList
   'ui/renderInteractions.js', // renderInteractions, renderFoldBars, renderMatrix, renderTiming
   'ui/renderMechanisticPredictions.js', // experimental predictions below warnings
   'ui/renderEvidence.js',     // renderEvidenceExplorer
+  'ui/renderExternalSafetyContext.js', // imported external context cards
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
   'ui/renderGenotype.js',     // renderGenotypePanel, setGenotype

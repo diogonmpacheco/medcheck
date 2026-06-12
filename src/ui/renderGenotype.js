@@ -255,11 +255,13 @@ function genotypeOptionTitle(gene, phenotype) {
 }
 
 function escapeHtml(value) {
+  if (typeof safeHtml === "function") return safeHtml(value);
   return String(value || "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function renderGenotypeInterpretationLine(gene, phenotype) {
