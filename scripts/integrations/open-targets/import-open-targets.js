@@ -482,6 +482,9 @@ function buildSnapshot(data, inputs, manual, args) {
       identityReviewDecision,
       identityReviewRequired,
       identityReviewNote: manualMapping?.note || match.matchReason || null,
+      identityReviewedBy: manualMapping?.identityReviewedBy || null,
+      identityReviewedAt: manualMapping?.identityReviewedAt || null,
+      identityReviewRationale: manualMapping?.identityReviewRationale || null,
       sourceDatasets: molecule?.sourceDatasets || [],
       combinationProductAuthority: isCombinationLike(drug) ? 'diognosis' : null,
     };

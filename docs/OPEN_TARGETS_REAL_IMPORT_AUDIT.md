@@ -25,16 +25,16 @@ This is a build-time/offline import. The browser must never call Open Targets di
 
 | Diognosis substance | ChEMBL/Open Targets ID | Identity decision | Note |
 | --- | --- | --- | --- |
-| Paroxetine | CHEMBL490 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; used for context-only safety and PGx cards. |
-| Codeine | CHEMBL485 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; salts remain separate ChEMBL child/salt entities. |
-| Simvastatin | CHEMBL1064 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match. |
-| Clarithromycin | CHEMBL1741 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match. |
-| Capecitabine | CHEMBL1773 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match. |
-| Clozapine | CHEMBL42 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match. |
-| Warfarin | CHEMBL1464 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; salt entities remain out of scope. |
-| Abacavir | CHEMBL1380 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; sulfate salt remains out of scope. |
-| Clopidogrel | CHEMBL1771 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; bisulfate salt remains out of scope. |
-| Tamoxifen | CHEMBL83 | provisionally_accepted_for_context_import | Exact Open Targets parent molecule match; citrate salt remains out of scope. |
+| Paroxetine | CHEMBL490 | accepted_for_context_import | Accepted parent-molecule context mapping; not a professional clinical evidence review. |
+| Codeine | CHEMBL485 | accepted_for_context_import | Accepted parent-molecule context mapping; salts remain out of scope. |
+| Simvastatin | CHEMBL1064 | accepted_for_context_import | Accepted parent-molecule context mapping. |
+| Clarithromycin | CHEMBL1741 | accepted_for_context_import | Accepted parent-molecule context mapping. |
+| Capecitabine | CHEMBL1773 | accepted_for_context_import | Accepted parent-molecule context mapping. |
+| Clozapine | CHEMBL42 | accepted_for_context_import | Accepted parent-molecule context mapping. |
+| Warfarin | CHEMBL1464 | accepted_for_context_import | Accepted parent-molecule context mapping; salt entities remain out of scope. |
+| Abacavir | CHEMBL1380 | accepted_for_context_import | Accepted parent-molecule context mapping; sulfate salt remains out of scope. |
+| Clopidogrel | CHEMBL1771 | accepted_for_context_import | Accepted parent-molecule context mapping; bisulfate salt remains out of scope. |
+| Tamoxifen | CHEMBL83 | accepted_for_context_import | Accepted parent-molecule context mapping; citrate salt remains out of scope. |
 
 ## Safety Contract
 

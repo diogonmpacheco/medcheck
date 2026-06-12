@@ -175,6 +175,9 @@ function normalizeMolecule(seed, drug) {
     tradeNames: drug.tradeNames || [],
     description: drug.description || null,
     openTargetsIdentityDecision: seed.identityDecision || 'provisional_context_import',
+    openTargetsIdentityReviewedBy: seed.identityReviewedBy || null,
+    openTargetsIdentityReviewedAt: seed.identityReviewedAt || null,
+    openTargetsIdentityReviewRationale: seed.identityReviewRationale || null,
     openTargetsIdentityNote: seed.note || null,
   };
 }

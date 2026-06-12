@@ -16,13 +16,13 @@ This audit covers the static, build-time Open Targets crosswalk. No Open Targets
 | Ambiguous rows | 0 |
 | Manual rows | 10 |
 | Combination/context rows requiring Diognosis review | 22 |
-| Identity rows requiring review | 32 |
+| Identity rows requiring review | 22 |
 | Context facts loaded | 270 |
 | Context facts included | 270 |
 
 Open Targets release: 26.03
 
-Input fingerprint: `0e1446b4809fb26d`
+Input fingerprint: `ae3935720222152f`
 
 ## Input Files
 
@@ -46,16 +46,16 @@ Input fingerprint: `0e1446b4809fb26d`
 
 | Diognosis substance | ChEMBL/Open Targets ID | Open Targets name | Match status | Confidence | Identity decision |
 | --- | --- | --- | --- | ---: | --- |
-| Abacavir | CHEMBL1380 | ABACAVIR | manual | 1 | provisionally_accepted_for_context_import |
-| Capecitabine | CHEMBL1773 | CAPECITABINE | manual | 1 | provisionally_accepted_for_context_import |
-| Clarithromycin | CHEMBL1741 | CLARITHROMYCIN | manual | 1 | provisionally_accepted_for_context_import |
-| Clopidogrel | CHEMBL1771 | CLOPIDOGREL | manual | 1 | provisionally_accepted_for_context_import |
-| Clozapine | CHEMBL42 | CLOZAPINE | manual | 1 | provisionally_accepted_for_context_import |
-| Codeine | CHEMBL485 | CODEINE | manual | 1 | provisionally_accepted_for_context_import |
-| Paroxetine | CHEMBL490 | PAROXETINE | manual | 1 | provisionally_accepted_for_context_import |
-| Simvastatin | CHEMBL1064 | SIMVASTATIN | manual | 1 | provisionally_accepted_for_context_import |
-| Tamoxifen | CHEMBL83 | TAMOXIFEN | manual | 1 | provisionally_accepted_for_context_import |
-| Warfarin | CHEMBL1464 | WARFARIN | manual | 1 | provisionally_accepted_for_context_import |
+| Abacavir | CHEMBL1380 | ABACAVIR | manual | 1 | accepted_for_context_import |
+| Capecitabine | CHEMBL1773 | CAPECITABINE | manual | 1 | accepted_for_context_import |
+| Clarithromycin | CHEMBL1741 | CLARITHROMYCIN | manual | 1 | accepted_for_context_import |
+| Clopidogrel | CHEMBL1771 | CLOPIDOGREL | manual | 1 | accepted_for_context_import |
+| Clozapine | CHEMBL42 | CLOZAPINE | manual | 1 | accepted_for_context_import |
+| Codeine | CHEMBL485 | CODEINE | manual | 1 | accepted_for_context_import |
+| Paroxetine | CHEMBL490 | PAROXETINE | manual | 1 | accepted_for_context_import |
+| Simvastatin | CHEMBL1064 | SIMVASTATIN | manual | 1 | accepted_for_context_import |
+| Tamoxifen | CHEMBL83 | TAMOXIFEN | manual | 1 | accepted_for_context_import |
+| Warfarin | CHEMBL1464 | WARFARIN | manual | 1 | accepted_for_context_import |
 
 ## Rows Requiring Manual Review
 

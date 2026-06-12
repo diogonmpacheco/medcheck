@@ -1,66 +1,96 @@
 {
   "schemaVersion": 1,
-  "description": "Initial real Open Targets spot-lookup seed. These mappings are provisional identity mappings for context-only import; they are not professional clinical review.",
+  "description": "Initial reviewed Open Targets spot-lookup seed. These mappings are accepted for context-only import; they are not professional clinical evidence review.",
   "substances": [
     {
       "medcheckName": "Paroxetine",
       "chemblId": "CHEMBL490",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; used for context-only safety and PGx cards."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; not a professional clinical evidence review.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Paroxetine refers to the active parent molecule; Open Targets CHEMBL490 is the matching parent molecule. Salt and brand entities are intentionally not used for context import."
     },
     {
       "medcheckName": "Codeine",
       "chemblId": "CHEMBL485",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; salts remain separate ChEMBL child/salt entities."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; salts remain out of scope.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Codeine refers to the active parent molecule; Open Targets CHEMBL485 is the matching parent molecule. Codeine phosphate and sulfate remain separate salt entities and are not imported."
     },
     {
       "medcheckName": "Simvastatin",
       "chemblId": "CHEMBL1064",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Simvastatin refers to the active drug entity; Open Targets CHEMBL1064 is the matching molecule used for context import."
     },
     {
       "medcheckName": "Clarithromycin",
       "chemblId": "CHEMBL1741",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Clarithromycin refers to the parent molecule; Open Targets CHEMBL1741 is the matching molecule used for context import."
     },
     {
       "medcheckName": "Capecitabine",
       "chemblId": "CHEMBL1773",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Capecitabine refers to the parent prodrug molecule; Open Targets CHEMBL1773 is the matching molecule used for context import."
     },
     {
       "medcheckName": "Clozapine",
       "chemblId": "CHEMBL42",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Clozapine refers to the parent molecule; Open Targets CHEMBL42 is the matching molecule used for context import."
     },
     {
       "medcheckName": "Warfarin",
       "chemblId": "CHEMBL1464",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; salt entities remain out of scope."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; salt entities remain out of scope.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Warfarin refers to the parent molecule; Open Targets CHEMBL1464 is the matching parent. Sodium and potassium salt entities remain out of scope."
     },
     {
       "medcheckName": "Abacavir",
       "chemblId": "CHEMBL1380",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; sulfate salt remains out of scope."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; sulfate salt remains out of scope.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Abacavir refers to the parent molecule; Open Targets CHEMBL1380 is the matching parent. Abacavir sulfate remains out of scope."
     },
     {
       "medcheckName": "Clopidogrel",
       "chemblId": "CHEMBL1771",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; bisulfate salt remains out of scope."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; bisulfate salt remains out of scope.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Clopidogrel refers to the parent prodrug molecule; Open Targets CHEMBL1771 is the matching parent. Bisulfate and other salt entities remain out of scope."
     },
     {
       "medcheckName": "Tamoxifen",
       "chemblId": "CHEMBL83",
-      "identityDecision": "provisionally_accepted_for_context_import",
-      "note": "Exact Open Targets parent molecule match; citrate salt remains out of scope."
+      "identityDecision": "accepted_for_context_import",
+      "note": "Accepted parent-molecule context mapping; citrate salt remains out of scope.",
+      "identityReviewedBy": "Codex data review",
+      "identityReviewedAt": "2026-06-12",
+      "identityReviewRationale": "Diognosis Tamoxifen refers to the parent molecule; Open Targets CHEMBL83 is the matching parent. Tamoxifen citrate remains out of scope."
     }
   ]
 }
