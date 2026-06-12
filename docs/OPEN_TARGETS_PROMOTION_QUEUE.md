@@ -9,9 +9,10 @@ Open Targets context starts as non-scoring review material. A reviewer may recor
 | Metric | Count |
 | --- | ---: |
 | Context facts | 270 |
-| Unreviewed | 270 |
-| Keep as context | 0 |
+| Unreviewed | 0 |
+| Keep as context | 223 |
 | Rejected | 0 |
+| Candidate for Diognosis evidence | 47 |
 | Promoted for severity | 0 |
 | Promotion-ready | 0 |
 | Blocked promotions | 0 |
@@ -22,89 +23,90 @@ Open Targets release: 26.03
 
 | Rank | Decision | Priority | Drug | Dataset | Gene/Target | Evidence | Missing Promotion Fields | Suggested Action |
 | ---: | --- | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | unreviewed | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 2 | unreviewed | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 3 | unreviewed | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 4 | unreviewed | 90 | Capecitabine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 5 | unreviewed | 90 | Clopidogrel | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 6 | unreviewed | 90 | Clopidogrel | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 7 | unreviewed | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 8 | unreviewed | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 9 | unreviewed | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 10 | unreviewed | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 11 | unreviewed | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 12 | unreviewed | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 13 | unreviewed | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 14 | unreviewed | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 15 | unreviewed | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 16 | unreviewed | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 17 | unreviewed | 90 | Paroxetine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 18 | unreviewed | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 19 | unreviewed | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 20 | unreviewed | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 21 | unreviewed | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 22 | unreviewed | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 23 | unreviewed | 90 | Warfarin | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 24 | unreviewed | 90 | Warfarin | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
-| 25 | unreviewed | 85 | Abacavir | pharmacogenetics | HLA-B | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 26 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 27 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 28 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 29 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 30 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 31 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 32 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 33 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 34 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 35 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 36 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 37 | unreviewed | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 38 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 39 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 40 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 41 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 42 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 43 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 44 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 45 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 46 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 47 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 48 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 49 | unreviewed | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 50 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 51 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 52 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 53 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 54 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 55 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 56 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 57 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 58 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 59 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 60 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 61 | unreviewed | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 62 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 63 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 64 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 65 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 66 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 67 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 68 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 69 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 70 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 71 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 72 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 73 | unreviewed | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 74 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 75 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 76 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 77 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 78 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 79 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
-| 80 | unreviewed | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 1 | keep_context | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 2 | keep_context | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 3 | keep_context | 90 | Abacavir | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 4 | keep_context | 90 | Capecitabine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 5 | keep_context | 90 | Clopidogrel | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 6 | keep_context | 90 | Clopidogrel | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 7 | keep_context | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 8 | keep_context | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 9 | keep_context | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 10 | keep_context | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 11 | keep_context | 90 | Clozapine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 12 | keep_context | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 13 | keep_context | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 14 | keep_context | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 15 | keep_context | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 16 | keep_context | 90 | Codeine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 17 | keep_context | 90 | Paroxetine | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 18 | keep_context | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 19 | keep_context | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 20 | keep_context | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 21 | keep_context | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 22 | keep_context | 90 | Tamoxifen | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 23 | keep_context | 90 | Warfarin | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 24 | keep_context | 90 | Warfarin | drugWarnings |  |  |  | Verify label source and decide whether Diognosis already models the warning. |
+| 25 | candidate_for_diognosis_evidence | 85 | Abacavir | pharmacogenetics | HLA-B | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 26 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 27 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 28 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 29 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 30 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 31 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 32 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 33 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 34 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 35 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 36 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 37 | candidate_for_diognosis_evidence | 85 | Capecitabine | pharmacogenetics | DPYD | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 38 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 39 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 40 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 41 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 42 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 43 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 44 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 45 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 46 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 47 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 48 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 49 | candidate_for_diognosis_evidence | 85 | Clopidogrel | pharmacogenetics | CYP2C19 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 50 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 51 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 52 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 53 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 54 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 55 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 56 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 57 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 58 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 59 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 60 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 61 | candidate_for_diognosis_evidence | 85 | Codeine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 62 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 63 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 64 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 65 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 66 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 67 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 68 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 69 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 70 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 71 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 72 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 73 | keep_context | 85 | Paroxetine | pharmacogenetics | CYP2D6 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 74 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 75 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 76 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 77 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 78 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 79 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
+| 80 | keep_context | 85 | Simvastatin | pharmacogenetics | SLCO1B1 | 1A |  | Compare against Diognosis genotype selector, metabolite rule, and warning card coverage. |
 
 ## Promotion Contract
 
 - Unreviewed, rejected, and keep-context decisions must never alter `calcRisk()`.
+- Candidate rows are reviewed follow-up work, not promoted evidence.
 - Promotion requires Diognosis clinical/data review plus explicit support wiring into the curated evidence model.
 - Target-safety and FAERS rows are review prompts, not direct severity evidence by themselves.

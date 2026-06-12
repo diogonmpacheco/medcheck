@@ -8,6 +8,25 @@ function getOpenTargetsSnapshot(snapshot = null) {
   return null;
 }
 
+function getOpenTargetsPromotionQueue() {
+  if (typeof GENERATED_OPEN_TARGETS_PROMOTION_QUEUE !== "undefined") return GENERATED_OPEN_TARGETS_PROMOTION_QUEUE;
+  return [];
+}
+
+function openTargetsFactKey(fact) {
+  return [
+    fact.chemblId || "",
+    fact.openTargetsSourceDataset || fact.factType || "",
+    fact.label || "",
+  ].map(value => String(value).toLowerCase().replace(/\s+/g, " ").trim()).join("|");
+}
+
+function openTargetsPromotionDecisionForFact(fact) {
+  const queue = getOpenTargetsPromotionQueue();
+  const key = openTargetsFactKey(fact);
+  return queue.find(row => row.id === fact.id) || queue.find(row => row.factKey === key) || null;
+}
+
 function collectOpenTargetsSafetyContext(stack = activeStack, snapshot = null) {
   const data = getOpenTargetsSnapshot(snapshot);
   if (!data || !Array.isArray(data.crosswalk)) return [];
@@ -75,6 +94,7 @@ function openTargetsCrosswalkFact(row, warningType, value, release) {
 }
 
 function normalizeOpenTargetsContextFact(fact, row, release) {
+  const promotionDecision = openTargetsPromotionDecisionForFact(fact);
   return {
     id: safeText(fact.id || ""),
     medcheckId: safeText(row.medcheckId || ""),
@@ -87,7 +107,9 @@ function normalizeOpenTargetsContextFact(fact, row, release) {
     importedContextOnly: fact.importedContextOnly !== false,
     notSeverityBearing: fact.notSeverityBearing !== false,
     reviewRequired: fact.reviewRequired !== false,
-    reviewDecision: safeText(fact.reviewDecision || "unreviewed"),
+    reviewDecision: safeText(promotionDecision?.reviewDecision || fact.reviewDecision || "unreviewed"),
+    promotionDecisionId: safeText(promotionDecision?.decisionId || ""),
+    promotionRationale: safeText(promotionDecision?.rationale || ""),
     factType: safeText(fact.factType || fact.openTargetsSourceDataset || "context"),
     label: safeText(fact.label || fact.warningType || fact.factType || "Open Targets context"),
     warningType: safeText(fact.warningType || ""),
@@ -150,6 +172,7 @@ function renderExternalSafetyContextCard(context) {
   const contextNote = `Context only · reviewRequired:${Boolean(context.reviewRequired)} · importedContextOnly:${Boolean(context.importedContextOnly)} · notSeverityBearing:${Boolean(context.notSeverityBearing)}`;
   const reviewDecision = formatOpenTargetsReviewDecision(context.reviewDecision);
   const actionHint = actionHintForOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
+  const rationale = context.promotionRationale ? `Review rationale: ${context.promotionRationale}` : "";
 
   return `<div class="external-context-card" data-source-category="open_targets_context">
     <div class="external-context-head">
@@ -161,6 +184,7 @@ function renderExternalSafetyContextCard(context) {
     <div class="external-context-meta">${safeTextList(meta, "<br>")}</div>
     <div class="external-context-note">${safeHtml(contextNote)}</div>
     <div class="external-context-action">${safeHtml(actionHint)}</div>
+    ${rationale ? `<div class="external-context-action">${safeHtml(rationale)}</div>` : ""}
     <div class="feedback-row"><a class="feedback-link external-context-report" data-external-context-report="true" href="${safeAttr(reviewHref)}" target="_blank" rel="noopener">Suggest context review</a></div>
   </div>`;
 }
@@ -184,6 +208,7 @@ function formatOpenTargetsReviewDecision(value) {
     unreviewed: "unreviewed",
     keep_context: "keep context",
     rejected: "rejected",
+    candidate_for_diognosis_evidence: "evidence candidate",
     promoted_for_severity: "promoted",
   };
   return labels[key] || key.replace(/_/g, " ");

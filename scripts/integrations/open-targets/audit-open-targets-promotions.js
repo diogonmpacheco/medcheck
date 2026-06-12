@@ -11,7 +11,7 @@ const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsPromotionQueue.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_PROMOTION_QUEUE.md');
 const CHECK = process.argv.includes('--check');
 
-const VALID_DECISIONS = new Set(['unreviewed', 'keep_context', 'rejected', 'promoted_for_severity']);
+const VALID_DECISIONS = new Set(['unreviewed', 'keep_context', 'rejected', 'candidate_for_diognosis_evidence', 'promoted_for_severity']);
 
 function readSnapshot(filePath) {
   const text = readFileSync(filePath, 'utf8');
@@ -36,6 +36,7 @@ function factKey(fact) {
 function decisionIndex(decisions) {
   const byId = new Map();
   const byKey = new Map();
+  const selectors = [];
   for (const decision of decisions.decisions || []) {
     const value = decision.reviewDecision || 'unreviewed';
     if (!VALID_DECISIONS.has(value)) {
@@ -43,8 +44,42 @@ function decisionIndex(decisions) {
     }
     if (decision.factId) byId.set(decision.factId, decision);
     if (decision.key) byKey.set(String(decision.key).toLowerCase(), decision);
+    if (decision.selector) selectors.push(decision);
   }
-  return { byId, byKey };
+  return { byId, byKey, selectors };
+}
+
+function matchesSelectorValue(actual, expected) {
+  if (expected == null || expected === '') return true;
+  if (Array.isArray(expected)) return expected.some(value => matchesSelectorValue(actual, value));
+  return String(actual || '').toLowerCase() === String(expected).toLowerCase();
+}
+
+function matchesSelectorPattern(actual, pattern) {
+  if (!pattern) return true;
+  return new RegExp(pattern, 'i').test(String(actual || ''));
+}
+
+function selectorMatches(decision, fact, mappedRows) {
+  const selector = decision.selector || {};
+  const medcheckNames = mappedRows.map(row => row.medcheckName).filter(Boolean);
+  if (!matchesSelectorValue(fact.chemblId, selector.chemblId)) return false;
+  if (!matchesSelectorValue(fact.openTargetsSourceDataset || fact.factType, selector.dataset)) return false;
+  if (!matchesSelectorValue(fact.targetGene, selector.targetGene)) return false;
+  if (!matchesSelectorValue(fact.sourceEvidenceLevel, selector.sourceEvidenceLevel)) return false;
+  if (selector.medcheckName && !medcheckNames.some(name => matchesSelectorValue(name, selector.medcheckName))) return false;
+  if (!matchesSelectorPattern(fact.label, selector.labelPattern)) return false;
+  if (!matchesSelectorPattern(fact.riskMarker, selector.riskMarkerPattern)) return false;
+  return true;
+}
+
+function decisionForFact(index, fact, mappedRows) {
+  return (
+    index.byId.get(fact.id) ||
+    index.byKey.get(factKey(fact)) ||
+    index.selectors.find(decision => selectorMatches(decision, fact, mappedRows)) ||
+    {}
+  );
 }
 
 function missingPromotionFields(decision) {
@@ -91,10 +126,10 @@ function buildQueue(snapshot, decisions) {
   const rows = [];
   for (const facts of Object.values(snapshot.contextByChemblId || {})) {
     for (const fact of facts || []) {
-      const decision = index.byId.get(fact.id) || index.byKey.get(factKey(fact)) || {};
+      const mapped = crosswalkByChembl.get(fact.chemblId) || [];
+      const decision = decisionForFact(index, fact, mapped);
       const reviewDecision = decision.reviewDecision || fact.reviewDecision || 'unreviewed';
       const missingFields = missingPromotionFields({ ...decision, reviewDecision });
-      const mapped = crosswalkByChembl.get(fact.chemblId) || [];
       rows.push({
         id: fact.id,
         factKey: factKey(fact),
@@ -117,6 +152,7 @@ function buildQueue(snapshot, decisions) {
         reviewedBy: decision.reviewedBy || null,
         reviewedAt: decision.reviewedAt || null,
         rationale: decision.rationale || null,
+        decisionId: decision.id || decision.factId || decision.key || null,
       });
     }
   }
@@ -134,6 +170,7 @@ function buildQueue(snapshot, decisions) {
     unreviewed: rows.filter(row => row.reviewDecision === 'unreviewed').length,
     keepContext: rows.filter(row => row.reviewDecision === 'keep_context').length,
     rejected: rows.filter(row => row.reviewDecision === 'rejected').length,
+    candidateForDiognosisEvidence: rows.filter(row => row.reviewDecision === 'candidate_for_diognosis_evidence').length,
     promotedForSeverity: rows.filter(row => row.reviewDecision === 'promoted_for_severity').length,
     promotionReady: rows.filter(row => row.promotionReady).length,
     blockedPromotions: rows.filter(row => row.reviewDecision === 'promoted_for_severity' && !row.promotionReady).length,
@@ -185,6 +222,7 @@ Open Targets context starts as non-scoring review material. A reviewer may recor
 | Unreviewed | ${queue.summary.unreviewed} |
 | Keep as context | ${queue.summary.keepContext} |
 | Rejected | ${queue.summary.rejected} |
+| Candidate for Diognosis evidence | ${queue.summary.candidateForDiognosisEvidence} |
 | Promoted for severity | ${queue.summary.promotedForSeverity} |
 | Promotion-ready | ${queue.summary.promotionReady} |
 | Blocked promotions | ${queue.summary.blockedPromotions} |
@@ -200,6 +238,7 @@ ${table}
 ## Promotion Contract
 
 - Unreviewed, rejected, and keep-context decisions must never alter \`calcRisk()\`.
+- Candidate rows are reviewed follow-up work, not promoted evidence.
 - Promotion requires Diognosis clinical/data review plus explicit support wiring into the curated evidence model.
 - Target-safety and FAERS rows are review prompts, not direct severity evidence by themselves.
 `;

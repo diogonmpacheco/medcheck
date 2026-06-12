@@ -1,5 +1,120 @@
 {
   "schemaVersion": 1,
   "description": "Reviewer decisions for Open Targets context facts. Facts default to context-only until a reviewer records keep_context, rejected, or promoted_for_severity with required metadata.",
-  "decisions": []
+  "reviewedBy": "Codex data review",
+  "reviewedAt": "2026-06-12",
+  "decisions": [
+    {
+      "id": "candidate_abacavir_hla_b",
+      "selector": {
+        "chemblId": "CHEMBL1380",
+        "dataset": "pharmacogenetics",
+        "targetGene": "HLA-B"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "Classic high-actionability Abacavir/HLA-B hypersensitivity relationship; keep Open Targets rows non-scoring while creating a Diognosis evidence task."
+    },
+    {
+      "id": "candidate_clopidogrel_cyp2c19",
+      "selector": {
+        "chemblId": "CHEMBL1771",
+        "dataset": "pharmacogenetics",
+        "targetGene": "CYP2C19"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "High-actionability Clopidogrel/CYP2C19 activation relationship; candidate for Diognosis evidence review, not automatic promotion."
+    },
+    {
+      "id": "candidate_capecitabine_dpyd",
+      "selector": {
+        "chemblId": "CHEMBL1773",
+        "dataset": "pharmacogenetics",
+        "targetGene": "DPYD"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "High-actionability Capecitabine/DPYD toxicity relationship; candidate for Diognosis evidence review, not automatic promotion."
+    },
+    {
+      "id": "candidate_warfarin_cyp2c9",
+      "selector": {
+        "chemblId": "CHEMBL1464",
+        "dataset": "pharmacogenetics",
+        "targetGene": "CYP2C9"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "High-actionability Warfarin/CYP2C9 dosing sensitivity relationship; candidate for Diognosis evidence review."
+    },
+    {
+      "id": "candidate_warfarin_vkorc1",
+      "selector": {
+        "chemblId": "CHEMBL1464",
+        "dataset": "pharmacogenetics",
+        "targetGene": "VKORC1"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "High-actionability Warfarin/VKORC1 dosing sensitivity relationship; candidate for Diognosis evidence review."
+    },
+    {
+      "id": "candidate_codeine_cyp2d6",
+      "selector": {
+        "chemblId": "CHEMBL485",
+        "dataset": "pharmacogenetics",
+        "targetGene": "CYP2D6"
+      },
+      "reviewDecision": "candidate_for_diognosis_evidence",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "High-actionability Codeine/CYP2D6 prodrug activation relationship; candidate for Diognosis evidence review."
+    },
+    {
+      "id": "context_all_drug_warnings",
+      "selector": {
+        "dataset": "drugWarnings"
+      },
+      "reviewDecision": "keep_context",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "Drug-warning records are useful safety context but require label-level Diognosis review before affecting warning severity."
+    },
+    {
+      "id": "context_all_faers",
+      "selector": {
+        "dataset": "faersSignificant"
+      },
+      "reviewDecision": "keep_context",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "FAERS disproportionality signals remain context only because indication, reporting, and co-medication confounding are unresolved."
+    },
+    {
+      "id": "context_all_target_safety",
+      "selector": {
+        "dataset": "targetSafety"
+      },
+      "reviewDecision": "keep_context",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "Target-safety liabilities are mechanistic review prompts, not direct interaction or severity evidence."
+    },
+    {
+      "id": "context_remaining_pharmacogenetics",
+      "selector": {
+        "dataset": "pharmacogenetics"
+      },
+      "reviewDecision": "keep_context",
+      "reviewedBy": "Codex data review",
+      "reviewedAt": "2026-06-12",
+      "rationale": "Remaining ClinPGx rows are retained as context until a drug-gene-specific Diognosis evidence review is opened."
+    }
+  ]
 }
