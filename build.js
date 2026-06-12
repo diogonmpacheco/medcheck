@@ -42,6 +42,7 @@ const MODULE_ORDER = [
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
   'data/generatedOpenTargetsPromotionQueue.js', // static Open Targets review/promotion queue
   'data/generatedOpenTargetsReviewTargets.js', // static first review target decisions
+  'data/generatedOpenTargetsPgxGapRoadmap.js', // static Open Targets/ClinPGx PGx gap roadmap
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
